@@ -23,6 +23,18 @@ export async function siteSignIn(
   _prev: SignInState,
   formData: FormData,
 ): Promise<SignInState> {
+  try {
+    return await doSignIn(projectToken, formData);
+  } catch (e) {
+    console.error("[siteSignIn]", e);
+    return { error: "Something went wrong. Please try again." };
+  }
+}
+
+async function doSignIn(
+  projectToken: string,
+  formData: FormData,
+): Promise<SignInState> {
   const project = await prisma.project.findUnique({
     where: { token: projectToken },
     include: {
