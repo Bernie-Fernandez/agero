@@ -1,4 +1,6 @@
 import { DocumentType } from "@/generated/prisma/client";
+export { TRADE_CATEGORIES } from "./trade-categories";
+export type { TradeCategory } from "./trade-categories";
 
 export type RagStatus = "green" | "amber" | "red";
 
@@ -122,39 +124,3 @@ export function formatDocType(type: DocumentType): string {
   return labels[type] ?? type;
 }
 
-export const TRADE_CATEGORIES = [
-  "Demolition",
-  "Carpentry/Partitions",
-  "Ceiling Works",
-  "Construction General",
-  "Doors",
-  "Glass",
-  "Painting",
-  "Floor Preparation",
-  "Carpet/Vinyl",
-  "Concrete Floor Finishes",
-  "Floor Sanding",
-  "Timber",
-  "Tiling",
-  "Joinery",
-  "Furniture",
-  "FFE",
-  "Signage",
-  "Blinds",
-  "Cleaning",
-  "Electrical",
-  "Mechanical",
-  "Plumbing",
-  "Fire",
-  "Security",
-  "Structural Engineering",
-  "Services Engineering",
-  "Building Surveyor",
-  "Interior Design/Architecture",
-  "Landscaping",
-  "Scaffolding",
-  "Waterproofing",
-  "Roofing",
-] as const;
-
-export type TradeCategory = (typeof TRADE_CATEGORIES)[number];

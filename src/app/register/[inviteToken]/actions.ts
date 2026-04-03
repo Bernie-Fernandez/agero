@@ -99,5 +99,6 @@ export async function completeRegistration(
     documentsUrl: `${host}/subcontractors/${org.id}/documents`,
   });
 
-  redirect(`/subcontractors/${org.id}/documents?welcome=1`);
+  const params = new URLSearchParams({ company: name, orgId: org.id });
+  redirect(`/register/${inviteToken}/confirmed?${params.toString()}`);
 }

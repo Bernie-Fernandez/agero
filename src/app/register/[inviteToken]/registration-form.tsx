@@ -2,7 +2,7 @@
 
 import { useActionState, useState, useTransition } from "react";
 import type { RegisterState } from "./actions";
-import { TRADE_CATEGORIES } from "@/lib/compliance";
+import { TRADE_CATEGORIES } from "@/lib/trade-categories";
 
 type AbnStatus = "idle" | "checking" | "valid" | "invalid";
 
