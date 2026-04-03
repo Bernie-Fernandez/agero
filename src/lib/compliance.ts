@@ -7,21 +7,28 @@ export interface ComplianceResult {
   reasons: string[];
 }
 
-const REQUIRED_ORG_DOCS: DocumentType[] = [
+export const REQUIRED_ORG_DOCS: DocumentType[] = [
   DocumentType.public_liability,
   DocumentType.workers_compensation,
+  DocumentType.contract_works,
   DocumentType.whs_policy,
 ];
 
-const EXPIRY_WARN_DAYS = 30;
+export const OPTIONAL_ORG_DOCS: DocumentType[] = [
+  DocumentType.professional_indemnity,
+];
 
-function daysUntil(date: Date): number {
+export const EXPIRY_WARN_DAYS = 30;
+export const EXPIRY_URGENT_DAYS = 7;
+
+export function daysUntil(date: Date): number {
   return Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
 }
 
 export function calcOrgCompliance(org: {
   documents: { type: DocumentType; expiryDate: Date | null }[];
   subcontractorOnProjects?: { project: { supervisors: { id: string }[] } }[];
+  swmsSubmissions?: { status: string }[];
 }): ComplianceResult {
   const reasons: string[] = [];
   let status: RagStatus = "green";
@@ -39,9 +46,27 @@ export function calcOrgCompliance(org: {
         reasons.push(`Expired: ${formatDocType(docType)}`);
         status = "red";
       } else if (days <= EXPIRY_WARN_DAYS) {
-        reasons.push(`Expiring soon (${days}d): ${formatDocType(docType)}`);
+        reasons.push(`Expiring in ${days}d: ${formatDocType(docType)}`);
         if (status === "green") status = "amber";
       }
+    }
+  }
+
+  // Check SWMS if provided
+  if (org.swmsSubmissions !== undefined) {
+    const hasApproved = org.swmsSubmissions.some((s) => s.status === "approved");
+    const hasRejected = org.swmsSubmissions.some((s) => s.status === "rejected");
+    const hasPending = org.swmsSubmissions.some((s) => s.status === "pending_review");
+
+    if (!hasApproved && hasRejected) {
+      reasons.push("SWMS rejected — resubmission required");
+      if (status !== "red") status = "red";
+    } else if (hasPending) {
+      reasons.push("SWMS pending review");
+      if (status === "green") status = "amber";
+    } else if (!hasApproved && !hasPending) {
+      reasons.push("No SWMS submitted");
+      if (status === "green") status = "amber";
     }
   }
 
@@ -65,7 +90,7 @@ export function calcWorkerCompliance(worker: {
       reasons.push("Expired: White card");
       status = "red";
     } else if (days <= EXPIRY_WARN_DAYS) {
-      reasons.push(`Expiring soon (${days}d): White card`);
+      reasons.push(`Expiring in ${days}d: White card`);
       if (status === "green") status = "amber";
     }
   }
@@ -84,7 +109,9 @@ export function calcWorkerCompliance(worker: {
 export function formatDocType(type: DocumentType): string {
   const labels: Record<DocumentType, string> = {
     public_liability: "Public Liability Insurance",
-    workers_compensation: "Workers Compensation",
+    workers_compensation: "Workers Compensation Insurance",
+    contract_works: "Contract Works Insurance",
+    professional_indemnity: "Professional Indemnity Insurance",
     whs_policy: "WHS Policy",
     white_card: "White Card",
     trade_licence: "Trade Licence",
@@ -94,3 +121,40 @@ export function formatDocType(type: DocumentType): string {
   };
   return labels[type] ?? type;
 }
+
+export const TRADE_CATEGORIES = [
+  "Demolition",
+  "Carpentry/Partitions",
+  "Ceiling Works",
+  "Construction General",
+  "Doors",
+  "Glass",
+  "Painting",
+  "Floor Preparation",
+  "Carpet/Vinyl",
+  "Concrete Floor Finishes",
+  "Floor Sanding",
+  "Timber",
+  "Tiling",
+  "Joinery",
+  "Furniture",
+  "FFE",
+  "Signage",
+  "Blinds",
+  "Cleaning",
+  "Electrical",
+  "Mechanical",
+  "Plumbing",
+  "Fire",
+  "Security",
+  "Structural Engineering",
+  "Services Engineering",
+  "Building Surveyor",
+  "Interior Design/Architecture",
+  "Landscaping",
+  "Scaffolding",
+  "Waterproofing",
+  "Roofing",
+] as const;
+
+export type TradeCategory = (typeof TRADE_CATEGORIES)[number];

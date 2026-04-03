@@ -4,7 +4,7 @@ import Link from "next/link";
 const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/projects", label: "Projects" },
-  { href: "/organisations", label: "Subcontractors" },
+  { href: "/subcontractors", label: "Subcontractors" },
 ];
 
 export function AppNav({ currentPath }: { currentPath?: string }) {
