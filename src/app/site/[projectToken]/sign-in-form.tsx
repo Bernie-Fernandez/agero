@@ -52,7 +52,7 @@ export function SignInForm({
       <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center dark:border-red-800 dark:bg-red-950/30">
         <p className="text-lg font-semibold text-red-700 dark:text-red-300">Sign-in blocked</p>
         <p className="mt-2 text-sm text-red-600 dark:text-red-400">
-          Your previous sign-in has not been verified. Please speak to the site supervisor to confirm your identity before signing in again.
+          Your previous sign-in has not been verified. Please speak to the site supervisor before signing in again.
         </p>
       </div>
     );
@@ -71,18 +71,6 @@ export function SignInForm({
         >
           Start induction →
         </a>
-      </div>
-    );
-  }
-
-  if (state.success) {
-    return (
-      <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-800 dark:bg-green-950/30">
-        <p className="text-4xl">✓</p>
-        <p className="mt-3 text-xl font-semibold text-green-700 dark:text-green-300">Signed in successfully</p>
-        <p className="mt-1 text-sm text-green-600 dark:text-green-400">
-          {new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit" })} — have a safe day on site.
-        </p>
       </div>
     );
   }

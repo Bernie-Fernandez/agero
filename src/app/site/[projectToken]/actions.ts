@@ -3,13 +3,12 @@
 import { prisma } from "@/lib/prisma";
 import { createServerClient } from "@/lib/supabase/server";
 import { sendUnknownWorkerAlert } from "@/lib/alerts";
+import { redirect } from "next/navigation";
 
 export type SignInState = {
   error?: string;
-  success?: boolean;
   requiresInduction?: boolean;
   inductionUrl?: string;
-  workerId?: string;
   blockedUntilVerified?: boolean;
 };
 
@@ -99,7 +98,6 @@ async function doSignIn(
       return {
         requiresInduction: true,
         inductionUrl: `${host}/inductions/${genericTemplate.id}?worker=${worker.id}&next=/site/${projectToken}`,
-        workerId: worker.id,
       };
     }
   }
@@ -114,7 +112,6 @@ async function doSignIn(
       return {
         requiresInduction: true,
         inductionUrl: `${host}/inductions/${siteTemplate.id}?worker=${worker.id}&next=/site/${projectToken}`,
-        workerId: worker.id,
       };
     }
   }
@@ -165,5 +162,12 @@ async function doSignIn(
     });
   }
 
-  return { success: true };
+  // Redirect to confirmation page — avoids streaming response issues over local network HTTP
+  const params = new URLSearchParams({
+    name: `${firstName} ${lastName}`,
+    site: project.name,
+    time: new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit" }),
+    ...(isUnknown ? { unknown: "1" } : {}),
+  });
+  redirect(`/site/${projectToken}/confirmed?${params.toString()}`);
 }
