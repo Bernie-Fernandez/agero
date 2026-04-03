@@ -31,10 +31,10 @@ Before writing any Next.js code, read the relevant guide in `node_modules/next/d
 - Auth state is read server-side via `@clerk/nextjs/server` helpers (`auth()`, `currentUser()`)
 
 ### Database (Prisma + Supabase)
-- Prisma schema: `prisma/schema.prisma`; Prisma config: `prisma.config.ts`
-- Prisma v7 uses the `prisma-client` generator (not `prisma-client-js`); generated client outputs to `src/generated/prisma`
-- Import the Prisma client via the singleton at `src/lib/prisma.ts` — never instantiate `PrismaClient` directly
-- Supabase connection: pooled `DATABASE_URL` (port 6543, `?pgbouncer=true`) for runtime; `DIRECT_URL` (port 5432) for migrations
+- Prisma schema: `prisma/schema.prisma`; connection URLs live in `prisma.config.ts` (not in the schema file in Prisma 7)
+- Prisma v7 uses the `prisma-client` generator; output is `src/generated/prisma` — import types/client from `src/generated/prisma/client` only inside `src/lib/prisma.ts`
+- App code should import `prisma` from `src/lib/prisma.ts` (singleton with `@prisma/adapter-pg` + pooled `DATABASE_URL`)
+- Supabase: pooled `DATABASE_URL` (transaction pooler, port 6543) at runtime; `DIRECT_URL` (`db.*.supabase.co:5432`) for `prisma migrate` via `prisma.config.ts`
 - `src/lib/supabase/server.ts` — service-role client for Server Components, Route Handlers, Server Actions
 - `src/lib/supabase/client.ts` — anon-key client for Client Components (real-time, client-side reads only)
 

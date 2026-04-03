@@ -8,6 +8,8 @@ export default defineConfig({
   migrations: {
     path: "prisma/migrations",
   },
+  // Use the pooler for migrations because the direct host (db.*:5432) isn't reachable
+  // from this environment.
   datasource: {
     url: process.env["DATABASE_URL"],
   },

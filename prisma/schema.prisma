@@ -1,7 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// Prisma schema — Agero safety platform (Supabase Postgres)
 
 generator client {
   provider = "prisma-client"
@@ -10,5 +7,86 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  safety_manager
+  site_manager
+  subcontractor_admin
+}
+
+model Organisation {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users                   User[]
+  projects                Project[]
+  subcontractorOnProjects ProjectSubcontractor[] @relation("ProjectSubcontractorOrg")
+  employedWorkers         Worker[]
+
+  @@map("organisations")
+}
+
+model User {
+  id             String       @id @default(uuid()) @db.Uuid
+  clerkUserId    String?      @unique @map("clerk_user_id")
+  email          String       @unique
+  name           String?
+  role           UserRole     @default(site_manager)
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("users")
+}
+
+model Project {
+  id             String       @id @default(uuid()) @db.Uuid
+  name           String
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  subcontractors ProjectSubcontractor[]
+  workers        Worker[]
+
+  @@index([organisationId])
+  @@map("projects")
+}
+
+model ProjectSubcontractor {
+  id                 String       @id @default(uuid()) @db.Uuid
+  projectId          String       @map("project_id") @db.Uuid
+  project            Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  subcontractorOrgId String     @map("subcontractor_org_id") @db.Uuid
+  subcontractorOrg   Organisation @relation("ProjectSubcontractorOrg", fields: [subcontractorOrgId], references: [id], onDelete: Cascade)
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @updatedAt @map("updated_at")
+
+  @@unique([projectId, subcontractorOrgId])
+  @@index([subcontractorOrgId])
+  @@map("project_subcontractors")
+}
+
+model Worker {
+  id                      String        @id @default(uuid()) @db.Uuid
+  projectId               String        @map("project_id") @db.Uuid
+  project                 Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  employingOrganisationId String?       @map("employing_organisation_id") @db.Uuid
+  employingOrganisation   Organisation? @relation(fields: [employingOrganisationId], references: [id], onDelete: SetNull)
+  firstName               String        @map("first_name")
+  lastName                String        @map("last_name")
+  trade                   String?
+  createdAt               DateTime      @default(now()) @map("created_at")
+  updatedAt               DateTime      @updatedAt @map("updated_at")
+
+  @@index([projectId])
+  @@index([employingOrganisationId])
+  @@map("workers")
 }
