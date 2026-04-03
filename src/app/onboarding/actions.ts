@@ -9,6 +9,19 @@ export type OnboardingState = {
   error?: string;
 };
 
+function normaliseAbn(raw: string): string {
+  return raw.replace(/\s/g, "");
+}
+
+function isValidAbn(abn: string): boolean {
+  if (!/^\d{11}$/.test(abn)) return false;
+  const weights = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+  const digits = abn.split("").map(Number);
+  digits[0] -= 1;
+  const sum = digits.reduce((acc, d, i) => acc + d * weights[i], 0);
+  return sum % 89 === 0;
+}
+
 export async function completeOnboarding(
   _prev: OnboardingState,
   formData: FormData,
@@ -35,6 +48,19 @@ export async function completeOnboarding(
     return { error: "Organisation name is required." };
   }
 
+  const abnRaw = formData.get("abn")?.toString().trim() ?? "";
+  let abn: string | null = null;
+  if (abnRaw) {
+    const normalised = normaliseAbn(abnRaw);
+    if (!isValidAbn(normalised)) {
+      return { error: "ABN is invalid. Please enter an 11-digit ABN." };
+    }
+    abn = normalised;
+  }
+
+  const tradeCategory = formData.get("tradeCategory")?.toString().trim() || null;
+  const primaryContact = formData.get("primaryContact")?.toString().trim() || null;
+
   const email =
     clerkUser.primaryEmailAddress?.emailAddress ??
     clerkUser.emailAddresses[0]?.emailAddress;
@@ -52,7 +78,7 @@ export async function completeOnboarding(
   try {
     await prisma.$transaction(async (tx) => {
       const organisation = await tx.organisation.create({
-        data: { name: organisationName },
+        data: { name: organisationName, abn, tradeCategory, primaryContact },
       });
       await tx.user.create({
         data: {

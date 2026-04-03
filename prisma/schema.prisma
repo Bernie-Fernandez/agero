@@ -16,9 +16,29 @@ enum UserRole {
   subcontractor_admin
 }
 
+enum DocumentType {
+  public_liability
+  workers_compensation
+  whs_policy
+  white_card
+  trade_licence
+  first_aid
+  swms
+  other
+}
+
+enum InductionType {
+  generic
+  site_specific
+}
+
 model Organisation {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String
+  id             String  @id @default(uuid()) @db.Uuid
+  name           String
+  abn            String?
+  tradeCategory  String? @map("trade_category")
+  primaryContact String? @map("primary_contact")
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -26,6 +46,8 @@ model Organisation {
   projects                Project[]
   subcontractorOnProjects ProjectSubcontractor[] @relation("ProjectSubcontractorOrg")
   employedWorkers         Worker[]
+  documents               DocumentUpload[]
+  supervisorRoles         SiteSupervisor[]
 
   @@map("organisations")
 }
@@ -48,13 +70,19 @@ model User {
 model Project {
   id             String       @id @default(uuid()) @db.Uuid
   name           String
+  address        String?
+  token          String       @unique @default(uuid()) @db.Uuid
   organisationId String       @map("organisation_id") @db.Uuid
   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now()) @map("created_at")
   updatedAt      DateTime     @updatedAt @map("updated_at")
 
-  subcontractors ProjectSubcontractor[]
-  workers        Worker[]
+  subcontractors     ProjectSubcontractor[]
+  workers            Worker[]
+  inductionTemplates InductionTemplate[]
+  siteVisits         SiteVisit[]
+  supervisors        SiteSupervisor[]
+  documents          DocumentUpload[]
 
   @@index([organisationId])
   @@map("projects")
@@ -64,7 +92,7 @@ model ProjectSubcontractor {
   id                 String       @id @default(uuid()) @db.Uuid
   projectId          String       @map("project_id") @db.Uuid
   project            Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  subcontractorOrgId String     @map("subcontractor_org_id") @db.Uuid
+  subcontractorOrgId String       @map("subcontractor_org_id") @db.Uuid
   subcontractorOrg   Organisation @relation("ProjectSubcontractorOrg", fields: [subcontractorOrgId], references: [id], onDelete: Cascade)
   createdAt          DateTime     @default(now()) @map("created_at")
   updatedAt          DateTime     @updatedAt @map("updated_at")
@@ -82,11 +110,120 @@ model Worker {
   employingOrganisation   Organisation? @relation(fields: [employingOrganisationId], references: [id], onDelete: SetNull)
   firstName               String        @map("first_name")
   lastName                String        @map("last_name")
+  mobile                  String?
+  email                   String?
   trade                   String?
   createdAt               DateTime      @default(now()) @map("created_at")
   updatedAt               DateTime      @updatedAt @map("updated_at")
 
+  documents            DocumentUpload[]
+  inductionCompletions InductionCompletion[]
+  siteVisits           SiteVisit[]
+  supervisorRoles      SiteSupervisor[]
+
   @@index([projectId])
   @@index([employingOrganisationId])
   @@map("workers")
+}
+
+model DocumentUpload {
+  id             String       @id @default(uuid()) @db.Uuid
+  type           DocumentType
+  url            String
+  expiryDate     DateTime?    @map("expiry_date")
+  organisationId String?      @map("organisation_id") @db.Uuid
+  organisation   Organisation? @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  workerId       String?      @map("worker_id") @db.Uuid
+  worker         Worker?      @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId      String?      @map("project_id") @db.Uuid
+  project        Project?     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([workerId])
+  @@index([projectId])
+  @@map("document_uploads")
+}
+
+model InductionTemplate {
+  id        String        @id @default(uuid()) @db.Uuid
+  title     String
+  type      InductionType
+  version   Int           @default(1)
+  isActive  Boolean       @default(true) @map("is_active")
+  questions Json
+  projectId String?       @map("project_id") @db.Uuid
+  project   Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  completions InductionCompletion[]
+
+  @@index([projectId])
+  @@map("induction_templates")
+}
+
+model InductionCompletion {
+  id         String            @id @default(uuid()) @db.Uuid
+  workerId   String            @map("worker_id") @db.Uuid
+  worker     Worker            @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  templateId String            @map("template_id") @db.Uuid
+  template   InductionTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  score      Int?
+  passed     Boolean
+  signedAt   DateTime          @map("signed_at")
+  createdAt  DateTime          @default(now()) @map("created_at")
+
+  @@unique([workerId, templateId])
+  @@index([templateId])
+  @@map("induction_completions")
+}
+
+model SiteVisit {
+  id           String    @id @default(uuid()) @db.Uuid
+  workerId     String    @map("worker_id") @db.Uuid
+  worker       Worker    @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId    String    @map("project_id") @db.Uuid
+  project      Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  signedInAt   DateTime  @default(now()) @map("signed_in_at")
+  photoUrl     String?   @map("photo_url")
+  verified     Boolean   @default(false)
+  verifiedBy   String?   @map("verified_by")
+  verifiedAt   DateTime? @map("verified_at")
+  isUnknown    Boolean   @default(false) @map("is_unknown")
+
+  alert VerificationAlert?
+
+  @@index([workerId])
+  @@index([projectId])
+  @@map("site_visits")
+}
+
+model SiteSupervisor {
+  id             String       @id @default(uuid()) @db.Uuid
+  workerId       String       @map("worker_id") @db.Uuid
+  worker         Worker       @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId      String       @map("project_id") @db.Uuid
+  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  @@unique([projectId, organisationId])
+  @@index([workerId])
+  @@index([organisationId])
+  @@map("site_supervisors")
+}
+
+model VerificationAlert {
+  id          String    @id @default(uuid()) @db.Uuid
+  siteVisitId String    @unique @map("site_visit_id") @db.Uuid
+  siteVisit   SiteVisit @relation(fields: [siteVisitId], references: [id], onDelete: Cascade)
+  alertedAt   DateTime  @default(now()) @map("alerted_at")
+  verifiedAt  DateTime? @map("verified_at")
+  escalatedAt DateTime? @map("escalated_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("verification_alerts")
 }

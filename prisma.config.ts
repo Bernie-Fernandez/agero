@@ -8,9 +8,9 @@ export default defineConfig({
   migrations: {
     path: "prisma/migrations",
   },
-  // Use the pooler for migrations because the direct host (db.*:5432) isn't reachable
-  // from this environment.
+  // DIRECT_URL (port 5432, no pgbouncer) is required for migrations.
+  // DATABASE_URL (port 6543, pgbouncer=true) is used at runtime.
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: process.env["DIRECT_URL"] ?? process.env["DATABASE_URL"],
   },
 });

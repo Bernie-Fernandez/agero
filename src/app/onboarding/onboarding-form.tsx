@@ -15,7 +15,7 @@ export function OnboardingForm() {
   );
 
   return (
-    <form action={formAction} className="mt-8 max-w-md space-y-6">
+    <form action={formAction} className="mt-8 max-w-md space-y-5">
       {state.error ? (
         <p
           className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200"
@@ -24,12 +24,13 @@ export function OnboardingForm() {
           {state.error}
         </p>
       ) : null}
+
       <div>
         <label
           htmlFor="organisationName"
           className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
         >
-          Organisation name
+          Organisation name <span className="text-red-500">*</span>
         </label>
         <input
           id="organisationName"
@@ -41,6 +42,58 @@ export function OnboardingForm() {
           className="mt-1.5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-zinc-400 placeholder:text-zinc-400 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-500"
         />
       </div>
+
+      <div>
+        <label
+          htmlFor="abn"
+          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+        >
+          ABN
+        </label>
+        <input
+          id="abn"
+          name="abn"
+          type="text"
+          inputMode="numeric"
+          placeholder="e.g. 51 824 753 556"
+          maxLength={14}
+          className="mt-1.5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-zinc-400 placeholder:text-zinc-400 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-500"
+        />
+        <p className="mt-1 text-xs text-zinc-500">11-digit Australian Business Number</p>
+      </div>
+
+      <div>
+        <label
+          htmlFor="tradeCategory"
+          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+        >
+          Trade category
+        </label>
+        <input
+          id="tradeCategory"
+          name="tradeCategory"
+          type="text"
+          placeholder="e.g. Electrical, Plumbing, Civil"
+          className="mt-1.5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-zinc-400 placeholder:text-zinc-400 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-500"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="primaryContact"
+          className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+        >
+          Primary contact name
+        </label>
+        <input
+          id="primaryContact"
+          name="primaryContact"
+          type="text"
+          placeholder="e.g. Jane Smith"
+          className="mt-1.5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 shadow-sm outline-none ring-zinc-400 placeholder:text-zinc-400 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-500"
+        />
+      </div>
+
       <button
         type="submit"
         disabled={pending}
