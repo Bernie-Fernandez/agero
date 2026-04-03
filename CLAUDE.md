@@ -45,5 +45,5 @@ Two env files are used:
 
 ### Domain context
 - ISO 45001 construction safety platform for Victoria, Australia
-- Supabase project must remain in `ap-southeast-2` (Sydney)
+- Supabase project: `hgibuaddqimhucbekiuu` — region `ap-southeast-2` (Sydney)
 - Roles: `admin`, `safety_manager`, `site_manager`, `subcontractor_admin`
