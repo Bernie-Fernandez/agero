@@ -1,7 +1,7 @@
 "use server";
 
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { Prisma } from "@/generated/prisma/client";
+import { Prisma, UserRole } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
@@ -58,8 +58,14 @@ export async function completeOnboarding(
     abn = normalised;
   }
 
-  const tradeCategory = formData.get("tradeCategory")?.toString().trim() || null;
+  const tradeCategories = formData.getAll("tradeCategories").map(String).filter(Boolean);
   const primaryContact = formData.get("primaryContact")?.toString().trim() || null;
+
+  const roleRaw = formData.get("role")?.toString();
+  const ALLOWED_ROLES: UserRole[] = ["admin", "safety_manager", "project_manager", "site_manager"];
+  const role: UserRole = (roleRaw && ALLOWED_ROLES.includes(roleRaw as UserRole))
+    ? (roleRaw as UserRole)
+    : "admin";
 
   const email =
     clerkUser.primaryEmailAddress?.emailAddress ??
@@ -78,14 +84,14 @@ export async function completeOnboarding(
   try {
     await prisma.$transaction(async (tx) => {
       const organisation = await tx.organisation.create({
-        data: { name: organisationName, abn, tradeCategory, primaryContact },
+        data: { name: organisationName, abn, tradeCategories, primaryContact },
       });
       await tx.user.create({
         data: {
           clerkUserId: userId,
           email,
           name: displayName,
-          role: "admin",
+          role,
           organisationId: organisation.id,
         },
       });

@@ -46,4 +46,6 @@ Two env files are used:
 ### Domain context
 - ISO 45001 construction safety platform for Victoria, Australia
 - Supabase project: `hgibuaddqimhucbekiuu` — region `ap-southeast-2` (Sydney)
-- Roles: `admin`, `safety_manager`, `site_manager`, `subcontractor_admin`
+- Roles: `admin` (Director), `safety_manager`, `project_manager`, `site_manager`, `subcontractor_admin`
+- RBAC utility: `src/lib/auth.ts` — `requireRole(roles[])`, `getAppUser()`, `AGERO_ROLES`, `ADMIN_MANAGER_ROLES`, `ROLE_LABELS`
+- Unauthorized page: `/unauthorized`

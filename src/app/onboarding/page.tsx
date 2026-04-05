@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { OnboardingForm } from "@/app/onboarding/onboarding-form";
 import { prisma } from "@/lib/prisma";
@@ -14,6 +14,34 @@ export default async function OnboardingPage() {
   });
   if (existing) {
     redirect("/dashboard");
+  }
+
+  // If this Clerk user's email matches a registered subcontractor invitation,
+  // link them to the existing org instead of showing the Agero setup form.
+  const clerkUser = await currentUser();
+  const email =
+    clerkUser?.primaryEmailAddress?.emailAddress ??
+    clerkUser?.emailAddresses[0]?.emailAddress;
+
+  if (email) {
+    const invitation = await prisma.invitation.findFirst({
+      where: { email, status: "registered" },
+      select: { organisationId: true },
+    });
+    if (invitation?.organisationId) {
+      await prisma.user.upsert({
+        where: { email },
+        create: {
+          clerkUserId: userId,
+          email,
+          name: [clerkUser?.firstName, clerkUser?.lastName].filter(Boolean).join(" ") || null,
+          role: "subcontractor_admin",
+          organisationId: invitation.organisationId,
+        },
+        update: { clerkUserId: userId },
+      });
+      redirect(`/subcontractors/${invitation.organisationId}/documents`);
+    }
   }
 
   return (

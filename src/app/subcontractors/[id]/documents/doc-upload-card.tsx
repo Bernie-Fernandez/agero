@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import type { DocUploadState } from "./actions";
 import type { RagStatus } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/compliance-badge";
@@ -30,9 +31,20 @@ export function DocUploadCard({
   showCoverage?: boolean;
   uploadAction: (prev: DocUploadState, fd: FormData) => Promise<DocUploadState>;
 }) {
+  const router = useRouter();
   const [state, action, pending] = useActionState(uploadAction, {});
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const daysUntil = daysUntilExpiry ?? null;
+
+  // Refresh page data after successful upload so document card reflects new values
+  useEffect(() => {
+    if (state.success) {
+      router.refresh();
+      // Reset file input so the same file can be re-uploaded if needed
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }, [state.success, router]);
 
   return (
     <div className={`rounded-xl border bg-white dark:bg-zinc-900 ${
@@ -74,14 +86,19 @@ export function DocUploadCard({
       </div>
 
       <div className="border-t border-zinc-100 px-5 py-4 dark:border-zinc-800">
-        <form action={action} className="space-y-3">
+        <form action={action} encType="multipart/form-data" className="space-y-3">
           <div className="flex flex-wrap items-end gap-3">
             <div className="flex-1 min-w-48">
               <label className="block text-xs text-zinc-500 mb-1">
-                {currentUrl ? "Replace document" : "Upload document"} (PDF/image, max 20MB)
+                {currentUrl ? "Replace document" : "Upload document"} (PDF/image, max 20 MB)
               </label>
-              <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png,.webp"
-                className="block w-full text-xs text-zinc-600 file:mr-2 file:rounded file:border-0 file:bg-zinc-100 file:px-2 file:py-1 file:text-xs file:font-medium hover:file:bg-zinc-200 dark:text-zinc-400 dark:file:bg-zinc-700 dark:file:text-zinc-300" />
+              <input
+                ref={fileInputRef}
+                type="file"
+                name="file"
+                accept=".pdf,.jpg,.jpeg,.png,.webp"
+                className="block w-full text-xs text-zinc-600 file:mr-2 file:rounded file:border-0 file:bg-zinc-100 file:px-2 file:py-1 file:text-xs file:font-medium hover:file:bg-zinc-200 dark:text-zinc-400 dark:file:bg-zinc-700 dark:file:text-zinc-300"
+              />
             </div>
             {docType !== "whs_policy" && (
               <div>
@@ -104,11 +121,11 @@ export function DocUploadCard({
           {state.error && <p className="text-xs text-red-600">{state.error}</p>}
           {state.success && (
             <p className="text-xs text-green-600">
-              Uploaded.{" "}
+              Uploaded successfully.{" "}
               {state.aiDate
                 ? `AI extracted expiry: ${state.aiDate} (${state.aiConfidence} confidence) — please verify.`
                 : state.aiConfidence === undefined && docType !== "whs_policy"
-                ? "Please enter the expiry date."
+                ? "Please enter the expiry date if shown above."
                 : ""}
             </p>
           )}

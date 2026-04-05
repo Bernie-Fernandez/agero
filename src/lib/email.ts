@@ -124,6 +124,37 @@ export async function sendSwmsRejectedEmail(opts: {
   });
 }
 
+export async function sendInductionBlockedAlert(opts: {
+  to: string;
+  adminName: string;
+  workerName: string;
+  companyName: string;
+  inductionTitle: string;
+  projectName: string;
+  blockedUntil: Date;
+}) {
+  const subject = `Worker blocked from site — induction failed 3 times · ${opts.workerName}`;
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0;color:#dc2626">Worker blocked from site</h2>
+      <p>Hi ${opts.adminName},</p>
+      <p><strong>${opts.workerName}</strong> from <strong>${opts.companyName}</strong> has failed the induction
+        <strong>${opts.inductionTitle}</strong> on project <strong>${opts.projectName}</strong>
+        three times and has been <strong style="color:#dc2626">blocked from site access for 24 hours</strong>.</p>
+      <div style="background:#fef2f2;border-left:4px solid #dc2626;padding:12px 16px;border-radius:4px;margin:20px 0">
+        <p style="margin:0;font-size:14px;color:#991b1b">
+          Block expires: <strong>${opts.blockedUntil.toLocaleString("en-AU")}</strong>
+        </p>
+      </div>
+      <p style="font-size:14px">Please ensure ${opts.workerName} reviews the safety material and retries the induction
+        after the block period has ended. If you have questions, contact your Agero safety manager.</p>
+    `),
+  });
+}
+
 export async function sendSwmsApprovedEmail(opts: {
   to: string;
   contactName: string;

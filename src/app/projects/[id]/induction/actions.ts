@@ -24,16 +24,36 @@ export async function saveInductionTemplate(
     return { error: "Project not found." };
   }
 
-  const title = formData.get("title")?.toString().trim();
-  if (!title) return { error: "Title is required." };
-
   const questionsRaw = formData.get("questions")?.toString();
-  let questions: unknown;
+  let questions: unknown[];
   try {
-    questions = questionsRaw ? JSON.parse(questionsRaw) : [];
+    const parsed = questionsRaw ? JSON.parse(questionsRaw) : [];
+    if (!Array.isArray(parsed)) return { error: "Invalid questions data." };
+    questions = parsed;
   } catch {
     return { error: "Invalid questions JSON." };
   }
+
+  if (questions.length === 0) return { error: "At least one question is required." };
+
+  // Validate each question
+  for (const raw of questions) {
+    const q = raw as Record<string, unknown>;
+    if (!q.question || typeof q.question !== "string" || !q.question.trim()) {
+      return { error: "All questions must have question text." };
+    }
+    if (q.type === "multiple_choice") {
+      if (!Array.isArray(q.options) || q.options.length < 2) {
+        return { error: "Multiple choice questions must have at least 2 options." };
+      }
+      if (!Array.isArray(q.correctAnswers) || q.correctAnswers.length === 0) {
+        return { error: "Multiple choice questions must have at least one correct answer marked." };
+      }
+    }
+    // short_answer: question text is sufficient; expectedAnswerContext recommended but not blocking
+  }
+
+  const videoUrl = formData.get("videoUrl")?.toString().trim() || null;
 
   // Deactivate previous version
   const existing = await prisma.inductionTemplate.findFirst({
@@ -42,6 +62,14 @@ export async function saveInductionTemplate(
   });
 
   const nextVersion = existing ? existing.version + 1 : 1;
+
+  // Auto-generate title: "[Project Name] — Site Induction v[N] — [Month Year]"
+  const monthYear = new Date().toLocaleString("en-AU", {
+    month: "long",
+    year: "numeric",
+    timeZone: "Australia/Melbourne",
+  });
+  const title = `${project.name} — Site Induction v${nextVersion} — ${monthYear}`;
 
   if (existing) {
     await prisma.inductionTemplate.update({
@@ -58,6 +86,7 @@ export async function saveInductionTemplate(
       questions: questions as object[],
       projectId,
       isActive: true,
+      videoUrl,
     },
   });
 

@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createStorageAdminClient } from "@/lib/supabase/server";
 import { reviewSwms } from "@/lib/claude";
 import { sendSwmsRejectedEmail, sendSwmsApprovedEmail } from "@/lib/email";
 
@@ -26,17 +26,17 @@ export async function uploadSwmsForReview(
   if (file.size > MAX_SIZE) return { error: "File must be under 50 MB." };
   if (!file.name.toLowerCase().endsWith(".pdf")) return { error: "Only PDF files are accepted for SWMS." };
 
-  const supabase = await createServerClient();
+  const storage = createStorageAdminClient();
   const bytes = await file.arrayBuffer();
   const path = `swms/${projectId}/${orgId}-${Date.now()}.pdf`;
 
-  const { error: storageError } = await supabase.storage
+  const { error: storageError } = await storage
     .from("documents")
     .upload(path, bytes, { contentType: "application/pdf", upsert: false });
 
   if (storageError) return { error: `Upload failed: ${storageError.message}` };
 
-  const { data: urlData } = supabase.storage.from("documents").getPublicUrl(path);
+  const { data: urlData } = storage.from("documents").getPublicUrl(path);
 
   // Determine version number
   const lastSubmission = await prisma.swmsSubmission.findFirst({

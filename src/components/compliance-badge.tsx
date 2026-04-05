@@ -15,11 +15,15 @@ export function ComplianceBadge({
     red: "bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800",
   };
 
-  const labels: Record<RagStatus, string> = {
+  const defaultLabels: Record<RagStatus, string> = {
     green: "Compliant",
     amber: "Action needed",
     red: "Non-compliant",
   };
+
+  // Show "Expired" when a reason explicitly says so, to distinguish from missing docs
+  const isExpired = status === "red" && reasons?.some((r) => r.toLowerCase().startsWith("expired"));
+  const label = isExpired ? "Expired" : defaultLabels[status];
 
   return (
     <span
@@ -27,7 +31,7 @@ export function ComplianceBadge({
       title={reasons?.join("\n")}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-current" />
-      {labels[status]}
+      {label}
     </span>
   );
 }

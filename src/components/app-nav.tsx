@@ -1,13 +1,41 @@
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import type { UserRole } from "@/generated/prisma/client";
 
 const navLinks = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/projects", label: "Projects" },
-  { href: "/subcontractors", label: "Subcontractors" },
-];
+  { href: "/dashboard", label: "Dashboard", roles: null },
+  { href: "/projects", label: "Projects", roles: null },
+  {
+    href: "/subcontractors",
+    label: "Subcontractors",
+    roles: ["admin", "safety_manager"] as UserRole[],
+  },
+  {
+    href: "/admin/inductions/generic/builder",
+    label: "Inductions",
+    roles: ["admin", "safety_manager"] as UserRole[],
+  },
+] satisfies { href: string; label: string; roles: UserRole[] | null }[];
 
-export function AppNav({ currentPath }: { currentPath?: string }) {
+export function AppNav({
+  currentPath,
+  userRole,
+}: {
+  currentPath?: string;
+  userRole?: UserRole;
+}) {
+  const visible = navLinks.filter(
+    (link) => link.roles === null || (userRole && link.roles.includes(userRole)),
+  );
+
+  // Derive a prefix to match for active highlighting
+  function isActive(linkHref: string) {
+    if (!currentPath) return false;
+    // For the inductions link, match /admin/inductions prefix
+    if (linkHref.startsWith("/admin/")) return currentPath.startsWith("/admin/inductions");
+    return currentPath.startsWith(linkHref);
+  }
+
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
@@ -19,8 +47,8 @@ export function AppNav({ currentPath }: { currentPath?: string }) {
             Agero
           </Link>
           <nav className="hidden items-center gap-1 sm:flex">
-            {navLinks.map((link) => {
-              const active = currentPath?.startsWith(link.href);
+            {visible.map((link) => {
+              const active = isActive(link.href);
               return (
                 <Link
                   key={link.href}

@@ -3,7 +3,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { revalidatePath } from "next/cache";
+import { createStorageAdminClient } from "@/lib/supabase/server";
 import { DocumentType } from "@/generated/prisma/client";
 import { extractExpiryDate } from "@/lib/claude";
 
@@ -31,8 +32,14 @@ export async function uploadCompanyDocument(
   _prev: DocUploadState,
   formData: FormData,
 ): Promise<DocUploadState> {
+  // Allow unauthenticated access: subcontractors upload via registration link
+  // without a Clerk session. Safety managers are Clerk-authenticated but either
+  // path is valid — we only need the org to exist (checked implicitly by prisma upsert).
   const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
+  if (userId) {
+    const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId }, select: { id: true } });
+    if (!appUser) redirect("/onboarding");
+  }
 
   const file = formData.get("file") as File | null;
   if (!file || file.size === 0) return { error: "Please select a file." };
@@ -44,19 +51,19 @@ export async function uploadCompanyDocument(
   const expiryDateRaw = formData.get("expiryDate")?.toString();
   const coverageAmount = formData.get("coverageAmount")?.toString().trim() || null;
 
-  // Upload to Supabase Storage
-  const supabase = await createServerClient();
+  // Upload to Supabase Storage using JWT service role key
+  const storage = createStorageAdminClient();
   const ext = file.name.split(".").pop();
   const path = `organisations/${orgId}/${docType}-${Date.now()}.${ext}`;
 
   const bytes = await file.arrayBuffer();
-  const { error: storageError } = await supabase.storage
+  const { error: storageError } = await storage
     .from("documents")
     .upload(path, bytes, { contentType: mediaType, upsert: true });
 
   if (storageError) return { error: `Upload failed: ${storageError.message}` };
 
-  const { data: urlData } = supabase.storage.from("documents").getPublicUrl(path);
+  const { data: urlData } = storage.from("documents").getPublicUrl(path);
 
   // AI expiry extraction
   let expiryDate: Date | null = expiryDateRaw ? new Date(expiryDateRaw) : null;
@@ -106,5 +113,6 @@ export async function uploadCompanyDocument(
     });
   }
 
+  revalidatePath(`/subcontractors/${orgId}/documents`);
   return { success: true, aiDate, aiConfidence };
 }

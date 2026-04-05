@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import type { UserRole } from "@/generated/prisma/client";
 import { AppNav } from "@/components/app-nav";
 import { DocumentType } from "@/generated/prisma/client";
 import { formatDocType, daysUntil, EXPIRY_WARN_DAYS } from "@/lib/compliance";
@@ -37,10 +38,12 @@ export default async function DocumentsPage({
   const { welcome } = await searchParams;
 
   const { userId } = await auth();
+  let appUserRole: UserRole | undefined;
   // Allow unauthenticated access for subcontractors coming from registration link
   if (userId) {
     const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
     if (!appUser) redirect("/onboarding");
+    appUserRole = appUser.role;
   }
 
   const org = await prisma.organisation.findUnique({
@@ -51,7 +54,7 @@ export default async function DocumentsPage({
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      {userId ? <AppNav currentPath="/subcontractors" /> : (
+      {userId ? <AppNav currentPath="/subcontractors" userRole={appUserRole} /> : (
         <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
           <div className="mx-auto flex h-14 max-w-5xl items-center px-4">
             <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">Agero Safety</span>

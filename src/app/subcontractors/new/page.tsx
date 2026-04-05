@@ -1,15 +1,11 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
 import { InviteForm } from "./invite-form";
+import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 
 export default async function InviteSubcontractorPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(ADMIN_MANAGER_ROLES);
 
   const recent = await prisma.invitation.findMany({
     orderBy: { createdAt: "desc" },
@@ -18,7 +14,7 @@ export default async function InviteSubcontractorPage() {
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/subcontractors" />
+      <AppNav currentPath="/subcontractors" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <Link href="/subcontractors" className="text-sm text-zinc-500 hover:text-zinc-700">← Subcontractors</Link>
         <h1 className="mt-2 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">Invite subcontractor</h1>

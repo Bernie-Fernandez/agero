@@ -1,12 +1,12 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import QRCode from "qrcode";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { calcOrgCompliance } from "@/lib/compliance";
 import { DocumentType } from "@/generated/prisma/client";
+import { requireRole, AGERO_ROLES } from "@/lib/auth";
 
 export default async function ProjectPage({
   params,
@@ -14,11 +14,7 @@ export default async function ProjectPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(AGERO_ROLES);
 
   const project = await prisma.project.findUnique({
     where: { id },
@@ -52,7 +48,7 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/projects" />
+      <AppNav currentPath="/projects" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <div className="flex items-start justify-between">
           <div>

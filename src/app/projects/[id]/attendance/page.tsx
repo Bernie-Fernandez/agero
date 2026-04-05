@@ -1,8 +1,9 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
+import { AttendanceDatePicker } from "./date-picker";
+import { requireRole, AGERO_ROLES } from "@/lib/auth";
 
 export default async function AttendancePage({
   params,
@@ -14,11 +15,7 @@ export default async function AttendancePage({
   const { id } = await params;
   const { date } = await searchParams;
 
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(AGERO_ROLES);
 
   const project = await prisma.project.findUnique({ where: { id } });
   if (!project || project.organisationId !== appUser.organisationId) notFound();
@@ -49,7 +46,7 @@ export default async function AttendancePage({
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/projects" />
+      <AppNav currentPath="/projects" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <Link href={`/projects/${id}`} className="text-sm text-zinc-500 hover:text-zinc-700">
           ← Back to project
@@ -58,15 +55,9 @@ export default async function AttendancePage({
           <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
             Attendance — {project.name}
           </h1>
-          <input
-            type="date"
-            defaultValue={selectedDate.toISOString().split("T")[0]}
-            onChange={(e) => {
-              if (typeof window !== "undefined") {
-                window.location.href = `/projects/${id}/attendance?date=${e.target.value}`;
-              }
-            }}
-            className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50"
+          <AttendanceDatePicker
+            projectId={id}
+            value={selectedDate.toISOString().split("T")[0]}
           />
         </div>
         <p className="mt-1 text-sm text-zinc-500">{dateStr} · {visits.length} sign-in{visits.length !== 1 ? "s" : ""}</p>

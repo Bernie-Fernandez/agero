@@ -1,18 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { calcOrgCompliance } from "@/lib/compliance";
 import { CreateOrgForm } from "./create-org-form";
+import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 
 export default async function OrganisationsPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(ADMIN_MANAGER_ROLES);
 
   const orgs = await prisma.organisation.findMany({
     where: { id: { not: appUser.organisationId } },
@@ -25,7 +20,7 @@ export default async function OrganisationsPage() {
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/organisations" />
+      <AppNav currentPath="/organisations" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">Subcontractors</h1>
 

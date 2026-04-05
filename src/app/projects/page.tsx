@@ -1,16 +1,11 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
 import { CreateProjectForm } from "./create-project-form";
+import { requireRole, AGERO_ROLES } from "@/lib/auth";
 
 export default async function ProjectsPage() {
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(AGERO_ROLES);
 
   const projects = await prisma.project.findMany({
     where: { organisationId: appUser.organisationId },
@@ -22,7 +17,7 @@ export default async function ProjectsPage() {
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/projects" />
+      <AppNav currentPath="/projects" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">Projects</h1>

@@ -1,17 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
+import { requireRole, AGERO_ROLES } from "@/lib/auth";
 
 export default async function DashboardPage() {
-  const { userId } = await auth();
-  if (!userId) {
-    redirect("/sign-in");
-  }
+  const appUser = await requireRole(AGERO_ROLES);
 
-  const appUser = await prisma.user.findUnique({
-    where: { clerkUserId: userId },
+  const appUserWithOrg = await prisma.user.findUnique({
+    where: { id: appUser.id },
     include: {
       organisation: {
         include: {
@@ -21,15 +17,17 @@ export default async function DashboardPage() {
     },
   });
 
-  if (!appUser) {
-    redirect("/onboarding");
-  }
+  if (!appUserWithOrg) return null;
 
-  const { organisation } = appUser;
+  const { organisation } = appUserWithOrg;
+
+  const subcontractorCount = await prisma.organisation.count({
+    where: { id: { not: appUser.organisationId } },
+  });
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/dashboard" />
+      <AppNav currentPath="/dashboard" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
           Dashboard
@@ -48,9 +46,9 @@ export default async function DashboardPage() {
             value={organisation._count.projects}
           />
           <StatCard
-            href="/organisations"
+            href="/subcontractors"
             label="Subcontractors"
-            value={0}
+            value={subcontractorCount}
           />
           <StatCard
             href="/organisations"

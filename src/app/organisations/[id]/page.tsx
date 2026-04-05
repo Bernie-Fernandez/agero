@@ -1,8 +1,8 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
+import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { calcOrgCompliance, formatDocType } from "@/lib/compliance";
 import { DocumentType } from "@/generated/prisma/client";
@@ -21,11 +21,7 @@ export default async function OrgDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole(ADMIN_MANAGER_ROLES);
 
   const org = await prisma.organisation.findUnique({
     where: { id },
@@ -41,7 +37,7 @@ export default async function OrgDetailPage({
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/organisations" />
+      <AppNav currentPath="/organisations" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <Link href="/organisations" className="text-sm text-zinc-500 hover:text-zinc-700">
           ← Subcontractors

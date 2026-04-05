@@ -1,8 +1,8 @@
-import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
+import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 import { SwmsUploadForm } from "./swms-upload-form";
 import { ReviewForm } from "./review-form";
 import { uploadSwmsForReview, approveSwms, rejectSwms } from "./actions";
@@ -13,11 +13,7 @@ export default async function SwmsPage({
   params: Promise<{ id: string; orgId: string }>;
 }) {
   const { id: projectId, orgId } = await params;
-  const { userId } = await auth();
-  if (!userId) redirect("/sign-in");
-
-  const appUser = await prisma.user.findUnique({ where: { clerkUserId: userId } });
-  if (!appUser) redirect("/onboarding");
+  const appUser = await requireRole([...ADMIN_MANAGER_ROLES, "project_manager"]);
 
   const [project, org] = await Promise.all([
     prisma.project.findUnique({ where: { id: projectId } }),
@@ -40,7 +36,7 @@ export default async function SwmsPage({
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
-      <AppNav currentPath="/projects" />
+      <AppNav currentPath="/projects" userRole={appUser.role} />
       <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <Link href={`/projects/${projectId}`} className="text-sm text-zinc-500 hover:text-zinc-700">
           ← {project.name}

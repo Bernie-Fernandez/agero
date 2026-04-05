@@ -12,6 +12,7 @@ datasource db {
 enum UserRole {
   admin
   safety_manager
+  project_manager
   site_manager
   subcontractor_admin
 }
@@ -46,6 +47,12 @@ enum SwmsStatus {
   rejected
 }
 
+enum SwmsQuestionStatus {
+  pending_review
+  approved
+  rejected
+}
+
 model Organisation {
   id               String      @id @default(uuid()) @db.Uuid
   name             String
@@ -67,6 +74,7 @@ model Organisation {
   supervisorRoles         SiteSupervisor[]
   invitations             Invitation[]
   swmsSubmissions         SwmsSubmission[]
+  swmsInductionQuestions  SwmsInductionQuestion[]
 
   @@map("organisations")
 }
@@ -114,13 +122,14 @@ model Project {
   createdAt      DateTime     @default(now()) @map("created_at")
   updatedAt      DateTime     @updatedAt @map("updated_at")
 
-  subcontractors     ProjectSubcontractor[]
-  workers            Worker[]
-  inductionTemplates InductionTemplate[]
-  siteVisits         SiteVisit[]
-  supervisors        SiteSupervisor[]
-  documents          DocumentUpload[]
-  swmsSubmissions    SwmsSubmission[]
+  subcontractors         ProjectSubcontractor[]
+  workers                Worker[]
+  inductionTemplates     InductionTemplate[]
+  siteVisits             SiteVisit[]
+  supervisors            SiteSupervisor[]
+  documents              DocumentUpload[]
+  swmsSubmissions        SwmsSubmission[]
+  swmsInductionQuestions SwmsInductionQuestion[]
 
   @@index([organisationId])
   @@map("projects")
@@ -214,6 +223,7 @@ model InductionTemplate {
   type      InductionType
   version   Int           @default(1)
   isActive  Boolean       @default(true) @map("is_active")
+  videoUrl  String?       @map("video_url")
   questions Json
   projectId String?       @map("project_id") @db.Uuid
   project   Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
@@ -235,6 +245,11 @@ model InductionCompletion {
   score      Int?
   passed     Boolean
   signedAt   DateTime          @map("signed_at")
+  attempts   Int               @default(0)
+  blockedUntil     DateTime?   @map("blocked_until")
+  declarationSignedAt DateTime? @map("declaration_signed_at")
+  declarationIp    String?     @map("declaration_ip")
+  declarationData  Json?       @map("declaration_data")
   createdAt  DateTime          @default(now()) @map("created_at")
 
   @@unique([workerId, templateId])
@@ -288,4 +303,22 @@ model VerificationAlert {
   createdAt   DateTime  @default(now()) @map("created_at")
 
   @@map("verification_alerts")
+}
+
+model SwmsInductionQuestion {
+  id                    String             @id @default(uuid()) @db.Uuid
+  projectId             String             @map("project_id") @db.Uuid
+  project               Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId        String             @map("organisation_id") @db.Uuid
+  organisation          Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  question              String
+  expectedAnswerContext String             @map("expected_answer_context")
+  status                SwmsQuestionStatus @default(pending_review)
+  sortOrder             Int                @default(0) @map("sort_order")
+  createdAt             DateTime           @default(now()) @map("created_at")
+  updatedAt             DateTime           @updatedAt @map("updated_at")
+
+  @@index([projectId])
+  @@index([organisationId])
+  @@map("swms_induction_questions")
 }
