@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { DocumentType } from "@/generated/prisma/client";
-import { extractExpiryDate } from "@/lib/claude";
+import { extractExpiryDate, extractCoverageAmount } from "@/lib/claude";
 
 export type DocUploadState = {
   error?: string;
@@ -49,7 +49,7 @@ export async function uploadCompanyDocument(
   if (!mediaType) return { error: "Only PDF, JPG, PNG and WebP files are accepted." };
 
   const expiryDateRaw = formData.get("expiryDate")?.toString();
-  const coverageAmount = formData.get("coverageAmount")?.toString().trim() || null;
+  let coverageAmount = formData.get("coverageAmount")?.toString().trim() || null;
 
   // Upload to Supabase Storage using JWT service role key
   const storage = createStorageAdminClient();
@@ -71,21 +71,45 @@ export async function uploadCompanyDocument(
   let aiDate: string | undefined;
   let aiConfidence: string | undefined;
 
-  // Only extract if no date manually provided and AI key is configured
-  if (!expiryDate && docType !== DocumentType.whs_policy && process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_API_KEY.includes("YOUR_KEY")) {
-    try {
-      const base64 = Buffer.from(bytes).toString("base64");
-      const result = await extractExpiryDate(base64, mediaType);
-      if (result.found && (result.confidence === "high" || result.confidence === "medium") && result.expiry_date) {
-        const [day, month, year] = result.expiry_date.split("/");
-        expiryDate = new Date(`${year}-${month}-${day}`);
-        aiExtractedExpiry = true;
-        aiDate = result.expiry_date;
-        aiConfidence = result.confidence;
+  const AI_COVERAGE_TYPES: DocumentType[] = [
+    DocumentType.workers_compensation,
+    DocumentType.contract_works,
+    DocumentType.professional_indemnity,
+    DocumentType.public_liability,
+  ];
+
+  const hasAiKey =
+    !!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_API_KEY.includes("YOUR_KEY");
+
+  if (hasAiKey) {
+    const base64 = Buffer.from(bytes).toString("base64");
+
+    // Expiry extraction (all types except whs_policy, only when not manually provided)
+    if (!expiryDate && docType !== DocumentType.whs_policy) {
+      try {
+        const result = await extractExpiryDate(base64, mediaType);
+        if (result.found && (result.confidence === "high" || result.confidence === "medium") && result.expiry_date) {
+          const [day, month, year] = result.expiry_date.split("/");
+          expiryDate = new Date(`${year}-${month}-${day}`);
+          aiExtractedExpiry = true;
+          aiDate = result.expiry_date;
+          aiConfidence = result.confidence;
+        }
+      } catch (e) {
+        console.error("[AI expiry extraction]", e);
       }
-    } catch (e) {
-      console.error("[AI expiry extraction]", e);
-      // Non-fatal — continue without AI date
+    }
+
+    // Coverage extraction (insurance docs only, when not manually provided)
+    if (!coverageAmount && AI_COVERAGE_TYPES.includes(docType)) {
+      try {
+        const result = await extractCoverageAmount(base64, mediaType);
+        if (result.found && result.amount) {
+          coverageAmount = result.amount;
+        }
+      } catch (e) {
+        console.error("[AI coverage extraction]", e);
+      }
     }
   }
 

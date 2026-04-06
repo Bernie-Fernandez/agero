@@ -23,6 +23,11 @@ const navLinks = [
     label: "Inductions",
     roles: ["admin", "safety_manager"] as UserRole[],
   },
+  {
+    href: "/supervisor",
+    label: "Supervisor",
+    roles: ["site_manager"] as UserRole[],
+  },
 ] satisfies { href: string; label: string; roles: UserRole[] | null }[];
 
 export function AppNav({
@@ -39,9 +44,8 @@ export function AppNav({
   // Derive a prefix to match for active highlighting
   function isActive(linkHref: string) {
     if (!currentPath) return false;
-    // For the inductions link, match /admin/inductions prefix
     if (linkHref.startsWith("/admin/")) return currentPath.startsWith("/admin/inductions");
-    return currentPath.startsWith(linkHref);
+    return currentPath === linkHref || currentPath.startsWith(linkHref + "/");
   }
 
   return (

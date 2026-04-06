@@ -25,6 +25,8 @@ export async function sendInvitation(
   const contactName = formData.get("contactName")?.toString().trim();
   const email = formData.get("email")?.toString().trim().toLowerCase();
   const mobile = formData.get("mobile")?.toString().trim() || null;
+  const tradeCategories = formData.getAll("tradeCategories").map(String).filter(Boolean);
+  const projectId = formData.get("projectId")?.toString() || null;
 
   if (!companyName || !contactName || !email) {
     return { error: "Company name, contact name and email are required." };
@@ -39,6 +41,8 @@ export async function sendInvitation(
       contactName,
       email,
       mobile,
+      tradeCategories,
+      projectId: projectId || null,
       token,
       invitedBy: appUser.name ?? appUser.email,
       expiresAt,

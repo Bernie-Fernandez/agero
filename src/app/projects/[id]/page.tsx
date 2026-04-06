@@ -123,6 +123,22 @@ export default async function ProjectPage({
           <div className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
             <h2 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Overview</h2>
             <dl className="mt-3 space-y-2 text-sm">
+              {project.startDate && (
+                <div className="flex justify-between">
+                  <dt className="text-zinc-500">Start date</dt>
+                  <dd className="font-medium text-zinc-900 dark:text-zinc-50">
+                    {new Date(project.startDate).toLocaleDateString("en-AU")}
+                  </dd>
+                </div>
+              )}
+              {project.endDate && (
+                <div className="flex justify-between">
+                  <dt className="text-zinc-500">End date</dt>
+                  <dd className="font-medium text-zinc-900 dark:text-zinc-50">
+                    {new Date(project.endDate).toLocaleDateString("en-AU")}
+                  </dd>
+                </div>
+              )}
               <div className="flex justify-between">
                 <dt className="text-zinc-500">Workers</dt>
                 <dd className="font-medium text-zinc-900 dark:text-zinc-50">{project._count.workers}</dd>

@@ -12,9 +12,9 @@ import { uploadCompanyDocument } from "./actions";
 
 const COMPANY_DOCS: { type: DocumentType; showCoverage?: boolean }[] = [
   { type: DocumentType.public_liability, showCoverage: true },
-  { type: DocumentType.workers_compensation },
-  { type: DocumentType.contract_works },
-  { type: DocumentType.professional_indemnity },
+  { type: DocumentType.workers_compensation, showCoverage: true },
+  { type: DocumentType.contract_works, showCoverage: true },
+  { type: DocumentType.professional_indemnity, showCoverage: true },
   { type: DocumentType.whs_policy },
 ];
 

@@ -7,10 +7,14 @@ import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 export default async function InviteSubcontractorPage() {
   const appUser = await requireRole(ADMIN_MANAGER_ROLES);
 
-  const recent = await prisma.invitation.findMany({
-    orderBy: { createdAt: "desc" },
-    take: 10,
-  });
+  const [recent, projects] = await Promise.all([
+    prisma.invitation.findMany({ orderBy: { createdAt: "desc" }, take: 10 }),
+    prisma.project.findMany({
+      where: { organisationId: appUser.organisationId },
+      select: { id: true, name: true },
+      orderBy: { name: "asc" },
+    }),
+  ]);
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
@@ -21,7 +25,7 @@ export default async function InviteSubcontractorPage() {
         <p className="mt-1 text-sm text-zinc-500">Send a registration link to a subcontractor company. They will complete their profile and upload compliance documents.</p>
 
         <div className="mt-8 rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
-          <InviteForm />
+          <InviteForm projects={projects} />
         </div>
 
         {recent.length > 0 && (

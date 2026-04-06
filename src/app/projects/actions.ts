@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
-export type ProjectFormState = { error?: string };
+export type ProjectFormState = { error?: string; projectId?: string };
 
 export async function createProject(
   _prev: ProjectFormState,
@@ -18,12 +18,20 @@ export async function createProject(
 
   const name = formData.get("name")?.toString().trim();
   const address = formData.get("address")?.toString().trim() || null;
+  const startDateRaw = formData.get("startDate")?.toString();
+  const endDateRaw = formData.get("endDate")?.toString();
 
   if (!name) return { error: "Project name is required." };
 
-  await prisma.project.create({
-    data: { name, address, organisationId: appUser.organisationId },
+  const project = await prisma.project.create({
+    data: {
+      name,
+      address,
+      organisationId: appUser.organisationId,
+      startDate: startDateRaw ? new Date(startDateRaw) : null,
+      endDate: endDateRaw ? new Date(endDateRaw) : null,
+    },
   });
 
-  redirect("/projects");
+  return { projectId: project.id };
 }

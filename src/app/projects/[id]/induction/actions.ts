@@ -112,9 +112,6 @@ export async function uploadSwms(
   const file = formData.get("file") as File | null;
   if (!file || file.size === 0) return { error: "Please select a file." };
 
-  console.log("JWT present:", !!process.env.SUPABASE_SERVICE_ROLE_JWT);
-  console.log("JWT prefix:", process.env.SUPABASE_SERVICE_ROLE_JWT?.substring(0, 10));
-
   const storage = createStorageAdminClient();
   const ext = file.name.split(".").pop();
   const path = `projects/${projectId}/swms-${Date.now()}.${ext}`;

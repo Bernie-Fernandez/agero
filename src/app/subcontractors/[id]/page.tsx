@@ -67,6 +67,11 @@ export default async function SubcontractorDashboardPage({
     if (!swmsByProject.has(s.projectId)) swmsByProject.set(s.projectId, s);
   }
 
+  // Next expiry across all docs
+  const nextExpiryDoc = org.documents
+    .filter((d) => d.expiryDate && new Date(d.expiryDate) > new Date())
+    .sort((a, b) => new Date(a.expiryDate!).getTime() - new Date(b.expiryDate!).getTime())[0];
+
   const { status: overallStatus, reasons } = calcOrgCompliance({
     documents: org.documents,
     swmsSubmissions: org.swmsSubmissions,
@@ -91,6 +96,11 @@ export default async function SubcontractorDashboardPage({
                 </a>
               )}
               <span>{org._count.employedWorkers} workers</span>
+              {nextExpiryDoc?.expiryDate && (
+                <span className={`${daysUntil(nextExpiryDoc.expiryDate) <= 7 ? "text-red-500" : daysUntil(nextExpiryDoc.expiryDate) <= 30 ? "text-amber-600" : "text-zinc-400"}`}>
+                  Next expiry: {new Date(nextExpiryDoc.expiryDate).toLocaleDateString("en-AU")} ({formatDocType(nextExpiryDoc.type)})
+                </span>
+              )}
             </div>
             {org.tradeCategories.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">

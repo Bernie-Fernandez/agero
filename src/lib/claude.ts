@@ -81,6 +81,44 @@ export async function extractExpiryDate(
 }
 
 /**
+ * Extract the total insured/coverage amount from an insurance certificate.
+ * Returns { found, amount } — amount is a human-readable string like "$10,000,000".
+ */
+export async function extractCoverageAmount(
+  fileBase64: string,
+  mediaType: "application/pdf" | "image/jpeg" | "image/png" | "image/webp",
+): Promise<{ found: boolean; amount: string | null }> {
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 128,
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "document",
+            source: { type: "base64", media_type: mediaType, data: fileBase64 },
+          } as Anthropic.DocumentBlockParam,
+          {
+            type: "text",
+            text: 'This is an insurance certificate. Find the total sum insured or coverage limit (e.g. "$10,000,000", "$20M", "20,000,000"). Return ONLY JSON: {"found": true, "amount": "$X,XXX,XXX"} or {"found": false, "amount": null}.',
+          },
+        ],
+      },
+    ],
+  });
+
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
+  try {
+    const match = text.match(/\{[\s\S]*?\}/);
+    if (!match) return { found: false, amount: null };
+    return JSON.parse(match[0]) as { found: boolean; amount: string | null };
+  } catch {
+    return { found: false, amount: null };
+  }
+}
+
+/**
  * AI-mark a short-answer induction question.
  * Returns passed: true if the answer demonstrates sufficient understanding.
  * Fails gracefully — if AI is unavailable, caller should fall back to auto-accept.
