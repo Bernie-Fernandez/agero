@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createStorageAdminClient } from "@/lib/supabase/server";
 import { DocumentType } from "@/generated/prisma/client";
 import { sendInductionLink } from "@/lib/alerts";
 
@@ -73,17 +73,17 @@ export async function uploadWorkerDocument(
   const expiryRaw = formData.get("expiryDate")?.toString();
   const expiryDate = expiryRaw ? new Date(expiryRaw) : null;
 
-  const supabase = await createServerClient();
+  const storage = createStorageAdminClient();
   const ext = file.name.split(".").pop();
   const path = `workers/${workerId}/${docType}-${Date.now()}.${ext}`;
 
-  const { error: storageError } = await supabase.storage
+  const { error: storageError } = await storage
     .from("documents")
     .upload(path, file, { upsert: true });
 
   if (storageError) return { error: `Upload failed: ${storageError.message}` };
 
-  const { data: urlData } = supabase.storage.from("documents").getPublicUrl(path);
+  const { data: urlData } = storage.from("documents").getPublicUrl(path);
 
   const existing = await prisma.documentUpload.findFirst({
     where: { workerId, type: docType },
