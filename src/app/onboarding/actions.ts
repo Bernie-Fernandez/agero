@@ -103,7 +103,7 @@ export async function completeOnboarding(
     ) {
       return {
         error:
-          "That email is already linked to an Agero account. Sign in instead or use another email.",
+          "That email is already linked to an Agero Safety account. Sign in instead or use another email.",
       };
     }
     throw e;

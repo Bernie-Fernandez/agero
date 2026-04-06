@@ -168,6 +168,36 @@ export function InductionForm({
     );
   }
 
+  // ── Passed + signed — completion confirmation ─────────────────────────────
+  if (phase === "passed" && state.signed) {
+    return (
+      <div className="rounded-xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-800 dark:bg-green-950/30">
+        <p className="text-4xl font-bold text-green-700 dark:text-green-300">✓</p>
+        <p className="mt-3 text-xl font-semibold text-green-800 dark:text-green-200">
+          Induction complete
+        </p>
+        {state.workerName && (
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            {state.workerName}
+          </p>
+        )}
+        {state.signedAt && (
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
+            Signed{" "}
+            {new Date(state.signedAt).toLocaleString("en-AU", {
+              dateStyle: "medium",
+              timeStyle: "short",
+              timeZone: "Australia/Melbourne",
+            })}
+          </p>
+        )}
+        <p className="mt-4 text-sm text-green-700 dark:text-green-400">
+          Your declaration has been recorded. You may now sign in to site.
+        </p>
+      </div>
+    );
+  }
+
   // ── Passed — anonymous / preview ──────────────────────────────────────────
   if (phase === "passed") {
     return (

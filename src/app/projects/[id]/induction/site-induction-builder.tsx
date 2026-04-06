@@ -69,7 +69,7 @@ function formatRiskDate(iso: string): string {
 // ── Component ────────────────────────────────────────────────────────────────
 
 const DEFAULT_STANDARD_QUESTIONS: SiteQuestion[] = [
-  { type: "short_answer", question: "Who is your Agero site supervisor and their phone number?", expectedAnswerContext: "", isRisk: false },
+  { type: "short_answer", question: "Who is your Agero Safety site supervisor and their phone number?", expectedAnswerContext: "", isRisk: false },
   { type: "short_answer", question: "Where is the first aid box on this site?", expectedAnswerContext: "", isRisk: false },
   { type: "short_answer", question: "Where are the toilets you are permitted to use?", expectedAnswerContext: "", isRisk: false },
   { type: "short_answer", question: "What are the emergency evacuation procedures for this site?", expectedAnswerContext: "", isRisk: false },

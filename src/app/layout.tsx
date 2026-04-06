@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agero",
+  title: "Agero Safety",
   description: "Construction safety management platform",
 };
 

@@ -33,7 +33,7 @@ export default async function RegisterPage({
           Register your company
         </h1>
         <p className="mt-1 text-sm text-zinc-500">
-          Complete your registration to join the Agero safety platform.
+          Complete your registration to join the Agero Safety platform.
         </p>
 
         {isUsed ? (

@@ -68,7 +68,7 @@ export default async function DocumentsPage({
 
         {welcome === "1" && (
           <div className="mt-4 rounded-xl border border-green-200 bg-green-50 px-5 py-4 dark:border-green-800 dark:bg-green-950/30">
-            <p className="font-medium text-green-800 dark:text-green-300">Welcome to Agero!</p>
+            <p className="font-medium text-green-800 dark:text-green-300">Welcome to Agero Safety!</p>
             <p className="mt-1 text-sm text-green-700 dark:text-green-400">
               Registration complete. Please upload your compliance documents below to become fully active on the platform.
             </p>

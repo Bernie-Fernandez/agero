@@ -20,7 +20,7 @@ export default async function Home() {
       <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
           <span className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-            Agero
+            Agero Safety
           </span>
           <nav className="flex items-center gap-3">
             <Link
@@ -43,7 +43,7 @@ export default async function Home() {
           Construction safety, aligned to ISO 45001
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-          Agero helps you manage inductions, subcontractors, and site workers in
+          Agero Safety helps you manage inductions, subcontractors, and site workers in
           one place. Sign in to open your dashboard.
         </p>
         <div className="mt-10 flex flex-wrap gap-3">

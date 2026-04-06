@@ -15,15 +15,15 @@ export async function sendInvitationEmail(opts: {
   registrationUrl: string;
   expiresAt: Date;
 }) {
-  const subject = `You've been invited to join Agero — ${opts.companyName}`;
+  const subject = `You've been invited to join Agero Safety — ${opts.companyName}`;
   await resend.emails.send({
     from: FROM,
     to: opts.to,
     subject,
     html: html(`
-      <h2 style="margin-top:0">You've been invited to Agero</h2>
+      <h2 style="margin-top:0">You've been invited to Agero Safety</h2>
       <p>Hi ${opts.contactName},</p>
-      <p><strong>${opts.invitedBy}</strong> has invited <strong>${opts.companyName}</strong> to join the Agero safety platform.</p>
+      <p><strong>${opts.invitedBy}</strong> has invited <strong>${opts.companyName}</strong> to join the Agero Safety platform.</p>
       <p>Complete your company registration using the button below. This link expires on <strong>${opts.expiresAt.toLocaleDateString("en-AU")}</strong>.</p>
       <p style="margin:32px 0">
         <a href="${opts.registrationUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Complete registration →</a>
@@ -40,13 +40,13 @@ export async function sendWelcomeEmail(opts: {
   companyName: string;
   documentsUrl: string;
 }) {
-  const subject = `Welcome to Agero — complete your compliance documents`;
+  const subject = `Welcome to Agero Safety — complete your compliance documents`;
   await resend.emails.send({
     from: FROM,
     to: opts.to,
     subject,
     html: html(`
-      <h2 style="margin-top:0">Welcome to Agero!</h2>
+      <h2 style="margin-top:0">Welcome to Agero Safety!</h2>
       <p>Hi ${opts.contactName},</p>
       <p><strong>${opts.companyName}</strong> has been registered on the platform.</p>
       <p>Next step — upload your compliance documents:</p>

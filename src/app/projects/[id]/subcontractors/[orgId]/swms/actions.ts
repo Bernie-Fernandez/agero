@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { createStorageAdminClient } from "@/lib/supabase/server";
-import { reviewSwms } from "@/lib/claude";
+import { reviewSwms, generateSwmsInductionQuestions } from "@/lib/claude";
 import { sendSwmsRejectedEmail, sendSwmsApprovedEmail } from "@/lib/email";
 
 export type SwmsUploadState = { error?: string; success?: boolean };
@@ -94,7 +94,7 @@ export async function approveSwms(
     select: { name: true, email: true },
   });
 
-  await prisma.swmsSubmission.update({
+  const submission = await prisma.swmsSubmission.update({
     where: { id: submissionId },
     data: {
       status: "approved",
@@ -104,8 +104,10 @@ export async function approveSwms(
   });
 
   // Notify subcontractor
-  const org = await prisma.organisation.findUnique({ where: { id: orgId } });
-  const project = await prisma.project.findUnique({ where: { id: projectId } });
+  const [org, project] = await Promise.all([
+    prisma.organisation.findUnique({ where: { id: orgId } }),
+    prisma.project.findUnique({ where: { id: projectId } }),
+  ]);
   const inv = await prisma.invitation.findFirst({ where: { organisationId: orgId } });
 
   if (inv && org && project) {
@@ -115,6 +117,45 @@ export async function approveSwms(
       companyName: org.name,
       projectName: project.name,
     });
+  }
+
+  // Generate SWMS induction questions from the approved PDF
+  if (
+    process.env.ANTHROPIC_API_KEY &&
+    !process.env.ANTHROPIC_API_KEY.includes("YOUR_KEY") &&
+    submission.fileUrl &&
+    org &&
+    project
+  ) {
+    try {
+      const resp = await fetch(submission.fileUrl);
+      const bytes = await resp.arrayBuffer();
+      const pdfBase64 = Buffer.from(bytes).toString("base64");
+      const generated = await generateSwmsInductionQuestions(pdfBase64, project.name, org.name);
+
+      if (generated.length > 0) {
+        // Replace existing pending/rejected questions for this project+org with the new set
+        await prisma.swmsInductionQuestion.deleteMany({
+          where: {
+            projectId,
+            organisationId: orgId,
+            status: { in: ["pending_review", "rejected"] },
+          },
+        });
+        await prisma.swmsInductionQuestion.createMany({
+          data: generated.map((q, idx) => ({
+            projectId,
+            organisationId: orgId,
+            question: q.question,
+            expectedAnswerContext: q.expectedAnswerContext,
+            sortOrder: idx,
+          })),
+        });
+      }
+    } catch (e) {
+      console.error("[SWMS induction questions generation]", e);
+      // Non-fatal — SWMS is still approved
+    }
   }
 
   redirect(`/projects/${projectId}/subcontractors/${orgId}/swms`);

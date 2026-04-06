@@ -51,7 +51,7 @@ export default async function OnboardingPage() {
           Set up your organisation
         </h1>
         <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          This creates your company in Agero and links your Clerk account as an
+          This creates your company in Agero Safety and links your Clerk account as an
           admin. You can invite teammates later.
         </p>
         <OnboardingForm />

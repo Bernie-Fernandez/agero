@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { InductionForm } from "./induction-form";
+import { InductionChat } from "./induction-chat";
 import { submitInduction } from "./actions";
 
 type StoredQuestion = {
@@ -290,6 +291,13 @@ export default async function PublicInductionPage({
           </>
         )}
       </main>
+      {/* Safety assistant chatbot — only shown when the worker is actively doing the induction */}
+      {!swmsGated && !isBlocked && !alreadyComplete && process.env.ANTHROPIC_API_KEY && (
+        <InductionChat
+          projectName={template.project?.name ?? "this site"}
+          templateTitle={template.title}
+        />
+      )}
     </div>
   );
 }

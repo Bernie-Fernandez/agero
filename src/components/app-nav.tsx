@@ -2,6 +2,14 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import type { UserRole } from "@/generated/prisma/client";
 
+const PORTAL_LABEL: Record<UserRole, string> = {
+  admin: "Head Contractor",
+  safety_manager: "Head Contractor",
+  project_manager: "Head Contractor",
+  site_manager: "Head Contractor",
+  subcontractor_admin: "Subcontractor",
+};
+
 const navLinks = [
   { href: "/dashboard", label: "Dashboard", roles: null },
   { href: "/projects", label: "Projects", roles: null },
@@ -40,11 +48,15 @@ export function AppNav({
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-6">
-          <Link
-            href="/dashboard"
-            className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
-          >
-            Agero
+          <Link href="/dashboard" className="flex flex-col leading-tight">
+            <span className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+              Agero Safety
+            </span>
+            {userRole && (
+              <span className="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 tracking-wide uppercase">
+                {PORTAL_LABEL[userRole]}
+              </span>
+            )}
           </Link>
           <nav className="hidden items-center gap-1 sm:flex">
             {visible.map((link) => {

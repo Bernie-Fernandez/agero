@@ -81,6 +81,96 @@ export async function extractExpiryDate(
 }
 
 /**
+ * AI-mark a short-answer induction question.
+ * Returns passed: true if the answer demonstrates sufficient understanding.
+ * Fails gracefully — if AI is unavailable, caller should fall back to auto-accept.
+ */
+export async function markShortAnswer(
+  question: string,
+  expectedAnswerContext: string,
+  workerAnswer: string,
+): Promise<{ passed: boolean }> {
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 64,
+    messages: [
+      {
+        role: "user",
+        content: `You are marking a construction site safety induction question. Be lenient — the worker just needs to demonstrate basic awareness, not perfect recall. Typos and casual language are fine.
+
+Question: ${question}
+Expected answer context (for your reference only): ${expectedAnswerContext}
+Worker's answer: ${workerAnswer}
+
+Does this answer demonstrate that the worker has basic awareness of the topic? Reply with ONLY valid JSON: {"passed": true} or {"passed": false}`,
+      },
+    ],
+  });
+
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
+  try {
+    const match = text.match(/\{[\s\S]*?\}/);
+    if (!match) return { passed: true }; // fallback: accept
+    const parsed = JSON.parse(match[0]) as { passed: boolean };
+    return { passed: Boolean(parsed.passed) };
+  } catch {
+    return { passed: true }; // fallback: accept
+  }
+}
+
+/**
+ * Generate 3–5 induction questions from an approved SWMS PDF.
+ * Returns an array of { question, expectedAnswerContext } objects.
+ */
+export async function generateSwmsInductionQuestions(
+  pdfBase64: string,
+  projectName: string,
+  orgName: string,
+): Promise<Array<{ question: string; expectedAnswerContext: string }>> {
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 1024,
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "document",
+            source: { type: "base64", media_type: "application/pdf", data: pdfBase64 },
+          } as Anthropic.DocumentBlockParam,
+          {
+            type: "text",
+            text: `This is a Safe Work Method Statement (SWMS) submitted by ${orgName} for work on ${projectName}.
+
+Generate 3 to 5 short-answer induction questions that test whether a worker has read and understood this specific SWMS. Questions should cover the specific hazards, control measures, PPE, and emergency procedures described in this document.
+
+Return ONLY valid JSON in this exact format (no other text):
+[
+  {
+    "question": "Question text — specific to this SWMS",
+    "expectedAnswerContext": "What an acceptable answer should mention — for AI marker use only, not shown to workers"
+  }
+]`,
+          },
+        ],
+      },
+    ],
+  });
+
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
+  try {
+    const match = text.match(/\[[\s\S]*\]/);
+    if (!match) return [];
+    const parsed = JSON.parse(match[0]) as Array<{ question: string; expectedAnswerContext: string }>;
+    return parsed.filter(
+      (q) => typeof q.question === "string" && typeof q.expectedAnswerContext === "string",
+    );
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Review a SWMS PDF against the Agero 14-criteria checklist.
  * pdfBase64 should be the raw base64 string of the PDF.
  */

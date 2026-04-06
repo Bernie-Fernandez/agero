@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { sendInductionBlockedAlert } from "@/lib/email";
+import { markShortAnswer } from "@/lib/claude";
 
 type Question = {
   question: string;
@@ -11,6 +12,7 @@ type Question = {
   options?: string[];
   correctAnswers?: number[];
   correctAnswer?: number; // legacy single-answer format
+  expectedAnswerContext?: string;
 };
 
 function getCorrectAnswers(q: Question): number[] {
@@ -19,11 +21,25 @@ function getCorrectAnswers(q: Question): number[] {
   return [];
 }
 
-function scoreQuestion(q: Question, formData: FormData, index: number): boolean {
-  // Short-answer questions: auto-accept any non-empty response
+const AI_MARKING_ENABLED =
+  !!process.env.ANTHROPIC_API_KEY &&
+  !process.env.ANTHROPIC_API_KEY.includes("YOUR_KEY");
+
+async function scoreQuestion(q: Question, formData: FormData, index: number): Promise<boolean> {
   if (q.type === "short_answer") {
     const val = formData.get(`q${index}`)?.toString().trim() ?? "";
-    return val.length > 0;
+    if (!val) return false;
+    // AI marking when context is provided and API key is available
+    if (q.expectedAnswerContext && AI_MARKING_ENABLED) {
+      try {
+        const result = await markShortAnswer(q.question, q.expectedAnswerContext, val);
+        return result.passed;
+      } catch {
+        // fallback: accept non-empty
+        return true;
+      }
+    }
+    return true; // auto-accept non-empty when no context / no API key
   }
   const required = getCorrectAnswers(q).slice().sort((a, b) => a - b);
   const selected = formData.getAll(`q${index}`).map(Number).sort((a, b) => a - b);
@@ -72,6 +88,10 @@ export type InductionSubmitState = {
     version: number;
     text: string;
   };
+  // Post-sign completion
+  signed?: boolean;
+  signedAt?: string; // ISO string
+  workerName?: string;
 };
 
 const MAX_ATTEMPTS = 3;
@@ -89,7 +109,7 @@ function buildDeclarationText(
     timeZone: "Australia/Melbourne",
   });
   return (
-    `I, ${workerName}, confirm that I have read and understood the Agero Group Work Health & Safety Policy and Procedures, ` +
+    `I, ${workerName}, confirm that I have read and understood the Agero Safety Work Health & Safety Policy and Procedures, ` +
     `including the Site Specific Safety Plan for ${projectName}. I agree to abide by all safety requirements and will ensure ` +
     `any persons under my supervision are inducted before accessing site. I understand that failure to comply may result in ` +
     `removal from site.\n\n` +
@@ -148,7 +168,7 @@ async function handleAnswer(
       swmsQuestions = swmsInductionQs.map((q) => ({
         type: "short_answer" as const,
         question: q.question,
-        expectedAnswerContext: q.expectedAnswerContext,
+        expectedAnswerContext: q.expectedAnswerContext || undefined,
       }));
     }
   }
@@ -166,9 +186,12 @@ async function handleAnswer(
       correct++;
       correctIndices.push(i);
     } else {
-      const selected = formData.getAll(`q${i}`).map(Number);
-      if (selected.length > 0) previousSelections[String(i)] = selected;
-      if (scoreQuestion(questions[i], formData, i)) {
+      // Track previous MC selections for retry highlighting (not applicable to short-answer)
+      if (questions[i].type !== "short_answer") {
+        const selected = formData.getAll(`q${i}`).map(Number);
+        if (selected.length > 0) previousSelections[String(i)] = selected;
+      }
+      if (await scoreQuestion(questions[i], formData, i)) {
         correct++;
         correctIndices.push(i);
       }
@@ -336,7 +359,14 @@ async function handleSign(
   });
 
   if (nextUrl) redirect(nextUrl);
-  return { passed: true, score: 100, total: (template.questions as Question[]).length };
+  return {
+    passed: true,
+    signed: true,
+    score: 100,
+    total: (template.questions as Question[]).length,
+    workerName,
+    signedAt: now.toISOString(),
+  };
 }
 
 async function sendBlockAlert(

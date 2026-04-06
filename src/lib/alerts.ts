@@ -58,7 +58,7 @@ export async function sendInductionLink(opts: {
   workerEmail?: string;
   inductionUrl: string;
 }) {
-  const msg = `Hi ${opts.workerName}, complete your Agero safety induction here: ${opts.inductionUrl}`;
+  const msg = `Hi ${opts.workerName}, complete your Agero Safety induction here: ${opts.inductionUrl}`;
   // SMS via Twilio (not yet configured)
   console.log("[INDUCTION - SMS]", opts.workerMobile, msg);
 
@@ -66,7 +66,7 @@ export async function sendInductionLink(opts: {
     await resend.emails.send({
       from: FROM,
       to: opts.workerEmail,
-      subject: "Complete your Agero safety induction",
+      subject: "Complete your Agero Safety induction",
       html: html(`
         <h2 style="margin-top:0">Safety induction required</h2>
         <p>Hi ${opts.workerName},</p>
@@ -98,7 +98,7 @@ export async function sendExpiryAlert(opts: {
       <p><strong>${opts.documentType}</strong> for <strong>${opts.entityName}</strong> expires on
         <strong>${opts.expiryDate.toLocaleDateString("en-AU")}</strong>
         (${opts.daysUntilExpiry} days).</p>
-      <p style="font-size:13px;color:#71717a">Log in to Agero to upload a renewal.</p>
+      <p style="font-size:13px;color:#71717a">Log in to Agero Safety to upload a renewal.</p>
     `),
   });
 }
