@@ -38,6 +38,14 @@ export default async function WorkerDashboard() {
     orderBy: { version: "desc" },
   });
 
+  // Deduplicate workers by project ID (multiple Worker rows can exist per project)
+  const seenProjectIds = new Set<string>();
+  const uniqueWorkers = workers.filter((w) => {
+    if (seenProjectIds.has(w.project.id)) return false;
+    seenProjectIds.add(w.project.id);
+    return true;
+  });
+
   const allCompletions = workers.flatMap((w) => w.inductionCompletions);
 
   const hasCurrentGeneric = genericTemplate
@@ -133,13 +141,13 @@ export default async function WorkerDashboard() {
       </div>
 
       {/* Projects */}
-      {workers.length > 0 && (
+      {uniqueWorkers.length > 0 && (
         <section>
           <h2 className="mb-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300">
             Your projects
           </h2>
           <ul className="space-y-2">
-            {workers.map((w) => {
+            {uniqueWorkers.map((w) => {
               const hasSiteInduction = w.inductionCompletions.some(
                 (c) =>
                   c.template.type === "site_specific" &&
