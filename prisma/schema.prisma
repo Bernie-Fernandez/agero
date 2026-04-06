@@ -312,6 +312,66 @@ model VerificationAlert {
   @@map("verification_alerts")
 }
 
+model WorkerAccount {
+  id                 String    @id @default(uuid()) @db.Uuid
+  mobile             String    @unique
+  firstName          String    @map("first_name")
+  lastName           String    @map("last_name")
+  trades             String[]  @default([])
+  whiteCardNumber    String?   @map("white_card_number")
+  whiteCardExpiry    DateTime? @map("white_card_expiry")
+  tradeLicenceNumber String?   @map("trade_licence_number")
+  tradeLicenceExpiry DateTime? @map("trade_licence_expiry")
+  firstAidCertNumber String?   @map("first_aid_cert_number")
+  firstAidExpiry     DateTime? @map("first_aid_expiry")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  sessions      WorkerSession[]
+  certDocuments WorkerCertDocument[]
+
+  @@map("worker_accounts")
+}
+
+model WorkerSession {
+  id              String        @id @default(uuid()) @db.Uuid
+  workerAccountId String        @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  token           String        @unique @default(uuid()) @db.Uuid
+  expiresAt       DateTime      @map("expires_at")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@index([workerAccountId])
+  @@map("worker_sessions")
+}
+
+model SmsVerification {
+  id        String   @id @default(uuid()) @db.Uuid
+  mobile    String
+  code      String
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([mobile])
+  @@map("sms_verifications")
+}
+
+model WorkerCertDocument {
+  id                String        @id @default(uuid()) @db.Uuid
+  workerAccountId   String        @map("worker_account_id") @db.Uuid
+  workerAccount     WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  docType           String        @map("doc_type")
+  url               String
+  filename          String?
+  expiryDate        DateTime?     @map("expiry_date")
+  aiExtractedExpiry Boolean       @default(false) @map("ai_extracted_expiry")
+  createdAt         DateTime      @default(now()) @map("created_at")
+
+  @@index([workerAccountId])
+  @@map("worker_cert_documents")
+}
+
 model SwmsInductionQuestion {
   id                    String             @id @default(uuid()) @db.Uuid
   projectId             String             @map("project_id") @db.Uuid

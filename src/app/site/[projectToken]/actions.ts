@@ -58,7 +58,7 @@ async function doSignIn(
 
   if (!project) return { error: "Invalid QR code. Please scan again." };
 
-  // If workerId is provided (returning from induction), look up directly
+  // ── Path 1: returning from induction (workerId provided) ──────────────────
   const workerIdInput = formData.get("workerId")?.toString();
   if (workerIdInput) {
     const prefilledWorker = await prisma.worker.findUnique({
@@ -66,19 +66,76 @@ async function doSignIn(
       include: workerInclude,
     });
     if (prefilledWorker && prefilledWorker.projectId === project.id) {
-      return await continueSignIn(project, prefilledWorker, projectToken, null);
+      const photoFile = formData.get("photo");
+      return await continueSignIn(
+        project,
+        prefilledWorker,
+        projectToken,
+        photoFile instanceof File ? photoFile : null,
+      );
     }
   }
 
+  // ── Path 2: session-based (mobile provided by SiteAuthGate) ───────────────
+  const mobileInput = formData.get("mobile")?.toString().trim();
+  if (mobileInput) {
+    const workerAccount = await prisma.workerAccount.findUnique({
+      where: { mobile: mobileInput },
+    });
+    if (!workerAccount) {
+      return { error: "Worker account not found. Please sign in again." };
+    }
+
+    // Find or create Worker for this project
+    let worker = await prisma.worker.findFirst({
+      where: { projectId: project.id, mobile: mobileInput },
+      include: workerInclude,
+    });
+
+    const isUnknown = !worker;
+    if (!worker) {
+      worker = await prisma.worker.create({
+        data: {
+          firstName: workerAccount.firstName,
+          lastName: workerAccount.lastName,
+          mobile: workerAccount.mobile,
+          trade: workerAccount.trades[0] ?? null,
+          projectId: project.id,
+        },
+        include: workerInclude,
+      });
+    }
+
+    // Check if blocked (pending alert)
+    if (!isUnknown) {
+      const lastVisit = await prisma.siteVisit.findFirst({
+        where: { workerId: worker.id, projectId: project.id, isUnknown: true },
+        include: { alert: true },
+      });
+      if (lastVisit && !lastVisit.verified && lastVisit.alert && !lastVisit.alert.verifiedAt) {
+        return { blockedUntilVerified: true };
+      }
+    }
+
+    const photoFile = formData.get("photo");
+    return await continueSignIn(
+      project,
+      worker,
+      projectToken,
+      photoFile instanceof File ? photoFile : null,
+      isUnknown,
+    );
+  }
+
+  // ── Path 3: legacy name + mobile form (kept for backwards compatibility) ──
   const firstName = formData.get("firstName")?.toString().trim();
   const lastName = formData.get("lastName")?.toString().trim();
-  const mobile = formData.get("mobile")?.toString().trim();
+  const mobile = formData.get("mobile_legacy")?.toString().trim();
 
   if (!firstName || !lastName || !mobile) {
     return { error: "Please fill in all fields." };
   }
 
-  // Look up existing worker by name + mobile on this project
   const existingWorker = await prisma.worker.findFirst({
     where: {
       projectId: project.id,
@@ -108,9 +165,14 @@ async function doSignIn(
       })
     : existingWorker;
 
-  // Get the photo file from formData
   const photoFile = formData.get("photo");
-  return await continueSignIn(project, worker, projectToken, photoFile instanceof File ? photoFile : null, isUnknown);
+  return await continueSignIn(
+    project,
+    worker,
+    projectToken,
+    photoFile instanceof File ? photoFile : null,
+    isUnknown,
+  );
 }
 
 async function continueSignIn(
@@ -124,6 +186,7 @@ async function continueSignIn(
     mobile: string | null;
     projectId: string;
     inductionCompletions: { templateId: string; passed: boolean; signedAt: Date; template: { type: string } }[];
+    employingOrganisationId?: string | null;
   },
   projectToken: string,
   photoFile: File | null,
@@ -132,10 +195,27 @@ async function continueSignIn(
   const host = getAppUrl();
   const returnUrl = `/site/${projectToken}?worker=${worker.id}`;
 
-  // Check generic induction (current version + annual cycle)
+  // ── SWMS gate ────────────────────────────────────────────────────────────
+  // Check if worker's employing org has an approved SWMS for this project
+  if (worker.employingOrganisationId) {
+    const approvedSwms = await prisma.swmsSubmission.findFirst({
+      where: {
+        projectId: project.id,
+        organisationId: worker.employingOrganisationId,
+        status: "approved",
+      },
+    });
+    if (!approvedSwms) {
+      return {
+        error:
+          "Your company's SWMS has not been approved yet. Contact your supervisor.",
+      };
+    }
+  }
+
+  // ── Generic induction check ──────────────────────────────────────────────
   const genericTemplate = project.inductionTemplates.find((t) => t.type === "generic");
   if (!genericTemplate) {
-    // Fall back: look for the global active generic template
     const globalGeneric = await prisma.inductionTemplate.findFirst({
       where: { type: "generic", isActive: true },
     });
@@ -154,7 +234,7 @@ async function continueSignIn(
     };
   }
 
-  // Check site-specific induction (current version + annual cycle)
+  // ── Site-specific induction check ────────────────────────────────────────
   const siteTemplate = project.inductionTemplates.find((t) => t.type === "site_specific");
   if (siteTemplate && !hasCurrentCompletion(worker.inductionCompletions, siteTemplate.id)) {
     return {
@@ -164,7 +244,7 @@ async function continueSignIn(
     };
   }
 
-  // Upload photo if provided
+  // ── Upload photo ─────────────────────────────────────────────────────────
   let photoUrl: string | null = null;
   if (photoFile && photoFile.size > 0) {
     try {
@@ -183,6 +263,7 @@ async function continueSignIn(
     }
   }
 
+  // ── Create site visit ────────────────────────────────────────────────────
   const visit = await prisma.siteVisit.create({
     data: {
       workerId: worker.id,

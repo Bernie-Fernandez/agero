@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { SignInForm } from "./sign-in-form";
+import { getWorkerSession } from "@/lib/worker-auth";
+import { SiteAuthGate } from "./site-auth-gate";
+import { ConfirmSignInForm } from "./confirm-sign-in-form";
 import { siteSignIn } from "./actions";
+import { siteAuthAction } from "./site-auth-actions";
 
 export default async function SiteSignInPage({
   params,
@@ -22,15 +25,12 @@ export default async function SiteSignInPage({
 
   if (!project) notFound();
 
-  // Also check global generic induction template
   const globalGeneric = await prisma.inductionTemplate.findFirst({
     where: { type: "generic", isActive: true },
     select: { id: true, title: true },
   });
 
-  // Build requirements list for upfront display
-  type InductionRequirement = { id: string; title: string; type: string };
-  const inductionRequirements: InductionRequirement[] = [];
+  const inductionRequirements: { id: string; title: string; type: string }[] = [];
   if (globalGeneric) {
     inductionRequirements.push({ id: globalGeneric.id, title: globalGeneric.title, type: "generic" });
   }
@@ -42,16 +42,20 @@ export default async function SiteSignInPage({
   // Pre-fill from ?worker= (returning after completing induction)
   let workerPrefill: { id: string; firstName: string; lastName: string } | null = null;
   if (workerIdParam) {
-    const worker = await prisma.worker.findUnique({
+    const w = await prisma.worker.findUnique({
       where: { id: workerIdParam },
       select: { id: true, firstName: true, lastName: true, projectId: true },
     });
-    if (worker && worker.projectId === project.id) {
-      workerPrefill = { id: worker.id, firstName: worker.firstName, lastName: worker.lastName };
+    if (w && w.projectId === project.id) {
+      workerPrefill = { id: w.id, firstName: w.firstName, lastName: w.lastName };
     }
   }
 
+  // Check for active worker session
+  const session = await getWorkerSession();
+
   const signInAction = siteSignIn.bind(null, projectToken);
+  const boundSiteAuth = siteAuthAction.bind(null, projectToken);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -67,7 +71,6 @@ export default async function SiteSignInPage({
           <p className="mt-1 text-sm text-zinc-500">{project.address}</p>
         )}
 
-        {/* Induction requirements notice */}
         {inductionRequirements.length > 0 && (
           <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 dark:border-amber-800 dark:bg-amber-900/20">
             <p className="text-sm font-medium text-amber-800 dark:text-amber-300">
@@ -84,14 +87,29 @@ export default async function SiteSignInPage({
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-amber-600 dark:text-amber-500">
-              You will be directed to complete any outstanding inductions after entering your details.
-            </p>
           </div>
         )}
 
         <div className="mt-6">
-          <SignInForm signInAction={signInAction} workerPrefill={workerPrefill} />
+          {/* If returning from an induction (workerPrefill) OR has a session: show confirm form */}
+          {(workerPrefill || session) ? (
+            <ConfirmSignInForm
+              signInAction={signInAction}
+              workerPrefill={workerPrefill}
+              session={
+                session
+                  ? {
+                      mobile: session.workerAccount.mobile,
+                      firstName: session.workerAccount.firstName,
+                      lastName: session.workerAccount.lastName,
+                    }
+                  : null
+              }
+              projectToken={projectToken}
+            />
+          ) : (
+            <SiteAuthGate siteAuthAction={boundSiteAuth} signInAction={signInAction} />
+          )}
         </div>
       </main>
     </div>

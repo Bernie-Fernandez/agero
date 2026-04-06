@@ -2,7 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import type { NextProxy } from "next/server";
 
 /**
- * Public routes: marketing home and Clerk-hosted auth flows.
+ * Public routes: marketing home, Clerk-hosted auth flows, and worker portal.
  * Everything else requires a signed-in Clerk session.
  */
 const isPublicRoute = createRouteMatcher([
@@ -12,6 +12,7 @@ const isPublicRoute = createRouteMatcher([
   "/inductions/(.*)",
   "/site/(.*)",
   "/register/(.*)",
+  "/worker(.*)",
 ]);
 
 export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {
