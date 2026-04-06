@@ -107,10 +107,13 @@ export default async function WorkerDashboard() {
               Generic induction — Completed {genericYear}
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-800 dark:bg-red-900/40 dark:text-red-300">
+            <Link
+              href="/worker/inductions"
+              className="inline-flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-800 hover:bg-red-200 dark:bg-red-900/40 dark:text-red-300 dark:hover:bg-red-900/60"
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-              Generic induction — Required
-            </span>
+              Generic induction — Required →
+            </Link>
           )}
         </div>
       </div>
