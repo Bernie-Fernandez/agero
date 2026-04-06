@@ -7,6 +7,7 @@ import { ComplianceBadge } from "@/components/compliance-badge";
 import { calcOrgCompliance } from "@/lib/compliance";
 import { DocumentType } from "@/generated/prisma/client";
 import { requireRole, AGERO_ROLES } from "@/lib/auth";
+import { getAppUrl } from "@/lib/app-url";
 
 export default async function ProjectPage({
   params,
@@ -36,8 +37,7 @@ export default async function ProjectPage({
 
   if (!project || project.organisationId !== appUser.organisationId) notFound();
 
-  const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-  const qrUrl = `${host}/site/${project.token}`;
+  const qrUrl = `${getAppUrl()}/site/${project.token}`;
   const qrDataUrl = await QRCode.toDataURL(qrUrl, { width: 200, margin: 2 });
 
   const swms = project.documents.find((d) => d.type === DocumentType.swms);

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { reviewSwms, generateSwmsInductionQuestions } from "@/lib/claude";
 import { sendSwmsRejectedEmail, sendSwmsApprovedEmail } from "@/lib/email";
+import { getAppUrl } from "@/lib/app-url";
 
 export type SwmsUploadState = { error?: string; success?: boolean };
 export type SwmsReviewState = { error?: string };
@@ -192,7 +193,7 @@ export async function rejectSwms(
   const org = await prisma.organisation.findUnique({ where: { id: orgId } });
   const project = await prisma.project.findUnique({ where: { id: projectId } });
   const inv = await prisma.invitation.findFirst({ where: { organisationId: orgId } });
-  const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const host = getAppUrl();
 
   if (inv && org && project) {
     await sendSwmsRejectedEmail({

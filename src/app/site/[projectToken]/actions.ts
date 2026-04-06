@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { sendUnknownWorkerAlert } from "@/lib/alerts";
+import { getAppUrl } from "@/lib/app-url";
 import { redirect } from "next/navigation";
 
 export type SignInState = {
@@ -128,7 +129,7 @@ async function continueSignIn(
   photoFile: File | null,
   isUnknown = false,
 ): Promise<SignInState> {
-  const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const host = getAppUrl();
   const returnUrl = `/site/${projectToken}?worker=${worker.id}`;
 
   // Check generic induction (current version + annual cycle)

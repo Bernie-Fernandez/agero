@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { sendWelcomeEmail } from "@/lib/email";
+import { getAppUrl } from "@/lib/app-url";
 
 export type RegisterState = { error?: string };
 
@@ -91,7 +92,7 @@ export async function completeRegistration(
     data: { status: "registered", organisationId: org.id },
   });
 
-  const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const host = getAppUrl();
   await sendWelcomeEmail({
     to: invitation.email,
     contactName: invitation.contactName,

@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { sendInvitationEmail } from "@/lib/email";
+import { getAppUrl } from "@/lib/app-url";
 import { randomUUID } from "crypto";
 
 export type InviteState = { error?: string; success?: boolean };
@@ -49,7 +50,7 @@ export async function sendInvitation(
     },
   });
 
-  const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const host = getAppUrl();
   await sendInvitationEmail({
     to: email,
     contactName,

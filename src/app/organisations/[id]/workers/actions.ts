@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { DocumentType } from "@/generated/prisma/client";
 import { sendInductionLink } from "@/lib/alerts";
+import { getAppUrl } from "@/lib/app-url";
 
 export type WorkerFormState = { error?: string };
 
@@ -45,7 +46,7 @@ export async function addWorker(
   });
 
   if (genericTemplate && (mobile || email)) {
-    const host = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+    const host = getAppUrl();
     await sendInductionLink({
       workerName: `${firstName} ${lastName}`,
       workerMobile: mobile ?? "",
