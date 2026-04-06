@@ -30,6 +30,7 @@ export function InductionForm({
   projectName,
   templateTitle,
   showChat,
+  workerId,
 }: {
   questions: Question[];
   submitAction: (prev: InductionSubmitState, fd: FormData) => Promise<InductionSubmitState>;
@@ -40,6 +41,8 @@ export function InductionForm({
   projectName?: string;
   templateTitle?: string;
   showChat?: boolean;
+  /** When set, worker is authenticated — skip anonymous sessionStorage block check. */
+  workerId?: string;
 }) {
   const [state, action, pending] = useActionState(submitAction, {});
   const [agreed, setAgreed] = useState(false);
@@ -63,8 +66,10 @@ export function InductionForm({
   const [attemptNumber, setAttemptNumber] = useState(1);
 
   // On mount, check sessionStorage for anonymous attempts already made.
-  // sessionStorage persists within the browser tab so refreshing the page counts.
+  // Only applies to anonymous workers (no workerId) — authenticated workers are
+  // tracked server-side and must never be blocked by stale client sessionStorage.
   useEffect(() => {
+    if (workerId) return; // authenticated: DB is the source of truth
     const key = `induction-anon-${window.location.pathname}`;
     const stored = parseInt(sessionStorage.getItem(key) ?? "0", 10);
     if (stored >= MAX_ANON_ATTEMPTS) {
@@ -72,7 +77,7 @@ export function InductionForm({
     } else if (stored > 0) {
       setAnonAttemptsLeft(MAX_ANON_ATTEMPTS - stored);
     }
-  }, []);
+  }, [workerId]);
 
   // Transition phase whenever the server action returns a new result.
   useEffect(() => {

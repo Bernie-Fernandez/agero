@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getWorkerSession } from "@/lib/worker-auth";
+import { SignOutButton } from "./sign-out-button";
 
 export default async function WorkerLayout({ children }: { children: React.ReactNode }) {
   const session = await getWorkerSession();
@@ -15,9 +16,12 @@ export default async function WorkerLayout({ children }: { children: React.React
             Agero Safety
           </Link>
           {session && (
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">
-              {session.workerAccount.firstName} {session.workerAccount.lastName}
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                {session.workerAccount.firstName} {session.workerAccount.lastName}
+              </span>
+              <SignOutButton />
+            </div>
           )}
         </div>
       </header>

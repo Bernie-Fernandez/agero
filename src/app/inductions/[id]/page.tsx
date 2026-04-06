@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -290,6 +291,7 @@ export default async function PublicInductionPage({
                 projectName={template.project?.name ?? "this site"}
                 templateTitle={template.title}
                 showChat={!swmsGated && !isBlocked && !alreadyComplete && !!process.env.ANTHROPIC_API_KEY}
+                workerId={workerId}
               />
             </div>
           </>

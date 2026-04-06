@@ -32,7 +32,7 @@ export async function workerLoginAction(_prev: LoginState, fd: FormData): Promis
     let devCode: string | undefined;
     try {
       await sendSmsCode(mobile, code);
-      if (!process.env.TWILIO_ACCOUNT_SID) devCode = code;
+      if (!process.env.TWILIO_ACCOUNT_SID && process.env.NODE_ENV !== "production") devCode = code;
     } catch {
       return { step: "mobile", error: "Could not send SMS. Please try again." };
     }
