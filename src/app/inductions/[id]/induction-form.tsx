@@ -2,6 +2,7 @@
 
 import { useActionState, useState, useEffect } from "react";
 import type { InductionSubmitState } from "./actions";
+import { InductionChat } from "./induction-chat";
 
 const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const MAX_ANON_ATTEMPTS = 3;
@@ -26,6 +27,9 @@ export function InductionForm({
   submitAction,
   initialLockedCorrect,
   isReInduction,
+  projectName,
+  templateTitle,
+  showChat,
 }: {
   questions: Question[];
   submitAction: (prev: InductionSubmitState, fd: FormData) => Promise<InductionSubmitState>;
@@ -33,6 +37,9 @@ export function InductionForm({
   initialLockedCorrect?: number[];
   /** True when the worker has a prior completion and is only answering new risk questions. */
   isReInduction?: boolean;
+  projectName?: string;
+  templateTitle?: string;
+  showChat?: boolean;
 }) {
   const [state, action, pending] = useActionState(submitAction, {});
   const [agreed, setAgreed] = useState(false);
@@ -51,6 +58,9 @@ export function InductionForm({
 
   // Controlled state for single-answer questions only.
   const [singleSelect, setSingleSelect] = useState<Record<number, number | undefined>>({});
+
+  // 1-based attempt counter — increments each time the worker retries.
+  const [attemptNumber, setAttemptNumber] = useState(1);
 
   // On mount, check sessionStorage for anonymous attempts already made.
   // sessionStorage persists within the browser tab so refreshing the page counts.
@@ -100,6 +110,7 @@ export function InductionForm({
     setLockedCorrect(state.correctIndices ?? []);
     setPrevSelections(state.previousSelections ?? {});
     setSingleSelect({});
+    setAttemptNumber((n) => n + 1);
     setPhase("questions");
   }
 
@@ -302,6 +313,12 @@ export function InductionForm({
         </p>
       )}
 
+      {attemptNumber > 1 && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
+          ⚠ Note: your previous answers are shown for reference, but for multi-select questions you may have missed an option — review all answers carefully.
+        </div>
+      )}
+
       {lockedCorrect.length > 0 && (
         <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800 dark:border-green-800 dark:bg-green-950/30 dark:text-green-300">
           {isReInduction
@@ -367,7 +384,7 @@ export function InductionForm({
                         type="checkbox"
                         name={`q${i}`}
                         value={oi}
-                        className="h-4 w-4 flex-shrink-0 accent-zinc-800 dark:accent-zinc-200"
+                        className="h-4 w-4 flex-shrink-0 accent-blue-600 dark:accent-blue-500"
                       />
                     ) : (
                       <input
@@ -376,7 +393,7 @@ export function InductionForm({
                         value={oi}
                         checked={singleSelect[i] === oi}
                         onChange={() => handleSingleCheck(i, oi)}
-                        className="h-4 w-4 flex-shrink-0 accent-zinc-800 dark:accent-zinc-200"
+                        className="h-4 w-4 flex-shrink-0 accent-blue-600 dark:accent-blue-500"
                       />
                     )}
                     <span className="w-5 flex-shrink-0 text-xs font-semibold text-zinc-400 dark:text-zinc-500">
@@ -403,6 +420,15 @@ export function InductionForm({
       >
         {pending ? "Submitting…" : "Submit answers"}
       </button>
+
+      {showChat && projectName && templateTitle && (
+        <InductionChat
+          key={attemptNumber}
+          projectName={projectName}
+          templateTitle={templateTitle}
+          retryCount={attemptNumber - 1}
+        />
+      )}
     </form>
   );
 }

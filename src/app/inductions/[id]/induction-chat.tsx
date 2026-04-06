@@ -7,12 +7,24 @@ type Message = { role: "user" | "assistant"; content: string };
 export function InductionChat({
   projectName,
   templateTitle,
+  retryCount = 0,
 }: {
   projectName: string;
   templateTitle: string;
+  retryCount?: number;
 }) {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() =>
+    retryCount > 0
+      ? [
+          {
+            role: "assistant",
+            content:
+              "I can see you're on a retry attempt. I can help point you to the relevant section of the induction material for any question you're unsure about — just ask me about any topic or question number.",
+          },
+        ]
+      : [],
+  );
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
