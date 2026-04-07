@@ -54,6 +54,34 @@ export default async function SiteSignInPage({
   // Check for active worker session
   const session = await getWorkerSession();
 
+  // If authenticated, check which inductions the worker has already passed
+  const inductionStatus: Record<string, boolean> = {};
+  if (session && inductionRequirements.length > 0) {
+    const workerRecord = await prisma.worker.findFirst({
+      where: { mobile: session.workerAccount.mobile, projectId: project.id },
+      select: {
+        inductionCompletions: {
+          select: { templateId: true, passed: true, signedAt: true },
+        },
+      },
+    });
+    if (workerRecord) {
+      const cutoff = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+      for (const req of inductionRequirements) {
+        inductionStatus[req.id] = workerRecord.inductionCompletions.some(
+          (c) => c.templateId === req.id && c.passed && c.signedAt > cutoff,
+        );
+      }
+    }
+  }
+
+  const allComplete =
+    inductionRequirements.length > 0 &&
+    inductionRequirements.every((r) => inductionStatus[r.id]);
+  const anyRequired =
+    inductionRequirements.length > 0 &&
+    inductionRequirements.some((r) => !inductionStatus[r.id]);
+
   const signInAction = siteSignIn.bind(null, projectToken);
   const boundSiteAuth = siteAuthAction.bind(null, projectToken);
 
@@ -72,20 +100,48 @@ export default async function SiteSignInPage({
         )}
 
         {inductionRequirements.length > 0 && (
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 dark:border-amber-800 dark:bg-amber-900/20">
-            <p className="text-sm font-medium text-amber-800 dark:text-amber-300">
-              Safety inductions required before sign-in
+          <div
+            className={`mt-4 rounded-xl border px-4 py-3 ${
+              allComplete
+                ? "border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20"
+                : "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20"
+            }`}
+          >
+            <p
+              className={`text-sm font-medium ${
+                allComplete
+                  ? "text-green-800 dark:text-green-300"
+                  : "text-amber-800 dark:text-amber-300"
+              }`}
+            >
+              {allComplete ? "Inductions complete" : "Safety inductions required before sign-in"}
             </p>
             <ul className="mt-1.5 space-y-1">
-              {inductionRequirements.map((req) => (
-                <li key={req.id} className="flex items-center gap-1.5 text-sm text-amber-700 dark:text-amber-400">
-                  <span className="text-amber-500">•</span>
-                  {req.title}
-                  <span className="text-xs text-amber-500">
-                    ({req.type === "generic" ? "once per year" : "site-specific"})
-                  </span>
-                </li>
-              ))}
+              {inductionRequirements.map((req) => {
+                const done = inductionStatus[req.id] ?? false;
+                return (
+                  <li
+                    key={req.id}
+                    className={`flex items-center gap-1.5 text-sm ${
+                      done
+                        ? "text-green-700 dark:text-green-400"
+                        : "text-amber-700 dark:text-amber-400"
+                    }`}
+                  >
+                    <span>{done ? "✓" : "•"}</span>
+                    {req.title}
+                    {!done && (
+                      <span
+                        className={`text-xs ${
+                          done ? "text-green-500" : "text-amber-500"
+                        }`}
+                      >
+                        ({req.type === "generic" ? "once per year" : "site-specific"})
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
