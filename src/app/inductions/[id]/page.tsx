@@ -154,6 +154,20 @@ export default async function PublicInductionPage({
     const existing = await prisma.inductionCompletion.findUnique({
       where: { workerId_templateId: { workerId, templateId: id } },
     });
+    console.log("[induction page] block check", {
+      workerId,
+      templateId: id,
+      existing: existing
+        ? {
+            id: existing.id,
+            passed: existing.passed,
+            attempts: existing.attempts,
+            blockedUntil: existing.blockedUntil,
+            signedAt: existing.signedAt,
+          }
+        : null,
+      now: new Date(),
+    });
     if (existing) {
       if (existing.blockedUntil && existing.blockedUntil > new Date()) {
         isBlocked = true;
@@ -222,6 +236,12 @@ export default async function PublicInductionPage({
               You may retry from:{" "}
               <span className="font-semibold">{blockedUntilStr}</span>
             </p>
+            <Link
+              href={`/inductions/${id}${workerId ? `?worker=${workerId}` : ""}${nextUrl ? `${workerId ? "&" : "?"}next=${encodeURIComponent(nextUrl)}` : ""}`}
+              className="mt-4 inline-block text-xs text-red-600 underline dark:text-red-400"
+            >
+              Reload page to check if block has been lifted
+            </Link>
           </div>
         ) : alreadyComplete ? (
           /* Already completed */

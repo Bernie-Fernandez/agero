@@ -23,8 +23,22 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
   const firstAidCertNumber = fd.get("firstAidCertNumber")?.toString().trim() || null;
   const firstAidExpiry = fd.get("firstAidExpiry")?.toString() || null;
 
+  // New fields
+  const dateOfBirth = fd.get("dateOfBirth")?.toString() || null;
+  const addressStreet = fd.get("addressStreet")?.toString().trim() || null;
+  const addressSuburb = fd.get("addressSuburb")?.toString().trim() || null;
+  const addressState = fd.get("addressState")?.toString().trim() || null;
+  const addressPostcode = fd.get("addressPostcode")?.toString().trim() || null;
+  const nokName = fd.get("nokName")?.toString().trim() || null;
+  const nokRelationship = fd.get("nokRelationship")?.toString().trim() || null;
+  const nokMobile = fd.get("nokMobile")?.toString().trim() || null;
+  const medicalConditions = fd.get("medicalConditions")?.toString().trim() || null;
+
   if (!firstName || !lastName || !mobile) {
     return { error: "Name and mobile are required." };
+  }
+  if (!whiteCardNumber) {
+    return { error: "White card number is required." };
   }
 
   // If mobile changed, ensure no other account owns that mobile
@@ -48,6 +62,15 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
       tradeLicenceExpiry: tradeLicenceExpiry ? new Date(tradeLicenceExpiry) : null,
       firstAidCertNumber,
       firstAidExpiry: firstAidExpiry ? new Date(firstAidExpiry) : null,
+      dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
+      addressStreet,
+      addressSuburb,
+      addressState,
+      addressPostcode,
+      nokName,
+      nokRelationship,
+      nokMobile,
+      medicalConditions,
     },
   });
 

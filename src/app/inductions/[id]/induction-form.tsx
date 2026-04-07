@@ -259,6 +259,13 @@ export function InductionForm({
             </span>
           </p>
         )}
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          className="mt-4 text-xs text-red-600 underline dark:text-red-400"
+        >
+          Reload page to check if block has been lifted
+        </button>
       </div>
     );
   }
