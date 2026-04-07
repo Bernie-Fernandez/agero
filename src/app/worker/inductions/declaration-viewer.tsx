@@ -2,6 +2,16 @@
 
 import { useState } from "react";
 
+// ipAddress and timestamp are internal audit fields — not shown to workers
+const DECLARATION_FIELDS: { key: string; label: string; block?: boolean }[] = [
+  { key: "workerName",      label: "Worker name" },
+  { key: "mobile",          label: "Mobile" },
+  { key: "projectName",     label: "Project" },
+  { key: "templateTitle",   label: "Template" },
+  { key: "inductionVersion",label: "Version" },
+  { key: "declarationText", label: "Declaration", block: true },
+];
+
 export function DeclarationViewer({
   signedAt,
   data,
@@ -39,10 +49,16 @@ export function DeclarationViewer({
               Signed {new Date(signedAt).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short" })}
             </p>
             <div className="mt-4 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
-              {Object.entries(data).map(([k, v]) => (
-                <div key={k}>
-                  <span className="font-medium capitalize">{k.replace(/_/g, " ")}:</span>{" "}
-                  <span>{String(v)}</span>
+              {DECLARATION_FIELDS.filter(({ key }) => key in data).map(({ key, label, block }) => (
+                <div key={key} className={block ? "pt-1" : ""}>
+                  <span className="font-medium">{label}:</span>{" "}
+                  {block ? (
+                    <p className="mt-1 whitespace-pre-wrap text-xs text-zinc-600 dark:text-zinc-400">
+                      {String(data[key])}
+                    </p>
+                  ) : (
+                    <span>{String(data[key])}</span>
+                  )}
                 </div>
               ))}
             </div>
