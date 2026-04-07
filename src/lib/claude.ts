@@ -118,23 +118,53 @@ export async function extractCoverageAmount(
   }
 }
 
+/** Extract all digit-sequences that look like Australian phone numbers from a string. */
+function extractPhoneDigits(text: string): string[] {
+  // Match 04xxxxxxxx, +614xxxxxxxx, or any run of 8-10 digits
+  const matches = text.match(/(?:\+?61\s*)?0?4[\d\s\-]{7,11}|\b\d[\d\s\-]{7,9}\d\b/g) ?? [];
+  return matches.map((m) => m.replace(/\D/g, "")).filter((m) => m.length >= 8);
+}
+
 /**
  * AI-mark a short-answer induction question.
  * Returns passed: true if the answer demonstrates sufficient understanding.
  * Fails gracefully — if AI is unavailable, caller should fall back to auto-accept.
+ *
+ * Special rule: if the expected answer context contains a phone number AND the
+ * worker's answer contains a phone number, the digits must match exactly —
+ * a wrong phone number always fails regardless of name accuracy.
  */
 export async function markShortAnswer(
   question: string,
   expectedAnswerContext: string,
   workerAnswer: string,
 ): Promise<{ passed: boolean }> {
+  // ── Phone number exact-match pre-check ────────────────────────────────────
+  const expectedPhones = extractPhoneDigits(expectedAnswerContext);
+  const workerPhones = extractPhoneDigits(workerAnswer);
+
+  let phoneRuleClause = "";
+  if (expectedPhones.length > 0) {
+    if (workerPhones.length > 0) {
+      // Worker gave a number — it must exactly match one in the expected context
+      const phoneMatches = workerPhones.some((wp) =>
+        expectedPhones.some((ep) => ep === wp || ep.endsWith(wp) || wp.endsWith(ep)),
+      );
+      if (!phoneMatches) {
+        return { passed: false };
+      }
+    }
+    // Regardless of pre-check outcome, tell the AI about the strict phone rule
+    phoneRuleClause = `\n\nIMPORTANT — PHONE NUMBER RULE: The correct answer contains the phone number(s): ${expectedPhones.join(", ")}. If the worker's answer includes ANY phone number that does not exactly match one of these, mark it FAILED. The name can be an approximate or phonetic match, but the phone number must be exact.`;
+  }
+
   const response = await client.messages.create({
     model: "claude-haiku-4-5-20251001",
     max_tokens: 64,
     messages: [
       {
         role: "user",
-        content: `You are marking a construction site safety induction question. Be lenient — the worker just needs to demonstrate basic awareness, not perfect recall. Typos and casual language are fine.
+        content: `You are marking a construction site safety induction question. Be lenient on names and spelling — the worker just needs to demonstrate basic awareness. Typos and casual language are fine.${phoneRuleClause}
 
 Question: ${question}
 Expected answer context (for your reference only): ${expectedAnswerContext}
