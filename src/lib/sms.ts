@@ -3,16 +3,23 @@ export function generateSmsCode(): string {
 }
 
 export async function sendSmsCode(mobile: string, code: string): Promise<void> {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const from = process.env.TWILIO_PHONE_NUMBER;
-
   const message = `Your Agero Safety code is: ${code}. Valid for 10 minutes.`;
 
-  if (!accountSid || !authToken || !from) {
-    // Dev fallback — log to console
+  if (process.env.NODE_ENV !== "production") {
+    // Dev fallback — show code on screen via devCode, log to console
     console.log(`[SMS DEV] To: ${mobile} | Code: ${code}`);
     return;
+  }
+
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  // TWILIO_PHONE_NUMBER may be a numeric E.164 number (+61412345678) or an
+  // alphanumeric sender ID (e.g. "AgeroSafety") — both are passed as-is to
+  // Twilio's From field; no transformation needed.
+  const from = process.env.TWILIO_PHONE_NUMBER;
+
+  if (!accountSid || !authToken || !from) {
+    throw new Error("Twilio credentials not configured.");
   }
 
   const response = await fetch(
