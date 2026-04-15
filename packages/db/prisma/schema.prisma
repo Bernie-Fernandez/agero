@@ -1,0 +1,1564 @@
+// Agero ERP — Shared Prisma Schema
+// projects schema: CRM + Subcontractor + Project Direct foundation (18 tables)
+// ims schema: IMS / Business Indirect (30+ tables)
+//
+// WARNING: NEVER run npx prisma migrate. ALWAYS use npx prisma db push.
+// WARNING: DO NOT add tables to the public schema — Safety tables live there.
+
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["projects", "ims"]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMS — projects schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  DIRECTOR
+  PROJECT_MANAGER
+  SAFETY_MANAGER
+  SITE_MANAGER
+
+  @@schema("projects")
+}
+
+enum ProjectStatus {
+  PRECONSTRUCTION
+  ACTIVE
+  PRACTICAL_COMPLETION
+  DEFECTS
+  CLOSED
+
+  @@schema("projects")
+}
+
+enum AbnStatus {
+  ACTIVE
+  CANCELLED
+  NOT_VERIFIED
+
+  @@schema("projects")
+}
+
+enum AsicStatus {
+  REGISTERED
+  DEREGISTERED
+  NOT_CHECKED
+
+  @@schema("projects")
+}
+
+enum CreditorwatchRisk {
+  LOW
+  MEDIUM
+  HIGH
+  NOT_CHECKED
+
+  @@schema("projects")
+}
+
+enum ContactOwnerStrength {
+  BRONZE
+  SILVER
+  GOLD
+
+  @@schema("projects")
+}
+
+enum DataSource {
+  MANUAL
+  IMPORTED
+  API
+
+  @@schema("projects")
+}
+
+enum CostCodeType {
+  REVENUE
+  TIME_CODE
+  JOB_COST
+  PRELIMINARIES
+  OVERHEAD
+  RETENTION
+
+  @@schema("projects")
+}
+
+enum SubcontractorApprovalStatus {
+  PENDING
+  APPROVED
+  SUSPENDED
+  INACTIVE
+
+  @@schema("projects")
+}
+
+enum InsuranceDataSource {
+  MANUAL
+  IMPORTED
+  PORTAL
+
+  @@schema("projects")
+}
+
+enum CommunicationDirection {
+  OUTBOUND
+  INBOUND
+
+  @@schema("projects")
+}
+
+enum EmailProvider {
+  GMAIL
+  OUTLOOK
+
+  @@schema("projects")
+}
+
+enum NotificationAlertType {
+  INSURANCE_EXPIRY
+  DOCUMENT_UPLOADED
+  COMMUNICATION_RECEIVED
+  SUBCONTRACTOR_REGISTERED
+  APPROVAL_REQUIRED
+  SYSTEM
+
+  @@schema("projects")
+}
+
+enum AlertThresholdType {
+  INSURANCE_EXPIRY
+  DOCUMENT_EXPIRY
+
+  @@schema("projects")
+}
+
+enum SourceModule {
+  SAFETY
+  PROJECTS
+  IMS
+  SYSTEM
+
+  @@schema("projects")
+}
+
+enum PortalInvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODELS — projects schema (18 tables)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// 6.1 Organisation
+model Organisation {
+  id             String  @id @default(uuid()) @db.Uuid
+  name           String
+  abn            String?
+  logoUrl        String? @map("logo_url")
+  primaryEmail   String? @map("primary_email")
+  primaryPhone   String? @map("primary_phone")
+  addressStreet  String? @map("address_street")
+  addressSuburb  String? @map("address_suburb")
+  addressState   String? @map("address_state")
+  addressPostcode String? @map("address_postcode")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users              User[]
+  projects           Project[]
+  companies          Company[]
+  contacts           Contact[]
+  costCodes          CostCode[]
+  insurancePolicyTypes InsurancePolicyType[]
+  notifications      NotificationAlert[]
+  alertThresholds    AlertThreshold[]
+  communications     Communication[]
+
+  @@map("organisations")
+  @@schema("projects")
+}
+
+// 6.2 User
+model User {
+  id             String   @id @default(uuid()) @db.Uuid
+  clerkId        String   @unique @map("clerk_id")
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  firstName      String   @map("first_name")
+  lastName       String   @map("last_name")
+  email          String   @unique
+  mobile         String?
+  role           UserRole
+  isActive       Boolean  @default(true) @map("is_active")
+  avatarUrl      String?  @map("avatar_url")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  createdProjects     Project[]             @relation("ProjectCreatedBy")
+  managedProjects     Project[]             @relation("ProjectManager")
+  siteProjects        Project[]             @relation("SiteManager")
+  createdCompanies    Company[]
+  createdContacts     Contact[]             @relation("ContactCreatedBy")
+  ownedContacts       Contact[]             @relation("ContactOwner")
+  uploadedDocs        CompanyDocument[]
+  companyNotes        CompanyNote[]
+  approvedProfiles    SubcontractorProfile[] @relation("ApprovedBy")
+  sentInvitations     PortalInvitation[]
+  sentCommunications  Communication[]
+  notifications       NotificationAlert[]
+
+  @@index([organisationId])
+  @@map("users")
+  @@schema("projects")
+}
+
+// 6.3 Project
+model Project {
+  id              String        @id @default(uuid()) @db.Uuid
+  organisationId  String        @map("organisation_id") @db.Uuid
+  organisation    Organisation  @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name            String
+  projectNumber   String?       @map("project_number")
+  clientId        String?       @map("client_id") @db.Uuid
+  client          Company?      @relation("ProjectClient", fields: [clientId], references: [id], onDelete: SetNull)
+  status          ProjectStatus @default(PRECONSTRUCTION)
+  contractValue   Decimal?      @map("contract_value")
+  startDate       DateTime?     @map("start_date") @db.Date
+  endDate         DateTime?     @map("end_date") @db.Date
+  addressStreet   String?       @map("address_street")
+  addressSuburb   String?       @map("address_suburb")
+  addressState    String?       @map("address_state")
+  addressPostcode String?       @map("address_postcode")
+  projectManagerId String?      @map("project_manager_id") @db.Uuid
+  projectManager  User?         @relation("ProjectManager", fields: [projectManagerId], references: [id], onDelete: SetNull)
+  siteManagerId   String?       @map("site_manager_id") @db.Uuid
+  siteManager     User?         @relation("SiteManager", fields: [siteManagerId], references: [id], onDelete: SetNull)
+  createdById     String        @map("created_by_id") @db.Uuid
+  createdBy       User          @relation("ProjectCreatedBy", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("projects")
+  @@schema("projects")
+}
+
+// 6.4 Company
+model Company {
+  id              String   @id @default(uuid()) @db.Uuid
+  organisationId  String   @map("organisation_id") @db.Uuid
+  organisation    Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name            String
+  legalName       String?  @map("legal_name")
+  types           String[] @default([])
+  abn             String?
+  abnStatus       AbnStatus @default(NOT_VERIFIED) @map("abn_status")
+  abnRegisteredName String? @map("abn_registered_name")
+  abnGstRegistered Boolean? @map("abn_gst_registered")
+  abnVerifiedAt   DateTime? @map("abn_verified_at")
+  asicStatus      AsicStatus @default(NOT_CHECKED) @map("asic_status")
+  asicCheckedAt   DateTime? @map("asic_checked_at")
+  creditorwatchRisk CreditorwatchRisk @default(NOT_CHECKED) @map("creditorwatch_risk")
+  creditorwatchCheckedAt DateTime? @map("creditorwatch_checked_at")
+  website         String?
+  phoneMain       String?  @map("phone_main")
+  phoneFree       String?  @map("phone_free")
+  emailGeneral    String?  @map("email_general")
+  countryCode     String   @default("61") @map("country_code")
+  addressStreet   String?  @map("address_street")
+  addressSuburb   String?  @map("address_suburb")
+  addressState    String?  @map("address_state")
+  addressPostcode String?  @map("address_postcode")
+  postalSameAsStreet Boolean? @map("postal_same_as_street")
+  postalStreet    String?  @map("postal_street")
+  postalSuburb    String?  @map("postal_suburb")
+  postalState     String?  @map("postal_state")
+  postalPostcode  String?  @map("postal_postcode")
+  paymentTerms    String?  @map("payment_terms")
+  isActive        Boolean  @default(true) @map("is_active")
+  dataSource      DataSource @default(MANUAL) @map("data_source")
+  importedFrom    String?  @map("imported_from")
+  catCloudId      String?  @map("cat_cloud_id")
+  createdById     String   @map("created_by_id") @db.Uuid
+  createdBy       User     @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  companyContacts     CompanyContact[]
+  trades              CompanyTrade[]
+  insurancePolicies   InsurancePolicy[]
+  documents           CompanyDocument[]
+  notes               CompanyNote[]
+  subcontractorProfile SubcontractorProfile?
+  portalInvitations   PortalInvitation[]
+  communications      Communication[]
+  notifications       NotificationAlert[]
+  clientProjects      Project[]             @relation("ProjectClient")
+
+  @@index([organisationId])
+  @@map("companies")
+  @@schema("projects")
+}
+
+// 6.5 Contact
+model Contact {
+  id                   String  @id @default(uuid()) @db.Uuid
+  organisationId       String  @map("organisation_id") @db.Uuid
+  organisation         Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  firstName            String  @map("first_name")
+  lastName             String  @map("last_name")
+  email                String?
+  mobile               String?
+  phoneDdi             String? @map("phone_ddi")
+  jobTitle             String? @map("job_title")
+  contactType          String? @map("contact_type")
+  contactSubType       String? @map("contact_sub_type")
+  contactLocation      String? @map("contact_location")
+  preferredContactMethod String? @map("preferred_contact_method")
+  doNotCall            Boolean @default(false) @map("do_not_call")
+  mailingAddress       String? @map("mailing_address")
+  linkedinUrl          String? @map("linkedin_url")
+  instagramUrl         String? @map("instagram_url")
+  contactOwnerId       String? @map("contact_owner_id") @db.Uuid
+  contactOwner         User?   @relation("ContactOwner", fields: [contactOwnerId], references: [id], onDelete: SetNull)
+  contactOwnerStrength ContactOwnerStrength? @map("contact_owner_strength")
+  legalBasisForData    String? @map("legal_basis_for_data")
+  isActive             Boolean @default(true) @map("is_active")
+  dataSource           DataSource @default(MANUAL) @map("data_source")
+  catCloudId           String? @map("cat_cloud_id")
+  createdById          String  @map("created_by_id") @db.Uuid
+  createdBy            User    @relation("ContactCreatedBy", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  companyContacts CompanyContact[]
+  communications  Communication[]
+
+  @@index([organisationId])
+  @@map("contacts")
+  @@schema("projects")
+}
+
+// 6.6 CompanyContact (junction)
+model CompanyContact {
+  id                   String  @id @default(uuid()) @db.Uuid
+  companyId            String  @map("company_id") @db.Uuid
+  company              Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contactId            String  @map("contact_id") @db.Uuid
+  contact              Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  position             String?
+  isPrimary            Boolean @default(false) @map("is_primary")
+  isAccountContact     Boolean @default(false) @map("is_account_contact")
+  isEstimatingContact  Boolean @default(false) @map("is_estimating_contact")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([companyId, contactId])
+  @@index([contactId])
+  @@map("company_contacts")
+  @@schema("projects")
+}
+
+// 6.7 CostCode
+model CostCode {
+  id             String      @id @default(uuid()) @db.Uuid
+  organisationId String      @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  groupCode      String      @map("group_code")
+  groupName      String      @map("group_name")
+  catCode        String      @unique @map("cat_code")
+  codeDescription String     @map("code_description")
+  glCode         String?     @map("gl_code")
+  codeType       CostCodeType @map("code_type")
+  isTradeCategory Boolean    @default(false) @map("is_trade_category")
+  isActive       Boolean     @default(true) @map("is_active")
+  displayOrder   Int?        @map("display_order")
+  notes          String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  companyTrades CompanyTrade[]
+
+  @@index([organisationId])
+  @@map("cost_codes")
+  @@schema("projects")
+}
+
+// 6.8 CompanyTrade
+model CompanyTrade {
+  id             String   @id @default(uuid()) @db.Uuid
+  companyId      String   @map("company_id") @db.Uuid
+  company        Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  costCodeId     String   @map("cost_code_id") @db.Uuid
+  costCode       CostCode @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
+  isPrimaryTrade Boolean  @default(false) @map("is_primary_trade")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([companyId, costCodeId])
+  @@map("company_trades")
+  @@schema("projects")
+}
+
+// 6.9 InsurancePolicyType
+model InsurancePolicyType {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?
+  isMandatory    Boolean @default(false) @map("is_mandatory")
+  isActive       Boolean @default(true) @map("is_active")
+  displayOrder   Int?    @map("display_order")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  policies InsurancePolicy[]
+
+  @@map("insurance_policy_types")
+  @@schema("projects")
+}
+
+// 6.10 InsurancePolicy
+model InsurancePolicy {
+  id                   String  @id @default(uuid()) @db.Uuid
+  companyId            String  @map("company_id") @db.Uuid
+  company              Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  policyTypeId         String  @map("policy_type_id") @db.Uuid
+  policyType           InsurancePolicyType @relation(fields: [policyTypeId], references: [id])
+  insurerName          String? @map("insurer_name")
+  policyNumber         String? @map("policy_number")
+  coverageAmount       Decimal? @map("coverage_amount")
+  expiryDate           DateTime @map("expiry_date") @db.Date
+  onFile               Boolean @default(false) @map("on_file")
+  certificateUrl       String? @map("certificate_url")
+  certificateUploadedAt DateTime? @map("certificate_uploaded_at")
+  aiExtracted          Boolean @default(false) @map("ai_extracted")
+  isCurrent            Boolean @default(true) @map("is_current")
+  notes                String?
+  dataSource           InsuranceDataSource @default(MANUAL) @map("data_source")
+  createdById          String  @map("created_by_id") @db.Uuid
+  createdBy            User    @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@index([policyTypeId])
+  @@map("insurance_policies")
+  @@schema("projects")
+}
+
+// 6.11 CompanyDocument
+model CompanyDocument {
+  id               String  @id @default(uuid()) @db.Uuid
+  companyId        String  @map("company_id") @db.Uuid
+  company          Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  documentType     String  @map("document_type")
+  documentName     String  @map("document_name")
+  fileUrl          String  @map("file_url")
+  fileName         String  @map("file_name")
+  fileSizeBytes    Int?    @map("file_size_bytes")
+  mimeType         String? @map("mime_type")
+  expiryDate       DateTime? @map("expiry_date") @db.Date
+  aiExtractedExpiry Boolean @default(false) @map("ai_extracted_expiry")
+  uploadedById     String  @map("uploaded_by_id") @db.Uuid
+  uploadedBy       User    @relation(fields: [uploadedById], references: [id])
+  uploadedVia      String  @map("uploaded_via")
+  notes            String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@map("company_documents")
+  @@schema("projects")
+}
+
+// 6.12 CompanyNote (append-only, no updatedAt)
+model CompanyNote {
+  id          String  @id @default(uuid()) @db.Uuid
+  companyId   String  @map("company_id") @db.Uuid
+  company     Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  content     String
+  createdById String  @map("created_by_id") @db.Uuid
+  createdBy   User    @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([companyId])
+  @@map("company_notes")
+  @@schema("projects")
+}
+
+// 6.13 SubcontractorProfile (one-to-one extension of Company)
+model SubcontractorProfile {
+  id                    String   @id @default(uuid()) @db.Uuid
+  companyId             String   @unique @map("company_id") @db.Uuid
+  company               Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  safetyUserId          String?  @map("safety_user_id")
+  approvalStatus        SubcontractorApprovalStatus @default(PENDING) @map("approval_status")
+  approvedById          String?  @map("approved_by_id") @db.Uuid
+  approvedBy            User?    @relation("ApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  approvedAt            DateTime? @map("approved_at")
+  approvalReviewDate    DateTime? @map("approval_review_date") @db.Date
+  capabilitiesStaff     Boolean  @default(false) @map("capabilities_staff")
+  capabilitiesAssessment Boolean @default(false) @map("capabilities_assessment")
+  capabilitiesPurchases Boolean  @default(false) @map("capabilities_purchases")
+  capabilitiesSwms      Boolean  @default(false) @map("capabilities_swms")
+  portalAccessEnabled   Boolean  @default(false) @map("portal_access_enabled")
+  portalLastLoginAt     DateTime? @map("portal_last_login_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("subcontractor_profiles")
+  @@schema("projects")
+}
+
+// 6.14 PortalInvitation
+model PortalInvitation {
+  id          String  @id @default(uuid()) @db.Uuid
+  companyId   String  @map("company_id") @db.Uuid
+  company     Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  invitedById String  @map("invited_by_id") @db.Uuid
+  invitedBy   User    @relation(fields: [invitedById], references: [id])
+  email       String
+  token       String  @unique
+  status      PortalInvitationStatus @default(PENDING)
+  expiresAt   DateTime @map("expires_at")
+  acceptedAt  DateTime? @map("accepted_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([token])
+  @@map("portal_invitations")
+  @@schema("projects")
+}
+
+// 6.15 Communication
+model Communication {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  companyId      String? @map("company_id") @db.Uuid
+  company        Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  contactId      String? @map("contact_id") @db.Uuid
+  contact        Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  direction      CommunicationDirection
+  subject        String
+  bodyText       String  @map("body_text")
+  bodyHtml       String? @map("body_html")
+  fromEmail      String  @map("from_email")
+  toEmail        String  @map("to_email")
+  sentById       String? @map("sent_by_id") @db.Uuid
+  sentBy         User?   @relation(fields: [sentById], references: [id], onDelete: SetNull)
+  resendId       String? @map("resend_id")
+  emailProvider  EmailProvider @map("email_provider")
+  threadId       String? @map("thread_id")
+  isRead         Boolean @default(false) @map("is_read")
+  sentAt         DateTime @map("sent_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([organisationId])
+  @@index([companyId])
+  @@map("communications")
+  @@schema("projects")
+}
+
+// 6.16 NotificationAlert
+model NotificationAlert {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  userId         String  @map("user_id") @db.Uuid
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type           NotificationAlertType
+  title          String
+  message        String
+  companyId      String? @map("company_id") @db.Uuid
+  company        Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  isRead         Boolean @default(false) @map("is_read")
+  readAt         DateTime? @map("read_at")
+  actionUrl      String? @map("action_url")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([organisationId])
+  @@map("notification_alerts")
+  @@schema("projects")
+}
+
+// 6.17 AlertThreshold
+model AlertThreshold {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  alertType      AlertThresholdType @map("alert_type")
+  daysBefore     Int     @map("days_before")
+  isActive       Boolean @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("alert_thresholds")
+  @@schema("projects")
+}
+
+// 6.18 SystemEvent (internal event bus)
+model SystemEvent {
+  id           String  @id @default(uuid()) @db.Uuid
+  eventType    String  @map("event_type")
+  sourceModule SourceModule @map("source_module")
+  payload      Json
+  processed    Boolean @default(false)
+  processedAt  DateTime? @map("processed_at")
+  errorMessage String?   @map("error_message")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([processed])
+  @@map("system_events")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMS — ims schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum ImsUsergroup {
+  ADMIN
+  EMPLOYEE
+  PROJECT
+  OFFICE
+
+  @@schema("ims")
+}
+
+enum ImsAssetType {
+  KITCHEN_EQUIPMENT
+  OFFICE_EQUIPMENT
+  MOTOR_VEHICLE
+  PLANT
+
+  @@schema("ims")
+}
+
+enum ImsMaintenanceType {
+  REPAIRS
+  SERVICE_6_MONTHS
+  SERVICE_12_MONTHS
+  ANNUAL_REGISTRATION
+  ELECTRICAL_TAG_TEST_12_MONTH
+  ELECTRICAL_TAG_TEST_3_MONTH
+  ANNUAL_CALIBRATION
+  GAS_DETECTOR_CALIBRATION_6_MONTHLY
+  FIRE_EXTINGUISHER_TAGGING_6_MONTHLY
+  FIRST_AID_KIT_INSPECTION_6_MONTHLY
+
+  @@schema("ims")
+}
+
+enum ImsLegalGroup {
+  AWARDS
+  COMMONWEALTH_LEGISLATION
+  SAFE_WORK_AUSTRALIA
+  STANDARDS
+  VIC_LEGISLATION
+  VIC_REGULATIONS
+  WORKSAFE_VICTORIA
+
+  @@schema("ims")
+}
+
+enum ImsComplianceStatus {
+  COMPLIANT
+  NON_COMPLIANT
+  UNDER_REVIEW
+
+  @@schema("ims")
+}
+
+enum ImsChangeStatus {
+  PENDING
+  APPROVED
+  COMPLETED
+  REJECTED
+
+  @@schema("ims")
+}
+
+enum ImsHazardType {
+  WHS
+  ENV
+  GENERAL
+
+  @@schema("ims")
+}
+
+enum ImsEmergencyResponseTemplate {
+  STANDARD_WHS
+  CHEMICAL_SPILL
+  ENVIRONMENTAL_INCIDENT
+  ELECTRICAL
+  CONFINED_SPACE
+  CUSTOM
+
+  @@schema("ims")
+}
+
+enum ImsIncidentStatus {
+  OPEN
+  UNDER_INVESTIGATION
+  ACTION_REQUIRED
+  CLOSED
+
+  @@schema("ims")
+}
+
+enum ImsAuditType {
+  OFFICE
+  WORKSITE
+  IMS
+  EMERG_DRILL
+  OTHER
+
+  @@schema("ims")
+}
+
+enum ImsAuditResult {
+  NON_COMPLIANT
+  PARTIALLY_COMPLIANT
+  FULLY_COMPLIANT
+  NOT_APPLICABLE
+
+  @@schema("ims")
+}
+
+enum ImsIssueType {
+  POSITIVE_OPPORTUNITY
+  NEGATIVE_THREAT
+  CONDITION_FOR_CONSIDERATION
+  REQUIREMENT
+
+  @@schema("ims")
+}
+
+enum ImsPriority {
+  HIGH
+  MEDIUM
+  LOW
+
+  @@schema("ims")
+}
+
+enum ImsGoal {
+  ACHIEVE_IMPROVEMENT
+  ASSURE_SYS_ACHIEVES_INTENDED_RESULT
+  PREVENT_REDUCE_UNDESIRABLE_EFFECTS
+
+  @@schema("ims")
+}
+
+enum ImsMeetingType {
+  MANAGEMENT_PLANNING
+  MANAGEMENT_REVIEW
+  OPERATIONS_MEETING
+  STAFF_MEETING
+
+  @@schema("ims")
+}
+
+enum ImsMeetingItemStatus {
+  COMMENT
+  ACTION_REQUIRED
+
+  @@schema("ims")
+}
+
+enum ImsActionSourceType {
+  CONTEXT
+  MEETING
+  AUDIT
+  INCIDENT
+
+  @@schema("ims")
+}
+
+enum ImsActionStatus {
+  OPEN
+  COMMENT
+  ACTION_REQUIRED
+  COMPLETED
+
+  @@schema("ims")
+}
+
+enum ImsPoStatus {
+  QUOTE_REQUEST
+  QUOTE_ACCEPTED
+  WIP
+  WORK_COMPLETED
+  RCTI_INVOICE
+  EXPORTED
+
+  @@schema("ims")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODELS — ims schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+// 7.1 People Domain
+
+model ImsEmployee {
+  id                   String       @id @default(cuid())
+  organisationId       String
+  userId               String?      @unique
+  username             String       @unique
+  firstName            String
+  companyOrSurname     String
+  usergroup            ImsUsergroup @default(EMPLOYEE)
+  active               Boolean      @default(true)
+  dailyChargeOutRate   Decimal?
+  addressL1            String?
+  addressL2            String?
+  suburb               String?
+  state                String?
+  postcode             String?
+  dateOfBirth          DateTime?
+  phone                String?
+  email                String?      @unique
+  mobile               String?
+  personalEmail        String?
+  sicknessAllergies    String?
+  emergencyContactName String?
+  emergencyRelationship String?
+  emergencyPhone       String?
+  preferredDrName      String?
+  drAddress            String?
+  drPhone              String?
+  drFaxEmail           String?
+  reportsToId          String?
+  reportsTo            ImsEmployee? @relation("EmployeeReportsTo", fields: [reportsToId], references: [id], onDelete: SetNull)
+  reportees            ImsEmployee[] @relation("EmployeeReportsTo")
+  jobDescription       String?
+  jobDescSigned        Boolean      @default(false)
+  startDate            DateTime?
+  finishDate           DateTime?
+  probationEnd         DateTime?
+  prevExperience       String?
+  bankAccountName      String?
+  bsb                  String?
+  accountNo            String?
+  ppeIssued            Boolean      @default(false)
+  medicalCompleted     Boolean      @default(false)
+  photoLink            String?
+  comments             String?
+  myobId               String?
+  usi                  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trainingRecords     ImsTrainingRecord[]
+  procedureSignoffs   ImsProcedureSignoff[]
+  ppeIssuances        ImsPpeIssuance[]
+  chemApplications    ImsChemApplication[]
+  auditItems          ImsAuditItem[]
+  actions             ImsAction[]            @relation("ActionResponsible")
+  meetingAttendances  ImsMeetingAttendee[]
+
+  @@map("ims_employees")
+  @@schema("ims")
+}
+
+model ImsTrainingProvider {
+  id        String @id @default(cuid())
+  name      String
+  contact   String?
+  phone     String?
+  email     String?
+  website   String?
+  active    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  trainingRecords ImsTrainingRecord[]
+
+  @@map("ims_training_providers")
+  @@schema("ims")
+}
+
+model ImsTrainingCourse {
+  id          String  @id @default(cuid())
+  courseId    String  @unique
+  courseName  String
+  hasExpiry   Boolean @default(false)
+  expiryMonths Int?
+
+  createdAt DateTime @default(now())
+
+  trainingRecords ImsTrainingRecord[]
+
+  @@map("ims_training_courses")
+  @@schema("ims")
+}
+
+model ImsTrainingRecord {
+  id               String  @id @default(cuid())
+  employeeId       String
+  employee         ImsEmployee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  courseId         String
+  course           ImsTrainingCourse @relation(fields: [courseId], references: [id])
+  providerId       String?
+  provider         ImsTrainingProvider? @relation(fields: [providerId], references: [id], onDelete: SetNull)
+  supplierId       String?
+  required         Boolean @default(false)
+  targetDate       DateTime?
+  completedDate    DateTime?
+  expiryDate       DateTime?
+  certNumber       String?
+  certLink         String?
+  trainingRebooked String?
+  cost             Decimal?
+  details          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+  @@map("ims_training_records")
+  @@schema("ims")
+}
+
+model ImsDocument {
+  id          String  @id @default(cuid())
+  docNo       String  @unique
+  name        String
+  docGroup    String?
+  active      Boolean @default(true)
+  intDoc      Boolean @default(false)
+  fieldDoc    Boolean @default(false)
+  imsManual   Boolean @default(false)
+  versionDate DateTime?
+  webViewUrl  String?
+  docLocation String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  procedureSignoffs ImsProcedureSignoff[]
+
+  @@map("ims_documents")
+  @@schema("ims")
+}
+
+model ImsProcedureSignoff {
+  id         String      @id @default(cuid())
+  employeeId String
+  employee   ImsEmployee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  documentId String
+  document   ImsDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  signedAt   DateTime    @default(now())
+
+  @@unique([employeeId, documentId])
+  @@map("ims_procedure_signoffs")
+  @@schema("ims")
+}
+
+model ImsPpeItem {
+  id           String  @id @default(cuid())
+  description  String
+  swmsImage    String?
+  supplierId   String?
+  costExcGst   Decimal?
+  active       Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issuances ImsPpeIssuance[]
+
+  @@map("ims_ppe_items")
+  @@schema("ims")
+}
+
+model ImsPpeIssuance {
+  id         String      @id @default(cuid())
+  employeeId String
+  employee   ImsEmployee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  ppeItemId  String
+  ppeItem    ImsPpeItem  @relation(fields: [ppeItemId], references: [id])
+  issuedAt   DateTime    @default(now())
+  quantity   Int         @default(1)
+  notes      String?
+
+  @@map("ims_ppe_issuances")
+  @@schema("ims")
+}
+
+// 7.2 Assets Domain
+
+model ImsAsset {
+  id            String      @id @default(cuid())
+  assetId       String      @unique
+  regoSerial    String?
+  description   String
+  assetType     ImsAssetType
+  parentAssetId String?
+  parentAsset   ImsAsset?   @relation("AssetHierarchy", fields: [parentAssetId], references: [id], onDelete: SetNull)
+  childAssets   ImsAsset[]  @relation("AssetHierarchy")
+  allocatedToId String?
+  active        Boolean     @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  maintenanceRecords ImsAssetMaintenance[]
+
+  @@map("ims_assets")
+  @@schema("ims")
+}
+
+model ImsAssetMaintenance {
+  id              String              @id @default(cuid())
+  assetId         String
+  asset           ImsAsset            @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  invoiceDate     DateTime?
+  maintType       ImsMaintenanceType
+  workDescription String?
+  invoiceNo       String?
+  invoiceFile     String?
+  invAmount       Decimal?
+  supplierId      String?
+
+  createdAt DateTime @default(now())
+
+  @@index([assetId])
+  @@map("ims_asset_maintenance")
+  @@schema("ims")
+}
+
+// 7.3 System Domain
+
+model ImsLegalCompliance {
+  id              String               @id @default(cuid())
+  organisationId  String
+  docNo           String
+  docName         String
+  group           ImsLegalGroup
+  applicability   String?
+  reviewInfo      String?
+  reviewedByDate  DateTime?
+  reviewedById    String?
+  status          ImsComplianceStatus  @default(COMPLIANT)
+  active          Boolean              @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_legal_compliance")
+  @@schema("ims")
+}
+
+model ImsSdsRegister {
+  id              String    @id @default(cuid())
+  organisationId  String
+  chemicalName    String
+  chemNo          String?
+  productCode     String?
+  dgClass         String?
+  packingGroup    String?
+  invQty          String?
+  supplierId      String?
+  active          Boolean   @default(true)
+  sdsDate         DateTime?
+  reviewedById    String?
+  reviewedDate    DateTime?
+  sdsLink         String?
+  sdsWebsite      String?
+  useDescription  String?
+  company         String?
+  address         String?
+  emergPhone      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chemApplications ImsChemApplication[]
+
+  @@map("ims_sds_register")
+  @@schema("ims")
+}
+
+model ImsChemApplication {
+  id             String          @id @default(cuid())
+  sdsId          String
+  sds            ImsSdsRegister  @relation(fields: [sdsId], references: [id])
+  employeeId     String
+  employee       ImsEmployee     @relation(fields: [employeeId], references: [id])
+  projectId      String?
+  appDate        DateTime        @default(now())
+  quantity       Decimal?
+  disposalMethod String?
+  ppeWorn        String?
+  notes          String?
+
+  createdAt DateTime @default(now())
+
+  @@map("ims_chem_applications")
+  @@schema("ims")
+}
+
+model ImsChangeRegister {
+  id                  String           @id @default(cuid())
+  organisationId      String
+  changeRequested     String
+  requestedById       String
+  approvedById        String?
+  requestedDate       DateTime
+  completionDate      DateTime?
+  communicationMethod String?
+  notes               String?
+  status              ImsChangeStatus  @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_change_register")
+  @@schema("ims")
+}
+
+model ImsVisitorRegister {
+  id              String    @id @default(cuid())
+  organisationId  String
+  siteOrProject   String
+  projectId       String?
+  visitorDate     DateTime
+  timeIn          String?
+  timeOut         String?
+  visitorName     String
+  visitorCompany  String?
+  visitorMobile   String?
+  personVisiting  String?
+  carRegistration String?
+  signatureUrl    String?
+  visitorId       String?
+  qrToken         String?   @unique
+
+  createdAt DateTime @default(now())
+
+  @@map("ims_visitor_register")
+  @@schema("ims")
+}
+
+// 7.4 Risk Domain
+
+model ImsHazard {
+  id               String        @id @default(cuid())
+  organisationId   String
+  hazardType       ImsHazardType
+  task             String
+  noOccur          String
+  hazardImpact     String
+  controlInfluence String
+  rating           Int
+  residualRating   Int
+  active           Boolean       @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  emergencyPlan ImsEmergencyPlan?
+  bcpEntry      ImsBcpEntry?
+  incidents     ImsIncident[]
+
+  @@map("ims_hazards")
+  @@schema("ims")
+}
+
+model ImsEmergencyPlan {
+  id                    String                       @id @default(cuid())
+  hazardId              String                       @unique
+  hazard                ImsHazard                    @relation(fields: [hazardId], references: [id], onDelete: Cascade)
+  emergencySituation    String
+  responseTemplate      ImsEmergencyResponseTemplate
+  customResponse        String?
+  recoveryTimeObjective String
+  lastReviewedAt        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_emergency_plans")
+  @@schema("ims")
+}
+
+model ImsBcpEntry {
+  id                    String    @id @default(cuid())
+  hazardId              String    @unique
+  hazard                ImsHazard @relation(fields: [hazardId], references: [id], onDelete: Cascade)
+  situation             String
+  continuityProcedure   String
+  recoveryTimeObjective String
+  lastReviewedAt        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_bcp_entries")
+  @@schema("ims")
+}
+
+model ImsIncident {
+  id                   String            @id @default(cuid())
+  ncrid                Int               @unique @default(autoincrement())
+  organisationId       String
+  projectId            String?
+  proposedById         String
+  dateIssued           DateTime          @default(now())
+  incidentDate         DateTime?
+  incidentTime         String?
+  incidentLocation     String?
+  reportedToId         String?
+  reportedWhen         DateTime?
+  hazardId             String?
+  hazard               ImsHazard?        @relation(fields: [hazardId], references: [id], onDelete: SetNull)
+  existingRiskRating   String?
+  existingResidualRisk String?
+  existingControl      String?
+  witnessInfo          String?
+  issue                String?
+  investigationNotes   String?
+  cause                String?
+  supplierId           String?
+  completeByDate       DateTime?
+  effectivenessChecked Boolean           @default(false)
+  cost                 Decimal?
+  status               ImsIncidentStatus @default(OPEN)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  actions ImsIncidentAction[]
+
+  @@map("ims_incidents")
+  @@schema("ims")
+}
+
+model ImsIncidentAction {
+  id              String    @id @default(cuid())
+  incidentId      String
+  incident        ImsIncident @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  action          String
+  responsibleId   String?
+  expectedCompDate DateTime?
+  completedDate   DateTime?
+  notes           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([incidentId])
+  @@map("ims_incident_actions")
+  @@schema("ims")
+}
+
+model ImsAudit {
+  id             String       @id @default(cuid())
+  organisationId String
+  supervisorId   String?
+  auditorId      String?
+  projectId      String?
+  auditDate      DateTime     @default(now())
+  auditType      ImsAuditType
+  siteAddress    String?
+  comments       String?
+  summary        String?
+  auditReportUrl String?
+  nextAuditDate  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  auditItems ImsAuditItem[]
+  actions    ImsAction[]
+
+  @@map("ims_audits")
+  @@schema("ims")
+}
+
+model ImsAuditItem {
+  id               String         @id @default(cuid())
+  auditId          String
+  audit            ImsAudit       @relation(fields: [auditId], references: [id], onDelete: Cascade)
+  itemNo           Int
+  description      String
+  result           ImsAuditResult
+  comment          String?
+  attachmentUrl    String?
+  action           String?
+  expectedCompDate DateTime?
+  completedDate    DateTime?
+  responsibleId    String?
+  responsible      ImsEmployee?   @relation(fields: [responsibleId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([auditId])
+  @@map("ims_audit_items")
+  @@schema("ims")
+}
+
+model ImsOhsPerformance {
+  id               String  @id @default(cuid())
+  organisationId   String
+  periodFrom       DateTime
+  periodTo         DateTime
+  totalHoursWorked Decimal
+  noInjuries       Int     @default(0)
+  noLtiInjuries    Int     @default(0)
+  ltifr            Decimal?
+  notes            String?
+
+  createdAt DateTime @default(now())
+
+  @@map("ims_ohs_performance")
+  @@schema("ims")
+}
+
+// 7.5 Planning Domain
+
+model ImsContext {
+  id               String      @id @default(cuid())
+  organisationId   String
+  addedDate        DateTime
+  reviewedDate     DateTime?
+  issueSource      String
+  issueRequirement String
+  issueType        ImsIssueType
+  priority         ImsPriority
+  plan             String?
+  objective        String?
+  goal             ImsGoal
+  active           Boolean     @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  performanceObjectives ImsPerformanceObjective[]
+  actions               ImsAction[]               @relation("ActionFromContext")
+
+  @@map("ims_context")
+  @@schema("ims")
+}
+
+model ImsPerformanceObjective {
+  id             String      @id @default(cuid())
+  contextId      String
+  context        ImsContext  @relation(fields: [contextId], references: [id], onDelete: Cascade)
+  organisationId String
+  plan           String
+  keyResultDesc  String
+  equation       String
+  units          String?
+  priority       ImsPriority
+  active         Boolean     @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  results ImsPerformanceResult[]
+
+  @@map("ims_performance_objectives")
+  @@schema("ims")
+}
+
+model ImsPerformanceResult {
+  id          String                  @id @default(cuid())
+  objectiveId String
+  objective   ImsPerformanceObjective @relation(fields: [objectiveId], references: [id], onDelete: Cascade)
+  year        Int
+  month       Int
+  target      Decimal?
+  actual      Decimal?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([objectiveId, year, month])
+  @@map("ims_performance_results")
+  @@schema("ims")
+}
+
+model ImsMeeting {
+  id             String         @id @default(cuid())
+  organisationId String
+  projectId      String?
+  meetingDate    DateTime
+  startTime      String?
+  finishTime     String?
+  location       String?
+  meetingType    ImsMeetingType
+  nextMeetingDate DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetingItems     ImsMeetingItem[]
+  meetingAttendees ImsMeetingAttendee[]
+  actions          ImsAction[]         @relation("ActionFromMeeting")
+
+  @@map("ims_meetings")
+  @@schema("ims")
+}
+
+model ImsMeetingItem {
+  id               String               @id @default(cuid())
+  meetingId        String
+  meeting          ImsMeeting           @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  status           ImsMeetingItemStatus
+  itemNo           Int
+  details          String
+  responsibleId    String?
+  expectedCompDate DateTime?
+  actualCompDate   DateTime?
+  comment          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([meetingId])
+  @@map("ims_meeting_items")
+  @@schema("ims")
+}
+
+model ImsMeetingAttendee {
+  id           String     @id @default(cuid())
+  meetingId    String
+  meeting      ImsMeeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  employeeId   String?
+  employee     ImsEmployee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  attendeeName String?
+  comments     String?
+  signatureUrl String?
+
+  @@index([meetingId])
+  @@map("ims_meeting_attendees")
+  @@schema("ims")
+}
+
+// 7.6 Consolidated Action Register (most important IMS feature)
+model ImsAction {
+  id              String             @id @default(cuid())
+  organisationId  String
+  sourceType      ImsActionSourceType
+  sourceId        String
+  status          ImsActionStatus    @default(OPEN)
+  itemNo          Int?
+  details         String
+  attachmentUrl   String?
+  expectedCompDate DateTime?
+  completedDate   DateTime?
+  responsibleId   String?
+  responsible     ImsEmployee?       @relation("ActionResponsible", fields: [responsibleId], references: [id], onDelete: SetNull)
+  contextId       String?
+  context         ImsContext?        @relation("ActionFromContext", fields: [contextId], references: [id], onDelete: SetNull)
+  meetingId       String?
+  meeting         ImsMeeting?        @relation("ActionFromMeeting", fields: [meetingId], references: [id], onDelete: SetNull)
+  auditId         String?
+  audit           ImsAudit?          @relation(fields: [auditId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([responsibleId])
+  @@index([organisationId])
+  @@map("ims_actions")
+  @@schema("ims")
+}
+
+// 7.7 Client Surveys
+model ImsClientSurvey {
+  id             String    @id @default(cuid())
+  organisationId String
+  clientId       String
+  surveyDate     DateTime  @default(now())
+  q1             Int?
+  q2             Int?
+  q3             Int?
+  q4             Int?
+  q5             Int?
+  q6             Int?
+  q7             Int?
+  liked          String?
+  suggestions    String?
+  companyName    String?
+  email          String?
+  surveyActions  String?
+  actionsCompDate DateTime?
+  score          Int       @default(0)
+  possibleScore  Int       @default(35)
+  publicToken    String    @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_client_surveys")
+  @@schema("ims")
+}
+
+// 7.8 Supplier Purchases / Performance
+model ImsSupplierPurchase {
+  id              String      @id @default(cuid())
+  supplierId      String
+  projectId       String?
+  assetId         String?
+  maintType       ImsMaintenanceType?
+  poDate          DateTime?
+  poStatus        ImsPoStatus @default(QUOTE_REQUEST)
+  requestedById   String
+  invoiceNo       String?
+  invoiceDate     DateTime?
+  invoiceAttachment String?
+  invoiceAmount   Decimal?
+  orderDetail     String?
+  workDescription String?
+  jobDetails      String?
+  scheduleDate    DateTime?
+  jobAddress      String?
+  crewLeaderId    String?
+  qualityRating   Int?
+  timingRating    Int?
+  priceRating     Int?
+  complianceRating Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ims_supplier_purchases")
+  @@schema("ims")
+}
