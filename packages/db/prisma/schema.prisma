@@ -220,6 +220,7 @@ model User {
   sentInvitations     PortalInvitation[]
   sentCommunications  Communication[]
   notifications       NotificationAlert[]
+  createdPolicies     InsurancePolicy[]
 
   @@index([organisationId])
   @@map("users")

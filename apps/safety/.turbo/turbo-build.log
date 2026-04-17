@@ -1,0 +1,73 @@
+
+> @agero/safety@0.1.0 build
+> next build
+
+⚠ Found lockfile missing swc dependencies, patching...
+▲ Next.js 16.2.2 (Turbopack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · serverActions
+  · staleTimes
+
+  Creating an optimized production build ...
+⚠ Found lockfile missing swc dependencies, patching...
+⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
+⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
+✓ Compiled successfully in 9.0s
+  Running TypeScript ...
+  Finished TypeScript in 8.2s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/19) ...
+  Generating static pages using 11 workers (4/19) 
+  Generating static pages using 11 workers (9/19) 
+  Generating static pages using 11 workers (14/19) 
+✓ Generating static pages using 11 workers (19/19) in 776ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /admin/inductions/generic/builder
+├ ƒ /api/induction-chat
+├ ƒ /dashboard
+├ ƒ /inductions/[id]
+├ ○ /inductions/new
+├ ƒ /onboarding
+├ ƒ /organisations
+├ ƒ /organisations/[id]
+├ ƒ /organisations/[id]/workers
+├ ƒ /projects
+├ ƒ /projects/[id]
+├ ƒ /projects/[id]/attendance
+├ ƒ /projects/[id]/induction
+├ ƒ /projects/[id]/induction/builder
+├ ƒ /projects/[id]/induction/swms-questions
+├ ƒ /projects/[id]/subcontractors/[orgId]/swms
+├ ƒ /register/[inviteToken]
+├ ƒ /register/[inviteToken]/confirmed
+├ ƒ /sign-in/[[...sign-in]]
+├ ƒ /sign-up/[[...sign-up]]
+├ ƒ /site/[projectToken]
+├ ƒ /site/[projectToken]/confirmed
+├ ƒ /subcontractors
+├ ƒ /subcontractors/[id]
+├ ƒ /subcontractors/[id]/documents
+├ ƒ /subcontractors/new
+├ ƒ /supervisor
+├ ○ /unauthorized
+├ ƒ /worker/dashboard
+├ ƒ /worker/inductions
+├ ƒ /worker/login
+└ ƒ /worker/profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+npm notice
+npm notice New minor version of npm available! 11.11.0 -> 11.12.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+npm notice To update run: npm install -g npm@11.12.1
+npm notice
