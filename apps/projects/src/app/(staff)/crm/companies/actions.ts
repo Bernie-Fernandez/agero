@@ -89,6 +89,121 @@ export interface AbnNameResult {
   postcode: string;
 }
 
+// Decode XML entities in text content
+function decodeXml(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
+}
+
+// Extract the first match for a simple element tag within a block of XML text
+function xmlText(block: string, tag: string): string {
+  const m = block.match(new RegExp(`<${tag}[^>]*>([^<]*)</${tag}>`));
+  return m ? decodeXml(m[1].trim()) : "";
+}
+
+// Extract the first inner block of an element (for nested elements)
+function xmlBlock(xml: string, tag: string): string {
+  const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
+  return m ? m[1] : "";
+}
+
+// Parse ABR XML MatchingNames response into AbnNameResult[]
+function parseAbrXml(xml: string): AbnNameResult[] {
+  const results: AbnNameResult[] = [];
+  const recordRe = /<searchResultsRecord>([\s\S]*?)<\/searchResultsRecord>/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = recordRe.exec(xml)) !== null) {
+    const record = match[1];
+
+    // ABN — inside <ABN><identifierValue>
+    const abnBlock = xmlBlock(record, "ABN");
+    const abn = xmlText(abnBlock, "identifierValue").replace(/\s/g, "");
+    if (!abn || !/^\d{11}$/.test(abn)) continue;
+
+    // ABN status
+    const rawStatus = xmlText(record, "ABNStatus");
+    const abnStatus = rawStatus === "Active" ? "ACTIVE" : "CANCELLED";
+
+    // Entity name — prefer organisationName, fall back to person name parts
+    const mainNameBlock = xmlBlock(record, "mainName");
+    let name = xmlText(mainNameBlock, "organisationName");
+    if (!name) {
+      const given = xmlText(mainNameBlock, "personFirstGivenName");
+      const family = xmlText(mainNameBlock, "familyName");
+      name = [given, family].filter(Boolean).join(" ");
+    }
+    if (!name) continue;
+
+    // Physical address
+    const addrBlock = xmlBlock(record, "mainBusinessPhysicalAddress");
+    const state = xmlText(addrBlock, "stateCode");
+    const postcode = xmlText(addrBlock, "postcode");
+
+    results.push({ abn, abnStatus, name, state, postcode });
+  }
+
+  return results;
+}
+
+// Parse ABR JSONP MatchingNames response.
+// The API returns: callback({"Names":[{Abn, AbnStatus, Name, State, Postcode}], "Message":""})
+function parseAbrJsonp(text: string): AbnNameResult[] | null {
+  let parsed: unknown;
+  try {
+    parsed = parseJsonp(text);
+  } catch {
+    return null;
+  }
+
+  // Response is an object with a Names array (not a bare array)
+  if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+    const obj = parsed as {
+      Names?: Array<{
+        Abn?: string;
+        AbnStatus?: string;
+        Name?: string;
+        State?: string;
+        Postcode?: string;
+      }>;
+      Message?: string;
+    };
+
+    if (obj.Message && !obj.Names?.length) return null; // error message from ABR
+
+    const names = obj.Names ?? [];
+    return names
+      .filter((r) => r.Abn)
+      .map((r) => ({
+        abn: r.Abn!.replace(/\s/g, ""),
+        abnStatus: r.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED",
+        name: r.Name ?? "",
+        state: r.State ?? "",
+        postcode: r.Postcode ?? "",
+      }))
+      .filter((r) => r.name);
+  }
+
+  // Fallback: bare array (older API behaviour)
+  if (Array.isArray(parsed)) {
+    return (parsed as Array<{ Abn?: string; AbnStatus?: string; Name?: string; State?: string; Postcode?: string }>)
+      .filter((r) => r.Abn && r.Name)
+      .map((r) => ({
+        abn: r.Abn!.replace(/\s/g, ""),
+        abnStatus: r.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED",
+        name: r.Name!,
+        state: r.State ?? "",
+        postcode: r.Postcode ?? "",
+      }));
+  }
+
+  return null;
+}
+
 export async function searchAbnByName(query: string): Promise<{
   ok: boolean;
   error?: string;
@@ -107,32 +222,28 @@ export async function searchAbnByName(query: string): Promise<{
   try {
     const url = `https://abr.business.gov.au/json/MatchingNames.aspx?name=${encodeURIComponent(trimmed)}&callback=callback&guid=${guid}`;
     const res = await fetch(url, { cache: "no-store" });
-    const raw = parseJsonp(await res.text()) as Array<{
-      Abn?: string;
-      AbnStatus?: string;
-      EntityName?: string;
-      Name?: string;
-      AddressState?: string;
-      AddressPostcode?: string;
-      Score?: number;
-    }>;
+    const text = await res.text();
 
-    if (!Array.isArray(raw)) {
-      return { ok: false, error: "Unexpected response from ABR" };
+    // Detect format: XML responses start with < (some GUIDs return XML)
+    const isXml = text.trimStart().startsWith("<");
+
+    let results: AbnNameResult[];
+    if (isXml) {
+      results = parseAbrXml(text);
+    } else {
+      const parsed = parseAbrJsonp(text);
+      if (parsed === null) {
+        // Likely an error message from ABR (invalid GUID etc.)
+        try {
+          const obj = parseJsonp(text) as { Message?: string };
+          if (obj.Message) return { ok: false, error: obj.Message };
+        } catch { /* ignore */ }
+        return { ok: false, error: "Unexpected response from ABR" };
+      }
+      results = parsed;
     }
 
-    const results: AbnNameResult[] = raw
-      .filter((r) => r.Abn)
-      .slice(0, 20)
-      .map((r) => ({
-        abn: r.Abn!.replace(/\s/g, ""),
-        abnStatus: r.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED",
-        name: r.EntityName ?? r.Name ?? "",
-        state: r.AddressState ?? "",
-        postcode: r.AddressPostcode ?? "",
-      }));
-
-    return { ok: true, results };
+    return { ok: true, results: results.slice(0, 20) };
   } catch {
     return { ok: false, error: "Name search failed — check your connection" };
   }
