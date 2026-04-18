@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       dynamic: 0,
     },
   },
-  transpilePackages: ["@agero/ui"],
+  transpilePackages: ["@agero/ui", "@agero/db"],
 };
 
 export default nextConfig;

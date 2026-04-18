@@ -183,6 +183,7 @@ model Organisation {
   contacts           Contact[]
   costCodes          CostCode[]
   insurancePolicyTypes InsurancePolicyType[]
+  paymentTermsList   PaymentTerm[]
   notifications      NotificationAlert[]
   alertThresholds    AlertThreshold[]
   communications     Communication[]
@@ -624,6 +625,25 @@ model AlertThreshold {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("alert_thresholds")
+  @@schema("projects")
+}
+
+// 6.17b PaymentTerm — admin-managed lookup list used by Company.paymentTerms
+model PaymentTerm {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?
+  isDefault      Boolean @default(false) @map("is_default")
+  isActive       Boolean @default(true) @map("is_active")
+  displayOrder   Int?    @map("display_order")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("payment_terms")
   @@schema("projects")
 }
 

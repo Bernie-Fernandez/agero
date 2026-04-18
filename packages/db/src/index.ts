@@ -1,29 +1,38 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
-import { PrismaClient } from "../generated/prisma/client";
+import { PrismaClient } from "./generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as {
   erpPrisma: PrismaClient | undefined;
   erpPool: Pool | undefined;
 };
 
-function createPrismaClient() {
+function getClient(): PrismaClient {
+  if (globalForPrisma.erpPrisma) return globalForPrisma.erpPrisma;
+
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     throw new Error("DATABASE_URL is not set");
   }
-  const pool = globalForPrisma.erpPool ?? new Pool({ connectionString });
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.erpPool = pool;
+
+  if (!globalForPrisma.erpPool) {
+    globalForPrisma.erpPool = new Pool({ connectionString });
   }
-  const adapter = new PrismaPg(pool);
-  return new PrismaClient({ adapter, log: ["error"] });
+  const adapter = new PrismaPg(globalForPrisma.erpPool);
+  const client = new PrismaClient({ adapter, log: ["error"] });
+
+  if (process.env.NODE_ENV !== "production") {
+    globalForPrisma.erpPrisma = client;
+  }
+
+  return client;
 }
 
-export const prismaErp = globalForPrisma.erpPrisma ?? createPrismaClient();
+// Lazy proxy — DATABASE_URL is only required when a query is actually made, not at import time.
+export const prismaErp = new Proxy({} as PrismaClient, {
+  get(_target, prop) {
+    return (getClient() as unknown as Record<string | symbol, unknown>)[prop];
+  },
+});
 
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.erpPrisma = prismaErp;
-}
-
-export * from "../generated/prisma/client";
+export * from "./generated/prisma/client";
