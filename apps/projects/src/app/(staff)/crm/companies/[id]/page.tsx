@@ -1,0 +1,759 @@
+import { prisma } from "@/lib/prisma";
+import type { Company } from "@/lib/prisma";
+import { requireAppUser } from "@/lib/auth";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { TabNav } from "@/components/TabNav";
+import { ConfirmForm } from "@/components/ConfirmForm";
+import { deleteCompany } from "../actions";
+
+const TYPE_LABELS: Record<string, string> = {
+  SUBCONTRACTOR: "Subcontractor",
+  CLIENT: "Client",
+  CONSULTANT: "Consultant",
+  SUPPLIER: "Supplier",
+};
+const TYPE_COLORS: Record<string, string> = {
+  SUBCONTRACTOR: "bg-orange-100 text-orange-700",
+  CLIENT: "bg-blue-100 text-blue-700",
+  CONSULTANT: "bg-purple-100 text-purple-700",
+  SUPPLIER: "bg-green-100 text-green-700",
+};
+const ABN_COLORS: Record<string, string> = {
+  ACTIVE: "bg-green-100 text-green-700",
+  CANCELLED: "bg-red-100 text-red-700",
+  NOT_VERIFIED: "bg-gray-100 text-gray-500",
+};
+const ASIC_COLORS: Record<string, string> = {
+  REGISTERED: "bg-green-100 text-green-700",
+  DEREGISTERED: "bg-red-100 text-red-700",
+  NOT_CHECKED: "bg-gray-100 text-gray-500",
+};
+const APPROVAL_COLORS: Record<string, string> = {
+  PENDING: "bg-yellow-100 text-yellow-700",
+  APPROVED: "bg-green-100 text-green-700",
+  SUSPENDED: "bg-red-100 text-red-700",
+  INACTIVE: "bg-gray-100 text-gray-500",
+};
+
+function formatAbn(abn: string) {
+  const d = abn.replace(/\s/g, "");
+  if (d.length !== 11) return abn;
+  return `${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5, 8)} ${d.slice(8)}`;
+}
+
+function formatDate(d: Date | null | undefined) {
+  if (!d) return "—";
+  return new Date(d).toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function formatFileSize(bytes: number | null | undefined) {
+  if (!bytes) return "";
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+export default async function CompanyDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ tab?: string }>;
+}) {
+  await requireAppUser();
+  const { id } = await params;
+  const sp = await searchParams;
+  const activeTab = sp.tab ?? "overview";
+
+  const company = await prisma.company.findUnique({
+    where: { id },
+    include: {
+      companyContacts: {
+        include: { contact: true },
+        orderBy: [{ isPrimary: "desc" }, { contact: { lastName: "asc" } }],
+      },
+      trades: {
+        include: { costCode: true },
+        orderBy: { isPrimaryTrade: "desc" },
+      },
+      insurancePolicies: {
+        include: { policyType: true },
+        orderBy: { expiryDate: "asc" },
+      },
+      documents: {
+        orderBy: { createdAt: "desc" },
+      },
+      notes: {
+        include: { createdBy: true },
+        orderBy: { createdAt: "desc" },
+      },
+      communications: {
+        orderBy: { sentAt: "desc" },
+        take: 50,
+      },
+      subcontractorProfile: true,
+      createdBy: { select: { firstName: true, lastName: true } },
+    },
+  });
+
+  if (!company) notFound();
+
+  const isSubcontractor = company.types.includes("SUBCONTRACTOR");
+
+  const TABS = [
+    { id: "overview", label: "Overview" },
+    { id: "contacts", label: `Contacts (${company.companyContacts.length})` },
+    { id: "trades", label: `Trades (${company.trades.length})` },
+    { id: "insurance", label: `Insurance (${company.insurancePolicies.length})` },
+    { id: "documents", label: `Documents (${company.documents.length})` },
+    { id: "communications", label: `Comms (${company.communications.length})` },
+    { id: "notes", label: `Notes (${company.notes.length})` },
+    ...(isSubcontractor ? [{ id: "subcontractor", label: "Subcontractor" }] : []),
+  ];
+
+  return (
+    <div>
+      {/* Breadcrumb */}
+      <Link href="/crm/companies" className="text-xs text-zinc-500 hover:text-zinc-800 mb-3 inline-flex items-center gap-1">
+        ← Companies
+      </Link>
+
+      {/* Company Header */}
+      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="text-2xl font-bold text-zinc-900">{company.name}</h1>
+              {!company.isActive && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Inactive</span>
+              )}
+            </div>
+            {company.legalName && company.legalName !== company.name && (
+              <p className="text-sm text-zinc-500 mt-0.5">{company.legalName}</p>
+            )}
+
+            {/* Type badges */}
+            <div className="flex gap-1.5 mt-2 flex-wrap">
+              {company.types.map((t) => (
+                <span
+                  key={t}
+                  className={`text-xs px-2 py-0.5 rounded-full font-medium ${TYPE_COLORS[t] ?? "bg-gray-100 text-gray-600"}`}
+                >
+                  {TYPE_LABELS[t] ?? t}
+                </span>
+              ))}
+              {isSubcontractor && company.subcontractorProfile && (
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${APPROVAL_COLORS[company.subcontractorProfile.approvalStatus]}`}>
+                  {company.subcontractorProfile.approvalStatus}
+                </span>
+              )}
+            </div>
+
+            {/* ABN / ASIC row */}
+            <div className="flex items-center gap-3 mt-3 flex-wrap">
+              {company.abn && (
+                <span className="font-mono text-sm text-zinc-700">{formatAbn(company.abn)}</span>
+              )}
+              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ABN_COLORS[company.abnStatus]}`}>
+                {company.abnStatus === "ACTIVE" ? "ABN Active" : company.abnStatus === "CANCELLED" ? "ABN Cancelled" : "ABN Not Verified"}
+              </span>
+              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ASIC_COLORS[company.asicStatus]}`}>
+                {company.asicStatus === "REGISTERED" ? "ASIC Registered" : company.asicStatus === "DEREGISTERED" ? "ASIC Deregistered" : "ASIC Not Checked"}
+              </span>
+              <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-gray-100 text-gray-500">
+                CreditorWatch: {company.creditorwatchRisk === "NOT_CHECKED" ? "Not Checked" : company.creditorwatchRisk}
+              </span>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2 shrink-0">
+            <Link
+              href={`/crm/companies/${id}/edit`}
+              className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors"
+            >
+              Edit
+            </Link>
+            <ConfirmForm
+              action={deleteCompany.bind(null, id)}
+              message={`Delete ${company.name}? This cannot be undone.`}
+            >
+              <button
+                type="submit"
+                className="px-3 py-1.5 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-md hover:bg-red-50 transition-colors"
+              >
+                Delete
+              </button>
+            </ConfirmForm>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <TabNav tabs={TABS} baseHref={`/crm/companies/${id}`} />
+
+      {/* Tab Content */}
+      {activeTab === "overview" && (
+        <OverviewTab company={company} />
+      )}
+      {activeTab === "contacts" && (
+        <ContactsTab contacts={company.companyContacts} companyId={id} />
+      )}
+      {activeTab === "trades" && (
+        <TradesTab trades={company.trades} companyId={id} />
+      )}
+      {activeTab === "insurance" && (
+        <InsuranceTab policies={company.insurancePolicies} companyId={id} />
+      )}
+      {activeTab === "documents" && (
+        <DocumentsTab documents={company.documents} companyId={id} />
+      )}
+      {activeTab === "communications" && (
+        <CommunicationsTab communications={company.communications} />
+      )}
+      {activeTab === "notes" && (
+        <NotesTab notes={company.notes} />
+      )}
+      {activeTab === "subcontractor" && isSubcontractor && (
+        <SubcontractorTab profile={company.subcontractorProfile} companyId={id} />
+      )}
+    </div>
+  );
+}
+
+// ─── Overview Tab ─────────────────────────────────────────────────────────────
+
+function OverviewTab({ company }: { company: Company }) {
+  if (!company) return null;
+  return (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {/* Contact Info */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Contact</h3>
+        <dl className="space-y-2 text-sm">
+          <Row label="Phone" value={company.phoneMain} />
+          <Row label="Email" value={company.emailGeneral} />
+          <Row label="Website" value={company.website} isLink />
+          <Row label="Payment Terms" value={company.paymentTerms} />
+        </dl>
+      </div>
+
+      {/* Address */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Address</h3>
+        <dl className="space-y-2 text-sm">
+          <Row
+            label="Street"
+            value={
+              [company.addressStreet, company.addressSuburb, company.addressState, company.addressPostcode]
+                .filter(Boolean)
+                .join(", ") || null
+            }
+          />
+          <Row
+            label="Postal"
+            value={
+              company.postalSameAsStreet
+                ? "Same as street"
+                : [company.postalStreet, company.postalSuburb, company.postalState, company.postalPostcode]
+                    .filter(Boolean)
+                    .join(", ") || null
+            }
+          />
+        </dl>
+      </div>
+
+      {/* Compliance */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Compliance</h3>
+        <dl className="space-y-2 text-sm">
+          {company.abn && <Row label="ABN" value={formatAbn(company.abn)} mono />}
+          {company.abnRegisteredName && <Row label="Registered Name" value={company.abnRegisteredName} />}
+          <Row label="ABN Status" value={company.abnStatus} />
+          <Row label="GST Registered" value={company.abnGstRegistered === true ? "Yes" : company.abnGstRegistered === false ? "No" : null} />
+          <Row label="ASIC Status" value={company.asicStatus} />
+          {company.abnVerifiedAt && <Row label="ABN Verified" value={formatDate(company.abnVerifiedAt)} />}
+          {company.asicCheckedAt && <Row label="ASIC Checked" value={formatDate(company.asicCheckedAt)} />}
+        </dl>
+      </div>
+
+      {/* Meta */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Record</h3>
+        <dl className="space-y-2 text-sm">
+          <Row label="Data Source" value={company.dataSource} />
+          <Row label="Created" value={formatDate(company.createdAt)} />
+          <Row label="Last Updated" value={formatDate(company.updatedAt)} />
+        </dl>
+      </div>
+    </div>
+  );
+}
+
+function Row({
+  label,
+  value,
+  mono,
+  isLink,
+}: {
+  label: string;
+  value: string | null | undefined;
+  mono?: boolean;
+  isLink?: boolean;
+}) {
+  return (
+    <div className="flex gap-2">
+      <dt className="text-zinc-500 w-32 shrink-0">{label}</dt>
+      <dd className={mono ? "font-mono text-zinc-700" : "text-zinc-800"}>
+        {value
+          ? isLink
+            ? <a href={value} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline truncate">{value}</a>
+            : value
+          : <span className="text-zinc-300">—</span>}
+      </dd>
+    </div>
+  );
+}
+
+// ─── Contacts Tab ─────────────────────────────────────────────────────────────
+
+type CompanyContact = {
+  id: string;
+  isPrimary: boolean;
+  isAccountContact: boolean;
+  position: string | null;
+  contact: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string | null;
+    mobile: string | null;
+    jobTitle: string | null;
+  };
+};
+
+function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; companyId: string }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-sm text-zinc-500">{contacts.length} contact{contacts.length !== 1 ? "s" : ""}</p>
+        <Link
+          href={`/crm/companies/${companyId}/contacts/link`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          + Link Contact
+        </Link>
+      </div>
+      {contacts.length === 0 ? (
+        <EmptyState message="No contacts linked to this company." />
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50">
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Name</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Position</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Email</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Mobile</th>
+                <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs">Flags</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map((cc, idx) => (
+                <tr key={cc.id} className={idx < contacts.length - 1 ? "border-b border-gray-100" : ""}>
+                  <td className="px-4 py-2.5">
+                    <span className="font-medium text-zinc-800">
+                      {cc.contact.firstName} {cc.contact.lastName}
+                    </span>
+                    {cc.isPrimary && (
+                      <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Primary</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 text-zinc-500 text-xs">{cc.position || cc.contact.jobTitle || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600">{cc.contact.email || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600">{cc.contact.mobile || "—"}</td>
+                  <td className="px-4 py-2.5 text-center">
+                    {cc.isAccountContact && <span className="text-xs text-zinc-400">Acct</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Trades Tab ───────────────────────────────────────────────────────────────
+
+type Trade = {
+  id: string;
+  isPrimaryTrade: boolean;
+  costCode: { id: string; catCode: string; codeDescription: string; groupName: string };
+};
+
+function TradesTab({ trades, companyId }: { trades: Trade[]; companyId: string }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-sm text-zinc-500">{trades.length} trade{trades.length !== 1 ? "s" : ""}</p>
+        <Link
+          href={`/crm/companies/${companyId}/trades/add`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          + Add Trade
+        </Link>
+      </div>
+      {trades.length === 0 ? (
+        <EmptyState message="No trades assigned to this company." />
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50">
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">CAT Code</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Description</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Group</th>
+                <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs">Primary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {trades.map((t, idx) => (
+                <tr key={t.id} className={idx < trades.length - 1 ? "border-b border-gray-100" : ""}>
+                  <td className="px-4 py-2.5 font-mono text-xs text-zinc-700">{t.costCode.catCode}</td>
+                  <td className="px-4 py-2.5 text-zinc-800">{t.costCode.codeDescription}</td>
+                  <td className="px-4 py-2.5 text-xs text-zinc-500">{t.costCode.groupName}</td>
+                  <td className="px-4 py-2.5 text-center">
+                    {t.isPrimaryTrade && (
+                      <span className="text-xs px-1.5 py-0.5 rounded-full bg-orange-100 text-orange-700">Primary</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Insurance Tab ────────────────────────────────────────────────────────────
+
+type InsurancePolicy = {
+  id: string;
+  insurerName: string | null;
+  policyNumber: string | null;
+  expiryDate: Date;
+  onFile: boolean;
+  isCurrent: boolean;
+  coverageAmount: { toString(): string } | null;
+  policyType: { name: string; isMandatory: boolean };
+};
+
+function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; companyId: string }) {
+  const today = new Date();
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-sm text-zinc-500">{policies.length} polic{policies.length !== 1 ? "ies" : "y"}</p>
+        <Link
+          href={`/crm/companies/${companyId}/insurance/add`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          + Add Policy
+        </Link>
+      </div>
+      {policies.length === 0 ? (
+        <EmptyState message="No insurance policies on file." />
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50">
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Insurer</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Policy #</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Expiry</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Coverage</th>
+                <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {policies.map((p, idx) => {
+                const expiry = new Date(p.expiryDate);
+                const daysUntil = Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+                const isExpired = daysUntil < 0;
+                const isExpiringSoon = !isExpired && daysUntil <= 30;
+
+                return (
+                  <tr key={p.id} className={idx < policies.length - 1 ? "border-b border-gray-100" : ""}>
+                    <td className="px-4 py-2.5">
+                      <span className="text-zinc-800">{p.policyType.name}</span>
+                      {p.policyType.isMandatory && (
+                        <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-red-50 text-red-600">Required</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-2.5 text-zinc-600">{p.insurerName || "—"}</td>
+                    <td className="px-4 py-2.5 font-mono text-xs text-zinc-500">{p.policyNumber || "—"}</td>
+                    <td className="px-4 py-2.5">
+                      <span className={isExpired ? "text-red-600 font-medium" : isExpiringSoon ? "text-yellow-700 font-medium" : "text-zinc-700"}>
+                        {formatDate(expiry)}
+                      </span>
+                      {isExpired && <span className="ml-1 text-xs text-red-500">Expired</span>}
+                      {isExpiringSoon && <span className="ml-1 text-xs text-yellow-600">{daysUntil}d</span>}
+                    </td>
+                    <td className="px-4 py-2.5 text-xs text-zinc-500">
+                      {p.coverageAmount ? `$${Number(p.coverageAmount.toString()).toLocaleString("en-AU")}` : "—"}
+                    </td>
+                    <td className="px-4 py-2.5 text-center">
+                      <span className={`text-xs px-1.5 py-0.5 rounded-full ${p.onFile ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                        {p.onFile ? "On file" : "No cert"}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Documents Tab ────────────────────────────────────────────────────────────
+
+type CompanyDocument = {
+  id: string;
+  documentType: string;
+  documentName: string;
+  fileName: string;
+  fileSizeBytes: number | null;
+  expiryDate: Date | null;
+  fileUrl: string;
+  createdAt: Date;
+};
+
+function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; companyId: string }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-sm text-zinc-500">{documents.length} document{documents.length !== 1 ? "s" : ""}</p>
+        <Link
+          href={`/crm/companies/${companyId}/documents/upload`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          + Upload Document
+        </Link>
+      </div>
+      {documents.length === 0 ? (
+        <EmptyState message="No documents uploaded." />
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50">
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Document</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Expiry</th>
+                <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Uploaded</th>
+                <th className="px-4 py-2.5"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {documents.map((doc, idx) => (
+                <tr key={doc.id} className={idx < documents.length - 1 ? "border-b border-gray-100" : ""}>
+                  <td className="px-4 py-2.5">
+                    <p className="text-zinc-800 font-medium">{doc.documentName}</p>
+                    <p className="text-xs text-zinc-400">{doc.fileName} {doc.fileSizeBytes ? `· ${formatFileSize(doc.fileSizeBytes)}` : ""}</p>
+                  </td>
+                  <td className="px-4 py-2.5 text-xs text-zinc-500">{doc.documentType}</td>
+                  <td className="px-4 py-2.5 text-xs text-zinc-600">{formatDate(doc.expiryDate)}</td>
+                  <td className="px-4 py-2.5 text-xs text-zinc-400">{formatDate(doc.createdAt)}</td>
+                  <td className="px-4 py-2.5">
+                    <a
+                      href={doc.fileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-blue-600 hover:underline"
+                    >
+                      View
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Communications Tab ───────────────────────────────────────────────────────
+
+type Communication = {
+  id: string;
+  direction: string;
+  subject: string;
+  fromEmail: string;
+  toEmail: string;
+  sentAt: Date;
+  isRead: boolean;
+};
+
+function CommunicationsTab({ communications }: { communications: Communication[] }) {
+  return (
+    <div>
+      {communications.length === 0 ? (
+        <EmptyState message="No communications recorded." />
+      ) : (
+        <div className="space-y-2">
+          {communications.map((c) => (
+            <div key={c.id} className="bg-white rounded-lg border border-gray-200 px-4 py-3">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span
+                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium shrink-0 ${
+                      c.direction === "OUTBOUND"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-green-100 text-green-700"
+                    }`}
+                  >
+                    {c.direction === "OUTBOUND" ? "Sent" : "Received"}
+                  </span>
+                  <p className="text-sm font-medium text-zinc-800 truncate">{c.subject}</p>
+                </div>
+                <span className="text-xs text-zinc-400 shrink-0">{formatDate(c.sentAt)}</span>
+              </div>
+              <p className="text-xs text-zinc-400 mt-1">
+                {c.direction === "OUTBOUND" ? `To: ${c.toEmail}` : `From: ${c.fromEmail}`}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Notes Tab ────────────────────────────────────────────────────────────────
+
+type Note = {
+  id: string;
+  content: string;
+  createdAt: Date;
+  createdBy: { firstName: string; lastName: string };
+};
+
+function NotesTab({ notes }: { notes: Note[] }) {
+  return (
+    <div>
+      {notes.length === 0 ? (
+        <EmptyState message="No notes yet." />
+      ) : (
+        <div className="space-y-3">
+          {notes.map((note) => (
+            <div key={note.id} className="bg-white rounded-lg border border-gray-200 px-4 py-3">
+              <p className="text-sm text-zinc-800 whitespace-pre-wrap">{note.content}</p>
+              <p className="text-xs text-zinc-400 mt-2">
+                {note.createdBy.firstName} {note.createdBy.lastName} &middot; {formatDate(note.createdAt)}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Subcontractor Tab ────────────────────────────────────────────────────────
+
+type SubcontractorProfile = {
+  approvalStatus: string;
+  approvedAt: Date | null;
+  approvalReviewDate: Date | null;
+  capabilitiesStaff: boolean;
+  capabilitiesAssessment: boolean;
+  capabilitiesPurchases: boolean;
+  capabilitiesSwms: boolean;
+  portalAccessEnabled: boolean;
+  portalLastLoginAt: Date | null;
+} | null;
+
+function SubcontractorTab({
+  profile,
+  companyId,
+}: {
+  profile: SubcontractorProfile;
+  companyId: string;
+}) {
+  if (!profile) {
+    return <EmptyState message="Subcontractor profile not found." />;
+  }
+
+  return (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {/* Approval */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Approval</h3>
+        <dl className="space-y-2 text-sm">
+          <Row label="Status" value={profile.approvalStatus} />
+          <Row label="Approved" value={formatDate(profile.approvedAt)} />
+          <Row label="Review Date" value={formatDate(profile.approvalReviewDate)} />
+        </dl>
+      </div>
+
+      {/* Capabilities */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Capabilities</h3>
+        <ul className="space-y-1.5 text-sm">
+          {[
+            ["Staff Management", profile.capabilitiesStaff],
+            ["Safety Assessment", profile.capabilitiesAssessment],
+            ["Purchases", profile.capabilitiesPurchases],
+            ["SWMS", profile.capabilitiesSwms],
+          ].map(([label, enabled]) => (
+            <li key={String(label)} className="flex items-center gap-2">
+              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold ${enabled ? "bg-green-500 text-white" : "bg-gray-200 text-gray-400"}`}>
+                {enabled ? "✓" : "×"}
+              </span>
+              <span className={enabled ? "text-zinc-800" : "text-zinc-400"}>{String(label)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Portal */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Portal Access</h3>
+        <dl className="space-y-2 text-sm">
+          <Row label="Enabled" value={profile.portalAccessEnabled ? "Yes" : "No"} />
+          <Row label="Last Login" value={formatDate(profile.portalLastLoginAt)} />
+        </dl>
+        {!profile.portalAccessEnabled && (
+          <Link
+            href={`/crm/companies/${companyId}/portal/invite`}
+            className="mt-3 inline-flex text-sm text-blue-600 hover:underline"
+          >
+            Send portal invitation →
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Shared ───────────────────────────────────────────────────────────────────
+
+function EmptyState({ message }: { message: string }) {
+  return (
+    <div className="text-center py-12 text-zinc-400">
+      <p className="text-sm">{message}</p>
+    </div>
+  );
+}
