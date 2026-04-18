@@ -7,7 +7,34 @@ import { redirect } from "next/navigation";
 
 const VALID_TYPES = ["SUBCONTRACTOR", "CLIENT", "CONSULTANT", "SUPPLIER"] as const;
 
-// ─── ABN Lookup ──────────────────────────────────────────────────────────────
+// ─── ABN Lookup helpers ───────────────────────────────────────────────────────
+
+function getGuid(): string | null {
+  return process.env.ABN_LOOKUP_GUID ?? null;
+}
+
+function parseJsonp(text: string): unknown {
+  // Strip JSONP wrapper: callback({...}) or callback([...])
+  return JSON.parse(text.replace(/^[^(]+\(/, "").replace(/\)\s*$/, ""));
+}
+
+async function asicCheck(abn: string): Promise<"REGISTERED" | "DEREGISTERED" | "NOT_CHECKED"> {
+  try {
+    const res = await fetch(
+      `https://data.asic.gov.au/api/v2/businessRegistrationDetails?abn=${abn}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) return "NOT_CHECKED";
+    const json = await res.json() as { status?: string };
+    if (json.status === "Registered") return "REGISTERED";
+    if (json.status === "Deregistered") return "DEREGISTERED";
+  } catch {
+    // ASIC unavailable
+  }
+  return "NOT_CHECKED";
+}
+
+// ─── ABN detail lookup (by ABN number) ───────────────────────────────────────
 
 export async function lookupAbn(rawAbn: string): Promise<{
   ok: boolean;
@@ -22,44 +49,92 @@ export async function lookupAbn(rawAbn: string): Promise<{
     return { ok: false, error: "ABN must be 11 digits (numbers only)" };
   }
 
-  const guid = process.env.ABN_LOOKUP_GUID;
+  const guid = getGuid();
   if (!guid) {
-    return { ok: false, error: "ABN lookup is not configured (missing ABN_LOOKUP_GUID)" };
+    return { ok: false, error: "ABN lookup is not configured — check ABN_LOOKUP_GUID env var" };
   }
 
   try {
-    // Layer 1: ABN API (ABR)
-    const abnUrl = `https://abr.business.gov.au/json/AbnDetails.aspx?abn=${abn}&callback=callback&guid=${guid}`;
-    const abnRes = await fetch(abnUrl, { cache: "no-store" });
-    const abnText = await abnRes.text();
-    const abnJson = JSON.parse(abnText.replace(/^callback\(/, "").replace(/\)$/, ""));
+    const url = `https://abr.business.gov.au/json/AbnDetails.aspx?abn=${abn}&callback=callback&guid=${guid}`;
+    const res = await fetch(url, { cache: "no-store" });
+    const json = parseJsonp(await res.text()) as {
+      AbnStatus?: string;
+      EntityName?: string;
+      Gst?: string | null;
+      Message?: string;
+    };
 
-    if (abnJson.Message) {
-      return { ok: false, error: abnJson.Message };
+    if (json.Message) {
+      return { ok: false, error: json.Message };
     }
 
-    const abnStatus: "ACTIVE" | "CANCELLED" =
-      abnJson.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED";
-    const abnRegisteredName: string = abnJson.EntityName || "";
-    const abnGstRegistered = !!abnJson.Gst;
-
-    // Layer 2: ASIC (best-effort, no auth required for basic check)
-    let asicStatus: "REGISTERED" | "DEREGISTERED" | "NOT_CHECKED" = "NOT_CHECKED";
-    try {
-      const asicUrl = `https://data.asic.gov.au/api/v2/businessRegistrationDetails?abn=${abn}`;
-      const asicRes = await fetch(asicUrl, { cache: "no-store" });
-      if (asicRes.ok) {
-        const asicJson = await asicRes.json();
-        if (asicJson.status === "Registered") asicStatus = "REGISTERED";
-        else if (asicJson.status === "Deregistered") asicStatus = "DEREGISTERED";
-      }
-    } catch {
-      // ASIC unavailable — leave as NOT_CHECKED
-    }
+    const abnStatus: "ACTIVE" | "CANCELLED" = json.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED";
+    const abnRegisteredName = json.EntityName ?? "";
+    const abnGstRegistered = !!json.Gst;
+    const asicStatus = await asicCheck(abn);
 
     return { ok: true, abnStatus, abnRegisteredName, abnGstRegistered, asicStatus };
   } catch {
     return { ok: false, error: "ABN lookup failed — check your connection" };
+  }
+}
+
+// ─── Name search (ABR MatchingNames endpoint) ─────────────────────────────────
+
+export interface AbnNameResult {
+  abn: string;
+  abnStatus: string;
+  name: string;
+  state: string;
+  postcode: string;
+}
+
+export async function searchAbnByName(query: string): Promise<{
+  ok: boolean;
+  error?: string;
+  results?: AbnNameResult[];
+}> {
+  const trimmed = query.trim();
+  if (trimmed.length < 3) {
+    return { ok: false, error: "Enter at least 3 characters to search" };
+  }
+
+  const guid = getGuid();
+  if (!guid) {
+    return { ok: false, error: "ABN lookup is not configured — check ABN_LOOKUP_GUID env var" };
+  }
+
+  try {
+    const url = `https://abr.business.gov.au/json/MatchingNames.aspx?name=${encodeURIComponent(trimmed)}&callback=callback&guid=${guid}`;
+    const res = await fetch(url, { cache: "no-store" });
+    const raw = parseJsonp(await res.text()) as Array<{
+      Abn?: string;
+      AbnStatus?: string;
+      EntityName?: string;
+      Name?: string;
+      AddressState?: string;
+      AddressPostcode?: string;
+      Score?: number;
+    }>;
+
+    if (!Array.isArray(raw)) {
+      return { ok: false, error: "Unexpected response from ABR" };
+    }
+
+    const results: AbnNameResult[] = raw
+      .filter((r) => r.Abn)
+      .slice(0, 20)
+      .map((r) => ({
+        abn: r.Abn!.replace(/\s/g, ""),
+        abnStatus: r.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED",
+        name: r.EntityName ?? r.Name ?? "",
+        state: r.AddressState ?? "",
+        postcode: r.AddressPostcode ?? "",
+      }));
+
+    return { ok: true, results };
+  } catch {
+    return { ok: false, error: "Name search failed — check your connection" };
   }
 }
 
