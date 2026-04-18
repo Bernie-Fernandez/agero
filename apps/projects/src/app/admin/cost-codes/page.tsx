@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { toggleCostCodeActive, deleteCostCode } from "./actions";
+import { ConfirmForm } from "@/components/ConfirmForm";
 
 const TYPE_LABELS: Record<string, string> = {
   REVENUE: "Revenue",
@@ -135,17 +136,14 @@ export default async function CostCodesPage({
                                 {cc.isActive ? "Deactivate" : "Activate"}
                               </button>
                             </form>
-                            <form action={deleteCostCode.bind(null, cc.id)}>
-                              <button
-                                type="submit"
-                                className="text-xs text-red-500 hover:text-red-700"
-                                onClick={(e) => {
-                                  if (!confirm("Delete this cost code?")) e.preventDefault();
-                                }}
-                              >
+                            <ConfirmForm
+                              action={deleteCostCode.bind(null, cc.id)}
+                              message="Delete this cost code?"
+                            >
+                              <button type="submit" className="text-xs text-red-500 hover:text-red-700">
                                 Delete
                               </button>
-                            </form>
+                            </ConfirmForm>
                           </div>
                         </td>
                       </tr>
