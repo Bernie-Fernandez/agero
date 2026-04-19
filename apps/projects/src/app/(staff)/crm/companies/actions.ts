@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { requireAppUser } from "@/lib/auth";
+import { requireAppUser, canEdit } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -908,4 +908,65 @@ export async function createCompanyFromWizard(
 
   revalidatePath("/crm/companies");
   return { companyId: company.id };
+}
+
+// ─── Inline Create Contact + Link ─────────────────────────────────────────────
+
+export async function createContactInline(
+  companyId: string,
+  formData: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) return { ok: false, error: "Unauthorized" };
+
+  const firstName = (formData.get("firstName") as string)?.trim();
+  const lastName = (formData.get("lastName") as string)?.trim();
+  if (!firstName || !lastName) return { ok: false, error: "First and last name are required." };
+
+  const email = (formData.get("email") as string)?.trim() || null;
+  const mobile = (formData.get("mobile") as string)?.trim() || null;
+  const phoneDdi = (formData.get("phoneDdi") as string)?.trim() || null;
+  if (!email && !mobile && !phoneDdi)
+    return { ok: false, error: "At least one of email, mobile, or DDI is required." };
+
+  const jobTitle = (formData.get("jobTitle") as string)?.trim() || null;
+  const isAccountContact = formData.get("isAccountContact") === "true";
+  const isEstimatingContact = formData.get("isEstimatingContact") === "true";
+  const associationLabelId = (formData.get("associationLabelId") as string)?.trim() || null;
+
+  try {
+    const contact = await prisma.contact.create({
+      data: {
+        organisationId: user.organisationId,
+        firstName,
+        lastName,
+        email,
+        mobile,
+        phoneDdi,
+        jobTitle,
+        contactCategory: "OPERATIONAL",
+        isActive: true,
+        dataSource: "MANUAL",
+        createdById: user.id,
+      },
+    });
+
+    await prisma.companyContact.create({
+      data: {
+        companyId,
+        contactId: contact.id,
+        position: jobTitle,
+        isPrimary: false,
+        isAccountContact,
+        isEstimatingContact,
+        associationLabelId,
+      },
+    });
+
+    revalidatePath(`/crm/companies/${companyId}`);
+    revalidatePath("/crm/contacts");
+    return { ok: true };
+  } catch {
+    return { ok: false, error: "Failed to create contact. Please try again." };
+  }
 }

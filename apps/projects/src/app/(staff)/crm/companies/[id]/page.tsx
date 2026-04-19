@@ -6,6 +6,7 @@ import { TabNav } from "@/components/TabNav";
 import { ConfirmForm } from "@/components/ConfirmForm";
 import { BlacklistButton } from "@/components/BlacklistModal";
 import { DeleteCompanyModal } from "@/components/DeleteCompanyModal";
+import { AddContactDrawer } from "@/components/AddContactDrawer";
 import {
   blacklistCompany,
   unblacklistCompany,
@@ -284,7 +285,7 @@ export default async function CompanyDetailPage({
         />
       )}
       {activeTab === "contacts" && (
-        <ContactsTab contacts={company.companyContacts} companyId={id} canDeleteFlag={userCanDelete} canEditFlag={userCanEdit} />
+        <ContactsTab contacts={company.companyContacts} companyId={id} associationLabels={associationLabels} canDeleteFlag={userCanDelete} canEditFlag={userCanEdit} />
       )}
       {activeTab === "trades" && (
         <TradesTab trades={company.trades} companyId={id} />
@@ -480,9 +481,9 @@ function OverviewTab({
           <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
             Contacts ({company.companyContacts.length})
           </h3>
-          <Link href={`/crm/contacts/new?companyId=${companyId}&returnTo=/crm/companies/${companyId}`} className="text-xs text-blue-600 hover:underline">
-            + New Contact
-          </Link>
+          {canEditFlag && (
+            <AddContactDrawer companyId={companyId} associationLabels={associationLabels} />
+          )}
         </div>
 
         {/* Quick add row */}
@@ -678,11 +679,13 @@ type CompanyContactFull = {
 function ContactsTab({
   contacts,
   companyId,
+  associationLabels,
   canDeleteFlag,
   canEditFlag,
 }: {
   contacts: CompanyContactFull[];
   companyId: string;
+  associationLabels: Array<{ id: string; name: string }>;
   canDeleteFlag: boolean;
   canEditFlag: boolean;
 }) {
@@ -690,12 +693,14 @@ function ContactsTab({
     <div>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{contacts.length} contact{contacts.length !== 1 ? "s" : ""}</p>
-        <Link
-          href={`/crm/contacts/new?companyId=${companyId}&returnTo=/crm/companies/${companyId}?tab=contacts`}
-          className="text-sm text-blue-600 hover:underline"
-        >
-          + Add Contact
-        </Link>
+        {canEditFlag && (
+          <AddContactDrawer
+            companyId={companyId}
+            associationLabels={associationLabels}
+            buttonLabel="+ Add Contact"
+            buttonClassName="text-sm text-blue-600 hover:underline"
+          />
+        )}
       </div>
       {contacts.length === 0 ? (
         <EmptyState message="No contacts linked to this company." />

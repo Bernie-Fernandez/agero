@@ -191,7 +191,7 @@ export default async function NewContactPage({
           </div>
         </div>
 
-        {/* Social */}
+        {/* LinkedIn */}
         <div className="bg-white border border-gray-200 rounded-lg p-5 space-y-4">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Social</h2>
           <div>
@@ -201,23 +201,6 @@ export default async function NewContactPage({
               type="url"
               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="https://linkedin.com/in/..."
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">Instagram URL</label>
-            <input
-              name="instagramUrl"
-              type="url"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="https://instagram.com/..."
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">Mailing Address</label>
-            <textarea
-              name="mailingAddress"
-              rows={2}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
