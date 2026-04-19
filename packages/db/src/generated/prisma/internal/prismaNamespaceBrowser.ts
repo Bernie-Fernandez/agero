@@ -63,11 +63,13 @@ export const ModelName = {
   InsurancePolicy: 'InsurancePolicy',
   CompanyDocument: 'CompanyDocument',
   CompanyNote: 'CompanyNote',
+  ContactNote: 'ContactNote',
   SubcontractorProfile: 'SubcontractorProfile',
   PortalInvitation: 'PortalInvitation',
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
+  ContactType: 'ContactType',
   ExpertiseTag: 'ExpertiseTag',
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
@@ -388,6 +390,17 @@ export const CompanyNoteScalarFieldEnum = {
 export type CompanyNoteScalarFieldEnum = (typeof CompanyNoteScalarFieldEnum)[keyof typeof CompanyNoteScalarFieldEnum]
 
 
+export const ContactNoteScalarFieldEnum = {
+  id: 'id',
+  contactId: 'contactId',
+  content: 'content',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactNoteScalarFieldEnum = (typeof ContactNoteScalarFieldEnum)[keyof typeof ContactNoteScalarFieldEnum]
+
+
 export const SubcontractorProfileScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
@@ -475,6 +488,20 @@ export const AlertThresholdScalarFieldEnum = {
 } as const
 
 export type AlertThresholdScalarFieldEnum = (typeof AlertThresholdScalarFieldEnum)[keyof typeof AlertThresholdScalarFieldEnum]
+
+
+export const ContactTypeScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  isSubType: 'isSubType',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContactTypeScalarFieldEnum = (typeof ContactTypeScalarFieldEnum)[keyof typeof ContactTypeScalarFieldEnum]
 
 
 export const ExpertiseTagScalarFieldEnum = {

@@ -23,6 +23,11 @@ const SECTIONS = [
     description: "Set how many days before expiry to trigger insurance and document alerts.",
   },
   {
+    title: "Contact Types",
+    href: "/admin/contact-types",
+    description: "Manage contact type and sub-type dropdown options used when creating contact records.",
+  },
+  {
     title: "Expertise Tags",
     href: "/admin/expertise-tags",
     description: "Manage supplier expertise tags used to classify company capabilities (grouped by category).",
@@ -35,11 +40,12 @@ const SECTIONS = [
 ];
 
 export default async function AdminPage() {
-  const [costCodeCount, insTypeCount, ptCount, thresholdCount, expertiseTagCount, userCount] = await Promise.all([
+  const [costCodeCount, insTypeCount, ptCount, thresholdCount, contactTypeCount, expertiseTagCount, userCount] = await Promise.all([
     prisma.costCode.count(),
     prisma.insurancePolicyType.count(),
     prisma.paymentTerm.count(),
     prisma.alertThreshold.count(),
+    prisma.contactType.count(),
     prisma.expertiseTag.count(),
     prisma.user.count(),
   ]);
@@ -49,6 +55,7 @@ export default async function AdminPage() {
     "Insurance Types": insTypeCount,
     "Payment Terms": ptCount,
     "Alert Thresholds": thresholdCount,
+    "Contact Types": contactTypeCount,
     "Expertise Tags": expertiseTagCount,
     "Users": userCount,
   };

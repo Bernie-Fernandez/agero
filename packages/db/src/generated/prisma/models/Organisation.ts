@@ -248,6 +248,7 @@ export type OrganisationWhereInput = {
   notifications?: Prisma.NotificationAlertListRelationFilter
   alertThresholds?: Prisma.AlertThresholdListRelationFilter
   communications?: Prisma.CommunicationListRelationFilter
+  contactTypes?: Prisma.ContactTypeListRelationFilter
 }
 
 export type OrganisationOrderByWithRelationInput = {
@@ -273,6 +274,7 @@ export type OrganisationOrderByWithRelationInput = {
   notifications?: Prisma.NotificationAlertOrderByRelationAggregateInput
   alertThresholds?: Prisma.AlertThresholdOrderByRelationAggregateInput
   communications?: Prisma.CommunicationOrderByRelationAggregateInput
+  contactTypes?: Prisma.ContactTypeOrderByRelationAggregateInput
 }
 
 export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
@@ -301,6 +303,7 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   notifications?: Prisma.NotificationAlertListRelationFilter
   alertThresholds?: Prisma.AlertThresholdListRelationFilter
   communications?: Prisma.CommunicationListRelationFilter
+  contactTypes?: Prisma.ContactTypeListRelationFilter
 }, "id">
 
 export type OrganisationOrderByWithAggregationInput = {
@@ -362,6 +365,7 @@ export type OrganisationCreateInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateInput = {
@@ -387,6 +391,7 @@ export type OrganisationUncheckedCreateInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUpdateInput = {
@@ -412,6 +417,7 @@ export type OrganisationUpdateInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateInput = {
@@ -437,6 +443,7 @@ export type OrganisationUncheckedUpdateInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateManyInput = {
@@ -672,6 +679,20 @@ export type OrganisationUpdateOneRequiredWithoutAlertThresholdsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutAlertThresholdsInput, Prisma.OrganisationUpdateWithoutAlertThresholdsInput>, Prisma.OrganisationUncheckedUpdateWithoutAlertThresholdsInput>
 }
 
+export type OrganisationCreateNestedOneWithoutContactTypesInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutContactTypesInput, Prisma.OrganisationUncheckedCreateWithoutContactTypesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutContactTypesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutContactTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutContactTypesInput, Prisma.OrganisationUncheckedCreateWithoutContactTypesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutContactTypesInput
+  upsert?: Prisma.OrganisationUpsertWithoutContactTypesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutContactTypesInput, Prisma.OrganisationUpdateWithoutContactTypesInput>, Prisma.OrganisationUncheckedUpdateWithoutContactTypesInput>
+}
+
 export type OrganisationCreateNestedOneWithoutPaymentTermsListInput = {
   create?: Prisma.XOR<Prisma.OrganisationCreateWithoutPaymentTermsListInput, Prisma.OrganisationUncheckedCreateWithoutPaymentTermsListInput>
   connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutPaymentTermsListInput
@@ -708,6 +729,7 @@ export type OrganisationCreateWithoutUsersInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUsersInput = {
@@ -732,6 +754,7 @@ export type OrganisationUncheckedCreateWithoutUsersInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUsersInput = {
@@ -772,6 +795,7 @@ export type OrganisationUpdateWithoutUsersInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUsersInput = {
@@ -796,6 +820,7 @@ export type OrganisationUncheckedUpdateWithoutUsersInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutProjectsInput = {
@@ -820,6 +845,7 @@ export type OrganisationCreateWithoutProjectsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutProjectsInput = {
@@ -844,6 +870,7 @@ export type OrganisationUncheckedCreateWithoutProjectsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutProjectsInput = {
@@ -884,6 +911,7 @@ export type OrganisationUpdateWithoutProjectsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutProjectsInput = {
@@ -908,6 +936,7 @@ export type OrganisationUncheckedUpdateWithoutProjectsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCompaniesInput = {
@@ -932,6 +961,7 @@ export type OrganisationCreateWithoutCompaniesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCompaniesInput = {
@@ -956,6 +986,7 @@ export type OrganisationUncheckedCreateWithoutCompaniesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCompaniesInput = {
@@ -996,6 +1027,7 @@ export type OrganisationUpdateWithoutCompaniesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
@@ -1020,6 +1052,7 @@ export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactsInput = {
@@ -1044,6 +1077,7 @@ export type OrganisationCreateWithoutContactsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactsInput = {
@@ -1068,6 +1102,7 @@ export type OrganisationUncheckedCreateWithoutContactsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactsInput = {
@@ -1108,6 +1143,7 @@ export type OrganisationUpdateWithoutContactsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactsInput = {
@@ -1132,6 +1168,7 @@ export type OrganisationUncheckedUpdateWithoutContactsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCostCodesInput = {
@@ -1156,6 +1193,7 @@ export type OrganisationCreateWithoutCostCodesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCostCodesInput = {
@@ -1180,6 +1218,7 @@ export type OrganisationUncheckedCreateWithoutCostCodesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCostCodesInput = {
@@ -1220,6 +1259,7 @@ export type OrganisationUpdateWithoutCostCodesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
@@ -1244,6 +1284,7 @@ export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
@@ -1268,6 +1309,7 @@ export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
@@ -1292,6 +1334,7 @@ export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutInsurancePolicyTypesInput = {
@@ -1332,6 +1375,7 @@ export type OrganisationUpdateWithoutInsurancePolicyTypesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
@@ -1356,6 +1400,7 @@ export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCommunicationsInput = {
@@ -1380,6 +1425,7 @@ export type OrganisationCreateWithoutCommunicationsInput = {
   paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
@@ -1404,6 +1450,7 @@ export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
   paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCommunicationsInput = {
@@ -1444,6 +1491,7 @@ export type OrganisationUpdateWithoutCommunicationsInput = {
   paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
@@ -1468,6 +1516,7 @@ export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
   paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutNotificationsInput = {
@@ -1492,6 +1541,7 @@ export type OrganisationCreateWithoutNotificationsInput = {
   paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutNotificationsInput = {
@@ -1516,6 +1566,7 @@ export type OrganisationUncheckedCreateWithoutNotificationsInput = {
   paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutNotificationsInput = {
@@ -1556,6 +1607,7 @@ export type OrganisationUpdateWithoutNotificationsInput = {
   paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
@@ -1580,6 +1632,7 @@ export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
   paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAlertThresholdsInput = {
@@ -1604,6 +1657,7 @@ export type OrganisationCreateWithoutAlertThresholdsInput = {
   paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
@@ -1628,6 +1682,7 @@ export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
   paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAlertThresholdsInput = {
@@ -1668,6 +1723,7 @@ export type OrganisationUpdateWithoutAlertThresholdsInput = {
   paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
@@ -1691,6 +1747,123 @@ export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
   insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutContactTypesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutContactTypesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutContactTypesInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutContactTypesInput, Prisma.OrganisationUncheckedCreateWithoutContactTypesInput>
+}
+
+export type OrganisationUpsertWithoutContactTypesInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutContactTypesInput, Prisma.OrganisationUncheckedUpdateWithoutContactTypesInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutContactTypesInput, Prisma.OrganisationUncheckedCreateWithoutContactTypesInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutContactTypesInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutContactTypesInput, Prisma.OrganisationUncheckedUpdateWithoutContactTypesInput>
+}
+
+export type OrganisationUpdateWithoutContactTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
@@ -1716,6 +1889,7 @@ export type OrganisationCreateWithoutPaymentTermsListInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
@@ -1740,6 +1914,7 @@ export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPaymentTermsListInput = {
@@ -1780,6 +1955,7 @@ export type OrganisationUpdateWithoutPaymentTermsListInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
@@ -1804,6 +1980,7 @@ export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 
@@ -1822,6 +1999,7 @@ export type OrganisationCountOutputType = {
   notifications: number
   alertThresholds: number
   communications: number
+  contactTypes: number
 }
 
 export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1835,6 +2013,7 @@ export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   notifications?: boolean | OrganisationCountOutputTypeCountNotificationsArgs
   alertThresholds?: boolean | OrganisationCountOutputTypeCountAlertThresholdsArgs
   communications?: boolean | OrganisationCountOutputTypeCountCommunicationsArgs
+  contactTypes?: boolean | OrganisationCountOutputTypeCountContactTypesArgs
 }
 
 /**
@@ -1917,6 +2096,13 @@ export type OrganisationCountOutputTypeCountCommunicationsArgs<ExtArgs extends r
   where?: Prisma.CommunicationWhereInput
 }
 
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountContactTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContactTypeWhereInput
+}
+
 
 export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1941,6 +2127,7 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   notifications?: boolean | Prisma.Organisation$notificationsArgs<ExtArgs>
   alertThresholds?: boolean | Prisma.Organisation$alertThresholdsArgs<ExtArgs>
   communications?: boolean | Prisma.Organisation$communicationsArgs<ExtArgs>
+  contactTypes?: boolean | Prisma.Organisation$contactTypesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organisation"]>
 
@@ -2001,6 +2188,7 @@ export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   notifications?: boolean | Prisma.Organisation$notificationsArgs<ExtArgs>
   alertThresholds?: boolean | Prisma.Organisation$alertThresholdsArgs<ExtArgs>
   communications?: boolean | Prisma.Organisation$communicationsArgs<ExtArgs>
+  contactTypes?: boolean | Prisma.Organisation$contactTypesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganisationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2019,6 +2207,7 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     notifications: Prisma.$NotificationAlertPayload<ExtArgs>[]
     alertThresholds: Prisma.$AlertThresholdPayload<ExtArgs>[]
     communications: Prisma.$CommunicationPayload<ExtArgs>[]
+    contactTypes: Prisma.$ContactTypePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2437,6 +2626,7 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   notifications<T extends Prisma.Organisation$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   alertThresholds<T extends Prisma.Organisation$alertThresholdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$alertThresholdsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertThresholdPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   communications<T extends Prisma.Organisation$communicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$communicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommunicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contactTypes<T extends Prisma.Organisation$contactTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$contactTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3108,6 +3298,30 @@ export type Organisation$communicationsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.CommunicationScalarFieldEnum | Prisma.CommunicationScalarFieldEnum[]
+}
+
+/**
+ * Organisation.contactTypes
+ */
+export type Organisation$contactTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContactType
+   */
+  select?: Prisma.ContactTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContactType
+   */
+  omit?: Prisma.ContactTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactTypeInclude<ExtArgs> | null
+  where?: Prisma.ContactTypeWhereInput
+  orderBy?: Prisma.ContactTypeOrderByWithRelationInput | Prisma.ContactTypeOrderByWithRelationInput[]
+  cursor?: Prisma.ContactTypeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContactTypeScalarFieldEnum | Prisma.ContactTypeScalarFieldEnum[]
 }
 
 /**

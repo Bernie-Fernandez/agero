@@ -212,6 +212,7 @@ model Organisation {
   notifications      NotificationAlert[]
   alertThresholds    AlertThreshold[]
   communications     Communication[]
+  contactTypes       ContactType[]
 
   @@map("organisations")
   @@schema("projects")
@@ -242,6 +243,7 @@ model User {
   ownedContacts       Contact[]             @relation("ContactOwner")
   uploadedDocs        CompanyDocument[]
   companyNotes        CompanyNote[]
+  contactNotes        ContactNote[]
   approvedProfiles    SubcontractorProfile[] @relation("ApprovedBy")
   sentInvitations     PortalInvitation[]
   sentCommunications  Communication[]
@@ -396,6 +398,7 @@ model Contact {
 
   companyContacts CompanyContact[]
   communications  Communication[]
+  notes           ContactNote[]
 
   @@index([organisationId])
   @@map("contacts")
@@ -556,6 +559,22 @@ model CompanyNote {
   @@schema("projects")
 }
 
+// 6.12b ContactNote (append-only, no updatedAt)
+model ContactNote {
+  id          String  @id @default(uuid()) @db.Uuid
+  contactId   String  @map("contact_id") @db.Uuid
+  contact     Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  content     String
+  createdById String  @map("created_by_id") @db.Uuid
+  createdBy   User    @relation(fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([contactId])
+  @@map("contact_notes")
+  @@schema("projects")
+}
+
 // 6.13 SubcontractorProfile (one-to-one extension of Company)
 model SubcontractorProfile {
   id                    String   @id @default(uuid()) @db.Uuid
@@ -669,6 +688,24 @@ model AlertThreshold {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("alert_thresholds")
+  @@schema("projects")
+}
+
+// 6.17e ContactType — admin-managed lookup for contact type and sub-type dropdowns
+model ContactType {
+  id             String  @id @default(uuid()) @db.Uuid
+  organisationId String  @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name           String
+  isSubType      Boolean @default(false) @map("is_sub_type")
+  displayOrder   Int?    @map("display_order")
+  isActive       Boolean @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("contact_types")
   @@schema("projects")
 }
 

@@ -396,11 +396,13 @@ export const ModelName = {
   InsurancePolicy: 'InsurancePolicy',
   CompanyDocument: 'CompanyDocument',
   CompanyNote: 'CompanyNote',
+  ContactNote: 'ContactNote',
   SubcontractorProfile: 'SubcontractorProfile',
   PortalInvitation: 'PortalInvitation',
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
+  ContactType: 'ContactType',
   ExpertiseTag: 'ExpertiseTag',
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
@@ -452,7 +454,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1344,6 +1346,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ContactNote: {
+      payload: Prisma.$ContactNotePayload<ExtArgs>
+      fields: Prisma.ContactNoteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactNoteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactNoteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        findFirst: {
+          args: Prisma.ContactNoteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactNoteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        findMany: {
+          args: Prisma.ContactNoteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>[]
+        }
+        create: {
+          args: Prisma.ContactNoteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        createMany: {
+          args: Prisma.ContactNoteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactNoteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>[]
+        }
+        delete: {
+          args: Prisma.ContactNoteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        update: {
+          args: Prisma.ContactNoteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactNoteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactNoteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactNoteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactNoteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactNotePayload>
+        }
+        aggregate: {
+          args: Prisma.ContactNoteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContactNote>
+        }
+        groupBy: {
+          args: Prisma.ContactNoteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactNoteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactNoteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactNoteCountAggregateOutputType> | number
+        }
+      }
+    }
     SubcontractorProfile: {
       payload: Prisma.$SubcontractorProfilePayload<ExtArgs>
       fields: Prisma.SubcontractorProfileFieldRefs
@@ -1711,6 +1787,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AlertThresholdCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AlertThresholdCountAggregateOutputType> | number
+        }
+      }
+    }
+    ContactType: {
+      payload: Prisma.$ContactTypePayload<ExtArgs>
+      fields: Prisma.ContactTypeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactTypeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactTypeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        findFirst: {
+          args: Prisma.ContactTypeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactTypeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        findMany: {
+          args: Prisma.ContactTypeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>[]
+        }
+        create: {
+          args: Prisma.ContactTypeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        createMany: {
+          args: Prisma.ContactTypeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactTypeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>[]
+        }
+        delete: {
+          args: Prisma.ContactTypeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        update: {
+          args: Prisma.ContactTypeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactTypeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactTypeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactTypeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactTypeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactTypePayload>
+        }
+        aggregate: {
+          args: Prisma.ContactTypeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContactType>
+        }
+        groupBy: {
+          args: Prisma.ContactTypeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactTypeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactTypeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactTypeCountAggregateOutputType> | number
         }
       }
     }
@@ -4683,6 +4833,17 @@ export const CompanyNoteScalarFieldEnum = {
 export type CompanyNoteScalarFieldEnum = (typeof CompanyNoteScalarFieldEnum)[keyof typeof CompanyNoteScalarFieldEnum]
 
 
+export const ContactNoteScalarFieldEnum = {
+  id: 'id',
+  contactId: 'contactId',
+  content: 'content',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactNoteScalarFieldEnum = (typeof ContactNoteScalarFieldEnum)[keyof typeof ContactNoteScalarFieldEnum]
+
+
 export const SubcontractorProfileScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
@@ -4770,6 +4931,20 @@ export const AlertThresholdScalarFieldEnum = {
 } as const
 
 export type AlertThresholdScalarFieldEnum = (typeof AlertThresholdScalarFieldEnum)[keyof typeof AlertThresholdScalarFieldEnum]
+
+
+export const ContactTypeScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  isSubType: 'isSubType',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContactTypeScalarFieldEnum = (typeof ContactTypeScalarFieldEnum)[keyof typeof ContactTypeScalarFieldEnum]
 
 
 export const ExpertiseTagScalarFieldEnum = {
@@ -6213,11 +6388,13 @@ export type GlobalOmitConfig = {
   insurancePolicy?: Prisma.InsurancePolicyOmit
   companyDocument?: Prisma.CompanyDocumentOmit
   companyNote?: Prisma.CompanyNoteOmit
+  contactNote?: Prisma.ContactNoteOmit
   subcontractorProfile?: Prisma.SubcontractorProfileOmit
   portalInvitation?: Prisma.PortalInvitationOmit
   communication?: Prisma.CommunicationOmit
   notificationAlert?: Prisma.NotificationAlertOmit
   alertThreshold?: Prisma.AlertThresholdOmit
+  contactType?: Prisma.ContactTypeOmit
   expertiseTag?: Prisma.ExpertiseTagOmit
   companyExpertiseTag?: Prisma.CompanyExpertiseTagOmit
   paymentTerm?: Prisma.PaymentTermOmit

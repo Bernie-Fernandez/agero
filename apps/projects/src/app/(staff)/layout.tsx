@@ -7,6 +7,7 @@ const NAV_GROUPS = [
     label: "CRM",
     items: [
       { label: "Companies", href: "/crm/companies" },
+      { label: "Contacts", href: "/crm/contacts" },
     ],
   },
 ];

@@ -78,6 +78,11 @@ export type CompanyDocument = Prisma.CompanyDocumentModel
  */
 export type CompanyNote = Prisma.CompanyNoteModel
 /**
+ * Model ContactNote
+ * 
+ */
+export type ContactNote = Prisma.ContactNoteModel
+/**
  * Model SubcontractorProfile
  * 
  */
@@ -102,6 +107,11 @@ export type NotificationAlert = Prisma.NotificationAlertModel
  * 
  */
 export type AlertThreshold = Prisma.AlertThresholdModel
+/**
+ * Model ContactType
+ * 
+ */
+export type ContactType = Prisma.ContactTypeModel
 /**
  * Model ExpertiseTag
  * 

@@ -469,10 +469,10 @@ function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; comp
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{contacts.length} contact{contacts.length !== 1 ? "s" : ""}</p>
         <Link
-          href={`/crm/companies/${companyId}/contacts/link`}
+          href={`/crm/contacts/new?companyId=${companyId}&returnTo=/crm/companies/${companyId}?tab=contacts`}
           className="text-sm text-blue-600 hover:underline"
         >
-          + Link Contact
+          + Add Contact
         </Link>
       </div>
       {contacts.length === 0 ? (
@@ -493,9 +493,9 @@ function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; comp
               {contacts.map((cc, idx) => (
                 <tr key={cc.id} className={idx < contacts.length - 1 ? "border-b border-gray-100" : ""}>
                   <td className="px-4 py-2.5">
-                    <span className="font-medium text-zinc-800">
+                    <Link href={`/crm/contacts/${cc.contact.id}`} className="font-medium text-zinc-800 hover:text-blue-600">
                       {cc.contact.firstName} {cc.contact.lastName}
-                    </span>
+                    </Link>
                     {cc.isPrimary && (
                       <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Primary</span>
                     )}
