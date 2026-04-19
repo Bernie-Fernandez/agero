@@ -475,10 +475,93 @@ export async function unblacklistCompany(id: string) {
 // ─── Delete ──────────────────────────────────────────────────────────────────
 
 export async function deleteCompany(id: string) {
-  await requireAppUser();
+  const user = await requireAppUser();
+  if (user.role !== "DIRECTOR") redirect("/unauthorized");
   await prisma.company.delete({ where: { id } });
   revalidatePath("/crm/companies");
   redirect("/crm/companies");
+}
+
+// ─── Delete Company with orphaned contacts ────────────────────────────────────
+
+export async function deleteCompanyWithContacts(id: string) {
+  const user = await requireAppUser();
+  if (user.role !== "DIRECTOR") redirect("/unauthorized");
+
+  // Capture contact IDs before cascade delete
+  const links = await prisma.companyContact.findMany({
+    where: { companyId: id },
+    select: { contactId: true },
+  });
+  const contactIds = links.map((l) => l.contactId);
+
+  // Delete company (cascades CompanyContact records)
+  await prisma.company.delete({ where: { id } });
+
+  // Delete contacts that now have no remaining company links
+  for (const contactId of contactIds) {
+    const remaining = await prisma.companyContact.count({ where: { contactId } });
+    if (remaining === 0) {
+      await prisma.contact.deleteMany({ where: { id: contactId } });
+    }
+  }
+
+  revalidatePath("/crm/companies");
+  revalidatePath("/crm/contacts");
+  redirect("/crm/companies");
+}
+
+// ─── Company Contact Link ─────────────────────────────────────────────────────
+
+export async function addCompanyContactLink(companyId: string, formData: FormData) {
+  const user = await requireAppUser();
+  const { canEdit } = await import("@/lib/auth");
+  if (!canEdit(user.role)) redirect("/unauthorized");
+
+  const contactId = (formData.get("contactId") as string)?.trim();
+  if (!contactId) return;
+  const position = (formData.get("position") as string)?.trim() || null;
+  const isPrimary = formData.get("isPrimary") === "true";
+  const isAccountContact = formData.get("isAccountContact") === "on" || formData.get("isAccountContact") === "true";
+  const isEstimatingContact = formData.get("isEstimatingContact") === "on" || formData.get("isEstimatingContact") === "true";
+  const associationLabelId = (formData.get("associationLabelId") as string)?.trim() || null;
+
+  await prisma.companyContact.upsert({
+    where: { companyId_contactId: { companyId, contactId } },
+    create: { companyId, contactId, position, isPrimary, isAccountContact, isEstimatingContact, associationLabelId },
+    update: { position, isPrimary, isAccountContact, isEstimatingContact, associationLabelId },
+  });
+
+  revalidatePath(`/crm/companies/${companyId}`);
+  revalidatePath(`/crm/contacts/${contactId}`);
+}
+
+export async function removeCompanyContactLink(companyId: string, contactId: string) {
+  const user = await requireAppUser();
+  if (user.role !== "DIRECTOR") redirect("/unauthorized");
+  await prisma.companyContact.delete({ where: { companyId_contactId: { companyId, contactId } } });
+  revalidatePath(`/crm/companies/${companyId}`);
+  revalidatePath(`/crm/contacts/${contactId}`);
+}
+
+export async function updateCompanyContactLink(ccId: string, companyId: string, formData: FormData) {
+  const user = await requireAppUser();
+  const { canEdit } = await import("@/lib/auth");
+  if (!canEdit(user.role)) redirect("/unauthorized");
+
+  const position = (formData.get("position") as string)?.trim() || null;
+  const isPrimary = formData.get("isPrimary") === "true";
+  const isAccountContact = formData.get("isAccountContact") === "on" || formData.get("isAccountContact") === "true";
+  const isEstimatingContact = formData.get("isEstimatingContact") === "on" || formData.get("isEstimatingContact") === "true";
+  const associationLabelId = (formData.get("associationLabelId") as string)?.trim() || null;
+
+  await prisma.companyContact.update({
+    where: { id: ccId },
+    data: { position, isPrimary, isAccountContact, isEstimatingContact, associationLabelId },
+  });
+
+  revalidatePath(`/crm/companies/${companyId}`);
+  redirect(`/crm/companies/${companyId}`);
 }
 
 // ─── Wizard: Retrieve Company Data ───────────────────────────────────────────

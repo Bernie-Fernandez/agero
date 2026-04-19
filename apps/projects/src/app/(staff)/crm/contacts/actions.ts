@@ -1,16 +1,18 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { requireAppUser } from "@/lib/auth";
+import { requireAppUser, canEdit, canDelete } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const VALID_STRENGTHS = ["BRONZE", "SILVER", "GOLD"] as const;
+const VALID_CATEGORIES = ["OPERATIONAL", "COMMERCIAL"] as const;
 
 // ─── Create Contact ───────────────────────────────────────────────────────────
 
 export async function createContact(formData: FormData) {
   const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
 
   const firstName = (formData.get("firstName") as string)?.trim();
   const lastName = (formData.get("lastName") as string)?.trim();
@@ -19,6 +21,13 @@ export async function createContact(formData: FormData) {
   const email = (formData.get("email") as string)?.trim() || null;
   const mobile = (formData.get("mobile") as string)?.trim() || null;
   const phoneDdi = (formData.get("phoneDdi") as string)?.trim() || null;
+
+  // Validation: at least one contact method required
+  if (!email && !mobile && !phoneDdi) redirect("/crm/contacts/new?error=missing-contact");
+
+  const categoryRaw = (formData.get("contactCategory") as string)?.trim();
+  const contactCategory = (VALID_CATEGORIES.includes(categoryRaw as (typeof VALID_CATEGORIES)[number]) ? categoryRaw : "OPERATIONAL") as "OPERATIONAL" | "COMMERCIAL";
+
   const jobTitle = (formData.get("jobTitle") as string)?.trim() || null;
   const contactType = (formData.get("contactType") as string)?.trim() || null;
   const contactSubType = (formData.get("contactSubType") as string)?.trim() || null;
@@ -38,6 +47,9 @@ export async function createContact(formData: FormData) {
   const linkCompanyId = (formData.get("linkCompanyId") as string)?.trim() || null;
   const linkPosition = (formData.get("linkPosition") as string)?.trim() || null;
   const linkIsPrimary = formData.get("linkIsPrimary") === "true";
+  const linkIsAccountContact = formData.get("linkIsAccountContact") === "on" || formData.get("linkIsAccountContact") === "true";
+  const linkIsEstimatingContact = formData.get("linkIsEstimatingContact") === "on" || formData.get("linkIsEstimatingContact") === "true";
+  const linkAssociationLabelId = (formData.get("linkAssociationLabelId") as string)?.trim() || null;
 
   const contact = await prisma.contact.create({
     data: {
@@ -59,6 +71,7 @@ export async function createContact(formData: FormData) {
       contactOwnerId: contactOwnerId || null,
       contactOwnerStrength,
       legalBasisForData,
+      contactCategory,
       isActive,
       dataSource: "MANUAL",
       createdById: user.id,
@@ -73,8 +86,9 @@ export async function createContact(formData: FormData) {
         contactId: contact.id,
         position: linkPosition || null,
         isPrimary: linkIsPrimary,
-        isAccountContact: false,
-        isEstimatingContact: false,
+        isAccountContact: linkIsAccountContact,
+        isEstimatingContact: linkIsEstimatingContact,
+        associationLabelId: linkAssociationLabelId,
       },
     });
   }
@@ -82,7 +96,6 @@ export async function createContact(formData: FormData) {
   revalidatePath("/crm/contacts");
   if (linkCompanyId) revalidatePath(`/crm/companies/${linkCompanyId}`);
 
-  // If came from company page, redirect back
   const returnTo = (formData.get("returnTo") as string)?.trim();
   if (returnTo) redirect(returnTo);
   redirect(`/crm/contacts/${contact.id}`);
@@ -91,7 +104,8 @@ export async function createContact(formData: FormData) {
 // ─── Update Contact ───────────────────────────────────────────────────────────
 
 export async function updateContact(id: string, formData: FormData) {
-  await requireAppUser();
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
 
   const firstName = (formData.get("firstName") as string)?.trim();
   const lastName = (formData.get("lastName") as string)?.trim();
@@ -100,6 +114,12 @@ export async function updateContact(id: string, formData: FormData) {
   const email = (formData.get("email") as string)?.trim() || null;
   const mobile = (formData.get("mobile") as string)?.trim() || null;
   const phoneDdi = (formData.get("phoneDdi") as string)?.trim() || null;
+
+  if (!email && !mobile && !phoneDdi) redirect(`/crm/contacts/${id}/edit?error=missing-contact`);
+
+  const categoryRaw = (formData.get("contactCategory") as string)?.trim();
+  const contactCategory = (VALID_CATEGORIES.includes(categoryRaw as (typeof VALID_CATEGORIES)[number]) ? categoryRaw : "OPERATIONAL") as "OPERATIONAL" | "COMMERCIAL";
+
   const jobTitle = (formData.get("jobTitle") as string)?.trim() || null;
   const contactType = (formData.get("contactType") as string)?.trim() || null;
   const contactSubType = (formData.get("contactSubType") as string)?.trim() || null;
@@ -135,6 +155,7 @@ export async function updateContact(id: string, formData: FormData) {
       contactOwnerId: contactOwnerId || null,
       contactOwnerStrength,
       legalBasisForData,
+      contactCategory,
       isActive,
     },
   });
@@ -147,8 +168,8 @@ export async function updateContact(id: string, formData: FormData) {
 // ─── Delete Contact ───────────────────────────────────────────────────────────
 
 export async function deleteContact(id: string) {
-  await requireAppUser();
-  // Get company links for revalidation
+  const user = await requireAppUser();
+  if (!canDelete(user.role)) redirect("/unauthorized");
   const links = await prisma.companyContact.findMany({ where: { contactId: id }, select: { companyId: true } });
   await prisma.contact.delete({ where: { id } });
   revalidatePath("/crm/contacts");
@@ -164,7 +185,8 @@ export async function linkContactToCompany(
   position: string | null,
   isPrimary: boolean,
 ) {
-  await requireAppUser();
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
   await prisma.companyContact.upsert({
     where: { companyId_contactId: { companyId, contactId } },
     create: { companyId, contactId, position, isPrimary, isAccountContact: false, isEstimatingContact: false },
@@ -177,7 +199,8 @@ export async function linkContactToCompany(
 // ─── Unlink Contact from Company ─────────────────────────────────────────────
 
 export async function unlinkContactFromCompany(contactId: string, companyId: string) {
-  await requireAppUser();
+  const user = await requireAppUser();
+  if (!canDelete(user.role)) redirect("/unauthorized");
   await prisma.companyContact.delete({ where: { companyId_contactId: { companyId, contactId } } });
   revalidatePath(`/crm/contacts/${contactId}`);
   revalidatePath(`/crm/companies/${companyId}`);
@@ -187,6 +210,7 @@ export async function unlinkContactFromCompany(contactId: string, companyId: str
 
 export async function addContactNote(contactId: string, formData: FormData) {
   const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
   const content = (formData.get("content") as string)?.trim();
   if (!content) return;
   await prisma.contactNote.create({

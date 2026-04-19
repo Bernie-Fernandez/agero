@@ -32,6 +32,7 @@ export type CompanyContactMinAggregateOutputType = {
   isPrimary: boolean | null
   isAccountContact: boolean | null
   isEstimatingContact: boolean | null
+  associationLabelId: string | null
   createdAt: Date | null
 }
 
@@ -43,6 +44,7 @@ export type CompanyContactMaxAggregateOutputType = {
   isPrimary: boolean | null
   isAccountContact: boolean | null
   isEstimatingContact: boolean | null
+  associationLabelId: string | null
   createdAt: Date | null
 }
 
@@ -54,6 +56,7 @@ export type CompanyContactCountAggregateOutputType = {
   isPrimary: number
   isAccountContact: number
   isEstimatingContact: number
+  associationLabelId: number
   createdAt: number
   _all: number
 }
@@ -67,6 +70,7 @@ export type CompanyContactMinAggregateInputType = {
   isPrimary?: true
   isAccountContact?: true
   isEstimatingContact?: true
+  associationLabelId?: true
   createdAt?: true
 }
 
@@ -78,6 +82,7 @@ export type CompanyContactMaxAggregateInputType = {
   isPrimary?: true
   isAccountContact?: true
   isEstimatingContact?: true
+  associationLabelId?: true
   createdAt?: true
 }
 
@@ -89,6 +94,7 @@ export type CompanyContactCountAggregateInputType = {
   isPrimary?: true
   isAccountContact?: true
   isEstimatingContact?: true
+  associationLabelId?: true
   createdAt?: true
   _all?: true
 }
@@ -173,6 +179,7 @@ export type CompanyContactGroupByOutputType = {
   isPrimary: boolean
   isAccountContact: boolean
   isEstimatingContact: boolean
+  associationLabelId: string | null
   createdAt: Date
   _count: CompanyContactCountAggregateOutputType | null
   _min: CompanyContactMinAggregateOutputType | null
@@ -205,9 +212,11 @@ export type CompanyContactWhereInput = {
   isPrimary?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isAccountContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isEstimatingContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
+  associationLabelId?: Prisma.UuidNullableFilter<"CompanyContact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompanyContact"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  associationLabel?: Prisma.XOR<Prisma.AssociationLabelNullableScalarRelationFilter, Prisma.AssociationLabelWhereInput> | null
 }
 
 export type CompanyContactOrderByWithRelationInput = {
@@ -218,9 +227,11 @@ export type CompanyContactOrderByWithRelationInput = {
   isPrimary?: Prisma.SortOrder
   isAccountContact?: Prisma.SortOrder
   isEstimatingContact?: Prisma.SortOrder
+  associationLabelId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
   contact?: Prisma.ContactOrderByWithRelationInput
+  associationLabel?: Prisma.AssociationLabelOrderByWithRelationInput
 }
 
 export type CompanyContactWhereUniqueInput = Prisma.AtLeast<{
@@ -235,9 +246,11 @@ export type CompanyContactWhereUniqueInput = Prisma.AtLeast<{
   isPrimary?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isAccountContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isEstimatingContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
+  associationLabelId?: Prisma.UuidNullableFilter<"CompanyContact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompanyContact"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
+  associationLabel?: Prisma.XOR<Prisma.AssociationLabelNullableScalarRelationFilter, Prisma.AssociationLabelWhereInput> | null
 }, "id" | "companyId_contactId">
 
 export type CompanyContactOrderByWithAggregationInput = {
@@ -248,6 +261,7 @@ export type CompanyContactOrderByWithAggregationInput = {
   isPrimary?: Prisma.SortOrder
   isAccountContact?: Prisma.SortOrder
   isEstimatingContact?: Prisma.SortOrder
+  associationLabelId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.CompanyContactCountOrderByAggregateInput
   _max?: Prisma.CompanyContactMaxOrderByAggregateInput
@@ -265,6 +279,7 @@ export type CompanyContactScalarWhereWithAggregatesInput = {
   isPrimary?: Prisma.BoolWithAggregatesFilter<"CompanyContact"> | boolean
   isAccountContact?: Prisma.BoolWithAggregatesFilter<"CompanyContact"> | boolean
   isEstimatingContact?: Prisma.BoolWithAggregatesFilter<"CompanyContact"> | boolean
+  associationLabelId?: Prisma.UuidNullableWithAggregatesFilter<"CompanyContact"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CompanyContact"> | Date | string
 }
 
@@ -277,6 +292,7 @@ export type CompanyContactCreateInput = {
   createdAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutCompanyContactsInput
   contact: Prisma.ContactCreateNestedOneWithoutCompanyContactsInput
+  associationLabel?: Prisma.AssociationLabelCreateNestedOneWithoutCompanyContactsInput
 }
 
 export type CompanyContactUncheckedCreateInput = {
@@ -287,6 +303,7 @@ export type CompanyContactUncheckedCreateInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -299,6 +316,7 @@ export type CompanyContactUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutCompanyContactsNestedInput
   contact?: Prisma.ContactUpdateOneRequiredWithoutCompanyContactsNestedInput
+  associationLabel?: Prisma.AssociationLabelUpdateOneWithoutCompanyContactsNestedInput
 }
 
 export type CompanyContactUncheckedUpdateInput = {
@@ -309,6 +327,7 @@ export type CompanyContactUncheckedUpdateInput = {
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -320,6 +339,7 @@ export type CompanyContactCreateManyInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -340,6 +360,7 @@ export type CompanyContactUncheckedUpdateManyInput = {
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -366,6 +387,7 @@ export type CompanyContactCountOrderByAggregateInput = {
   isPrimary?: Prisma.SortOrder
   isAccountContact?: Prisma.SortOrder
   isEstimatingContact?: Prisma.SortOrder
+  associationLabelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -377,6 +399,7 @@ export type CompanyContactMaxOrderByAggregateInput = {
   isPrimary?: Prisma.SortOrder
   isAccountContact?: Prisma.SortOrder
   isEstimatingContact?: Prisma.SortOrder
+  associationLabelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -388,6 +411,7 @@ export type CompanyContactMinOrderByAggregateInput = {
   isPrimary?: Prisma.SortOrder
   isAccountContact?: Prisma.SortOrder
   isEstimatingContact?: Prisma.SortOrder
+  associationLabelId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -475,6 +499,48 @@ export type CompanyContactUncheckedUpdateManyWithoutContactNestedInput = {
   deleteMany?: Prisma.CompanyContactScalarWhereInput | Prisma.CompanyContactScalarWhereInput[]
 }
 
+export type CompanyContactCreateNestedManyWithoutAssociationLabelInput = {
+  create?: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput> | Prisma.CompanyContactCreateWithoutAssociationLabelInput[] | Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput[]
+  connectOrCreate?: Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput | Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput[]
+  createMany?: Prisma.CompanyContactCreateManyAssociationLabelInputEnvelope
+  connect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+}
+
+export type CompanyContactUncheckedCreateNestedManyWithoutAssociationLabelInput = {
+  create?: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput> | Prisma.CompanyContactCreateWithoutAssociationLabelInput[] | Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput[]
+  connectOrCreate?: Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput | Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput[]
+  createMany?: Prisma.CompanyContactCreateManyAssociationLabelInputEnvelope
+  connect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+}
+
+export type CompanyContactUpdateManyWithoutAssociationLabelNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput> | Prisma.CompanyContactCreateWithoutAssociationLabelInput[] | Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput[]
+  connectOrCreate?: Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput | Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput[]
+  upsert?: Prisma.CompanyContactUpsertWithWhereUniqueWithoutAssociationLabelInput | Prisma.CompanyContactUpsertWithWhereUniqueWithoutAssociationLabelInput[]
+  createMany?: Prisma.CompanyContactCreateManyAssociationLabelInputEnvelope
+  set?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  disconnect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  delete?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  connect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  update?: Prisma.CompanyContactUpdateWithWhereUniqueWithoutAssociationLabelInput | Prisma.CompanyContactUpdateWithWhereUniqueWithoutAssociationLabelInput[]
+  updateMany?: Prisma.CompanyContactUpdateManyWithWhereWithoutAssociationLabelInput | Prisma.CompanyContactUpdateManyWithWhereWithoutAssociationLabelInput[]
+  deleteMany?: Prisma.CompanyContactScalarWhereInput | Prisma.CompanyContactScalarWhereInput[]
+}
+
+export type CompanyContactUncheckedUpdateManyWithoutAssociationLabelNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput> | Prisma.CompanyContactCreateWithoutAssociationLabelInput[] | Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput[]
+  connectOrCreate?: Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput | Prisma.CompanyContactCreateOrConnectWithoutAssociationLabelInput[]
+  upsert?: Prisma.CompanyContactUpsertWithWhereUniqueWithoutAssociationLabelInput | Prisma.CompanyContactUpsertWithWhereUniqueWithoutAssociationLabelInput[]
+  createMany?: Prisma.CompanyContactCreateManyAssociationLabelInputEnvelope
+  set?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  disconnect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  delete?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  connect?: Prisma.CompanyContactWhereUniqueInput | Prisma.CompanyContactWhereUniqueInput[]
+  update?: Prisma.CompanyContactUpdateWithWhereUniqueWithoutAssociationLabelInput | Prisma.CompanyContactUpdateWithWhereUniqueWithoutAssociationLabelInput[]
+  updateMany?: Prisma.CompanyContactUpdateManyWithWhereWithoutAssociationLabelInput | Prisma.CompanyContactUpdateManyWithWhereWithoutAssociationLabelInput[]
+  deleteMany?: Prisma.CompanyContactScalarWhereInput | Prisma.CompanyContactScalarWhereInput[]
+}
+
 export type CompanyContactCreateWithoutCompanyInput = {
   id?: string
   position?: string | null
@@ -483,6 +549,7 @@ export type CompanyContactCreateWithoutCompanyInput = {
   isEstimatingContact?: boolean
   createdAt?: Date | string
   contact: Prisma.ContactCreateNestedOneWithoutCompanyContactsInput
+  associationLabel?: Prisma.AssociationLabelCreateNestedOneWithoutCompanyContactsInput
 }
 
 export type CompanyContactUncheckedCreateWithoutCompanyInput = {
@@ -492,6 +559,7 @@ export type CompanyContactUncheckedCreateWithoutCompanyInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -532,6 +600,7 @@ export type CompanyContactScalarWhereInput = {
   isPrimary?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isAccountContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
   isEstimatingContact?: Prisma.BoolFilter<"CompanyContact"> | boolean
+  associationLabelId?: Prisma.UuidNullableFilter<"CompanyContact"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompanyContact"> | Date | string
 }
 
@@ -543,6 +612,7 @@ export type CompanyContactCreateWithoutContactInput = {
   isEstimatingContact?: boolean
   createdAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutCompanyContactsInput
+  associationLabel?: Prisma.AssociationLabelCreateNestedOneWithoutCompanyContactsInput
 }
 
 export type CompanyContactUncheckedCreateWithoutContactInput = {
@@ -552,6 +622,7 @@ export type CompanyContactUncheckedCreateWithoutContactInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -581,6 +652,54 @@ export type CompanyContactUpdateManyWithWhereWithoutContactInput = {
   data: Prisma.XOR<Prisma.CompanyContactUpdateManyMutationInput, Prisma.CompanyContactUncheckedUpdateManyWithoutContactInput>
 }
 
+export type CompanyContactCreateWithoutAssociationLabelInput = {
+  id?: string
+  position?: string | null
+  isPrimary?: boolean
+  isAccountContact?: boolean
+  isEstimatingContact?: boolean
+  createdAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutCompanyContactsInput
+  contact: Prisma.ContactCreateNestedOneWithoutCompanyContactsInput
+}
+
+export type CompanyContactUncheckedCreateWithoutAssociationLabelInput = {
+  id?: string
+  companyId: string
+  contactId: string
+  position?: string | null
+  isPrimary?: boolean
+  isAccountContact?: boolean
+  isEstimatingContact?: boolean
+  createdAt?: Date | string
+}
+
+export type CompanyContactCreateOrConnectWithoutAssociationLabelInput = {
+  where: Prisma.CompanyContactWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput>
+}
+
+export type CompanyContactCreateManyAssociationLabelInputEnvelope = {
+  data: Prisma.CompanyContactCreateManyAssociationLabelInput | Prisma.CompanyContactCreateManyAssociationLabelInput[]
+  skipDuplicates?: boolean
+}
+
+export type CompanyContactUpsertWithWhereUniqueWithoutAssociationLabelInput = {
+  where: Prisma.CompanyContactWhereUniqueInput
+  update: Prisma.XOR<Prisma.CompanyContactUpdateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedUpdateWithoutAssociationLabelInput>
+  create: Prisma.XOR<Prisma.CompanyContactCreateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedCreateWithoutAssociationLabelInput>
+}
+
+export type CompanyContactUpdateWithWhereUniqueWithoutAssociationLabelInput = {
+  where: Prisma.CompanyContactWhereUniqueInput
+  data: Prisma.XOR<Prisma.CompanyContactUpdateWithoutAssociationLabelInput, Prisma.CompanyContactUncheckedUpdateWithoutAssociationLabelInput>
+}
+
+export type CompanyContactUpdateManyWithWhereWithoutAssociationLabelInput = {
+  where: Prisma.CompanyContactScalarWhereInput
+  data: Prisma.XOR<Prisma.CompanyContactUpdateManyMutationInput, Prisma.CompanyContactUncheckedUpdateManyWithoutAssociationLabelInput>
+}
+
 export type CompanyContactCreateManyCompanyInput = {
   id?: string
   contactId: string
@@ -588,6 +707,7 @@ export type CompanyContactCreateManyCompanyInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -599,6 +719,7 @@ export type CompanyContactUpdateWithoutCompanyInput = {
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contact?: Prisma.ContactUpdateOneRequiredWithoutCompanyContactsNestedInput
+  associationLabel?: Prisma.AssociationLabelUpdateOneWithoutCompanyContactsNestedInput
 }
 
 export type CompanyContactUncheckedUpdateWithoutCompanyInput = {
@@ -608,6 +729,7 @@ export type CompanyContactUncheckedUpdateWithoutCompanyInput = {
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -618,6 +740,7 @@ export type CompanyContactUncheckedUpdateManyWithoutCompanyInput = {
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -628,6 +751,7 @@ export type CompanyContactCreateManyContactInput = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: string | null
   createdAt?: Date | string
 }
 
@@ -639,6 +763,7 @@ export type CompanyContactUpdateWithoutContactInput = {
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutCompanyContactsNestedInput
+  associationLabel?: Prisma.AssociationLabelUpdateOneWithoutCompanyContactsNestedInput
 }
 
 export type CompanyContactUncheckedUpdateWithoutContactInput = {
@@ -648,12 +773,58 @@ export type CompanyContactUncheckedUpdateWithoutContactInput = {
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyContactUncheckedUpdateManyWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  associationLabelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CompanyContactCreateManyAssociationLabelInput = {
+  id?: string
+  companyId: string
+  contactId: string
+  position?: string | null
+  isPrimary?: boolean
+  isAccountContact?: boolean
+  isEstimatingContact?: boolean
+  createdAt?: Date | string
+}
+
+export type CompanyContactUpdateWithoutAssociationLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutCompanyContactsNestedInput
+  contact?: Prisma.ContactUpdateOneRequiredWithoutCompanyContactsNestedInput
+}
+
+export type CompanyContactUncheckedUpdateWithoutAssociationLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isEstimatingContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CompanyContactUncheckedUpdateManyWithoutAssociationLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isAccountContact?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -671,9 +842,11 @@ export type CompanyContactSelect<ExtArgs extends runtime.Types.Extensions.Intern
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }, ExtArgs["result"]["companyContact"]>
 
 export type CompanyContactSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -684,9 +857,11 @@ export type CompanyContactSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }, ExtArgs["result"]["companyContact"]>
 
 export type CompanyContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -697,9 +872,11 @@ export type CompanyContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }, ExtArgs["result"]["companyContact"]>
 
 export type CompanyContactSelectScalar = {
@@ -710,21 +887,25 @@ export type CompanyContactSelectScalar = {
   isPrimary?: boolean
   isAccountContact?: boolean
   isEstimatingContact?: boolean
+  associationLabelId?: boolean
   createdAt?: boolean
 }
 
-export type CompanyContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "contactId" | "position" | "isPrimary" | "isAccountContact" | "isEstimatingContact" | "createdAt", ExtArgs["result"]["companyContact"]>
+export type CompanyContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "contactId" | "position" | "isPrimary" | "isAccountContact" | "isEstimatingContact" | "associationLabelId" | "createdAt", ExtArgs["result"]["companyContact"]>
 export type CompanyContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }
 export type CompanyContactIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }
 export type CompanyContactIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
+  associationLabel?: boolean | Prisma.CompanyContact$associationLabelArgs<ExtArgs>
 }
 
 export type $CompanyContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -732,6 +913,7 @@ export type $CompanyContactPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     company: Prisma.$CompanyPayload<ExtArgs>
     contact: Prisma.$ContactPayload<ExtArgs>
+    associationLabel: Prisma.$AssociationLabelPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -741,6 +923,7 @@ export type $CompanyContactPayload<ExtArgs extends runtime.Types.Extensions.Inte
     isPrimary: boolean
     isAccountContact: boolean
     isEstimatingContact: boolean
+    associationLabelId: string | null
     createdAt: Date
   }, ExtArgs["result"]["companyContact"]>
   composites: {}
@@ -1138,6 +1321,7 @@ export interface Prisma__CompanyContactClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   contact<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  associationLabel<T extends Prisma.CompanyContact$associationLabelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyContact$associationLabelArgs<ExtArgs>>): Prisma.Prisma__AssociationLabelClient<runtime.Types.Result.GetResult<Prisma.$AssociationLabelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1174,6 +1358,7 @@ export interface CompanyContactFieldRefs {
   readonly isPrimary: Prisma.FieldRef<"CompanyContact", 'Boolean'>
   readonly isAccountContact: Prisma.FieldRef<"CompanyContact", 'Boolean'>
   readonly isEstimatingContact: Prisma.FieldRef<"CompanyContact", 'Boolean'>
+  readonly associationLabelId: Prisma.FieldRef<"CompanyContact", 'String'>
   readonly createdAt: Prisma.FieldRef<"CompanyContact", 'DateTime'>
 }
     
@@ -1573,6 +1758,25 @@ export type CompanyContactDeleteManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many CompanyContacts to delete.
    */
   limit?: number
+}
+
+/**
+ * CompanyContact.associationLabel
+ */
+export type CompanyContact$associationLabelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssociationLabel
+   */
+  select?: Prisma.AssociationLabelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssociationLabel
+   */
+  omit?: Prisma.AssociationLabelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssociationLabelInclude<ExtArgs> | null
+  where?: Prisma.AssociationLabelWhereInput
 }
 
 /**

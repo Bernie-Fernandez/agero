@@ -137,6 +137,11 @@ export type AlertThreshold = Prisma.AlertThresholdModel
  */
 export type ContactType = Prisma.ContactTypeModel
 /**
+ * Model AssociationLabel
+ * 
+ */
+export type AssociationLabel = Prisma.AssociationLabelModel
+/**
  * Model ExpertiseTag
  * 
  */

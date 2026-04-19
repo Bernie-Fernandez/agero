@@ -402,6 +402,13 @@ export type EnumContactOwnerStrengthNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel> | $Enums.ContactOwnerStrength | null
 }
 
+export type EnumContactCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactCategory | Prisma.EnumContactCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel> | $Enums.ContactCategory
+}
+
 export type EnumContactOwnerStrengthNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.ContactOwnerStrength | Prisma.EnumContactOwnerStrengthFieldRefInput<$PrismaModel> | null
   in?: $Enums.ContactOwnerStrength[] | Prisma.ListEnumContactOwnerStrengthFieldRefInput<$PrismaModel> | null
@@ -410,6 +417,16 @@ export type EnumContactOwnerStrengthNullableWithAggregatesFilter<$PrismaModel = 
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel>
+}
+
+export type EnumContactCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactCategory | Prisma.EnumContactCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactCategoryWithAggregatesFilter<$PrismaModel> | $Enums.ContactCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel>
 }
 
 export type EnumCostCodeTypeFilter<$PrismaModel = never> = {
@@ -1434,6 +1451,13 @@ export type NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel = never> =
   not?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel> | $Enums.ContactOwnerStrength | null
 }
 
+export type NestedEnumContactCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactCategory | Prisma.EnumContactCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel> | $Enums.ContactCategory
+}
+
 export type NestedEnumContactOwnerStrengthNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.ContactOwnerStrength | Prisma.EnumContactOwnerStrengthFieldRefInput<$PrismaModel> | null
   in?: $Enums.ContactOwnerStrength[] | Prisma.ListEnumContactOwnerStrengthFieldRefInput<$PrismaModel> | null
@@ -1442,6 +1466,16 @@ export type NestedEnumContactOwnerStrengthNullableWithAggregatesFilter<$PrismaMo
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumContactCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContactCategory | Prisma.EnumContactCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContactCategory[] | Prisma.ListEnumContactCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContactCategoryWithAggregatesFilter<$PrismaModel> | $Enums.ContactCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContactCategoryFilter<$PrismaModel>
 }
 
 export type NestedEnumCostCodeTypeFilter<$PrismaModel = never> = {

@@ -28,6 +28,11 @@ const SECTIONS = [
     description: "Manage contact type and sub-type dropdown options used when creating contact records.",
   },
   {
+    title: "Association Labels",
+    href: "/admin/association-labels",
+    description: "Manage labels that describe how a contact relates to a company, project, or another contact.",
+  },
+  {
     title: "Expertise Tags",
     href: "/admin/expertise-tags",
     description: "Manage supplier expertise tags used to classify company capabilities (grouped by category).",
@@ -40,12 +45,13 @@ const SECTIONS = [
 ];
 
 export default async function AdminPage() {
-  const [costCodeCount, insTypeCount, ptCount, thresholdCount, contactTypeCount, expertiseTagCount, userCount] = await Promise.all([
+  const [costCodeCount, insTypeCount, ptCount, thresholdCount, contactTypeCount, assocLabelCount, expertiseTagCount, userCount] = await Promise.all([
     prisma.costCode.count(),
     prisma.insurancePolicyType.count(),
     prisma.paymentTerm.count(),
     prisma.alertThreshold.count(),
     prisma.contactType.count(),
+    prisma.associationLabel.count(),
     prisma.expertiseTag.count(),
     prisma.user.count(),
   ]);
@@ -56,6 +62,7 @@ export default async function AdminPage() {
     "Payment Terms": ptCount,
     "Alert Thresholds": thresholdCount,
     "Contact Types": contactTypeCount,
+    "Association Labels": assocLabelCount,
     "Expertise Tags": expertiseTagCount,
     "Users": userCount,
   };

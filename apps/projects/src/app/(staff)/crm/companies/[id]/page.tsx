@@ -1,11 +1,18 @@
 import { prisma } from "@/lib/prisma";
-import { requireAppUser } from "@/lib/auth";
+import { requireAppUser, canDelete, canEdit } from "@/lib/auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TabNav } from "@/components/TabNav";
 import { ConfirmForm } from "@/components/ConfirmForm";
 import { BlacklistButton } from "@/components/BlacklistModal";
-import { deleteCompany, blacklistCompany, unblacklistCompany } from "../actions";
+import { DeleteCompanyModal } from "@/components/DeleteCompanyModal";
+import {
+  blacklistCompany,
+  unblacklistCompany,
+  addCompanyContactLink,
+  removeCompanyContactLink,
+  deleteCompanyWithContacts,
+} from "../actions";
 
 const TYPE_LABELS: Record<string, string> = {
   SUBCONTRACTOR: "Subcontractor",
@@ -45,11 +52,6 @@ const TIER_COLORS: Record<string, string> = {
   TIER_2: "bg-sky-100 text-sky-700",
   TIER_3: "bg-zinc-100 text-zinc-600",
 };
-const COST_LEVEL_LABELS: Record<string, string> = {
-  HIGH: "High Cost",
-  MID: "Mid Cost",
-  LOW: "Low Cost",
-};
 const PERFORMANCE_LABELS: Record<string, string> = {
   HIGH: "High",
   MEDIUM: "Medium",
@@ -88,16 +90,24 @@ export default async function CompanyDetailPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<{ tab?: string }>;
 }) {
-  await requireAppUser();
+  const user = await requireAppUser();
   const { id } = await params;
   const sp = await searchParams;
   const activeTab = sp.tab ?? "overview";
+
+  const userCanDelete = canDelete(user.role);
+  const userCanEdit = canEdit(user.role);
+
+  const org = await prisma.organisation.findFirst({ select: { id: true } });
 
   const company = await prisma.company.findUnique({
     where: { id },
     include: {
       companyContacts: {
-        include: { contact: true },
+        include: {
+          contact: true,
+          associationLabel: true,
+        },
         orderBy: [{ isPrimary: "desc" }, { contact: { lastName: "asc" } }],
       },
       trades: {
@@ -132,6 +142,28 @@ export default async function CompanyDetailPage({
 
   const isSubcontractor = company.types.includes("SUBCONTRACTOR");
   const primaryTrade = company.trades.find((t) => t.isPrimaryTrade);
+
+  // For inline contacts quick-add: load contacts NOT already linked, and association labels
+  const linkedContactIds = company.companyContacts.map((cc) => cc.contactId);
+  const [unlinkedContacts, associationLabels] = await Promise.all([
+    org
+      ? prisma.contact.findMany({
+          where: {
+            organisationId: org.id,
+            isActive: true,
+            id: { notIn: linkedContactIds.length > 0 ? linkedContactIds : ["00000000-0000-0000-0000-000000000000"] },
+          },
+          select: { id: true, firstName: true, lastName: true, jobTitle: true },
+          orderBy: [{ lastName: "asc" }, { firstName: "asc" }],
+        })
+      : Promise.resolve([]),
+    org
+      ? prisma.associationLabel.findMany({
+          where: { organisationId: org.id, isActive: true, associationType: "COMPANY" },
+          orderBy: { name: "asc" },
+        })
+      : Promise.resolve([]),
+  ]);
 
   const TABS = [
     { id: "overview", label: "Overview" },
@@ -182,14 +214,9 @@ export default async function CompanyDetailPage({
             {company.legalName && company.legalName !== company.name && (
               <p className="text-sm text-zinc-500 mt-0.5">{company.legalName}</p>
             )}
-
-            {/* Type + status badges */}
             <div className="flex gap-1.5 mt-2 flex-wrap">
               {company.types.map((t) => (
-                <span
-                  key={t}
-                  className={`text-xs px-2 py-0.5 rounded-full font-medium ${TYPE_COLORS[t] ?? "bg-gray-100 text-gray-600"}`}
-                >
+                <span key={t} className={`text-xs px-2 py-0.5 rounded-full font-medium ${TYPE_COLORS[t] ?? "bg-gray-100 text-gray-600"}`}>
                   {TYPE_LABELS[t] ?? t}
                 </span>
               ))}
@@ -198,7 +225,6 @@ export default async function CompanyDetailPage({
                   {company.subcontractorProfile.approvalStatus}
                 </span>
               )}
-              {/* Supplier profile badges */}
               {primaryTrade && (
                 <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-zinc-100 text-zinc-700">
                   {primaryTrade.costCode.codeDescription}
@@ -210,18 +236,12 @@ export default async function CompanyDetailPage({
                 </span>
               )}
               {company.isPreferred && (
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-yellow-100 text-yellow-700">
-                  ★ Preferred
-                </span>
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-yellow-100 text-yellow-700">★ Preferred</span>
               )}
               {company.tempLabour && (
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-zinc-100 text-zinc-600">
-                  Temp Labour
-                </span>
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-zinc-100 text-zinc-600">Temp Labour</span>
               )}
             </div>
-
-            {/* ABN / ASIC row */}
             <div className="flex items-center gap-3 mt-3 flex-wrap">
               {company.abn && (
                 <span className="font-mono text-sm text-zinc-700">{formatAbn(company.abn)}</span>
@@ -237,39 +257,34 @@ export default async function CompanyDetailPage({
               </span>
             </div>
           </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2 shrink-0">
-            <Link
-              href={`/crm/companies/${id}/edit`}
-              className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors"
-            >
-              Edit
-            </Link>
-            <ConfirmForm
-              action={deleteCompany.bind(null, id)}
-              message={`Delete ${company.name}? This cannot be undone.`}
-            >
-              <button
-                type="submit"
-                className="px-3 py-1.5 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-md hover:bg-red-50 transition-colors"
+          {userCanEdit && (
+            <div className="flex items-center gap-2 shrink-0">
+              <Link
+                href={`/crm/companies/${id}/edit`}
+                className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-200 rounded-md hover:bg-gray-50 transition-colors"
               >
-                Delete
-              </button>
-            </ConfirmForm>
-          </div>
+                Edit
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Tabs */}
       <TabNav tabs={TABS} baseHref={`/crm/companies/${id}`} />
 
-      {/* Tab Content */}
       {activeTab === "overview" && (
-        <OverviewTab company={company} />
+        <OverviewTab
+          company={company}
+          companyId={id}
+          unlinkedContacts={unlinkedContacts}
+          associationLabels={associationLabels}
+          canDeleteFlag={userCanDelete}
+          canEditFlag={userCanEdit}
+        />
       )}
       {activeTab === "contacts" && (
-        <ContactsTab contacts={company.companyContacts} companyId={id} />
+        <ContactsTab contacts={company.companyContacts} companyId={id} canDeleteFlag={userCanDelete} canEditFlag={userCanEdit} />
       )}
       {activeTab === "trades" && (
         <TradesTab trades={company.trades} companyId={id} />
@@ -286,12 +301,8 @@ export default async function CompanyDetailPage({
       {activeTab === "notes" && (
         <NotesTab notes={company.notes} />
       )}
-      {activeTab === "performance" && (
-        <PerformanceTab />
-      )}
-      {activeTab === "projects" && (
-        <ProjectsTab />
-      )}
+      {activeTab === "performance" && <PerformanceTab />}
+      {activeTab === "projects" && <ProjectsTab />}
       {activeTab === "subcontractor" && isSubcontractor && (
         <SubcontractorTab
           profile={company.subcontractorProfile}
@@ -307,119 +318,316 @@ export default async function CompanyDetailPage({
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
 
-type CompanyWithRelations = Awaited<ReturnType<typeof prisma.company.findUniqueOrThrow>>;
+type CompanyFull = Awaited<ReturnType<typeof prisma.company.findUniqueOrThrow>>;
 
-type OverviewCompany = CompanyWithRelations & {
+type OverviewCompany = CompanyFull & {
   expertiseTags: Array<{ expertiseTag: { id: string; name: string; category: string } }>;
+  trades: Array<{ id: string; isPrimaryTrade: boolean; costCode: { catCode: string; codeDescription: string; groupName: string } }>;
+  companyContacts: Array<{
+    id: string;
+    companyId: string;
+    contactId: string;
+    position: string | null;
+    isPrimary: boolean;
+    isAccountContact: boolean;
+    isEstimatingContact: boolean;
+    associationLabelId: string | null;
+    associationLabel: { id: string; name: string } | null;
+    contact: {
+      id: string;
+      firstName: string;
+      lastName: string;
+      email: string | null;
+      mobile: string | null;
+      phoneDdi: string | null;
+      jobTitle: string | null;
+    };
+  }>;
 };
 
-function OverviewTab({ company }: { company: OverviewCompany }) {
+function OverviewTab({
+  company,
+  companyId,
+  unlinkedContacts,
+  associationLabels,
+  canDeleteFlag,
+  canEditFlag,
+}: {
+  company: OverviewCompany;
+  companyId: string;
+  unlinkedContacts: Array<{ id: string; firstName: string; lastName: string; jobTitle: string | null }>;
+  associationLabels: Array<{ id: string; name: string }>;
+  canDeleteFlag: boolean;
+  canEditFlag: boolean;
+}) {
+  const addAction = addCompanyContactLink.bind(null, companyId);
+
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {/* Contact Info */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Contact</h3>
-        <dl className="space-y-2 text-sm">
-          <Row label="Phone" value={company.phoneMain} />
-          <Row label="Email" value={company.emailGeneral} />
-          <Row label="Website" value={company.website} isLink />
-          <Row label="Payment Terms" value={company.paymentTerms} />
-        </dl>
-      </div>
+    <div className="space-y-6">
+      {/* Info grid */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {/* Contact Info */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Contact</h3>
+          <dl className="space-y-2 text-sm">
+            <Row label="Phone" value={company.phoneMain} />
+            <Row label="Email" value={company.emailGeneral} />
+            <Row label="Website" value={company.website} isLink />
+            <Row label="Payment Terms" value={company.paymentTerms} />
+          </dl>
+        </div>
 
-      {/* Address */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Address</h3>
-        <dl className="space-y-2 text-sm">
-          <Row
-            label="Street"
-            value={
-              [company.addressStreet, company.addressSuburb, company.addressState, company.addressPostcode]
-                .filter(Boolean)
-                .join(", ") || null
-            }
-          />
-          <Row
-            label="Postal"
-            value={
-              company.postalSameAsStreet
-                ? "Same as street"
-                : [company.postalStreet, company.postalSuburb, company.postalState, company.postalPostcode]
-                    .filter(Boolean)
-                    .join(", ") || null
-            }
-          />
-        </dl>
-      </div>
+        {/* Address */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Address</h3>
+          <dl className="space-y-2 text-sm">
+            <Row
+              label="Street"
+              value={
+                [company.addressStreet, company.addressSuburb, company.addressState, company.addressPostcode]
+                  .filter(Boolean).join(", ") || null
+              }
+            />
+            <Row
+              label="Postal"
+              value={
+                company.postalSameAsStreet
+                  ? "Same as street"
+                  : [company.postalStreet, company.postalSuburb, company.postalState, company.postalPostcode]
+                      .filter(Boolean).join(", ") || null
+              }
+            />
+          </dl>
+        </div>
 
-      {/* Compliance */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Compliance</h3>
-        <dl className="space-y-2 text-sm">
-          {company.abn && <Row label="ABN" value={formatAbn(company.abn)} mono />}
-          {company.abnRegisteredName && <Row label="Registered Name" value={company.abnRegisteredName} />}
-          <Row label="ABN Status" value={company.abnStatus} />
-          <Row label="GST Registered" value={company.abnGstRegistered === true ? "Yes" : company.abnGstRegistered === false ? "No" : null} />
-          <Row label="ASIC Status" value={company.asicStatus} />
-          {company.abnVerifiedAt && <Row label="ABN Verified" value={formatDate(company.abnVerifiedAt)} />}
-          {company.asicCheckedAt && <Row label="ASIC Checked" value={formatDate(company.asicCheckedAt)} />}
-        </dl>
-      </div>
+        {/* Compliance */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Compliance</h3>
+          <dl className="space-y-2 text-sm">
+            {company.abn && <Row label="ABN" value={formatAbn(company.abn)} mono />}
+            {company.abnRegisteredName && <Row label="Registered Name" value={company.abnRegisteredName} />}
+            <Row label="ABN Status" value={company.abnStatus} />
+            <Row label="GST Registered" value={company.abnGstRegistered === true ? "Yes" : company.abnGstRegistered === false ? "No" : null} />
+            <Row label="ASIC Status" value={company.asicStatus} />
+            {company.abnVerifiedAt && <Row label="ABN Verified" value={formatDate(company.abnVerifiedAt)} />}
+          </dl>
+        </div>
 
-      {/* Supplier Profile */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Supplier Profile</h3>
-        <dl className="space-y-2 text-sm">
-          <Row
-            label="Tier"
-            value={company.tier ? { TIER_1: "Tier 1", TIER_2: "Tier 2", TIER_3: "Tier 3" }[company.tier] ?? company.tier : null}
-          />
-          <Row
-            label="Cost Level"
-            value={company.costLevel ? { HIGH: "High", MID: "Mid", LOW: "Low" }[company.costLevel] ?? company.costLevel : null}
-          />
-          <Row
-            label="Performance"
-            value={company.performanceRating ? { HIGH: "High", MEDIUM: "Medium", LOW: "Low", UNTESTED: "Untested" }[company.performanceRating] ?? company.performanceRating : null}
-          />
-          <div className="flex gap-2">
-            <dt className="text-zinc-500 w-32 shrink-0">Preferred</dt>
-            <dd className="text-zinc-800">{company.isPreferred ? "★ Yes" : "No"}</dd>
-          </div>
-          <div className="flex gap-2">
-            <dt className="text-zinc-500 w-32 shrink-0">Temp Labour</dt>
-            <dd className="text-zinc-800">{company.tempLabour ? "Yes" : "No"}</dd>
-          </div>
-        </dl>
-        {company.expertiseTags.length > 0 && (
-          <div className="mt-3">
-            <p className="text-xs text-zinc-500 mb-2">Expertise Tags</p>
-            <div className="flex flex-wrap gap-1.5">
-              {company.expertiseTags.map((et) => (
-                <span
-                  key={et.expertiseTag.id}
-                  className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100"
-                >
-                  {et.expertiseTag.name}
-                </span>
-              ))}
+        {/* Supplier Profile */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Supplier Profile</h3>
+          <dl className="space-y-2 text-sm">
+            <Row label="Tier" value={company.tier ? TIER_LABELS[company.tier] ?? company.tier : null} />
+            <Row label="Cost Level" value={company.costLevel ? { HIGH: "High", MID: "Mid", LOW: "Low" }[company.costLevel] ?? company.costLevel : null} />
+            <Row label="Performance" value={company.performanceRating ? PERFORMANCE_LABELS[company.performanceRating] ?? company.performanceRating : null} />
+            <div className="flex gap-2">
+              <dt className="text-zinc-500 w-32 shrink-0">Preferred</dt>
+              <dd className="text-zinc-800">{company.isPreferred ? "★ Yes" : "No"}</dd>
             </div>
+          </dl>
+          {company.expertiseTags.length > 0 && (
+            <div className="mt-3">
+              <p className="text-xs text-zinc-500 mb-2">Expertise Tags</p>
+              <div className="flex flex-wrap gap-1.5">
+                {company.expertiseTags.map((et) => (
+                  <span key={et.expertiseTag.id} className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100">
+                    {et.expertiseTag.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Meta */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Record</h3>
+          <dl className="space-y-2 text-sm">
+            <Row label="Data Source" value={company.dataSource} />
+            <Row label="Created" value={formatDate(company.createdAt)} />
+            <Row label="Last Updated" value={formatDate(company.updatedAt)} />
+          </dl>
+        </div>
+      </div>
+
+      {/* Trade Categories */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Trade Categories</h3>
+          <Link href={`/crm/companies/${companyId}?tab=trades`} className="text-xs text-blue-600 hover:underline">Manage →</Link>
+        </div>
+        {company.trades.length === 0 ? (
+          <p className="text-xs text-zinc-400">No trade categories assigned.</p>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {company.trades.map((t) => (
+              <span
+                key={t.id}
+                className={`text-xs px-2.5 py-1 rounded-full border font-medium ${t.isPrimaryTrade ? "bg-orange-50 text-orange-700 border-orange-200" : "bg-zinc-50 text-zinc-600 border-zinc-200"}`}
+              >
+                {t.isPrimaryTrade && <span className="mr-1">★</span>}
+                {t.costCode.codeDescription}
+                <span className="ml-1.5 font-mono text-zinc-400">{t.costCode.catCode}</span>
+              </span>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Meta */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Record</h3>
-        <dl className="space-y-2 text-sm">
-          <Row label="Data Source" value={company.dataSource} />
-          <Row label="Created" value={formatDate(company.createdAt)} />
-          <Row label="Last Updated" value={formatDate(company.updatedAt)} />
-        </dl>
+      {/* Inline Contacts Table */}
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+            Contacts ({company.companyContacts.length})
+          </h3>
+          <Link href={`/crm/contacts/new?companyId=${companyId}&returnTo=/crm/companies/${companyId}`} className="text-xs text-blue-600 hover:underline">
+            + New Contact
+          </Link>
+        </div>
+
+        {/* Quick add row */}
+        {canEditFlag && unlinkedContacts.length > 0 && (
+          <form action={addAction} className="flex items-center gap-2 px-4 py-2.5 border-b border-dashed border-gray-200 bg-blue-50/30">
+            <select
+              name="contactId"
+              className="flex-1 border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
+              defaultValue=""
+            >
+              <option value="" disabled>Link existing contact…</option>
+              {unlinkedContacts.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.firstName} {c.lastName}{c.jobTitle ? ` — ${c.jobTitle}` : ""}
+                </option>
+              ))}
+            </select>
+            <input
+              name="position"
+              placeholder="Position"
+              className="w-28 border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            {associationLabels.length > 0 && (
+              <select
+                name="associationLabelId"
+                className="w-36 border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500"
+                defaultValue=""
+              >
+                <option value="">Label…</option>
+                {associationLabels.map((l) => (
+                  <option key={l.id} value={l.id}>{l.name}</option>
+                ))}
+              </select>
+            )}
+            <label className="flex items-center gap-1 text-xs text-zinc-600 cursor-pointer">
+              <input type="checkbox" name="isAccountContact" value="true" className="rounded border-gray-300" />
+              ACC
+            </label>
+            <label className="flex items-center gap-1 text-xs text-zinc-600 cursor-pointer">
+              <input type="checkbox" name="isEstimatingContact" value="true" className="rounded border-gray-300" />
+              EST
+            </label>
+            <button type="submit" className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 transition-colors">
+              Add
+            </button>
+          </form>
+        )}
+
+        {company.companyContacts.length === 0 ? (
+          <div className="px-4 py-8 text-center text-zinc-400 text-sm">No contacts linked.</div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100">
+                <th className="text-left px-4 py-2 font-medium text-zinc-500 text-xs">Name</th>
+                <th className="text-left px-4 py-2 font-medium text-zinc-500 text-xs">Position</th>
+                <th className="text-left px-4 py-2 font-medium text-zinc-500 text-xs">DDI</th>
+                <th className="text-left px-4 py-2 font-medium text-zinc-500 text-xs">Mobile</th>
+                <th className="text-left px-4 py-2 font-medium text-zinc-500 text-xs">Email</th>
+                <th className="px-4 py-2 font-medium text-zinc-500 text-xs text-center">ACC</th>
+                <th className="px-4 py-2 font-medium text-zinc-500 text-xs text-center">EST</th>
+                <th className="px-4 py-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {company.companyContacts.map((cc, idx) => (
+                <tr key={cc.id} className={idx < company.companyContacts.length - 1 ? "border-b border-gray-100" : ""}>
+                  <td className="px-4 py-2.5">
+                    <Link href={`/crm/contacts/${cc.contact.id}`} className="font-medium text-zinc-800 hover:text-blue-600">
+                      {cc.contact.firstName} {cc.contact.lastName}
+                    </Link>
+                    {cc.isPrimary && (
+                      <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Primary</span>
+                    )}
+                    {cc.associationLabel && (
+                      <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">
+                        {cc.associationLabel.name}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 text-zinc-500 text-xs">{cc.position || cc.contact.jobTitle || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600 text-xs">{cc.contact.phoneDdi || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600 text-xs">{cc.contact.mobile || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600 text-xs">{cc.contact.email || "—"}</td>
+                  <td className="px-4 py-2.5 text-center">
+                    {cc.isAccountContact ? (
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 font-medium">ACC</span>
+                    ) : (
+                      <span className="text-zinc-300 text-xs">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 text-center">
+                    {cc.isEstimatingContact ? (
+                      <span className="text-xs px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 font-medium">EST</span>
+                    ) : (
+                      <span className="text-zinc-300 text-xs">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 text-right">
+                    <div className="flex items-center gap-2 justify-end">
+                      {canEditFlag && (
+                        <Link
+                          href={`/crm/companies/${companyId}/contacts/${cc.id}/edit`}
+                          className="text-zinc-400 hover:text-blue-600 text-xs"
+                          title="Edit link"
+                        >
+                          ✎
+                        </Link>
+                      )}
+                      {canDeleteFlag && (
+                        <ConfirmForm
+                          action={removeCompanyContactLink.bind(null, companyId, cc.contactId)}
+                          message={`Unlink ${cc.contact.firstName} ${cc.contact.lastName} from this company?`}
+                        >
+                          <button type="submit" className="text-zinc-300 hover:text-red-500 text-sm" title="Remove link">×</button>
+                        </ConfirmForm>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
+
+      {/* Delete Company — Director only */}
+      {canDeleteFlag && (
+        <div className="border border-red-200 rounded-lg p-4 bg-red-50">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-red-400 mb-2">Danger Zone</h3>
+          <p className="text-xs text-zinc-600 mb-3">
+            Permanently delete this company and all associated records. Contacts with no other company links will also be removed.
+          </p>
+          <DeleteCompanyModal
+            companyId={companyId}
+            companyName={company.name}
+            onDelete={deleteCompanyWithContacts}
+          />
+        </div>
+      )}
     </div>
   );
 }
+
+// ─── Shared Row helper ────────────────────────────────────────────────────────
 
 function Row({
   label,
@@ -448,11 +656,15 @@ function Row({
 
 // ─── Contacts Tab ─────────────────────────────────────────────────────────────
 
-type CompanyContact = {
+type CompanyContactFull = {
   id: string;
+  companyId: string;
+  contactId: string;
   isPrimary: boolean;
   isAccountContact: boolean;
+  isEstimatingContact: boolean;
   position: string | null;
+  associationLabel: { id: string; name: string } | null;
   contact: {
     id: string;
     firstName: string;
@@ -463,7 +675,17 @@ type CompanyContact = {
   };
 };
 
-function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; companyId: string }) {
+function ContactsTab({
+  contacts,
+  companyId,
+  canDeleteFlag,
+  canEditFlag,
+}: {
+  contacts: CompanyContactFull[];
+  companyId: string;
+  canDeleteFlag: boolean;
+  canEditFlag: boolean;
+}) {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -486,7 +708,8 @@ function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; comp
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Position</th>
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Email</th>
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Mobile</th>
-                <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs">Flags</th>
+                <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs text-center">Flags</th>
+                <th className="px-4 py-2.5"></th>
               </tr>
             </thead>
             <tbody>
@@ -499,12 +722,35 @@ function ContactsTab({ contacts, companyId }: { contacts: CompanyContact[]; comp
                     {cc.isPrimary && (
                       <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Primary</span>
                     )}
+                    {cc.associationLabel && (
+                      <span className="ml-1.5 text-xs px-1.5 py-0.5 rounded-full bg-zinc-100 text-zinc-500">
+                        {cc.associationLabel.name}
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-2.5 text-zinc-500 text-xs">{cc.position || cc.contact.jobTitle || "—"}</td>
-                  <td className="px-4 py-2.5 text-zinc-600">{cc.contact.email || "—"}</td>
-                  <td className="px-4 py-2.5 text-zinc-600">{cc.contact.mobile || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600 text-xs">{cc.contact.email || "—"}</td>
+                  <td className="px-4 py-2.5 text-zinc-600 text-xs">{cc.contact.mobile || "—"}</td>
                   <td className="px-4 py-2.5 text-center">
-                    {cc.isAccountContact && <span className="text-xs text-zinc-400">Acct</span>}
+                    <div className="flex gap-1 justify-center">
+                      {cc.isAccountContact && <span className="text-xs px-1 py-0.5 rounded bg-blue-100 text-blue-700">ACC</span>}
+                      {cc.isEstimatingContact && <span className="text-xs px-1 py-0.5 rounded bg-purple-100 text-purple-700">EST</span>}
+                    </div>
+                  </td>
+                  <td className="px-4 py-2.5 text-right">
+                    <div className="flex items-center gap-2 justify-end">
+                      {canEditFlag && (
+                        <Link href={`/crm/companies/${companyId}/contacts/${cc.id}/edit`} className="text-xs text-blue-600 hover:underline">Edit</Link>
+                      )}
+                      {canDeleteFlag && (
+                        <ConfirmForm
+                          action={removeCompanyContactLink.bind(null, companyId, cc.contactId)}
+                          message={`Unlink ${cc.contact.firstName} ${cc.contact.lastName}?`}
+                        >
+                          <button type="submit" className="text-xs text-red-500 hover:text-red-700">Unlink</button>
+                        </ConfirmForm>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -529,10 +775,7 @@ function TradesTab({ trades, companyId }: { trades: Trade[]; companyId: string }
     <div>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{trades.length} trade{trades.length !== 1 ? "s" : ""}</p>
-        <Link
-          href={`/crm/companies/${companyId}/trades/add`}
-          className="text-sm text-blue-600 hover:underline"
-        >
+        <Link href={`/crm/companies/${companyId}/trades/add`} className="text-sm text-blue-600 hover:underline">
           + Add Trade
         </Link>
       </div>
@@ -585,17 +828,11 @@ type InsurancePolicy = {
 
 function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; companyId: string }) {
   const today = new Date();
-
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{policies.length} polic{policies.length !== 1 ? "ies" : "y"}</p>
-        <Link
-          href={`/crm/companies/${companyId}/insurance/add`}
-          className="text-sm text-blue-600 hover:underline"
-        >
-          + Add Policy
-        </Link>
+        <Link href={`/crm/companies/${companyId}/insurance/add`} className="text-sm text-blue-600 hover:underline">+ Add Policy</Link>
       </div>
       {policies.length === 0 ? (
         <EmptyState message="No insurance policies on file." />
@@ -618,7 +855,6 @@ function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; co
                 const daysUntil = Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
                 const isExpired = daysUntil < 0;
                 const isExpiringSoon = !isExpired && daysUntil <= 30;
-
                 return (
                   <tr key={p.id} className={idx < policies.length - 1 ? "border-b border-gray-100" : ""}>
                     <td className="px-4 py-2.5">
@@ -658,14 +894,8 @@ function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; co
 // ─── Documents Tab ────────────────────────────────────────────────────────────
 
 type CompanyDocument = {
-  id: string;
-  documentType: string;
-  documentName: string;
-  fileName: string;
-  fileSizeBytes: number | null;
-  expiryDate: Date | null;
-  fileUrl: string;
-  createdAt: Date;
+  id: string; documentType: string; documentName: string; fileName: string;
+  fileSizeBytes: number | null; expiryDate: Date | null; fileUrl: string; createdAt: Date;
 };
 
 function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; companyId: string }) {
@@ -673,12 +903,7 @@ function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; 
     <div>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{documents.length} document{documents.length !== 1 ? "s" : ""}</p>
-        <Link
-          href={`/crm/companies/${companyId}/documents/upload`}
-          className="text-sm text-blue-600 hover:underline"
-        >
-          + Upload Document
-        </Link>
+        <Link href={`/crm/companies/${companyId}/documents/upload`} className="text-sm text-blue-600 hover:underline">+ Upload Document</Link>
       </div>
       {documents.length === 0 ? (
         <EmptyState message="No documents uploaded." />
@@ -705,14 +930,7 @@ function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; 
                   <td className="px-4 py-2.5 text-xs text-zinc-600">{formatDate(doc.expiryDate)}</td>
                   <td className="px-4 py-2.5 text-xs text-zinc-400">{formatDate(doc.createdAt)}</td>
                   <td className="px-4 py-2.5">
-                    <a
-                      href={doc.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-blue-600 hover:underline"
-                    >
-                      View
-                    </a>
+                    <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View</a>
                   </td>
                 </tr>
               ))}
@@ -727,13 +945,7 @@ function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; 
 // ─── Communications Tab ───────────────────────────────────────────────────────
 
 type Communication = {
-  id: string;
-  direction: string;
-  subject: string;
-  fromEmail: string;
-  toEmail: string;
-  sentAt: Date;
-  isRead: boolean;
+  id: string; direction: string; subject: string; fromEmail: string; toEmail: string; sentAt: Date; isRead: boolean;
 };
 
 function CommunicationsTab({ communications }: { communications: Communication[] }) {
@@ -747,13 +959,7 @@ function CommunicationsTab({ communications }: { communications: Communication[]
             <div key={c.id} className="bg-white rounded-lg border border-gray-200 px-4 py-3">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span
-                    className={`text-xs px-1.5 py-0.5 rounded-full font-medium shrink-0 ${
-                      c.direction === "OUTBOUND"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-green-100 text-green-700"
-                    }`}
-                  >
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full font-medium shrink-0 ${c.direction === "OUTBOUND" ? "bg-blue-100 text-blue-700" : "bg-green-100 text-green-700"}`}>
                     {c.direction === "OUTBOUND" ? "Sent" : "Received"}
                   </span>
                   <p className="text-sm font-medium text-zinc-800 truncate">{c.subject}</p>
@@ -774,9 +980,7 @@ function CommunicationsTab({ communications }: { communications: Communication[]
 // ─── Notes Tab ────────────────────────────────────────────────────────────────
 
 type Note = {
-  id: string;
-  content: string;
-  createdAt: Date;
+  id: string; content: string; createdAt: Date;
   createdBy: { firstName: string; lastName: string };
 };
 
@@ -801,25 +1005,13 @@ function NotesTab({ notes }: { notes: Note[] }) {
   );
 }
 
-// ─── Performance Tab ─────────────────────────────────────────────────────────
+// ─── Performance Tab ──────────────────────────────────────────────────────────
 
 function PerformanceTab() {
   const cards = [
-    {
-      title: "Quality Performance",
-      body: "Quality scores will populate from ITP results and NCR history in Phase 2.",
-      standard: "ISO 9001",
-    },
-    {
-      title: "Safety Performance",
-      body: "Safety scores will populate from incident history and audit results in Phase 3.",
-      standard: "ISO 45001",
-    },
-    {
-      title: "Environmental Performance",
-      body: "Environmental scores will populate from environmental incident records in Phase 3.",
-      standard: "ISO 14001",
-    },
+    { title: "Quality Performance", body: "Quality scores will populate from ITP results and NCR history in Phase 2.", standard: "ISO 9001" },
+    { title: "Safety Performance", body: "Safety scores will populate from incident history and audit results in Phase 3.", standard: "ISO 45001" },
+    { title: "Environmental Performance", body: "Environmental scores will populate from environmental incident records in Phase 3.", standard: "ISO 14001" },
   ];
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -827,9 +1019,7 @@ function PerformanceTab() {
         <div key={card.title} className="bg-gray-50 border border-gray-200 rounded-lg p-5">
           <div className="flex items-start justify-between gap-2 mb-2">
             <h3 className="text-sm font-semibold text-zinc-700">{card.title}</h3>
-            <span className="text-xs px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-400 shrink-0 font-mono">
-              {card.standard}
-            </span>
+            <span className="text-xs px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-400 shrink-0 font-mono">{card.standard}</span>
           </div>
           <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
         </div>
@@ -845,7 +1035,7 @@ function ProjectsTab() {
     <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
       <p className="text-sm font-medium text-zinc-600 mb-1">No Projects Yet</p>
       <p className="text-xs text-zinc-400 leading-relaxed max-w-sm mx-auto">
-        Projects this company has been involved in will appear here. This section will be populated in Phase 2 when project assignment is built.
+        Projects this company has been involved in will appear here in Phase 2.
       </p>
     </div>
   );
@@ -878,13 +1068,9 @@ function SubcontractorTab({
   blacklistReason: string | null;
   blacklistedAt: Date | null;
 }) {
-  if (!profile) {
-    return <EmptyState message="Subcontractor profile not found." />;
-  }
-
+  if (!profile) return <EmptyState message="Subcontractor profile not found." />;
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {/* Approval */}
       <div className="bg-white rounded-lg border border-gray-200 p-4">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Approval</h3>
         <dl className="space-y-2 text-sm">
@@ -893,16 +1079,10 @@ function SubcontractorTab({
           <Row label="Review Date" value={formatDate(profile.approvalReviewDate)} />
         </dl>
       </div>
-
-      {/* Safety Compliance placeholder */}
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">Safety Compliance</h3>
-        <p className="text-xs text-zinc-400 leading-relaxed">
-          Safety capability flags will be configured in Phase 2 when project assignment is built.
-        </p>
+        <p className="text-xs text-zinc-400 leading-relaxed">Safety capability flags will be configured in Phase 2.</p>
       </div>
-
-      {/* Portal */}
       <div className="bg-white rounded-lg border border-gray-200 p-4">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Portal Access</h3>
         <dl className="space-y-2 text-sm">
@@ -910,16 +1090,11 @@ function SubcontractorTab({
           <Row label="Last Login" value={formatDate(profile.portalLastLoginAt)} />
         </dl>
         {!profile.portalAccessEnabled && (
-          <Link
-            href={`/crm/companies/${companyId}/portal/invite`}
-            className="mt-3 inline-flex text-sm text-blue-600 hover:underline"
-          >
+          <Link href={`/crm/companies/${companyId}/portal/invite`} className="mt-3 inline-flex text-sm text-blue-600 hover:underline">
             Send portal invitation →
           </Link>
         )}
       </div>
-
-      {/* Blacklist */}
       <div className={`rounded-lg border p-4 ${isBlacklisted ? "bg-red-50 border-red-200" : "bg-white border-gray-200"}`}>
         <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Blacklist</h3>
         {isBlacklisted ? (
@@ -927,20 +1102,10 @@ function SubcontractorTab({
             <div className="flex items-start gap-2 mb-3">
               <span className="text-red-600 font-bold text-sm">BLACKLISTED</span>
             </div>
-            {blacklistReason && (
-              <p className="text-xs text-zinc-600 mb-1"><span className="font-medium">Reason:</span> {blacklistReason}</p>
-            )}
-            {blacklistedAt && (
-              <p className="text-xs text-zinc-400 mb-3">Since {formatDate(blacklistedAt)}</p>
-            )}
-            <ConfirmForm
-              action={unblacklistCompany.bind(null, companyId)}
-              message="Remove this company from the blacklist?"
-            >
-              <button
-                type="submit"
-                className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              >
+            {blacklistReason && <p className="text-xs text-zinc-600 mb-1"><span className="font-medium">Reason:</span> {blacklistReason}</p>}
+            {blacklistedAt && <p className="text-xs text-zinc-400 mb-3">Since {formatDate(blacklistedAt)}</p>}
+            <ConfirmForm action={unblacklistCompany.bind(null, companyId)} message="Remove this company from the blacklist?">
+              <button type="submit" className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
                 Remove from Blacklist
               </button>
             </ConfirmForm>

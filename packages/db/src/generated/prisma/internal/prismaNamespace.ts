@@ -403,6 +403,7 @@ export const ModelName = {
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
   ContactType: 'ContactType',
+  AssociationLabel: 'AssociationLabel',
   ExpertiseTag: 'ExpertiseTag',
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
@@ -454,7 +455,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1861,6 +1862,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ContactTypeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ContactTypeCountAggregateOutputType> | number
+        }
+      }
+    }
+    AssociationLabel: {
+      payload: Prisma.$AssociationLabelPayload<ExtArgs>
+      fields: Prisma.AssociationLabelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AssociationLabelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AssociationLabelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        findFirst: {
+          args: Prisma.AssociationLabelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AssociationLabelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        findMany: {
+          args: Prisma.AssociationLabelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>[]
+        }
+        create: {
+          args: Prisma.AssociationLabelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        createMany: {
+          args: Prisma.AssociationLabelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AssociationLabelCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>[]
+        }
+        delete: {
+          args: Prisma.AssociationLabelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        update: {
+          args: Prisma.AssociationLabelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        deleteMany: {
+          args: Prisma.AssociationLabelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AssociationLabelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AssociationLabelUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>[]
+        }
+        upsert: {
+          args: Prisma.AssociationLabelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssociationLabelPayload>
+        }
+        aggregate: {
+          args: Prisma.AssociationLabelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAssociationLabel>
+        }
+        groupBy: {
+          args: Prisma.AssociationLabelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssociationLabelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AssociationLabelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssociationLabelCountAggregateOutputType> | number
         }
       }
     }
@@ -4707,6 +4782,7 @@ export const ContactScalarFieldEnum = {
   contactOwnerId: 'contactOwnerId',
   contactOwnerStrength: 'contactOwnerStrength',
   legalBasisForData: 'legalBasisForData',
+  contactCategory: 'contactCategory',
   isActive: 'isActive',
   dataSource: 'dataSource',
   catCloudId: 'catCloudId',
@@ -4726,6 +4802,7 @@ export const CompanyContactScalarFieldEnum = {
   isPrimary: 'isPrimary',
   isAccountContact: 'isAccountContact',
   isEstimatingContact: 'isEstimatingContact',
+  associationLabelId: 'associationLabelId',
   createdAt: 'createdAt'
 } as const
 
@@ -4945,6 +5022,19 @@ export const ContactTypeScalarFieldEnum = {
 } as const
 
 export type ContactTypeScalarFieldEnum = (typeof ContactTypeScalarFieldEnum)[keyof typeof ContactTypeScalarFieldEnum]
+
+
+export const AssociationLabelScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  associationType: 'associationType',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssociationLabelScalarFieldEnum = (typeof AssociationLabelScalarFieldEnum)[keyof typeof AssociationLabelScalarFieldEnum]
 
 
 export const ExpertiseTagScalarFieldEnum = {
@@ -5849,6 +5939,20 @@ export type ListEnumContactOwnerStrengthFieldRefInput<$PrismaModel> = FieldRefIn
 
 
 /**
+ * Reference to a field of type 'ContactCategory'
+ */
+export type EnumContactCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'ContactCategory[]'
+ */
+export type ListEnumContactCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactCategory[]'>
+    
+
+
+/**
  * Reference to a field of type 'CostCodeType'
  */
 export type EnumCostCodeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CostCodeType'>
@@ -6395,6 +6499,7 @@ export type GlobalOmitConfig = {
   notificationAlert?: Prisma.NotificationAlertOmit
   alertThreshold?: Prisma.AlertThresholdOmit
   contactType?: Prisma.ContactTypeOmit
+  associationLabel?: Prisma.AssociationLabelOmit
   expertiseTag?: Prisma.ExpertiseTagOmit
   companyExpertiseTag?: Prisma.CompanyExpertiseTagOmit
   paymentTerm?: Prisma.PaymentTermOmit

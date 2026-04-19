@@ -11,9 +11,13 @@
 
 export const UserRole = {
   DIRECTOR: 'DIRECTOR',
+  CONSTRUCTION_MANAGER: 'CONSTRUCTION_MANAGER',
   PROJECT_MANAGER: 'PROJECT_MANAGER',
-  SAFETY_MANAGER: 'SAFETY_MANAGER',
-  SITE_MANAGER: 'SITE_MANAGER'
+  CONTRACTS_ADMINISTRATOR: 'CONTRACTS_ADMINISTRATOR',
+  ESTIMATOR: 'ESTIMATOR',
+  SITE_MANAGER: 'SITE_MANAGER',
+  FINANCIAL_CONTROLLER: 'FINANCIAL_CONTROLLER',
+  ADMINISTRATOR: 'ADMINISTRATOR'
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
@@ -65,6 +69,14 @@ export const ContactOwnerStrength = {
 } as const
 
 export type ContactOwnerStrength = (typeof ContactOwnerStrength)[keyof typeof ContactOwnerStrength]
+
+
+export const ContactCategory = {
+  OPERATIONAL: 'OPERATIONAL',
+  COMMERCIAL: 'COMMERCIAL'
+} as const
+
+export type ContactCategory = (typeof ContactCategory)[keyof typeof ContactCategory]
 
 
 export const DataSource = {

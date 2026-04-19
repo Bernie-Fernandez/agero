@@ -11,7 +11,24 @@
       "Bash(git rm:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(python3 -c ' *)",
+      "Bash(node *)",
+      "Bash(where py *)",
+      "Bash(where python3 *)",
+      "Bash(where node *)",
+      "Bash(py *)",
+      "Bash(npx prisma *)",
+      "Bash(npx ts-node *)",
+      "Bash(npm install *)",
+      "Bash(git push *)",
+      "Bash(npx tsc *)",
+      "Bash(curl -s \"https://abr.business.gov.au/json/MatchingNames.aspx?name=acme&callback=callback&guid=test\")",
+      "Bash(curl -s \"https://abr.business.gov.au/json/MatchingNames.aspx?name=acme&guid=test\")",
+      "Bash(python3 -c ' *4)",
+      "Bash(powershell *)",
+      "Bash(python3 *)",
+      "Bash(python3.exe --version)"
     ]
   }
 }

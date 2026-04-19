@@ -44,6 +44,7 @@ export type ContactMinAggregateOutputType = {
   contactOwnerId: string | null
   contactOwnerStrength: $Enums.ContactOwnerStrength | null
   legalBasisForData: string | null
+  contactCategory: $Enums.ContactCategory | null
   isActive: boolean | null
   dataSource: $Enums.DataSource | null
   catCloudId: string | null
@@ -72,6 +73,7 @@ export type ContactMaxAggregateOutputType = {
   contactOwnerId: string | null
   contactOwnerStrength: $Enums.ContactOwnerStrength | null
   legalBasisForData: string | null
+  contactCategory: $Enums.ContactCategory | null
   isActive: boolean | null
   dataSource: $Enums.DataSource | null
   catCloudId: string | null
@@ -100,6 +102,7 @@ export type ContactCountAggregateOutputType = {
   contactOwnerId: number
   contactOwnerStrength: number
   legalBasisForData: number
+  contactCategory: number
   isActive: number
   dataSource: number
   catCloudId: number
@@ -130,6 +133,7 @@ export type ContactMinAggregateInputType = {
   contactOwnerId?: true
   contactOwnerStrength?: true
   legalBasisForData?: true
+  contactCategory?: true
   isActive?: true
   dataSource?: true
   catCloudId?: true
@@ -158,6 +162,7 @@ export type ContactMaxAggregateInputType = {
   contactOwnerId?: true
   contactOwnerStrength?: true
   legalBasisForData?: true
+  contactCategory?: true
   isActive?: true
   dataSource?: true
   catCloudId?: true
@@ -186,6 +191,7 @@ export type ContactCountAggregateInputType = {
   contactOwnerId?: true
   contactOwnerStrength?: true
   legalBasisForData?: true
+  contactCategory?: true
   isActive?: true
   dataSource?: true
   catCloudId?: true
@@ -287,6 +293,7 @@ export type ContactGroupByOutputType = {
   contactOwnerId: string | null
   contactOwnerStrength: $Enums.ContactOwnerStrength | null
   legalBasisForData: string | null
+  contactCategory: $Enums.ContactCategory
   isActive: boolean
   dataSource: $Enums.DataSource
   catCloudId: string | null
@@ -336,6 +343,7 @@ export type ContactWhereInput = {
   contactOwnerId?: Prisma.UuidNullableFilter<"Contact"> | string | null
   contactOwnerStrength?: Prisma.EnumContactOwnerStrengthNullableFilter<"Contact"> | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.StringNullableFilter<"Contact"> | string | null
+  contactCategory?: Prisma.EnumContactCategoryFilter<"Contact"> | $Enums.ContactCategory
   isActive?: Prisma.BoolFilter<"Contact"> | boolean
   dataSource?: Prisma.EnumDataSourceFilter<"Contact"> | $Enums.DataSource
   catCloudId?: Prisma.StringNullableFilter<"Contact"> | string | null
@@ -370,6 +378,7 @@ export type ContactOrderByWithRelationInput = {
   contactOwnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   contactOwnerStrength?: Prisma.SortOrderInput | Prisma.SortOrder
   legalBasisForData?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactCategory?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -407,6 +416,7 @@ export type ContactWhereUniqueInput = Prisma.AtLeast<{
   contactOwnerId?: Prisma.UuidNullableFilter<"Contact"> | string | null
   contactOwnerStrength?: Prisma.EnumContactOwnerStrengthNullableFilter<"Contact"> | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.StringNullableFilter<"Contact"> | string | null
+  contactCategory?: Prisma.EnumContactCategoryFilter<"Contact"> | $Enums.ContactCategory
   isActive?: Prisma.BoolFilter<"Contact"> | boolean
   dataSource?: Prisma.EnumDataSourceFilter<"Contact"> | $Enums.DataSource
   catCloudId?: Prisma.StringNullableFilter<"Contact"> | string | null
@@ -441,6 +451,7 @@ export type ContactOrderByWithAggregationInput = {
   contactOwnerId?: Prisma.SortOrderInput | Prisma.SortOrder
   contactOwnerStrength?: Prisma.SortOrderInput | Prisma.SortOrder
   legalBasisForData?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactCategory?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -475,6 +486,7 @@ export type ContactScalarWhereWithAggregatesInput = {
   contactOwnerId?: Prisma.UuidNullableWithAggregatesFilter<"Contact"> | string | null
   contactOwnerStrength?: Prisma.EnumContactOwnerStrengthNullableWithAggregatesFilter<"Contact"> | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
+  contactCategory?: Prisma.EnumContactCategoryWithAggregatesFilter<"Contact"> | $Enums.ContactCategory
   isActive?: Prisma.BoolWithAggregatesFilter<"Contact"> | boolean
   dataSource?: Prisma.EnumDataSourceWithAggregatesFilter<"Contact"> | $Enums.DataSource
   catCloudId?: Prisma.StringNullableWithAggregatesFilter<"Contact"> | string | null
@@ -501,6 +513,7 @@ export type ContactCreateInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -534,6 +547,7 @@ export type ContactUncheckedCreateInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -563,6 +577,7 @@ export type ContactUpdateInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -596,6 +611,7 @@ export type ContactUncheckedUpdateInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -627,6 +643,7 @@ export type ContactCreateManyInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -653,6 +670,7 @@ export type ContactUpdateManyMutationInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -680,6 +698,7 @@ export type ContactUncheckedUpdateManyInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -718,6 +737,7 @@ export type ContactCountOrderByAggregateInput = {
   contactOwnerId?: Prisma.SortOrder
   contactOwnerStrength?: Prisma.SortOrder
   legalBasisForData?: Prisma.SortOrder
+  contactCategory?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
@@ -746,6 +766,7 @@ export type ContactMaxOrderByAggregateInput = {
   contactOwnerId?: Prisma.SortOrder
   contactOwnerStrength?: Prisma.SortOrder
   legalBasisForData?: Prisma.SortOrder
+  contactCategory?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
@@ -774,6 +795,7 @@ export type ContactMinOrderByAggregateInput = {
   contactOwnerId?: Prisma.SortOrder
   contactOwnerStrength?: Prisma.SortOrder
   legalBasisForData?: Prisma.SortOrder
+  contactCategory?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
@@ -922,6 +944,10 @@ export type NullableEnumContactOwnerStrengthFieldUpdateOperationsInput = {
   set?: $Enums.ContactOwnerStrength | null
 }
 
+export type EnumContactCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.ContactCategory
+}
+
 export type ContactCreateNestedOneWithoutCompanyContactsInput = {
   create?: Prisma.XOR<Prisma.ContactCreateWithoutCompanyContactsInput, Prisma.ContactUncheckedCreateWithoutCompanyContactsInput>
   connectOrCreate?: Prisma.ContactCreateOrConnectWithoutCompanyContactsInput
@@ -984,6 +1010,7 @@ export type ContactCreateWithoutOrganisationInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1015,6 +1042,7 @@ export type ContactUncheckedCreateWithoutOrganisationInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1075,6 +1103,7 @@ export type ContactScalarWhereInput = {
   contactOwnerId?: Prisma.UuidNullableFilter<"Contact"> | string | null
   contactOwnerStrength?: Prisma.EnumContactOwnerStrengthNullableFilter<"Contact"> | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.StringNullableFilter<"Contact"> | string | null
+  contactCategory?: Prisma.EnumContactCategoryFilter<"Contact"> | $Enums.ContactCategory
   isActive?: Prisma.BoolFilter<"Contact"> | boolean
   dataSource?: Prisma.EnumDataSourceFilter<"Contact"> | $Enums.DataSource
   catCloudId?: Prisma.StringNullableFilter<"Contact"> | string | null
@@ -1101,6 +1130,7 @@ export type ContactCreateWithoutCreatedByInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1133,6 +1163,7 @@ export type ContactUncheckedCreateWithoutCreatedByInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1171,6 +1202,7 @@ export type ContactCreateWithoutContactOwnerInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1202,6 +1234,7 @@ export type ContactUncheckedCreateWithoutContactOwnerInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1273,6 +1306,7 @@ export type ContactCreateWithoutCompanyContactsInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1305,6 +1339,7 @@ export type ContactUncheckedCreateWithoutCompanyContactsInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1349,6 +1384,7 @@ export type ContactUpdateWithoutCompanyContactsInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1381,6 +1417,7 @@ export type ContactUncheckedUpdateWithoutCompanyContactsInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1409,6 +1446,7 @@ export type ContactCreateWithoutNotesInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1441,6 +1479,7 @@ export type ContactUncheckedCreateWithoutNotesInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1485,6 +1524,7 @@ export type ContactUpdateWithoutNotesInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1517,6 +1557,7 @@ export type ContactUncheckedUpdateWithoutNotesInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1545,6 +1586,7 @@ export type ContactCreateWithoutCommunicationsInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1577,6 +1619,7 @@ export type ContactUncheckedCreateWithoutCommunicationsInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1621,6 +1664,7 @@ export type ContactUpdateWithoutCommunicationsInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1653,6 +1697,7 @@ export type ContactUncheckedUpdateWithoutCommunicationsInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1682,6 +1727,7 @@ export type ContactCreateManyOrganisationInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1708,6 +1754,7 @@ export type ContactUpdateWithoutOrganisationInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1739,6 +1786,7 @@ export type ContactUncheckedUpdateWithoutOrganisationInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1769,6 +1817,7 @@ export type ContactUncheckedUpdateManyWithoutOrganisationInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1797,6 +1846,7 @@ export type ContactCreateManyCreatedByInput = {
   contactOwnerId?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1823,6 +1873,7 @@ export type ContactCreateManyContactOwnerInput = {
   instagramUrl?: string | null
   contactOwnerStrength?: $Enums.ContactOwnerStrength | null
   legalBasisForData?: string | null
+  contactCategory?: $Enums.ContactCategory
   isActive?: boolean
   dataSource?: $Enums.DataSource
   catCloudId?: string | null
@@ -1849,6 +1900,7 @@ export type ContactUpdateWithoutCreatedByInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1881,6 +1933,7 @@ export type ContactUncheckedUpdateWithoutCreatedByInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1911,6 +1964,7 @@ export type ContactUncheckedUpdateManyWithoutCreatedByInput = {
   contactOwnerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1936,6 +1990,7 @@ export type ContactUpdateWithoutContactOwnerInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1967,6 +2022,7 @@ export type ContactUncheckedUpdateWithoutContactOwnerInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1997,6 +2053,7 @@ export type ContactUncheckedUpdateManyWithoutContactOwnerInput = {
   instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contactOwnerStrength?: Prisma.NullableEnumContactOwnerStrengthFieldUpdateOperationsInput | $Enums.ContactOwnerStrength | null
   legalBasisForData?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactCategory?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2074,6 +2131,7 @@ export type ContactSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   contactOwnerId?: boolean
   contactOwnerStrength?: boolean
   legalBasisForData?: boolean
+  contactCategory?: boolean
   isActive?: boolean
   dataSource?: boolean
   catCloudId?: boolean
@@ -2109,6 +2167,7 @@ export type ContactSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   contactOwnerId?: boolean
   contactOwnerStrength?: boolean
   legalBasisForData?: boolean
+  contactCategory?: boolean
   isActive?: boolean
   dataSource?: boolean
   catCloudId?: boolean
@@ -2140,6 +2199,7 @@ export type ContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   contactOwnerId?: boolean
   contactOwnerStrength?: boolean
   legalBasisForData?: boolean
+  contactCategory?: boolean
   isActive?: boolean
   dataSource?: boolean
   catCloudId?: boolean
@@ -2171,6 +2231,7 @@ export type ContactSelectScalar = {
   contactOwnerId?: boolean
   contactOwnerStrength?: boolean
   legalBasisForData?: boolean
+  contactCategory?: boolean
   isActive?: boolean
   dataSource?: boolean
   catCloudId?: boolean
@@ -2179,7 +2240,7 @@ export type ContactSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "firstName" | "lastName" | "email" | "mobile" | "phoneDdi" | "jobTitle" | "contactType" | "contactSubType" | "contactLocation" | "preferredContactMethod" | "doNotCall" | "mailingAddress" | "linkedinUrl" | "instagramUrl" | "contactOwnerId" | "contactOwnerStrength" | "legalBasisForData" | "isActive" | "dataSource" | "catCloudId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+export type ContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "firstName" | "lastName" | "email" | "mobile" | "phoneDdi" | "jobTitle" | "contactType" | "contactSubType" | "contactLocation" | "preferredContactMethod" | "doNotCall" | "mailingAddress" | "linkedinUrl" | "instagramUrl" | "contactOwnerId" | "contactOwnerStrength" | "legalBasisForData" | "contactCategory" | "isActive" | "dataSource" | "catCloudId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
 export type ContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   contactOwner?: boolean | Prisma.Contact$contactOwnerArgs<ExtArgs>
@@ -2230,6 +2291,7 @@ export type $ContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     contactOwnerId: string | null
     contactOwnerStrength: $Enums.ContactOwnerStrength | null
     legalBasisForData: string | null
+    contactCategory: $Enums.ContactCategory
     isActive: boolean
     dataSource: $Enums.DataSource
     catCloudId: string | null
@@ -2684,6 +2746,7 @@ export interface ContactFieldRefs {
   readonly contactOwnerId: Prisma.FieldRef<"Contact", 'String'>
   readonly contactOwnerStrength: Prisma.FieldRef<"Contact", 'ContactOwnerStrength'>
   readonly legalBasisForData: Prisma.FieldRef<"Contact", 'String'>
+  readonly contactCategory: Prisma.FieldRef<"Contact", 'ContactCategory'>
   readonly isActive: Prisma.FieldRef<"Contact", 'Boolean'>
   readonly dataSource: Prisma.FieldRef<"Contact", 'DataSource'>
   readonly catCloudId: Prisma.FieldRef<"Contact", 'String'>

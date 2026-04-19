@@ -22,9 +22,13 @@ datasource db {
 
 enum UserRole {
   DIRECTOR
+  CONSTRUCTION_MANAGER
   PROJECT_MANAGER
-  SAFETY_MANAGER
+  CONTRACTS_ADMINISTRATOR
+  ESTIMATOR
   SITE_MANAGER
+  FINANCIAL_CONTROLLER
+  ADMINISTRATOR
 
   @@schema("projects")
 }
@@ -68,6 +72,13 @@ enum ContactOwnerStrength {
   BRONZE
   SILVER
   GOLD
+
+  @@schema("projects")
+}
+
+enum ContactCategory {
+  OPERATIONAL
+  COMMERCIAL
 
   @@schema("projects")
 }
@@ -213,6 +224,7 @@ model Organisation {
   alertThresholds    AlertThreshold[]
   communications     Communication[]
   contactTypes       ContactType[]
+  associationLabels  AssociationLabel[]
 
   @@map("organisations")
   @@schema("projects")
@@ -387,6 +399,7 @@ model Contact {
   contactOwner         User?   @relation("ContactOwner", fields: [contactOwnerId], references: [id], onDelete: SetNull)
   contactOwnerStrength ContactOwnerStrength? @map("contact_owner_strength")
   legalBasisForData    String? @map("legal_basis_for_data")
+  contactCategory      ContactCategory @default(OPERATIONAL) @map("contact_category")
   isActive             Boolean @default(true) @map("is_active")
   dataSource           DataSource @default(MANUAL) @map("data_source")
   catCloudId           String? @map("cat_cloud_id")
@@ -416,6 +429,8 @@ model CompanyContact {
   isPrimary            Boolean @default(false) @map("is_primary")
   isAccountContact     Boolean @default(false) @map("is_account_contact")
   isEstimatingContact  Boolean @default(false) @map("is_estimating_contact")
+  associationLabelId   String? @map("association_label_id") @db.Uuid
+  associationLabel     AssociationLabel? @relation(fields: [associationLabelId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -706,6 +721,25 @@ model ContactType {
 
   @@index([organisationId])
   @@map("contact_types")
+  @@schema("projects")
+}
+
+// AssociationLabel — admin-managed labels for company/project/contact associations
+model AssociationLabel {
+  id              String  @id @default(uuid()) @db.Uuid
+  organisationId  String  @map("organisation_id") @db.Uuid
+  organisation    Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name            String
+  associationType String  @map("association_type")
+  isActive        Boolean @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  companyContacts CompanyContact[]
+
+  @@index([organisationId])
+  @@map("association_labels")
   @@schema("projects")
 }
 

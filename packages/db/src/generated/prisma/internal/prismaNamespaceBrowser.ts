@@ -70,6 +70,7 @@ export const ModelName = {
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
   ContactType: 'ContactType',
+  AssociationLabel: 'AssociationLabel',
   ExpertiseTag: 'ExpertiseTag',
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
@@ -264,6 +265,7 @@ export const ContactScalarFieldEnum = {
   contactOwnerId: 'contactOwnerId',
   contactOwnerStrength: 'contactOwnerStrength',
   legalBasisForData: 'legalBasisForData',
+  contactCategory: 'contactCategory',
   isActive: 'isActive',
   dataSource: 'dataSource',
   catCloudId: 'catCloudId',
@@ -283,6 +285,7 @@ export const CompanyContactScalarFieldEnum = {
   isPrimary: 'isPrimary',
   isAccountContact: 'isAccountContact',
   isEstimatingContact: 'isEstimatingContact',
+  associationLabelId: 'associationLabelId',
   createdAt: 'createdAt'
 } as const
 
@@ -502,6 +505,19 @@ export const ContactTypeScalarFieldEnum = {
 } as const
 
 export type ContactTypeScalarFieldEnum = (typeof ContactTypeScalarFieldEnum)[keyof typeof ContactTypeScalarFieldEnum]
+
+
+export const AssociationLabelScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  associationType: 'associationType',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssociationLabelScalarFieldEnum = (typeof AssociationLabelScalarFieldEnum)[keyof typeof AssociationLabelScalarFieldEnum]
 
 
 export const ExpertiseTagScalarFieldEnum = {

@@ -4,9 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { requireDirector } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import type { UserRole } from "@agero/db";
-
-const VALID_ROLES: UserRole[] = ["DIRECTOR", "PROJECT_MANAGER", "SAFETY_MANAGER", "SITE_MANAGER"];
+import { ALL_ROLES } from "@/lib/auth";
 
 export async function updateUser(id: string, formData: FormData) {
   await requireDirector();
@@ -14,10 +12,10 @@ export async function updateUser(id: string, formData: FormData) {
   const firstName = (formData.get("firstName") as string).trim();
   const lastName = (formData.get("lastName") as string).trim();
   const mobile = (formData.get("mobile") as string | null)?.trim() || null;
-  const role = formData.get("role") as UserRole;
+  const role = formData.get("role") as (typeof ALL_ROLES)[number];
   const isActive = formData.get("isActive") === "true";
 
-  if (!firstName || !lastName || !VALID_ROLES.includes(role)) {
+  if (!firstName || !lastName || !ALL_ROLES.includes(role)) {
     redirect(`/admin/users/${id}/edit?error=invalid`);
   }
 

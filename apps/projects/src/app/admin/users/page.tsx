@@ -1,20 +1,17 @@
 import { prisma } from "@/lib/prisma";
-import { getAppUser } from "@/lib/auth";
+import { getAppUser, ROLE_LABELS } from "@/lib/auth";
 import Link from "next/link";
 import { toggleUserActive } from "./actions";
 
-const ROLE_LABELS: Record<string, string> = {
-  DIRECTOR: "Director",
-  PROJECT_MANAGER: "Project Manager",
-  SAFETY_MANAGER: "Safety Manager",
-  SITE_MANAGER: "Site Manager",
-};
-
 const ROLE_COLORS: Record<string, string> = {
   DIRECTOR: "bg-purple-100 text-purple-700",
+  CONSTRUCTION_MANAGER: "bg-indigo-100 text-indigo-700",
   PROJECT_MANAGER: "bg-blue-100 text-blue-700",
-  SAFETY_MANAGER: "bg-orange-100 text-orange-700",
+  CONTRACTS_ADMINISTRATOR: "bg-cyan-100 text-cyan-700",
+  ESTIMATOR: "bg-sky-100 text-sky-700",
   SITE_MANAGER: "bg-teal-100 text-teal-700",
+  FINANCIAL_CONTROLLER: "bg-emerald-100 text-emerald-700",
+  ADMINISTRATOR: "bg-gray-100 text-gray-600",
 };
 
 export default async function UsersPage({
