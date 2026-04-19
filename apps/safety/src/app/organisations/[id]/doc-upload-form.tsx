@@ -16,6 +16,15 @@ export function DocUploadForm({
 }) {
   const [state, action, pending] = useActionState(uploadAction, {});
 
+  const expiryStatus = currentExpiry
+    ? (() => {
+        const days = Math.ceil((new Date(currentExpiry).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        if (days <= 0) return { label: "Expired", color: "text-red-600" };
+        if (days <= 30) return { label: `${days}d left`, color: "text-amber-600" };
+        return { label: "Current", color: "text-green-600" };
+      })()
+    : null;
+
   return (
     <div className="rounded-lg border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-800/50">
       <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-2">{label}</p>
@@ -27,6 +36,11 @@ export function DocUploadForm({
           {currentExpiry && (
             <span className="ml-2">
               Expires {new Date(currentExpiry).toLocaleDateString("en-AU")}
+            </span>
+          )}
+          {expiryStatus && (
+            <span className={`ml-1.5 font-medium ${expiryStatus.color}`}>
+              ● {expiryStatus.label}
             </span>
           )}
         </p>

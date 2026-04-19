@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAppUser, canEdit } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { createStorageAdminClient } from "@/lib/supabase/server";
 
 const VALID_TYPES = ["SUBCONTRACTOR", "CLIENT", "CONSULTANT", "SUPPLIER"] as const;
 
@@ -908,6 +909,163 @@ export async function createCompanyFromWizard(
 
   revalidatePath("/crm/companies");
   return { companyId: company.id };
+}
+
+// ─── Insurance Policies ───────────────────────────────────────────────────────
+
+export async function addInsurancePolicy(
+  companyId: string,
+  formData: FormData,
+): Promise<{ ok: boolean; error?: string }> {
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) return { ok: false, error: "Unauthorized" };
+
+  const policyTypeId = (formData.get("policyTypeId") as string)?.trim();
+  if (!policyTypeId) return { ok: false, error: "Policy type is required." };
+
+  const expiryRaw = formData.get("expiryDate") as string;
+  if (!expiryRaw) return { ok: false, error: "Expiry date is required." };
+
+  const effectiveRaw = formData.get("effectiveDate") as string;
+  const coverageRaw = (formData.get("coverageAmount") as string)?.trim();
+
+  let certificateUrl: string | null = null;
+  const certFile = formData.get("certificate") as File | null;
+  if (certFile && certFile.size > 0) {
+    const storage = createStorageAdminClient();
+    const ext = certFile.name.split(".").pop() ?? "pdf";
+    const path = `companies/${companyId}/insurance/${policyTypeId}-${Date.now()}.${ext}`;
+    const buffer = Buffer.from(await certFile.arrayBuffer());
+    const { error: storageError } = await storage
+      .from("erp-documents")
+      .upload(path, buffer, { contentType: certFile.type, upsert: true });
+    if (storageError) return { ok: false, error: `File upload failed: ${storageError.message}` };
+    const { data: urlData } = storage.from("erp-documents").getPublicUrl(path);
+    certificateUrl = urlData.publicUrl;
+  }
+
+  const coverageAmount = coverageRaw
+    ? (() => {
+        const n = parseFloat(coverageRaw.replace(/[^0-9.]/g, ""));
+        return isNaN(n) ? null : n;
+      })()
+    : null;
+
+  try {
+    await prisma.insurancePolicy.create({
+      data: {
+        companyId,
+        policyTypeId,
+        insurerName: (formData.get("insurerName") as string)?.trim() || null,
+        policyNumber: (formData.get("policyNumber") as string)?.trim() || null,
+        coverageAmount: coverageAmount as never,
+        effectiveDate: effectiveRaw ? new Date(effectiveRaw) : null,
+        expiryDate: new Date(expiryRaw),
+        onFile: !!certificateUrl,
+        certificateUrl,
+        certificateUploadedAt: certificateUrl ? new Date() : null,
+        notes: (formData.get("notes") as string)?.trim() || null,
+        dataSource: "MANUAL",
+        isCurrent: true,
+        createdById: user.id,
+      },
+    });
+    revalidatePath(`/crm/companies/${companyId}`);
+    return { ok: true };
+  } catch {
+    return { ok: false, error: "Failed to save policy. Please try again." };
+  }
+}
+
+export async function verifyInsurancePolicy(policyId: string, companyId: string) {
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
+  await prisma.insurancePolicy.update({
+    where: { id: policyId },
+    data: { isVerified: true, verifiedById: user.id, verifiedAt: new Date() },
+  });
+  revalidatePath(`/crm/companies/${companyId}`);
+}
+
+export async function deleteInsurancePolicy(policyId: string, companyId: string) {
+  const user = await requireAppUser();
+  if (user.role !== "DIRECTOR") redirect("/unauthorized");
+  await prisma.insurancePolicy.delete({ where: { id: policyId } });
+  revalidatePath(`/crm/companies/${companyId}`);
+}
+
+// ─── Company Documents ────────────────────────────────────────────────────────
+
+export async function uploadCompanyDocument(
+  companyId: string,
+  formData: FormData,
+): Promise<{ ok: boolean; error?: string }> {
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) return { ok: false, error: "Unauthorized" };
+
+  const file = formData.get("file") as File | null;
+  if (!file || file.size === 0) return { ok: false, error: "Please select a file." };
+
+  const documentName = (formData.get("documentName") as string)?.trim();
+  if (!documentName) return { ok: false, error: "Document name is required." };
+
+  const documentType = (formData.get("documentType") as string)?.trim() || "General";
+  const expiryRaw = formData.get("expiryDate") as string;
+  const notes = (formData.get("notes") as string)?.trim() || null;
+
+  const storage = createStorageAdminClient();
+  const ext = file.name.split(".").pop() ?? "pdf";
+  const path = `companies/${companyId}/documents/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const { error: storageError } = await storage
+    .from("erp-documents")
+    .upload(path, buffer, { contentType: file.type, upsert: false });
+
+  if (storageError) return { ok: false, error: `Upload failed: ${storageError.message}` };
+
+  const { data: urlData } = storage.from("erp-documents").getPublicUrl(path);
+
+  const org = await prisma.organisation.findFirst({ select: { id: true } });
+
+  try {
+    await prisma.companyDocument.create({
+      data: {
+        companyId,
+        documentType,
+        documentName,
+        fileUrl: urlData.publicUrl,
+        fileName: file.name,
+        fileSizeBytes: file.size,
+        mimeType: file.type || null,
+        expiryDate: expiryRaw ? new Date(expiryRaw) : null,
+        organisationId: org?.id ?? null,
+        notes,
+        uploadedById: user.id,
+        uploadedVia: "web",
+      },
+    });
+    revalidatePath(`/crm/companies/${companyId}`);
+    return { ok: true };
+  } catch {
+    return { ok: false, error: "Failed to save document. Please try again." };
+  }
+}
+
+export async function verifyCompanyDocument(docId: string, companyId: string) {
+  const user = await requireAppUser();
+  if (!canEdit(user.role)) redirect("/unauthorized");
+  await prisma.companyDocument.update({
+    where: { id: docId },
+    data: { isVerified: true, verifiedById: user.id, verifiedAt: new Date() },
+  });
+  revalidatePath(`/crm/companies/${companyId}`);
+}
+
+export async function deleteCompanyDocument(docId: string, companyId: string) {
+  const user = await requireAppUser();
+  if (user.role !== "DIRECTOR") redirect("/unauthorized");
+  await prisma.companyDocument.delete({ where: { id: docId } });
+  revalidatePath(`/crm/companies/${companyId}`);
 }
 
 // ─── Inline Create Contact + Link ─────────────────────────────────────────────

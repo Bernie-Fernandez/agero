@@ -79,14 +79,15 @@ export default async function DashboardPage() {
     take: 10,
   });
 
-  // Compliance breakdown across all subcontractors on active projects
-  const allSubOrgs = Array.from(
-    new Map(
-      projects.flatMap((p) =>
-        p.subcontractors.map((s) => [s.subcontractorOrg.id, s.subcontractorOrg]),
-      ),
-    ).values(),
-  );
+  // Compliance breakdown across all subcontractors linked to this org's projects
+  const allSubOrgs = await prisma.organisation.findMany({
+    where: {
+      subcontractorOnProjects: {
+        some: { project: { organisationId: appUser.organisationId } },
+      },
+    },
+    include: { documents: true, swmsSubmissions: true },
+  });
 
   const complianceCounts = allSubOrgs.reduce(
     (acc, org) => {

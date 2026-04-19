@@ -7,12 +7,18 @@ import { ConfirmForm } from "@/components/ConfirmForm";
 import { BlacklistButton } from "@/components/BlacklistModal";
 import { DeleteCompanyModal } from "@/components/DeleteCompanyModal";
 import { AddContactDrawer } from "@/components/AddContactDrawer";
+import { AddInsurancePolicyDrawer } from "@/components/AddInsurancePolicyDrawer";
+import { UploadDocumentDrawer } from "@/components/UploadDocumentDrawer";
 import {
   blacklistCompany,
   unblacklistCompany,
   addCompanyContactLink,
   removeCompanyContactLink,
   deleteCompanyWithContacts,
+  verifyInsurancePolicy,
+  deleteInsurancePolicy,
+  verifyCompanyDocument,
+  deleteCompanyDocument,
 } from "../actions";
 
 const TYPE_LABELS: Record<string, string> = {
@@ -146,7 +152,7 @@ export default async function CompanyDetailPage({
 
   // For inline contacts quick-add: load contacts NOT already linked, and association labels
   const linkedContactIds = company.companyContacts.map((cc) => cc.contactId);
-  const [unlinkedContacts, associationLabels] = await Promise.all([
+  const [unlinkedContacts, associationLabels, policyTypes] = await Promise.all([
     org
       ? prisma.contact.findMany({
           where: {
@@ -164,6 +170,12 @@ export default async function CompanyDetailPage({
           orderBy: { name: "asc" },
         })
       : Promise.resolve([]),
+    org
+      ? prisma.insurancePolicyType.findMany({
+          where: { organisationId: org.id, isActive: true },
+          orderBy: { displayOrder: "asc" },
+        })
+      : Promise.resolve([]),
   ]);
 
   const TABS = [
@@ -179,12 +191,38 @@ export default async function CompanyDetailPage({
     ...(isSubcontractor ? [{ id: "subcontractor", label: "Subcontractor" }] : []),
   ];
 
+  // Compliance banner: check for missing/expired mandatory policies
+  const today = new Date();
+  const mandatoryTypes = policyTypes.filter((pt) => pt.isMandatory);
+  const complianceIssues: string[] = [];
+  for (const mt of mandatoryTypes) {
+    const existing = company.insurancePolicies.filter((p) => p.policyTypeId === mt.id && p.isCurrent);
+    if (existing.length === 0) {
+      complianceIssues.push(`${mt.name} — no policy on file`);
+    } else {
+      const allExpired = existing.every((p) => new Date(p.expiryDate) < today);
+      if (allExpired) complianceIssues.push(`${mt.name} — expired`);
+    }
+  }
+
   return (
     <div>
       {/* Breadcrumb */}
       <Link href="/crm/companies" className="text-xs text-zinc-500 hover:text-zinc-800 mb-3 inline-flex items-center gap-1">
         ← Companies
       </Link>
+
+      {/* Compliance Alert Banner */}
+      {complianceIssues.length > 0 && (
+        <div className="mb-4 w-full bg-amber-50 border border-amber-200 rounded-lg px-5 py-3">
+          <p className="font-semibold text-sm text-amber-800">Insurance Compliance Issues</p>
+          <ul className="mt-1 space-y-0.5">
+            {complianceIssues.map((issue) => (
+              <li key={issue} className="text-xs text-amber-700">• {issue}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Blacklist Banner */}
       {company.isBlacklisted && (
@@ -291,10 +329,21 @@ export default async function CompanyDetailPage({
         <TradesTab trades={company.trades} companyId={id} />
       )}
       {activeTab === "insurance" && (
-        <InsuranceTab policies={company.insurancePolicies} companyId={id} />
+        <InsuranceTab
+          policies={company.insurancePolicies}
+          companyId={id}
+          policyTypes={policyTypes}
+          canEditFlag={userCanEdit}
+          canDeleteFlag={userCanDelete}
+        />
       )}
       {activeTab === "documents" && (
-        <DocumentsTab documents={company.documents} companyId={id} />
+        <DocumentsTab
+          documents={company.documents}
+          companyId={id}
+          canEditFlag={userCanEdit}
+          canDeleteFlag={userCanDelete}
+        />
       )}
       {activeTab === "communications" && (
         <CommunicationsTab communications={company.communications} />
@@ -824,20 +873,49 @@ type InsurancePolicy = {
   id: string;
   insurerName: string | null;
   policyNumber: string | null;
+  policyTypeId: string;
   expiryDate: Date;
   onFile: boolean;
   isCurrent: boolean;
+  isVerified: boolean;
+  certificateUrl: string | null;
   coverageAmount: { toString(): string } | null;
   policyType: { name: string; isMandatory: boolean };
 };
 
-function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; companyId: string }) {
+function InsuranceTab({
+  policies,
+  companyId,
+  policyTypes,
+  canEditFlag,
+  canDeleteFlag,
+}: {
+  policies: InsurancePolicy[];
+  companyId: string;
+  policyTypes: Array<{ id: string; name: string; isMandatory: boolean }>;
+  canEditFlag: boolean;
+  canDeleteFlag: boolean;
+}) {
   const today = new Date();
+
+  // Missing mandatory policy types
+  const missingMandatory = policyTypes.filter(
+    (pt) => pt.isMandatory && !policies.some((p) => p.policyTypeId === pt.id && p.isCurrent),
+  );
+
   return (
     <div>
+      {missingMandatory.length > 0 && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-xs font-semibold text-red-700 mb-1">Missing required insurance:</p>
+          {missingMandatory.map((pt) => (
+            <p key={pt.id} className="text-xs text-red-600">• {pt.name}</p>
+          ))}
+        </div>
+      )}
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{policies.length} polic{policies.length !== 1 ? "ies" : "y"}</p>
-        <Link href={`/crm/companies/${companyId}/insurance/add`} className="text-sm text-blue-600 hover:underline">+ Add Policy</Link>
+        {canEditFlag && <AddInsurancePolicyDrawer companyId={companyId} policyTypes={policyTypes} />}
       </div>
       {policies.length === 0 ? (
         <EmptyState message="No insurance policies on file." />
@@ -852,14 +930,15 @@ function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; co
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Expiry</th>
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Coverage</th>
                 <th className="px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>
+                <th className="px-4 py-2.5"></th>
               </tr>
             </thead>
             <tbody>
               {policies.map((p, idx) => {
                 const expiry = new Date(p.expiryDate);
-                const daysUntil = Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-                const isExpired = daysUntil < 0;
-                const isExpiringSoon = !isExpired && daysUntil <= 30;
+                const daysLeft = Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+                const isExpired = daysLeft < 0;
+                const isExpiringSoon = !isExpired && daysLeft <= 30;
                 return (
                   <tr key={p.id} className={idx < policies.length - 1 ? "border-b border-gray-100" : ""}>
                     <td className="px-4 py-2.5">
@@ -874,16 +953,39 @@ function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; co
                       <span className={isExpired ? "text-red-600 font-medium" : isExpiringSoon ? "text-yellow-700 font-medium" : "text-zinc-700"}>
                         {formatDate(expiry)}
                       </span>
-                      {isExpired && <span className="ml-1 text-xs text-red-500">Expired</span>}
-                      {isExpiringSoon && <span className="ml-1 text-xs text-yellow-600">{daysUntil}d</span>}
+                      {isExpired && <span className="ml-1 text-xs text-red-500">● Expired</span>}
+                      {isExpiringSoon && <span className="ml-1 text-xs text-amber-600">● {daysLeft}d</span>}
+                      {!isExpired && !isExpiringSoon && <span className="ml-1 text-xs text-green-600">●</span>}
                     </td>
                     <td className="px-4 py-2.5 text-xs text-zinc-500">
                       {p.coverageAmount ? `$${Number(p.coverageAmount.toString()).toLocaleString("en-AU")}` : "—"}
                     </td>
                     <td className="px-4 py-2.5 text-center">
-                      <span className={`text-xs px-1.5 py-0.5 rounded-full ${p.onFile ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
-                        {p.onFile ? "On file" : "No cert"}
-                      </span>
+                      <div className="flex flex-col gap-1 items-center">
+                        <span className={`text-xs px-1.5 py-0.5 rounded-full ${p.onFile ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                          {p.onFile ? "On file" : "No cert"}
+                        </span>
+                        {p.isVerified && (
+                          <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Verified</span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-4 py-2.5">
+                      <div className="flex items-center gap-2 justify-end">
+                        {p.certificateUrl && (
+                          <a href={p.certificateUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View</a>
+                        )}
+                        {canEditFlag && !p.isVerified && (
+                          <form action={verifyInsurancePolicy.bind(null, p.id, companyId)}>
+                            <button type="submit" className="text-xs text-zinc-500 hover:text-green-700">Verify</button>
+                          </form>
+                        )}
+                        {canDeleteFlag && (
+                          <form action={deleteInsurancePolicy.bind(null, p.id, companyId)}>
+                            <button type="submit" className="text-xs text-red-400 hover:text-red-700">Delete</button>
+                          </form>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -901,14 +1003,26 @@ function InsuranceTab({ policies, companyId }: { policies: InsurancePolicy[]; co
 type CompanyDocument = {
   id: string; documentType: string; documentName: string; fileName: string;
   fileSizeBytes: number | null; expiryDate: Date | null; fileUrl: string; createdAt: Date;
+  isVerified: boolean;
 };
 
-function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; companyId: string }) {
+function DocumentsTab({
+  documents,
+  companyId,
+  canEditFlag,
+  canDeleteFlag,
+}: {
+  documents: CompanyDocument[];
+  companyId: string;
+  canEditFlag: boolean;
+  canDeleteFlag: boolean;
+}) {
+  const today = new Date();
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-zinc-500">{documents.length} document{documents.length !== 1 ? "s" : ""}</p>
-        <Link href={`/crm/companies/${companyId}/documents/upload`} className="text-sm text-blue-600 hover:underline">+ Upload Document</Link>
+        {canEditFlag && <UploadDocumentDrawer companyId={companyId} />}
       </div>
       {documents.length === 0 ? (
         <EmptyState message="No documents uploaded." />
@@ -925,20 +1039,53 @@ function DocumentsTab({ documents, companyId }: { documents: CompanyDocument[]; 
               </tr>
             </thead>
             <tbody>
-              {documents.map((doc, idx) => (
-                <tr key={doc.id} className={idx < documents.length - 1 ? "border-b border-gray-100" : ""}>
-                  <td className="px-4 py-2.5">
-                    <p className="text-zinc-800 font-medium">{doc.documentName}</p>
-                    <p className="text-xs text-zinc-400">{doc.fileName} {doc.fileSizeBytes ? `· ${formatFileSize(doc.fileSizeBytes)}` : ""}</p>
-                  </td>
-                  <td className="px-4 py-2.5 text-xs text-zinc-500">{doc.documentType}</td>
-                  <td className="px-4 py-2.5 text-xs text-zinc-600">{formatDate(doc.expiryDate)}</td>
-                  <td className="px-4 py-2.5 text-xs text-zinc-400">{formatDate(doc.createdAt)}</td>
-                  <td className="px-4 py-2.5">
-                    <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View</a>
-                  </td>
-                </tr>
-              ))}
+              {documents.map((doc, idx) => {
+                const daysLeft = doc.expiryDate
+                  ? Math.ceil((new Date(doc.expiryDate).getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+                  : null;
+                const isExpired = daysLeft !== null && daysLeft < 0;
+                const isExpiringSoon = daysLeft !== null && !isExpired && daysLeft <= 30;
+                return (
+                  <tr key={doc.id} className={idx < documents.length - 1 ? "border-b border-gray-100" : ""}>
+                    <td className="px-4 py-2.5">
+                      <p className="text-zinc-800 font-medium">{doc.documentName}</p>
+                      <p className="text-xs text-zinc-400">{doc.fileName} {doc.fileSizeBytes ? `· ${formatFileSize(doc.fileSizeBytes)}` : ""}</p>
+                      {doc.isVerified && (
+                        <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Verified</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-2.5 text-xs text-zinc-500">{doc.documentType}</td>
+                    <td className="px-4 py-2.5 text-xs">
+                      {doc.expiryDate ? (
+                        <span className={isExpired ? "text-red-600 font-medium" : isExpiringSoon ? "text-amber-600 font-medium" : "text-zinc-600"}>
+                          {formatDate(doc.expiryDate)}
+                          {isExpired && " ● Expired"}
+                          {isExpiringSoon && ` ● ${daysLeft}d`}
+                          {!isExpired && !isExpiringSoon && " ●"}
+                        </span>
+                      ) : (
+                        <span className="text-zinc-400">—</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-2.5 text-xs text-zinc-400">{formatDate(doc.createdAt)}</td>
+                    <td className="px-4 py-2.5">
+                      <div className="flex items-center gap-2 justify-end">
+                        <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">View</a>
+                        {canEditFlag && !doc.isVerified && (
+                          <form action={verifyCompanyDocument.bind(null, doc.id, companyId)}>
+                            <button type="submit" className="text-xs text-zinc-500 hover:text-green-700">Verify</button>
+                          </form>
+                        )}
+                        {canDeleteFlag && (
+                          <form action={deleteCompanyDocument.bind(null, doc.id, companyId)}>
+                            <button type="submit" className="text-xs text-red-400 hover:text-red-700">Delete</button>
+                          </form>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

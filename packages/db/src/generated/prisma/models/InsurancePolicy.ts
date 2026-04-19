@@ -48,6 +48,10 @@ export type InsurancePolicyMinAggregateOutputType = {
   aiExtracted: boolean | null
   isCurrent: boolean | null
   notes: string | null
+  effectiveDate: Date | null
+  isVerified: boolean | null
+  verifiedById: string | null
+  verifiedAt: Date | null
   dataSource: $Enums.InsuranceDataSource | null
   createdById: string | null
   createdAt: Date | null
@@ -68,6 +72,10 @@ export type InsurancePolicyMaxAggregateOutputType = {
   aiExtracted: boolean | null
   isCurrent: boolean | null
   notes: string | null
+  effectiveDate: Date | null
+  isVerified: boolean | null
+  verifiedById: string | null
+  verifiedAt: Date | null
   dataSource: $Enums.InsuranceDataSource | null
   createdById: string | null
   createdAt: Date | null
@@ -88,6 +96,10 @@ export type InsurancePolicyCountAggregateOutputType = {
   aiExtracted: number
   isCurrent: number
   notes: number
+  effectiveDate: number
+  isVerified: number
+  verifiedById: number
+  verifiedAt: number
   dataSource: number
   createdById: number
   createdAt: number
@@ -118,6 +130,10 @@ export type InsurancePolicyMinAggregateInputType = {
   aiExtracted?: true
   isCurrent?: true
   notes?: true
+  effectiveDate?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   dataSource?: true
   createdById?: true
   createdAt?: true
@@ -138,6 +154,10 @@ export type InsurancePolicyMaxAggregateInputType = {
   aiExtracted?: true
   isCurrent?: true
   notes?: true
+  effectiveDate?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   dataSource?: true
   createdById?: true
   createdAt?: true
@@ -158,6 +178,10 @@ export type InsurancePolicyCountAggregateInputType = {
   aiExtracted?: true
   isCurrent?: true
   notes?: true
+  effectiveDate?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   dataSource?: true
   createdById?: true
   createdAt?: true
@@ -265,6 +289,10 @@ export type InsurancePolicyGroupByOutputType = {
   aiExtracted: boolean
   isCurrent: boolean
   notes: string | null
+  effectiveDate: Date | null
+  isVerified: boolean
+  verifiedById: string | null
+  verifiedAt: Date | null
   dataSource: $Enums.InsuranceDataSource
   createdById: string
   createdAt: Date
@@ -308,6 +336,10 @@ export type InsurancePolicyWhereInput = {
   aiExtracted?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   isCurrent?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   notes?: Prisma.StringNullableFilter<"InsurancePolicy"> | string | null
+  effectiveDate?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
+  isVerified?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"InsurancePolicy"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFilter<"InsurancePolicy"> | $Enums.InsuranceDataSource
   createdById?: Prisma.UuidFilter<"InsurancePolicy"> | string
   createdAt?: Prisma.DateTimeFilter<"InsurancePolicy"> | Date | string
@@ -331,6 +363,10 @@ export type InsurancePolicyOrderByWithRelationInput = {
   aiExtracted?: Prisma.SortOrder
   isCurrent?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -357,6 +393,10 @@ export type InsurancePolicyWhereUniqueInput = Prisma.AtLeast<{
   aiExtracted?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   isCurrent?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   notes?: Prisma.StringNullableFilter<"InsurancePolicy"> | string | null
+  effectiveDate?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
+  isVerified?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"InsurancePolicy"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFilter<"InsurancePolicy"> | $Enums.InsuranceDataSource
   createdById?: Prisma.UuidFilter<"InsurancePolicy"> | string
   createdAt?: Prisma.DateTimeFilter<"InsurancePolicy"> | Date | string
@@ -380,6 +420,10 @@ export type InsurancePolicyOrderByWithAggregationInput = {
   aiExtracted?: Prisma.SortOrder
   isCurrent?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  effectiveDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -408,6 +452,10 @@ export type InsurancePolicyScalarWhereWithAggregatesInput = {
   aiExtracted?: Prisma.BoolWithAggregatesFilter<"InsurancePolicy"> | boolean
   isCurrent?: Prisma.BoolWithAggregatesFilter<"InsurancePolicy"> | boolean
   notes?: Prisma.StringNullableWithAggregatesFilter<"InsurancePolicy"> | string | null
+  effectiveDate?: Prisma.DateTimeNullableWithAggregatesFilter<"InsurancePolicy"> | Date | string | null
+  isVerified?: Prisma.BoolWithAggregatesFilter<"InsurancePolicy"> | boolean
+  verifiedById?: Prisma.UuidNullableWithAggregatesFilter<"InsurancePolicy"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"InsurancePolicy"> | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceWithAggregatesFilter<"InsurancePolicy"> | $Enums.InsuranceDataSource
   createdById?: Prisma.UuidWithAggregatesFilter<"InsurancePolicy"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"InsurancePolicy"> | Date | string
@@ -426,6 +474,10 @@ export type InsurancePolicyCreateInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -448,6 +500,10 @@ export type InsurancePolicyUncheckedCreateInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -466,6 +522,10 @@ export type InsurancePolicyUpdateInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -488,6 +548,10 @@ export type InsurancePolicyUncheckedUpdateInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -508,6 +572,10 @@ export type InsurancePolicyCreateManyInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -526,6 +594,10 @@ export type InsurancePolicyUpdateManyMutationInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -545,6 +617,10 @@ export type InsurancePolicyUncheckedUpdateManyInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -575,6 +651,10 @@ export type InsurancePolicyCountOrderByAggregateInput = {
   aiExtracted?: Prisma.SortOrder
   isCurrent?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  effectiveDate?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -599,6 +679,10 @@ export type InsurancePolicyMaxOrderByAggregateInput = {
   aiExtracted?: Prisma.SortOrder
   isCurrent?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  effectiveDate?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -619,6 +703,10 @@ export type InsurancePolicyMinOrderByAggregateInput = {
   aiExtracted?: Prisma.SortOrder
   isCurrent?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  effectiveDate?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -771,6 +859,10 @@ export type InsurancePolicyCreateWithoutCreatedByInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -792,6 +884,10 @@ export type InsurancePolicyUncheckedCreateWithoutCreatedByInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -840,6 +936,10 @@ export type InsurancePolicyScalarWhereInput = {
   aiExtracted?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   isCurrent?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
   notes?: Prisma.StringNullableFilter<"InsurancePolicy"> | string | null
+  effectiveDate?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
+  isVerified?: Prisma.BoolFilter<"InsurancePolicy"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"InsurancePolicy"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"InsurancePolicy"> | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFilter<"InsurancePolicy"> | $Enums.InsuranceDataSource
   createdById?: Prisma.UuidFilter<"InsurancePolicy"> | string
   createdAt?: Prisma.DateTimeFilter<"InsurancePolicy"> | Date | string
@@ -858,6 +958,10 @@ export type InsurancePolicyCreateWithoutCompanyInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -878,6 +982,10 @@ export type InsurancePolicyUncheckedCreateWithoutCompanyInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -922,6 +1030,10 @@ export type InsurancePolicyCreateWithoutPolicyTypeInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -942,6 +1054,10 @@ export type InsurancePolicyUncheckedCreateWithoutPolicyTypeInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -988,6 +1104,10 @@ export type InsurancePolicyCreateManyCreatedByInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1005,6 +1125,10 @@ export type InsurancePolicyUpdateWithoutCreatedByInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1026,6 +1150,10 @@ export type InsurancePolicyUncheckedUpdateWithoutCreatedByInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1045,6 +1173,10 @@ export type InsurancePolicyUncheckedUpdateManyWithoutCreatedByInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1063,6 +1195,10 @@ export type InsurancePolicyCreateManyCompanyInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -1081,6 +1217,10 @@ export type InsurancePolicyUpdateWithoutCompanyInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1101,6 +1241,10 @@ export type InsurancePolicyUncheckedUpdateWithoutCompanyInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1120,6 +1264,10 @@ export type InsurancePolicyUncheckedUpdateManyWithoutCompanyInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1139,6 +1287,10 @@ export type InsurancePolicyCreateManyPolicyTypeInput = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: string | null
+  effectiveDate?: Date | string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   dataSource?: $Enums.InsuranceDataSource
   createdById: string
   createdAt?: Date | string
@@ -1157,6 +1309,10 @@ export type InsurancePolicyUpdateWithoutPolicyTypeInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1177,6 +1333,10 @@ export type InsurancePolicyUncheckedUpdateWithoutPolicyTypeInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1196,6 +1356,10 @@ export type InsurancePolicyUncheckedUpdateManyWithoutPolicyTypeInput = {
   aiExtracted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isCurrent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  effectiveDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dataSource?: Prisma.EnumInsuranceDataSourceFieldUpdateOperationsInput | $Enums.InsuranceDataSource
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1218,6 +1382,10 @@ export type InsurancePolicySelect<ExtArgs extends runtime.Types.Extensions.Inter
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: boolean
+  effectiveDate?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   dataSource?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1241,6 +1409,10 @@ export type InsurancePolicySelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: boolean
+  effectiveDate?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   dataSource?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1264,6 +1436,10 @@ export type InsurancePolicySelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: boolean
+  effectiveDate?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   dataSource?: boolean
   createdById?: boolean
   createdAt?: boolean
@@ -1287,13 +1463,17 @@ export type InsurancePolicySelectScalar = {
   aiExtracted?: boolean
   isCurrent?: boolean
   notes?: boolean
+  effectiveDate?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   dataSource?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InsurancePolicyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "policyTypeId" | "insurerName" | "policyNumber" | "coverageAmount" | "expiryDate" | "onFile" | "certificateUrl" | "certificateUploadedAt" | "aiExtracted" | "isCurrent" | "notes" | "dataSource" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["insurancePolicy"]>
+export type InsurancePolicyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "policyTypeId" | "insurerName" | "policyNumber" | "coverageAmount" | "expiryDate" | "onFile" | "certificateUrl" | "certificateUploadedAt" | "aiExtracted" | "isCurrent" | "notes" | "effectiveDate" | "isVerified" | "verifiedById" | "verifiedAt" | "dataSource" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["insurancePolicy"]>
 export type InsurancePolicyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   policyType?: boolean | Prisma.InsurancePolicyTypeDefaultArgs<ExtArgs>
@@ -1331,6 +1511,10 @@ export type $InsurancePolicyPayload<ExtArgs extends runtime.Types.Extensions.Int
     aiExtracted: boolean
     isCurrent: boolean
     notes: string | null
+    effectiveDate: Date | null
+    isVerified: boolean
+    verifiedById: string | null
+    verifiedAt: Date | null
     dataSource: $Enums.InsuranceDataSource
     createdById: string
     createdAt: Date
@@ -1774,6 +1958,10 @@ export interface InsurancePolicyFieldRefs {
   readonly aiExtracted: Prisma.FieldRef<"InsurancePolicy", 'Boolean'>
   readonly isCurrent: Prisma.FieldRef<"InsurancePolicy", 'Boolean'>
   readonly notes: Prisma.FieldRef<"InsurancePolicy", 'String'>
+  readonly effectiveDate: Prisma.FieldRef<"InsurancePolicy", 'DateTime'>
+  readonly isVerified: Prisma.FieldRef<"InsurancePolicy", 'Boolean'>
+  readonly verifiedById: Prisma.FieldRef<"InsurancePolicy", 'String'>
+  readonly verifiedAt: Prisma.FieldRef<"InsurancePolicy", 'DateTime'>
   readonly dataSource: Prisma.FieldRef<"InsurancePolicy", 'InsuranceDataSource'>
   readonly createdById: Prisma.FieldRef<"InsurancePolicy", 'String'>
   readonly createdAt: Prisma.FieldRef<"InsurancePolicy", 'DateTime'>

@@ -1,3 +1,5 @@
+// Phase 2 bridge: document verification status (isVerified, verifiedById, verifiedAt) will be
+// added to Safety's DocumentUpload model when the Safety ↔ ERP compliance bridge is implemented.
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";

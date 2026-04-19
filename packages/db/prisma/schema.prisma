@@ -519,6 +519,10 @@ model InsurancePolicy {
   aiExtracted          Boolean @default(false) @map("ai_extracted")
   isCurrent            Boolean @default(true) @map("is_current")
   notes                String?
+  effectiveDate        DateTime? @map("effective_date") @db.Date
+  isVerified           Boolean   @default(false) @map("is_verified")
+  verifiedById         String?   @map("verified_by_id") @db.Uuid
+  verifiedAt           DateTime? @map("verified_at")
   dataSource           InsuranceDataSource @default(MANUAL) @map("data_source")
   createdById          String  @map("created_by_id") @db.Uuid
   createdBy            User    @relation(fields: [createdById], references: [id])
@@ -545,6 +549,10 @@ model CompanyDocument {
   mimeType         String? @map("mime_type")
   expiryDate       DateTime? @map("expiry_date") @db.Date
   aiExtractedExpiry Boolean @default(false) @map("ai_extracted_expiry")
+  organisationId   String?  @map("organisation_id") @db.Uuid
+  isVerified       Boolean  @default(false) @map("is_verified")
+  verifiedById     String?  @map("verified_by_id") @db.Uuid
+  verifiedAt       DateTime? @map("verified_at")
   uploadedById     String  @map("uploaded_by_id") @db.Uuid
   uploadedBy       User    @relation(fields: [uploadedById], references: [id])
   uploadedVia      String  @map("uploaded_via")

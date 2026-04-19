@@ -45,6 +45,10 @@ export type CompanyDocumentMinAggregateOutputType = {
   mimeType: string | null
   expiryDate: Date | null
   aiExtractedExpiry: boolean | null
+  organisationId: string | null
+  isVerified: boolean | null
+  verifiedById: string | null
+  verifiedAt: Date | null
   uploadedById: string | null
   uploadedVia: string | null
   notes: string | null
@@ -63,6 +67,10 @@ export type CompanyDocumentMaxAggregateOutputType = {
   mimeType: string | null
   expiryDate: Date | null
   aiExtractedExpiry: boolean | null
+  organisationId: string | null
+  isVerified: boolean | null
+  verifiedById: string | null
+  verifiedAt: Date | null
   uploadedById: string | null
   uploadedVia: string | null
   notes: string | null
@@ -81,6 +89,10 @@ export type CompanyDocumentCountAggregateOutputType = {
   mimeType: number
   expiryDate: number
   aiExtractedExpiry: number
+  organisationId: number
+  isVerified: number
+  verifiedById: number
+  verifiedAt: number
   uploadedById: number
   uploadedVia: number
   notes: number
@@ -109,6 +121,10 @@ export type CompanyDocumentMinAggregateInputType = {
   mimeType?: true
   expiryDate?: true
   aiExtractedExpiry?: true
+  organisationId?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   uploadedById?: true
   uploadedVia?: true
   notes?: true
@@ -127,6 +143,10 @@ export type CompanyDocumentMaxAggregateInputType = {
   mimeType?: true
   expiryDate?: true
   aiExtractedExpiry?: true
+  organisationId?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   uploadedById?: true
   uploadedVia?: true
   notes?: true
@@ -145,6 +165,10 @@ export type CompanyDocumentCountAggregateInputType = {
   mimeType?: true
   expiryDate?: true
   aiExtractedExpiry?: true
+  organisationId?: true
+  isVerified?: true
+  verifiedById?: true
+  verifiedAt?: true
   uploadedById?: true
   uploadedVia?: true
   notes?: true
@@ -250,6 +274,10 @@ export type CompanyDocumentGroupByOutputType = {
   mimeType: string | null
   expiryDate: Date | null
   aiExtractedExpiry: boolean
+  organisationId: string | null
+  isVerified: boolean
+  verifiedById: string | null
+  verifiedAt: Date | null
   uploadedById: string
   uploadedVia: string
   notes: string | null
@@ -291,6 +319,10 @@ export type CompanyDocumentWhereInput = {
   mimeType?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
   expiryDate?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  organisationId?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  isVerified?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   uploadedById?: Prisma.UuidFilter<"CompanyDocument"> | string
   uploadedVia?: Prisma.StringFilter<"CompanyDocument"> | string
   notes?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
@@ -311,6 +343,10 @@ export type CompanyDocumentOrderByWithRelationInput = {
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
   expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
   aiExtractedExpiry?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   uploadedVia?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -334,6 +370,10 @@ export type CompanyDocumentWhereUniqueInput = Prisma.AtLeast<{
   mimeType?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
   expiryDate?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  organisationId?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  isVerified?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   uploadedById?: Prisma.UuidFilter<"CompanyDocument"> | string
   uploadedVia?: Prisma.StringFilter<"CompanyDocument"> | string
   notes?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
@@ -354,6 +394,10 @@ export type CompanyDocumentOrderByWithAggregationInput = {
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
   expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
   aiExtractedExpiry?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   uploadedVia?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -380,6 +424,10 @@ export type CompanyDocumentScalarWhereWithAggregatesInput = {
   mimeType?: Prisma.StringNullableWithAggregatesFilter<"CompanyDocument"> | string | null
   expiryDate?: Prisma.DateTimeNullableWithAggregatesFilter<"CompanyDocument"> | Date | string | null
   aiExtractedExpiry?: Prisma.BoolWithAggregatesFilter<"CompanyDocument"> | boolean
+  organisationId?: Prisma.UuidNullableWithAggregatesFilter<"CompanyDocument"> | string | null
+  isVerified?: Prisma.BoolWithAggregatesFilter<"CompanyDocument"> | boolean
+  verifiedById?: Prisma.UuidNullableWithAggregatesFilter<"CompanyDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CompanyDocument"> | Date | string | null
   uploadedById?: Prisma.UuidWithAggregatesFilter<"CompanyDocument"> | string
   uploadedVia?: Prisma.StringWithAggregatesFilter<"CompanyDocument"> | string
   notes?: Prisma.StringNullableWithAggregatesFilter<"CompanyDocument"> | string | null
@@ -397,6 +445,10 @@ export type CompanyDocumentCreateInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedVia: string
   notes?: string | null
   createdAt?: Date | string
@@ -416,6 +468,10 @@ export type CompanyDocumentUncheckedCreateInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedById: string
   uploadedVia: string
   notes?: string | null
@@ -433,6 +489,10 @@ export type CompanyDocumentUpdateInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -452,6 +512,10 @@ export type CompanyDocumentUncheckedUpdateInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -470,6 +534,10 @@ export type CompanyDocumentCreateManyInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedById: string
   uploadedVia: string
   notes?: string | null
@@ -487,6 +555,10 @@ export type CompanyDocumentUpdateManyMutationInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -504,6 +576,10 @@ export type CompanyDocumentUncheckedUpdateManyInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -532,6 +608,10 @@ export type CompanyDocumentCountOrderByAggregateInput = {
   mimeType?: Prisma.SortOrder
   expiryDate?: Prisma.SortOrder
   aiExtractedExpiry?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   uploadedVia?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -554,6 +634,10 @@ export type CompanyDocumentMaxOrderByAggregateInput = {
   mimeType?: Prisma.SortOrder
   expiryDate?: Prisma.SortOrder
   aiExtractedExpiry?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   uploadedVia?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -572,6 +656,10 @@ export type CompanyDocumentMinOrderByAggregateInput = {
   mimeType?: Prisma.SortOrder
   expiryDate?: Prisma.SortOrder
   aiExtractedExpiry?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedById?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   uploadedById?: Prisma.SortOrder
   uploadedVia?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -677,6 +765,10 @@ export type CompanyDocumentCreateWithoutUploadedByInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedVia: string
   notes?: string | null
   createdAt?: Date | string
@@ -695,6 +787,10 @@ export type CompanyDocumentUncheckedCreateWithoutUploadedByInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedVia: string
   notes?: string | null
   createdAt?: Date | string
@@ -741,6 +837,10 @@ export type CompanyDocumentScalarWhereInput = {
   mimeType?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
   expiryDate?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  organisationId?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  isVerified?: Prisma.BoolFilter<"CompanyDocument"> | boolean
+  verifiedById?: Prisma.UuidNullableFilter<"CompanyDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"CompanyDocument"> | Date | string | null
   uploadedById?: Prisma.UuidFilter<"CompanyDocument"> | string
   uploadedVia?: Prisma.StringFilter<"CompanyDocument"> | string
   notes?: Prisma.StringNullableFilter<"CompanyDocument"> | string | null
@@ -758,6 +858,10 @@ export type CompanyDocumentCreateWithoutCompanyInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedVia: string
   notes?: string | null
   createdAt?: Date | string
@@ -775,6 +879,10 @@ export type CompanyDocumentUncheckedCreateWithoutCompanyInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedById: string
   uploadedVia: string
   notes?: string | null
@@ -819,6 +927,10 @@ export type CompanyDocumentCreateManyUploadedByInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedVia: string
   notes?: string | null
   createdAt?: Date | string
@@ -835,6 +947,10 @@ export type CompanyDocumentUpdateWithoutUploadedByInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -853,6 +969,10 @@ export type CompanyDocumentUncheckedUpdateWithoutUploadedByInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -870,6 +990,10 @@ export type CompanyDocumentUncheckedUpdateManyWithoutUploadedByInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -886,6 +1010,10 @@ export type CompanyDocumentCreateManyCompanyInput = {
   mimeType?: string | null
   expiryDate?: Date | string | null
   aiExtractedExpiry?: boolean
+  organisationId?: string | null
+  isVerified?: boolean
+  verifiedById?: string | null
+  verifiedAt?: Date | string | null
   uploadedById: string
   uploadedVia: string
   notes?: string | null
@@ -903,6 +1031,10 @@ export type CompanyDocumentUpdateWithoutCompanyInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -920,6 +1052,10 @@ export type CompanyDocumentUncheckedUpdateWithoutCompanyInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -937,6 +1073,10 @@ export type CompanyDocumentUncheckedUpdateManyWithoutCompanyInput = {
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aiExtractedExpiry?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uploadedById?: Prisma.StringFieldUpdateOperationsInput | string
   uploadedVia?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -957,6 +1097,10 @@ export type CompanyDocumentSelect<ExtArgs extends runtime.Types.Extensions.Inter
   mimeType?: boolean
   expiryDate?: boolean
   aiExtractedExpiry?: boolean
+  organisationId?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   uploadedById?: boolean
   uploadedVia?: boolean
   notes?: boolean
@@ -977,6 +1121,10 @@ export type CompanyDocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   mimeType?: boolean
   expiryDate?: boolean
   aiExtractedExpiry?: boolean
+  organisationId?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   uploadedById?: boolean
   uploadedVia?: boolean
   notes?: boolean
@@ -997,6 +1145,10 @@ export type CompanyDocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   mimeType?: boolean
   expiryDate?: boolean
   aiExtractedExpiry?: boolean
+  organisationId?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   uploadedById?: boolean
   uploadedVia?: boolean
   notes?: boolean
@@ -1017,6 +1169,10 @@ export type CompanyDocumentSelectScalar = {
   mimeType?: boolean
   expiryDate?: boolean
   aiExtractedExpiry?: boolean
+  organisationId?: boolean
+  isVerified?: boolean
+  verifiedById?: boolean
+  verifiedAt?: boolean
   uploadedById?: boolean
   uploadedVia?: boolean
   notes?: boolean
@@ -1024,7 +1180,7 @@ export type CompanyDocumentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CompanyDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "documentType" | "documentName" | "fileUrl" | "fileName" | "fileSizeBytes" | "mimeType" | "expiryDate" | "aiExtractedExpiry" | "uploadedById" | "uploadedVia" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["companyDocument"]>
+export type CompanyDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "documentType" | "documentName" | "fileUrl" | "fileName" | "fileSizeBytes" | "mimeType" | "expiryDate" | "aiExtractedExpiry" | "organisationId" | "isVerified" | "verifiedById" | "verifiedAt" | "uploadedById" | "uploadedVia" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["companyDocument"]>
 export type CompanyDocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   uploadedBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1055,6 +1211,10 @@ export type $CompanyDocumentPayload<ExtArgs extends runtime.Types.Extensions.Int
     mimeType: string | null
     expiryDate: Date | null
     aiExtractedExpiry: boolean
+    organisationId: string | null
+    isVerified: boolean
+    verifiedById: string | null
+    verifiedAt: Date | null
     uploadedById: string
     uploadedVia: string
     notes: string | null
@@ -1495,6 +1655,10 @@ export interface CompanyDocumentFieldRefs {
   readonly mimeType: Prisma.FieldRef<"CompanyDocument", 'String'>
   readonly expiryDate: Prisma.FieldRef<"CompanyDocument", 'DateTime'>
   readonly aiExtractedExpiry: Prisma.FieldRef<"CompanyDocument", 'Boolean'>
+  readonly organisationId: Prisma.FieldRef<"CompanyDocument", 'String'>
+  readonly isVerified: Prisma.FieldRef<"CompanyDocument", 'Boolean'>
+  readonly verifiedById: Prisma.FieldRef<"CompanyDocument", 'String'>
+  readonly verifiedAt: Prisma.FieldRef<"CompanyDocument", 'DateTime'>
   readonly uploadedById: Prisma.FieldRef<"CompanyDocument", 'String'>
   readonly uploadedVia: Prisma.FieldRef<"CompanyDocument", 'String'>
   readonly notes: Prisma.FieldRef<"CompanyDocument", 'String'>

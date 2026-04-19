@@ -98,9 +98,18 @@ export default async function CompaniesPage({
         include: { costCode: { select: { codeDescription: true } } },
         take: 1,
       },
+      insurancePolicies: {
+        where: { isCurrent: true },
+        select: {
+          expiryDate: true,
+          policyType: { select: { isMandatory: true } },
+        },
+      },
     },
     orderBy: { name: "asc" },
   });
+
+  const today = new Date();
 
   return (
     <div>
@@ -234,13 +243,26 @@ export default async function CompaniesPage({
               </tr>
             </thead>
             <tbody>
-              {companies.map((company, idx) => (
+              {companies.map((company, idx) => {
+                const mandatoryPolicies = company.insurancePolicies.filter((p) => p.policyType.isMandatory);
+                const hasExpiredMandatory = mandatoryPolicies.some((p) => new Date(p.expiryDate) < today);
+                const hasExpiringMandatory = !hasExpiredMandatory && mandatoryPolicies.some((p) => {
+                  const d = Math.ceil((new Date(p.expiryDate).getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+                  return d <= 30;
+                });
+                return (
                 <tr
                   key={company.id}
                   className={`${idx < companies.length - 1 ? "border-b border-gray-100" : ""} hover:bg-gray-50 transition-colors ${!company.isActive ? "opacity-60" : ""}`}
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-start gap-2">
+                      {mandatoryPolicies.length > 0 && (
+                        <span
+                          className={`mt-1 w-2 h-2 rounded-full shrink-0 ${hasExpiredMandatory ? "bg-red-500" : hasExpiringMandatory ? "bg-amber-400" : "bg-green-500"}`}
+                          title={hasExpiredMandatory ? "Mandatory insurance expired" : hasExpiringMandatory ? "Mandatory insurance expiring soon" : "Insurance current"}
+                        />
+                      )}
                       <div>
                         <Link
                           href={`/crm/companies/${company.id}`}
@@ -326,7 +348,8 @@ export default async function CompaniesPage({
                     </Link>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
