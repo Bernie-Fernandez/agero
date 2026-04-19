@@ -272,9 +272,18 @@ model Company {
   abnStatus       AbnStatus @default(NOT_VERIFIED) @map("abn_status")
   abnRegisteredName String? @map("abn_registered_name")
   abnGstRegistered Boolean? @map("abn_gst_registered")
+  abnRegisteredDate DateTime? @map("abn_registered_date") @db.Date
+  abnEntityType   String?  @map("abn_entity_type")
+  anzsicCode      String?  @map("anzsic_code")
+  gstRegisteredDate DateTime? @map("gst_registered_date") @db.Date
   abnVerifiedAt   DateTime? @map("abn_verified_at")
   asicStatus      AsicStatus @default(NOT_CHECKED) @map("asic_status")
   asicCheckedAt   DateTime? @map("asic_checked_at")
+  asicRegisteredDate DateTime? @map("asic_registered_date") @db.Date
+  asicRegisteredAddress String? @map("asic_registered_address")
+  insolvencyCheckResult String @default("NOT_CHECKED") @map("insolvency_check_result")
+  insolvencyCheckSummary String? @map("insolvency_check_summary")
+  insolvencyCheckedAt DateTime? @map("insolvency_checked_at")
   creditorwatchRisk CreditorwatchRisk @default(NOT_CHECKED) @map("creditorwatch_risk")
   creditorwatchCheckedAt DateTime? @map("creditorwatch_checked_at")
   website         String?
