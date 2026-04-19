@@ -10,7 +10,9 @@
         "NEXT_PUBLIC_SUPABASE_URL",
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "DATABASE_URL",
-        "DIRECT_URL"
+        "DIRECT_URL",
+        "ABN_LOOKUP_GUID",
+        "ANTHROPIC_API_KEY"
       ]
     },
     "dev": {
