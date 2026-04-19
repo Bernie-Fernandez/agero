@@ -422,3 +422,321 @@ export async function deleteCompany(id: string) {
   revalidatePath("/crm/companies");
   redirect("/crm/companies");
 }
+
+// ─── Wizard: Retrieve Company Data ───────────────────────────────────────────
+
+export interface WizardDirector {
+  fullName: string;
+  firstName: string;
+  lastName: string;
+  appointmentDate: string | null;
+}
+
+export interface RetrievedCompanyData {
+  abn: string;
+  // ABR
+  abnStatus: "ACTIVE" | "CANCELLED";
+  abnRegisteredName: string;
+  abnRegisteredDate: string | null;
+  abnEntityType: string | null;
+  anzsicCode: string | null;
+  abnGstRegistered: boolean;
+  gstRegisteredDate: string | null;
+  // ASIC
+  asicStatus: "REGISTERED" | "DEREGISTERED" | "NOT_CHECKED";
+  asicRegisteredDate: string | null;
+  asicRegisteredAddress: string | null;
+  asicDirectors: WizardDirector[];
+  asicPreviousNames: string[];
+  // Insolvency
+  insolvencyCheckResult: "CLEAR" | "CONCERNS" | "NOT_CHECKED";
+  insolvencyCheckSummary: string;
+}
+
+async function fetchAbrExtended(abn: string, guid: string) {
+  const url = `https://abr.business.gov.au/json/AbnDetails.aspx?abn=${abn}&callback=callback&guid=${guid}`;
+  const res = await fetch(url, { cache: "no-store" });
+  const json = parseJsonp(await res.text()) as {
+    AbnStatus?: string;
+    AbnStatusFromDate?: string;
+    EntityName?: string;
+    EntityTypeName?: string;
+    Gst?: string | null;
+    Message?: string;
+    MainTradingEntityIndustryClass?: { IndustryCode?: string };
+  };
+  if (json.Message) throw new Error(json.Message);
+  return {
+    abnStatus: (json.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED") as "ACTIVE" | "CANCELLED",
+    abnRegisteredName: json.EntityName ?? "",
+    abnRegisteredDate: json.AbnStatusFromDate ?? null,
+    abnEntityType: json.EntityTypeName ?? null,
+    anzsicCode: json.MainTradingEntityIndustryClass?.IndustryCode ?? null,
+    abnGstRegistered: !!json.Gst,
+    gstRegisteredDate: typeof json.Gst === "string" ? json.Gst : null,
+  };
+}
+
+function parseDirectorName(fullName: string): { firstName: string; lastName: string } {
+  // ASIC usually returns "LASTNAME FIRSTNAME MIDDLE" in all caps
+  const parts = fullName.trim().split(/\s+/);
+  if (parts.length === 1) return { firstName: "", lastName: parts[0] };
+  const lastName = parts[0];
+  const firstName = parts.slice(1).join(" ");
+  return { firstName, lastName };
+}
+
+async function fetchAsicDetails(abn: string) {
+  try {
+    const res = await fetch(
+      `https://data.asic.gov.au/api/v2/businessRegistrationDetails?abn=${abn}`,
+      { cache: "no-store", signal: AbortSignal.timeout(8000) }
+    );
+    if (!res.ok) return null;
+    const json = await res.json() as {
+      status?: string;
+      registrationDate?: string;
+      registeredAddress?: string;
+      directors?: Array<{ fullName?: string; appointmentDate?: string }>;
+      previousNames?: string[];
+    };
+    const directors: WizardDirector[] = (json.directors ?? []).map((d) => {
+      const full = d.fullName ?? "";
+      const { firstName, lastName } = parseDirectorName(full);
+      return { fullName: full, firstName, lastName, appointmentDate: d.appointmentDate ?? null };
+    });
+    return {
+      status: json.status === "Registered" ? "REGISTERED" as const
+            : json.status === "Deregistered" ? "DEREGISTERED" as const
+            : "NOT_CHECKED" as const,
+      registeredDate: json.registrationDate ?? null,
+      registeredAddress: json.registeredAddress ?? null,
+      directors,
+      previousNames: json.previousNames ?? [],
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function checkInsolvency(abn: string, entityName: string): Promise<{
+  result: "CLEAR" | "CONCERNS" | "NOT_CHECKED";
+  summary: string;
+}> {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return { result: "NOT_CHECKED", summary: "Insolvency check not configured (missing ANTHROPIC_API_KEY)." };
+
+  // Fetch ASIC insolvency notices (best-effort)
+  let asicSnippet = "";
+  try {
+    const r = await fetch(
+      `https://insolvencynotices.asic.gov.au/results?q=${encodeURIComponent(abn)}`,
+      { cache: "no-store", signal: AbortSignal.timeout(6000) }
+    );
+    if (r.ok) {
+      const html = await r.text();
+      asicSnippet = html.replace(/<[^>]+>/g, " ").replace(/\s{2,}/g, " ").substring(0, 2000);
+    }
+  } catch { /* ignore */ }
+
+  // Fetch AFSA bankruptcy register (best-effort)
+  let afsaSnippet = "";
+  try {
+    const r = await fetch(
+      `https://www.afsa.gov.au/insolvency/insolvency-register/search?q=${encodeURIComponent(entityName)}`,
+      { cache: "no-store", signal: AbortSignal.timeout(6000) }
+    );
+    if (r.ok) {
+      const html = await r.text();
+      afsaSnippet = html.replace(/<[^>]+>/g, " ").replace(/\s{2,}/g, " ").substring(0, 2000);
+    }
+  } catch { /* ignore */ }
+
+  try {
+    const resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 256,
+        messages: [
+          {
+            role: "user",
+            content: `You are checking Australian insolvency/administration/bankruptcy status for:
+Company: "${entityName}"
+ABN: ${abn}
+
+ASIC Insolvency Notices page content:
+${asicSnippet || "(could not retrieve)"}
+
+AFSA Bankruptcy Register page content:
+${afsaSnippet || "(could not retrieve)"}
+
+Analyse and respond with JSON only — no other text:
+{"riskLevel":"CLEAR"|"CONCERNS","summary":"1-2 sentence plain English result"}
+
+Use CONCERNS only if there is a specific insolvency/administration/bankruptcy record for this exact entity. If data could not be retrieved, say so in the summary and use CLEAR.`,
+          },
+        ],
+      }),
+      signal: AbortSignal.timeout(20000),
+    });
+    const data = await resp.json() as { content?: Array<{ text?: string }> };
+    const raw = data.content?.[0]?.text ?? "{}";
+    const clean = raw.replace(/```json\n?|\n?```/g, "").trim();
+    const parsed = JSON.parse(clean) as { riskLevel?: string; summary?: string };
+    return {
+      result: parsed.riskLevel === "CONCERNS" ? "CONCERNS" : "CLEAR",
+      summary: parsed.summary ?? "No insolvency notices found.",
+    };
+  } catch {
+    return {
+      result: "NOT_CHECKED",
+      summary: "Insolvency check could not be completed — please verify manually.",
+    };
+  }
+}
+
+export async function retrieveCompanyData(abn: string, entityName: string): Promise<{
+  ok: boolean;
+  error?: string;
+  data?: RetrievedCompanyData;
+}> {
+  const cleanAbn = abn.replace(/\s/g, "");
+  if (!/^\d{11}$/.test(cleanAbn)) return { ok: false, error: "Invalid ABN" };
+  const guid = getGuid();
+  if (!guid) return { ok: false, error: "ABN lookup not configured — check ABN_LOOKUP_GUID env var" };
+
+  const [abnResult, asicResult, insolvencyResult] = await Promise.allSettled([
+    fetchAbrExtended(cleanAbn, guid),
+    fetchAsicDetails(cleanAbn),
+    checkInsolvency(cleanAbn, entityName),
+  ]);
+
+  if (abnResult.status === "rejected") {
+    return { ok: false, error: String(abnResult.reason) };
+  }
+
+  const abnData = abnResult.value;
+  const asicData = asicResult.status === "fulfilled" ? asicResult.value : null;
+  const insolvencyData = insolvencyResult.status === "fulfilled" ? insolvencyResult.value : null;
+
+  return {
+    ok: true,
+    data: {
+      abn: cleanAbn,
+      abnStatus: abnData.abnStatus,
+      abnRegisteredName: abnData.abnRegisteredName,
+      abnRegisteredDate: abnData.abnRegisteredDate,
+      abnEntityType: abnData.abnEntityType,
+      anzsicCode: abnData.anzsicCode,
+      abnGstRegistered: abnData.abnGstRegistered,
+      gstRegisteredDate: abnData.gstRegisteredDate,
+      asicStatus: asicData?.status ?? "NOT_CHECKED",
+      asicRegisteredDate: asicData?.registeredDate ?? null,
+      asicRegisteredAddress: asicData?.registeredAddress ?? null,
+      asicDirectors: asicData?.directors ?? [],
+      asicPreviousNames: asicData?.previousNames ?? [],
+      insolvencyCheckResult: insolvencyData?.result ?? "NOT_CHECKED",
+      insolvencyCheckSummary: insolvencyData?.summary ?? "Check not completed.",
+    },
+  };
+}
+
+// ─── Wizard: Create Company From Wizard ──────────────────────────────────────
+
+export interface WizardCompanyInput {
+  // identity
+  tradingName: string;
+  types: string[];
+  // from retrieval
+  retrieved: RetrievedCompanyData;
+  // user-confirmed addresses
+  asicRegisteredAddress: string;
+  tradingAddressStreet: string;
+  tradingAddressSuburb: string;
+  tradingAddressState: string;
+  tradingAddressPostcode: string;
+  // optional
+  paymentTerms?: string;
+}
+
+export async function createCompanyFromWizard(
+  input: WizardCompanyInput,
+  directorsToAdd: WizardDirector[]
+): Promise<{ companyId: string }> {
+  const user = await requireAppUser();
+  const r = input.retrieved;
+
+  const now = new Date();
+  const toDate = (s: string | null | undefined) =>
+    s ? new Date(s) : null;
+
+  const company = await prisma.company.create({
+    data: {
+      organisationId: user.organisationId,
+      name: input.tradingName,
+      legalName: r.abnRegisteredName || null,
+      types: input.types,
+      abn: r.abn,
+      abnStatus: r.abnStatus as never,
+      abnRegisteredName: r.abnRegisteredName || null,
+      abnGstRegistered: r.abnGstRegistered,
+      abnRegisteredDate: toDate(r.abnRegisteredDate),
+      abnEntityType: r.abnEntityType,
+      anzsicCode: r.anzsicCode,
+      gstRegisteredDate: toDate(r.gstRegisteredDate),
+      abnVerifiedAt: now,
+      asicStatus: r.asicStatus as never,
+      asicCheckedAt: now,
+      asicRegisteredDate: toDate(r.asicRegisteredDate),
+      asicRegisteredAddress: input.asicRegisteredAddress || null,
+      insolvencyCheckResult: r.insolvencyCheckResult,
+      insolvencyCheckSummary: r.insolvencyCheckSummary,
+      insolvencyCheckedAt: now,
+      addressStreet: input.tradingAddressStreet || null,
+      addressSuburb: input.tradingAddressSuburb || null,
+      addressState: input.tradingAddressState || null,
+      addressPostcode: input.tradingAddressPostcode || null,
+      postalSameAsStreet: true,
+      paymentTerms: input.paymentTerms || null,
+      isActive: true,
+      dataSource: "API",
+      createdById: user.id,
+    },
+  });
+
+  // Auto-create SubcontractorProfile
+  if (input.types.includes("SUBCONTRACTOR")) {
+    await prisma.subcontractorProfile.create({ data: { companyId: company.id } });
+  }
+
+  // Create director contacts
+  for (const dir of directorsToAdd) {
+    const contact = await prisma.contact.create({
+      data: {
+        organisationId: user.organisationId,
+        firstName: dir.firstName || dir.fullName,
+        lastName: dir.lastName || "",
+        jobTitle: "Director",
+        dataSource: "API",
+        createdById: user.id,
+      },
+    });
+    await prisma.companyContact.create({
+      data: {
+        companyId: company.id,
+        contactId: contact.id,
+        position: "Director",
+        isPrimary: false,
+      },
+    });
+  }
+
+  revalidatePath("/crm/companies");
+  return { companyId: company.id };
+}
