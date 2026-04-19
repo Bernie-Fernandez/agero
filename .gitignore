@@ -41,7 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# prisma generated clients
+# prisma generated clients (apps only — packages/db/src/generated/prisma is committed)
 src/generated/prisma
 apps/*/src/generated/prisma
-packages/*/src/generated/prisma
