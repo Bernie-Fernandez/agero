@@ -99,6 +99,7 @@ export function UploadDocumentDrawer({ companyId }: Props) {
               <input
                 name="documentName"
                 required
+                autoComplete="off"
                 className="w-full border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="e.g. WHS Policy 2025"
               />
@@ -108,6 +109,7 @@ export function UploadDocumentDrawer({ companyId }: Props) {
               <label className="block text-xs font-medium text-zinc-600 mb-1">Document Type</label>
               <input
                 name="documentType"
+                autoComplete="off"
                 className="w-full border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="e.g. WHS Policy, Contract, Licence"
                 defaultValue="General"
