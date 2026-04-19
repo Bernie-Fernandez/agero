@@ -97,6 +97,11 @@ export function AddCompanyWizard({
   const [tradingSuburb, setTradingSuburb] = useState("");
   const [tradingState, setTradingState] = useState("");
   const [tradingPostcode, setTradingPostcode] = useState("");
+  const [postalSameAsTrading, setPostalSameAsTrading] = useState(true);
+  const [postalStreet, setPostalStreet] = useState("");
+  const [postalSuburb, setPostalSuburb] = useState("");
+  const [postalState, setPostalState] = useState("");
+  const [postalPostcode, setPostalPostcode] = useState("");
   const [selectedPaymentTerms, setSelectedPaymentTerms] = useState(
     () => paymentTerms.find((p) => p.isDefault)?.id ?? ""
   );
@@ -157,8 +162,10 @@ export function AddCompanyWizard({
       }
       const data = res.data;
       setRetrieved(data);
-      setTradingName(data.abnRegisteredName || result.name);
+      // Pre-fill trading name: prefer ABR trading name, fall back to registered name
+      setTradingName(data.abnTradingName || data.abnRegisteredName || result.name);
       setAsicAddress(data.asicRegisteredAddress ?? "");
+      // Pre-fill trading address from ASIC registered address (user edits on Step 5)
       setTradingStreet(data.asicRegisteredAddress ?? "");
       setSelectedDirectors(new Set(data.asicDirectors.map((_, i) => i)));
       setStep(4);
@@ -209,6 +216,11 @@ export function AddCompanyWizard({
             tradingAddressSuburb: tradingSuburb,
             tradingAddressState: tradingState,
             tradingAddressPostcode: tradingPostcode,
+            postalSameAsTrading,
+            postalStreet,
+            postalSuburb,
+            postalState,
+            postalPostcode,
             paymentTerms: selectedPaymentTerms || undefined,
           },
           directorsToAdd
@@ -483,6 +495,16 @@ export function AddCompanyWizard({
                   {formatAbn(retrieved.abn)}
                 </p>
               </div>
+              {retrieved.abnTradingName && (
+                <div className="col-span-2">
+                  <p className="text-xs text-zinc-400 uppercase tracking-wide">
+                    Trading name (ABR)
+                  </p>
+                  <p className="font-medium text-zinc-900 mt-0.5">
+                    {retrieved.abnTradingName}
+                  </p>
+                </div>
+              )}
               <div>
                 <p className="text-xs text-zinc-400 uppercase tracking-wide">
                   ABN status
@@ -548,6 +570,26 @@ export function AddCompanyWizard({
                   </p>
                   <p className="font-medium text-zinc-900 mt-0.5">
                     {retrieved.anzsicCode}
+                  </p>
+                </div>
+              )}
+              {retrieved.asicRegisteredDate && (
+                <div>
+                  <p className="text-xs text-zinc-400 uppercase tracking-wide">
+                    ASIC registered
+                  </p>
+                  <p className="font-medium text-zinc-900 mt-0.5">
+                    {formatDate(retrieved.asicRegisteredDate)}
+                  </p>
+                </div>
+              )}
+              {retrieved.asicRegisteredAddress && (
+                <div className="col-span-2">
+                  <p className="text-xs text-zinc-400 uppercase tracking-wide">
+                    ASIC registered address
+                  </p>
+                  <p className="font-medium text-zinc-900 mt-0.5">
+                    {retrieved.asicRegisteredAddress}
                   </p>
                 </div>
               )}
@@ -706,7 +748,8 @@ export function AddCompanyWizard({
 
       {/* ── STEP 5: Addresses ───────────────────────────────────────────────── */}
       {step === 5 && retrieved && (
-        <div className="space-y-5">
+        <div className="space-y-6">
+          {/* Trading name */}
           <div>
             <label className="block text-sm font-medium text-zinc-700 mb-1">
               Trading name
@@ -719,21 +762,10 @@ export function AddCompanyWizard({
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1">
-              ASIC registered address
-            </label>
-            <input
-              type="text"
-              value={asicAddress}
-              onChange={(e) => setAsicAddress(e.target.value)}
-              placeholder="ASIC registered address"
-              className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
-            />
-          </div>
-
+          {/* Trading address */}
           <div className="space-y-3">
-            <p className="text-sm font-medium text-zinc-700">Trading address</p>
+            <p className="text-sm font-semibold text-zinc-700">Trading address</p>
+            <p className="text-xs text-zinc-400 -mt-2">Where the company operates day-to-day</p>
             <div>
               <label className="block text-xs text-zinc-500 mb-1">Street</label>
               <input
@@ -764,9 +796,7 @@ export function AddCompanyWizard({
                 >
                   <option value="">State</option>
                   {AU_STATES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
@@ -784,6 +814,91 @@ export function AddCompanyWizard({
             </div>
           </div>
 
+          {/* Postal address */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-zinc-700">Postal address</p>
+                <p className="text-xs text-zinc-400">For correspondence and invoicing</p>
+              </div>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={postalSameAsTrading}
+                  onChange={(e) => setPostalSameAsTrading(e.target.checked)}
+                  className="rounded"
+                />
+                <span className="text-xs text-zinc-600">Same as trading address</span>
+              </label>
+            </div>
+            {!postalSameAsTrading && (
+              <>
+                <div>
+                  <label className="block text-xs text-zinc-500 mb-1">Street</label>
+                  <input
+                    type="text"
+                    value={postalStreet}
+                    onChange={(e) => setPostalStreet(e.target.value)}
+                    placeholder="Postal street / PO Box"
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+                  />
+                </div>
+                <div className="grid grid-cols-5 gap-3">
+                  <div className="col-span-2">
+                    <label className="block text-xs text-zinc-500 mb-1">Suburb</label>
+                    <input
+                      type="text"
+                      value={postalSuburb}
+                      onChange={(e) => setPostalSuburb(e.target.value)}
+                      placeholder="Suburb"
+                      className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+                    />
+                  </div>
+                  <div className="col-span-2">
+                    <label className="block text-xs text-zinc-500 mb-1">State</label>
+                    <select
+                      value={postalState}
+                      onChange={(e) => setPostalState(e.target.value)}
+                      className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent bg-white"
+                    >
+                      <option value="">State</option>
+                      {AU_STATES.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs text-zinc-500 mb-1">Postcode</label>
+                    <input
+                      type="text"
+                      value={postalPostcode}
+                      onChange={(e) => setPostalPostcode(e.target.value)}
+                      placeholder="3000"
+                      maxLength={4}
+                      className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* ASIC registered address for notices */}
+          <div>
+            <label className="block text-sm font-semibold text-zinc-700 mb-1">
+              ASIC registered address for notices
+            </label>
+            <p className="text-xs text-zinc-400 mb-2">Legal registered address — pre-filled from ASIC if available</p>
+            <input
+              type="text"
+              value={asicAddress}
+              onChange={(e) => setAsicAddress(e.target.value)}
+              placeholder="ASIC registered address"
+              className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+            />
+          </div>
+
+          {/* Payment terms */}
           {paymentTerms.length > 0 && (
             <div>
               <label className="block text-sm font-medium text-zinc-700 mb-1">
@@ -796,9 +911,7 @@ export function AddCompanyWizard({
               >
                 <option value="">— Select payment terms —</option>
                 {paymentTerms.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
+                  <option key={p.id} value={p.id}>{p.name}</option>
                 ))}
               </select>
             </div>

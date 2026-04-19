@@ -104,11 +104,12 @@ export default async function CompanyDetailPage({
   const TABS = [
     { id: "overview", label: "Overview" },
     { id: "contacts", label: `Contacts (${company.companyContacts.length})` },
-    { id: "trades", label: `Trades (${company.trades.length})` },
+    { id: "trades", label: `Trade Categories (${company.trades.length})` },
     { id: "insurance", label: `Insurance (${company.insurancePolicies.length})` },
     { id: "documents", label: `Documents (${company.documents.length})` },
     { id: "communications", label: `Comms (${company.communications.length})` },
     { id: "notes", label: `Notes (${company.notes.length})` },
+    { id: "performance", label: "Performance" },
     ...(isSubcontractor ? [{ id: "subcontractor", label: "Subcontractor" }] : []),
   ];
 
@@ -214,6 +215,9 @@ export default async function CompanyDetailPage({
       )}
       {activeTab === "notes" && (
         <NotesTab notes={company.notes} />
+      )}
+      {activeTab === "performance" && (
+        <PerformanceTab />
       )}
       {activeTab === "subcontractor" && isSubcontractor && (
         <SubcontractorTab profile={company.subcontractorProfile} companyId={id} />
@@ -671,6 +675,43 @@ function NotesTab({ notes }: { notes: Note[] }) {
   );
 }
 
+// ─── Performance Tab ─────────────────────────────────────────────────────────
+
+function PerformanceTab() {
+  const cards = [
+    {
+      title: "Quality Performance",
+      body: "Quality scores will populate from ITP results and NCR history in Phase 2.",
+      standard: "ISO 9001",
+    },
+    {
+      title: "Safety Performance",
+      body: "Safety scores will populate from incident history and audit results in Phase 3.",
+      standard: "ISO 45001",
+    },
+    {
+      title: "Environmental Performance",
+      body: "Environmental scores will populate from environmental incident records in Phase 3.",
+      standard: "ISO 14001",
+    },
+  ];
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {cards.map((card) => (
+        <div key={card.title} className="bg-gray-50 border border-gray-200 rounded-lg p-5">
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <h3 className="text-sm font-semibold text-zinc-700">{card.title}</h3>
+            <span className="text-xs px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-400 shrink-0 font-mono">
+              {card.standard}
+            </span>
+          </div>
+          <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Subcontractor Tab ────────────────────────────────────────────────────────
 
 type SubcontractorProfile = {
@@ -708,24 +749,12 @@ function SubcontractorTab({
         </dl>
       </div>
 
-      {/* Capabilities */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Capabilities</h3>
-        <ul className="space-y-1.5 text-sm">
-          {[
-            ["Staff Management", profile.capabilitiesStaff],
-            ["Safety Assessment", profile.capabilitiesAssessment],
-            ["Purchases", profile.capabilitiesPurchases],
-            ["SWMS", profile.capabilitiesSwms],
-          ].map(([label, enabled]) => (
-            <li key={String(label)} className="flex items-center gap-2">
-              <span className={`w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold ${enabled ? "bg-green-500 text-white" : "bg-gray-200 text-gray-400"}`}>
-                {enabled ? "✓" : "×"}
-              </span>
-              <span className={enabled ? "text-zinc-800" : "text-zinc-400"}>{String(label)}</span>
-            </li>
-          ))}
-        </ul>
+      {/* Safety Compliance placeholder */}
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">Safety Compliance</h3>
+        <p className="text-xs text-zinc-400 leading-relaxed">
+          Safety capability flags will be configured in Phase 2 when project assignment is built.
+        </p>
       </div>
 
       {/* Portal */}

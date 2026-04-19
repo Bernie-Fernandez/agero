@@ -125,8 +125,8 @@ function parseAbrXml(xml: string): AbnNameResult[] {
     const abn = xmlText(abnBlock, "identifierValue").replace(/\s/g, "");
     if (!abn || !/^\d{11}$/.test(abn)) continue;
 
-    // ABN status
-    const rawStatus = xmlText(record, "ABNStatus");
+    // ABN status — lives inside the ABN block as <identifierStatus>
+    const rawStatus = xmlText(abnBlock, "identifierStatus");
     const abnStatus = rawStatus === "Active" ? "ACTIVE" : "CANCELLED";
 
     // Entity name — prefer organisationName, fall back to person name parts
@@ -437,6 +437,7 @@ export interface RetrievedCompanyData {
   // ABR
   abnStatus: "ACTIVE" | "CANCELLED";
   abnRegisteredName: string;
+  abnTradingName: string | null;
   abnRegisteredDate: string | null;
   abnEntityType: string | null;
   anzsicCode: string | null;
@@ -464,11 +465,16 @@ async function fetchAbrExtended(abn: string, guid: string) {
     Gst?: string | null;
     Message?: string;
     MainTradingEntityIndustryClass?: { IndustryCode?: string };
+    BusinessName?: Array<{ OrganisationName?: string; IsCurrentIndicator?: string }>;
   };
   if (json.Message) throw new Error(json.Message);
+  // Extract current trading name from BusinessName array (registered before May 2012)
+  const currentTradingName =
+    json.BusinessName?.find((b) => b.IsCurrentIndicator === "Y")?.OrganisationName ?? null;
   return {
     abnStatus: (json.AbnStatus === "Active" ? "ACTIVE" : "CANCELLED") as "ACTIVE" | "CANCELLED",
     abnRegisteredName: json.EntityName ?? "",
+    abnTradingName: currentTradingName,
     abnRegisteredDate: json.AbnStatusFromDate ?? null,
     abnEntityType: json.EntityTypeName ?? null,
     anzsicCode: json.MainTradingEntityIndustryClass?.IndustryCode ?? null,
@@ -631,6 +637,7 @@ export async function retrieveCompanyData(abn: string, entityName: string): Prom
       abn: cleanAbn,
       abnStatus: abnData.abnStatus,
       abnRegisteredName: abnData.abnRegisteredName,
+      abnTradingName: abnData.abnTradingName,
       abnRegisteredDate: abnData.abnRegisteredDate,
       abnEntityType: abnData.abnEntityType,
       anzsicCode: abnData.anzsicCode,
@@ -661,6 +668,12 @@ export interface WizardCompanyInput {
   tradingAddressSuburb: string;
   tradingAddressState: string;
   tradingAddressPostcode: string;
+  // postal address
+  postalSameAsTrading: boolean;
+  postalStreet: string;
+  postalSuburb: string;
+  postalState: string;
+  postalPostcode: string;
   // optional
   paymentTerms?: string;
 }
@@ -702,7 +715,11 @@ export async function createCompanyFromWizard(
       addressSuburb: input.tradingAddressSuburb || null,
       addressState: input.tradingAddressState || null,
       addressPostcode: input.tradingAddressPostcode || null,
-      postalSameAsStreet: true,
+      postalSameAsStreet: input.postalSameAsTrading,
+      postalStreet: input.postalSameAsTrading ? null : (input.postalStreet || null),
+      postalSuburb: input.postalSameAsTrading ? null : (input.postalSuburb || null),
+      postalState: input.postalSameAsTrading ? null : (input.postalState || null),
+      postalPostcode: input.postalSameAsTrading ? null : (input.postalPostcode || null),
       paymentTerms: input.paymentTerms || null,
       isActive: true,
       dataSource: "API",
