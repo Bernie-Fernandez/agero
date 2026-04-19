@@ -91,6 +91,13 @@ export function AddCompanyWizard({
   const [tradingName, setTradingName] = useState("");
   const [insolvencyAcknowledged, setInsolvencyAcknowledged] = useState(false);
 
+  // Step 4: Supplier profile
+  const [wizardTier, setWizardTier] = useState("");
+  const [wizardCostLevel, setWizardCostLevel] = useState("");
+  const [wizardPerformanceRating, setWizardPerformanceRating] = useState("");
+  const [wizardIsPreferred, setWizardIsPreferred] = useState(false);
+  const [wizardTempLabour, setWizardTempLabour] = useState(false);
+
   // ── Step 5: Addresses ───────────────────────────────────────────────────────
   const [asicAddress, setAsicAddress] = useState("");
   const [tradingStreet, setTradingStreet] = useState("");
@@ -222,6 +229,11 @@ export function AddCompanyWizard({
             postalState,
             postalPostcode,
             paymentTerms: selectedPaymentTerms || undefined,
+            tier: wizardTier || undefined,
+            costLevel: wizardCostLevel || undefined,
+            performanceRating: wizardPerformanceRating || undefined,
+            isPreferred: wizardIsPreferred,
+            tempLabour: wizardTempLabour,
           },
           directorsToAdd
         );
@@ -724,6 +736,96 @@ export function AddCompanyWizard({
                 Select at least one type to continue
               </p>
             )}
+          </div>
+
+          {/* Supplier Profile (optional) */}
+          <div className="border border-zinc-200 rounded-lg overflow-hidden">
+            <div className="px-4 py-3 bg-zinc-50 border-b border-zinc-200">
+              <h3 className="text-sm font-semibold text-zinc-900">Supplier Profile</h3>
+              <p className="text-xs text-zinc-400 mt-0.5">Optional — can be updated later</p>
+            </div>
+            <div className="px-4 py-4 space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div>
+                  <label className="block text-xs font-medium text-zinc-600 mb-1">Tier</label>
+                  <select
+                    value={wizardTier}
+                    onChange={(e) => setWizardTier(e.target.value)}
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+                  >
+                    <option value="">— Not Set —</option>
+                    <option value="TIER_1">Tier 1</option>
+                    <option value="TIER_2">Tier 2</option>
+                    <option value="TIER_3">Tier 3</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-zinc-600 mb-1">Cost Level</label>
+                  <select
+                    value={wizardCostLevel}
+                    onChange={(e) => setWizardCostLevel(e.target.value)}
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+                  >
+                    <option value="">— Not Set —</option>
+                    <option value="HIGH">High</option>
+                    <option value="MID">Mid</option>
+                    <option value="LOW">Low</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-zinc-600 mb-1">Performance Rating</label>
+                  <select
+                    value={wizardPerformanceRating}
+                    onChange={(e) => setWizardPerformanceRating(e.target.value)}
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
+                  >
+                    <option value="">— Not Set —</option>
+                    <option value="HIGH">High</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="LOW">Low</option>
+                    <option value="UNTESTED">Untested</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={wizardIsPreferred}
+                    onClick={() => setWizardIsPreferred((v) => !v)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      wizardIsPreferred ? "bg-yellow-400" : "bg-gray-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        wizardIsPreferred ? "translate-x-6" : "translate-x-1"
+                      }`}
+                    />
+                  </button>
+                  <span className="text-sm text-zinc-700">Preferred Supplier</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={wizardTempLabour}
+                    onClick={() => setWizardTempLabour((v) => !v)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      wizardTempLabour ? "bg-blue-600" : "bg-gray-300"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        wizardTempLabour ? "translate-x-6" : "translate-x-1"
+                      }`}
+                    />
+                  </button>
+                  <span className="text-sm text-zinc-700">Temp Labour</span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <div className="flex justify-between pt-2">

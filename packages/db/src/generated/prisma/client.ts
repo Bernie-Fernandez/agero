@@ -127,6 +127,16 @@ export type NotificationAlert = Prisma.NotificationAlertModel
  */
 export type AlertThreshold = Prisma.AlertThresholdModel
 /**
+ * Model ExpertiseTag
+ * 
+ */
+export type ExpertiseTag = Prisma.ExpertiseTagModel
+/**
+ * Model CompanyExpertiseTag
+ * 
+ */
+export type CompanyExpertiseTag = Prisma.CompanyExpertiseTagModel
+/**
  * Model PaymentTerm
  * 
  */

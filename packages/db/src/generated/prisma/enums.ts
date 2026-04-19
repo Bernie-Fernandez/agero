@@ -76,6 +76,34 @@ export const DataSource = {
 export type DataSource = (typeof DataSource)[keyof typeof DataSource]
 
 
+export const CompanyTier = {
+  TIER_1: 'TIER_1',
+  TIER_2: 'TIER_2',
+  TIER_3: 'TIER_3'
+} as const
+
+export type CompanyTier = (typeof CompanyTier)[keyof typeof CompanyTier]
+
+
+export const CostLevel = {
+  HIGH: 'HIGH',
+  MID: 'MID',
+  LOW: 'LOW'
+} as const
+
+export type CostLevel = (typeof CostLevel)[keyof typeof CostLevel]
+
+
+export const PerformanceRating = {
+  HIGH: 'HIGH',
+  MEDIUM: 'MEDIUM',
+  LOW: 'LOW',
+  UNTESTED: 'UNTESTED'
+} as const
+
+export type PerformanceRating = (typeof PerformanceRating)[keyof typeof PerformanceRating]
+
+
 export const CostCodeType = {
   REVENUE: 'REVENUE',
   TIME_CODE: 'TIME_CODE',

@@ -68,6 +68,8 @@ export const ModelName = {
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
+  ExpertiseTag: 'ExpertiseTag',
+  CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
   SystemEvent: 'SystemEvent',
   ImsEmployee: 'ImsEmployee',
@@ -223,6 +225,15 @@ export const CompanyScalarFieldEnum = {
   dataSource: 'dataSource',
   importedFrom: 'importedFrom',
   catCloudId: 'catCloudId',
+  tier: 'tier',
+  costLevel: 'costLevel',
+  isPreferred: 'isPreferred',
+  tempLabour: 'tempLabour',
+  performanceRating: 'performanceRating',
+  isBlacklisted: 'isBlacklisted',
+  blacklistReason: 'blacklistReason',
+  blacklistedAt: 'blacklistedAt',
+  blacklistedById: 'blacklistedById',
   createdById: 'createdById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -464,6 +475,29 @@ export const AlertThresholdScalarFieldEnum = {
 } as const
 
 export type AlertThresholdScalarFieldEnum = (typeof AlertThresholdScalarFieldEnum)[keyof typeof AlertThresholdScalarFieldEnum]
+
+
+export const ExpertiseTagScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  category: 'category',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpertiseTagScalarFieldEnum = (typeof ExpertiseTagScalarFieldEnum)[keyof typeof ExpertiseTagScalarFieldEnum]
+
+
+export const CompanyExpertiseTagScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  expertiseTagId: 'expertiseTagId',
+  createdAt: 'createdAt'
+} as const
+
+export type CompanyExpertiseTagScalarFieldEnum = (typeof CompanyExpertiseTagScalarFieldEnum)[keyof typeof CompanyExpertiseTagScalarFieldEnum]
 
 
 export const PaymentTermScalarFieldEnum = {

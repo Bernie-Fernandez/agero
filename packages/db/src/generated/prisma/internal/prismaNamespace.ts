@@ -401,6 +401,8 @@ export const ModelName = {
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
+  ExpertiseTag: 'ExpertiseTag',
+  CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
   SystemEvent: 'SystemEvent',
   ImsEmployee: 'ImsEmployee',
@@ -450,7 +452,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1709,6 +1711,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AlertThresholdCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AlertThresholdCountAggregateOutputType> | number
+        }
+      }
+    }
+    ExpertiseTag: {
+      payload: Prisma.$ExpertiseTagPayload<ExtArgs>
+      fields: Prisma.ExpertiseTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExpertiseTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExpertiseTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        findFirst: {
+          args: Prisma.ExpertiseTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExpertiseTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        findMany: {
+          args: Prisma.ExpertiseTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>[]
+        }
+        create: {
+          args: Prisma.ExpertiseTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        createMany: {
+          args: Prisma.ExpertiseTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExpertiseTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>[]
+        }
+        delete: {
+          args: Prisma.ExpertiseTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        update: {
+          args: Prisma.ExpertiseTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.ExpertiseTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExpertiseTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExpertiseTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.ExpertiseTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExpertiseTagPayload>
+        }
+        aggregate: {
+          args: Prisma.ExpertiseTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExpertiseTag>
+        }
+        groupBy: {
+          args: Prisma.ExpertiseTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertiseTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExpertiseTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExpertiseTagCountAggregateOutputType> | number
+        }
+      }
+    }
+    CompanyExpertiseTag: {
+      payload: Prisma.$CompanyExpertiseTagPayload<ExtArgs>
+      fields: Prisma.CompanyExpertiseTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompanyExpertiseTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompanyExpertiseTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        findFirst: {
+          args: Prisma.CompanyExpertiseTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompanyExpertiseTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        findMany: {
+          args: Prisma.CompanyExpertiseTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>[]
+        }
+        create: {
+          args: Prisma.CompanyExpertiseTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        createMany: {
+          args: Prisma.CompanyExpertiseTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompanyExpertiseTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>[]
+        }
+        delete: {
+          args: Prisma.CompanyExpertiseTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        update: {
+          args: Prisma.CompanyExpertiseTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompanyExpertiseTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompanyExpertiseTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompanyExpertiseTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompanyExpertiseTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyExpertiseTagPayload>
+        }
+        aggregate: {
+          args: Prisma.CompanyExpertiseTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompanyExpertiseTag>
+        }
+        groupBy: {
+          args: Prisma.CompanyExpertiseTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyExpertiseTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompanyExpertiseTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyExpertiseTagCountAggregateOutputType> | number
         }
       }
     }
@@ -4370,6 +4520,15 @@ export const CompanyScalarFieldEnum = {
   dataSource: 'dataSource',
   importedFrom: 'importedFrom',
   catCloudId: 'catCloudId',
+  tier: 'tier',
+  costLevel: 'costLevel',
+  isPreferred: 'isPreferred',
+  tempLabour: 'tempLabour',
+  performanceRating: 'performanceRating',
+  isBlacklisted: 'isBlacklisted',
+  blacklistReason: 'blacklistReason',
+  blacklistedAt: 'blacklistedAt',
+  blacklistedById: 'blacklistedById',
   createdById: 'createdById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -4611,6 +4770,29 @@ export const AlertThresholdScalarFieldEnum = {
 } as const
 
 export type AlertThresholdScalarFieldEnum = (typeof AlertThresholdScalarFieldEnum)[keyof typeof AlertThresholdScalarFieldEnum]
+
+
+export const ExpertiseTagScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  category: 'category',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpertiseTagScalarFieldEnum = (typeof ExpertiseTagScalarFieldEnum)[keyof typeof ExpertiseTagScalarFieldEnum]
+
+
+export const CompanyExpertiseTagScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  expertiseTagId: 'expertiseTagId',
+  createdAt: 'createdAt'
+} as const
+
+export type CompanyExpertiseTagScalarFieldEnum = (typeof CompanyExpertiseTagScalarFieldEnum)[keyof typeof CompanyExpertiseTagScalarFieldEnum]
 
 
 export const PaymentTermScalarFieldEnum = {
@@ -5436,6 +5618,48 @@ export type ListEnumDataSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'CompanyTier'
+ */
+export type EnumCompanyTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyTier'>
+    
+
+
+/**
+ * Reference to a field of type 'CompanyTier[]'
+ */
+export type ListEnumCompanyTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyTier[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CostLevel'
+ */
+export type EnumCostLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CostLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'CostLevel[]'
+ */
+export type ListEnumCostLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CostLevel[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PerformanceRating'
+ */
+export type EnumPerformanceRatingFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PerformanceRating'>
+    
+
+
+/**
+ * Reference to a field of type 'PerformanceRating[]'
+ */
+export type ListEnumPerformanceRatingFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PerformanceRating[]'>
+    
+
+
+/**
  * Reference to a field of type 'ContactOwnerStrength'
  */
 export type EnumContactOwnerStrengthFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContactOwnerStrength'>
@@ -5994,6 +6218,8 @@ export type GlobalOmitConfig = {
   communication?: Prisma.CommunicationOmit
   notificationAlert?: Prisma.NotificationAlertOmit
   alertThreshold?: Prisma.AlertThresholdOmit
+  expertiseTag?: Prisma.ExpertiseTagOmit
+  companyExpertiseTag?: Prisma.CompanyExpertiseTagOmit
   paymentTerm?: Prisma.PaymentTermOmit
   systemEvent?: Prisma.SystemEventOmit
   imsEmployee?: Prisma.ImsEmployeeOmit

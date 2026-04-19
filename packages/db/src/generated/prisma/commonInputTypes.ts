@@ -296,6 +296,27 @@ export type EnumDataSourceFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDataSourceFilter<$PrismaModel> | $Enums.DataSource
 }
 
+export type EnumCompanyTierNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CompanyTier | Prisma.EnumCompanyTierFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel> | $Enums.CompanyTier | null
+}
+
+export type EnumCostLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CostLevel | Prisma.EnumCostLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel> | $Enums.CostLevel | null
+}
+
+export type EnumPerformanceRatingNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.PerformanceRating | Prisma.EnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel> | $Enums.PerformanceRating | null
+}
+
 export type EnumAbnStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AbnStatus | Prisma.EnumAbnStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AbnStatus[] | Prisma.ListEnumAbnStatusFieldRefInput<$PrismaModel>
@@ -342,6 +363,36 @@ export type EnumDataSourceWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDataSourceFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDataSourceFilter<$PrismaModel>
+}
+
+export type EnumCompanyTierNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CompanyTier | Prisma.EnumCompanyTierFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCompanyTierNullableWithAggregatesFilter<$PrismaModel> | $Enums.CompanyTier | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel>
+}
+
+export type EnumCostLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CostLevel | Prisma.EnumCostLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCostLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.CostLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel>
+}
+
+export type EnumPerformanceRatingNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PerformanceRating | Prisma.EnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumPerformanceRatingNullableWithAggregatesFilter<$PrismaModel> | $Enums.PerformanceRating | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel>
 }
 
 export type EnumContactOwnerStrengthNullableFilter<$PrismaModel = never> = {
@@ -1277,6 +1328,27 @@ export type NestedEnumDataSourceFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDataSourceFilter<$PrismaModel> | $Enums.DataSource
 }
 
+export type NestedEnumCompanyTierNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CompanyTier | Prisma.EnumCompanyTierFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel> | $Enums.CompanyTier | null
+}
+
+export type NestedEnumCostLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.CostLevel | Prisma.EnumCostLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel> | $Enums.CostLevel | null
+}
+
+export type NestedEnumPerformanceRatingNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.PerformanceRating | Prisma.EnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel> | $Enums.PerformanceRating | null
+}
+
 export type NestedEnumAbnStatusWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.AbnStatus | Prisma.EnumAbnStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AbnStatus[] | Prisma.ListEnumAbnStatusFieldRefInput<$PrismaModel>
@@ -1323,6 +1395,36 @@ export type NestedEnumDataSourceWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDataSourceFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDataSourceFilter<$PrismaModel>
+}
+
+export type NestedEnumCompanyTierNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CompanyTier | Prisma.EnumCompanyTierFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CompanyTier[] | Prisma.ListEnumCompanyTierFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCompanyTierNullableWithAggregatesFilter<$PrismaModel> | $Enums.CompanyTier | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCompanyTierNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumCostLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CostLevel | Prisma.EnumCostLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.CostLevel[] | Prisma.ListEnumCostLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumCostLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.CostLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCostLevelNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumPerformanceRatingNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PerformanceRating | Prisma.EnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.PerformanceRating[] | Prisma.ListEnumPerformanceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumPerformanceRatingNullableWithAggregatesFilter<$PrismaModel> | $Enums.PerformanceRating | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPerformanceRatingNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumContactOwnerStrengthNullableFilter<$PrismaModel = never> = {

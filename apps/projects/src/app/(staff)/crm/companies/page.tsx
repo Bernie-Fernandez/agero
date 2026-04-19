@@ -22,10 +22,44 @@ const ABN_STATUS_COLORS: Record<string, string> = {
   NOT_VERIFIED: "bg-gray-100 text-gray-500",
 };
 
+const TIER_LABELS: Record<string, string> = {
+  TIER_1: "T1",
+  TIER_2: "T2",
+  TIER_3: "T3",
+};
+
+const TIER_COLORS: Record<string, string> = {
+  TIER_1: "bg-indigo-100 text-indigo-700",
+  TIER_2: "bg-sky-100 text-sky-700",
+  TIER_3: "bg-zinc-100 text-zinc-600",
+};
+
+const PERFORMANCE_LABELS: Record<string, string> = {
+  HIGH: "High",
+  MEDIUM: "Medium",
+  LOW: "Low",
+  UNTESTED: "Untested",
+};
+
+const PERFORMANCE_COLORS: Record<string, string> = {
+  HIGH: "bg-green-100 text-green-700",
+  MEDIUM: "bg-yellow-100 text-yellow-700",
+  LOW: "bg-red-100 text-red-700",
+  UNTESTED: "bg-gray-100 text-gray-500",
+};
+
 export default async function CompaniesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; type?: string; active?: string }>;
+  searchParams: Promise<{
+    q?: string;
+    type?: string;
+    active?: string;
+    tier?: string;
+    performance?: string;
+    preferred?: string;
+    tempLabour?: string;
+  }>;
 }) {
   await requireAppUser();
   const params = await searchParams;
@@ -33,11 +67,19 @@ export default async function CompaniesPage({
   const q = params.q?.trim() ?? "";
   const filterType = params.type ?? "";
   const filterActive = params.active !== "false";
+  const filterTier = params.tier ?? "";
+  const filterPerformance = params.performance ?? "";
+  const filterPreferred = params.preferred === "1";
+  const filterTempLabour = params.tempLabour === "1";
 
   const companies = await prisma.company.findMany({
     where: {
       isActive: filterActive,
       ...(filterType ? { types: { has: filterType } } : {}),
+      ...(filterTier ? { tier: filterTier as "TIER_1" | "TIER_2" | "TIER_3" } : {}),
+      ...(filterPerformance ? { performanceRating: filterPerformance as "HIGH" | "MEDIUM" | "LOW" | "UNTESTED" } : {}),
+      ...(filterPreferred ? { isPreferred: true } : {}),
+      ...(filterTempLabour ? { tempLabour: true } : {}),
       ...(q
         ? {
             OR: [
@@ -51,6 +93,11 @@ export default async function CompaniesPage({
     include: {
       _count: { select: { companyContacts: true } },
       subcontractorProfile: { select: { approvalStatus: true } },
+      trades: {
+        where: { isPrimaryTrade: true },
+        include: { costCode: { select: { codeDescription: true } } },
+        take: 1,
+      },
     },
     orderBy: { name: "asc" },
   });
@@ -72,23 +119,31 @@ export default async function CompaniesPage({
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {/* Search */}
-        <form method="GET" className="flex-1 min-w-48">
-          <input
-            name="q"
-            defaultValue={q}
-            placeholder="Search name or ABN…"
-            className="w-full border border-gray-200 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </form>
+      <div className="space-y-2 mb-4">
+        {/* Row 1: Search + active toggle */}
+        <div className="flex gap-2">
+          <form method="GET" className="flex-1 min-w-48">
+            <input
+              name="q"
+              defaultValue={q}
+              placeholder="Search name or ABN…"
+              className="w-full border border-gray-200 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </form>
+          <Link
+            href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "false" : "", q, tier: filterTier, performance: filterPerformance, preferred: filterPreferred ? "1" : "", tempLabour: filterTempLabour ? "1" : "" })}`}
+            className="px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
+          >
+            Show {filterActive ? "inactive" : "active"}
+          </Link>
+        </div>
 
-        {/* Type filter */}
+        {/* Row 2: Type filter */}
         <div className="flex gap-1.5 flex-wrap">
           {["", "SUBCONTRACTOR", "CLIENT", "CONSULTANT", "SUPPLIER"].map((t) => (
             <Link
               key={t || "all"}
-              href={`/crm/companies${buildQuery({ type: t, active: filterActive ? "" : "false", q })}`}
+              href={`/crm/companies${buildQuery({ type: t, active: filterActive ? "" : "false", q, tier: filterTier, performance: filterPerformance, preferred: filterPreferred ? "1" : "", tempLabour: filterTempLabour ? "1" : "" })}`}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 filterType === t
                   ? "bg-zinc-900 text-white"
@@ -100,13 +155,59 @@ export default async function CompaniesPage({
           ))}
         </div>
 
-        {/* Active toggle */}
-        <Link
-          href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "false" : "", q })}`}
-          className="ml-auto px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
-        >
-          Show {filterActive ? "inactive" : "active"}
-        </Link>
+        {/* Row 3: Tier + Performance + toggles */}
+        <div className="flex gap-1.5 flex-wrap items-center">
+          <span className="text-xs text-zinc-400 mr-1">Tier:</span>
+          {["", "TIER_1", "TIER_2", "TIER_3"].map((t) => (
+            <Link
+              key={t || "all-tier"}
+              href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "" : "false", q, tier: t, performance: filterPerformance, preferred: filterPreferred ? "1" : "", tempLabour: filterTempLabour ? "1" : "" })}`}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                filterTier === t
+                  ? "bg-zinc-900 text-white"
+                  : "bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
+              }`}
+            >
+              {t ? TIER_LABELS[t] : "All"}
+            </Link>
+          ))}
+          <span className="text-xs text-zinc-400 mx-1">|</span>
+          <span className="text-xs text-zinc-400 mr-1">Performance:</span>
+          {["", "HIGH", "MEDIUM", "LOW", "UNTESTED"].map((p) => (
+            <Link
+              key={p || "all-perf"}
+              href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "" : "false", q, tier: filterTier, performance: p, preferred: filterPreferred ? "1" : "", tempLabour: filterTempLabour ? "1" : "" })}`}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                filterPerformance === p
+                  ? "bg-zinc-900 text-white"
+                  : "bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
+              }`}
+            >
+              {p ? PERFORMANCE_LABELS[p] : "All"}
+            </Link>
+          ))}
+          <span className="text-xs text-zinc-400 mx-1">|</span>
+          <Link
+            href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "" : "false", q, tier: filterTier, performance: filterPerformance, preferred: filterPreferred ? "" : "1", tempLabour: filterTempLabour ? "1" : "" })}`}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+              filterPreferred
+                ? "bg-yellow-400 text-white"
+                : "bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
+            }`}
+          >
+            ★ Preferred
+          </Link>
+          <Link
+            href={`/crm/companies${buildQuery({ type: filterType, active: filterActive ? "" : "false", q, tier: filterTier, performance: filterPerformance, preferred: filterPreferred ? "1" : "", tempLabour: filterTempLabour ? "" : "1" })}`}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+              filterTempLabour
+                ? "bg-zinc-900 text-white"
+                : "bg-white border border-gray-200 text-zinc-600 hover:bg-zinc-50"
+            }`}
+          >
+            Temp Labour
+          </Link>
+        </div>
       </div>
 
       {/* Table */}
@@ -139,15 +240,50 @@ export default async function CompaniesPage({
                   className={`${idx < companies.length - 1 ? "border-b border-gray-100" : ""} hover:bg-gray-50 transition-colors ${!company.isActive ? "opacity-60" : ""}`}
                 >
                   <td className="px-4 py-3">
-                    <Link
-                      href={`/crm/companies/${company.id}`}
-                      className="font-medium text-zinc-900 hover:text-blue-600"
-                    >
-                      {company.name}
-                    </Link>
-                    {company.legalName && company.legalName !== company.name && (
-                      <p className="text-xs text-zinc-400 mt-0.5">{company.legalName}</p>
-                    )}
+                    <div className="flex items-start gap-2">
+                      <div>
+                        <Link
+                          href={`/crm/companies/${company.id}`}
+                          className="font-medium text-zinc-900 hover:text-blue-600"
+                        >
+                          {company.name}
+                        </Link>
+                        {company.legalName && company.legalName !== company.name && (
+                          <p className="text-xs text-zinc-400 mt-0.5">{company.legalName}</p>
+                        )}
+                        {company.trades[0] && (
+                          <p className="text-xs text-zinc-400 mt-0.5">{company.trades[0].costCode.codeDescription}</p>
+                        )}
+                        {/* Row badges */}
+                        <div className="flex gap-1 mt-1 flex-wrap">
+                          {company.isBlacklisted && (
+                            <span className="text-xs px-1.5 py-0.5 rounded font-semibold bg-red-600 text-white">
+                              BLACKLISTED
+                            </span>
+                          )}
+                          {company.tier && (
+                            <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${TIER_COLORS[company.tier]}`}>
+                              {TIER_LABELS[company.tier]}
+                            </span>
+                          )}
+                          {company.isPreferred && (
+                            <span className="text-xs px-1.5 py-0.5 rounded font-medium bg-yellow-100 text-yellow-700">
+                              ★ Preferred
+                            </span>
+                          )}
+                          {company.tempLabour && (
+                            <span className="text-xs px-1.5 py-0.5 rounded font-medium bg-zinc-100 text-zinc-600">
+                              Temp Labour
+                            </span>
+                          )}
+                          {company.performanceRating && (
+                            <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${PERFORMANCE_COLORS[company.performanceRating]}`}>
+                              {PERFORMANCE_LABELS[company.performanceRating]}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-1 flex-wrap">
@@ -205,10 +341,22 @@ function formatAbn(abn: string) {
   return `${d.slice(0, 2)} ${d.slice(2, 5)} ${d.slice(5, 8)} ${d.slice(8)}`;
 }
 
-function buildQuery(params: { type?: string; active?: string; q?: string }) {
+function buildQuery(params: {
+  type?: string;
+  active?: string;
+  q?: string;
+  tier?: string;
+  performance?: string;
+  preferred?: string;
+  tempLabour?: string;
+}) {
   const parts: string[] = [];
   if (params.q) parts.push(`q=${encodeURIComponent(params.q)}`);
   if (params.type) parts.push(`type=${params.type}`);
   if (params.active === "false") parts.push("active=false");
+  if (params.tier) parts.push(`tier=${params.tier}`);
+  if (params.performance) parts.push(`performance=${params.performance}`);
+  if (params.preferred === "1") parts.push("preferred=1");
+  if (params.tempLabour === "1") parts.push("tempLabour=1");
   return parts.length ? `?${parts.join("&")}` : "";
 }

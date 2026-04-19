@@ -16,13 +16,24 @@ export default async function EditCompanyPage({
   const { id } = await params;
   const sp = await searchParams;
 
-  const company = await prisma.company.findUnique({ where: { id } });
-  if (!company) notFound();
+  const [company, paymentTerms, expertiseTags] = await Promise.all([
+    prisma.company.findUnique({
+      where: { id },
+      include: {
+        expertiseTags: { select: { expertiseTagId: true } },
+      },
+    }),
+    prisma.paymentTerm.findMany({
+      where: { isActive: true },
+      orderBy: { displayOrder: "asc" },
+    }),
+    prisma.expertiseTag.findMany({
+      where: { isActive: true },
+      orderBy: [{ category: "asc" }, { name: "asc" }],
+    }),
+  ]);
 
-  const paymentTerms = await prisma.paymentTerm.findMany({
-    where: { organisationId: company.organisationId, isActive: true },
-    orderBy: { displayOrder: "asc" },
-  });
+  if (!company) notFound();
 
   return (
     <div className="max-w-2xl">
@@ -67,11 +78,22 @@ export default async function EditCompanyPage({
           postalPostcode: company.postalPostcode,
           paymentTerms: company.paymentTerms,
           isActive: company.isActive,
+          tier: company.tier,
+          costLevel: company.costLevel,
+          performanceRating: company.performanceRating,
+          isPreferred: company.isPreferred,
+          tempLabour: company.tempLabour,
+          expertiseTagIds: company.expertiseTags.map((et) => et.expertiseTagId),
         }}
         paymentTerms={paymentTerms.map((p) => ({
           id: p.id,
           name: p.name,
           isDefault: p.isDefault,
+        }))}
+        expertiseTags={expertiseTags.map((t) => ({
+          id: t.id,
+          name: t.name,
+          category: t.category,
         }))}
         action={updateCompany.bind(null, id)}
       />

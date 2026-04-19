@@ -367,6 +367,17 @@ export async function updateCompany(id: string, formData: FormData) {
   const paymentTerms = (formData.get("paymentTerms") as string)?.trim() || null;
   const isActive = formData.get("isActive") !== "false";
 
+  // Supplier profile fields
+  const tierRaw = (formData.get("tier") as string)?.trim() || null;
+  const tier = (["TIER_1", "TIER_2", "TIER_3"].includes(tierRaw ?? "") ? tierRaw : null) as "TIER_1" | "TIER_2" | "TIER_3" | null;
+  const costLevelRaw = (formData.get("costLevel") as string)?.trim() || null;
+  const costLevel = (["HIGH", "MID", "LOW"].includes(costLevelRaw ?? "") ? costLevelRaw : null) as "HIGH" | "MID" | "LOW" | null;
+  const performanceRatingRaw = (formData.get("performanceRating") as string)?.trim() || null;
+  const performanceRating = (["HIGH", "MEDIUM", "LOW", "UNTESTED"].includes(performanceRatingRaw ?? "") ? performanceRatingRaw : null) as "HIGH" | "MEDIUM" | "LOW" | "UNTESTED" | null;
+  const isPreferred = formData.get("isPreferred") === "true";
+  const tempLabour = formData.get("tempLabour") === "true";
+  const expertiseTagIds = formData.getAll("expertiseTagIds") as string[];
+
   const abnFields = parseAbnFields(formData);
 
   // Check if subcontractor profile needs to be created
@@ -402,8 +413,22 @@ export async function updateCompany(id: string, formData: FormData) {
       postalPostcode,
       paymentTerms,
       isActive,
+      tier,
+      costLevel,
+      performanceRating,
+      isPreferred,
+      tempLabour,
     },
   });
+
+  // Sync expertise tags: delete all existing, then re-create
+  await prisma.companyExpertiseTag.deleteMany({ where: { companyId: id } });
+  if (expertiseTagIds.length > 0) {
+    await prisma.companyExpertiseTag.createMany({
+      data: expertiseTagIds.map((expertiseTagId) => ({ companyId: id, expertiseTagId })),
+      skipDuplicates: true,
+    });
+  }
 
   if (types.includes("SUBCONTRACTOR") && !existing?.subcontractorProfile) {
     await prisma.subcontractorProfile.create({ data: { companyId: id } });
@@ -412,6 +437,39 @@ export async function updateCompany(id: string, formData: FormData) {
   revalidatePath("/crm/companies");
   revalidatePath(`/crm/companies/${id}`);
   redirect(`/crm/companies/${id}`);
+}
+
+// ─── Blacklist ────────────────────────────────────────────────────────────────
+
+export async function blacklistCompany(id: string, reason: string) {
+  const user = await requireAppUser();
+  if (!reason?.trim()) return;
+  await prisma.company.update({
+    where: { id },
+    data: {
+      isBlacklisted: true,
+      blacklistReason: reason.trim(),
+      blacklistedAt: new Date(),
+      blacklistedById: user.id,
+    },
+  });
+  revalidatePath(`/crm/companies/${id}`);
+  revalidatePath("/crm/companies");
+}
+
+export async function unblacklistCompany(id: string) {
+  await requireAppUser();
+  await prisma.company.update({
+    where: { id },
+    data: {
+      isBlacklisted: false,
+      blacklistReason: null,
+      blacklistedAt: null,
+      blacklistedById: null,
+    },
+  });
+  revalidatePath(`/crm/companies/${id}`);
+  revalidatePath("/crm/companies");
 }
 
 // ─── Delete ──────────────────────────────────────────────────────────────────
@@ -676,6 +734,12 @@ export interface WizardCompanyInput {
   postalPostcode: string;
   // optional
   paymentTerms?: string;
+  // supplier profile (optional)
+  tier?: string;
+  costLevel?: string;
+  performanceRating?: string;
+  isPreferred?: boolean;
+  tempLabour?: boolean;
 }
 
 export async function createCompanyFromWizard(
@@ -724,6 +788,11 @@ export async function createCompanyFromWizard(
       isActive: true,
       dataSource: "API",
       createdById: user.id,
+      tier: (["TIER_1", "TIER_2", "TIER_3"].includes(input.tier ?? "") ? input.tier : null) as "TIER_1" | "TIER_2" | "TIER_3" | null,
+      costLevel: (["HIGH", "MID", "LOW"].includes(input.costLevel ?? "") ? input.costLevel : null) as "HIGH" | "MID" | "LOW" | null,
+      performanceRating: (["HIGH", "MEDIUM", "LOW", "UNTESTED"].includes(input.performanceRating ?? "") ? input.performanceRating : null) as "HIGH" | "MEDIUM" | "LOW" | "UNTESTED" | null,
+      isPreferred: input.isPreferred ?? false,
+      tempLabour: input.tempLabour ?? false,
     },
   });
 

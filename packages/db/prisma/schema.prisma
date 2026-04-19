@@ -80,6 +80,31 @@ enum DataSource {
   @@schema("projects")
 }
 
+enum CompanyTier {
+  TIER_1
+  TIER_2
+  TIER_3
+
+  @@schema("projects")
+}
+
+enum CostLevel {
+  HIGH
+  MID
+  LOW
+
+  @@schema("projects")
+}
+
+enum PerformanceRating {
+  HIGH
+  MEDIUM
+  LOW
+  UNTESTED
+
+  @@schema("projects")
+}
+
 enum CostCodeType {
   REVENUE
   TIME_CODE
@@ -305,8 +330,17 @@ model Company {
   dataSource      DataSource @default(MANUAL) @map("data_source")
   importedFrom    String?  @map("imported_from")
   catCloudId      String?  @map("cat_cloud_id")
-  createdById     String   @map("created_by_id") @db.Uuid
-  createdBy       User     @relation(fields: [createdById], references: [id])
+  tier            CompanyTier? @map("tier")
+  costLevel       CostLevel?   @map("cost_level")
+  isPreferred     Boolean      @default(false) @map("is_preferred")
+  tempLabour      Boolean      @default(false) @map("temp_labour")
+  performanceRating PerformanceRating? @map("performance_rating")
+  isBlacklisted   Boolean      @default(false) @map("is_blacklisted")
+  blacklistReason String?      @map("blacklist_reason")
+  blacklistedAt   DateTime?    @map("blacklisted_at")
+  blacklistedById String?      @map("blacklisted_by_id") @db.Uuid
+  createdById     String       @map("created_by_id") @db.Uuid
+  createdBy       User         @relation(fields: [createdById], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -321,6 +355,7 @@ model Company {
   communications      Communication[]
   notifications       NotificationAlert[]
   clientProjects      Project[]             @relation("ProjectClient")
+  expertiseTags       CompanyExpertiseTag[]
 
   @@index([organisationId])
   @@map("companies")
@@ -637,7 +672,41 @@ model AlertThreshold {
   @@schema("projects")
 }
 
-// 6.17b PaymentTerm — admin-managed lookup list used by Company.paymentTerms
+// 6.17a ExpertiseTag — admin-managed tag library
+model ExpertiseTag {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  name           String
+  category       String
+  isActive       Boolean  @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  companies CompanyExpertiseTag[]
+
+  @@index([organisationId])
+  @@map("expertise_tags")
+  @@schema("projects")
+}
+
+// 6.17b CompanyExpertiseTag — junction
+model CompanyExpertiseTag {
+  id             String       @id @default(uuid()) @db.Uuid
+  companyId      String       @map("company_id") @db.Uuid
+  company        Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  expertiseTagId String       @map("expertise_tag_id") @db.Uuid
+  expertiseTag   ExpertiseTag @relation(fields: [expertiseTagId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([companyId, expertiseTagId])
+  @@index([expertiseTagId])
+  @@map("company_expertise_tags")
+  @@schema("projects")
+}
+
+// 6.17d PaymentTerm — admin-managed lookup list used by Company.paymentTerms
 model PaymentTerm {
   id             String  @id @default(uuid()) @db.Uuid
   organisationId String  @map("organisation_id") @db.Uuid

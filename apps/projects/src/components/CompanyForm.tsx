@@ -19,6 +19,12 @@ interface PaymentTerm {
   isDefault: boolean;
 }
 
+interface ExpertiseTagOption {
+  id: string;
+  name: string;
+  category: string;
+}
+
 interface CompanyData {
   id: string;
   name: string;
@@ -43,11 +49,18 @@ interface CompanyData {
   postalPostcode: string | null;
   paymentTerms: string | null;
   isActive: boolean;
+  tier: string | null;
+  costLevel: string | null;
+  performanceRating: string | null;
+  isPreferred: boolean;
+  tempLabour: boolean;
+  expertiseTagIds: string[];
 }
 
 interface Props {
   company?: CompanyData;
   paymentTerms: PaymentTerm[];
+  expertiseTags?: ExpertiseTagOption[];
   action: (formData: FormData) => Promise<void>;
 }
 
@@ -88,7 +101,7 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-export function CompanyForm({ company, paymentTerms, action }: Props) {
+export function CompanyForm({ company, paymentTerms, expertiseTags = [], action }: Props) {
   // Search mode: "abn" = lookup by number, "name" = search by company name
   const [searchMode, setSearchMode] = useState<"abn" | "name">("abn");
 
@@ -124,6 +137,14 @@ export function CompanyForm({ company, paymentTerms, action }: Props) {
   const [selectedTypes, setSelectedTypes] = useState<string[]>(company?.types ?? []);
   const [postalSame, setPostalSame] = useState(company?.postalSameAsStreet ?? true);
   const [isActive, setIsActive] = useState(company?.isActive ?? true);
+
+  // Supplier profile state
+  const [tier, setTier] = useState(company?.tier ?? "");
+  const [costLevel, setCostLevel] = useState(company?.costLevel ?? "");
+  const [performanceRating, setPerformanceRating] = useState(company?.performanceRating ?? "");
+  const [isPreferred, setIsPreferred] = useState(company?.isPreferred ?? false);
+  const [tempLabour, setTempLabour] = useState(company?.tempLabour ?? false);
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>(company?.expertiseTagIds ?? []);
 
   function toggleType(value: string) {
     setSelectedTypes((prev) =>
@@ -630,6 +651,147 @@ export function CompanyForm({ company, paymentTerms, action }: Props) {
             </label>
           </div>
         </div>
+      </section>
+
+      {/* ── Supplier Profile ── */}
+      <section>
+        <h3 className="text-sm font-semibold text-zinc-700 mb-4 pb-2 border-b border-gray-100">
+          Supplier Profile
+        </h3>
+        {/* Hidden inputs for supplier profile */}
+        <input type="hidden" name="tier" value={tier} />
+        <input type="hidden" name="costLevel" value={costLevel} />
+        <input type="hidden" name="performanceRating" value={performanceRating} />
+        <input type="hidden" name="isPreferred" value={String(isPreferred)} />
+        <input type="hidden" name="tempLabour" value={String(tempLabour)} />
+        {selectedTagIds.map((tid) => (
+          <input key={tid} type="hidden" name="expertiseTagIds" value={tid} />
+        ))}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className="block text-xs font-medium text-zinc-600 mb-1">Tier</label>
+            <select
+              value={tier}
+              onChange={(e) => setTier(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">— Not Set —</option>
+              <option value="TIER_1">Tier 1</option>
+              <option value="TIER_2">Tier 2</option>
+              <option value="TIER_3">Tier 3</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-zinc-600 mb-1">Cost Level</label>
+            <select
+              value={costLevel}
+              onChange={(e) => setCostLevel(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">— Not Set —</option>
+              <option value="HIGH">High</option>
+              <option value="MID">Mid</option>
+              <option value="LOW">Low</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-zinc-600 mb-1">Performance Rating</label>
+            <select
+              value={performanceRating}
+              onChange={(e) => setPerformanceRating(e.target.value)}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">— Not Set —</option>
+              <option value="HIGH">High</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="LOW">Low</option>
+              <option value="UNTESTED">Untested</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-6 mt-5">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={isPreferred}
+                onClick={() => setIsPreferred((v) => !v)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  isPreferred ? "bg-yellow-400" : "bg-gray-300"
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isPreferred ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <span className="text-sm text-zinc-700">Preferred Supplier</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <button
+                type="button"
+                role="switch"
+                aria-checked={tempLabour}
+                onClick={() => setTempLabour((v) => !v)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  tempLabour ? "bg-blue-600" : "bg-gray-300"
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    tempLabour ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <span className="text-sm text-zinc-700">Temp Labour</span>
+            </label>
+          </div>
+        </div>
+
+        {expertiseTags.length > 0 && (
+          <div className="mt-4">
+            <label className="block text-xs font-medium text-zinc-600 mb-2">Expertise Tags</label>
+            {(() => {
+              const grouped = expertiseTags.reduce<Record<string, ExpertiseTagOption[]>>((acc, tag) => {
+                if (!acc[tag.category]) acc[tag.category] = [];
+                acc[tag.category].push(tag);
+                return acc;
+              }, {});
+              return (
+                <div className="space-y-3">
+                  {Object.entries(grouped).map(([category, tags]) => (
+                    <div key={category}>
+                      <p className="text-xs text-zinc-400 mb-1.5">{category}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {tags.map((tag) => {
+                          const selected = selectedTagIds.includes(tag.id);
+                          return (
+                            <button
+                              key={tag.id}
+                              type="button"
+                              onClick={() =>
+                                setSelectedTagIds((prev) =>
+                                  selected ? prev.filter((id) => id !== tag.id) : [...prev, tag.id]
+                                )
+                              }
+                              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                                selected
+                                  ? "bg-blue-600 text-white border-blue-600"
+                                  : "bg-white text-zinc-600 border-gray-300 hover:border-blue-400"
+                              }`}
+                            >
+                              {tag.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
+          </div>
+        )}
       </section>
 
       {/* ── Submit ── */}

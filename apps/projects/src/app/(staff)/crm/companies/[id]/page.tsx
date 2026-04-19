@@ -1,11 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import type { Company } from "@/lib/prisma";
 import { requireAppUser } from "@/lib/auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TabNav } from "@/components/TabNav";
 import { ConfirmForm } from "@/components/ConfirmForm";
-import { deleteCompany } from "../actions";
+import { BlacklistButton } from "@/components/BlacklistModal";
+import { deleteCompany, blacklistCompany, unblacklistCompany } from "../actions";
 
 const TYPE_LABELS: Record<string, string> = {
   SUBCONTRACTOR: "Subcontractor",
@@ -34,6 +34,33 @@ const APPROVAL_COLORS: Record<string, string> = {
   APPROVED: "bg-green-100 text-green-700",
   SUSPENDED: "bg-red-100 text-red-700",
   INACTIVE: "bg-gray-100 text-gray-500",
+};
+const TIER_LABELS: Record<string, string> = {
+  TIER_1: "Tier 1",
+  TIER_2: "Tier 2",
+  TIER_3: "Tier 3",
+};
+const TIER_COLORS: Record<string, string> = {
+  TIER_1: "bg-indigo-100 text-indigo-700",
+  TIER_2: "bg-sky-100 text-sky-700",
+  TIER_3: "bg-zinc-100 text-zinc-600",
+};
+const COST_LEVEL_LABELS: Record<string, string> = {
+  HIGH: "High Cost",
+  MID: "Mid Cost",
+  LOW: "Low Cost",
+};
+const PERFORMANCE_LABELS: Record<string, string> = {
+  HIGH: "High",
+  MEDIUM: "Medium",
+  LOW: "Low",
+  UNTESTED: "Untested",
+};
+const PERFORMANCE_COLORS: Record<string, string> = {
+  HIGH: "bg-green-100 text-green-700",
+  MEDIUM: "bg-yellow-100 text-yellow-700",
+  LOW: "bg-red-100 text-red-700",
+  UNTESTED: "bg-gray-100 text-gray-500",
 };
 
 function formatAbn(abn: string) {
@@ -93,6 +120,10 @@ export default async function CompanyDetailPage({
         take: 50,
       },
       subcontractorProfile: true,
+      expertiseTags: {
+        include: { expertiseTag: true },
+        orderBy: { expertiseTag: { name: "asc" } },
+      },
       createdBy: { select: { firstName: true, lastName: true } },
     },
   });
@@ -100,6 +131,7 @@ export default async function CompanyDetailPage({
   if (!company) notFound();
 
   const isSubcontractor = company.types.includes("SUBCONTRACTOR");
+  const primaryTrade = company.trades.find((t) => t.isPrimaryTrade);
 
   const TABS = [
     { id: "overview", label: "Overview" },
@@ -110,6 +142,7 @@ export default async function CompanyDetailPage({
     { id: "communications", label: `Comms (${company.communications.length})` },
     { id: "notes", label: `Notes (${company.notes.length})` },
     { id: "performance", label: "Performance" },
+    { id: "projects", label: "Projects" },
     ...(isSubcontractor ? [{ id: "subcontractor", label: "Subcontractor" }] : []),
   ];
 
@@ -119,6 +152,22 @@ export default async function CompanyDetailPage({
       <Link href="/crm/companies" className="text-xs text-zinc-500 hover:text-zinc-800 mb-3 inline-flex items-center gap-1">
         ← Companies
       </Link>
+
+      {/* Blacklist Banner */}
+      {company.isBlacklisted && (
+        <div className="mb-4 w-full bg-red-600 text-white rounded-lg px-5 py-3 flex items-start gap-3">
+          <span className="text-base font-bold shrink-0">⚠</span>
+          <div>
+            <p className="font-semibold text-sm">BLACKLISTED — This company is blacklisted and must not be engaged.</p>
+            {company.blacklistReason && (
+              <p className="text-sm mt-0.5 text-red-100">Reason: {company.blacklistReason}</p>
+            )}
+            {company.blacklistedAt && (
+              <p className="text-xs mt-0.5 text-red-200">Blacklisted {formatDate(company.blacklistedAt)}</p>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Company Header */}
       <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
@@ -134,7 +183,7 @@ export default async function CompanyDetailPage({
               <p className="text-sm text-zinc-500 mt-0.5">{company.legalName}</p>
             )}
 
-            {/* Type badges */}
+            {/* Type + status badges */}
             <div className="flex gap-1.5 mt-2 flex-wrap">
               {company.types.map((t) => (
                 <span
@@ -147,6 +196,27 @@ export default async function CompanyDetailPage({
               {isSubcontractor && company.subcontractorProfile && (
                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${APPROVAL_COLORS[company.subcontractorProfile.approvalStatus]}`}>
                   {company.subcontractorProfile.approvalStatus}
+                </span>
+              )}
+              {/* Supplier profile badges */}
+              {primaryTrade && (
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-zinc-100 text-zinc-700">
+                  {primaryTrade.costCode.codeDescription}
+                </span>
+              )}
+              {company.tier && (
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${TIER_COLORS[company.tier]}`}>
+                  {TIER_LABELS[company.tier]}
+                </span>
+              )}
+              {company.isPreferred && (
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-yellow-100 text-yellow-700">
+                  ★ Preferred
+                </span>
+              )}
+              {company.tempLabour && (
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-zinc-100 text-zinc-600">
+                  Temp Labour
                 </span>
               )}
             </div>
@@ -219,8 +289,17 @@ export default async function CompanyDetailPage({
       {activeTab === "performance" && (
         <PerformanceTab />
       )}
+      {activeTab === "projects" && (
+        <ProjectsTab />
+      )}
       {activeTab === "subcontractor" && isSubcontractor && (
-        <SubcontractorTab profile={company.subcontractorProfile} companyId={id} />
+        <SubcontractorTab
+          profile={company.subcontractorProfile}
+          companyId={id}
+          isBlacklisted={company.isBlacklisted}
+          blacklistReason={company.blacklistReason}
+          blacklistedAt={company.blacklistedAt}
+        />
       )}
     </div>
   );
@@ -228,8 +307,13 @@ export default async function CompanyDetailPage({
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
 
-function OverviewTab({ company }: { company: Company }) {
-  if (!company) return null;
+type CompanyWithRelations = Awaited<ReturnType<typeof prisma.company.findUniqueOrThrow>>;
+
+type OverviewCompany = CompanyWithRelations & {
+  expertiseTags: Array<{ expertiseTag: { id: string; name: string; category: string } }>;
+};
+
+function OverviewTab({ company }: { company: OverviewCompany }) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
       {/* Contact Info */}
@@ -280,6 +364,48 @@ function OverviewTab({ company }: { company: Company }) {
           {company.abnVerifiedAt && <Row label="ABN Verified" value={formatDate(company.abnVerifiedAt)} />}
           {company.asicCheckedAt && <Row label="ASIC Checked" value={formatDate(company.asicCheckedAt)} />}
         </dl>
+      </div>
+
+      {/* Supplier Profile */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Supplier Profile</h3>
+        <dl className="space-y-2 text-sm">
+          <Row
+            label="Tier"
+            value={company.tier ? { TIER_1: "Tier 1", TIER_2: "Tier 2", TIER_3: "Tier 3" }[company.tier] ?? company.tier : null}
+          />
+          <Row
+            label="Cost Level"
+            value={company.costLevel ? { HIGH: "High", MID: "Mid", LOW: "Low" }[company.costLevel] ?? company.costLevel : null}
+          />
+          <Row
+            label="Performance"
+            value={company.performanceRating ? { HIGH: "High", MEDIUM: "Medium", LOW: "Low", UNTESTED: "Untested" }[company.performanceRating] ?? company.performanceRating : null}
+          />
+          <div className="flex gap-2">
+            <dt className="text-zinc-500 w-32 shrink-0">Preferred</dt>
+            <dd className="text-zinc-800">{company.isPreferred ? "★ Yes" : "No"}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="text-zinc-500 w-32 shrink-0">Temp Labour</dt>
+            <dd className="text-zinc-800">{company.tempLabour ? "Yes" : "No"}</dd>
+          </div>
+        </dl>
+        {company.expertiseTags.length > 0 && (
+          <div className="mt-3">
+            <p className="text-xs text-zinc-500 mb-2">Expertise Tags</p>
+            <div className="flex flex-wrap gap-1.5">
+              {company.expertiseTags.map((et) => (
+                <span
+                  key={et.expertiseTag.id}
+                  className="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100"
+                >
+                  {et.expertiseTag.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Meta */}
@@ -712,6 +838,19 @@ function PerformanceTab() {
   );
 }
 
+// ─── Projects Tab ─────────────────────────────────────────────────────────────
+
+function ProjectsTab() {
+  return (
+    <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
+      <p className="text-sm font-medium text-zinc-600 mb-1">No Projects Yet</p>
+      <p className="text-xs text-zinc-400 leading-relaxed max-w-sm mx-auto">
+        Projects this company has been involved in will appear here. This section will be populated in Phase 2 when project assignment is built.
+      </p>
+    </div>
+  );
+}
+
 // ─── Subcontractor Tab ────────────────────────────────────────────────────────
 
 type SubcontractorProfile = {
@@ -729,9 +868,15 @@ type SubcontractorProfile = {
 function SubcontractorTab({
   profile,
   companyId,
+  isBlacklisted,
+  blacklistReason,
+  blacklistedAt,
 }: {
   profile: SubcontractorProfile;
   companyId: string;
+  isBlacklisted: boolean;
+  blacklistReason: string | null;
+  blacklistedAt: Date | null;
 }) {
   if (!profile) {
     return <EmptyState message="Subcontractor profile not found." />;
@@ -771,6 +916,42 @@ function SubcontractorTab({
           >
             Send portal invitation →
           </Link>
+        )}
+      </div>
+
+      {/* Blacklist */}
+      <div className={`rounded-lg border p-4 ${isBlacklisted ? "bg-red-50 border-red-200" : "bg-white border-gray-200"}`}>
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">Blacklist</h3>
+        {isBlacklisted ? (
+          <div>
+            <div className="flex items-start gap-2 mb-3">
+              <span className="text-red-600 font-bold text-sm">BLACKLISTED</span>
+            </div>
+            {blacklistReason && (
+              <p className="text-xs text-zinc-600 mb-1"><span className="font-medium">Reason:</span> {blacklistReason}</p>
+            )}
+            {blacklistedAt && (
+              <p className="text-xs text-zinc-400 mb-3">Since {formatDate(blacklistedAt)}</p>
+            )}
+            <ConfirmForm
+              action={unblacklistCompany.bind(null, companyId)}
+              message="Remove this company from the blacklist?"
+            >
+              <button
+                type="submit"
+                className="px-3 py-1.5 text-sm font-medium text-zinc-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+              >
+                Remove from Blacklist
+              </button>
+            </ConfirmForm>
+          </div>
+        ) : (
+          <div>
+            <p className="text-xs text-zinc-400 leading-relaxed mb-3">
+              Blacklisting prevents this company from being engaged on any project. A reason is required.
+            </p>
+            <BlacklistButton companyId={companyId} onBlacklist={blacklistCompany} />
+          </div>
         )}
       </div>
     </div>

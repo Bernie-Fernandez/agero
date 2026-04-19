@@ -66,6 +66,15 @@ export type CompanyMinAggregateOutputType = {
   dataSource: $Enums.DataSource | null
   importedFrom: string | null
   catCloudId: string | null
+  tier: $Enums.CompanyTier | null
+  costLevel: $Enums.CostLevel | null
+  isPreferred: boolean | null
+  tempLabour: boolean | null
+  performanceRating: $Enums.PerformanceRating | null
+  isBlacklisted: boolean | null
+  blacklistReason: string | null
+  blacklistedAt: Date | null
+  blacklistedById: string | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -113,6 +122,15 @@ export type CompanyMaxAggregateOutputType = {
   dataSource: $Enums.DataSource | null
   importedFrom: string | null
   catCloudId: string | null
+  tier: $Enums.CompanyTier | null
+  costLevel: $Enums.CostLevel | null
+  isPreferred: boolean | null
+  tempLabour: boolean | null
+  performanceRating: $Enums.PerformanceRating | null
+  isBlacklisted: boolean | null
+  blacklistReason: string | null
+  blacklistedAt: Date | null
+  blacklistedById: string | null
   createdById: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -161,6 +179,15 @@ export type CompanyCountAggregateOutputType = {
   dataSource: number
   importedFrom: number
   catCloudId: number
+  tier: number
+  costLevel: number
+  isPreferred: number
+  tempLabour: number
+  performanceRating: number
+  isBlacklisted: number
+  blacklistReason: number
+  blacklistedAt: number
+  blacklistedById: number
   createdById: number
   createdAt: number
   updatedAt: number
@@ -210,6 +237,15 @@ export type CompanyMinAggregateInputType = {
   dataSource?: true
   importedFrom?: true
   catCloudId?: true
+  tier?: true
+  costLevel?: true
+  isPreferred?: true
+  tempLabour?: true
+  performanceRating?: true
+  isBlacklisted?: true
+  blacklistReason?: true
+  blacklistedAt?: true
+  blacklistedById?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -257,6 +293,15 @@ export type CompanyMaxAggregateInputType = {
   dataSource?: true
   importedFrom?: true
   catCloudId?: true
+  tier?: true
+  costLevel?: true
+  isPreferred?: true
+  tempLabour?: true
+  performanceRating?: true
+  isBlacklisted?: true
+  blacklistReason?: true
+  blacklistedAt?: true
+  blacklistedById?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -305,6 +350,15 @@ export type CompanyCountAggregateInputType = {
   dataSource?: true
   importedFrom?: true
   catCloudId?: true
+  tier?: true
+  costLevel?: true
+  isPreferred?: true
+  tempLabour?: true
+  performanceRating?: true
+  isBlacklisted?: true
+  blacklistReason?: true
+  blacklistedAt?: true
+  blacklistedById?: true
   createdById?: true
   createdAt?: true
   updatedAt?: true
@@ -426,6 +480,15 @@ export type CompanyGroupByOutputType = {
   dataSource: $Enums.DataSource
   importedFrom: string | null
   catCloudId: string | null
+  tier: $Enums.CompanyTier | null
+  costLevel: $Enums.CostLevel | null
+  isPreferred: boolean
+  tempLabour: boolean
+  performanceRating: $Enums.PerformanceRating | null
+  isBlacklisted: boolean
+  blacklistReason: string | null
+  blacklistedAt: Date | null
+  blacklistedById: string | null
   createdById: string
   createdAt: Date
   updatedAt: Date
@@ -495,6 +558,15 @@ export type CompanyWhereInput = {
   dataSource?: Prisma.EnumDataSourceFilter<"Company"> | $Enums.DataSource
   importedFrom?: Prisma.StringNullableFilter<"Company"> | string | null
   catCloudId?: Prisma.StringNullableFilter<"Company"> | string | null
+  tier?: Prisma.EnumCompanyTierNullableFilter<"Company"> | $Enums.CompanyTier | null
+  costLevel?: Prisma.EnumCostLevelNullableFilter<"Company"> | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFilter<"Company"> | boolean
+  tempLabour?: Prisma.BoolFilter<"Company"> | boolean
+  performanceRating?: Prisma.EnumPerformanceRatingNullableFilter<"Company"> | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFilter<"Company"> | boolean
+  blacklistReason?: Prisma.StringNullableFilter<"Company"> | string | null
+  blacklistedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
+  blacklistedById?: Prisma.UuidNullableFilter<"Company"> | string | null
   createdById?: Prisma.UuidFilter<"Company"> | string
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
@@ -510,6 +582,7 @@ export type CompanyWhereInput = {
   communications?: Prisma.CommunicationListRelationFilter
   notifications?: Prisma.NotificationAlertListRelationFilter
   clientProjects?: Prisma.ProjectListRelationFilter
+  expertiseTags?: Prisma.CompanyExpertiseTagListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -555,6 +628,15 @@ export type CompanyOrderByWithRelationInput = {
   dataSource?: Prisma.SortOrder
   importedFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   catCloudId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tier?: Prisma.SortOrderInput | Prisma.SortOrder
+  costLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPreferred?: Prisma.SortOrder
+  tempLabour?: Prisma.SortOrder
+  performanceRating?: Prisma.SortOrderInput | Prisma.SortOrder
+  isBlacklisted?: Prisma.SortOrder
+  blacklistReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  blacklistedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  blacklistedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -570,6 +652,7 @@ export type CompanyOrderByWithRelationInput = {
   communications?: Prisma.CommunicationOrderByRelationAggregateInput
   notifications?: Prisma.NotificationAlertOrderByRelationAggregateInput
   clientProjects?: Prisma.ProjectOrderByRelationAggregateInput
+  expertiseTags?: Prisma.CompanyExpertiseTagOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -618,6 +701,15 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   dataSource?: Prisma.EnumDataSourceFilter<"Company"> | $Enums.DataSource
   importedFrom?: Prisma.StringNullableFilter<"Company"> | string | null
   catCloudId?: Prisma.StringNullableFilter<"Company"> | string | null
+  tier?: Prisma.EnumCompanyTierNullableFilter<"Company"> | $Enums.CompanyTier | null
+  costLevel?: Prisma.EnumCostLevelNullableFilter<"Company"> | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFilter<"Company"> | boolean
+  tempLabour?: Prisma.BoolFilter<"Company"> | boolean
+  performanceRating?: Prisma.EnumPerformanceRatingNullableFilter<"Company"> | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFilter<"Company"> | boolean
+  blacklistReason?: Prisma.StringNullableFilter<"Company"> | string | null
+  blacklistedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
+  blacklistedById?: Prisma.UuidNullableFilter<"Company"> | string | null
   createdById?: Prisma.UuidFilter<"Company"> | string
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
@@ -633,6 +725,7 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   communications?: Prisma.CommunicationListRelationFilter
   notifications?: Prisma.NotificationAlertListRelationFilter
   clientProjects?: Prisma.ProjectListRelationFilter
+  expertiseTags?: Prisma.CompanyExpertiseTagListRelationFilter
 }, "id">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -678,6 +771,15 @@ export type CompanyOrderByWithAggregationInput = {
   dataSource?: Prisma.SortOrder
   importedFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   catCloudId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tier?: Prisma.SortOrderInput | Prisma.SortOrder
+  costLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPreferred?: Prisma.SortOrder
+  tempLabour?: Prisma.SortOrder
+  performanceRating?: Prisma.SortOrderInput | Prisma.SortOrder
+  isBlacklisted?: Prisma.SortOrder
+  blacklistReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  blacklistedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  blacklistedById?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -732,6 +834,15 @@ export type CompanyScalarWhereWithAggregatesInput = {
   dataSource?: Prisma.EnumDataSourceWithAggregatesFilter<"Company"> | $Enums.DataSource
   importedFrom?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   catCloudId?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  tier?: Prisma.EnumCompanyTierNullableWithAggregatesFilter<"Company"> | $Enums.CompanyTier | null
+  costLevel?: Prisma.EnumCostLevelNullableWithAggregatesFilter<"Company"> | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
+  tempLabour?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
+  performanceRating?: Prisma.EnumPerformanceRatingNullableWithAggregatesFilter<"Company"> | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
+  blacklistReason?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  blacklistedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
+  blacklistedById?: Prisma.UuidNullableWithAggregatesFilter<"Company"> | string | null
   createdById?: Prisma.UuidWithAggregatesFilter<"Company"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
@@ -779,6 +890,15 @@ export type CompanyCreateInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -793,6 +913,7 @@ export type CompanyCreateInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -838,6 +959,15 @@ export type CompanyUncheckedCreateInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -851,6 +981,7 @@ export type CompanyUncheckedCreateInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -895,6 +1026,15 @@ export type CompanyUpdateInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -909,6 +1049,7 @@ export type CompanyUpdateInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -954,6 +1095,15 @@ export type CompanyUncheckedUpdateInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -967,6 +1117,7 @@ export type CompanyUncheckedUpdateInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -1012,6 +1163,15 @@ export type CompanyCreateManyInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1059,6 +1219,15 @@ export type CompanyUpdateManyMutationInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1106,6 +1275,15 @@ export type CompanyUncheckedUpdateManyInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1177,6 +1355,15 @@ export type CompanyCountOrderByAggregateInput = {
   dataSource?: Prisma.SortOrder
   importedFrom?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  costLevel?: Prisma.SortOrder
+  isPreferred?: Prisma.SortOrder
+  tempLabour?: Prisma.SortOrder
+  performanceRating?: Prisma.SortOrder
+  isBlacklisted?: Prisma.SortOrder
+  blacklistReason?: Prisma.SortOrder
+  blacklistedAt?: Prisma.SortOrder
+  blacklistedById?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1224,6 +1411,15 @@ export type CompanyMaxOrderByAggregateInput = {
   dataSource?: Prisma.SortOrder
   importedFrom?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  costLevel?: Prisma.SortOrder
+  isPreferred?: Prisma.SortOrder
+  tempLabour?: Prisma.SortOrder
+  performanceRating?: Prisma.SortOrder
+  isBlacklisted?: Prisma.SortOrder
+  blacklistReason?: Prisma.SortOrder
+  blacklistedAt?: Prisma.SortOrder
+  blacklistedById?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1271,6 +1467,15 @@ export type CompanyMinOrderByAggregateInput = {
   dataSource?: Prisma.SortOrder
   importedFrom?: Prisma.SortOrder
   catCloudId?: Prisma.SortOrder
+  tier?: Prisma.SortOrder
+  costLevel?: Prisma.SortOrder
+  isPreferred?: Prisma.SortOrder
+  tempLabour?: Prisma.SortOrder
+  performanceRating?: Prisma.SortOrder
+  isBlacklisted?: Prisma.SortOrder
+  blacklistReason?: Prisma.SortOrder
+  blacklistedAt?: Prisma.SortOrder
+  blacklistedById?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -1410,6 +1615,18 @@ export type EnumDataSourceFieldUpdateOperationsInput = {
   set?: $Enums.DataSource
 }
 
+export type NullableEnumCompanyTierFieldUpdateOperationsInput = {
+  set?: $Enums.CompanyTier | null
+}
+
+export type NullableEnumCostLevelFieldUpdateOperationsInput = {
+  set?: $Enums.CostLevel | null
+}
+
+export type NullableEnumPerformanceRatingFieldUpdateOperationsInput = {
+  set?: $Enums.PerformanceRating | null
+}
+
 export type CompanyCreateNestedOneWithoutCompanyContactsInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutCompanyContactsInput, Prisma.CompanyUncheckedCreateWithoutCompanyContactsInput>
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCompanyContactsInput
@@ -1540,6 +1757,20 @@ export type CompanyUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutNotificationsInput, Prisma.CompanyUpdateWithoutNotificationsInput>, Prisma.CompanyUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type CompanyCreateNestedOneWithoutExpertiseTagsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedCreateWithoutExpertiseTagsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutExpertiseTagsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutExpertiseTagsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedCreateWithoutExpertiseTagsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutExpertiseTagsInput
+  upsert?: Prisma.CompanyUpsertWithoutExpertiseTagsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutExpertiseTagsInput, Prisma.CompanyUpdateWithoutExpertiseTagsInput>, Prisma.CompanyUncheckedUpdateWithoutExpertiseTagsInput>
+}
+
 export type CompanyCreateWithoutOrganisationInput = {
   id?: string
   name: string
@@ -1582,6 +1813,15 @@ export type CompanyCreateWithoutOrganisationInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedCompaniesInput
@@ -1595,6 +1835,7 @@ export type CompanyCreateWithoutOrganisationInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOrganisationInput = {
@@ -1639,6 +1880,15 @@ export type CompanyUncheckedCreateWithoutOrganisationInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1652,6 +1902,7 @@ export type CompanyUncheckedCreateWithoutOrganisationInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOrganisationInput = {
@@ -1726,6 +1977,15 @@ export type CompanyScalarWhereInput = {
   dataSource?: Prisma.EnumDataSourceFilter<"Company"> | $Enums.DataSource
   importedFrom?: Prisma.StringNullableFilter<"Company"> | string | null
   catCloudId?: Prisma.StringNullableFilter<"Company"> | string | null
+  tier?: Prisma.EnumCompanyTierNullableFilter<"Company"> | $Enums.CompanyTier | null
+  costLevel?: Prisma.EnumCostLevelNullableFilter<"Company"> | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFilter<"Company"> | boolean
+  tempLabour?: Prisma.BoolFilter<"Company"> | boolean
+  performanceRating?: Prisma.EnumPerformanceRatingNullableFilter<"Company"> | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFilter<"Company"> | boolean
+  blacklistReason?: Prisma.StringNullableFilter<"Company"> | string | null
+  blacklistedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
+  blacklistedById?: Prisma.UuidNullableFilter<"Company"> | string | null
   createdById?: Prisma.UuidFilter<"Company"> | string
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
@@ -1773,6 +2033,15 @@ export type CompanyCreateWithoutCreatedByInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -1786,6 +2055,7 @@ export type CompanyCreateWithoutCreatedByInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCreatedByInput = {
@@ -1831,6 +2101,15 @@ export type CompanyUncheckedCreateWithoutCreatedByInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   companyContacts?: Prisma.CompanyContactUncheckedCreateNestedManyWithoutCompanyInput
@@ -1843,6 +2122,7 @@ export type CompanyUncheckedCreateWithoutCreatedByInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCreatedByInput = {
@@ -1913,6 +2193,15 @@ export type CompanyCreateWithoutClientProjectsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -1926,6 +2215,7 @@ export type CompanyCreateWithoutClientProjectsInput = {
   portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutClientProjectsInput = {
@@ -1971,6 +2261,15 @@ export type CompanyUncheckedCreateWithoutClientProjectsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1983,6 +2282,7 @@ export type CompanyUncheckedCreateWithoutClientProjectsInput = {
   portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutClientProjectsInput = {
@@ -2043,6 +2343,15 @@ export type CompanyUpdateWithoutClientProjectsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -2056,6 +2365,7 @@ export type CompanyUpdateWithoutClientProjectsInput = {
   portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutClientProjectsInput = {
@@ -2101,6 +2411,15 @@ export type CompanyUncheckedUpdateWithoutClientProjectsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2113,6 +2432,7 @@ export type CompanyUncheckedUpdateWithoutClientProjectsInput = {
   portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanyContactsInput = {
@@ -2157,6 +2477,15 @@ export type CompanyCreateWithoutCompanyContactsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -2170,6 +2499,7 @@ export type CompanyCreateWithoutCompanyContactsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanyContactsInput = {
@@ -2215,6 +2545,15 @@ export type CompanyUncheckedCreateWithoutCompanyContactsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2227,6 +2566,7 @@ export type CompanyUncheckedCreateWithoutCompanyContactsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanyContactsInput = {
@@ -2287,6 +2627,15 @@ export type CompanyUpdateWithoutCompanyContactsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -2300,6 +2649,7 @@ export type CompanyUpdateWithoutCompanyContactsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanyContactsInput = {
@@ -2345,6 +2695,15 @@ export type CompanyUncheckedUpdateWithoutCompanyContactsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2357,6 +2716,7 @@ export type CompanyUncheckedUpdateWithoutCompanyContactsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutTradesInput = {
@@ -2401,6 +2761,15 @@ export type CompanyCreateWithoutTradesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -2414,6 +2783,7 @@ export type CompanyCreateWithoutTradesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutTradesInput = {
@@ -2459,6 +2829,15 @@ export type CompanyUncheckedCreateWithoutTradesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2471,6 +2850,7 @@ export type CompanyUncheckedCreateWithoutTradesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutTradesInput = {
@@ -2531,6 +2911,15 @@ export type CompanyUpdateWithoutTradesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -2544,6 +2933,7 @@ export type CompanyUpdateWithoutTradesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutTradesInput = {
@@ -2589,6 +2979,15 @@ export type CompanyUncheckedUpdateWithoutTradesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2601,6 +3000,7 @@ export type CompanyUncheckedUpdateWithoutTradesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutInsurancePoliciesInput = {
@@ -2645,6 +3045,15 @@ export type CompanyCreateWithoutInsurancePoliciesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -2658,6 +3067,7 @@ export type CompanyCreateWithoutInsurancePoliciesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutInsurancePoliciesInput = {
@@ -2703,6 +3113,15 @@ export type CompanyUncheckedCreateWithoutInsurancePoliciesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2715,6 +3134,7 @@ export type CompanyUncheckedCreateWithoutInsurancePoliciesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutInsurancePoliciesInput = {
@@ -2775,6 +3195,15 @@ export type CompanyUpdateWithoutInsurancePoliciesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -2788,6 +3217,7 @@ export type CompanyUpdateWithoutInsurancePoliciesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutInsurancePoliciesInput = {
@@ -2833,6 +3263,15 @@ export type CompanyUncheckedUpdateWithoutInsurancePoliciesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2845,6 +3284,7 @@ export type CompanyUncheckedUpdateWithoutInsurancePoliciesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDocumentsInput = {
@@ -2889,6 +3329,15 @@ export type CompanyCreateWithoutDocumentsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -2902,6 +3351,7 @@ export type CompanyCreateWithoutDocumentsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDocumentsInput = {
@@ -2947,6 +3397,15 @@ export type CompanyUncheckedCreateWithoutDocumentsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -2959,6 +3418,7 @@ export type CompanyUncheckedCreateWithoutDocumentsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDocumentsInput = {
@@ -3019,6 +3479,15 @@ export type CompanyUpdateWithoutDocumentsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -3032,6 +3501,7 @@ export type CompanyUpdateWithoutDocumentsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDocumentsInput = {
@@ -3077,6 +3547,15 @@ export type CompanyUncheckedUpdateWithoutDocumentsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3089,6 +3568,7 @@ export type CompanyUncheckedUpdateWithoutDocumentsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNotesInput = {
@@ -3133,6 +3613,15 @@ export type CompanyCreateWithoutNotesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -3146,6 +3635,7 @@ export type CompanyCreateWithoutNotesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNotesInput = {
@@ -3191,6 +3681,15 @@ export type CompanyUncheckedCreateWithoutNotesInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3203,6 +3702,7 @@ export type CompanyUncheckedCreateWithoutNotesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNotesInput = {
@@ -3263,6 +3763,15 @@ export type CompanyUpdateWithoutNotesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -3276,6 +3785,7 @@ export type CompanyUpdateWithoutNotesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNotesInput = {
@@ -3321,6 +3831,15 @@ export type CompanyUncheckedUpdateWithoutNotesInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3333,6 +3852,7 @@ export type CompanyUncheckedUpdateWithoutNotesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutSubcontractorProfileInput = {
@@ -3377,6 +3897,15 @@ export type CompanyCreateWithoutSubcontractorProfileInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -3390,6 +3919,7 @@ export type CompanyCreateWithoutSubcontractorProfileInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutSubcontractorProfileInput = {
@@ -3435,6 +3965,15 @@ export type CompanyUncheckedCreateWithoutSubcontractorProfileInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3447,6 +3986,7 @@ export type CompanyUncheckedCreateWithoutSubcontractorProfileInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutSubcontractorProfileInput = {
@@ -3507,6 +4047,15 @@ export type CompanyUpdateWithoutSubcontractorProfileInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -3520,6 +4069,7 @@ export type CompanyUpdateWithoutSubcontractorProfileInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutSubcontractorProfileInput = {
@@ -3565,6 +4115,15 @@ export type CompanyUncheckedUpdateWithoutSubcontractorProfileInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3577,6 +4136,7 @@ export type CompanyUncheckedUpdateWithoutSubcontractorProfileInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPortalInvitationsInput = {
@@ -3621,6 +4181,15 @@ export type CompanyCreateWithoutPortalInvitationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -3634,6 +4203,7 @@ export type CompanyCreateWithoutPortalInvitationsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPortalInvitationsInput = {
@@ -3679,6 +4249,15 @@ export type CompanyUncheckedCreateWithoutPortalInvitationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3691,6 +4270,7 @@ export type CompanyUncheckedCreateWithoutPortalInvitationsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPortalInvitationsInput = {
@@ -3751,6 +4331,15 @@ export type CompanyUpdateWithoutPortalInvitationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -3764,6 +4353,7 @@ export type CompanyUpdateWithoutPortalInvitationsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPortalInvitationsInput = {
@@ -3809,6 +4399,15 @@ export type CompanyUncheckedUpdateWithoutPortalInvitationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3821,6 +4420,7 @@ export type CompanyUncheckedUpdateWithoutPortalInvitationsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCommunicationsInput = {
@@ -3865,6 +4465,15 @@ export type CompanyCreateWithoutCommunicationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -3878,6 +4487,7 @@ export type CompanyCreateWithoutCommunicationsInput = {
   portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCommunicationsInput = {
@@ -3923,6 +4533,15 @@ export type CompanyUncheckedCreateWithoutCommunicationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -3935,6 +4554,7 @@ export type CompanyUncheckedCreateWithoutCommunicationsInput = {
   portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCommunicationsInput = {
@@ -3995,6 +4615,15 @@ export type CompanyUpdateWithoutCommunicationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -4008,6 +4637,7 @@ export type CompanyUpdateWithoutCommunicationsInput = {
   portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCommunicationsInput = {
@@ -4053,6 +4683,15 @@ export type CompanyUncheckedUpdateWithoutCommunicationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4065,6 +4704,7 @@ export type CompanyUncheckedUpdateWithoutCommunicationsInput = {
   portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNotificationsInput = {
@@ -4109,6 +4749,15 @@ export type CompanyCreateWithoutNotificationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
@@ -4122,6 +4771,7 @@ export type CompanyCreateWithoutNotificationsInput = {
   portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNotificationsInput = {
@@ -4167,6 +4817,15 @@ export type CompanyUncheckedCreateWithoutNotificationsInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4179,6 +4838,7 @@ export type CompanyUncheckedCreateWithoutNotificationsInput = {
   portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNotificationsInput = {
@@ -4239,6 +4899,15 @@ export type CompanyUpdateWithoutNotificationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -4252,6 +4921,7 @@ export type CompanyUpdateWithoutNotificationsInput = {
   portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNotificationsInput = {
@@ -4297,6 +4967,15 @@ export type CompanyUncheckedUpdateWithoutNotificationsInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4308,6 +4987,291 @@ export type CompanyUncheckedUpdateWithoutNotificationsInput = {
   subcontractorProfile?: Prisma.SubcontractorProfileUncheckedUpdateOneWithoutCompanyNestedInput
   portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutExpertiseTagsInput = {
+  id?: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedCompaniesInput
+  companyContacts?: Prisma.CompanyContactCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+}
+
+export type CompanyUncheckedCreateWithoutExpertiseTagsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+}
+
+export type CompanyCreateOrConnectWithoutExpertiseTagsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedCreateWithoutExpertiseTagsInput>
+}
+
+export type CompanyUpsertWithoutExpertiseTagsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedUpdateWithoutExpertiseTagsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedCreateWithoutExpertiseTagsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutExpertiseTagsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutExpertiseTagsInput, Prisma.CompanyUncheckedUpdateWithoutExpertiseTagsInput>
+}
+
+export type CompanyUpdateWithoutExpertiseTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedCompaniesNestedInput
+  companyContacts?: Prisma.CompanyContactUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutExpertiseTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -4353,6 +5317,15 @@ export type CompanyCreateManyOrganisationInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -4400,6 +5373,15 @@ export type CompanyUpdateWithoutOrganisationInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedCompaniesNestedInput
@@ -4413,6 +5395,7 @@ export type CompanyUpdateWithoutOrganisationInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOrganisationInput = {
@@ -4457,6 +5440,15 @@ export type CompanyUncheckedUpdateWithoutOrganisationInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4470,6 +5462,7 @@ export type CompanyUncheckedUpdateWithoutOrganisationInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutOrganisationInput = {
@@ -4514,6 +5507,15 @@ export type CompanyUncheckedUpdateManyWithoutOrganisationInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -4562,6 +5564,15 @@ export type CompanyCreateManyCreatedByInput = {
   dataSource?: $Enums.DataSource
   importedFrom?: string | null
   catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -4608,6 +5619,15 @@ export type CompanyUpdateWithoutCreatedByInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
@@ -4621,6 +5641,7 @@ export type CompanyUpdateWithoutCreatedByInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCreatedByInput = {
@@ -4666,6 +5687,15 @@ export type CompanyUncheckedUpdateWithoutCreatedByInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   companyContacts?: Prisma.CompanyContactUncheckedUpdateManyWithoutCompanyNestedInput
@@ -4678,6 +5708,7 @@ export type CompanyUncheckedUpdateWithoutCreatedByInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutCreatedByInput = {
@@ -4723,6 +5754,15 @@ export type CompanyUncheckedUpdateManyWithoutCreatedByInput = {
   dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
   importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -4742,6 +5782,7 @@ export type CompanyCountOutputType = {
   communications: number
   notifications: number
   clientProjects: number
+  expertiseTags: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4754,6 +5795,7 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   communications?: boolean | CompanyCountOutputTypeCountCommunicationsArgs
   notifications?: boolean | CompanyCountOutputTypeCountNotificationsArgs
   clientProjects?: boolean | CompanyCountOutputTypeCountClientProjectsArgs
+  expertiseTags?: boolean | CompanyCountOutputTypeCountExpertiseTagsArgs
 }
 
 /**
@@ -4829,6 +5871,13 @@ export type CompanyCountOutputTypeCountClientProjectsArgs<ExtArgs extends runtim
   where?: Prisma.ProjectWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountExpertiseTagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyExpertiseTagWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4873,6 +5922,15 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   dataSource?: boolean
   importedFrom?: boolean
   catCloudId?: boolean
+  tier?: boolean
+  costLevel?: boolean
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: boolean
+  isBlacklisted?: boolean
+  blacklistReason?: boolean
+  blacklistedAt?: boolean
+  blacklistedById?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -4888,6 +5946,7 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   communications?: boolean | Prisma.Company$communicationsArgs<ExtArgs>
   notifications?: boolean | Prisma.Company$notificationsArgs<ExtArgs>
   clientProjects?: boolean | Prisma.Company$clientProjectsArgs<ExtArgs>
+  expertiseTags?: boolean | Prisma.Company$expertiseTagsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -4934,6 +5993,15 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   dataSource?: boolean
   importedFrom?: boolean
   catCloudId?: boolean
+  tier?: boolean
+  costLevel?: boolean
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: boolean
+  isBlacklisted?: boolean
+  blacklistReason?: boolean
+  blacklistedAt?: boolean
+  blacklistedById?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -4984,6 +6052,15 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   dataSource?: boolean
   importedFrom?: boolean
   catCloudId?: boolean
+  tier?: boolean
+  costLevel?: boolean
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: boolean
+  isBlacklisted?: boolean
+  blacklistReason?: boolean
+  blacklistedAt?: boolean
+  blacklistedById?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -5034,12 +6111,21 @@ export type CompanySelectScalar = {
   dataSource?: boolean
   importedFrom?: boolean
   catCloudId?: boolean
+  tier?: boolean
+  costLevel?: boolean
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: boolean
+  isBlacklisted?: boolean
+  blacklistReason?: boolean
+  blacklistedAt?: boolean
+  blacklistedById?: boolean
   createdById?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "legalName" | "types" | "abn" | "abnStatus" | "abnRegisteredName" | "abnGstRegistered" | "abnRegisteredDate" | "abnEntityType" | "anzsicCode" | "gstRegisteredDate" | "abnVerifiedAt" | "asicStatus" | "asicCheckedAt" | "asicRegisteredDate" | "asicRegisteredAddress" | "insolvencyCheckResult" | "insolvencyCheckSummary" | "insolvencyCheckedAt" | "creditorwatchRisk" | "creditorwatchCheckedAt" | "website" | "phoneMain" | "phoneFree" | "emailGeneral" | "countryCode" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "postalSameAsStreet" | "postalStreet" | "postalSuburb" | "postalState" | "postalPostcode" | "paymentTerms" | "isActive" | "dataSource" | "importedFrom" | "catCloudId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "legalName" | "types" | "abn" | "abnStatus" | "abnRegisteredName" | "abnGstRegistered" | "abnRegisteredDate" | "abnEntityType" | "anzsicCode" | "gstRegisteredDate" | "abnVerifiedAt" | "asicStatus" | "asicCheckedAt" | "asicRegisteredDate" | "asicRegisteredAddress" | "insolvencyCheckResult" | "insolvencyCheckSummary" | "insolvencyCheckedAt" | "creditorwatchRisk" | "creditorwatchCheckedAt" | "website" | "phoneMain" | "phoneFree" | "emailGeneral" | "countryCode" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "postalSameAsStreet" | "postalStreet" | "postalSuburb" | "postalState" | "postalPostcode" | "paymentTerms" | "isActive" | "dataSource" | "importedFrom" | "catCloudId" | "tier" | "costLevel" | "isPreferred" | "tempLabour" | "performanceRating" | "isBlacklisted" | "blacklistReason" | "blacklistedAt" | "blacklistedById" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -5053,6 +6139,7 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   communications?: boolean | Prisma.Company$communicationsArgs<ExtArgs>
   notifications?: boolean | Prisma.Company$notificationsArgs<ExtArgs>
   clientProjects?: boolean | Prisma.Company$clientProjectsArgs<ExtArgs>
+  expertiseTags?: boolean | Prisma.Company$expertiseTagsArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5079,6 +6166,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     communications: Prisma.$CommunicationPayload<ExtArgs>[]
     notifications: Prisma.$NotificationAlertPayload<ExtArgs>[]
     clientProjects: Prisma.$ProjectPayload<ExtArgs>[]
+    expertiseTags: Prisma.$CompanyExpertiseTagPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5123,6 +6211,15 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     dataSource: $Enums.DataSource
     importedFrom: string | null
     catCloudId: string | null
+    tier: $Enums.CompanyTier | null
+    costLevel: $Enums.CostLevel | null
+    isPreferred: boolean
+    tempLabour: boolean
+    performanceRating: $Enums.PerformanceRating | null
+    isBlacklisted: boolean
+    blacklistReason: string | null
+    blacklistedAt: Date | null
+    blacklistedById: string | null
     createdById: string
     createdAt: Date
     updatedAt: Date
@@ -5532,6 +6629,7 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   communications<T extends Prisma.Company$communicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$communicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommunicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Company$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clientProjects<T extends Prisma.Company$clientProjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$clientProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  expertiseTags<T extends Prisma.Company$expertiseTagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$expertiseTagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyExpertiseTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5603,6 +6701,15 @@ export interface CompanyFieldRefs {
   readonly dataSource: Prisma.FieldRef<"Company", 'DataSource'>
   readonly importedFrom: Prisma.FieldRef<"Company", 'String'>
   readonly catCloudId: Prisma.FieldRef<"Company", 'String'>
+  readonly tier: Prisma.FieldRef<"Company", 'CompanyTier'>
+  readonly costLevel: Prisma.FieldRef<"Company", 'CostLevel'>
+  readonly isPreferred: Prisma.FieldRef<"Company", 'Boolean'>
+  readonly tempLabour: Prisma.FieldRef<"Company", 'Boolean'>
+  readonly performanceRating: Prisma.FieldRef<"Company", 'PerformanceRating'>
+  readonly isBlacklisted: Prisma.FieldRef<"Company", 'Boolean'>
+  readonly blacklistReason: Prisma.FieldRef<"Company", 'String'>
+  readonly blacklistedAt: Prisma.FieldRef<"Company", 'DateTime'>
+  readonly blacklistedById: Prisma.FieldRef<"Company", 'String'>
   readonly createdById: Prisma.FieldRef<"Company", 'String'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
@@ -6239,6 +7346,30 @@ export type Company$clientProjectsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[]
+}
+
+/**
+ * Company.expertiseTags
+ */
+export type Company$expertiseTagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanyExpertiseTag
+   */
+  select?: Prisma.CompanyExpertiseTagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanyExpertiseTag
+   */
+  omit?: Prisma.CompanyExpertiseTagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyExpertiseTagInclude<ExtArgs> | null
+  where?: Prisma.CompanyExpertiseTagWhereInput
+  orderBy?: Prisma.CompanyExpertiseTagOrderByWithRelationInput | Prisma.CompanyExpertiseTagOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyExpertiseTagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompanyExpertiseTagScalarFieldEnum | Prisma.CompanyExpertiseTagScalarFieldEnum[]
 }
 
 /**

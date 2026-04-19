@@ -23,6 +23,11 @@ const SECTIONS = [
     description: "Set how many days before expiry to trigger insurance and document alerts.",
   },
   {
+    title: "Expertise Tags",
+    href: "/admin/expertise-tags",
+    description: "Manage supplier expertise tags used to classify company capabilities (grouped by category).",
+  },
+  {
     title: "Users",
     href: "/admin/users",
     description: "Manage staff accounts, roles, and access within Agero ERP.",
@@ -30,11 +35,12 @@ const SECTIONS = [
 ];
 
 export default async function AdminPage() {
-  const [costCodeCount, insTypeCount, ptCount, thresholdCount, userCount] = await Promise.all([
+  const [costCodeCount, insTypeCount, ptCount, thresholdCount, expertiseTagCount, userCount] = await Promise.all([
     prisma.costCode.count(),
     prisma.insurancePolicyType.count(),
     prisma.paymentTerm.count(),
     prisma.alertThreshold.count(),
+    prisma.expertiseTag.count(),
     prisma.user.count(),
   ]);
 
@@ -43,6 +49,7 @@ export default async function AdminPage() {
     "Insurance Types": insTypeCount,
     "Payment Terms": ptCount,
     "Alert Thresholds": thresholdCount,
+    "Expertise Tags": expertiseTagCount,
     "Users": userCount,
   };
 
