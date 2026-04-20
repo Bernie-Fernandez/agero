@@ -72,6 +72,16 @@ export default async function CompaniesPage({
   const filterPreferred = params.preferred === "1";
   const filterTempLabour = params.tempLabour === "1";
 
+  // Build a UUID→name map so seeded/legacy records that stored a PaymentTerm ID resolve to the name
+  const org = await prisma.organisation.findFirst({ select: { id: true } });
+  const ptList = org
+    ? await prisma.paymentTerm.findMany({
+        where: { organisationId: org.id, isActive: true },
+        select: { id: true, name: true },
+      })
+    : [];
+  const paymentTermsById: Record<string, string> = Object.fromEntries(ptList.map((p) => [p.id, p.name]));
+
   const companies = await prisma.company.findMany({
     where: {
       isActive: filterActive,
@@ -337,7 +347,9 @@ export default async function CompaniesPage({
                     {company._count.companyContacts}
                   </td>
                   <td className="px-4 py-3 text-xs text-zinc-500">
-                    {company.paymentTerms || "—"}
+                    {company.paymentTerms
+                      ? (paymentTermsById[company.paymentTerms] ?? company.paymentTerms)
+                      : "—"}
                   </td>
                   <td className="px-4 py-3">
                     <Link

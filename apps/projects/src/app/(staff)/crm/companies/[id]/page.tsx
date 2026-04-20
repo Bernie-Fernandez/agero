@@ -289,10 +289,10 @@ export default async function CompanyDetailPage({
                 {company.abnStatus === "ACTIVE" ? "ABN Active" : company.abnStatus === "CANCELLED" ? "ABN Cancelled" : "ABN Not Verified"}
               </span>
               <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ASIC_COLORS[company.asicStatus]}`}>
-                {company.asicStatus === "REGISTERED" ? "ASIC Registered" : company.asicStatus === "DEREGISTERED" ? "ASIC Deregistered" : "ASIC Not Checked"}
+                {company.asicStatus === "REGISTERED" ? "ASIC Registered" : company.asicStatus === "DEREGISTERED" ? "ASIC Deregistered" : "ASIC check unavailable"}
               </span>
               <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-gray-100 text-gray-500">
-                CreditorWatch: {company.creditorwatchRisk === "NOT_CHECKED" ? "Not Checked" : company.creditorwatchRisk}
+                Not checked — CreditorWatch credentials pending
               </span>
             </div>
           </div>
@@ -458,7 +458,16 @@ function OverviewTab({
             {company.abnRegisteredName && <Row label="Registered Name" value={company.abnRegisteredName} />}
             <Row label="ABN Status" value={company.abnStatus} />
             <Row label="GST Registered" value={company.abnGstRegistered === true ? "Yes" : company.abnGstRegistered === false ? "No" : null} />
-            <Row label="ASIC Status" value={company.asicStatus} />
+            <Row
+              label="ASIC Status"
+              value={
+                company.asicStatus === "REGISTERED"
+                  ? "Registered"
+                  : company.asicStatus === "DEREGISTERED"
+                  ? "Deregistered"
+                  : "ASIC check unavailable"
+              }
+            />
             {company.abnVerifiedAt && <Row label="ABN Verified" value={formatDate(company.abnVerifiedAt)} />}
           </dl>
         </div>
@@ -498,30 +507,6 @@ function OverviewTab({
             <Row label="Last Updated" value={formatDate(company.updatedAt)} />
           </dl>
         </div>
-      </div>
-
-      {/* Trade Categories */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Trade Categories</h3>
-          <Link href={`/crm/companies/${companyId}?tab=trades`} className="text-xs text-blue-600 hover:underline">Manage →</Link>
-        </div>
-        {company.trades.length === 0 ? (
-          <p className="text-xs text-zinc-400">No trade categories assigned.</p>
-        ) : (
-          <div className="flex flex-wrap gap-2">
-            {company.trades.map((t) => (
-              <span
-                key={t.id}
-                className={`text-xs px-2.5 py-1 rounded-full border font-medium ${t.isPrimaryTrade ? "bg-orange-50 text-orange-700 border-orange-200" : "bg-zinc-50 text-zinc-600 border-zinc-200"}`}
-              >
-                {t.isPrimaryTrade && <span className="mr-1">★</span>}
-                {t.costCode.codeDescription}
-                <span className="ml-1.5 font-mono text-zinc-400">{t.costCode.catCode}</span>
-              </span>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Inline Contacts Table */}
@@ -656,6 +641,30 @@ function OverviewTab({
               ))}
             </tbody>
           </table>
+        )}
+      </div>
+
+      {/* Trade Categories */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Trade Categories</h3>
+          <Link href={`/crm/companies/${companyId}?tab=trades`} className="text-xs text-blue-600 hover:underline">Manage →</Link>
+        </div>
+        {company.trades.length === 0 ? (
+          <p className="text-xs text-zinc-400">No trade categories assigned.</p>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {company.trades.map((t) => (
+              <span
+                key={t.id}
+                className={`text-xs px-2.5 py-1 rounded-full border font-medium ${t.isPrimaryTrade ? "bg-orange-50 text-orange-700 border-orange-200" : "bg-zinc-50 text-zinc-600 border-zinc-200"}`}
+              >
+                {t.isPrimaryTrade && <span className="mr-1">★</span>}
+                {t.costCode.codeDescription}
+                <span className="ml-1.5 font-mono text-zinc-400">{t.costCode.catCode}</span>
+              </span>
+            ))}
+          </div>
         )}
       </div>
 
