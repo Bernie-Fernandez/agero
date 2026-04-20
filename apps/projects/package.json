@@ -6,14 +6,18 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start --port 3001",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate --schema prisma/safety-schema.prisma"
   },
   "dependencies": {
     "@agero/db": "*",
     "@agero/ui": "*",
+    "@anthropic-ai/sdk": "^0.82.0",
     "@clerk/nextjs": "^7.0.8",
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
+    "qrcode": "^1.5.4",
+    "resend": "^6.10.0",
     "autoprefixer": "^10.5.0",
     "lightningcss": "^1.32.0",
     "next": "16.2.2",
@@ -26,10 +30,12 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "prisma": "^7.6.0",
     "typescript": "^5"
   },
   "optionalDependencies": {

@@ -10,6 +10,15 @@ const NAV_GROUPS = [
       { label: "Contacts", href: "/crm/contacts" },
     ],
   },
+  {
+    label: "Safety",
+    items: [
+      { label: "Dashboard", href: "/dashboard" },
+      { label: "Projects", href: "/projects" },
+      { label: "Subcontractors", href: "/subcontractors" },
+      { label: "Inductions", href: "/inductions" },
+    ],
+  },
 ];
 
 export default async function StaffLayout({ children }: { children: ReactNode }) {

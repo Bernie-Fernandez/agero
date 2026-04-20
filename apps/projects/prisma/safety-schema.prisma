@@ -1,0 +1,402 @@
+// Prisma schema — Agero Safety module (public schema, Supabase Postgres)
+// This schema is separate from the ERP projects/ims schemas (packages/db).
+// Phase 2 will merge these into packages/db.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/safety-prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  admin
+  safety_manager
+  project_manager
+  site_manager
+  subcontractor_admin
+}
+
+enum DocumentType {
+  public_liability
+  workers_compensation
+  contract_works
+  professional_indemnity
+  whs_policy
+  white_card
+  trade_licence
+  first_aid
+  swms
+  other
+}
+
+enum InductionType {
+  generic
+  site_specific
+}
+
+enum InviteStatus {
+  pending
+  registered
+  expired
+}
+
+enum SwmsStatus {
+  pending_review
+  approved
+  rejected
+}
+
+enum SwmsQuestionStatus {
+  pending_review
+  approved
+  rejected
+}
+
+model Organisation {
+  id               String      @id @default(uuid()) @db.Uuid
+  name             String
+  abn              String?
+  tradeCategory    String?     @map("trade_category")
+  tradeCategories  String[]    @map("trade_categories")
+  primaryContact   String?     @map("primary_contact")
+  website          String?
+  address          String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users                   User[]
+  projects                Project[]
+  subcontractorOnProjects ProjectSubcontractor[] @relation("ProjectSubcontractorOrg")
+  employedWorkers         Worker[]
+  documents               DocumentUpload[]
+  supervisorRoles         SiteSupervisor[]
+  invitations             Invitation[]
+  swmsSubmissions         SwmsSubmission[]
+  swmsInductionQuestions  SwmsInductionQuestion[]
+
+  @@map("organisations")
+}
+
+model Invitation {
+  id             String       @id @default(uuid()) @db.Uuid
+  companyName    String       @map("company_name")
+  contactName    String       @map("contact_name")
+  email          String
+  mobile          String?
+  tradeCategories String[]     @default([]) @map("trade_categories")
+  projectId       String?      @map("project_id") @db.Uuid
+  token          String       @unique
+  status         InviteStatus @default(pending)
+  organisationId String?      @map("organisation_id") @db.Uuid
+  organisation   Organisation? @relation(fields: [organisationId], references: [id], onDelete: SetNull)
+  invitedBy      String       @map("invited_by")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  expiresAt      DateTime     @map("expires_at")
+
+  @@index([token])
+  @@map("invitations")
+}
+
+model User {
+  id             String       @id @default(uuid()) @db.Uuid
+  clerkUserId    String?      @unique @map("clerk_user_id")
+  email          String       @unique
+  name           String?
+  role           UserRole     @default(site_manager)
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("users")
+}
+
+model Project {
+  id             String       @id @default(uuid()) @db.Uuid
+  name           String
+  address        String?
+  token          String       @unique @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  subcontractors         ProjectSubcontractor[]
+  workers                Worker[]
+  inductionTemplates     InductionTemplate[]
+  startDate              DateTime?              @map("start_date")
+  endDate                DateTime?              @map("end_date")
+  status                 String                 @default("active")
+
+  siteVisits             SiteVisit[]
+  supervisors            SiteSupervisor[]
+  documents              DocumentUpload[]
+  swmsSubmissions        SwmsSubmission[]
+  swmsInductionQuestions SwmsInductionQuestion[]
+
+  @@index([organisationId])
+  @@map("projects")
+}
+
+model ProjectSubcontractor {
+  id                 String       @id @default(uuid()) @db.Uuid
+  projectId          String       @map("project_id") @db.Uuid
+  project            Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  subcontractorOrgId String       @map("subcontractor_org_id") @db.Uuid
+  subcontractorOrg   Organisation @relation("ProjectSubcontractorOrg", fields: [subcontractorOrgId], references: [id], onDelete: Cascade)
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @updatedAt @map("updated_at")
+
+  @@unique([projectId, subcontractorOrgId])
+  @@index([subcontractorOrgId])
+  @@map("project_subcontractors")
+}
+
+model Worker {
+  id                      String        @id @default(uuid()) @db.Uuid
+  projectId               String        @map("project_id") @db.Uuid
+  project                 Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  employingOrganisationId String?       @map("employing_organisation_id") @db.Uuid
+  employingOrganisation   Organisation? @relation(fields: [employingOrganisationId], references: [id], onDelete: SetNull)
+  firstName               String        @map("first_name")
+  lastName                String        @map("last_name")
+  mobile                  String?
+  email                   String?
+  trade                   String?
+  createdAt               DateTime      @default(now()) @map("created_at")
+  updatedAt               DateTime      @updatedAt @map("updated_at")
+
+  documents            DocumentUpload[]
+  inductionCompletions InductionCompletion[]
+  siteVisits           SiteVisit[]
+  supervisorRoles      SiteSupervisor[]
+
+  @@index([projectId])
+  @@index([employingOrganisationId])
+  @@map("workers")
+}
+
+model DocumentUpload {
+  id                 String        @id @default(uuid()) @db.Uuid
+  type               DocumentType
+  url                String
+  expiryDate         DateTime?     @map("expiry_date")
+  aiExtractedExpiry  Boolean       @default(false) @map("ai_extracted_expiry")
+  coverageAmount     String?       @map("coverage_amount")
+  verified           Boolean       @default(false)
+  organisationId     String?       @map("organisation_id") @db.Uuid
+  organisation       Organisation? @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  workerId           String?       @map("worker_id") @db.Uuid
+  worker             Worker?       @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId          String?       @map("project_id") @db.Uuid
+  project            Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt          DateTime      @default(now()) @map("created_at")
+  updatedAt          DateTime      @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([workerId])
+  @@index([projectId])
+  @@map("document_uploads")
+}
+
+model SwmsSubmission {
+  id               String       @id @default(uuid()) @db.Uuid
+  projectId        String       @map("project_id") @db.Uuid
+  project          Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId   String       @map("organisation_id") @db.Uuid
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  fileUrl          String       @map("file_url")
+  status           SwmsStatus   @default(pending_review)
+  aiScanResults    Json?        @map("ai_scan_results")
+  aiRecommendation String?      @map("ai_recommendation")
+  reviewedBy       String?      @map("reviewed_by")
+  reviewedAt       DateTime?    @map("reviewed_at")
+  reviewerComments String?      @map("reviewer_comments")
+  submittedAt      DateTime     @default(now()) @map("submitted_at")
+  versionNumber    Int          @default(1) @map("version_number")
+
+  @@index([projectId])
+  @@index([organisationId])
+  @@map("swms_submissions")
+}
+
+model InductionTemplate {
+  id        String        @id @default(uuid()) @db.Uuid
+  title     String
+  type      InductionType
+  version   Int           @default(1)
+  isActive  Boolean       @default(true) @map("is_active")
+  videoUrl  String?       @map("video_url")
+  questions Json
+  projectId String?       @map("project_id") @db.Uuid
+  project   Project?      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  completions InductionCompletion[]
+
+  @@index([projectId])
+  @@map("induction_templates")
+}
+
+model InductionCompletion {
+  id         String            @id @default(uuid()) @db.Uuid
+  workerId   String            @map("worker_id") @db.Uuid
+  worker     Worker            @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  templateId String            @map("template_id") @db.Uuid
+  template   InductionTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  score      Int?
+  passed     Boolean
+  signedAt   DateTime          @map("signed_at")
+  attempts   Int               @default(0)
+  blockedUntil     DateTime?   @map("blocked_until")
+  declarationSignedAt DateTime? @map("declaration_signed_at")
+  declarationIp    String?     @map("declaration_ip")
+  declarationData  Json?       @map("declaration_data")
+  createdAt  DateTime          @default(now()) @map("created_at")
+
+  @@unique([workerId, templateId])
+  @@index([templateId])
+  @@map("induction_completions")
+}
+
+model SiteVisit {
+  id           String    @id @default(uuid()) @db.Uuid
+  workerId     String    @map("worker_id") @db.Uuid
+  worker       Worker    @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId    String    @map("project_id") @db.Uuid
+  project      Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  signedInAt   DateTime  @default(now()) @map("signed_in_at")
+  signedOutAt  DateTime? @map("signed_out_at")
+  photoUrl     String?   @map("photo_url")
+  verified     Boolean   @default(false)
+  verifiedBy   String?   @map("verified_by")
+  verifiedAt   DateTime? @map("verified_at")
+  isUnknown    Boolean   @default(false) @map("is_unknown")
+
+  alert VerificationAlert?
+
+  @@index([workerId])
+  @@index([projectId])
+  @@map("site_visits")
+}
+
+model SiteSupervisor {
+  id             String       @id @default(uuid()) @db.Uuid
+  workerId       String       @map("worker_id") @db.Uuid
+  worker         Worker       @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  projectId      String       @map("project_id") @db.Uuid
+  project        Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  @@unique([projectId, organisationId])
+  @@index([workerId])
+  @@index([organisationId])
+  @@map("site_supervisors")
+}
+
+model VerificationAlert {
+  id          String    @id @default(uuid()) @db.Uuid
+  siteVisitId String    @unique @map("site_visit_id") @db.Uuid
+  siteVisit   SiteVisit @relation(fields: [siteVisitId], references: [id], onDelete: Cascade)
+  alertedAt   DateTime  @default(now()) @map("alerted_at")
+  verifiedAt  DateTime? @map("verified_at")
+  escalatedAt DateTime? @map("escalated_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("verification_alerts")
+}
+
+model WorkerAccount {
+  id                 String    @id @default(uuid()) @db.Uuid
+  mobile             String    @unique
+  firstName          String    @map("first_name")
+  lastName           String    @map("last_name")
+  trades             String[]  @default([])
+  whiteCardNumber    String?   @map("white_card_number")
+  whiteCardExpiry    DateTime? @map("white_card_expiry")
+  tradeLicenceNumber String?   @map("trade_licence_number")
+  tradeLicenceExpiry DateTime? @map("trade_licence_expiry")
+  firstAidCertNumber String?   @map("first_aid_cert_number")
+  firstAidExpiry     DateTime? @map("first_aid_expiry")
+  dateOfBirth        DateTime? @map("date_of_birth")
+  addressStreet      String?   @map("address_street")
+  addressSuburb      String?   @map("address_suburb")
+  addressState       String?   @map("address_state")
+  addressPostcode    String?   @map("address_postcode")
+  nokName            String?   @map("nok_name")
+  nokRelationship    String?   @map("nok_relationship")
+  nokMobile          String?   @map("nok_mobile")
+  medicalConditions  String?   @map("medical_conditions")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  sessions      WorkerSession[]
+  certDocuments WorkerCertDocument[]
+
+  @@map("worker_accounts")
+}
+
+model WorkerSession {
+  id              String        @id @default(uuid()) @db.Uuid
+  workerAccountId String        @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  token           String        @unique @default(uuid()) @db.Uuid
+  expiresAt       DateTime      @map("expires_at")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@index([workerAccountId])
+  @@map("worker_sessions")
+}
+
+model SmsVerification {
+  id        String   @id @default(uuid()) @db.Uuid
+  mobile    String
+  code      String
+  expiresAt DateTime @map("expires_at")
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([mobile])
+  @@map("sms_verifications")
+}
+
+model WorkerCertDocument {
+  id                String        @id @default(uuid()) @db.Uuid
+  workerAccountId   String        @map("worker_account_id") @db.Uuid
+  workerAccount     WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  docType           String        @map("doc_type")
+  url               String
+  filename          String?
+  expiryDate        DateTime?     @map("expiry_date")
+  aiExtractedExpiry Boolean       @default(false) @map("ai_extracted_expiry")
+  createdAt         DateTime      @default(now()) @map("created_at")
+
+  @@index([workerAccountId])
+  @@map("worker_cert_documents")
+}
+
+model SwmsInductionQuestion {
+  id                    String             @id @default(uuid()) @db.Uuid
+  projectId             String             @map("project_id") @db.Uuid
+  project               Project            @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId        String             @map("organisation_id") @db.Uuid
+  organisation          Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  question              String
+  expectedAnswerContext String             @map("expected_answer_context")
+  status                SwmsQuestionStatus @default(pending_review)
+  sortOrder             Int                @default(0) @map("sort_order")
+  createdAt             DateTime           @default(now()) @map("created_at")
+  updatedAt             DateTime           @updatedAt @map("updated_at")
+
+  @@index([projectId])
+  @@index([organisationId])
+  @@map("swms_induction_questions")
+}
