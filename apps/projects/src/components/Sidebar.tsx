@@ -13,8 +13,7 @@ const NAV_GROUPS = [
   {
     label: 'Projects',
     items: [
-      { label: 'Dashboard', href: '/projects' },
-      { label: 'Deliverables', href: '/projects/deliverables' },
+      { label: 'Projects', href: '/projects' },
     ],
   },
   {

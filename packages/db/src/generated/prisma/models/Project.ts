@@ -42,6 +42,7 @@ export type ProjectMinAggregateOutputType = {
   clientId: string | null
   status: $Enums.ProjectStatus | null
   contractValue: runtime.Decimal | null
+  siteAddress: string | null
   startDate: Date | null
   endDate: Date | null
   addressStreet: string | null
@@ -63,6 +64,7 @@ export type ProjectMaxAggregateOutputType = {
   clientId: string | null
   status: $Enums.ProjectStatus | null
   contractValue: runtime.Decimal | null
+  siteAddress: string | null
   startDate: Date | null
   endDate: Date | null
   addressStreet: string | null
@@ -84,6 +86,7 @@ export type ProjectCountAggregateOutputType = {
   clientId: number
   status: number
   contractValue: number
+  siteAddress: number
   startDate: number
   endDate: number
   addressStreet: number
@@ -115,6 +118,7 @@ export type ProjectMinAggregateInputType = {
   clientId?: true
   status?: true
   contractValue?: true
+  siteAddress?: true
   startDate?: true
   endDate?: true
   addressStreet?: true
@@ -136,6 +140,7 @@ export type ProjectMaxAggregateInputType = {
   clientId?: true
   status?: true
   contractValue?: true
+  siteAddress?: true
   startDate?: true
   endDate?: true
   addressStreet?: true
@@ -157,6 +162,7 @@ export type ProjectCountAggregateInputType = {
   clientId?: true
   status?: true
   contractValue?: true
+  siteAddress?: true
   startDate?: true
   endDate?: true
   addressStreet?: true
@@ -265,6 +271,7 @@ export type ProjectGroupByOutputType = {
   clientId: string | null
   status: $Enums.ProjectStatus
   contractValue: runtime.Decimal | null
+  siteAddress: string | null
   startDate: Date | null
   endDate: Date | null
   addressStreet: string | null
@@ -309,6 +316,7 @@ export type ProjectWhereInput = {
   clientId?: Prisma.UuidNullableFilter<"Project"> | string | null
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   contractValue?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   addressStreet?: Prisma.StringNullableFilter<"Project"> | string | null
@@ -335,6 +343,7 @@ export type ProjectOrderByWithRelationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   contractValue?: Prisma.SortOrderInput | Prisma.SortOrder
+  siteAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -364,6 +373,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   clientId?: Prisma.UuidNullableFilter<"Project"> | string | null
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   contractValue?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   addressStreet?: Prisma.StringNullableFilter<"Project"> | string | null
@@ -390,6 +400,7 @@ export type ProjectOrderByWithAggregationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   contractValue?: Prisma.SortOrderInput | Prisma.SortOrder
+  siteAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   startDate?: Prisma.SortOrderInput | Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -419,6 +430,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   clientId?: Prisma.UuidNullableWithAggregatesFilter<"Project"> | string | null
   status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
   contractValue?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
   addressStreet?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
@@ -438,6 +450,7 @@ export type ProjectCreateInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -461,6 +474,7 @@ export type ProjectUncheckedCreateInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -480,6 +494,7 @@ export type ProjectUpdateInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -503,6 +518,7 @@ export type ProjectUncheckedUpdateInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -524,6 +540,7 @@ export type ProjectCreateManyInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -543,6 +560,7 @@ export type ProjectUpdateManyMutationInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -561,6 +579,7 @@ export type ProjectUncheckedUpdateManyInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -592,6 +611,7 @@ export type ProjectCountOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   contractValue?: Prisma.SortOrder
+  siteAddress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
@@ -617,6 +637,7 @@ export type ProjectMaxOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   contractValue?: Prisma.SortOrder
+  siteAddress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
@@ -638,6 +659,7 @@ export type ProjectMinOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   contractValue?: Prisma.SortOrder
+  siteAddress?: Prisma.SortOrder
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
@@ -887,6 +909,7 @@ export type ProjectCreateWithoutOrganisationInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -908,6 +931,7 @@ export type ProjectUncheckedCreateWithoutOrganisationInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -958,6 +982,7 @@ export type ProjectScalarWhereInput = {
   clientId?: Prisma.UuidNullableFilter<"Project"> | string | null
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   contractValue?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.StringNullableFilter<"Project"> | string | null
   startDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   endDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
   addressStreet?: Prisma.StringNullableFilter<"Project"> | string | null
@@ -977,6 +1002,7 @@ export type ProjectCreateWithoutCreatedByInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -999,6 +1025,7 @@ export type ProjectUncheckedCreateWithoutCreatedByInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1027,6 +1054,7 @@ export type ProjectCreateWithoutProjectManagerInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1049,6 +1077,7 @@ export type ProjectUncheckedCreateWithoutProjectManagerInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1077,6 +1106,7 @@ export type ProjectCreateWithoutSiteManagerInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1099,6 +1129,7 @@ export type ProjectUncheckedCreateWithoutSiteManagerInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1175,6 +1206,7 @@ export type ProjectCreateWithoutClientInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1196,6 +1228,7 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1242,6 +1275,7 @@ export type ProjectCreateManyOrganisationInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1261,6 +1295,7 @@ export type ProjectUpdateWithoutOrganisationInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1282,6 +1317,7 @@ export type ProjectUncheckedUpdateWithoutOrganisationInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1302,6 +1338,7 @@ export type ProjectUncheckedUpdateManyWithoutOrganisationInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1323,6 +1360,7 @@ export type ProjectCreateManyCreatedByInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1343,6 +1381,7 @@ export type ProjectCreateManyProjectManagerInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1363,6 +1402,7 @@ export type ProjectCreateManySiteManagerInput = {
   clientId?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1381,6 +1421,7 @@ export type ProjectUpdateWithoutCreatedByInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1403,6 +1444,7 @@ export type ProjectUncheckedUpdateWithoutCreatedByInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1423,6 +1465,7 @@ export type ProjectUncheckedUpdateManyWithoutCreatedByInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1441,6 +1484,7 @@ export type ProjectUpdateWithoutProjectManagerInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1463,6 +1507,7 @@ export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1483,6 +1528,7 @@ export type ProjectUncheckedUpdateManyWithoutProjectManagerInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1501,6 +1547,7 @@ export type ProjectUpdateWithoutSiteManagerInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1523,6 +1570,7 @@ export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1543,6 +1591,7 @@ export type ProjectUncheckedUpdateManyWithoutSiteManagerInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1562,6 +1611,7 @@ export type ProjectCreateManyClientInput = {
   projectNumber?: string | null
   status?: $Enums.ProjectStatus
   contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
   startDate?: Date | string | null
   endDate?: Date | string | null
   addressStreet?: string | null
@@ -1581,6 +1631,7 @@ export type ProjectUpdateWithoutClientInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1602,6 +1653,7 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1622,6 +1674,7 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
   projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1645,6 +1698,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   clientId?: boolean
   status?: boolean
   contractValue?: boolean
+  siteAddress?: boolean
   startDate?: boolean
   endDate?: boolean
   addressStreet?: boolean
@@ -1671,6 +1725,7 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   clientId?: boolean
   status?: boolean
   contractValue?: boolean
+  siteAddress?: boolean
   startDate?: boolean
   endDate?: boolean
   addressStreet?: boolean
@@ -1697,6 +1752,7 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   clientId?: boolean
   status?: boolean
   contractValue?: boolean
+  siteAddress?: boolean
   startDate?: boolean
   endDate?: boolean
   addressStreet?: boolean
@@ -1723,6 +1779,7 @@ export type ProjectSelectScalar = {
   clientId?: boolean
   status?: boolean
   contractValue?: boolean
+  siteAddress?: boolean
   startDate?: boolean
   endDate?: boolean
   addressStreet?: boolean
@@ -1736,7 +1793,7 @@ export type ProjectSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "projectNumber" | "clientId" | "status" | "contractValue" | "startDate" | "endDate" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "projectManagerId" | "siteManagerId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "projectNumber" | "clientId" | "status" | "contractValue" | "siteAddress" | "startDate" | "endDate" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "projectManagerId" | "siteManagerId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
@@ -1776,6 +1833,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     clientId: string | null
     status: $Enums.ProjectStatus
     contractValue: runtime.Decimal | null
+    siteAddress: string | null
     startDate: Date | null
     endDate: Date | null
     addressStreet: string | null
@@ -2222,6 +2280,7 @@ export interface ProjectFieldRefs {
   readonly clientId: Prisma.FieldRef<"Project", 'String'>
   readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
   readonly contractValue: Prisma.FieldRef<"Project", 'Decimal'>
+  readonly siteAddress: Prisma.FieldRef<"Project", 'String'>
   readonly startDate: Prisma.FieldRef<"Project", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Project", 'DateTime'>
   readonly addressStreet: Prisma.FieldRef<"Project", 'String'>

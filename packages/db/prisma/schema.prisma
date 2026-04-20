@@ -278,6 +278,7 @@ model Project {
   client          Company?      @relation("ProjectClient", fields: [clientId], references: [id], onDelete: SetNull)
   status          ProjectStatus @default(PRECONSTRUCTION)
   contractValue   Decimal?      @map("contract_value")
+  siteAddress     String?       @map("site_address")
   startDate       DateTime?     @map("start_date") @db.Date
   endDate         DateTime?     @map("end_date") @db.Date
   addressStreet   String?       @map("address_street")
