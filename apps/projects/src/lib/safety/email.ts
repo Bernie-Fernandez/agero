@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = process.env.RESEND_FROM ?? "Agero Safety <onboarding@resend.dev>";
+function getFrom() {
+  return process.env.RESEND_FROM ?? "Agero Safety <onboarding@resend.dev>";
+}
 
 function html(body: string) {
   return `<!DOCTYPE html><html><body style="font-family:sans-serif;color:#18181b;max-width:600px;margin:0 auto;padding:32px 16px">${body}<hr style="margin-top:40px;border:none;border-top:1px solid #e4e4e7"/><p style="font-size:12px;color:#71717a;margin-top:16px">Agero Safety Platform · Victoria, Australia</p></body></html>`;
@@ -15,6 +16,8 @@ export async function sendInvitationEmail(opts: {
   registrationUrl: string;
   expiresAt: Date;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const subject = `You've been invited to join Agero Safety — ${opts.companyName}`;
   await resend.emails.send({
     from: FROM,
@@ -40,6 +43,8 @@ export async function sendWelcomeEmail(opts: {
   companyName: string;
   documentsUrl: string;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const subject = `Welcome to Agero Safety — complete your compliance documents`;
   await resend.emails.send({
     from: FROM,
@@ -74,6 +79,8 @@ export async function sendDocumentExpiryEmail(opts: {
   urgent: boolean;
   documentsUrl: string;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const prefix = opts.urgent ? "URGENT: " : "";
   const subject = `${prefix}${opts.documentType} expiring in ${opts.daysUntilExpiry} days — ${opts.companyName}`;
   const badgeColor = opts.urgent ? "#dc2626" : "#d97706";
@@ -104,6 +111,8 @@ export async function sendSwmsRejectedEmail(opts: {
   reviewerComments: string;
   resubmitUrl: string;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const subject = `SWMS rejected — ${opts.projectName}`;
   await resend.emails.send({
     from: FROM,
@@ -133,6 +142,8 @@ export async function sendInductionBlockedAlert(opts: {
   projectName: string;
   blockedUntil: Date;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const subject = `Worker blocked from site — induction failed 3 times · ${opts.workerName}`;
   await resend.emails.send({
     from: FROM,
@@ -161,6 +172,8 @@ export async function sendSwmsApprovedEmail(opts: {
   companyName: string;
   projectName: string;
 }) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const FROM = getFrom();
   const subject = `SWMS approved — ${opts.projectName}`;
   await resend.emails.send({
     from: FROM,

@@ -12,7 +12,16 @@
         "DATABASE_URL",
         "DIRECT_URL",
         "ABN_LOOKUP_GUID",
-        "ANTHROPIC_API_KEY"
+        "ANTHROPIC_API_KEY",
+        "ABR_GUID",
+        "TWILIO_ACCOUNT_SID",
+        "TWILIO_AUTH_TOKEN",
+        "TWILIO_PHONE_NUMBER",
+        "RESEND_API_KEY",
+        "RESEND_FROM",
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "SUPABASE_SERVICE_ROLE_JWT",
+        "NEXT_PUBLIC_APP_URL"
       ]
     },
     "dev": {
