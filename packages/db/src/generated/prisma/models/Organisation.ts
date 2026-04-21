@@ -250,6 +250,11 @@ export type OrganisationWhereInput = {
   communications?: Prisma.CommunicationListRelationFilter
   contactTypes?: Prisma.ContactTypeListRelationFilter
   associationLabels?: Prisma.AssociationLabelListRelationFilter
+  incidents?: Prisma.IncidentListRelationFilter
+  hazards?: Prisma.HazardListRelationFilter
+  permits?: Prisma.PermitListRelationFilter
+  emergencyContacts?: Prisma.EmergencyContactListRelationFilter
+  safetyInspections?: Prisma.SafetyInspectionListRelationFilter
 }
 
 export type OrganisationOrderByWithRelationInput = {
@@ -277,6 +282,11 @@ export type OrganisationOrderByWithRelationInput = {
   communications?: Prisma.CommunicationOrderByRelationAggregateInput
   contactTypes?: Prisma.ContactTypeOrderByRelationAggregateInput
   associationLabels?: Prisma.AssociationLabelOrderByRelationAggregateInput
+  incidents?: Prisma.IncidentOrderByRelationAggregateInput
+  hazards?: Prisma.HazardOrderByRelationAggregateInput
+  permits?: Prisma.PermitOrderByRelationAggregateInput
+  emergencyContacts?: Prisma.EmergencyContactOrderByRelationAggregateInput
+  safetyInspections?: Prisma.SafetyInspectionOrderByRelationAggregateInput
 }
 
 export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
@@ -307,6 +317,11 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   communications?: Prisma.CommunicationListRelationFilter
   contactTypes?: Prisma.ContactTypeListRelationFilter
   associationLabels?: Prisma.AssociationLabelListRelationFilter
+  incidents?: Prisma.IncidentListRelationFilter
+  hazards?: Prisma.HazardListRelationFilter
+  permits?: Prisma.PermitListRelationFilter
+  emergencyContacts?: Prisma.EmergencyContactListRelationFilter
+  safetyInspections?: Prisma.SafetyInspectionListRelationFilter
 }, "id">
 
 export type OrganisationOrderByWithAggregationInput = {
@@ -370,6 +385,11 @@ export type OrganisationCreateInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateInput = {
@@ -397,6 +417,11 @@ export type OrganisationUncheckedCreateInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUpdateInput = {
@@ -424,6 +449,11 @@ export type OrganisationUpdateInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateInput = {
@@ -451,6 +481,11 @@ export type OrganisationUncheckedUpdateInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateManyInput = {
@@ -728,6 +763,76 @@ export type OrganisationUpdateOneRequiredWithoutPaymentTermsListNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutPaymentTermsListInput, Prisma.OrganisationUpdateWithoutPaymentTermsListInput>, Prisma.OrganisationUncheckedUpdateWithoutPaymentTermsListInput>
 }
 
+export type OrganisationCreateNestedOneWithoutIncidentsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutIncidentsInput, Prisma.OrganisationUncheckedCreateWithoutIncidentsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutIncidentsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutIncidentsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutIncidentsInput, Prisma.OrganisationUncheckedCreateWithoutIncidentsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutIncidentsInput
+  upsert?: Prisma.OrganisationUpsertWithoutIncidentsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutIncidentsInput, Prisma.OrganisationUpdateWithoutIncidentsInput>, Prisma.OrganisationUncheckedUpdateWithoutIncidentsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutHazardsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutHazardsInput, Prisma.OrganisationUncheckedCreateWithoutHazardsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutHazardsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutHazardsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutHazardsInput, Prisma.OrganisationUncheckedCreateWithoutHazardsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutHazardsInput
+  upsert?: Prisma.OrganisationUpsertWithoutHazardsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutHazardsInput, Prisma.OrganisationUpdateWithoutHazardsInput>, Prisma.OrganisationUncheckedUpdateWithoutHazardsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutPermitsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutPermitsInput, Prisma.OrganisationUncheckedCreateWithoutPermitsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutPermitsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutPermitsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutPermitsInput, Prisma.OrganisationUncheckedCreateWithoutPermitsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutPermitsInput
+  upsert?: Prisma.OrganisationUpsertWithoutPermitsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutPermitsInput, Prisma.OrganisationUpdateWithoutPermitsInput>, Prisma.OrganisationUncheckedUpdateWithoutPermitsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutEmergencyContactsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedCreateWithoutEmergencyContactsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutEmergencyContactsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutEmergencyContactsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedCreateWithoutEmergencyContactsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutEmergencyContactsInput
+  upsert?: Prisma.OrganisationUpsertWithoutEmergencyContactsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutEmergencyContactsInput, Prisma.OrganisationUpdateWithoutEmergencyContactsInput>, Prisma.OrganisationUncheckedUpdateWithoutEmergencyContactsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutSafetyInspectionsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedCreateWithoutSafetyInspectionsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutSafetyInspectionsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutSafetyInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedCreateWithoutSafetyInspectionsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutSafetyInspectionsInput
+  upsert?: Prisma.OrganisationUpsertWithoutSafetyInspectionsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutSafetyInspectionsInput, Prisma.OrganisationUpdateWithoutSafetyInspectionsInput>, Prisma.OrganisationUncheckedUpdateWithoutSafetyInspectionsInput>
+}
+
 export type OrganisationCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -752,6 +857,11 @@ export type OrganisationCreateWithoutUsersInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUsersInput = {
@@ -778,6 +888,11 @@ export type OrganisationUncheckedCreateWithoutUsersInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUsersInput = {
@@ -820,6 +935,11 @@ export type OrganisationUpdateWithoutUsersInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUsersInput = {
@@ -846,6 +966,11 @@ export type OrganisationUncheckedUpdateWithoutUsersInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutProjectsInput = {
@@ -872,6 +997,11 @@ export type OrganisationCreateWithoutProjectsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutProjectsInput = {
@@ -898,6 +1028,11 @@ export type OrganisationUncheckedCreateWithoutProjectsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutProjectsInput = {
@@ -940,6 +1075,11 @@ export type OrganisationUpdateWithoutProjectsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutProjectsInput = {
@@ -966,6 +1106,11 @@ export type OrganisationUncheckedUpdateWithoutProjectsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCompaniesInput = {
@@ -992,6 +1137,11 @@ export type OrganisationCreateWithoutCompaniesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCompaniesInput = {
@@ -1018,6 +1168,11 @@ export type OrganisationUncheckedCreateWithoutCompaniesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCompaniesInput = {
@@ -1060,6 +1215,11 @@ export type OrganisationUpdateWithoutCompaniesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
@@ -1086,6 +1246,11 @@ export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactsInput = {
@@ -1112,6 +1277,11 @@ export type OrganisationCreateWithoutContactsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactsInput = {
@@ -1138,6 +1308,11 @@ export type OrganisationUncheckedCreateWithoutContactsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactsInput = {
@@ -1180,6 +1355,11 @@ export type OrganisationUpdateWithoutContactsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactsInput = {
@@ -1206,6 +1386,11 @@ export type OrganisationUncheckedUpdateWithoutContactsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCostCodesInput = {
@@ -1232,6 +1417,11 @@ export type OrganisationCreateWithoutCostCodesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCostCodesInput = {
@@ -1258,6 +1448,11 @@ export type OrganisationUncheckedCreateWithoutCostCodesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCostCodesInput = {
@@ -1300,6 +1495,11 @@ export type OrganisationUpdateWithoutCostCodesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
@@ -1326,6 +1526,11 @@ export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
@@ -1352,6 +1557,11 @@ export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
@@ -1378,6 +1588,11 @@ export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutInsurancePolicyTypesInput = {
@@ -1420,6 +1635,11 @@ export type OrganisationUpdateWithoutInsurancePolicyTypesInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
@@ -1446,6 +1666,11 @@ export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCommunicationsInput = {
@@ -1472,6 +1697,11 @@ export type OrganisationCreateWithoutCommunicationsInput = {
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
@@ -1498,6 +1728,11 @@ export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCommunicationsInput = {
@@ -1540,6 +1775,11 @@ export type OrganisationUpdateWithoutCommunicationsInput = {
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
@@ -1566,6 +1806,11 @@ export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutNotificationsInput = {
@@ -1592,6 +1837,11 @@ export type OrganisationCreateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutNotificationsInput = {
@@ -1618,6 +1868,11 @@ export type OrganisationUncheckedCreateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutNotificationsInput = {
@@ -1660,6 +1915,11 @@ export type OrganisationUpdateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
@@ -1686,6 +1946,11 @@ export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAlertThresholdsInput = {
@@ -1712,6 +1977,11 @@ export type OrganisationCreateWithoutAlertThresholdsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
@@ -1738,6 +2008,11 @@ export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAlertThresholdsInput = {
@@ -1780,6 +2055,11 @@ export type OrganisationUpdateWithoutAlertThresholdsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
@@ -1806,6 +2086,11 @@ export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactTypesInput = {
@@ -1832,6 +2117,11 @@ export type OrganisationCreateWithoutContactTypesInput = {
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactTypesInput = {
@@ -1858,6 +2148,11 @@ export type OrganisationUncheckedCreateWithoutContactTypesInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactTypesInput = {
@@ -1900,6 +2195,11 @@ export type OrganisationUpdateWithoutContactTypesInput = {
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
@@ -1926,6 +2226,11 @@ export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAssociationLabelsInput = {
@@ -1952,6 +2257,11 @@ export type OrganisationCreateWithoutAssociationLabelsInput = {
   alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
@@ -1978,6 +2288,11 @@ export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAssociationLabelsInput = {
@@ -2020,6 +2335,11 @@ export type OrganisationUpdateWithoutAssociationLabelsInput = {
   alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
@@ -2046,6 +2366,11 @@ export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
   alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPaymentTermsListInput = {
@@ -2072,6 +2397,11 @@ export type OrganisationCreateWithoutPaymentTermsListInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
@@ -2098,6 +2428,11 @@ export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
   contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
   associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPaymentTermsListInput = {
@@ -2140,6 +2475,11 @@ export type OrganisationUpdateWithoutPaymentTermsListInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
@@ -2166,6 +2506,711 @@ export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
   contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
   associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutIncidentsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutIncidentsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutIncidentsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutIncidentsInput, Prisma.OrganisationUncheckedCreateWithoutIncidentsInput>
+}
+
+export type OrganisationUpsertWithoutIncidentsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutIncidentsInput, Prisma.OrganisationUncheckedUpdateWithoutIncidentsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutIncidentsInput, Prisma.OrganisationUncheckedCreateWithoutIncidentsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutIncidentsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutIncidentsInput, Prisma.OrganisationUncheckedUpdateWithoutIncidentsInput>
+}
+
+export type OrganisationUpdateWithoutIncidentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutHazardsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutHazardsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutHazardsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutHazardsInput, Prisma.OrganisationUncheckedCreateWithoutHazardsInput>
+}
+
+export type OrganisationUpsertWithoutHazardsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutHazardsInput, Prisma.OrganisationUncheckedUpdateWithoutHazardsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutHazardsInput, Prisma.OrganisationUncheckedCreateWithoutHazardsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutHazardsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutHazardsInput, Prisma.OrganisationUncheckedUpdateWithoutHazardsInput>
+}
+
+export type OrganisationUpdateWithoutHazardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutHazardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutPermitsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutPermitsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutPermitsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutPermitsInput, Prisma.OrganisationUncheckedCreateWithoutPermitsInput>
+}
+
+export type OrganisationUpsertWithoutPermitsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutPermitsInput, Prisma.OrganisationUncheckedUpdateWithoutPermitsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutPermitsInput, Prisma.OrganisationUncheckedCreateWithoutPermitsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutPermitsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutPermitsInput, Prisma.OrganisationUncheckedUpdateWithoutPermitsInput>
+}
+
+export type OrganisationUpdateWithoutPermitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutPermitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutEmergencyContactsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutEmergencyContactsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedCreateWithoutEmergencyContactsInput>
+}
+
+export type OrganisationUpsertWithoutEmergencyContactsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedUpdateWithoutEmergencyContactsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedCreateWithoutEmergencyContactsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutEmergencyContactsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutEmergencyContactsInput, Prisma.OrganisationUncheckedUpdateWithoutEmergencyContactsInput>
+}
+
+export type OrganisationUpdateWithoutEmergencyContactsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutSafetyInspectionsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutSafetyInspectionsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedCreateWithoutSafetyInspectionsInput>
+}
+
+export type OrganisationUpsertWithoutSafetyInspectionsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedUpdateWithoutSafetyInspectionsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedCreateWithoutSafetyInspectionsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutSafetyInspectionsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutSafetyInspectionsInput, Prisma.OrganisationUncheckedUpdateWithoutSafetyInspectionsInput>
+}
+
+export type OrganisationUpdateWithoutSafetyInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 
@@ -2186,6 +3231,11 @@ export type OrganisationCountOutputType = {
   communications: number
   contactTypes: number
   associationLabels: number
+  incidents: number
+  hazards: number
+  permits: number
+  emergencyContacts: number
+  safetyInspections: number
 }
 
 export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2201,6 +3251,11 @@ export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   communications?: boolean | OrganisationCountOutputTypeCountCommunicationsArgs
   contactTypes?: boolean | OrganisationCountOutputTypeCountContactTypesArgs
   associationLabels?: boolean | OrganisationCountOutputTypeCountAssociationLabelsArgs
+  incidents?: boolean | OrganisationCountOutputTypeCountIncidentsArgs
+  hazards?: boolean | OrganisationCountOutputTypeCountHazardsArgs
+  permits?: boolean | OrganisationCountOutputTypeCountPermitsArgs
+  emergencyContacts?: boolean | OrganisationCountOutputTypeCountEmergencyContactsArgs
+  safetyInspections?: boolean | OrganisationCountOutputTypeCountSafetyInspectionsArgs
 }
 
 /**
@@ -2297,6 +3352,41 @@ export type OrganisationCountOutputTypeCountAssociationLabelsArgs<ExtArgs extend
   where?: Prisma.AssociationLabelWhereInput
 }
 
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountIncidentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncidentWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountHazardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HazardWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountPermitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PermitWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountEmergencyContactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmergencyContactWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountSafetyInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SafetyInspectionWhereInput
+}
+
 
 export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2323,6 +3413,11 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   communications?: boolean | Prisma.Organisation$communicationsArgs<ExtArgs>
   contactTypes?: boolean | Prisma.Organisation$contactTypesArgs<ExtArgs>
   associationLabels?: boolean | Prisma.Organisation$associationLabelsArgs<ExtArgs>
+  incidents?: boolean | Prisma.Organisation$incidentsArgs<ExtArgs>
+  hazards?: boolean | Prisma.Organisation$hazardsArgs<ExtArgs>
+  permits?: boolean | Prisma.Organisation$permitsArgs<ExtArgs>
+  emergencyContacts?: boolean | Prisma.Organisation$emergencyContactsArgs<ExtArgs>
+  safetyInspections?: boolean | Prisma.Organisation$safetyInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organisation"]>
 
@@ -2385,6 +3480,11 @@ export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   communications?: boolean | Prisma.Organisation$communicationsArgs<ExtArgs>
   contactTypes?: boolean | Prisma.Organisation$contactTypesArgs<ExtArgs>
   associationLabels?: boolean | Prisma.Organisation$associationLabelsArgs<ExtArgs>
+  incidents?: boolean | Prisma.Organisation$incidentsArgs<ExtArgs>
+  hazards?: boolean | Prisma.Organisation$hazardsArgs<ExtArgs>
+  permits?: boolean | Prisma.Organisation$permitsArgs<ExtArgs>
+  emergencyContacts?: boolean | Prisma.Organisation$emergencyContactsArgs<ExtArgs>
+  safetyInspections?: boolean | Prisma.Organisation$safetyInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganisationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2405,6 +3505,11 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     communications: Prisma.$CommunicationPayload<ExtArgs>[]
     contactTypes: Prisma.$ContactTypePayload<ExtArgs>[]
     associationLabels: Prisma.$AssociationLabelPayload<ExtArgs>[]
+    incidents: Prisma.$IncidentPayload<ExtArgs>[]
+    hazards: Prisma.$HazardPayload<ExtArgs>[]
+    permits: Prisma.$PermitPayload<ExtArgs>[]
+    emergencyContacts: Prisma.$EmergencyContactPayload<ExtArgs>[]
+    safetyInspections: Prisma.$SafetyInspectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2825,6 +3930,11 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   communications<T extends Prisma.Organisation$communicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$communicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommunicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contactTypes<T extends Prisma.Organisation$contactTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$contactTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   associationLabels<T extends Prisma.Organisation$associationLabelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$associationLabelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssociationLabelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incidents<T extends Prisma.Organisation$incidentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hazards<T extends Prisma.Organisation$hazardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$hazardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HazardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  permits<T extends Prisma.Organisation$permitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$permitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PermitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  emergencyContacts<T extends Prisma.Organisation$emergencyContactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$emergencyContactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmergencyContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  safetyInspections<T extends Prisma.Organisation$safetyInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$safetyInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SafetyInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3544,6 +4654,126 @@ export type Organisation$associationLabelsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.AssociationLabelScalarFieldEnum | Prisma.AssociationLabelScalarFieldEnum[]
+}
+
+/**
+ * Organisation.incidents
+ */
+export type Organisation$incidentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Incident
+   */
+  select?: Prisma.IncidentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Incident
+   */
+  omit?: Prisma.IncidentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncidentInclude<ExtArgs> | null
+  where?: Prisma.IncidentWhereInput
+  orderBy?: Prisma.IncidentOrderByWithRelationInput | Prisma.IncidentOrderByWithRelationInput[]
+  cursor?: Prisma.IncidentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncidentScalarFieldEnum | Prisma.IncidentScalarFieldEnum[]
+}
+
+/**
+ * Organisation.hazards
+ */
+export type Organisation$hazardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hazard
+   */
+  select?: Prisma.HazardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hazard
+   */
+  omit?: Prisma.HazardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HazardInclude<ExtArgs> | null
+  where?: Prisma.HazardWhereInput
+  orderBy?: Prisma.HazardOrderByWithRelationInput | Prisma.HazardOrderByWithRelationInput[]
+  cursor?: Prisma.HazardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HazardScalarFieldEnum | Prisma.HazardScalarFieldEnum[]
+}
+
+/**
+ * Organisation.permits
+ */
+export type Organisation$permitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Permit
+   */
+  select?: Prisma.PermitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Permit
+   */
+  omit?: Prisma.PermitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PermitInclude<ExtArgs> | null
+  where?: Prisma.PermitWhereInput
+  orderBy?: Prisma.PermitOrderByWithRelationInput | Prisma.PermitOrderByWithRelationInput[]
+  cursor?: Prisma.PermitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PermitScalarFieldEnum | Prisma.PermitScalarFieldEnum[]
+}
+
+/**
+ * Organisation.emergencyContacts
+ */
+export type Organisation$emergencyContactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmergencyContact
+   */
+  select?: Prisma.EmergencyContactSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmergencyContact
+   */
+  omit?: Prisma.EmergencyContactOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmergencyContactInclude<ExtArgs> | null
+  where?: Prisma.EmergencyContactWhereInput
+  orderBy?: Prisma.EmergencyContactOrderByWithRelationInput | Prisma.EmergencyContactOrderByWithRelationInput[]
+  cursor?: Prisma.EmergencyContactWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmergencyContactScalarFieldEnum | Prisma.EmergencyContactScalarFieldEnum[]
+}
+
+/**
+ * Organisation.safetyInspections
+ */
+export type Organisation$safetyInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SafetyInspection
+   */
+  select?: Prisma.SafetyInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SafetyInspection
+   */
+  omit?: Prisma.SafetyInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SafetyInspectionInclude<ExtArgs> | null
+  where?: Prisma.SafetyInspectionWhereInput
+  orderBy?: Prisma.SafetyInspectionOrderByWithRelationInput | Prisma.SafetyInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.SafetyInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SafetyInspectionScalarFieldEnum | Prisma.SafetyInspectionScalarFieldEnum[]
 }
 
 /**

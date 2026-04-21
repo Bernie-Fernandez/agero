@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { showToast, ToastContainer } from '@/components/Toast';
 import SlidePanel from '@/components/SlidePanel';
 import { createContact } from './actions';
+import { useColumnResize } from '@/hooks/useColumnResize';
+import { ResizableTh } from '@/components/ResizableTh';
 
 type Contact = {
   id: string;
@@ -87,6 +89,7 @@ export default function ContactsListClient({ initialContacts, companies }: { ini
   const [filterState, setFilterState] = useState('');
   const [addOpen, setAddOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const { widths: colWidths, startResize } = useColumnResize('agero_col_widths_contacts', { name: 180, company: 160, jobTitle: 140, type: 120, phone: 120, email: 180, state: 70, status: 80 });
 
   useEffect(() => {
     try {
@@ -199,19 +202,19 @@ export default function ContactsListClient({ initialContacts, companies }: { ini
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-zinc-400"><p className="text-sm">No contacts found.</p></div>
       ) : (
-        <div className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white rounded-lg border border-zinc-200 overflow-x-auto">
+          <table className="w-full text-sm" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr className="border-b border-zinc-100 bg-zinc-50">
                 <th className="px-4 py-2.5 w-8"><input type="checkbox" className="accent-brand" readOnly /></th>
-                {col('name') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Name</th>}
-                {col('company') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company</th>}
-                {col('jobTitle') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Job Title</th>}
-                {col('type') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</th>}
-                {col('phone') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Mobile</th>}
-                {col('email') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Email</th>}
-                {col('state') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</th>}
-                {col('status') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>}
+                {col('name') && <ResizableTh col="name" width={colWidths.name} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Name</ResizableTh>}
+                {col('company') && <ResizableTh col="company" width={colWidths.company} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company</ResizableTh>}
+                {col('jobTitle') && <ResizableTh col="jobTitle" width={colWidths.jobTitle} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Job Title</ResizableTh>}
+                {col('type') && <ResizableTh col="type" width={colWidths.type} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</ResizableTh>}
+                {col('phone') && <ResizableTh col="phone" width={colWidths.phone} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Mobile</ResizableTh>}
+                {col('email') && <ResizableTh col="email" width={colWidths.email} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Email</ResizableTh>}
+                {col('state') && <ResizableTh col="state" width={colWidths.state} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</ResizableTh>}
+                {col('status') && <ResizableTh col="status" width={colWidths.status} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</ResizableTh>}
               </tr>
             </thead>
             <tbody>

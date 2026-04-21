@@ -158,6 +158,31 @@ export type PaymentTerm = Prisma.PaymentTermModel
  */
 export type SystemEvent = Prisma.SystemEventModel
 /**
+ * Model Incident
+ * 
+ */
+export type Incident = Prisma.IncidentModel
+/**
+ * Model Hazard
+ * 
+ */
+export type Hazard = Prisma.HazardModel
+/**
+ * Model Permit
+ * 
+ */
+export type Permit = Prisma.PermitModel
+/**
+ * Model EmergencyContact
+ * 
+ */
+export type EmergencyContact = Prisma.EmergencyContactModel
+/**
+ * Model SafetyInspection
+ * 
+ */
+export type SafetyInspection = Prisma.SafetyInspectionModel
+/**
  * Model ImsEmployee
  * 
  */

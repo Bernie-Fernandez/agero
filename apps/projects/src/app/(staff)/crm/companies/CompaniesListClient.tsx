@@ -5,6 +5,8 @@ import { patchCompanyField } from './actions';
 import { showToast, ToastContainer } from '@/components/Toast';
 import SlidePanel from '@/components/SlidePanel';
 import dynamic from 'next/dynamic';
+import { useColumnResize } from '@/hooks/useColumnResize';
+import { ResizableTh } from '@/components/ResizableTh';
 
 const AddCompanyWizard = dynamic(
   () => import('@/components/AddCompanyWizard').then((m) => ({ default: m.AddCompanyWizard })),
@@ -253,6 +255,7 @@ export default function CompaniesListClient({
   paymentTermsList: PaymentTerm[];
   allCostCodes?: CostCode[];
 }) {
+  const { widths: colWidths, startResize } = useColumnResize('agero_col_widths_companies', { name: 200, types: 120, trades: 140, abn: 130, state: 80, paymentTerms: 120, performance: 110, status: 90, contacts: 80, tier: 80 });
   const [companies, setCompanies] = useState(initialCompanies);
   const [activeTabId, setActiveTabId] = useState('all');
   const [tabs, setTabs] = useState<Tab[]>(DEFAULT_TABS);
@@ -420,23 +423,23 @@ export default function CompaniesListClient({
           <p className="text-sm">No companies found.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white rounded-lg border border-zinc-200 overflow-x-auto">
+          <table className="w-full text-sm" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr className="border-b border-zinc-100 bg-zinc-50">
                 <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs w-8">
                   <input type="checkbox" className="accent-brand" readOnly />
                 </th>
-                {col('name') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company Name</th>}
-                {col('types') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</th>}
-                {col('abn') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">ABN</th>}
-                {col('state') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</th>}
-                {col('paymentTerms') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Payment Terms</th>}
-                {col('performance') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Performance</th>}
-                {col('status') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>}
-                {col('contacts') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Contacts</th>}
-                {col('tier') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Tier</th>}
-                {col('trades') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Trades</th>}
+                {col('name') && <ResizableTh col="name" width={colWidths.name} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company Name</ResizableTh>}
+                {col('types') && <ResizableTh col="types" width={colWidths.types} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Type</ResizableTh>}
+                {col('abn') && <ResizableTh col="abn" width={colWidths.abn} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">ABN</ResizableTh>}
+                {col('state') && <ResizableTh col="state" width={colWidths.state} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</ResizableTh>}
+                {col('paymentTerms') && <ResizableTh col="paymentTerms" width={colWidths.paymentTerms} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Payment Terms</ResizableTh>}
+                {col('performance') && <ResizableTh col="performance" width={colWidths.performance} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Performance</ResizableTh>}
+                {col('status') && <ResizableTh col="status" width={colWidths.status} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</ResizableTh>}
+                {col('contacts') && <ResizableTh col="contacts" width={colWidths.contacts} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Contacts</ResizableTh>}
+                {col('tier') && <ResizableTh col="tier" width={colWidths.tier} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Tier</ResizableTh>}
+                {col('trades') && <ResizableTh col="trades" width={colWidths.trades} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Trades</ResizableTh>}
               </tr>
             </thead>
             <tbody>

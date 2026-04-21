@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ToastContainer } from '@/components/Toast';
 import InvitePanel from './InvitePanel';
+import { useColumnResize } from '@/hooks/useColumnResize';
+import { ResizableTh } from '@/components/ResizableTh';
 
 type Subcontractor = {
   id: string;
@@ -109,6 +111,7 @@ export default function SubcontractorsListClient({
   const [filterApproval, setFilterApproval] = useState('');
   const [filterState, setFilterState] = useState('');
   const [hydrated, setHydrated] = useState(false);
+  const { widths: colWidths, startResize } = useColumnResize('agero_col_widths_subcontractors', { name: 200, abn: 130, trades: 140, tier: 70, performance: 110, approval: 110, portal: 100, state: 70 });
 
   useEffect(() => {
     try {
@@ -212,19 +215,19 @@ export default function SubcontractorsListClient({
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-zinc-400"><p className="text-sm">No subcontractors found.</p></div>
       ) : (
-        <div className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white rounded-lg border border-zinc-200 overflow-x-auto">
+          <table className="w-full text-sm" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr className="border-b border-zinc-100 bg-zinc-50">
                 <th className="px-4 py-2.5 w-8"><input type="checkbox" className="accent-brand" readOnly /></th>
-                {col('name') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company</th>}
-                {col('abn') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">ABN</th>}
-                {col('trades') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Trades</th>}
-                {col('tier') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Tier</th>}
-                {col('performance') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Performance</th>}
-                {col('approval') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Approval</th>}
-                {col('portal') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Portal</th>}
-                {col('state') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</th>}
+                {col('name') && <ResizableTh col="name" width={colWidths.name} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Company</ResizableTh>}
+                {col('abn') && <ResizableTh col="abn" width={colWidths.abn} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">ABN</ResizableTh>}
+                {col('trades') && <ResizableTh col="trades" width={colWidths.trades} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Trades</ResizableTh>}
+                {col('tier') && <ResizableTh col="tier" width={colWidths.tier} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Tier</ResizableTh>}
+                {col('performance') && <ResizableTh col="performance" width={colWidths.performance} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Performance</ResizableTh>}
+                {col('approval') && <ResizableTh col="approval" width={colWidths.approval} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Approval</ResizableTh>}
+                {col('portal') && <ResizableTh col="portal" width={colWidths.portal} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Portal</ResizableTh>}
+                {col('state') && <ResizableTh col="state" width={colWidths.state} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">State</ResizableTh>}
               </tr>
             </thead>
             <tbody>

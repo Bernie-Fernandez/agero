@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { ToastContainer } from '@/components/Toast';
 import SlidePanel from '@/components/SlidePanel';
 import { createProject } from './actions';
+import { useColumnResize } from '@/hooks/useColumnResize';
+import { ResizableTh } from '@/components/ResizableTh';
 const PROJECT_STATUSES = ['PLANNING', 'ACTIVE', 'ON_HOLD', 'COMPLETED', 'CANCELLED'] as const;
 
 type Project = {
@@ -102,6 +104,7 @@ export default function ProjectsListClient({ initialProjects, companies }: { ini
   const [filterClient, setFilterClient] = useState('');
   const [addOpen, setAddOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const { widths: colWidths, startResize } = useColumnResize('agero_col_widths_projects', { name: 200, number: 100, client: 140, address: 180, status: 110, budget: 110, startDate: 100, endDate: 100 });
 
   useEffect(() => {
     try {
@@ -200,19 +203,19 @@ export default function ProjectsListClient({ initialProjects, companies }: { ini
       {filtered.length === 0 ? (
         <div className="text-center py-16 text-zinc-400"><p className="text-sm">No projects found.</p></div>
       ) : (
-        <div className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white rounded-lg border border-zinc-200 overflow-x-auto">
+          <table className="w-full text-sm" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr className="border-b border-zinc-100 bg-zinc-50">
                 <th className="px-4 py-2.5 w-8"><input type="checkbox" className="accent-brand" readOnly /></th>
-                {col('name') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Project Name</th>}
-                {col('number') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Number</th>}
-                {col('client') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Client</th>}
-                {col('address') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Address</th>}
-                {col('status') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>}
-                {col('budget') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Budget</th>}
-                {col('startDate') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Start Date</th>}
-                {col('endDate') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">End Date</th>}
+                {col('name') && <ResizableTh col="name" width={colWidths.name} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Project Name</ResizableTh>}
+                {col('number') && <ResizableTh col="number" width={colWidths.number} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Number</ResizableTh>}
+                {col('client') && <ResizableTh col="client" width={colWidths.client} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Client</ResizableTh>}
+                {col('address') && <ResizableTh col="address" width={colWidths.address} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Address</ResizableTh>}
+                {col('status') && <ResizableTh col="status" width={colWidths.status} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</ResizableTh>}
+                {col('budget') && <ResizableTh col="budget" width={colWidths.budget} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Budget</ResizableTh>}
+                {col('startDate') && <ResizableTh col="startDate" width={colWidths.startDate} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Start Date</ResizableTh>}
+                {col('endDate') && <ResizableTh col="endDate" width={colWidths.endDate} onStartResize={startResize} className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">End Date</ResizableTh>}
               </tr>
             </thead>
             <tbody>

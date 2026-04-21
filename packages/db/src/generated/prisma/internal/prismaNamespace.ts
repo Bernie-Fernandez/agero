@@ -412,6 +412,11 @@ export const ModelName = {
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
   SystemEvent: 'SystemEvent',
+  Incident: 'Incident',
+  Hazard: 'Hazard',
+  Permit: 'Permit',
+  EmergencyContact: 'EmergencyContact',
+  SafetyInspection: 'SafetyInspection',
   ImsEmployee: 'ImsEmployee',
   ImsTrainingProvider: 'ImsTrainingProvider',
   ImsTrainingCourse: 'ImsTrainingCourse',
@@ -459,7 +464,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2532,6 +2537,376 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SystemEventCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SystemEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    Incident: {
+      payload: Prisma.$IncidentPayload<ExtArgs>
+      fields: Prisma.IncidentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.IncidentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.IncidentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        findFirst: {
+          args: Prisma.IncidentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.IncidentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        findMany: {
+          args: Prisma.IncidentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+        }
+        create: {
+          args: Prisma.IncidentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        createMany: {
+          args: Prisma.IncidentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.IncidentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+        }
+        delete: {
+          args: Prisma.IncidentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        update: {
+          args: Prisma.IncidentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        deleteMany: {
+          args: Prisma.IncidentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.IncidentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.IncidentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>[]
+        }
+        upsert: {
+          args: Prisma.IncidentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$IncidentPayload>
+        }
+        aggregate: {
+          args: Prisma.IncidentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIncident>
+        }
+        groupBy: {
+          args: Prisma.IncidentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncidentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.IncidentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.IncidentCountAggregateOutputType> | number
+        }
+      }
+    }
+    Hazard: {
+      payload: Prisma.$HazardPayload<ExtArgs>
+      fields: Prisma.HazardFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HazardFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HazardFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        findFirst: {
+          args: Prisma.HazardFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HazardFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        findMany: {
+          args: Prisma.HazardFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>[]
+        }
+        create: {
+          args: Prisma.HazardCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        createMany: {
+          args: Prisma.HazardCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HazardCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>[]
+        }
+        delete: {
+          args: Prisma.HazardDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        update: {
+          args: Prisma.HazardUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        deleteMany: {
+          args: Prisma.HazardDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HazardUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HazardUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>[]
+        }
+        upsert: {
+          args: Prisma.HazardUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HazardPayload>
+        }
+        aggregate: {
+          args: Prisma.HazardAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHazard>
+        }
+        groupBy: {
+          args: Prisma.HazardGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HazardGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HazardCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HazardCountAggregateOutputType> | number
+        }
+      }
+    }
+    Permit: {
+      payload: Prisma.$PermitPayload<ExtArgs>
+      fields: Prisma.PermitFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PermitFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PermitFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        findFirst: {
+          args: Prisma.PermitFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PermitFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        findMany: {
+          args: Prisma.PermitFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>[]
+        }
+        create: {
+          args: Prisma.PermitCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        createMany: {
+          args: Prisma.PermitCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PermitCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>[]
+        }
+        delete: {
+          args: Prisma.PermitDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        update: {
+          args: Prisma.PermitUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        deleteMany: {
+          args: Prisma.PermitDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PermitUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PermitUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>[]
+        }
+        upsert: {
+          args: Prisma.PermitUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PermitPayload>
+        }
+        aggregate: {
+          args: Prisma.PermitAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePermit>
+        }
+        groupBy: {
+          args: Prisma.PermitGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PermitGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PermitCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PermitCountAggregateOutputType> | number
+        }
+      }
+    }
+    EmergencyContact: {
+      payload: Prisma.$EmergencyContactPayload<ExtArgs>
+      fields: Prisma.EmergencyContactFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmergencyContactFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmergencyContactFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        findFirst: {
+          args: Prisma.EmergencyContactFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmergencyContactFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        findMany: {
+          args: Prisma.EmergencyContactFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>[]
+        }
+        create: {
+          args: Prisma.EmergencyContactCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        createMany: {
+          args: Prisma.EmergencyContactCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmergencyContactCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>[]
+        }
+        delete: {
+          args: Prisma.EmergencyContactDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        update: {
+          args: Prisma.EmergencyContactUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmergencyContactDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmergencyContactUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmergencyContactUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmergencyContactUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmergencyContactPayload>
+        }
+        aggregate: {
+          args: Prisma.EmergencyContactAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmergencyContact>
+        }
+        groupBy: {
+          args: Prisma.EmergencyContactGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmergencyContactGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmergencyContactCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmergencyContactCountAggregateOutputType> | number
+        }
+      }
+    }
+    SafetyInspection: {
+      payload: Prisma.$SafetyInspectionPayload<ExtArgs>
+      fields: Prisma.SafetyInspectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SafetyInspectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SafetyInspectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        findFirst: {
+          args: Prisma.SafetyInspectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SafetyInspectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        findMany: {
+          args: Prisma.SafetyInspectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>[]
+        }
+        create: {
+          args: Prisma.SafetyInspectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        createMany: {
+          args: Prisma.SafetyInspectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SafetyInspectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>[]
+        }
+        delete: {
+          args: Prisma.SafetyInspectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        update: {
+          args: Prisma.SafetyInspectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.SafetyInspectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SafetyInspectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SafetyInspectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.SafetyInspectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SafetyInspectionPayload>
+        }
+        aggregate: {
+          args: Prisma.SafetyInspectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSafetyInspection>
+        }
+        groupBy: {
+          args: Prisma.SafetyInspectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SafetyInspectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SafetyInspectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SafetyInspectionCountAggregateOutputType> | number
         }
       }
     }
@@ -4995,7 +5370,18 @@ export const ProjectScalarFieldEnum = {
   addressPostcode: 'addressPostcode',
   projectManagerId: 'projectManagerId',
   siteManagerId: 'siteManagerId',
+  projectEstimatorId: 'projectEstimatorId',
   createdById: 'createdById',
+  plannedStart: 'plannedStart',
+  plannedFinish: 'plannedFinish',
+  practicalCompletion: 'practicalCompletion',
+  additionalDays: 'additionalDays',
+  contractSignedDate: 'contractSignedDate',
+  retentionType: 'retentionType',
+  variationMarginPercent: 'variationMarginPercent',
+  projectBrief: 'projectBrief',
+  buildingType: 'buildingType',
+  sizeM2: 'sizeM2',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -5448,6 +5834,96 @@ export const SystemEventScalarFieldEnum = {
 } as const
 
 export type SystemEventScalarFieldEnum = (typeof SystemEventScalarFieldEnum)[keyof typeof SystemEventScalarFieldEnum]
+
+
+export const IncidentScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  description: 'description',
+  incidentDate: 'incidentDate',
+  location: 'location',
+  severity: 'severity',
+  status: 'status',
+  reportedById: 'reportedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
+
+
+export const HazardScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  description: 'description',
+  location: 'location',
+  likelihoodPre: 'likelihoodPre',
+  consequencePre: 'consequencePre',
+  likelihoodPost: 'likelihoodPost',
+  consequencePost: 'consequencePost',
+  controls: 'controls',
+  status: 'status',
+  raisedById: 'raisedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HazardScalarFieldEnum = (typeof HazardScalarFieldEnum)[keyof typeof HazardScalarFieldEnum]
+
+
+export const PermitScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  permitType: 'permitType',
+  title: 'title',
+  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  issuedById: 'issuedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PermitScalarFieldEnum = (typeof PermitScalarFieldEnum)[keyof typeof PermitScalarFieldEnum]
+
+
+export const EmergencyContactScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  name: 'name',
+  role: 'role',
+  phone: 'phone',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmergencyContactScalarFieldEnum = (typeof EmergencyContactScalarFieldEnum)[keyof typeof EmergencyContactScalarFieldEnum]
+
+
+export const SafetyInspectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  inspectionDate: 'inspectionDate',
+  inspector: 'inspector',
+  outcome: 'outcome',
+  notes: 'notes',
+  status: 'status',
+  conductedById: 'conductedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SafetyInspectionScalarFieldEnum = (typeof SafetyInspectionScalarFieldEnum)[keyof typeof SafetyInspectionScalarFieldEnum]
 
 
 export const ImsEmployeeScalarFieldEnum = {
@@ -6188,6 +6664,20 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'AbnStatus'
  */
 export type EnumAbnStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AbnStatus'>
@@ -6324,20 +6814,6 @@ export type EnumCostCodeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'CostCodeType[]'
  */
 export type ListEnumCostCodeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CostCodeType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -6869,6 +7345,11 @@ export type GlobalOmitConfig = {
   companyExpertiseTag?: Prisma.CompanyExpertiseTagOmit
   paymentTerm?: Prisma.PaymentTermOmit
   systemEvent?: Prisma.SystemEventOmit
+  incident?: Prisma.IncidentOmit
+  hazard?: Prisma.HazardOmit
+  permit?: Prisma.PermitOmit
+  emergencyContact?: Prisma.EmergencyContactOmit
+  safetyInspection?: Prisma.SafetyInspectionOmit
   imsEmployee?: Prisma.ImsEmployeeOmit
   imsTrainingProvider?: Prisma.ImsTrainingProviderOmit
   imsTrainingCourse?: Prisma.ImsTrainingCourseOmit

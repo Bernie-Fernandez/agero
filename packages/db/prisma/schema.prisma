@@ -225,6 +225,11 @@ model Organisation {
   communications     Communication[]
   contactTypes       ContactType[]
   associationLabels  AssociationLabel[]
+  incidents          Incident[]
+  hazards            Hazard[]
+  permits            Permit[]
+  emergencyContacts  EmergencyContact[]
+  safetyInspections  SafetyInspection[]
 
   @@map("organisations")
   @@schema("projects")
@@ -250,6 +255,7 @@ model User {
   createdProjects     Project[]             @relation("ProjectCreatedBy")
   managedProjects     Project[]             @relation("ProjectManager")
   siteProjects        Project[]             @relation("SiteManager")
+  estimatedProjects   Project[]             @relation("ProjectEstimator")
   createdCompanies    Company[]
   createdContacts     Contact[]             @relation("ContactCreatedBy")
   ownedContacts       Contact[]             @relation("ContactOwner")
@@ -262,6 +268,10 @@ model User {
   notifications       NotificationAlert[]
   createdPolicies     InsurancePolicy[]
   projectSubAssignments ProjectSubcontractor[] @relation("ProjectSubAssignedBy")
+  reportedIncidents    Incident[]             @relation("IncidentReportedBy")
+  raisedHazards        Hazard[]               @relation("HazardRaisedBy")
+  issuedPermits        Permit[]               @relation("PermitIssuedBy")
+  conductedInspections SafetyInspection[]     @relation("InspectionConductedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -290,13 +300,31 @@ model Project {
   projectManager  User?         @relation("ProjectManager", fields: [projectManagerId], references: [id], onDelete: SetNull)
   siteManagerId   String?       @map("site_manager_id") @db.Uuid
   siteManager     User?         @relation("SiteManager", fields: [siteManagerId], references: [id], onDelete: SetNull)
+  projectEstimatorId String?    @map("project_estimator_id") @db.Uuid
+  projectEstimator   User?      @relation("ProjectEstimator", fields: [projectEstimatorId], references: [id], onDelete: SetNull)
   createdById     String        @map("created_by_id") @db.Uuid
   createdBy       User          @relation("ProjectCreatedBy", fields: [createdById], references: [id])
+
+  plannedStart           DateTime? @map("planned_start") @db.Date
+  plannedFinish          DateTime? @map("planned_finish") @db.Date
+  practicalCompletion    DateTime? @map("practical_completion") @db.Date
+  additionalDays         Int?      @map("additional_days")
+  contractSignedDate     DateTime? @map("contract_signed_date") @db.Date
+  retentionType          String?   @map("retention_type")
+  variationMarginPercent Decimal?  @map("variation_margin_percent")
+  projectBrief           String?   @map("project_brief")
+  buildingType           String?   @map("building_type")
+  sizeM2                 Decimal?  @map("size_m2")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  subcontractors ProjectSubcontractor[]
+  subcontractors      ProjectSubcontractor[]
+  incidents           Incident[]
+  hazards             Hazard[]
+  permits             Permit[]
+  emergencyContacts   EmergencyContact[]
+  safetyInspections   SafetyInspection[]
 
   @@index([organisationId])
   @@map("projects")
@@ -981,6 +1009,134 @@ enum ImsEmergencyResponseTemplate {
   CUSTOM
 
   @@schema("ims")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SAFETY TABLES (projects schema)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Incident
+model Incident {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?  @map("project_id") @db.Uuid
+  project        Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  title          String
+  description    String?
+  incidentDate   DateTime @map("incident_date") @db.Date
+  location       String?
+  severity       String   @default("LOW")
+  status         String   @default("OPEN")
+  reportedById   String?  @map("reported_by_id") @db.Uuid
+  reportedBy     User?    @relation("IncidentReportedBy", fields: [reportedById], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("incidents")
+  @@schema("projects")
+}
+
+// Hazard
+model Hazard {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?  @map("project_id") @db.Uuid
+  project        Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  title          String
+  description    String?
+  location       String?
+  likelihoodPre  Int?     @map("likelihood_pre")
+  consequencePre Int?     @map("consequence_pre")
+  likelihoodPost Int?     @map("likelihood_post")
+  consequencePost Int?    @map("consequence_post")
+  controls       String?
+  status         String   @default("OPEN")
+  raisedById     String?  @map("raised_by_id") @db.Uuid
+  raisedBy       User?    @relation("HazardRaisedBy", fields: [raisedById], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("hazards")
+  @@schema("projects")
+}
+
+// Permit
+model Permit {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?  @map("project_id") @db.Uuid
+  project        Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  permitType     String   @map("permit_type")
+  title          String
+  description    String?
+  startDate      DateTime @map("start_date") @db.Date
+  endDate        DateTime @map("end_date") @db.Date
+  status         String   @default("ACTIVE")
+  issuedById     String?  @map("issued_by_id") @db.Uuid
+  issuedBy       User?    @relation("PermitIssuedBy", fields: [issuedById], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("permits")
+  @@schema("projects")
+}
+
+// EmergencyContact
+model EmergencyContact {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?  @map("project_id") @db.Uuid
+  project        Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  name           String
+  role           String?
+  phone          String
+  isDefault      Boolean  @default(false) @map("is_default")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("emergency_contacts")
+  @@schema("projects")
+}
+
+// SafetyInspection
+model SafetyInspection {
+  id             String   @id @default(uuid()) @db.Uuid
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?  @map("project_id") @db.Uuid
+  project        Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  title          String
+  inspectionDate DateTime @map("inspection_date") @db.Date
+  inspector      String?
+  outcome        String?
+  notes          String?
+  status         String   @default("OPEN")
+  conductedById  String?  @map("conducted_by_id") @db.Uuid
+  conductedBy    User?    @relation("InspectionConductedBy", fields: [conductedById], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("safety_inspections")
+  @@schema("projects")
 }
 
 enum ImsIncidentStatus {

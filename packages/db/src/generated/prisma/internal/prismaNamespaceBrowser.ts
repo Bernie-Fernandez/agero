@@ -79,6 +79,11 @@ export const ModelName = {
   CompanyExpertiseTag: 'CompanyExpertiseTag',
   PaymentTerm: 'PaymentTerm',
   SystemEvent: 'SystemEvent',
+  Incident: 'Incident',
+  Hazard: 'Hazard',
+  Permit: 'Permit',
+  EmergencyContact: 'EmergencyContact',
+  SafetyInspection: 'SafetyInspection',
   ImsEmployee: 'ImsEmployee',
   ImsTrainingProvider: 'ImsTrainingProvider',
   ImsTrainingCourse: 'ImsTrainingCourse',
@@ -182,7 +187,18 @@ export const ProjectScalarFieldEnum = {
   addressPostcode: 'addressPostcode',
   projectManagerId: 'projectManagerId',
   siteManagerId: 'siteManagerId',
+  projectEstimatorId: 'projectEstimatorId',
   createdById: 'createdById',
+  plannedStart: 'plannedStart',
+  plannedFinish: 'plannedFinish',
+  practicalCompletion: 'practicalCompletion',
+  additionalDays: 'additionalDays',
+  contractSignedDate: 'contractSignedDate',
+  retentionType: 'retentionType',
+  variationMarginPercent: 'variationMarginPercent',
+  projectBrief: 'projectBrief',
+  buildingType: 'buildingType',
+  sizeM2: 'sizeM2',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -635,6 +651,96 @@ export const SystemEventScalarFieldEnum = {
 } as const
 
 export type SystemEventScalarFieldEnum = (typeof SystemEventScalarFieldEnum)[keyof typeof SystemEventScalarFieldEnum]
+
+
+export const IncidentScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  description: 'description',
+  incidentDate: 'incidentDate',
+  location: 'location',
+  severity: 'severity',
+  status: 'status',
+  reportedById: 'reportedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
+
+
+export const HazardScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  description: 'description',
+  location: 'location',
+  likelihoodPre: 'likelihoodPre',
+  consequencePre: 'consequencePre',
+  likelihoodPost: 'likelihoodPost',
+  consequencePost: 'consequencePost',
+  controls: 'controls',
+  status: 'status',
+  raisedById: 'raisedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HazardScalarFieldEnum = (typeof HazardScalarFieldEnum)[keyof typeof HazardScalarFieldEnum]
+
+
+export const PermitScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  permitType: 'permitType',
+  title: 'title',
+  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  issuedById: 'issuedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PermitScalarFieldEnum = (typeof PermitScalarFieldEnum)[keyof typeof PermitScalarFieldEnum]
+
+
+export const EmergencyContactScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  name: 'name',
+  role: 'role',
+  phone: 'phone',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmergencyContactScalarFieldEnum = (typeof EmergencyContactScalarFieldEnum)[keyof typeof EmergencyContactScalarFieldEnum]
+
+
+export const SafetyInspectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  projectId: 'projectId',
+  title: 'title',
+  inspectionDate: 'inspectionDate',
+  inspector: 'inspector',
+  outcome: 'outcome',
+  notes: 'notes',
+  status: 'status',
+  conductedById: 'conductedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SafetyInspectionScalarFieldEnum = (typeof SafetyInspectionScalarFieldEnum)[keyof typeof SafetyInspectionScalarFieldEnum]
 
 
 export const ImsEmployeeScalarFieldEnum = {

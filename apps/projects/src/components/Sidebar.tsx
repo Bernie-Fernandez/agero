@@ -2,16 +2,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useProject } from '@/context/ProjectContext';
 import { getUserBookmarks } from '@/lib/bookmarks/actions';
 
 // ── Types ────────────────────────────────────────────────────────────────────
-
-type NavItem = {
-  label: string;
-  href?: string;
-  stubbed?: boolean;
-};
 
 type Bookmark = {
   id: string;
@@ -51,7 +44,7 @@ function NavLink({ href, label, depth = 0, onItemClick }: { href: string; label:
       href={href}
       onClick={onItemClick}
       className={`flex items-center px-3 py-[7px] text-[13px] rounded-md transition-colors ${
-        depth > 0 ? 'pl-6' : ''
+        depth === 1 ? 'pl-6' : depth === 2 ? 'pl-9' : ''
       } ${
         isActiveExact
           ? 'bg-zinc-100 font-medium text-zinc-900 border-r-2 border-brand'
@@ -69,7 +62,7 @@ function StubbedItem({ label, depth = 0 }: { label: string; depth?: number }) {
   return (
     <div
       title="Coming soon"
-      className={`flex items-center justify-between px-3 py-[7px] text-[13px] rounded-md cursor-default select-none ${depth > 0 ? 'pl-6' : ''} text-zinc-400`}
+      className={`flex items-center justify-between px-3 py-[7px] text-[13px] rounded-md cursor-default select-none ${depth === 1 ? 'pl-6' : depth === 2 ? 'pl-9' : ''} text-zinc-400`}
     >
       <span>{label}</span>
       <span className="text-[10px] text-zinc-300 font-medium ml-1">soon</span>
@@ -195,17 +188,32 @@ function BookmarksFlyout({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── ProjectSubNav ────────────────────────────────────────────────────────────
+// ── HseqSubItems ──────────────────────────────────────────────────────────────
 
-function ProjectSubNav({ projectId, projectName, onItemClick }: { projectId: string; projectName: string; onItemClick?: () => void }) {
+function HseqSubItems({ onItemClick }: { onItemClick?: () => void }) {
+  return (
+    <div className="ml-2 mt-0.5 space-y-0.5">
+      <NavLink href="/dashboard" label="Dashboard" depth={2} onItemClick={onItemClick} />
+      <NavLink href="/incidents" label="Incidents" depth={2} onItemClick={onItemClick} />
+      <NavLink href="/hazards" label="Hazard Register" depth={2} onItemClick={onItemClick} />
+      <NavLink href="/permits" label="Permits" depth={2} onItemClick={onItemClick} />
+      <NavLink href="/inspections" label="Inspections" depth={2} onItemClick={onItemClick} />
+    </div>
+  );
+}
+
+// ── ProjectSubItems ───────────────────────────────────────────────────────────
+
+function ProjectSubItems({ onItemClick }: { onItemClick?: () => void }) {
   return (
     <div className="ml-1 mt-0.5 space-y-0.5">
-      <div className="px-3 py-1.5 text-[11px] font-semibold text-zinc-500 truncate border-l-2 border-brand ml-3">{projectName}</div>
-      <StubbedItem label="Project Foundations" depth={1} />
+      <NavLink href="/projects" label="Project Foundations" depth={1} onItemClick={onItemClick} />
       <StubbedItem label="Client" depth={1} />
-      <NavLink href={`/subcontractors?projectId=${projectId}`} label="Subcontractors" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/subcontractors" label="Subcontractors" depth={1} onItemClick={onItemClick} />
       <StubbedItem label="Purchase Orders" depth={1} />
-      <NavLink href={`/projects/${projectId}/induction`} label="HSEQ / Safety" depth={1} onItemClick={onItemClick} />
+      <Section sectionKey="hseq" label="HSEQ / Safety" defaultOpen={false} onItemClick={onItemClick}>
+        <HseqSubItems onItemClick={onItemClick} />
+      </Section>
       <StubbedItem label="Consultants" depth={1} />
       <StubbedItem label="Job Reports" depth={1} />
     </div>
@@ -215,7 +223,6 @@ function ProjectSubNav({ projectId, projectName, onItemClick }: { projectId: str
 // ── SidebarNav ───────────────────────────────────────────────────────────────
 
 function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
-  const { activeProject } = useProject();
   const [bookmarksOpen, setBookmarksOpen] = useState(false);
 
   return (
@@ -244,15 +251,7 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
 
       {/* Projects */}
       <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
-        <NavLink href="/projects" label="All projects" depth={1} onItemClick={onItemClick} />
-        {activeProject && (
-          <ProjectSubNav projectId={activeProject.id} projectName={activeProject.name} onItemClick={onItemClick} />
-        )}
-      </Section>
-
-      {/* Subcontractors — flat link (not under Projects top-level) */}
-      <Section sectionKey="subcontractors_top" label="Subcontractors" defaultOpen={false} onItemClick={onItemClick}>
-        <NavLink href="/subcontractors" label="Register" depth={1} onItemClick={onItemClick} />
+        <ProjectSubItems onItemClick={onItemClick} />
       </Section>
 
       {/* Estimating — stubbed */}

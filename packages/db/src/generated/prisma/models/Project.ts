@@ -28,10 +28,16 @@ export type AggregateProject = {
 
 export type ProjectAvgAggregateOutputType = {
   contractValue: runtime.Decimal | null
+  additionalDays: number | null
+  variationMarginPercent: runtime.Decimal | null
+  sizeM2: runtime.Decimal | null
 }
 
 export type ProjectSumAggregateOutputType = {
   contractValue: runtime.Decimal | null
+  additionalDays: number | null
+  variationMarginPercent: runtime.Decimal | null
+  sizeM2: runtime.Decimal | null
 }
 
 export type ProjectMinAggregateOutputType = {
@@ -51,7 +57,18 @@ export type ProjectMinAggregateOutputType = {
   addressPostcode: string | null
   projectManagerId: string | null
   siteManagerId: string | null
+  projectEstimatorId: string | null
   createdById: string | null
+  plannedStart: Date | null
+  plannedFinish: Date | null
+  practicalCompletion: Date | null
+  additionalDays: number | null
+  contractSignedDate: Date | null
+  retentionType: string | null
+  variationMarginPercent: runtime.Decimal | null
+  projectBrief: string | null
+  buildingType: string | null
+  sizeM2: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -73,7 +90,18 @@ export type ProjectMaxAggregateOutputType = {
   addressPostcode: string | null
   projectManagerId: string | null
   siteManagerId: string | null
+  projectEstimatorId: string | null
   createdById: string | null
+  plannedStart: Date | null
+  plannedFinish: Date | null
+  practicalCompletion: Date | null
+  additionalDays: number | null
+  contractSignedDate: Date | null
+  retentionType: string | null
+  variationMarginPercent: runtime.Decimal | null
+  projectBrief: string | null
+  buildingType: string | null
+  sizeM2: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -95,7 +123,18 @@ export type ProjectCountAggregateOutputType = {
   addressPostcode: number
   projectManagerId: number
   siteManagerId: number
+  projectEstimatorId: number
   createdById: number
+  plannedStart: number
+  plannedFinish: number
+  practicalCompletion: number
+  additionalDays: number
+  contractSignedDate: number
+  retentionType: number
+  variationMarginPercent: number
+  projectBrief: number
+  buildingType: number
+  sizeM2: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -104,10 +143,16 @@ export type ProjectCountAggregateOutputType = {
 
 export type ProjectAvgAggregateInputType = {
   contractValue?: true
+  additionalDays?: true
+  variationMarginPercent?: true
+  sizeM2?: true
 }
 
 export type ProjectSumAggregateInputType = {
   contractValue?: true
+  additionalDays?: true
+  variationMarginPercent?: true
+  sizeM2?: true
 }
 
 export type ProjectMinAggregateInputType = {
@@ -127,7 +172,18 @@ export type ProjectMinAggregateInputType = {
   addressPostcode?: true
   projectManagerId?: true
   siteManagerId?: true
+  projectEstimatorId?: true
   createdById?: true
+  plannedStart?: true
+  plannedFinish?: true
+  practicalCompletion?: true
+  additionalDays?: true
+  contractSignedDate?: true
+  retentionType?: true
+  variationMarginPercent?: true
+  projectBrief?: true
+  buildingType?: true
+  sizeM2?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -149,7 +205,18 @@ export type ProjectMaxAggregateInputType = {
   addressPostcode?: true
   projectManagerId?: true
   siteManagerId?: true
+  projectEstimatorId?: true
   createdById?: true
+  plannedStart?: true
+  plannedFinish?: true
+  practicalCompletion?: true
+  additionalDays?: true
+  contractSignedDate?: true
+  retentionType?: true
+  variationMarginPercent?: true
+  projectBrief?: true
+  buildingType?: true
+  sizeM2?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -171,7 +238,18 @@ export type ProjectCountAggregateInputType = {
   addressPostcode?: true
   projectManagerId?: true
   siteManagerId?: true
+  projectEstimatorId?: true
   createdById?: true
+  plannedStart?: true
+  plannedFinish?: true
+  practicalCompletion?: true
+  additionalDays?: true
+  contractSignedDate?: true
+  retentionType?: true
+  variationMarginPercent?: true
+  projectBrief?: true
+  buildingType?: true
+  sizeM2?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -280,7 +358,18 @@ export type ProjectGroupByOutputType = {
   addressPostcode: string | null
   projectManagerId: string | null
   siteManagerId: string | null
+  projectEstimatorId: string | null
   createdById: string
+  plannedStart: Date | null
+  plannedFinish: Date | null
+  practicalCompletion: Date | null
+  additionalDays: number | null
+  contractSignedDate: Date | null
+  retentionType: string | null
+  variationMarginPercent: runtime.Decimal | null
+  projectBrief: string | null
+  buildingType: string | null
+  sizeM2: runtime.Decimal | null
   createdAt: Date
   updatedAt: Date
   _count: ProjectCountAggregateOutputType | null
@@ -325,15 +414,32 @@ export type ProjectWhereInput = {
   addressPostcode?: Prisma.StringNullableFilter<"Project"> | string | null
   projectManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
   siteManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
+  projectEstimatorId?: Prisma.UuidNullableFilter<"Project"> | string | null
   createdById?: Prisma.UuidFilter<"Project"> | string
+  plannedStart?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  plannedFinish?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  practicalCompletion?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  additionalDays?: Prisma.IntNullableFilter<"Project"> | number | null
+  contractSignedDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  retentionType?: Prisma.StringNullableFilter<"Project"> | string | null
+  variationMarginPercent?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.StringNullableFilter<"Project"> | string | null
+  buildingType?: Prisma.StringNullableFilter<"Project"> | string | null
+  sizeM2?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   client?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   projectManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   siteManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  projectEstimator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subcontractors?: Prisma.ProjectSubcontractorListRelationFilter
+  incidents?: Prisma.IncidentListRelationFilter
+  hazards?: Prisma.HazardListRelationFilter
+  permits?: Prisma.PermitListRelationFilter
+  emergencyContacts?: Prisma.EmergencyContactListRelationFilter
+  safetyInspections?: Prisma.SafetyInspectionListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -353,15 +459,32 @@ export type ProjectOrderByWithRelationInput = {
   addressPostcode?: Prisma.SortOrderInput | Prisma.SortOrder
   projectManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectEstimatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  plannedStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  plannedFinish?: Prisma.SortOrderInput | Prisma.SortOrder
+  practicalCompletion?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalDays?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractSignedDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  retentionType?: Prisma.SortOrderInput | Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectBrief?: Prisma.SortOrderInput | Prisma.SortOrder
+  buildingType?: Prisma.SortOrderInput | Prisma.SortOrder
+  sizeM2?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
   client?: Prisma.CompanyOrderByWithRelationInput
   projectManager?: Prisma.UserOrderByWithRelationInput
   siteManager?: Prisma.UserOrderByWithRelationInput
+  projectEstimator?: Prisma.UserOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   subcontractors?: Prisma.ProjectSubcontractorOrderByRelationAggregateInput
+  incidents?: Prisma.IncidentOrderByRelationAggregateInput
+  hazards?: Prisma.HazardOrderByRelationAggregateInput
+  permits?: Prisma.PermitOrderByRelationAggregateInput
+  emergencyContacts?: Prisma.EmergencyContactOrderByRelationAggregateInput
+  safetyInspections?: Prisma.SafetyInspectionOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -384,15 +507,32 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   addressPostcode?: Prisma.StringNullableFilter<"Project"> | string | null
   projectManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
   siteManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
+  projectEstimatorId?: Prisma.UuidNullableFilter<"Project"> | string | null
   createdById?: Prisma.UuidFilter<"Project"> | string
+  plannedStart?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  plannedFinish?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  practicalCompletion?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  additionalDays?: Prisma.IntNullableFilter<"Project"> | number | null
+  contractSignedDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  retentionType?: Prisma.StringNullableFilter<"Project"> | string | null
+  variationMarginPercent?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.StringNullableFilter<"Project"> | string | null
+  buildingType?: Prisma.StringNullableFilter<"Project"> | string | null
+  sizeM2?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   client?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   projectManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   siteManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  projectEstimator?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subcontractors?: Prisma.ProjectSubcontractorListRelationFilter
+  incidents?: Prisma.IncidentListRelationFilter
+  hazards?: Prisma.HazardListRelationFilter
+  permits?: Prisma.PermitListRelationFilter
+  emergencyContacts?: Prisma.EmergencyContactListRelationFilter
+  safetyInspections?: Prisma.SafetyInspectionListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -412,7 +552,18 @@ export type ProjectOrderByWithAggregationInput = {
   addressPostcode?: Prisma.SortOrderInput | Prisma.SortOrder
   projectManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
   siteManagerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectEstimatorId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  plannedStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  plannedFinish?: Prisma.SortOrderInput | Prisma.SortOrder
+  practicalCompletion?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalDays?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractSignedDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  retentionType?: Prisma.SortOrderInput | Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  projectBrief?: Prisma.SortOrderInput | Prisma.SortOrder
+  buildingType?: Prisma.SortOrderInput | Prisma.SortOrder
+  sizeM2?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
@@ -442,7 +593,18 @@ export type ProjectScalarWhereWithAggregatesInput = {
   addressPostcode?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   projectManagerId?: Prisma.UuidNullableWithAggregatesFilter<"Project"> | string | null
   siteManagerId?: Prisma.UuidNullableWithAggregatesFilter<"Project"> | string | null
+  projectEstimatorId?: Prisma.UuidNullableWithAggregatesFilter<"Project"> | string | null
   createdById?: Prisma.UuidWithAggregatesFilter<"Project"> | string
+  plannedStart?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+  plannedFinish?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+  practicalCompletion?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+  additionalDays?: Prisma.IntNullableWithAggregatesFilter<"Project"> | number | null
+  contractSignedDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+  retentionType?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  variationMarginPercent?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  buildingType?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  sizeM2?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
 }
@@ -460,14 +622,30 @@ export type ProjectCreateInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -487,10 +665,26 @@ export type ProjectUncheckedCreateInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -506,14 +700,30 @@ export type ProjectUpdateInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -533,10 +743,26 @@ export type ProjectUncheckedUpdateInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -556,7 +782,18 @@ export type ProjectCreateManyInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -574,6 +811,16 @@ export type ProjectUpdateManyMutationInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -595,7 +842,18 @@ export type ProjectUncheckedUpdateManyInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -627,13 +885,27 @@ export type ProjectCountOrderByAggregateInput = {
   addressPostcode?: Prisma.SortOrder
   projectManagerId?: Prisma.SortOrder
   siteManagerId?: Prisma.SortOrder
+  projectEstimatorId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  plannedStart?: Prisma.SortOrder
+  plannedFinish?: Prisma.SortOrder
+  practicalCompletion?: Prisma.SortOrder
+  additionalDays?: Prisma.SortOrder
+  contractSignedDate?: Prisma.SortOrder
+  retentionType?: Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrder
+  projectBrief?: Prisma.SortOrder
+  buildingType?: Prisma.SortOrder
+  sizeM2?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ProjectAvgOrderByAggregateInput = {
   contractValue?: Prisma.SortOrder
+  additionalDays?: Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrder
+  sizeM2?: Prisma.SortOrder
 }
 
 export type ProjectMaxOrderByAggregateInput = {
@@ -653,7 +925,18 @@ export type ProjectMaxOrderByAggregateInput = {
   addressPostcode?: Prisma.SortOrder
   projectManagerId?: Prisma.SortOrder
   siteManagerId?: Prisma.SortOrder
+  projectEstimatorId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  plannedStart?: Prisma.SortOrder
+  plannedFinish?: Prisma.SortOrder
+  practicalCompletion?: Prisma.SortOrder
+  additionalDays?: Prisma.SortOrder
+  contractSignedDate?: Prisma.SortOrder
+  retentionType?: Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrder
+  projectBrief?: Prisma.SortOrder
+  buildingType?: Prisma.SortOrder
+  sizeM2?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -675,18 +958,37 @@ export type ProjectMinOrderByAggregateInput = {
   addressPostcode?: Prisma.SortOrder
   projectManagerId?: Prisma.SortOrder
   siteManagerId?: Prisma.SortOrder
+  projectEstimatorId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
+  plannedStart?: Prisma.SortOrder
+  plannedFinish?: Prisma.SortOrder
+  practicalCompletion?: Prisma.SortOrder
+  additionalDays?: Prisma.SortOrder
+  contractSignedDate?: Prisma.SortOrder
+  retentionType?: Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrder
+  projectBrief?: Prisma.SortOrder
+  buildingType?: Prisma.SortOrder
+  sizeM2?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type ProjectSumOrderByAggregateInput = {
   contractValue?: Prisma.SortOrder
+  additionalDays?: Prisma.SortOrder
+  variationMarginPercent?: Prisma.SortOrder
+  sizeM2?: Prisma.SortOrder
 }
 
 export type ProjectScalarRelationFilter = {
   is?: Prisma.ProjectWhereInput
   isNot?: Prisma.ProjectWhereInput
+}
+
+export type ProjectNullableScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput | null
+  isNot?: Prisma.ProjectWhereInput | null
 }
 
 export type ProjectCreateNestedManyWithoutOrganisationInput = {
@@ -752,6 +1054,13 @@ export type ProjectCreateNestedManyWithoutSiteManagerInput = {
   connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
 }
 
+export type ProjectCreateNestedManyWithoutProjectEstimatorInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput> | Prisma.ProjectCreateWithoutProjectEstimatorInput[] | Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput | Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput[]
+  createMany?: Prisma.ProjectCreateManyProjectEstimatorInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
 export type ProjectUncheckedCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutCreatedByInput, Prisma.ProjectUncheckedCreateWithoutCreatedByInput> | Prisma.ProjectCreateWithoutCreatedByInput[] | Prisma.ProjectUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutCreatedByInput | Prisma.ProjectCreateOrConnectWithoutCreatedByInput[]
@@ -770,6 +1079,13 @@ export type ProjectUncheckedCreateNestedManyWithoutSiteManagerInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutSiteManagerInput, Prisma.ProjectUncheckedCreateWithoutSiteManagerInput> | Prisma.ProjectCreateWithoutSiteManagerInput[] | Prisma.ProjectUncheckedCreateWithoutSiteManagerInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSiteManagerInput | Prisma.ProjectCreateOrConnectWithoutSiteManagerInput[]
   createMany?: Prisma.ProjectCreateManySiteManagerInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput> | Prisma.ProjectCreateWithoutProjectEstimatorInput[] | Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput | Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput[]
+  createMany?: Prisma.ProjectCreateManyProjectEstimatorInputEnvelope
   connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
 }
 
@@ -815,6 +1131,20 @@ export type ProjectUpdateManyWithoutSiteManagerNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectUpdateManyWithoutProjectEstimatorNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput> | Prisma.ProjectCreateWithoutProjectEstimatorInput[] | Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput | Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutProjectEstimatorInput | Prisma.ProjectUpsertWithWhereUniqueWithoutProjectEstimatorInput[]
+  createMany?: Prisma.ProjectCreateManyProjectEstimatorInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutProjectEstimatorInput | Prisma.ProjectUpdateWithWhereUniqueWithoutProjectEstimatorInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutProjectEstimatorInput | Prisma.ProjectUpdateManyWithWhereWithoutProjectEstimatorInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
 export type ProjectUncheckedUpdateManyWithoutCreatedByNestedInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutCreatedByInput, Prisma.ProjectUncheckedCreateWithoutCreatedByInput> | Prisma.ProjectCreateWithoutCreatedByInput[] | Prisma.ProjectUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutCreatedByInput | Prisma.ProjectCreateOrConnectWithoutCreatedByInput[]
@@ -857,6 +1187,20 @@ export type ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput> | Prisma.ProjectCreateWithoutProjectEstimatorInput[] | Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput | Prisma.ProjectCreateOrConnectWithoutProjectEstimatorInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutProjectEstimatorInput | Prisma.ProjectUpsertWithWhereUniqueWithoutProjectEstimatorInput[]
+  createMany?: Prisma.ProjectCreateManyProjectEstimatorInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutProjectEstimatorInput | Prisma.ProjectUpdateWithWhereUniqueWithoutProjectEstimatorInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutProjectEstimatorInput | Prisma.ProjectUpdateManyWithWhereWithoutProjectEstimatorInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
 export type EnumProjectStatusFieldUpdateOperationsInput = {
   set?: $Enums.ProjectStatus
 }
@@ -871,6 +1215,14 @@ export type NullableDecimalFieldUpdateOperationsInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ProjectCreateNestedOneWithoutSubcontractorsInput = {
@@ -929,6 +1281,86 @@ export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectCreateNestedOneWithoutIncidentsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutIncidentsInput, Prisma.ProjectUncheckedCreateWithoutIncidentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutIncidentsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutIncidentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutIncidentsInput, Prisma.ProjectUncheckedCreateWithoutIncidentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutIncidentsInput
+  upsert?: Prisma.ProjectUpsertWithoutIncidentsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutIncidentsInput, Prisma.ProjectUpdateWithoutIncidentsInput>, Prisma.ProjectUncheckedUpdateWithoutIncidentsInput>
+}
+
+export type ProjectCreateNestedOneWithoutHazardsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutHazardsInput, Prisma.ProjectUncheckedCreateWithoutHazardsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutHazardsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutHazardsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutHazardsInput, Prisma.ProjectUncheckedCreateWithoutHazardsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutHazardsInput
+  upsert?: Prisma.ProjectUpsertWithoutHazardsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutHazardsInput, Prisma.ProjectUpdateWithoutHazardsInput>, Prisma.ProjectUncheckedUpdateWithoutHazardsInput>
+}
+
+export type ProjectCreateNestedOneWithoutPermitsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutPermitsInput, Prisma.ProjectUncheckedCreateWithoutPermitsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutPermitsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutPermitsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutPermitsInput, Prisma.ProjectUncheckedCreateWithoutPermitsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutPermitsInput
+  upsert?: Prisma.ProjectUpsertWithoutPermitsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutPermitsInput, Prisma.ProjectUpdateWithoutPermitsInput>, Prisma.ProjectUncheckedUpdateWithoutPermitsInput>
+}
+
+export type ProjectCreateNestedOneWithoutEmergencyContactsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedCreateWithoutEmergencyContactsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmergencyContactsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutEmergencyContactsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedCreateWithoutEmergencyContactsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEmergencyContactsInput
+  upsert?: Prisma.ProjectUpsertWithoutEmergencyContactsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutEmergencyContactsInput, Prisma.ProjectUpdateWithoutEmergencyContactsInput>, Prisma.ProjectUncheckedUpdateWithoutEmergencyContactsInput>
+}
+
+export type ProjectCreateNestedOneWithoutSafetyInspectionsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedCreateWithoutSafetyInspectionsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSafetyInspectionsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutSafetyInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedCreateWithoutSafetyInspectionsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSafetyInspectionsInput
+  upsert?: Prisma.ProjectUpsertWithoutSafetyInspectionsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutSafetyInspectionsInput, Prisma.ProjectUpdateWithoutSafetyInspectionsInput>, Prisma.ProjectUncheckedUpdateWithoutSafetyInspectionsInput>
+}
+
 export type ProjectCreateWithoutOrganisationInput = {
   id?: string
   name: string
@@ -942,13 +1374,29 @@ export type ProjectCreateWithoutOrganisationInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOrganisationInput = {
@@ -967,10 +1415,26 @@ export type ProjectUncheckedCreateWithoutOrganisationInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOrganisationInput = {
@@ -1019,7 +1483,18 @@ export type ProjectScalarWhereInput = {
   addressPostcode?: Prisma.StringNullableFilter<"Project"> | string | null
   projectManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
   siteManagerId?: Prisma.UuidNullableFilter<"Project"> | string | null
+  projectEstimatorId?: Prisma.UuidNullableFilter<"Project"> | string | null
   createdById?: Prisma.UuidFilter<"Project"> | string
+  plannedStart?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  plannedFinish?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  practicalCompletion?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  additionalDays?: Prisma.IntNullableFilter<"Project"> | number | null
+  contractSignedDate?: Prisma.DateTimeNullableFilter<"Project"> | Date | string | null
+  retentionType?: Prisma.StringNullableFilter<"Project"> | string | null
+  variationMarginPercent?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.StringNullableFilter<"Project"> | string | null
+  buildingType?: Prisma.StringNullableFilter<"Project"> | string | null
+  sizeM2?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
 }
@@ -1037,13 +1512,29 @@ export type ProjectCreateWithoutCreatedByInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutCreatedByInput = {
@@ -1063,9 +1554,25 @@ export type ProjectUncheckedCreateWithoutCreatedByInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutCreatedByInput = {
@@ -1091,13 +1598,29 @@ export type ProjectCreateWithoutProjectManagerInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutProjectManagerInput = {
@@ -1116,10 +1639,26 @@ export type ProjectUncheckedCreateWithoutProjectManagerInput = {
   addressState?: string | null
   addressPostcode?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutProjectManagerInput = {
@@ -1145,13 +1684,29 @@ export type ProjectCreateWithoutSiteManagerInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSiteManagerInput = {
@@ -1170,10 +1725,26 @@ export type ProjectUncheckedCreateWithoutSiteManagerInput = {
   addressState?: string | null
   addressPostcode?: string | null
   projectManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSiteManagerInput = {
@@ -1183,6 +1754,92 @@ export type ProjectCreateOrConnectWithoutSiteManagerInput = {
 
 export type ProjectCreateManySiteManagerInputEnvelope = {
   data: Prisma.ProjectCreateManySiteManagerInput | Prisma.ProjectCreateManySiteManagerInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProjectCreateWithoutProjectEstimatorInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutProjectEstimatorInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutProjectEstimatorInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput>
+}
+
+export type ProjectCreateManyProjectEstimatorInputEnvelope = {
+  data: Prisma.ProjectCreateManyProjectEstimatorInput | Prisma.ProjectCreateManyProjectEstimatorInput[]
   skipDuplicates?: boolean
 }
 
@@ -1234,6 +1891,22 @@ export type ProjectUpdateManyWithWhereWithoutSiteManagerInput = {
   data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerInput>
 }
 
+export type ProjectUpsertWithWhereUniqueWithoutProjectEstimatorInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedUpdateWithoutProjectEstimatorInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedCreateWithoutProjectEstimatorInput>
+}
+
+export type ProjectUpdateWithWhereUniqueWithoutProjectEstimatorInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutProjectEstimatorInput, Prisma.ProjectUncheckedUpdateWithoutProjectEstimatorInput>
+}
+
+export type ProjectUpdateManyWithWhereWithoutProjectEstimatorInput = {
+  where: Prisma.ProjectScalarWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorInput>
+}
+
 export type ProjectCreateWithoutSubcontractorsInput = {
   id?: string
   name: string
@@ -1247,13 +1920,29 @@ export type ProjectCreateWithoutSubcontractorsInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSubcontractorsInput = {
@@ -1273,9 +1962,25 @@ export type ProjectUncheckedCreateWithoutSubcontractorsInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSubcontractorsInput = {
@@ -1307,13 +2012,29 @@ export type ProjectUpdateWithoutSubcontractorsInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSubcontractorsInput = {
@@ -1333,9 +2054,25 @@ export type ProjectUncheckedUpdateWithoutSubcontractorsInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutClientInput = {
@@ -1351,13 +2088,29 @@ export type ProjectCreateWithoutClientInput = {
   addressSuburb?: string | null
   addressState?: string | null
   addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
   subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutClientInput = {
@@ -1376,10 +2129,26 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutClientInput = {
@@ -1408,6 +2177,846 @@ export type ProjectUpdateManyWithWhereWithoutClientInput = {
   data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutClientInput>
 }
 
+export type ProjectCreateWithoutIncidentsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutIncidentsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutIncidentsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutIncidentsInput, Prisma.ProjectUncheckedCreateWithoutIncidentsInput>
+}
+
+export type ProjectUpsertWithoutIncidentsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutIncidentsInput, Prisma.ProjectUncheckedUpdateWithoutIncidentsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutIncidentsInput, Prisma.ProjectUncheckedCreateWithoutIncidentsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutIncidentsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutIncidentsInput, Prisma.ProjectUncheckedUpdateWithoutIncidentsInput>
+}
+
+export type ProjectUpdateWithoutIncidentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutIncidentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutHazardsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutHazardsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutHazardsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutHazardsInput, Prisma.ProjectUncheckedCreateWithoutHazardsInput>
+}
+
+export type ProjectUpsertWithoutHazardsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutHazardsInput, Prisma.ProjectUncheckedUpdateWithoutHazardsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutHazardsInput, Prisma.ProjectUncheckedCreateWithoutHazardsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutHazardsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutHazardsInput, Prisma.ProjectUncheckedUpdateWithoutHazardsInput>
+}
+
+export type ProjectUpdateWithoutHazardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutHazardsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutPermitsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutPermitsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutPermitsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutPermitsInput, Prisma.ProjectUncheckedCreateWithoutPermitsInput>
+}
+
+export type ProjectUpsertWithoutPermitsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutPermitsInput, Prisma.ProjectUncheckedUpdateWithoutPermitsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutPermitsInput, Prisma.ProjectUncheckedCreateWithoutPermitsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutPermitsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutPermitsInput, Prisma.ProjectUncheckedUpdateWithoutPermitsInput>
+}
+
+export type ProjectUpdateWithoutPermitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutPermitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutEmergencyContactsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutEmergencyContactsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutEmergencyContactsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedCreateWithoutEmergencyContactsInput>
+}
+
+export type ProjectUpsertWithoutEmergencyContactsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedUpdateWithoutEmergencyContactsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedCreateWithoutEmergencyContactsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutEmergencyContactsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutEmergencyContactsInput, Prisma.ProjectUncheckedUpdateWithoutEmergencyContactsInput>
+}
+
+export type ProjectUpdateWithoutEmergencyContactsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutEmergencyContactsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutSafetyInspectionsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutSafetyInspectionsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutSafetyInspectionsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedCreateWithoutSafetyInspectionsInput>
+}
+
+export type ProjectUpsertWithoutSafetyInspectionsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedUpdateWithoutSafetyInspectionsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedCreateWithoutSafetyInspectionsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutSafetyInspectionsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutSafetyInspectionsInput, Prisma.ProjectUncheckedUpdateWithoutSafetyInspectionsInput>
+}
+
+export type ProjectUpdateWithoutSafetyInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutSafetyInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+}
+
 export type ProjectCreateManyOrganisationInput = {
   id?: string
   name: string
@@ -1424,7 +3033,18 @@ export type ProjectCreateManyOrganisationInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1442,13 +3062,29 @@ export type ProjectUpdateWithoutOrganisationInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOrganisationInput = {
@@ -1467,10 +3103,26 @@ export type ProjectUncheckedUpdateWithoutOrganisationInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOrganisationInput = {
@@ -1489,7 +3141,18 @@ export type ProjectUncheckedUpdateManyWithoutOrganisationInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1511,6 +3174,17 @@ export type ProjectCreateManyCreatedByInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1531,7 +3205,18 @@ export type ProjectCreateManyProjectManagerInput = {
   addressState?: string | null
   addressPostcode?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1552,7 +3237,50 @@ export type ProjectCreateManySiteManagerInput = {
   addressState?: string | null
   addressPostcode?: string | null
   projectManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProjectCreateManyProjectEstimatorInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1570,13 +3298,29 @@ export type ProjectUpdateWithoutCreatedByInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutCreatedByInput = {
@@ -1596,9 +3340,25 @@ export type ProjectUncheckedUpdateWithoutCreatedByInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1618,6 +3378,17 @@ export type ProjectUncheckedUpdateManyWithoutCreatedByInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1635,13 +3406,29 @@ export type ProjectUpdateWithoutProjectManagerInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
@@ -1660,10 +3447,26 @@ export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutProjectManagerInput = {
@@ -1682,7 +3485,18 @@ export type ProjectUncheckedUpdateManyWithoutProjectManagerInput = {
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1700,13 +3514,29 @@ export type ProjectUpdateWithoutSiteManagerInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
@@ -1725,10 +3555,26 @@ export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutSiteManagerInput = {
@@ -1747,7 +3593,126 @@ export type ProjectUncheckedUpdateManyWithoutSiteManagerInput = {
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProjectUpdateWithoutProjectEstimatorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutProjectEstimatorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateManyWithoutProjectEstimatorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1768,7 +3733,18 @@ export type ProjectCreateManyClientInput = {
   addressPostcode?: string | null
   projectManagerId?: string | null
   siteManagerId?: string | null
+  projectEstimatorId?: string | null
   createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1786,13 +3762,29 @@ export type ProjectUpdateWithoutClientInput = {
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
   subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -1811,10 +3803,26 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -1833,7 +3841,18 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
   addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1845,10 +3864,20 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
 
 export type ProjectCountOutputType = {
   subcontractors: number
+  incidents: number
+  hazards: number
+  permits: number
+  emergencyContacts: number
+  safetyInspections: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subcontractors?: boolean | ProjectCountOutputTypeCountSubcontractorsArgs
+  incidents?: boolean | ProjectCountOutputTypeCountIncidentsArgs
+  hazards?: boolean | ProjectCountOutputTypeCountHazardsArgs
+  permits?: boolean | ProjectCountOutputTypeCountPermitsArgs
+  emergencyContacts?: boolean | ProjectCountOutputTypeCountEmergencyContactsArgs
+  safetyInspections?: boolean | ProjectCountOutputTypeCountSafetyInspectionsArgs
 }
 
 /**
@@ -1866,6 +3895,41 @@ export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
  */
 export type ProjectCountOutputTypeCountSubcontractorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ProjectSubcontractorWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountIncidentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncidentWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountHazardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HazardWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountPermitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PermitWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountEmergencyContactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmergencyContactWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountSafetyInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SafetyInspectionWhereInput
 }
 
 
@@ -1886,15 +3950,32 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   addressPostcode?: boolean
   projectManagerId?: boolean
   siteManagerId?: boolean
+  projectEstimatorId?: boolean
   createdById?: boolean
+  plannedStart?: boolean
+  plannedFinish?: boolean
+  practicalCompletion?: boolean
+  additionalDays?: boolean
+  contractSignedDate?: boolean
+  retentionType?: boolean
+  variationMarginPercent?: boolean
+  projectBrief?: boolean
+  buildingType?: boolean
+  sizeM2?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subcontractors?: boolean | Prisma.Project$subcontractorsArgs<ExtArgs>
+  incidents?: boolean | Prisma.Project$incidentsArgs<ExtArgs>
+  hazards?: boolean | Prisma.Project$hazardsArgs<ExtArgs>
+  permits?: boolean | Prisma.Project$permitsArgs<ExtArgs>
+  emergencyContacts?: boolean | Prisma.Project$emergencyContactsArgs<ExtArgs>
+  safetyInspections?: boolean | Prisma.Project$safetyInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -1915,13 +3996,25 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   addressPostcode?: boolean
   projectManagerId?: boolean
   siteManagerId?: boolean
+  projectEstimatorId?: boolean
   createdById?: boolean
+  plannedStart?: boolean
+  plannedFinish?: boolean
+  practicalCompletion?: boolean
+  additionalDays?: boolean
+  contractSignedDate?: boolean
+  retentionType?: boolean
+  variationMarginPercent?: boolean
+  projectBrief?: boolean
+  buildingType?: boolean
+  sizeM2?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -1942,13 +4035,25 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   addressPostcode?: boolean
   projectManagerId?: boolean
   siteManagerId?: boolean
+  projectEstimatorId?: boolean
   createdById?: boolean
+  plannedStart?: boolean
+  plannedFinish?: boolean
+  practicalCompletion?: boolean
+  additionalDays?: boolean
+  contractSignedDate?: boolean
+  retentionType?: boolean
+  variationMarginPercent?: boolean
+  projectBrief?: boolean
+  buildingType?: boolean
+  sizeM2?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -1969,19 +4074,36 @@ export type ProjectSelectScalar = {
   addressPostcode?: boolean
   projectManagerId?: boolean
   siteManagerId?: boolean
+  projectEstimatorId?: boolean
   createdById?: boolean
+  plannedStart?: boolean
+  plannedFinish?: boolean
+  practicalCompletion?: boolean
+  additionalDays?: boolean
+  contractSignedDate?: boolean
+  retentionType?: boolean
+  variationMarginPercent?: boolean
+  projectBrief?: boolean
+  buildingType?: boolean
+  sizeM2?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "projectNumber" | "clientId" | "status" | "contractValue" | "siteAddress" | "startDate" | "endDate" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "projectManagerId" | "siteManagerId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "name" | "projectNumber" | "clientId" | "status" | "contractValue" | "siteAddress" | "startDate" | "endDate" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "projectManagerId" | "siteManagerId" | "projectEstimatorId" | "createdById" | "plannedStart" | "plannedFinish" | "practicalCompletion" | "additionalDays" | "contractSignedDate" | "retentionType" | "variationMarginPercent" | "projectBrief" | "buildingType" | "sizeM2" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subcontractors?: boolean | Prisma.Project$subcontractorsArgs<ExtArgs>
+  incidents?: boolean | Prisma.Project$incidentsArgs<ExtArgs>
+  hazards?: boolean | Prisma.Project$hazardsArgs<ExtArgs>
+  permits?: boolean | Prisma.Project$permitsArgs<ExtArgs>
+  emergencyContacts?: boolean | Prisma.Project$emergencyContactsArgs<ExtArgs>
+  safetyInspections?: boolean | Prisma.Project$safetyInspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1989,6 +4111,7 @@ export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1996,6 +4119,7 @@ export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   client?: boolean | Prisma.Project$clientArgs<ExtArgs>
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
+  projectEstimator?: boolean | Prisma.Project$projectEstimatorArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
@@ -2006,8 +4130,14 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     client: Prisma.$CompanyPayload<ExtArgs> | null
     projectManager: Prisma.$UserPayload<ExtArgs> | null
     siteManager: Prisma.$UserPayload<ExtArgs> | null
+    projectEstimator: Prisma.$UserPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs>
     subcontractors: Prisma.$ProjectSubcontractorPayload<ExtArgs>[]
+    incidents: Prisma.$IncidentPayload<ExtArgs>[]
+    hazards: Prisma.$HazardPayload<ExtArgs>[]
+    permits: Prisma.$PermitPayload<ExtArgs>[]
+    emergencyContacts: Prisma.$EmergencyContactPayload<ExtArgs>[]
+    safetyInspections: Prisma.$SafetyInspectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2026,7 +4156,18 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     addressPostcode: string | null
     projectManagerId: string | null
     siteManagerId: string | null
+    projectEstimatorId: string | null
     createdById: string
+    plannedStart: Date | null
+    plannedFinish: Date | null
+    practicalCompletion: Date | null
+    additionalDays: number | null
+    contractSignedDate: Date | null
+    retentionType: string | null
+    variationMarginPercent: runtime.Decimal | null
+    projectBrief: string | null
+    buildingType: string | null
+    sizeM2: runtime.Decimal | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["project"]>
@@ -2427,8 +4568,14 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   client<T extends Prisma.Project$clientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$clientArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   projectManager<T extends Prisma.Project$projectManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$projectManagerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   siteManager<T extends Prisma.Project$siteManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$siteManagerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  projectEstimator<T extends Prisma.Project$projectEstimatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$projectEstimatorArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subcontractors<T extends Prisma.Project$subcontractorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$subcontractorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectSubcontractorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incidents<T extends Prisma.Project$incidentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hazards<T extends Prisma.Project$hazardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$hazardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HazardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  permits<T extends Prisma.Project$permitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$permitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PermitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  emergencyContacts<T extends Prisma.Project$emergencyContactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$emergencyContactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmergencyContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  safetyInspections<T extends Prisma.Project$safetyInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$safetyInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SafetyInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2474,7 +4621,18 @@ export interface ProjectFieldRefs {
   readonly addressPostcode: Prisma.FieldRef<"Project", 'String'>
   readonly projectManagerId: Prisma.FieldRef<"Project", 'String'>
   readonly siteManagerId: Prisma.FieldRef<"Project", 'String'>
+  readonly projectEstimatorId: Prisma.FieldRef<"Project", 'String'>
   readonly createdById: Prisma.FieldRef<"Project", 'String'>
+  readonly plannedStart: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly plannedFinish: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly practicalCompletion: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly additionalDays: Prisma.FieldRef<"Project", 'Int'>
+  readonly contractSignedDate: Prisma.FieldRef<"Project", 'DateTime'>
+  readonly retentionType: Prisma.FieldRef<"Project", 'String'>
+  readonly variationMarginPercent: Prisma.FieldRef<"Project", 'Decimal'>
+  readonly projectBrief: Prisma.FieldRef<"Project", 'String'>
+  readonly buildingType: Prisma.FieldRef<"Project", 'String'>
+  readonly sizeM2: Prisma.FieldRef<"Project", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Project", 'DateTime'>
 }
@@ -2935,6 +5093,25 @@ export type Project$siteManagerArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Project.projectEstimator
+ */
+export type Project$projectEstimatorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
  * Project.subcontractors
  */
 export type Project$subcontractorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2956,6 +5133,126 @@ export type Project$subcontractorsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ProjectSubcontractorScalarFieldEnum | Prisma.ProjectSubcontractorScalarFieldEnum[]
+}
+
+/**
+ * Project.incidents
+ */
+export type Project$incidentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Incident
+   */
+  select?: Prisma.IncidentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Incident
+   */
+  omit?: Prisma.IncidentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncidentInclude<ExtArgs> | null
+  where?: Prisma.IncidentWhereInput
+  orderBy?: Prisma.IncidentOrderByWithRelationInput | Prisma.IncidentOrderByWithRelationInput[]
+  cursor?: Prisma.IncidentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncidentScalarFieldEnum | Prisma.IncidentScalarFieldEnum[]
+}
+
+/**
+ * Project.hazards
+ */
+export type Project$hazardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Hazard
+   */
+  select?: Prisma.HazardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Hazard
+   */
+  omit?: Prisma.HazardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HazardInclude<ExtArgs> | null
+  where?: Prisma.HazardWhereInput
+  orderBy?: Prisma.HazardOrderByWithRelationInput | Prisma.HazardOrderByWithRelationInput[]
+  cursor?: Prisma.HazardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HazardScalarFieldEnum | Prisma.HazardScalarFieldEnum[]
+}
+
+/**
+ * Project.permits
+ */
+export type Project$permitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Permit
+   */
+  select?: Prisma.PermitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Permit
+   */
+  omit?: Prisma.PermitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PermitInclude<ExtArgs> | null
+  where?: Prisma.PermitWhereInput
+  orderBy?: Prisma.PermitOrderByWithRelationInput | Prisma.PermitOrderByWithRelationInput[]
+  cursor?: Prisma.PermitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PermitScalarFieldEnum | Prisma.PermitScalarFieldEnum[]
+}
+
+/**
+ * Project.emergencyContacts
+ */
+export type Project$emergencyContactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmergencyContact
+   */
+  select?: Prisma.EmergencyContactSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmergencyContact
+   */
+  omit?: Prisma.EmergencyContactOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmergencyContactInclude<ExtArgs> | null
+  where?: Prisma.EmergencyContactWhereInput
+  orderBy?: Prisma.EmergencyContactOrderByWithRelationInput | Prisma.EmergencyContactOrderByWithRelationInput[]
+  cursor?: Prisma.EmergencyContactWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmergencyContactScalarFieldEnum | Prisma.EmergencyContactScalarFieldEnum[]
+}
+
+/**
+ * Project.safetyInspections
+ */
+export type Project$safetyInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SafetyInspection
+   */
+  select?: Prisma.SafetyInspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SafetyInspection
+   */
+  omit?: Prisma.SafetyInspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SafetyInspectionInclude<ExtArgs> | null
+  where?: Prisma.SafetyInspectionWhereInput
+  orderBy?: Prisma.SafetyInspectionOrderByWithRelationInput | Prisma.SafetyInspectionOrderByWithRelationInput[]
+  cursor?: Prisma.SafetyInspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SafetyInspectionScalarFieldEnum | Prisma.SafetyInspectionScalarFieldEnum[]
 }
 
 /**

@@ -617,14 +617,6 @@ export type EnumCostCodeTypeFieldUpdateOperationsInput = {
   set?: $Enums.CostCodeType
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type CostCodeCreateNestedOneWithoutCompanyTradesInput = {
   create?: Prisma.XOR<Prisma.CostCodeCreateWithoutCompanyTradesInput, Prisma.CostCodeUncheckedCreateWithoutCompanyTradesInput>
   connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutCompanyTradesInput
