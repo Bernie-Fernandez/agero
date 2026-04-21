@@ -1128,3 +1128,18 @@ export async function createContactInline(
     return { ok: false, error: "Failed to create contact. Please try again." };
   }
 }
+
+// ─── Inline field patch ───────────────────────────────────────────────────────
+
+const PATCHABLE_FIELDS = ['paymentTerms', 'performanceRating', 'tier', 'name'] as const;
+type PatchableField = (typeof PATCHABLE_FIELDS)[number];
+
+export async function patchCompanyField(id: string, field: string, value: string): Promise<void> {
+  await requireAppUser();
+  if (!PATCHABLE_FIELDS.includes(field as PatchableField)) throw new Error('Field not patchable');
+  await prisma.company.update({
+    where: { id },
+    data: { [field]: value || null },
+  });
+  revalidatePath('/crm/companies');
+}
