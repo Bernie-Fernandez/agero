@@ -17,6 +17,12 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: 'Subcontractors',
+    items: [
+      { label: 'Register', href: '/subcontractors' },
+    ],
+  },
+  {
     label: 'Safety',
     items: [
       { label: 'Dashboard', href: '/dashboard' },
@@ -34,6 +40,7 @@ function isItemActive(pathname: string, href: string): boolean {
   if (href === '/admin') return pathname === '/admin' || pathname.startsWith('/admin/');
   if (href === '/dashboard') return pathname === '/dashboard';
   if (href === '/projects') return pathname === '/projects' || (pathname.startsWith('/projects/') && !pathname.startsWith('/projects/deliverables'));
+  if (href === '/subcontractors') return pathname === '/subcontractors' || pathname.startsWith('/subcontractors/');
   return pathname === href || pathname.startsWith(href + '/');
 }
 
