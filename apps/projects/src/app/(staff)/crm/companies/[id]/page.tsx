@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { requireAppUser, canDelete, canEdit } from "@/lib/auth";
 import Link from "next/link";
+import BookmarkButton from "@/components/BookmarkButton";
+import { isBookmarked } from "@/lib/bookmarks/actions";
 import { notFound } from "next/navigation";
 import { TabNav } from "@/components/TabNav";
 import { ConfirmForm } from "@/components/ConfirmForm";
@@ -104,6 +106,7 @@ export default async function CompanyDetailPage({
 
   const userCanDelete = canDelete(user.role);
   const userCanEdit = canEdit(user.role);
+  const bookmarked = await isBookmarked(id);
 
   const org = await prisma.organisation.findFirst({ select: { id: true } });
 
@@ -246,6 +249,7 @@ export default async function CompanyDetailPage({
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-2xl font-bold text-zinc-900">{company.name}</h1>
+              <BookmarkButton entityType="company" entityId={id} entityLabel={company.name} entityUrl={`/crm/companies/${id}`} initialBookmarked={bookmarked} />
               {!company.isActive && (
                 <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Inactive</span>
               )}

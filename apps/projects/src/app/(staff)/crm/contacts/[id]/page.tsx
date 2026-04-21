@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { requireAppUser } from "@/lib/auth";
 import Link from "next/link";
+import BookmarkButton from "@/components/BookmarkButton";
+import { isBookmarked } from "@/lib/bookmarks/actions";
 import { notFound } from "next/navigation";
 import { TabNav } from "@/components/TabNav";
 import { ConfirmForm } from "@/components/ConfirmForm";
@@ -31,6 +33,7 @@ export default async function ContactDetailPage({
 }) {
   await requireAppUser();
   const { id } = await params;
+  const bookmarked = await isBookmarked(id);
   const sp = await searchParams;
   const activeTab = sp.tab ?? "overview";
 
@@ -80,6 +83,7 @@ export default async function ContactDetailPage({
               <h1 className="text-2xl font-bold text-zinc-900">
                 {contact.firstName} {contact.lastName}
               </h1>
+              <BookmarkButton entityType="contact" entityId={id} entityLabel={`${contact.firstName} ${contact.lastName}`} entityUrl={`/crm/contacts/${id}`} initialBookmarked={bookmarked} />
               {!contact.isActive && (
                 <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Inactive</span>
               )}

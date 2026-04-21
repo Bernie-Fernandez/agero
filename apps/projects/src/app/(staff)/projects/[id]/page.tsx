@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import Link from 'next/link';
+import BookmarkButton from '@/components/BookmarkButton';
+import { isBookmarked } from '@/lib/bookmarks/actions';
 import { notFound } from 'next/navigation';
 import { TabNav } from '@/components/TabNav';
 import SubcontractorsTab from './SubcontractorsTab';
@@ -49,6 +51,7 @@ export default async function ProjectDetailPage({
 }) {
   const user = await requireAppUser();
   const { id } = await params;
+  const bookmarked = await isBookmarked(id);
   const { tab } = await searchParams;
   const activeTab = tab ?? 'overview';
 
@@ -85,6 +88,7 @@ export default async function ProjectDetailPage({
           </div>
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-bold text-zinc-900">{project.name}</h1>
+            <BookmarkButton entityType="project" entityId={id} entityLabel={project.name} entityUrl={`/projects/${id}`} initialBookmarked={bookmarked} />
             {project.projectNumber && (
               <span className="text-xs font-mono text-zinc-400 bg-zinc-100 px-2 py-0.5 rounded">{project.projectNumber}</span>
             )}
