@@ -24,7 +24,7 @@ export default function NavShellLayout({
         onMenuToggle={() => setSidebarOpen(true)}
       />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <main className="pt-12 md:ml-[180px] min-h-[calc(100vh-48px)]">
+      <main className="pt-12 md:ml-[200px] min-h-[calc(100vh-48px)]">
         {children}
       </main>
     </>
