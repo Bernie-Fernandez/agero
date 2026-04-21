@@ -12,6 +12,8 @@ const isPublicRoute = createRouteMatcher([
   "/register/(.*)",
   "/worker(.*)",
   "/api/induction-chat(.*)",
+  // Subcontractor portal — has its own cookie-based auth
+  "/portal(.*)",
 ]);
 
 export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {
