@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useClerk } from '@clerk/nextjs';
 import type { ReactNode } from 'react';
 
 const NAV_ITEMS = [
@@ -20,6 +21,7 @@ export default function PortalShell({
   userName: string;
 }) {
   const pathname = usePathname();
+  const { signOut } = useClerk();
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -36,9 +38,12 @@ export default function PortalShell({
           <div className="w-7 h-7 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center">
             {userName.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2)}
           </div>
-          <form action="/portal/sign-out" method="POST">
-            <button type="submit" className="text-xs text-zinc-500 hover:text-zinc-800">Sign out</button>
-          </form>
+          <button
+            onClick={() => signOut({ redirectUrl: '/portal/login' })}
+            className="text-xs text-zinc-500 hover:text-zinc-800"
+          >
+            Sign out
+          </button>
         </div>
       </header>
 

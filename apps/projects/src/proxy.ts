@@ -12,14 +12,39 @@ const isPublicRoute = createRouteMatcher([
   "/register/(.*)",
   "/worker(.*)",
   "/api/induction-chat(.*)",
-  // Subcontractor portal — has its own cookie-based auth
-  "/portal(.*)",
+  // Portal login and registration are public (Clerk handles auth for portal dashboard etc.)
+  "/portal/login(.*)",
+  "/portal/register(.*)",
+]);
+
+const isPortalRoute = createRouteMatcher(["/portal(.*)"]);
+const isErpRoute = createRouteMatcher([
+  "/dashboard(.*)",
+  "/crm(.*)",
+  "/projects(.*)",
+  "/subcontractors(.*)",
+  "/admin(.*)",
 ]);
 
 export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {
+  const { userId, sessionClaims } = await auth();
+  const role = (sessionClaims?.metadata as { role?: string } | undefined)?.role;
+
+  // PORTAL users hitting ERP routes → redirect to portal
+  if (userId && role === "PORTAL" && isErpRoute(request)) {
+    return NextResponse.redirect(new URL("/portal/dashboard", request.url));
+  }
+
+  // STAFF/DIRECTOR users hitting portal routes → redirect to ERP
+  if (userId && role !== "PORTAL" && isPortalRoute(request) && !request.nextUrl.pathname.startsWith("/portal/login") && !request.nextUrl.pathname.startsWith("/portal/register")) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Protect non-public routes
   if (!isPublicRoute(request)) {
     await auth.protect();
   }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", request.nextUrl.pathname);
   return NextResponse.next({ request: { headers: requestHeaders } });

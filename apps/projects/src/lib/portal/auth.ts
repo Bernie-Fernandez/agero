@@ -1,12 +1,9 @@
-import { cookies } from 'next/headers';
+import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
-
-const COOKIE_NAME = 'portal_token';
-const SESSION_DAYS = 30;
+import { redirect } from 'next/navigation';
 
 export type PortalSession = {
-  id: string;
-  portalUserId: string;
+  clerkUserId: string;
   portalUser: {
     id: string;
     firstName: string;
@@ -18,50 +15,34 @@ export type PortalSession = {
 };
 
 export async function getPortalSession(): Promise<PortalSession | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
-  if (!token) return null;
+  const { userId, sessionClaims } = await auth();
+  if (!userId) return null;
 
-  const session = await prisma.portalSession.findUnique({
-    where: { token },
-    include: {
-      portalUser: {
-        include: { company: { select: { id: true, name: true } } },
-      },
-    },
+  const role = (sessionClaims?.metadata as { role?: string } | undefined)?.role;
+  if (role !== 'PORTAL') return null;
+
+  const portalUser = await prisma.portalUser.findUnique({
+    where: { clerkUserId: userId },
+    include: { company: { select: { id: true, name: true } } },
   });
 
-  if (!session || session.expiresAt < new Date()) return null;
-  return session as unknown as PortalSession;
+  if (!portalUser) return null;
+
+  return {
+    clerkUserId: userId,
+    portalUser: {
+      id: portalUser.id,
+      firstName: portalUser.firstName,
+      lastName: portalUser.lastName,
+      email: portalUser.email,
+      companyId: portalUser.companyId,
+      company: portalUser.company,
+    },
+  };
 }
 
 export async function requirePortalSession(): Promise<PortalSession> {
   const session = await getPortalSession();
-  if (!session) {
-    const { redirect } = await import('next/navigation');
-    redirect('/portal/login');
-  }
-  return session as PortalSession;
-}
-
-export async function createPortalSession(portalUserId: string): Promise<string> {
-  const expiresAt = new Date(Date.now() + SESSION_DAYS * 86400000);
-  const session = await prisma.portalSession.create({ data: { portalUserId, expiresAt } });
-  return session.token;
-}
-
-export async function setPortalSessionCookie(token: string): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.set(COOKIE_NAME, token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: SESSION_DAYS * 86400,
-    path: '/',
-  });
-}
-
-export async function clearPortalSessionCookie(): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.delete(COOKIE_NAME);
+  if (!session) redirect('/portal/login');
+  return session;
 }

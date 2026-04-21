@@ -1,48 +1,42 @@
-import { portalLogin } from '../actions';
+import { SignIn } from '@clerk/nextjs';
 
 export default async function PortalLoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ registered?: string }>;
 }) {
-  const { error } = await searchParams;
-
-  const errorMsg = error === 'invalid' ? 'Email or password is incorrect.'
-    : error === 'missing' ? 'Please enter your email and password.'
-    : null;
+  const { registered } = await searchParams;
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex items-center justify-center">
-      <div className="bg-white rounded-xl border border-zinc-200 shadow-sm p-8 w-full max-w-sm">
-        <div className="mb-6 text-center">
-          <div className="inline-flex flex-col leading-none mb-2">
-            <span className="text-xl font-bold text-zinc-900 tracking-tight">AGERO</span>
-            <span className="text-[10px] font-medium text-zinc-400 tracking-widest uppercase">Subcontractor Portal</span>
-          </div>
-          <p className="text-sm text-zinc-500 mt-2">Sign in to manage your workers and documents</p>
+    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center px-4">
+      <div className="mb-6 text-center">
+        <div className="inline-flex flex-col leading-none mb-1">
+          <span className="text-2xl font-bold text-zinc-900 tracking-tight">AGERO</span>
+          <span className="text-[10px] font-medium text-zinc-400 tracking-widest uppercase">Subcontractor Portal</span>
         </div>
-
-        {errorMsg && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-sm text-red-700">{errorMsg}</div>
-        )}
-
-        <form action={portalLogin} className="space-y-4">
-          <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">Email</label>
-            <input name="email" type="email" required autoComplete="email"
-              className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-          </div>
-          <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">Password</label>
-            <input name="password" type="password" required autoComplete="current-password"
-              className="w-full border border-zinc-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand" />
-          </div>
-          <button type="submit"
-            className="w-full px-4 py-2.5 bg-brand text-white text-sm font-medium rounded-md hover:opacity-90 transition-opacity">
-            Sign in
-          </button>
-        </form>
+        <p className="text-sm text-zinc-500 mt-2">Sign in to manage your workers and documents</p>
       </div>
+
+      {registered && (
+        <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md text-sm text-green-700 max-w-sm w-full text-center">
+          Account created. Please sign in below.
+        </div>
+      )}
+
+      <SignIn
+        forceRedirectUrl="/portal/dashboard"
+        appearance={{
+          elements: {
+            rootBox: 'mx-auto',
+            card: 'shadow-sm border border-zinc-200',
+            headerTitle: 'hidden',
+            headerSubtitle: 'hidden',
+            socialButtonsBlockButton: 'border border-zinc-300 hover:bg-zinc-50',
+            formButtonPrimary: 'bg-[#534AB7] hover:bg-[#4840a0] text-white',
+            footerActionLink: 'text-[#534AB7]',
+          },
+        }}
+      />
     </div>
   );
 }

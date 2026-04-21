@@ -23,6 +23,7 @@ export default async function PortalRegisterPage({
     : error === 'password-mismatch' ? 'Passwords do not match.'
     : error === 'password-short' ? 'Password must be at least 8 characters.'
     : error === 'invalid-token' ? 'This invitation link is invalid or has expired.'
+    : error === 'staff-account' ? 'This email is registered as an Agero staff account. Contact your Agero representative.'
     : null;
 
   if (!isValid) {
