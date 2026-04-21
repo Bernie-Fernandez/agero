@@ -54,6 +54,7 @@ export const ModelName = {
   Organisation: 'Organisation',
   User: 'User',
   Project: 'Project',
+  ProjectSubcontractor: 'ProjectSubcontractor',
   Company: 'Company',
   Contact: 'Contact',
   CompanyContact: 'CompanyContact',
@@ -66,6 +67,9 @@ export const ModelName = {
   ContactNote: 'ContactNote',
   SubcontractorProfile: 'SubcontractorProfile',
   PortalInvitation: 'PortalInvitation',
+  PortalUser: 'PortalUser',
+  PortalSession: 'PortalSession',
+  UserBookmark: 'UserBookmark',
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
@@ -184,6 +188,17 @@ export const ProjectScalarFieldEnum = {
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectSubcontractorScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  companyId: 'companyId',
+  assignedById: 'assignedById',
+  assignedAt: 'assignedAt'
+} as const
+
+export type ProjectSubcontractorScalarFieldEnum = (typeof ProjectSubcontractorScalarFieldEnum)[keyof typeof ProjectSubcontractorScalarFieldEnum]
 
 
 export const CompanyScalarFieldEnum = {
@@ -447,6 +462,47 @@ export const PortalInvitationScalarFieldEnum = {
 } as const
 
 export type PortalInvitationScalarFieldEnum = (typeof PortalInvitationScalarFieldEnum)[keyof typeof PortalInvitationScalarFieldEnum]
+
+
+export const PortalUserScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  clerkUserId: 'clerkUserId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  mobile: 'mobile',
+  passwordHash: 'passwordHash',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PortalUserScalarFieldEnum = (typeof PortalUserScalarFieldEnum)[keyof typeof PortalUserScalarFieldEnum]
+
+
+export const PortalSessionScalarFieldEnum = {
+  id: 'id',
+  portalUserId: 'portalUserId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalSessionScalarFieldEnum = (typeof PortalSessionScalarFieldEnum)[keyof typeof PortalSessionScalarFieldEnum]
+
+
+export const UserBookmarkScalarFieldEnum = {
+  id: 'id',
+  clerkUserId: 'clerkUserId',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  entityLabel: 'entityLabel',
+  entityUrl: 'entityUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type UserBookmarkScalarFieldEnum = (typeof UserBookmarkScalarFieldEnum)[keyof typeof UserBookmarkScalarFieldEnum]
 
 
 export const CommunicationScalarFieldEnum = {

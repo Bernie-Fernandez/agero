@@ -33,6 +33,11 @@ export type User = Prisma.UserModel
  */
 export type Project = Prisma.ProjectModel
 /**
+ * Model ProjectSubcontractor
+ * 
+ */
+export type ProjectSubcontractor = Prisma.ProjectSubcontractorModel
+/**
  * Model Company
  * 
  */
@@ -92,6 +97,21 @@ export type SubcontractorProfile = Prisma.SubcontractorProfileModel
  * 
  */
 export type PortalInvitation = Prisma.PortalInvitationModel
+/**
+ * Model PortalUser
+ * 
+ */
+export type PortalUser = Prisma.PortalUserModel
+/**
+ * Model PortalSession
+ * 
+ */
+export type PortalSession = Prisma.PortalSessionModel
+/**
+ * Model UserBookmark
+ * 
+ */
+export type UserBookmark = Prisma.UserBookmarkModel
 /**
  * Model Communication
  * 

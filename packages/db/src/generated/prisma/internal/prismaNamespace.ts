@@ -387,6 +387,7 @@ export const ModelName = {
   Organisation: 'Organisation',
   User: 'User',
   Project: 'Project',
+  ProjectSubcontractor: 'ProjectSubcontractor',
   Company: 'Company',
   Contact: 'Contact',
   CompanyContact: 'CompanyContact',
@@ -399,6 +400,9 @@ export const ModelName = {
   ContactNote: 'ContactNote',
   SubcontractorProfile: 'SubcontractorProfile',
   PortalInvitation: 'PortalInvitation',
+  PortalUser: 'PortalUser',
+  PortalSession: 'PortalSession',
+  UserBookmark: 'UserBookmark',
   Communication: 'Communication',
   NotificationAlert: 'NotificationAlert',
   AlertThreshold: 'AlertThreshold',
@@ -455,7 +459,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -678,6 +682,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ProjectCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ProjectCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProjectSubcontractor: {
+      payload: Prisma.$ProjectSubcontractorPayload<ExtArgs>
+      fields: Prisma.ProjectSubcontractorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProjectSubcontractorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProjectSubcontractorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        findFirst: {
+          args: Prisma.ProjectSubcontractorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProjectSubcontractorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        findMany: {
+          args: Prisma.ProjectSubcontractorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>[]
+        }
+        create: {
+          args: Prisma.ProjectSubcontractorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        createMany: {
+          args: Prisma.ProjectSubcontractorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProjectSubcontractorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>[]
+        }
+        delete: {
+          args: Prisma.ProjectSubcontractorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        update: {
+          args: Prisma.ProjectSubcontractorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProjectSubcontractorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProjectSubcontractorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProjectSubcontractorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProjectSubcontractorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectSubcontractorPayload>
+        }
+        aggregate: {
+          args: Prisma.ProjectSubcontractorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProjectSubcontractor>
+        }
+        groupBy: {
+          args: Prisma.ProjectSubcontractorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectSubcontractorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProjectSubcontractorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectSubcontractorCountAggregateOutputType> | number
         }
       }
     }
@@ -1566,6 +1644,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.PortalInvitationCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.PortalInvitationCountAggregateOutputType> | number
+        }
+      }
+    }
+    PortalUser: {
+      payload: Prisma.$PortalUserPayload<ExtArgs>
+      fields: Prisma.PortalUserFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PortalUserFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PortalUserFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        findFirst: {
+          args: Prisma.PortalUserFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PortalUserFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        findMany: {
+          args: Prisma.PortalUserFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>[]
+        }
+        create: {
+          args: Prisma.PortalUserCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        createMany: {
+          args: Prisma.PortalUserCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PortalUserCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>[]
+        }
+        delete: {
+          args: Prisma.PortalUserDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        update: {
+          args: Prisma.PortalUserUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        deleteMany: {
+          args: Prisma.PortalUserDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PortalUserUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PortalUserUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>[]
+        }
+        upsert: {
+          args: Prisma.PortalUserUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalUserPayload>
+        }
+        aggregate: {
+          args: Prisma.PortalUserAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePortalUser>
+        }
+        groupBy: {
+          args: Prisma.PortalUserGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalUserGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PortalUserCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalUserCountAggregateOutputType> | number
+        }
+      }
+    }
+    PortalSession: {
+      payload: Prisma.$PortalSessionPayload<ExtArgs>
+      fields: Prisma.PortalSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PortalSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PortalSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.PortalSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PortalSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        findMany: {
+          args: Prisma.PortalSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>[]
+        }
+        create: {
+          args: Prisma.PortalSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        createMany: {
+          args: Prisma.PortalSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PortalSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>[]
+        }
+        delete: {
+          args: Prisma.PortalSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        update: {
+          args: Prisma.PortalSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.PortalSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PortalSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PortalSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.PortalSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PortalSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.PortalSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePortalSession>
+        }
+        groupBy: {
+          args: Prisma.PortalSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PortalSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PortalSessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserBookmark: {
+      payload: Prisma.$UserBookmarkPayload<ExtArgs>
+      fields: Prisma.UserBookmarkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserBookmarkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserBookmarkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        findFirst: {
+          args: Prisma.UserBookmarkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserBookmarkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        findMany: {
+          args: Prisma.UserBookmarkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>[]
+        }
+        create: {
+          args: Prisma.UserBookmarkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        createMany: {
+          args: Prisma.UserBookmarkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserBookmarkCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>[]
+        }
+        delete: {
+          args: Prisma.UserBookmarkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        update: {
+          args: Prisma.UserBookmarkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserBookmarkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserBookmarkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserBookmarkUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserBookmarkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserBookmarkPayload>
+        }
+        aggregate: {
+          args: Prisma.UserBookmarkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserBookmark>
+        }
+        groupBy: {
+          args: Prisma.UserBookmarkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserBookmarkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserBookmarkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserBookmarkCountAggregateOutputType> | number
         }
       }
     }
@@ -4703,6 +5003,17 @@ export const ProjectScalarFieldEnum = {
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
+export const ProjectSubcontractorScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  companyId: 'companyId',
+  assignedById: 'assignedById',
+  assignedAt: 'assignedAt'
+} as const
+
+export type ProjectSubcontractorScalarFieldEnum = (typeof ProjectSubcontractorScalarFieldEnum)[keyof typeof ProjectSubcontractorScalarFieldEnum]
+
+
 export const CompanyScalarFieldEnum = {
   id: 'id',
   organisationId: 'organisationId',
@@ -4964,6 +5275,47 @@ export const PortalInvitationScalarFieldEnum = {
 } as const
 
 export type PortalInvitationScalarFieldEnum = (typeof PortalInvitationScalarFieldEnum)[keyof typeof PortalInvitationScalarFieldEnum]
+
+
+export const PortalUserScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  clerkUserId: 'clerkUserId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  mobile: 'mobile',
+  passwordHash: 'passwordHash',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PortalUserScalarFieldEnum = (typeof PortalUserScalarFieldEnum)[keyof typeof PortalUserScalarFieldEnum]
+
+
+export const PortalSessionScalarFieldEnum = {
+  id: 'id',
+  portalUserId: 'portalUserId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PortalSessionScalarFieldEnum = (typeof PortalSessionScalarFieldEnum)[keyof typeof PortalSessionScalarFieldEnum]
+
+
+export const UserBookmarkScalarFieldEnum = {
+  id: 'id',
+  clerkUserId: 'clerkUserId',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  entityLabel: 'entityLabel',
+  entityUrl: 'entityUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type UserBookmarkScalarFieldEnum = (typeof UserBookmarkScalarFieldEnum)[keyof typeof UserBookmarkScalarFieldEnum]
 
 
 export const CommunicationScalarFieldEnum = {
@@ -6492,6 +6844,7 @@ export type GlobalOmitConfig = {
   organisation?: Prisma.OrganisationOmit
   user?: Prisma.UserOmit
   project?: Prisma.ProjectOmit
+  projectSubcontractor?: Prisma.ProjectSubcontractorOmit
   company?: Prisma.CompanyOmit
   contact?: Prisma.ContactOmit
   companyContact?: Prisma.CompanyContactOmit
@@ -6504,6 +6857,9 @@ export type GlobalOmitConfig = {
   contactNote?: Prisma.ContactNoteOmit
   subcontractorProfile?: Prisma.SubcontractorProfileOmit
   portalInvitation?: Prisma.PortalInvitationOmit
+  portalUser?: Prisma.PortalUserOmit
+  portalSession?: Prisma.PortalSessionOmit
+  userBookmark?: Prisma.UserBookmarkOmit
   communication?: Prisma.CommunicationOmit
   notificationAlert?: Prisma.NotificationAlertOmit
   alertThreshold?: Prisma.AlertThresholdOmit

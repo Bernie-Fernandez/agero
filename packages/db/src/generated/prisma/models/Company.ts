@@ -583,6 +583,8 @@ export type CompanyWhereInput = {
   notifications?: Prisma.NotificationAlertListRelationFilter
   clientProjects?: Prisma.ProjectListRelationFilter
   expertiseTags?: Prisma.CompanyExpertiseTagListRelationFilter
+  projectAssignments?: Prisma.ProjectSubcontractorListRelationFilter
+  portalUsers?: Prisma.PortalUserListRelationFilter
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -653,6 +655,8 @@ export type CompanyOrderByWithRelationInput = {
   notifications?: Prisma.NotificationAlertOrderByRelationAggregateInput
   clientProjects?: Prisma.ProjectOrderByRelationAggregateInput
   expertiseTags?: Prisma.CompanyExpertiseTagOrderByRelationAggregateInput
+  projectAssignments?: Prisma.ProjectSubcontractorOrderByRelationAggregateInput
+  portalUsers?: Prisma.PortalUserOrderByRelationAggregateInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -726,6 +730,8 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   notifications?: Prisma.NotificationAlertListRelationFilter
   clientProjects?: Prisma.ProjectListRelationFilter
   expertiseTags?: Prisma.CompanyExpertiseTagListRelationFilter
+  projectAssignments?: Prisma.ProjectSubcontractorListRelationFilter
+  portalUsers?: Prisma.PortalUserListRelationFilter
 }, "id">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -914,6 +920,8 @@ export type CompanyCreateInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -982,6 +990,8 @@ export type CompanyUncheckedCreateInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
@@ -1050,6 +1060,8 @@ export type CompanyUpdateInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -1118,6 +1130,8 @@ export type CompanyUncheckedUpdateInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -1304,6 +1318,11 @@ export type CompanyNullableScalarRelationFilter = {
   isNot?: Prisma.CompanyWhereInput | null
 }
 
+export type CompanyScalarRelationFilter = {
+  is?: Prisma.CompanyWhereInput
+  isNot?: Prisma.CompanyWhereInput
+}
+
 export type StringNullableListFilter<$PrismaModel = never> = {
   equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
   has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
@@ -1481,11 +1500,6 @@ export type CompanyMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type CompanyScalarRelationFilter = {
-  is?: Prisma.CompanyWhereInput
-  isNot?: Prisma.CompanyWhereInput
-}
-
 export type CompanyCreateNestedManyWithoutOrganisationInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutOrganisationInput, Prisma.CompanyUncheckedCreateWithoutOrganisationInput> | Prisma.CompanyCreateWithoutOrganisationInput[] | Prisma.CompanyUncheckedCreateWithoutOrganisationInput[]
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutOrganisationInput | Prisma.CompanyCreateOrConnectWithoutOrganisationInput[]
@@ -1584,6 +1598,20 @@ export type CompanyUpdateOneWithoutClientProjectsNestedInput = {
   delete?: Prisma.CompanyWhereInput | boolean
   connect?: Prisma.CompanyWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutClientProjectsInput, Prisma.CompanyUpdateWithoutClientProjectsInput>, Prisma.CompanyUncheckedUpdateWithoutClientProjectsInput>
+}
+
+export type CompanyCreateNestedOneWithoutProjectAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedCreateWithoutProjectAssignmentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProjectAssignmentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutProjectAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedCreateWithoutProjectAssignmentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutProjectAssignmentsInput
+  upsert?: Prisma.CompanyUpsertWithoutProjectAssignmentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutProjectAssignmentsInput, Prisma.CompanyUpdateWithoutProjectAssignmentsInput>, Prisma.CompanyUncheckedUpdateWithoutProjectAssignmentsInput>
 }
 
 export type CompanyCreatetypesInput = {
@@ -1725,6 +1753,20 @@ export type CompanyUpdateOneRequiredWithoutPortalInvitationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPortalInvitationsInput, Prisma.CompanyUpdateWithoutPortalInvitationsInput>, Prisma.CompanyUncheckedUpdateWithoutPortalInvitationsInput>
 }
 
+export type CompanyCreateNestedOneWithoutPortalUsersInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPortalUsersInput, Prisma.CompanyUncheckedCreateWithoutPortalUsersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPortalUsersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutPortalUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPortalUsersInput, Prisma.CompanyUncheckedCreateWithoutPortalUsersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPortalUsersInput
+  upsert?: Prisma.CompanyUpsertWithoutPortalUsersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPortalUsersInput, Prisma.CompanyUpdateWithoutPortalUsersInput>, Prisma.CompanyUncheckedUpdateWithoutPortalUsersInput>
+}
+
 export type CompanyCreateNestedOneWithoutCommunicationsInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutCommunicationsInput, Prisma.CompanyUncheckedCreateWithoutCommunicationsInput>
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutCommunicationsInput
@@ -1836,6 +1878,8 @@ export type CompanyCreateWithoutOrganisationInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOrganisationInput = {
@@ -1903,6 +1947,8 @@ export type CompanyUncheckedCreateWithoutOrganisationInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOrganisationInput = {
@@ -2056,6 +2102,8 @@ export type CompanyCreateWithoutCreatedByInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCreatedByInput = {
@@ -2123,6 +2171,8 @@ export type CompanyUncheckedCreateWithoutCreatedByInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCreatedByInput = {
@@ -2216,6 +2266,8 @@ export type CompanyCreateWithoutClientProjectsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutClientProjectsInput = {
@@ -2283,6 +2335,8 @@ export type CompanyUncheckedCreateWithoutClientProjectsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutClientProjectsInput = {
@@ -2366,6 +2420,8 @@ export type CompanyUpdateWithoutClientProjectsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutClientProjectsInput = {
@@ -2433,6 +2489,300 @@ export type CompanyUncheckedUpdateWithoutClientProjectsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutProjectAssignmentsInput = {
+  id?: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedCompaniesInput
+  companyContacts?: Prisma.CompanyContactCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutProjectAssignmentsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutProjectAssignmentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedCreateWithoutProjectAssignmentsInput>
+}
+
+export type CompanyUpsertWithoutProjectAssignmentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedUpdateWithoutProjectAssignmentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedCreateWithoutProjectAssignmentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutProjectAssignmentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutProjectAssignmentsInput, Prisma.CompanyUncheckedUpdateWithoutProjectAssignmentsInput>
+}
+
+export type CompanyUpdateWithoutProjectAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedCompaniesNestedInput
+  companyContacts?: Prisma.CompanyContactUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutProjectAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCompanyContactsInput = {
@@ -2500,6 +2850,8 @@ export type CompanyCreateWithoutCompanyContactsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCompanyContactsInput = {
@@ -2567,6 +2919,8 @@ export type CompanyUncheckedCreateWithoutCompanyContactsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCompanyContactsInput = {
@@ -2650,6 +3004,8 @@ export type CompanyUpdateWithoutCompanyContactsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCompanyContactsInput = {
@@ -2717,6 +3073,8 @@ export type CompanyUncheckedUpdateWithoutCompanyContactsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutTradesInput = {
@@ -2784,6 +3142,8 @@ export type CompanyCreateWithoutTradesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutTradesInput = {
@@ -2851,6 +3211,8 @@ export type CompanyUncheckedCreateWithoutTradesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutTradesInput = {
@@ -2934,6 +3296,8 @@ export type CompanyUpdateWithoutTradesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutTradesInput = {
@@ -3001,6 +3365,8 @@ export type CompanyUncheckedUpdateWithoutTradesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutInsurancePoliciesInput = {
@@ -3068,6 +3434,8 @@ export type CompanyCreateWithoutInsurancePoliciesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutInsurancePoliciesInput = {
@@ -3135,6 +3503,8 @@ export type CompanyUncheckedCreateWithoutInsurancePoliciesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutInsurancePoliciesInput = {
@@ -3218,6 +3588,8 @@ export type CompanyUpdateWithoutInsurancePoliciesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutInsurancePoliciesInput = {
@@ -3285,6 +3657,8 @@ export type CompanyUncheckedUpdateWithoutInsurancePoliciesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutDocumentsInput = {
@@ -3352,6 +3726,8 @@ export type CompanyCreateWithoutDocumentsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutDocumentsInput = {
@@ -3419,6 +3795,8 @@ export type CompanyUncheckedCreateWithoutDocumentsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutDocumentsInput = {
@@ -3502,6 +3880,8 @@ export type CompanyUpdateWithoutDocumentsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutDocumentsInput = {
@@ -3569,6 +3949,8 @@ export type CompanyUncheckedUpdateWithoutDocumentsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNotesInput = {
@@ -3636,6 +4018,8 @@ export type CompanyCreateWithoutNotesInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNotesInput = {
@@ -3703,6 +4087,8 @@ export type CompanyUncheckedCreateWithoutNotesInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNotesInput = {
@@ -3786,6 +4172,8 @@ export type CompanyUpdateWithoutNotesInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNotesInput = {
@@ -3853,6 +4241,8 @@ export type CompanyUncheckedUpdateWithoutNotesInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutSubcontractorProfileInput = {
@@ -3920,6 +4310,8 @@ export type CompanyCreateWithoutSubcontractorProfileInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutSubcontractorProfileInput = {
@@ -3987,6 +4379,8 @@ export type CompanyUncheckedCreateWithoutSubcontractorProfileInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutSubcontractorProfileInput = {
@@ -4070,6 +4464,8 @@ export type CompanyUpdateWithoutSubcontractorProfileInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutSubcontractorProfileInput = {
@@ -4137,6 +4533,8 @@ export type CompanyUncheckedUpdateWithoutSubcontractorProfileInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutPortalInvitationsInput = {
@@ -4204,6 +4602,8 @@ export type CompanyCreateWithoutPortalInvitationsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutPortalInvitationsInput = {
@@ -4271,6 +4671,8 @@ export type CompanyUncheckedCreateWithoutPortalInvitationsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutPortalInvitationsInput = {
@@ -4354,6 +4756,8 @@ export type CompanyUpdateWithoutPortalInvitationsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutPortalInvitationsInput = {
@@ -4421,6 +4825,300 @@ export type CompanyUncheckedUpdateWithoutPortalInvitationsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutPortalUsersInput = {
+  id?: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutCompaniesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedCompaniesInput
+  companyContacts?: Prisma.CompanyContactCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutPortalUsersInput = {
+  id?: string
+  organisationId: string
+  name: string
+  legalName?: string | null
+  types?: Prisma.CompanyCreatetypesInput | string[]
+  abn?: string | null
+  abnStatus?: $Enums.AbnStatus
+  abnRegisteredName?: string | null
+  abnGstRegistered?: boolean | null
+  abnRegisteredDate?: Date | string | null
+  abnEntityType?: string | null
+  anzsicCode?: string | null
+  gstRegisteredDate?: Date | string | null
+  abnVerifiedAt?: Date | string | null
+  asicStatus?: $Enums.AsicStatus
+  asicCheckedAt?: Date | string | null
+  asicRegisteredDate?: Date | string | null
+  asicRegisteredAddress?: string | null
+  insolvencyCheckResult?: string
+  insolvencyCheckSummary?: string | null
+  insolvencyCheckedAt?: Date | string | null
+  creditorwatchRisk?: $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Date | string | null
+  website?: string | null
+  phoneMain?: string | null
+  phoneFree?: string | null
+  emailGeneral?: string | null
+  countryCode?: string
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  postalSameAsStreet?: boolean | null
+  postalStreet?: string | null
+  postalSuburb?: string | null
+  postalState?: string | null
+  postalPostcode?: string | null
+  paymentTerms?: string | null
+  isActive?: boolean
+  dataSource?: $Enums.DataSource
+  importedFrom?: string | null
+  catCloudId?: string | null
+  tier?: $Enums.CompanyTier | null
+  costLevel?: $Enums.CostLevel | null
+  isPreferred?: boolean
+  tempLabour?: boolean
+  performanceRating?: $Enums.PerformanceRating | null
+  isBlacklisted?: boolean
+  blacklistReason?: string | null
+  blacklistedAt?: Date | string | null
+  blacklistedById?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedCreateNestedManyWithoutCompanyInput
+  trades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCompanyInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCompanyInput
+  documents?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutCompanyInput
+  notes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCompanyInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedCreateNestedOneWithoutCompanyInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
+  clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutPortalUsersInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPortalUsersInput, Prisma.CompanyUncheckedCreateWithoutPortalUsersInput>
+}
+
+export type CompanyUpsertWithoutPortalUsersInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutPortalUsersInput, Prisma.CompanyUncheckedUpdateWithoutPortalUsersInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPortalUsersInput, Prisma.CompanyUncheckedCreateWithoutPortalUsersInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutPortalUsersInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutPortalUsersInput, Prisma.CompanyUncheckedUpdateWithoutPortalUsersInput>
+}
+
+export type CompanyUpdateWithoutPortalUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCompaniesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedCompaniesNestedInput
+  companyContacts?: Prisma.CompanyContactUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutPortalUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  legalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  types?: Prisma.CompanyUpdatetypesInput | string[]
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnStatus?: Prisma.EnumAbnStatusFieldUpdateOperationsInput | $Enums.AbnStatus
+  abnRegisteredName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnGstRegistered?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  abnRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnEntityType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  anzsicCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gstRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  abnVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicStatus?: Prisma.EnumAsicStatusFieldUpdateOperationsInput | $Enums.AsicStatus
+  asicCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  asicRegisteredAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckResult?: Prisma.StringFieldUpdateOperationsInput | string
+  insolvencyCheckSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  insolvencyCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  creditorwatchRisk?: Prisma.EnumCreditorwatchRiskFieldUpdateOperationsInput | $Enums.CreditorwatchRisk
+  creditorwatchCheckedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneMain?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneFree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailGeneral?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryCode?: Prisma.StringFieldUpdateOperationsInput | string
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSameAsStreet?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  postalStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  postalPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentTerms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  dataSource?: Prisma.EnumDataSourceFieldUpdateOperationsInput | $Enums.DataSource
+  importedFrom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catCloudId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tier?: Prisma.NullableEnumCompanyTierFieldUpdateOperationsInput | $Enums.CompanyTier | null
+  costLevel?: Prisma.NullableEnumCostLevelFieldUpdateOperationsInput | $Enums.CostLevel | null
+  isPreferred?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tempLabour?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  performanceRating?: Prisma.NullableEnumPerformanceRatingFieldUpdateOperationsInput | $Enums.PerformanceRating | null
+  isBlacklisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  blacklistReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  blacklistedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  companyContacts?: Prisma.CompanyContactUncheckedUpdateManyWithoutCompanyNestedInput
+  trades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCompanyNestedInput
+  insurancePolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCompanyNestedInput
+  documents?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutCompanyNestedInput
+  notes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCompanyNestedInput
+  subcontractorProfile?: Prisma.SubcontractorProfileUncheckedUpdateOneWithoutCompanyNestedInput
+  portalInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
+  clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCommunicationsInput = {
@@ -4488,6 +5186,8 @@ export type CompanyCreateWithoutCommunicationsInput = {
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCommunicationsInput = {
@@ -4555,6 +5255,8 @@ export type CompanyUncheckedCreateWithoutCommunicationsInput = {
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCommunicationsInput = {
@@ -4638,6 +5340,8 @@ export type CompanyUpdateWithoutCommunicationsInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCommunicationsInput = {
@@ -4705,6 +5409,8 @@ export type CompanyUncheckedUpdateWithoutCommunicationsInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutNotificationsInput = {
@@ -4772,6 +5478,8 @@ export type CompanyCreateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutNotificationsInput = {
@@ -4839,6 +5547,8 @@ export type CompanyUncheckedCreateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedCreateNestedManyWithoutCompanyInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutNotificationsInput = {
@@ -4922,6 +5632,8 @@ export type CompanyUpdateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutNotificationsInput = {
@@ -4989,6 +5701,8 @@ export type CompanyUncheckedUpdateWithoutNotificationsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutExpertiseTagsInput = {
@@ -5056,6 +5770,8 @@ export type CompanyCreateWithoutExpertiseTagsInput = {
   communications?: Prisma.CommunicationCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectCreateNestedManyWithoutClientInput
+  projectAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutExpertiseTagsInput = {
@@ -5123,6 +5839,8 @@ export type CompanyUncheckedCreateWithoutExpertiseTagsInput = {
   communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutCompanyInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutCompanyInput
   clientProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutCompanyInput
+  portalUsers?: Prisma.PortalUserUncheckedCreateNestedManyWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutExpertiseTagsInput = {
@@ -5206,6 +5924,8 @@ export type CompanyUpdateWithoutExpertiseTagsInput = {
   communications?: Prisma.CommunicationUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutExpertiseTagsInput = {
@@ -5273,6 +5993,8 @@ export type CompanyUncheckedUpdateWithoutExpertiseTagsInput = {
   communications?: Prisma.CommunicationUncheckedUpdateManyWithoutCompanyNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyOrganisationInput = {
@@ -5396,6 +6118,8 @@ export type CompanyUpdateWithoutOrganisationInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOrganisationInput = {
@@ -5463,6 +6187,8 @@ export type CompanyUncheckedUpdateWithoutOrganisationInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutOrganisationInput = {
@@ -5642,6 +6368,8 @@ export type CompanyUpdateWithoutCreatedByInput = {
   notifications?: Prisma.NotificationAlertUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCreatedByInput = {
@@ -5709,6 +6437,8 @@ export type CompanyUncheckedUpdateWithoutCreatedByInput = {
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutCompanyNestedInput
   clientProjects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
   expertiseTags?: Prisma.CompanyExpertiseTagUncheckedUpdateManyWithoutCompanyNestedInput
+  projectAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutCompanyNestedInput
+  portalUsers?: Prisma.PortalUserUncheckedUpdateManyWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateManyWithoutCreatedByInput = {
@@ -5783,6 +6513,8 @@ export type CompanyCountOutputType = {
   notifications: number
   clientProjects: number
   expertiseTags: number
+  projectAssignments: number
+  portalUsers: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5796,6 +6528,8 @@ export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   notifications?: boolean | CompanyCountOutputTypeCountNotificationsArgs
   clientProjects?: boolean | CompanyCountOutputTypeCountClientProjectsArgs
   expertiseTags?: boolean | CompanyCountOutputTypeCountExpertiseTagsArgs
+  projectAssignments?: boolean | CompanyCountOutputTypeCountProjectAssignmentsArgs
+  portalUsers?: boolean | CompanyCountOutputTypeCountPortalUsersArgs
 }
 
 /**
@@ -5878,6 +6612,20 @@ export type CompanyCountOutputTypeCountExpertiseTagsArgs<ExtArgs extends runtime
   where?: Prisma.CompanyExpertiseTagWhereInput
 }
 
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountProjectAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectSubcontractorWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountPortalUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PortalUserWhereInput
+}
+
 
 export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5947,6 +6695,8 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   notifications?: boolean | Prisma.Company$notificationsArgs<ExtArgs>
   clientProjects?: boolean | Prisma.Company$clientProjectsArgs<ExtArgs>
   expertiseTags?: boolean | Prisma.Company$expertiseTagsArgs<ExtArgs>
+  projectAssignments?: boolean | Prisma.Company$projectAssignmentsArgs<ExtArgs>
+  portalUsers?: boolean | Prisma.Company$portalUsersArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -6140,6 +6890,8 @@ export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   notifications?: boolean | Prisma.Company$notificationsArgs<ExtArgs>
   clientProjects?: boolean | Prisma.Company$clientProjectsArgs<ExtArgs>
   expertiseTags?: boolean | Prisma.Company$expertiseTagsArgs<ExtArgs>
+  projectAssignments?: boolean | Prisma.Company$projectAssignmentsArgs<ExtArgs>
+  portalUsers?: boolean | Prisma.Company$portalUsersArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6167,6 +6919,8 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     notifications: Prisma.$NotificationAlertPayload<ExtArgs>[]
     clientProjects: Prisma.$ProjectPayload<ExtArgs>[]
     expertiseTags: Prisma.$CompanyExpertiseTagPayload<ExtArgs>[]
+    projectAssignments: Prisma.$ProjectSubcontractorPayload<ExtArgs>[]
+    portalUsers: Prisma.$PortalUserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6630,6 +7384,8 @@ export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.
   notifications<T extends Prisma.Company$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clientProjects<T extends Prisma.Company$clientProjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$clientProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   expertiseTags<T extends Prisma.Company$expertiseTagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$expertiseTagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyExpertiseTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectAssignments<T extends Prisma.Company$projectAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$projectAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectSubcontractorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portalUsers<T extends Prisma.Company$portalUsersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$portalUsersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortalUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7370,6 +8126,54 @@ export type Company$expertiseTagsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.CompanyExpertiseTagScalarFieldEnum | Prisma.CompanyExpertiseTagScalarFieldEnum[]
+}
+
+/**
+ * Company.projectAssignments
+ */
+export type Company$projectAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectSubcontractor
+   */
+  select?: Prisma.ProjectSubcontractorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectSubcontractor
+   */
+  omit?: Prisma.ProjectSubcontractorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectSubcontractorInclude<ExtArgs> | null
+  where?: Prisma.ProjectSubcontractorWhereInput
+  orderBy?: Prisma.ProjectSubcontractorOrderByWithRelationInput | Prisma.ProjectSubcontractorOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectSubcontractorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectSubcontractorScalarFieldEnum | Prisma.ProjectSubcontractorScalarFieldEnum[]
+}
+
+/**
+ * Company.portalUsers
+ */
+export type Company$portalUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortalUser
+   */
+  select?: Prisma.PortalUserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PortalUser
+   */
+  omit?: Prisma.PortalUserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PortalUserInclude<ExtArgs> | null
+  where?: Prisma.PortalUserWhereInput
+  orderBy?: Prisma.PortalUserOrderByWithRelationInput | Prisma.PortalUserOrderByWithRelationInput[]
+  cursor?: Prisma.PortalUserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PortalUserScalarFieldEnum | Prisma.PortalUserScalarFieldEnum[]
 }
 
 /**

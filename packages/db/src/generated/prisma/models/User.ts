@@ -253,6 +253,7 @@ export type UserWhereInput = {
   sentCommunications?: Prisma.CommunicationListRelationFilter
   notifications?: Prisma.NotificationAlertListRelationFilter
   createdPolicies?: Prisma.InsurancePolicyListRelationFilter
+  projectSubAssignments?: Prisma.ProjectSubcontractorListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -283,6 +284,7 @@ export type UserOrderByWithRelationInput = {
   sentCommunications?: Prisma.CommunicationOrderByRelationAggregateInput
   notifications?: Prisma.NotificationAlertOrderByRelationAggregateInput
   createdPolicies?: Prisma.InsurancePolicyOrderByRelationAggregateInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -316,6 +318,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sentCommunications?: Prisma.CommunicationListRelationFilter
   notifications?: Prisma.NotificationAlertListRelationFilter
   createdPolicies?: Prisma.InsurancePolicyListRelationFilter
+  projectSubAssignments?: Prisma.ProjectSubcontractorListRelationFilter
 }, "id" | "clerkId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -381,6 +384,7 @@ export type UserCreateInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -410,6 +414,7 @@ export type UserUncheckedCreateInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUpdateInput = {
@@ -439,6 +444,7 @@ export type UserUpdateInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -468,6 +474,7 @@ export type UserUncheckedUpdateInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -675,6 +682,20 @@ export type UserUpdateOneRequiredWithoutCreatedProjectsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedProjectsInput, Prisma.UserUpdateWithoutCreatedProjectsInput>, Prisma.UserUncheckedUpdateWithoutCreatedProjectsInput>
 }
 
+export type UserCreateNestedOneWithoutProjectSubAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedCreateWithoutProjectSubAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectSubAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutProjectSubAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedCreateWithoutProjectSubAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectSubAssignmentsInput
+  upsert?: Prisma.UserUpsertWithoutProjectSubAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectSubAssignmentsInput, Prisma.UserUpdateWithoutProjectSubAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutProjectSubAssignmentsInput>
+}
+
 export type UserCreateNestedOneWithoutCreatedCompaniesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCompaniesInput, Prisma.UserUncheckedCreateWithoutCreatedCompaniesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCompaniesInput
@@ -861,6 +882,7 @@ export type UserCreateWithoutOrganisationInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationInput = {
@@ -889,6 +911,7 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationInput = {
@@ -961,6 +984,7 @@ export type UserCreateWithoutManagedProjectsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -989,6 +1013,7 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -1022,6 +1047,7 @@ export type UserCreateWithoutSiteProjectsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutSiteProjectsInput = {
@@ -1050,6 +1076,7 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutSiteProjectsInput = {
@@ -1083,6 +1110,7 @@ export type UserCreateWithoutCreatedProjectsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProjectsInput = {
@@ -1111,6 +1139,7 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProjectsInput = {
@@ -1155,6 +1184,7 @@ export type UserUpdateWithoutManagedProjectsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -1183,6 +1213,7 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUpsertWithoutSiteProjectsInput = {
@@ -1222,6 +1253,7 @@ export type UserUpdateWithoutSiteProjectsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSiteProjectsInput = {
@@ -1250,6 +1282,7 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProjectsInput = {
@@ -1289,6 +1322,7 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
@@ -1304,6 +1338,139 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserCreateWithoutProjectSubAssignmentsInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutProjectSubAssignmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedCreateWithoutProjectSubAssignmentsInput>
+}
+
+export type UserUpsertWithoutProjectSubAssignmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedUpdateWithoutProjectSubAssignmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedCreateWithoutProjectSubAssignmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProjectSubAssignmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProjectSubAssignmentsInput, Prisma.UserUncheckedUpdateWithoutProjectSubAssignmentsInput>
+}
+
+export type UserUpdateWithoutProjectSubAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
   managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
   siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
   createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1345,6 +1512,7 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
@@ -1373,6 +1541,7 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedCompaniesInput = {
@@ -1417,6 +1586,7 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
@@ -1445,6 +1615,7 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutOwnedContactsInput = {
@@ -1473,6 +1644,7 @@ export type UserCreateWithoutOwnedContactsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutOwnedContactsInput = {
@@ -1501,6 +1673,7 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutOwnedContactsInput = {
@@ -1534,6 +1707,7 @@ export type UserCreateWithoutCreatedContactsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedContactsInput = {
@@ -1562,6 +1736,7 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedContactsInput = {
@@ -1606,6 +1781,7 @@ export type UserUpdateWithoutOwnedContactsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedContactsInput = {
@@ -1634,6 +1810,7 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedContactsInput = {
@@ -1673,6 +1850,7 @@ export type UserUpdateWithoutCreatedContactsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedContactsInput = {
@@ -1701,6 +1879,7 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPoliciesInput = {
@@ -1729,6 +1908,7 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
@@ -1757,6 +1937,7 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPoliciesInput = {
@@ -1801,6 +1982,7 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
@@ -1829,6 +2011,7 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutUploadedDocsInput = {
@@ -1857,6 +2040,7 @@ export type UserCreateWithoutUploadedDocsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedDocsInput = {
@@ -1885,6 +2069,7 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedDocsInput = {
@@ -1929,6 +2114,7 @@ export type UserUpdateWithoutUploadedDocsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedDocsInput = {
@@ -1957,6 +2143,7 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutCompanyNotesInput = {
@@ -1985,6 +2172,7 @@ export type UserCreateWithoutCompanyNotesInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutCompanyNotesInput = {
@@ -2013,6 +2201,7 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutCompanyNotesInput = {
@@ -2057,6 +2246,7 @@ export type UserUpdateWithoutCompanyNotesInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyNotesInput = {
@@ -2085,6 +2275,7 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutContactNotesInput = {
@@ -2113,6 +2304,7 @@ export type UserCreateWithoutContactNotesInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutContactNotesInput = {
@@ -2141,6 +2333,7 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutContactNotesInput = {
@@ -2185,6 +2378,7 @@ export type UserUpdateWithoutContactNotesInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutContactNotesInput = {
@@ -2213,6 +2407,7 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutApprovedProfilesInput = {
@@ -2241,6 +2436,7 @@ export type UserCreateWithoutApprovedProfilesInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedProfilesInput = {
@@ -2269,6 +2465,7 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedProfilesInput = {
@@ -2313,6 +2510,7 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
@@ -2341,6 +2539,7 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutSentInvitationsInput = {
@@ -2369,6 +2568,7 @@ export type UserCreateWithoutSentInvitationsInput = {
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -2397,6 +2597,7 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -2441,6 +2642,7 @@ export type UserUpdateWithoutSentInvitationsInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -2469,6 +2671,7 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutSentCommunicationsInput = {
@@ -2497,6 +2700,7 @@ export type UserCreateWithoutSentCommunicationsInput = {
   sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
   notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutSentCommunicationsInput = {
@@ -2525,6 +2729,7 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
   notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutSentCommunicationsInput = {
@@ -2569,6 +2774,7 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
@@ -2597,6 +2803,7 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2625,6 +2832,7 @@ export type UserCreateWithoutNotificationsInput = {
   sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
   sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
   createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2653,6 +2861,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
   sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2697,6 +2906,7 @@ export type UserUpdateWithoutNotificationsInput = {
   sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2725,6 +2935,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserCreateManyOrganisationInput = {
@@ -2767,6 +2978,7 @@ export type UserUpdateWithoutOrganisationInput = {
   sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationInput = {
@@ -2795,6 +3007,7 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
   notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
   createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganisationInput = {
@@ -2831,6 +3044,7 @@ export type UserCountOutputType = {
   sentCommunications: number
   notifications: number
   createdPolicies: number
+  projectSubAssignments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2848,6 +3062,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   sentCommunications?: boolean | UserCountOutputTypeCountSentCommunicationsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   createdPolicies?: boolean | UserCountOutputTypeCountCreatedPoliciesArgs
+  projectSubAssignments?: boolean | UserCountOutputTypeCountProjectSubAssignmentsArgs
 }
 
 /**
@@ -2958,6 +3173,13 @@ export type UserCountOutputTypeCountCreatedPoliciesArgs<ExtArgs extends runtime.
   where?: Prisma.InsurancePolicyWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountProjectSubAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectSubcontractorWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2987,6 +3209,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sentCommunications?: boolean | Prisma.User$sentCommunicationsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   createdPolicies?: boolean | Prisma.User$createdPoliciesArgs<ExtArgs>
+  projectSubAssignments?: boolean | Prisma.User$projectSubAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3054,6 +3277,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sentCommunications?: boolean | Prisma.User$sentCommunicationsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   createdPolicies?: boolean | Prisma.User$createdPoliciesArgs<ExtArgs>
+  projectSubAssignments?: boolean | Prisma.User$projectSubAssignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3081,6 +3305,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sentCommunications: Prisma.$CommunicationPayload<ExtArgs>[]
     notifications: Prisma.$NotificationAlertPayload<ExtArgs>[]
     createdPolicies: Prisma.$InsurancePolicyPayload<ExtArgs>[]
+    projectSubAssignments: Prisma.$ProjectSubcontractorPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3504,6 +3729,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sentCommunications<T extends Prisma.User$sentCommunicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentCommunicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommunicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdPolicies<T extends Prisma.User$createdPoliciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdPoliciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InsurancePolicyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectSubAssignments<T extends Prisma.User$projectSubAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectSubAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectSubcontractorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4279,6 +4505,30 @@ export type User$createdPoliciesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.InsurancePolicyScalarFieldEnum | Prisma.InsurancePolicyScalarFieldEnum[]
+}
+
+/**
+ * User.projectSubAssignments
+ */
+export type User$projectSubAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectSubcontractor
+   */
+  select?: Prisma.ProjectSubcontractorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectSubcontractor
+   */
+  omit?: Prisma.ProjectSubcontractorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectSubcontractorInclude<ExtArgs> | null
+  where?: Prisma.ProjectSubcontractorWhereInput
+  orderBy?: Prisma.ProjectSubcontractorOrderByWithRelationInput | Prisma.ProjectSubcontractorOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectSubcontractorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectSubcontractorScalarFieldEnum | Prisma.ProjectSubcontractorScalarFieldEnum[]
 }
 
 /**

@@ -333,6 +333,7 @@ export type ProjectWhereInput = {
   projectManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   siteManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  subcontractors?: Prisma.ProjectSubcontractorListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -360,6 +361,7 @@ export type ProjectOrderByWithRelationInput = {
   projectManager?: Prisma.UserOrderByWithRelationInput
   siteManager?: Prisma.UserOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
+  subcontractors?: Prisma.ProjectSubcontractorOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -390,6 +392,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   projectManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   siteManager?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  subcontractors?: Prisma.ProjectSubcontractorListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -464,6 +467,7 @@ export type ProjectCreateInput = {
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -486,6 +490,7 @@ export type ProjectUncheckedCreateInput = {
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -508,6 +513,7 @@ export type ProjectUpdateInput = {
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -530,6 +536,7 @@ export type ProjectUncheckedUpdateInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -675,6 +682,11 @@ export type ProjectMinOrderByAggregateInput = {
 
 export type ProjectSumOrderByAggregateInput = {
   contractValue?: Prisma.SortOrder
+}
+
+export type ProjectScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput
+  isNot?: Prisma.ProjectWhereInput
 }
 
 export type ProjectCreateNestedManyWithoutOrganisationInput = {
@@ -861,6 +873,20 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type ProjectCreateNestedOneWithoutSubcontractorsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSubcontractorsInput, Prisma.ProjectUncheckedCreateWithoutSubcontractorsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSubcontractorsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutSubcontractorsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutSubcontractorsInput, Prisma.ProjectUncheckedCreateWithoutSubcontractorsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutSubcontractorsInput
+  upsert?: Prisma.ProjectUpsertWithoutSubcontractorsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutSubcontractorsInput, Prisma.ProjectUpdateWithoutSubcontractorsInput>, Prisma.ProjectUncheckedUpdateWithoutSubcontractorsInput>
+}
+
 export type ProjectCreateNestedManyWithoutClientInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput> | Prisma.ProjectCreateWithoutClientInput[] | Prisma.ProjectUncheckedCreateWithoutClientInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutClientInput | Prisma.ProjectCreateOrConnectWithoutClientInput[]
@@ -922,6 +948,7 @@ export type ProjectCreateWithoutOrganisationInput = {
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOrganisationInput = {
@@ -943,6 +970,7 @@ export type ProjectUncheckedCreateWithoutOrganisationInput = {
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOrganisationInput = {
@@ -1015,6 +1043,7 @@ export type ProjectCreateWithoutCreatedByInput = {
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutCreatedByInput = {
@@ -1036,6 +1065,7 @@ export type ProjectUncheckedCreateWithoutCreatedByInput = {
   siteManagerId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutCreatedByInput = {
@@ -1067,6 +1097,7 @@ export type ProjectCreateWithoutProjectManagerInput = {
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutProjectManagerInput = {
@@ -1088,6 +1119,7 @@ export type ProjectUncheckedCreateWithoutProjectManagerInput = {
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutProjectManagerInput = {
@@ -1119,6 +1151,7 @@ export type ProjectCreateWithoutSiteManagerInput = {
   client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSiteManagerInput = {
@@ -1140,6 +1173,7 @@ export type ProjectUncheckedCreateWithoutSiteManagerInput = {
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSiteManagerInput = {
@@ -1200,6 +1234,110 @@ export type ProjectUpdateManyWithWhereWithoutSiteManagerInput = {
   data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerInput>
 }
 
+export type ProjectCreateWithoutSubcontractorsInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutSubcontractorsInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProjectCreateOrConnectWithoutSubcontractorsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSubcontractorsInput, Prisma.ProjectUncheckedCreateWithoutSubcontractorsInput>
+}
+
+export type ProjectUpsertWithoutSubcontractorsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutSubcontractorsInput, Prisma.ProjectUncheckedUpdateWithoutSubcontractorsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutSubcontractorsInput, Prisma.ProjectUncheckedCreateWithoutSubcontractorsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutSubcontractorsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutSubcontractorsInput, Prisma.ProjectUncheckedUpdateWithoutSubcontractorsInput>
+}
+
+export type ProjectUpdateWithoutSubcontractorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutSubcontractorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ProjectCreateWithoutClientInput = {
   id?: string
   name: string
@@ -1219,6 +1357,7 @@ export type ProjectCreateWithoutClientInput = {
   projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
   siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
   createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutClientInput = {
@@ -1240,6 +1379,7 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   createdById: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutClientInput = {
@@ -1308,6 +1448,7 @@ export type ProjectUpdateWithoutOrganisationInput = {
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOrganisationInput = {
@@ -1329,6 +1470,7 @@ export type ProjectUncheckedUpdateWithoutOrganisationInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOrganisationInput = {
@@ -1434,6 +1576,7 @@ export type ProjectUpdateWithoutCreatedByInput = {
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutCreatedByInput = {
@@ -1455,6 +1598,7 @@ export type ProjectUncheckedUpdateWithoutCreatedByInput = {
   siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutCreatedByInput = {
@@ -1497,6 +1641,7 @@ export type ProjectUpdateWithoutProjectManagerInput = {
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
@@ -1518,6 +1663,7 @@ export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutProjectManagerInput = {
@@ -1560,6 +1706,7 @@ export type ProjectUpdateWithoutSiteManagerInput = {
   client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
@@ -1581,6 +1728,7 @@ export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutSiteManagerInput = {
@@ -1644,6 +1792,7 @@ export type ProjectUpdateWithoutClientInput = {
   projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
   siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -1665,6 +1814,7 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -1688,6 +1838,35 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type ProjectCountOutputType
+ */
+
+export type ProjectCountOutputType = {
+  subcontractors: number
+}
+
+export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  subcontractors?: boolean | ProjectCountOutputTypeCountSubcontractorsArgs
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectCountOutputType
+   */
+  select?: Prisma.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountSubcontractorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectSubcontractorWhereInput
+}
 
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1715,6 +1894,8 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  subcontractors?: boolean | Prisma.Project$subcontractorsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1800,6 +1981,8 @@ export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   projectManager?: boolean | Prisma.Project$projectManagerArgs<ExtArgs>
   siteManager?: boolean | Prisma.Project$siteManagerArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  subcontractors?: boolean | Prisma.Project$subcontractorsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -1824,6 +2007,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     projectManager: Prisma.$UserPayload<ExtArgs> | null
     siteManager: Prisma.$UserPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs>
+    subcontractors: Prisma.$ProjectSubcontractorPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2244,6 +2428,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   projectManager<T extends Prisma.Project$projectManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$projectManagerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   siteManager<T extends Prisma.Project$siteManagerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$siteManagerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  subcontractors<T extends Prisma.Project$subcontractorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$subcontractorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectSubcontractorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2747,6 +2932,30 @@ export type Project$siteManagerArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Project.subcontractors
+ */
+export type Project$subcontractorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectSubcontractor
+   */
+  select?: Prisma.ProjectSubcontractorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectSubcontractor
+   */
+  omit?: Prisma.ProjectSubcontractorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectSubcontractorInclude<ExtArgs> | null
+  where?: Prisma.ProjectSubcontractorWhereInput
+  orderBy?: Prisma.ProjectSubcontractorOrderByWithRelationInput | Prisma.ProjectSubcontractorOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectSubcontractorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectSubcontractorScalarFieldEnum | Prisma.ProjectSubcontractorScalarFieldEnum[]
 }
 
 /**
