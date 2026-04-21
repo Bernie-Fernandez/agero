@@ -12,9 +12,10 @@ const isPublicRoute = createRouteMatcher([
   "/register/(.*)",
   "/worker(.*)",
   "/api/induction-chat(.*)",
-  // Portal login and registration are public (Clerk handles auth for portal dashboard etc.)
+  // Portal login, registration, and sign-out are public (Clerk handles auth for portal dashboard etc.)
   "/portal/login(.*)",
   "/portal/register(.*)",
+  "/portal/sign-out(.*)",
 ]);
 
 const isPortalRoute = createRouteMatcher(["/portal(.*)"]);

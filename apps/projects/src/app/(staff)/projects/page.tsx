@@ -2,13 +2,8 @@ import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import ProjectFoundationsClient from './ProjectFoundationsClient';
 
-export default async function ProjectsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ id?: string }>;
-}) {
+export default async function ProjectsPage() {
   const user = await requireAppUser();
-  const { id } = await searchParams;
 
   const [projects, subcontractorCompanies] = await Promise.all([
     prisma.project.findMany({
@@ -28,22 +23,10 @@ export default async function ProjectsPage({
     }),
   ]);
 
-  const selectedProject = id ? projects.find((p) => p.id === id) ?? null : null;
-
-  const assignments = selectedProject
-    ? await prisma.projectSubcontractor.findMany({
-        where: { projectId: selectedProject.id },
-        include: { company: { select: { id: true, name: true } } },
-        orderBy: { assignedAt: 'desc' },
-      })
-    : [];
-
   return (
     <ProjectFoundationsClient
       projects={projects as never}
       subcontractorCompanies={subcontractorCompanies}
-      assignments={assignments as never}
-      selectedProject={selectedProject as never}
     />
   );
 }

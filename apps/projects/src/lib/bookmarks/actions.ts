@@ -36,6 +36,7 @@ export async function addBookmark(entityType: string, entityId: string, entityLa
     data: { clerkUserId: userId, entityType, entityId, entityLabel, entityUrl },
   });
   revalidatePath(entityUrl);
+  revalidatePath('/', 'layout');
   return { ok: true };
 }
 
@@ -43,6 +44,7 @@ export async function removeBookmark(entityId: string): Promise<{ ok: boolean }>
   const { userId } = await auth();
   if (!userId) return { ok: false };
   await prisma.userBookmark.deleteMany({ where: { clerkUserId: userId, entityId } });
+  revalidatePath('/', 'layout');
   return { ok: true };
 }
 

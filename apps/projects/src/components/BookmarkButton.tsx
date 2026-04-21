@@ -1,5 +1,5 @@
 'use client';
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { addBookmark, removeBookmark } from '@/lib/bookmarks/actions';
 
 export default function BookmarkButton({
@@ -16,31 +16,40 @@ export default function BookmarkButton({
   initialBookmarked: boolean;
 }) {
   const [bookmarked, setBookmarked] = useState(initialBookmarked);
-  const [isPending, startTransition] = useTransition();
+  const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  function toggle() {
+  async function toggle() {
+    if (pending) return;
     setError(null);
-    startTransition(async () => {
-      if (bookmarked) {
+
+    const prev = bookmarked;
+    setBookmarked(!prev); // Optimistic update
+    setPending(true);
+
+    try {
+      if (prev) {
         await removeBookmark(entityId);
-        setBookmarked(false);
       } else {
         const res = await addBookmark(entityType, entityId, entityLabel, entityUrl);
-        if (res.ok) {
-          setBookmarked(true);
-        } else {
+        if (!res.ok) {
+          setBookmarked(prev); // Revert
           setError(res.error ?? 'Failed to bookmark');
         }
       }
-    });
+    } catch {
+      setBookmarked(prev); // Revert on unexpected error
+      setError('Something went wrong');
+    } finally {
+      setPending(false);
+    }
   }
 
   return (
     <div className="relative inline-flex items-center">
       <button
         onClick={toggle}
-        disabled={isPending}
+        disabled={pending}
         title={bookmarked ? 'Remove bookmark' : 'Bookmark this'}
         className={`p-1.5 rounded-md transition-colors ${
           bookmarked ? 'text-brand' : 'text-zinc-400 hover:text-zinc-600'

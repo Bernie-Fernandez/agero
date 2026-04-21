@@ -78,3 +78,12 @@ export async function updateProject(id: string, formData: FormData) {
   revalidatePath('/projects');
   redirect(`/projects/${id}`);
 }
+
+export async function getProjectAssignments(projectId: string) {
+  await requireAppUser();
+  return prisma.projectSubcontractor.findMany({
+    where: { projectId },
+    include: { company: { select: { id: true, name: true } } },
+    orderBy: { assignedAt: 'desc' },
+  });
+}
