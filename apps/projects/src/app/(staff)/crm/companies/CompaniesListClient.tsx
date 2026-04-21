@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { patchCompanyField } from './actions';
 import { showToast, ToastContainer } from '@/components/Toast';
+import SlidePanel from '@/components/SlidePanel';
 import dynamic from 'next/dynamic';
 
 const AddCompanyWizard = dynamic(
@@ -28,8 +29,10 @@ type Company = {
   addressState: string | null;
   _count: { companyContacts: number };
   insurancePolicies: { expiryDate: Date; policyType: { isMandatory: boolean } }[];
-  trades: { costCode: { codeDescription: string } }[];
+  trades: { costCode: { id: string; codeDescription: string } }[];
 };
+
+type CostCode = { id: string; codeDescription: string };
 
 type PaymentTerm = { id: string; name: string };
 
@@ -61,9 +64,10 @@ const ALL_COLUMNS = [
   { key: 'status', label: 'Status' },
   { key: 'contacts', label: 'Contacts' },
   { key: 'tier', label: 'Tier' },
+  { key: 'trades', label: 'Trades' },
 ];
 
-const DEFAULT_VISIBLE = ['name', 'types', 'abn', 'state', 'paymentTerms', 'performance', 'status'];
+const DEFAULT_VISIBLE = ['name', 'types', 'trades', 'abn', 'state', 'paymentTerms', 'performance', 'status'];
 
 const STORAGE_COLS = 'agero_columns_companies';
 const STORAGE_TABS = 'agero_tabs_companies';
@@ -242,10 +246,12 @@ export default function CompaniesListClient({
   initialCompanies,
   paymentTermsById,
   paymentTermsList,
+  allCostCodes = [],
 }: {
   initialCompanies: Company[];
   paymentTermsById: Record<string, string>;
   paymentTermsList: PaymentTerm[];
+  allCostCodes?: CostCode[];
 }) {
   const [companies, setCompanies] = useState(initialCompanies);
   const [activeTabId, setActiveTabId] = useState('all');
@@ -256,6 +262,7 @@ export default function CompaniesListClient({
   const [filterTier, setFilterTier] = useState('');
   const [filterPerf, setFilterPerf] = useState('');
   const [filterState, setFilterState] = useState('');
+  const [filterTrade, setFilterTrade] = useState('');
   const [addOpen, setAddOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
@@ -298,6 +305,7 @@ export default function CompaniesListClient({
     if (filterTier && c.tier !== filterTier) return false;
     if (filterPerf && c.performanceRating !== filterPerf) return false;
     if (filterState && c.addressState !== filterState) return false;
+    if (filterTrade && !c.trades.some((t) => t.costCode.id === filterTrade)) return false;
     // Search
     if (searchQ) {
       const q = searchQ.toLowerCase();
@@ -393,8 +401,14 @@ export default function CompaniesListClient({
           <option value="">All States</option>
           {['ACT','NSW','NT','QLD','SA','TAS','VIC','WA'].map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
-        {(searchQ || filterType || filterTier || filterPerf || filterState) && (
-          <button onClick={() => { setSearchQ(''); setFilterType(''); setFilterTier(''); setFilterPerf(''); setFilterState(''); }} className="text-sm text-zinc-500 hover:text-zinc-800 px-2">
+        {allCostCodes.length > 0 && (
+          <select value={filterTrade} onChange={(e) => setFilterTrade(e.target.value)} className="border border-zinc-200 rounded-md px-2 py-1.5 text-sm text-zinc-700 focus:outline-none focus:ring-2 focus:ring-brand">
+            <option value="">All Trades</option>
+            {allCostCodes.map((cc) => <option key={cc.id} value={cc.id}>{cc.codeDescription}</option>)}
+          </select>
+        )}
+        {(searchQ || filterType || filterTier || filterPerf || filterState || filterTrade) && (
+          <button onClick={() => { setSearchQ(''); setFilterType(''); setFilterTier(''); setFilterPerf(''); setFilterState(''); setFilterTrade(''); }} className="text-sm text-zinc-500 hover:text-zinc-800 px-2">
             Clear
           </button>
         )}
@@ -422,6 +436,7 @@ export default function CompaniesListClient({
                 {col('status') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Status</th>}
                 {col('contacts') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Contacts</th>}
                 {col('tier') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Tier</th>}
+                {col('trades') && <th className="text-left px-4 py-2.5 font-medium text-zinc-500 text-xs">Trades</th>}
               </tr>
             </thead>
             <tbody>
@@ -562,6 +577,22 @@ export default function CompaniesListClient({
                         />
                       </td>
                     )}
+                    {col('trades') && (
+                      <td className="px-4 py-3 text-xs">
+                        {company.trades.length === 0 ? (
+                          <span className="text-zinc-400">—</span>
+                        ) : (
+                          <div className="flex flex-wrap gap-1">
+                            {company.trades.slice(0, 2).map((t) => (
+                              <span key={t.costCode.id} className="px-1.5 py-0.5 bg-zinc-100 text-zinc-700 rounded text-[11px]">{t.costCode.codeDescription}</span>
+                            ))}
+                            {company.trades.length > 2 && (
+                              <span className="px-1.5 py-0.5 bg-zinc-100 text-zinc-500 rounded text-[11px]">+{company.trades.length - 2} more</span>
+                            )}
+                          </div>
+                        )}
+                      </td>
+                    )}
                   </tr>
                 );
               })}
@@ -570,11 +601,13 @@ export default function CompaniesListClient({
         </div>
       )}
 
-      {addOpen && (
-        <AddCompanyWizard
-          paymentTerms={paymentTermsList.map((pt) => ({ ...pt, isDefault: false }))}
-        />
-      )}
+      <SlidePanel isOpen={addOpen} onClose={() => setAddOpen(false)} title="Add Company">
+        {addOpen && (
+          <AddCompanyWizard
+            paymentTerms={paymentTermsList.map((pt) => ({ ...pt, isDefault: false }))}
+          />
+        )}
+      </SlidePanel>
     </div>
   );
 }

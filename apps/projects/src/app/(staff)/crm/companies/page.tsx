@@ -7,7 +7,7 @@ export default async function CompaniesPage() {
 
   const org = await prisma.organisation.findFirst({ where: { id: user.organisationId }, select: { id: true } });
 
-  const [ptList, companies] = await Promise.all([
+  const [ptList, companies, allCostCodes] = await Promise.all([
     org ? prisma.paymentTerm.findMany({
       where: { organisationId: org.id, isActive: true },
       select: { id: true, name: true },
@@ -18,9 +18,7 @@ export default async function CompaniesPage() {
       include: {
         _count: { select: { companyContacts: true } },
         trades: {
-          where: { isPrimaryTrade: true },
-          include: { costCode: { select: { codeDescription: true } } },
-          take: 1,
+          include: { costCode: { select: { id: true, codeDescription: true } } },
         },
         insurancePolicies: {
           where: { isCurrent: true },
@@ -28,6 +26,11 @@ export default async function CompaniesPage() {
         },
       },
       orderBy: { name: 'asc' },
+    }),
+    prisma.costCode.findMany({
+      where: { organisationId: user.organisationId },
+      select: { id: true, codeDescription: true },
+      orderBy: { codeDescription: 'asc' },
     }),
   ]);
 
@@ -38,6 +41,7 @@ export default async function CompaniesPage() {
       initialCompanies={companies as never}
       paymentTermsById={paymentTermsById}
       paymentTermsList={ptList}
+      allCostCodes={allCostCodes}
     />
   );
 }
