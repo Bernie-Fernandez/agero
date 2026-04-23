@@ -49,6 +49,8 @@ export async function updateEstimateSettings(id: string, fd: FormData) {
       marketEvalMedPct: num('marketEvalMedPct'),
       marketEvalLowPct: num('marketEvalLowPct'),
       declaredMarginDefaultPct: num('declaredMarginDefaultPct'),
+      pipelineStage: fd.get('pipelineStage') ? Number(fd.get('pipelineStage')) : undefined,
+      confidencePct: fd.get('confidencePct') !== '' && fd.get('confidencePct') != null ? Number(fd.get('confidencePct')) : undefined,
       currencySymbol: (fd.get('currencySymbol') as string) || '$',
       costPerUnitLabel: str('costPerUnitLabel'),
       taxCodeName: (fd.get('taxCodeName') as string) || 'GST',

@@ -28,6 +28,7 @@ export type AggregateEstimate = {
 
 export type EstimateAvgAggregateOutputType = {
   pipelineStage: number | null
+  confidencePct: number | null
   floorAreaM2: runtime.Decimal | null
   targetGpPct: runtime.Decimal | null
   minGpPct: runtime.Decimal | null
@@ -45,6 +46,7 @@ export type EstimateAvgAggregateOutputType = {
 
 export type EstimateSumAggregateOutputType = {
   pipelineStage: number | null
+  confidencePct: number | null
   floorAreaM2: runtime.Decimal | null
   targetGpPct: runtime.Decimal | null
   minGpPct: runtime.Decimal | null
@@ -68,6 +70,7 @@ export type EstimateMinAggregateOutputType = {
   clientId: string | null
   status: $Enums.EstimateStatus | null
   pipelineStage: number | null
+  confidencePct: number | null
   hubspotDealId: string | null
   addressStreet: string | null
   addressSuburb: string | null
@@ -107,6 +110,7 @@ export type EstimateMaxAggregateOutputType = {
   clientId: string | null
   status: $Enums.EstimateStatus | null
   pipelineStage: number | null
+  confidencePct: number | null
   hubspotDealId: string | null
   addressStreet: string | null
   addressSuburb: string | null
@@ -146,6 +150,7 @@ export type EstimateCountAggregateOutputType = {
   clientId: number
   status: number
   pipelineStage: number
+  confidencePct: number
   hubspotDealId: number
   addressStreet: number
   addressSuburb: number
@@ -181,6 +186,7 @@ export type EstimateCountAggregateOutputType = {
 
 export type EstimateAvgAggregateInputType = {
   pipelineStage?: true
+  confidencePct?: true
   floorAreaM2?: true
   targetGpPct?: true
   minGpPct?: true
@@ -198,6 +204,7 @@ export type EstimateAvgAggregateInputType = {
 
 export type EstimateSumAggregateInputType = {
   pipelineStage?: true
+  confidencePct?: true
   floorAreaM2?: true
   targetGpPct?: true
   minGpPct?: true
@@ -221,6 +228,7 @@ export type EstimateMinAggregateInputType = {
   clientId?: true
   status?: true
   pipelineStage?: true
+  confidencePct?: true
   hubspotDealId?: true
   addressStreet?: true
   addressSuburb?: true
@@ -260,6 +268,7 @@ export type EstimateMaxAggregateInputType = {
   clientId?: true
   status?: true
   pipelineStage?: true
+  confidencePct?: true
   hubspotDealId?: true
   addressStreet?: true
   addressSuburb?: true
@@ -299,6 +308,7 @@ export type EstimateCountAggregateInputType = {
   clientId?: true
   status?: true
   pipelineStage?: true
+  confidencePct?: true
   hubspotDealId?: true
   addressStreet?: true
   addressSuburb?: true
@@ -425,6 +435,7 @@ export type EstimateGroupByOutputType = {
   clientId: string | null
   status: $Enums.EstimateStatus
   pipelineStage: number
+  confidencePct: number | null
   hubspotDealId: string | null
   addressStreet: string | null
   addressSuburb: string | null
@@ -487,6 +498,7 @@ export type EstimateWhereInput = {
   clientId?: Prisma.UuidNullableFilter<"Estimate"> | string | null
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFilter<"Estimate"> | number
+  confidencePct?: Prisma.IntNullableFilter<"Estimate"> | number | null
   hubspotDealId?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressSuburb?: Prisma.StringNullableFilter<"Estimate"> | string | null
@@ -541,6 +553,7 @@ export type EstimateOrderByWithRelationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrderInput | Prisma.SortOrder
   hubspotDealId?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
   addressSuburb?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -598,6 +611,7 @@ export type EstimateWhereUniqueInput = Prisma.AtLeast<{
   clientId?: Prisma.UuidNullableFilter<"Estimate"> | string | null
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFilter<"Estimate"> | number
+  confidencePct?: Prisma.IntNullableFilter<"Estimate"> | number | null
   hubspotDealId?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressSuburb?: Prisma.StringNullableFilter<"Estimate"> | string | null
@@ -652,6 +666,7 @@ export type EstimateOrderByWithAggregationInput = {
   clientId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrderInput | Prisma.SortOrder
   hubspotDealId?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
   addressSuburb?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -699,6 +714,7 @@ export type EstimateScalarWhereWithAggregatesInput = {
   clientId?: Prisma.UuidNullableWithAggregatesFilter<"Estimate"> | string | null
   status?: Prisma.EnumEstimateStatusWithAggregatesFilter<"Estimate"> | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntWithAggregatesFilter<"Estimate"> | number
+  confidencePct?: Prisma.IntNullableWithAggregatesFilter<"Estimate"> | number | null
   hubspotDealId?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   addressStreet?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
   addressSuburb?: Prisma.StringNullableWithAggregatesFilter<"Estimate"> | string | null
@@ -736,6 +752,7 @@ export type EstimateCreateInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -786,6 +803,7 @@ export type EstimateUncheckedCreateInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -832,6 +850,7 @@ export type EstimateUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -882,6 +901,7 @@ export type EstimateUncheckedUpdateInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -930,6 +950,7 @@ export type EstimateCreateManyInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -967,6 +988,7 @@ export type EstimateUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1002,6 +1024,7 @@ export type EstimateUncheckedUpdateManyInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1051,6 +1074,7 @@ export type EstimateCountOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrder
   hubspotDealId?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
   addressSuburb?: Prisma.SortOrder
@@ -1084,6 +1108,7 @@ export type EstimateCountOrderByAggregateInput = {
 
 export type EstimateAvgOrderByAggregateInput = {
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrder
   floorAreaM2?: Prisma.SortOrder
   targetGpPct?: Prisma.SortOrder
   minGpPct?: Prisma.SortOrder
@@ -1107,6 +1132,7 @@ export type EstimateMaxOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrder
   hubspotDealId?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
   addressSuburb?: Prisma.SortOrder
@@ -1146,6 +1172,7 @@ export type EstimateMinOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrder
   hubspotDealId?: Prisma.SortOrder
   addressStreet?: Prisma.SortOrder
   addressSuburb?: Prisma.SortOrder
@@ -1179,6 +1206,7 @@ export type EstimateMinOrderByAggregateInput = {
 
 export type EstimateSumOrderByAggregateInput = {
   pipelineStage?: Prisma.SortOrder
+  confidencePct?: Prisma.SortOrder
   floorAreaM2?: Prisma.SortOrder
   targetGpPct?: Prisma.SortOrder
   minGpPct?: Prisma.SortOrder
@@ -1594,6 +1622,7 @@ export type EstimateCreateWithoutOrganisationInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1642,6 +1671,7 @@ export type EstimateUncheckedCreateWithoutOrganisationInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1719,6 +1749,7 @@ export type EstimateScalarWhereInput = {
   clientId?: Prisma.UuidNullableFilter<"Estimate"> | string | null
   status?: Prisma.EnumEstimateStatusFilter<"Estimate"> | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFilter<"Estimate"> | number
+  confidencePct?: Prisma.IntNullableFilter<"Estimate"> | number | null
   hubspotDealId?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Estimate"> | string | null
   addressSuburb?: Prisma.StringNullableFilter<"Estimate"> | string | null
@@ -1756,6 +1787,7 @@ export type EstimateCreateWithoutCreatedByInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1805,6 +1837,7 @@ export type EstimateUncheckedCreateWithoutCreatedByInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1860,6 +1893,7 @@ export type EstimateCreateWithoutEstimatorInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1909,6 +1943,7 @@ export type EstimateUncheckedCreateWithoutEstimatorInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -1996,6 +2031,7 @@ export type EstimateCreateWithoutConvertedToProjectInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2045,6 +2081,7 @@ export type EstimateUncheckedCreateWithoutConvertedToProjectInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2116,6 +2153,7 @@ export type EstimateCreateWithoutClientInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2164,6 +2202,7 @@ export type EstimateUncheckedCreateWithoutClientInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2236,6 +2275,7 @@ export type EstimateCreateWithoutRevenueCostCodeInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2285,6 +2325,7 @@ export type EstimateUncheckedCreateWithoutRevenueCostCodeInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2356,6 +2397,7 @@ export type EstimateCreateWithoutAreasInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2405,6 +2447,7 @@ export type EstimateUncheckedCreateWithoutAreasInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2466,6 +2509,7 @@ export type EstimateUpdateWithoutAreasInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2515,6 +2559,7 @@ export type EstimateUncheckedUpdateWithoutAreasInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2560,6 +2605,7 @@ export type EstimateCreateWithoutScenariosInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2609,6 +2655,7 @@ export type EstimateUncheckedCreateWithoutScenariosInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2670,6 +2717,7 @@ export type EstimateUpdateWithoutScenariosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2719,6 +2767,7 @@ export type EstimateUncheckedUpdateWithoutScenariosInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2764,6 +2813,7 @@ export type EstimateCreateWithoutTradeSectionsInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2813,6 +2863,7 @@ export type EstimateUncheckedCreateWithoutTradeSectionsInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -2874,6 +2925,7 @@ export type EstimateUpdateWithoutTradeSectionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2923,6 +2975,7 @@ export type EstimateUncheckedUpdateWithoutTradeSectionsInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2968,6 +3021,7 @@ export type EstimateCreateWithoutLinesInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3017,6 +3071,7 @@ export type EstimateUncheckedCreateWithoutLinesInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3078,6 +3133,7 @@ export type EstimateUpdateWithoutLinesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3127,6 +3183,7 @@ export type EstimateUncheckedUpdateWithoutLinesInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3172,6 +3229,7 @@ export type EstimateCreateWithoutOptionsInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3221,6 +3279,7 @@ export type EstimateUncheckedCreateWithoutOptionsInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3282,6 +3341,7 @@ export type EstimateUpdateWithoutOptionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3331,6 +3391,7 @@ export type EstimateUncheckedUpdateWithoutOptionsInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3376,6 +3437,7 @@ export type EstimateCreateWithoutLockawaysInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3425,6 +3487,7 @@ export type EstimateUncheckedCreateWithoutLockawaysInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3486,6 +3549,7 @@ export type EstimateUpdateWithoutLockawaysInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3535,6 +3599,7 @@ export type EstimateUncheckedUpdateWithoutLockawaysInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3580,6 +3645,7 @@ export type EstimateCreateWithoutInsightTagsInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3629,6 +3695,7 @@ export type EstimateUncheckedCreateWithoutInsightTagsInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3690,6 +3757,7 @@ export type EstimateUpdateWithoutInsightTagsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3739,6 +3807,7 @@ export type EstimateUncheckedUpdateWithoutInsightTagsInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3784,6 +3853,7 @@ export type EstimateCreateWithoutTradePackagesInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3833,6 +3903,7 @@ export type EstimateUncheckedCreateWithoutTradePackagesInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -3894,6 +3965,7 @@ export type EstimateUpdateWithoutTradePackagesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3943,6 +4015,7 @@ export type EstimateUncheckedUpdateWithoutTradePackagesInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3988,6 +4061,7 @@ export type EstimateCreateWithoutSnapshotsInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4037,6 +4111,7 @@ export type EstimateUncheckedCreateWithoutSnapshotsInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4098,6 +4173,7 @@ export type EstimateUpdateWithoutSnapshotsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4147,6 +4223,7 @@ export type EstimateUncheckedUpdateWithoutSnapshotsInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4193,6 +4270,7 @@ export type EstimateCreateManyOrganisationInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4230,6 +4308,7 @@ export type EstimateUpdateWithoutOrganisationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4278,6 +4357,7 @@ export type EstimateUncheckedUpdateWithoutOrganisationInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4325,6 +4405,7 @@ export type EstimateUncheckedUpdateManyWithoutOrganisationInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4364,6 +4445,7 @@ export type EstimateCreateManyCreatedByInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4402,6 +4484,7 @@ export type EstimateCreateManyEstimatorInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4438,6 +4521,7 @@ export type EstimateUpdateWithoutCreatedByInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4487,6 +4571,7 @@ export type EstimateUncheckedUpdateWithoutCreatedByInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4534,6 +4619,7 @@ export type EstimateUncheckedUpdateManyWithoutCreatedByInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4570,6 +4656,7 @@ export type EstimateUpdateWithoutEstimatorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4619,6 +4706,7 @@ export type EstimateUncheckedUpdateWithoutEstimatorInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4666,6 +4754,7 @@ export type EstimateUncheckedUpdateManyWithoutEstimatorInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4704,6 +4793,7 @@ export type EstimateCreateManyConvertedToProjectInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4740,6 +4830,7 @@ export type EstimateUpdateWithoutConvertedToProjectInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4789,6 +4880,7 @@ export type EstimateUncheckedUpdateWithoutConvertedToProjectInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4836,6 +4928,7 @@ export type EstimateUncheckedUpdateManyWithoutConvertedToProjectInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4873,6 +4966,7 @@ export type EstimateCreateManyClientInput = {
   title: string
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -4910,6 +5004,7 @@ export type EstimateUpdateWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4958,6 +5053,7 @@ export type EstimateUncheckedUpdateWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5005,6 +5101,7 @@ export type EstimateUncheckedUpdateManyWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5044,6 +5141,7 @@ export type EstimateCreateManyRevenueCostCodeInput = {
   clientId?: string | null
   status?: $Enums.EstimateStatus
   pipelineStage?: number
+  confidencePct?: number | null
   hubspotDealId?: string | null
   addressStreet?: string | null
   addressSuburb?: string | null
@@ -5080,6 +5178,7 @@ export type EstimateUpdateWithoutRevenueCostCodeInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5129,6 +5228,7 @@ export type EstimateUncheckedUpdateWithoutRevenueCostCodeInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5176,6 +5276,7 @@ export type EstimateUncheckedUpdateManyWithoutRevenueCostCodeInput = {
   clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
   pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -5317,6 +5418,7 @@ export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   clientId?: boolean
   status?: boolean
   pipelineStage?: boolean
+  confidencePct?: boolean
   hubspotDealId?: boolean
   addressStreet?: boolean
   addressSuburb?: boolean
@@ -5372,6 +5474,7 @@ export type EstimateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   clientId?: boolean
   status?: boolean
   pipelineStage?: boolean
+  confidencePct?: boolean
   hubspotDealId?: boolean
   addressStreet?: boolean
   addressSuburb?: boolean
@@ -5417,6 +5520,7 @@ export type EstimateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   clientId?: boolean
   status?: boolean
   pipelineStage?: boolean
+  confidencePct?: boolean
   hubspotDealId?: boolean
   addressStreet?: boolean
   addressSuburb?: boolean
@@ -5462,6 +5566,7 @@ export type EstimateSelectScalar = {
   clientId?: boolean
   status?: boolean
   pipelineStage?: boolean
+  confidencePct?: boolean
   hubspotDealId?: boolean
   addressStreet?: boolean
   addressSuburb?: boolean
@@ -5493,7 +5598,7 @@ export type EstimateSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "leadNumber" | "title" | "clientId" | "status" | "pipelineStage" | "hubspotDealId" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "jobType" | "floorAreaM2" | "estimatorId" | "revenueCostCodeId" | "targetGpPct" | "minGpPct" | "defaultMarkupPct" | "costRecoveryPct" | "budgetCoverageTarget" | "declaredMarginDefaultPct" | "tradePackageHighPct" | "tradePackageMedPct" | "tradePackageLowPct" | "marketEvalHighPct" | "marketEvalMedPct" | "marketEvalLowPct" | "currencySymbol" | "costPerUnitLabel" | "taxCodeName" | "notes" | "convertedToProjectId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["estimate"]>
+export type EstimateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "leadNumber" | "title" | "clientId" | "status" | "pipelineStage" | "confidencePct" | "hubspotDealId" | "addressStreet" | "addressSuburb" | "addressState" | "addressPostcode" | "jobType" | "floorAreaM2" | "estimatorId" | "revenueCostCodeId" | "targetGpPct" | "minGpPct" | "defaultMarkupPct" | "costRecoveryPct" | "budgetCoverageTarget" | "declaredMarginDefaultPct" | "tradePackageHighPct" | "tradePackageMedPct" | "tradePackageLowPct" | "marketEvalHighPct" | "marketEvalMedPct" | "marketEvalLowPct" | "currencySymbol" | "costPerUnitLabel" | "taxCodeName" | "notes" | "convertedToProjectId" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["estimate"]>
 export type EstimateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   client?: boolean | Prisma.Estimate$clientArgs<ExtArgs>
@@ -5556,6 +5661,7 @@ export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     clientId: string | null
     status: $Enums.EstimateStatus
     pipelineStage: number
+    confidencePct: number | null
     hubspotDealId: string | null
     addressStreet: string | null
     addressSuburb: string | null
@@ -6030,6 +6136,7 @@ export interface EstimateFieldRefs {
   readonly clientId: Prisma.FieldRef<"Estimate", 'String'>
   readonly status: Prisma.FieldRef<"Estimate", 'EstimateStatus'>
   readonly pipelineStage: Prisma.FieldRef<"Estimate", 'Int'>
+  readonly confidencePct: Prisma.FieldRef<"Estimate", 'Int'>
   readonly hubspotDealId: Prisma.FieldRef<"Estimate", 'String'>
   readonly addressStreet: Prisma.FieldRef<"Estimate", 'String'>
   readonly addressSuburb: Prisma.FieldRef<"Estimate", 'String'>

@@ -1,22 +1,23 @@
 'use client';
-import { useState, useTransition, useOptimistic } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { showToast, ToastContainer } from '@/components/Toast';
-import { createLine, updateLine, deleteLine, addTradeSectionToEstimate, createArea } from '../actions';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type TradeSection = { id: string; name: string; code: string | null; order: number };
-type Area = { id: string; name: string };
-type Scenario = { id: string; name: string; isBase: boolean };
-type TradePackage = { id: string; name: string };
+type LineStructure = 'SECTION_HEADER' | 'SUB_HEADING' | 'STANDARD_LINE' | 'NOTE_LINE' | 'PROJECT_SUM_LINE';
+
 type Line = {
   id: string;
+  lineStructure: LineStructure;
+  lineCode: string | null;
   description: string;
   type: string;
-  quantity: number | string;
+  quantity: number;
   unit: string | null;
-  rate: number | string;
-  total: number | string;
+  rate: number;
+  total: number;
+  markupPct: number | null;
+  declaredMarginPct: number | null;
   isRisk: boolean;
   isOption: boolean;
   isPcSum: boolean;
@@ -24,12 +25,13 @@ type Line = {
   isHidden: boolean;
   notes: string | null;
   tradeSectionId: string | null;
-  areaId: string | null;
-  declaredMarginPct: number | string | null;
   tradePackageId: string | null;
   tradeSection: { id: string; name: string; code: string | null } | null;
-  area: { id: string; name: string } | null;
+  order: number;
 };
+
+type TradeSection = { id: string; name: string; code: string | null; order: number };
+type TradePackage = { id: string; name: string };
 
 type Estimate = {
   id: string;
@@ -37,253 +39,279 @@ type Estimate = {
   costRecoveryPct: number | string;
   targetGpPct: number | string;
   tradeSections: TradeSection[];
-  areas: Area[];
-  scenarios: Scenario[];
   lines: Line[];
   tradePackages: TradePackage[];
 };
 
-const LINE_TYPES = ['LABOUR', 'MATERIAL', 'SUBCONTRACTOR', 'ALLOWANCE', 'PROVISIONAL_SUM'];
-const TYPE_LABELS: Record<string, string> = {
-  LABOUR: 'Labour', MATERIAL: 'Material', SUBCONTRACTOR: 'Sub', ALLOWANCE: 'Allow.', PROVISIONAL_SUM: 'PC Sum',
-};
+// ─── Formatting helpers ───────────────────────────────────────────────────────
 
-function fmt(n: number) {
-  return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(n);
+const AUD = new Intl.NumberFormat('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmt = (n: number) => AUD.format(n);
+const pct = (n: number | null | undefined) => (n != null ? Number(n).toFixed(2) : '');
+
+function calcSell(cost: number, markupPct: number | null, defaultMarkup: number) {
+  const m = markupPct != null ? markupPct : defaultMarkup;
+  return cost * (1 + m / 100);
 }
 
-// ─── Flag badges ─────────────────────────────────────────────────────────────
-
-function FlagBadge({ label, color }: { label: string; color: string }) {
-  return <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold ${color}`}>{label}</span>;
+function calcGp(cost: number, sell: number) {
+  return sell > 0 ? ((sell - cost) / sell) * 100 : 0;
 }
 
-// ─── Inline edit row ─────────────────────────────────────────────────────────
+// ─── Flag row-level border classes ───────────────────────────────────────────
 
-function LineRow({
-  line,
-  estimateId,
-  sections,
-  areas,
-  packages,
-  onMutate,
+function rowFlagClass(line: Line) {
+  if (line.isHidden) return 'opacity-40';
+  if (line.isOption) return 'border-l-2 border-l-blue-400';
+  if (line.isRisk) return 'border-l-2 border-l-amber-400';
+  if (line.isPcSum) return 'border-l-2 border-l-purple-400';
+  if (line.isLockaway) return 'border-l-2 border-l-[#1e3a5f]';
+  return '';
+}
+
+// ─── Inline cell ─────────────────────────────────────────────────────────────
+
+function InlineCell({
+  value,
+  type = 'text',
+  align = 'left',
+  className = '',
+  onCommit,
 }: {
-  line: Line;
-  estimateId: string;
-  sections: TradeSection[];
-  areas: Area[];
-  packages: TradePackage[];
-  onMutate: () => void;
+  value: string;
+  type?: 'text' | 'number';
+  align?: 'left' | 'right';
+  className?: string;
+  onCommit: (v: string) => void;
 }) {
   const [editing, setEditing] = useState(false);
-  const [pending, startTransition] = useTransition();
-  const [form, setForm] = useState({
-    description: line.description,
-    type: line.type,
-    quantity: String(Number(line.quantity)),
-    unit: line.unit ?? '',
-    rate: String(Number(line.rate)),
-    tradeSectionId: line.tradeSectionId ?? '',
-    areaId: line.areaId ?? '',
-    isRisk: line.isRisk,
-    isOption: line.isOption,
-    isPcSum: line.isPcSum,
-    isLockaway: line.isLockaway,
-    isHidden: line.isHidden,
-    notes: line.notes ?? '',
-    declaredMarginPct: line.declaredMarginPct != null ? String(Number(line.declaredMarginPct)) : '',
-    tradePackageId: line.tradePackageId ?? '',
-  });
+  const [local, setLocal] = useState(value);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const calcTotal = Number(form.quantity) * Number(form.rate);
+  useEffect(() => {
+    if (!editing) setLocal(value);
+  }, [value, editing]);
 
-  function handleSave() {
-    const fd = new FormData();
-    Object.entries(form).forEach(([k, v]) => fd.set(k, String(v)));
-    startTransition(async () => {
-      await updateLine(line.id, estimateId, fd);
-      setEditing(false);
-      onMutate();
-    });
-  }
-
-  function handleDelete() {
-    if (!confirm('Delete this line?')) return;
-    startTransition(async () => {
-      await deleteLine(line.id, estimateId);
-      onMutate();
-    });
-  }
+  useEffect(() => {
+    if (editing) inputRef.current?.select();
+  }, [editing]);
 
   if (editing) {
     return (
-      <tr className="bg-zinc-50 border-b border-zinc-200">
-        <td className="px-3 py-2" colSpan={2}>
-          <input
-            value={form.description}
-            onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-            className="w-full border border-zinc-200 rounded px-2 py-1 text-sm"
-            placeholder="Description"
-          />
-        </td>
-        <td className="px-2 py-2">
-          <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-xs w-full">
-            {LINE_TYPES.map((t) => <option key={t} value={t}>{TYPE_LABELS[t]}</option>)}
-          </select>
-        </td>
-        <td className="px-2 py-2">
-          <input type="number" value={form.quantity} onChange={(e) => setForm((f) => ({ ...f, quantity: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-20" />
-        </td>
-        <td className="px-2 py-2">
-          <input value={form.unit} onChange={(e) => setForm((f) => ({ ...f, unit: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-16" placeholder="unit" />
-        </td>
-        <td className="px-2 py-2">
-          <input type="number" value={form.rate} onChange={(e) => setForm((f) => ({ ...f, rate: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-24" />
-        </td>
-        <td className="px-2 py-2 text-sm text-zinc-700 font-medium">{fmt(calcTotal)}</td>
-        <td className="px-2 py-2" colSpan={2}>
-          <div className="flex flex-wrap gap-x-2 gap-y-1">
-            {(['isRisk', 'isOption', 'isPcSum', 'isLockaway', 'isHidden'] as const).map((flag) => (
-              <label key={flag} className="flex items-center gap-0.5 text-[10px] cursor-pointer">
-                <input type="checkbox" checked={form[flag]} onChange={(e) => setForm((f) => ({ ...f, [flag]: e.target.checked }))} />
-                {flag === 'isRisk' ? 'R&O' : flag === 'isOption' ? 'OPT' : flag === 'isPcSum' ? 'PC' : flag === 'isLockaway' ? 'LOCK' : 'HID'}
-              </label>
-            ))}
-            <div className="flex items-center gap-1 ml-1">
-              <span className="text-[10px] text-zinc-400">DM%</span>
-              <input type="number" step="0.01" min="0" max="100" value={form.declaredMarginPct}
-                onChange={(e) => setForm((f) => ({ ...f, declaredMarginPct: e.target.value }))}
-                className="border border-zinc-200 rounded px-1 py-0.5 text-xs w-14" placeholder="—" />
-            </div>
-            <select value={form.tradePackageId} onChange={(e) => setForm((f) => ({ ...f, tradePackageId: e.target.value }))}
-              className="border border-zinc-200 rounded px-1 py-0.5 text-xs">
-              <option value="">No package</option>
-              {packages.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
-            </select>
-          </div>
-          <div className="flex gap-1 mt-2">
-            <button onClick={handleSave} disabled={pending} className="px-2 py-1 text-xs bg-brand text-white rounded hover:bg-brand/90 disabled:opacity-50">Save</button>
-            <button onClick={() => setEditing(false)} className="px-2 py-1 text-xs border border-zinc-200 rounded hover:bg-zinc-50">Cancel</button>
-          </div>
-        </td>
-      </tr>
+      <input
+        ref={inputRef}
+        type={type}
+        value={local}
+        onChange={(e) => setLocal(e.target.value)}
+        onBlur={() => { setEditing(false); onCommit(local); }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); setEditing(false); onCommit(local); }
+          if (e.key === 'Escape') { setEditing(false); setLocal(value); }
+        }}
+        className={`w-full border border-brand/50 rounded px-1 py-0.5 text-sm outline-none bg-white ${align === 'right' ? 'text-right' : ''} ${className}`}
+      />
     );
   }
 
   return (
-    <tr className={`border-b border-zinc-100 hover:bg-zinc-50 group${line.isHidden ? ' opacity-50' : ''}`}>
-      <td className="px-3 py-2 text-xs text-zinc-400">{line.tradeSection?.code ?? ''}</td>
-      <td className="px-3 py-2 text-sm text-zinc-800">
-        <span>{line.description}</span>
-        <div className="flex gap-1 mt-0.5 flex-wrap">
-          {line.isOption && <FlagBadge label="OPT" color="bg-blue-100 text-blue-700" />}
-          {line.isRisk && <FlagBadge label="R&O" color="bg-amber-100 text-amber-700" />}
-          {line.isHidden && <FlagBadge label="HID" color="bg-zinc-100 text-zinc-400 opacity-70" />}
-          {line.isPcSum && <FlagBadge label="PC" color="bg-purple-100 text-purple-700" />}
-          {line.isLockaway && <FlagBadge label="LOCK" color="bg-navy-100 text-[#1e3a5f] bg-[#dbeafe]" />}
-          {line.declaredMarginPct != null && (
-            <FlagBadge label={`DM ${Number(line.declaredMarginPct).toFixed(0)}%`} color="bg-blue-50 text-blue-600 border border-blue-200" />
-          )}
-        </div>
-      </td>
-      <td className="px-2 py-2 text-xs text-zinc-500">{TYPE_LABELS[line.type] ?? line.type}</td>
-      <td className="px-2 py-2 text-sm text-right text-zinc-700">{Number(line.quantity).toFixed(2)}</td>
-      <td className="px-2 py-2 text-xs text-zinc-500">{line.unit ?? ''}</td>
-      <td className="px-2 py-2 text-sm text-right text-zinc-700">{fmt(Number(line.rate))}</td>
-      <td className="px-2 py-2 text-sm text-right font-medium text-zinc-900">{fmt(Number(line.total))}</td>
-      <td className="px-2 py-2 text-xs text-zinc-400">{line.area?.name ?? ''}</td>
-      <td className="px-2 py-2">
-        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button onClick={() => setEditing(true)} className="p-1 text-zinc-400 hover:text-zinc-700 rounded">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-          </button>
-          <button onClick={handleDelete} className="p-1 text-zinc-400 hover:text-red-600 rounded">
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-          </button>
-        </div>
-      </td>
-    </tr>
+    <div
+      onClick={() => setEditing(true)}
+      className={`cursor-text min-h-[1.5rem] rounded px-1 py-0.5 hover:bg-zinc-100 text-sm ${align === 'right' ? 'text-right' : ''} ${className}`}
+    >
+      {value}
+    </div>
   );
 }
 
-// ─── Add Line Row ──────────────────────────────────────────────────────────────
+// ─── Context menu ─────────────────────────────────────────────────────────────
 
-function AddLineRow({
-  estimateId,
-  sections,
-  areas,
-  packages,
-  defaultSectionId,
-  onAdded,
+type ContextAction = 'insert-above' | 'insert-below' | 'duplicate' | 'move-up' | 'move-down' | 'delete';
+
+function ContextMenu({
+  x, y, onAction, onClose,
 }: {
-  estimateId: string;
-  sections: TradeSection[];
-  areas: Area[];
-  packages: TradePackage[];
-  defaultSectionId?: string;
-  onAdded: () => void;
+  x: number; y: number;
+  onAction: (a: ContextAction) => void;
+  onClose: () => void;
 }) {
-  const [show, setShow] = useState(false);
-  const [pending, startTransition] = useTransition();
-  const [form, setForm] = useState({
-    description: '', type: 'MATERIAL', quantity: '1', unit: '', rate: '0',
-    tradeSectionId: defaultSectionId ?? '', areaId: '',
-    isRisk: false, isOption: false, isPcSum: false, isLockaway: false, isHidden: false,
-    declaredMarginPct: '', tradePackageId: '',
-  });
+  const ref = useRef<HTMLDivElement>(null);
 
-  function handleAdd() {
-    const fd = new FormData();
-    Object.entries(form).forEach(([k, v]) => fd.set(k, String(v)));
-    startTransition(async () => {
-      await createLine(estimateId, fd);
-      setForm((f) => ({ ...f, description: '', quantity: '1', unit: '', rate: '0' }));
-      setShow(false);
-      onAdded();
-    });
-  }
+  useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+    }
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [onClose]);
 
-  if (!show) {
-    return (
-      <tr>
-        <td colSpan={9} className="px-3 py-1.5">
-          <button onClick={() => setShow(true)} className="text-xs text-brand hover:underline">+ Add line</button>
-        </td>
-      </tr>
-    );
-  }
+  const items: { label: string; action: ContextAction; danger?: boolean }[] = [
+    { label: 'Insert line above', action: 'insert-above' },
+    { label: 'Insert line below', action: 'insert-below' },
+    { label: 'Duplicate', action: 'duplicate' },
+    { label: 'Move up', action: 'move-up' },
+    { label: 'Move down', action: 'move-down' },
+    { label: 'Delete', action: 'delete', danger: true },
+  ];
 
   return (
-    <tr className="bg-blue-50/30 border-b border-zinc-200">
-      <td className="px-2 py-2">
-        <select value={form.tradeSectionId} onChange={(e) => setForm((f) => ({ ...f, tradeSectionId: e.target.value }))} className="border border-zinc-200 rounded px-1 py-1 text-xs w-20">
-          <option value="">—</option>
-          {sections.map((s) => <option key={s.id} value={s.id}>{s.code}</option>)}
-        </select>
+    <div
+      ref={ref}
+      style={{ position: 'fixed', left: x, top: y, zIndex: 9999 }}
+      className="bg-white border border-zinc-200 rounded-md shadow-lg py-1 min-w-[160px]"
+    >
+      {items.map((item) => (
+        <button
+          key={item.action}
+          onClick={() => { onAction(item.action); onClose(); }}
+          className={`w-full text-left px-4 py-1.5 text-sm hover:bg-zinc-50 ${item.danger ? 'text-red-600' : 'text-zinc-700'}`}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── Standard Line Row ────────────────────────────────────────────────────────
+
+function StandardRow({
+  line,
+  estimateId,
+  defaultMarkupPct,
+  packages,
+  onPatch,
+  onContextMenu,
+}: {
+  line: Line;
+  estimateId: string;
+  defaultMarkupPct: number;
+  packages: TradePackage[];
+  onPatch: (id: string, patch: Partial<Line>) => void;
+  onContextMenu: (e: React.MouseEvent, id: string) => void;
+}) {
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const save = useCallback((patch: Partial<Line>) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    onPatch(line.id, patch);
+    timerRef.current = setTimeout(async () => {
+      try {
+        await fetch(`/api/leads/${estimateId}/cost-plan/lines/${line.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(patch),
+        });
+      } catch {
+        showToast('Save failed');
+      }
+    }, 500);
+  }, [line.id, estimateId, onPatch]);
+
+  const cost = Number(line.quantity) * Number(line.rate);
+  const sell = calcSell(cost, line.markupPct, defaultMarkupPct);
+  const gp = calcGp(cost, sell);
+
+  const isProjectSum = line.lineStructure === 'PROJECT_SUM_LINE';
+
+  return (
+    <tr
+      className={`border-b border-zinc-100 hover:bg-zinc-50/50 group ${rowFlagClass(line)} ${isProjectSum ? 'bg-blue-50/20' : ''}`}
+      onContextMenu={(e) => { e.preventDefault(); onContextMenu(e, line.id); }}
+    >
+      {/* Code — sticky */}
+      <td className="sticky left-0 bg-inherit px-2 py-1 text-xs text-zinc-400 whitespace-nowrap z-10 w-20">
+        <InlineCell
+          value={line.lineCode ?? ''}
+          onCommit={(v) => save({ lineCode: v || null })}
+          className="text-zinc-400"
+        />
       </td>
-      <td className="px-2 py-2">
-        <input value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="w-full border border-zinc-200 rounded px-2 py-1 text-sm" placeholder="Description *" />
+      {/* Description */}
+      <td className="px-2 py-1 min-w-[200px]">
+        <InlineCell
+          value={line.description}
+          onCommit={(v) => save({ description: v })}
+          className={isProjectSum ? 'font-medium text-blue-800' : ''}
+        />
       </td>
-      <td className="px-2 py-2">
-        <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))} className="border border-zinc-200 rounded px-1 py-1 text-xs">
-          {LINE_TYPES.map((t) => <option key={t} value={t}>{TYPE_LABELS[t]}</option>)}
-        </select>
+      {/* Unit */}
+      <td className="px-1 py-1 w-16">
+        <InlineCell
+          value={line.unit ?? ''}
+          onCommit={(v) => save({ unit: v || null })}
+          className="text-zinc-500"
+        />
       </td>
-      <td className="px-2 py-2"><input type="number" value={form.quantity} onChange={(e) => setForm((f) => ({ ...f, quantity: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-20" /></td>
-      <td className="px-2 py-2"><input value={form.unit} onChange={(e) => setForm((f) => ({ ...f, unit: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-16" placeholder="unit" /></td>
-      <td className="px-2 py-2"><input type="number" value={form.rate} onChange={(e) => setForm((f) => ({ ...f, rate: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-24" /></td>
-      <td className="px-2 py-2 text-sm text-zinc-700 font-medium">{fmt(Number(form.quantity) * Number(form.rate))}</td>
-      <td className="px-2 py-2">
-        <select value={form.areaId} onChange={(e) => setForm((f) => ({ ...f, areaId: e.target.value }))} className="border border-zinc-200 rounded px-1 py-1 text-xs w-24">
-          <option value="">—</option>
-          {areas.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
-        </select>
+      {/* Qty */}
+      <td className="px-1 py-1 w-20">
+        <InlineCell
+          value={String(Number(line.quantity))}
+          type="number"
+          align="right"
+          onCommit={(v) => save({ quantity: Number(v) || 0 })}
+        />
       </td>
-      <td className="px-2 py-2">
-        <div className="flex gap-1">
-          <button onClick={handleAdd} disabled={pending || !form.description.trim()} className="px-2 py-1 text-xs bg-brand text-white rounded disabled:opacity-50">Add</button>
-          <button onClick={() => setShow(false)} className="px-2 py-1 text-xs border border-zinc-200 rounded">×</button>
+      {/* Rate */}
+      <td className="px-1 py-1 w-24">
+        <InlineCell
+          value={String(Number(line.rate))}
+          type="number"
+          align="right"
+          onCommit={(v) => save({ rate: Number(v) || 0 })}
+        />
+      </td>
+      {/* Total Cost */}
+      <td className="px-2 py-1 w-28 text-right text-sm font-medium text-zinc-800 tabular-nums">
+        {fmt(cost)}
+      </td>
+      {/* Markup % */}
+      <td className="px-1 py-1 w-20">
+        <InlineCell
+          value={line.markupPct != null ? String(Number(line.markupPct)) : ''}
+          type="number"
+          align="right"
+          onCommit={(v) => save({ markupPct: v !== '' ? Number(v) : null })}
+          className="text-zinc-500"
+        />
+      </td>
+      {/* Declared Margin % */}
+      <td className="px-1 py-1 w-20">
+        <InlineCell
+          value={line.declaredMarginPct != null ? String(Number(line.declaredMarginPct)) : ''}
+          type="number"
+          align="right"
+          onCommit={(v) => save({ declaredMarginPct: v !== '' ? Number(v) : null })}
+          className="text-zinc-500"
+        />
+      </td>
+      {/* Total Sell */}
+      <td className="px-2 py-1 w-28 text-right text-sm text-zinc-700 tabular-nums">
+        {fmt(sell)}
+      </td>
+      {/* GP% */}
+      <td className={`px-2 py-1 w-20 text-right text-sm font-medium tabular-nums ${gp >= 20 ? 'text-green-600' : gp >= 10 ? 'text-amber-600' : 'text-red-600'}`}>
+        {gp.toFixed(1)}%
+      </td>
+      {/* Flags */}
+      <td className="px-2 py-1 w-24">
+        <div className="flex flex-wrap gap-0.5">
+          {line.isOption && <span className="px-1 py-0.5 text-[9px] font-bold bg-blue-100 text-blue-700 rounded">OPT</span>}
+          {line.isRisk && <span className="px-1 py-0.5 text-[9px] font-bold bg-amber-100 text-amber-700 rounded">R&O</span>}
+          {line.isHidden && <span className="px-1 py-0.5 text-[9px] font-bold bg-zinc-100 text-zinc-400 rounded">HID</span>}
+          {line.isPcSum && <span className="px-1 py-0.5 text-[9px] font-bold bg-purple-100 text-purple-700 rounded">PC</span>}
+          {line.isLockaway && <span className="px-1 py-0.5 text-[9px] font-bold bg-blue-100 text-[#1e3a5f] rounded">LOCK</span>}
         </div>
+      </td>
+      {/* Trade Package */}
+      <td className="px-1 py-1 w-32">
+        <select
+          value={line.tradePackageId ?? ''}
+          onChange={(e) => save({ tradePackageId: e.target.value || null })}
+          className="w-full text-xs border border-transparent rounded px-1 py-0.5 hover:border-zinc-200 bg-transparent focus:outline-none focus:border-zinc-300"
+        >
+          <option value="">—</option>
+          {packages.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+        </select>
       </td>
     </tr>
   );
@@ -293,192 +321,395 @@ function AddLineRow({
 
 export default function CostPlanClient({
   estimate,
-  orgTradeSections,
 }: {
   estimate: Estimate;
   orgTradeSections: TradeSection[];
 }) {
-  const [refreshKey, setRefreshKey] = useState(0);
-  const [showAddSection, setShowAddSection] = useState(false);
-  const [showAddArea, setShowAddArea] = useState(false);
-  const [newAreaName, setNewAreaName] = useState('');
-  const [pending, startTransition] = useTransition();
+  const [lines, setLines] = useState<Line[]>(() =>
+    estimate.lines.map((l) => ({
+      ...l,
+      lineStructure: (l as Line).lineStructure ?? 'STANDARD_LINE',
+      lineCode: (l as Line).lineCode ?? null,
+      markupPct: (l as Line).markupPct != null ? Number((l as Line).markupPct) : null,
+      declaredMarginPct: l.declaredMarginPct != null ? Number(l.declaredMarginPct) : null,
+      quantity: Number(l.quantity),
+      rate: Number(l.rate),
+      total: Number(l.total),
+      order: (l as Line).order ?? 0,
+    }))
+  );
 
-  const mutate = () => setRefreshKey((k) => k + 1);
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [rolledUp, setRolledUp] = useState(false);
+  const [adding, setAdding] = useState<string | null>(null); // sectionId being added to
+  const [ctxMenu, setCtxMenu] = useState<{ x: number; y: number; lineId: string } | null>(null);
+  const [saving, setSaving] = useState(false);
 
-  function handleAddSection(sectionId: string) {
-    startTransition(async () => {
-      await addTradeSectionToEstimate(estimate.id, sectionId);
-      setShowAddSection(false);
-      mutate();
+  const defaultMarkup = Number(estimate.defaultMarkupPct);
+  const costRecovery = Number(estimate.costRecoveryPct);
+
+  // Patch a line in local state
+  const patchLine = useCallback((id: string, patch: Partial<Line>) => {
+    setLines((prev) => prev.map((l) => {
+      if (l.id !== id) return l;
+      const updated = { ...l, ...patch };
+      updated.total = updated.quantity * updated.rate;
+      return updated;
+    }));
+  }, []);
+
+  // ── Context menu actions ──────────────────────────────────────────────────
+
+  async function handleContextAction(action: ContextAction, lineId: string) {
+    const idx = lines.findIndex((l) => l.id === lineId);
+    if (idx === -1) return;
+    const line = lines[idx];
+
+    if (action === 'delete') {
+      if (!confirm('Delete this line?')) return;
+      setSaving(true);
+      try {
+        await fetch(`/api/leads/${estimate.id}/cost-plan/lines/${lineId}`, { method: 'DELETE' });
+        setLines((prev) => prev.filter((l) => l.id !== lineId));
+      } catch { showToast('Delete failed'); }
+      setSaving(false);
+      return;
+    }
+
+    if (action === 'duplicate') {
+      setSaving(true);
+      try {
+        const res = await fetch(`/api/leads/${estimate.id}/cost-plan/lines`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...line,
+            id: undefined,
+            order: line.order + 0.5,
+            lineCode: line.lineCode ? `${line.lineCode}-copy` : null,
+          }),
+        });
+        if (res.ok) {
+          const newLine = await res.json();
+          setLines((prev) => {
+            const next = [...prev];
+            next.splice(idx + 1, 0, { ...newLine, quantity: Number(newLine.quantity), rate: Number(newLine.rate), total: Number(newLine.total), markupPct: newLine.markupPct != null ? Number(newLine.markupPct) : null, declaredMarginPct: newLine.declaredMarginPct != null ? Number(newLine.declaredMarginPct) : null });
+            return next;
+          });
+        }
+      } catch { showToast('Duplicate failed'); }
+      setSaving(false);
+      return;
+    }
+
+    if (action === 'insert-above' || action === 'insert-below') {
+      setSaving(true);
+      try {
+        const insertOrder = action === 'insert-above' ? line.order - 0.5 : line.order + 0.5;
+        const res = await fetch(`/api/leads/${estimate.id}/cost-plan/lines`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tradeSectionId: line.tradeSectionId,
+            lineStructure: 'STANDARD_LINE',
+            description: 'New line',
+            type: 'MATERIAL',
+            quantity: 0,
+            rate: 0,
+            order: insertOrder,
+          }),
+        });
+        if (res.ok) {
+          const newLine = await res.json();
+          const insertIdx = action === 'insert-above' ? idx : idx + 1;
+          setLines((prev) => {
+            const next = [...prev];
+            next.splice(insertIdx, 0, { ...newLine, quantity: 0, rate: 0, total: 0, markupPct: null, declaredMarginPct: null });
+            return next;
+          });
+        }
+      } catch { showToast('Insert failed'); }
+      setSaving(false);
+      return;
+    }
+
+    if (action === 'move-up' || action === 'move-down') {
+      const swapIdx = action === 'move-up' ? idx - 1 : idx + 1;
+      if (swapIdx < 0 || swapIdx >= lines.length) return;
+      const next = [...lines];
+      [next[idx], next[swapIdx]] = [next[swapIdx], next[idx]];
+      setLines(next);
+      // fire-and-forget order updates
+      fetch(`/api/leads/${estimate.id}/cost-plan/lines/${lines[idx].id}`, {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order: lines[swapIdx].order }),
+      });
+      fetch(`/api/leads/${estimate.id}/cost-plan/lines/${lines[swapIdx].id}`, {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ order: lines[idx].order }),
+      });
+    }
+  }
+
+  // ── Quick add line ────────────────────────────────────────────────────────
+
+  async function handleAddLine(sectionId: string | null) {
+    setSaving(true);
+    try {
+      const sectionLines = lines.filter((l) => l.tradeSectionId === sectionId);
+      const maxOrder = sectionLines.reduce((m, l) => Math.max(m, l.order), -1);
+      const res = await fetch(`/api/leads/${estimate.id}/cost-plan/lines`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tradeSectionId: sectionId,
+          lineStructure: 'STANDARD_LINE',
+          description: 'New line',
+          type: 'MATERIAL',
+          quantity: 0,
+          rate: 0,
+          markupPct: defaultMarkup,
+          order: maxOrder + 1,
+        }),
+      });
+      if (res.ok) {
+        const newLine = await res.json();
+        setLines((prev) => [...prev, { ...newLine, quantity: 0, rate: 0, total: 0, markupPct: defaultMarkup, declaredMarginPct: null }]);
+      }
+    } catch { showToast('Add failed'); }
+    setSaving(false);
+    setAdding(null);
+  }
+
+  // ── Summary totals ────────────────────────────────────────────────────────
+
+  const activeLines = lines.filter((l) =>
+    (l.lineStructure === 'STANDARD_LINE' || l.lineStructure === 'PROJECT_SUM_LINE') &&
+    !l.isOption && !l.isLockaway && !l.isHidden
+  );
+  const totalCost = activeLines.reduce((s, l) => s + l.total, 0);
+  const totalSell = activeLines.reduce((s, l) => s + calcSell(l.total, l.markupPct, defaultMarkup), 0);
+  const grossRevenue = totalSell * (1 + costRecovery / 100);
+  const overallGp = calcGp(totalCost, grossRevenue);
+
+  function toggleCollapse(sectionId: string) {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(sectionId)) next.delete(sectionId);
+      else next.add(sectionId);
+      return next;
     });
   }
 
-  function handleAddArea() {
-    if (!newAreaName.trim()) return;
-    startTransition(async () => {
-      await createArea(estimate.id, newAreaName.trim());
-      setNewAreaName('');
-      setShowAddArea(false);
-      mutate();
-    });
-  }
+  // ── Column header ─────────────────────────────────────────────────────────
 
-  const totalCost = estimate.lines
-    .filter((l) => !l.isOption && !l.isLockaway && !l.isHidden)
-    .reduce((s, l) => s + Number(l.total), 0);
-
-  const markup = Number(estimate.defaultMarkupPct) / 100;
-  const costRecovery = Number(estimate.costRecoveryPct) / 100;
-  const gross = totalCost * (1 + markup) * (1 + costRecovery);
-  const gp = gross > 0 ? ((gross - totalCost) / gross) * 100 : 0;
+  const TH = ({ children, align = 'left', width }: { children: React.ReactNode; align?: string; width?: string }) => (
+    <th className={`px-2 py-2.5 text-${align} text-[11px] font-semibold text-zinc-500 uppercase tracking-wide whitespace-nowrap ${width ?? ''}`}>
+      {children}
+    </th>
+  );
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <ToastContainer />
 
       {/* Toolbar */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-zinc-100 bg-white shrink-0">
-        <button onClick={() => setShowAddSection((v) => !v)} className="text-sm text-brand hover:underline">+ Add Trade Section</button>
-        <button onClick={() => setShowAddArea((v) => !v)} className="text-sm text-brand hover:underline">+ Add Area</button>
-        <div className="ml-auto flex items-center gap-4 text-sm">
-          <span className="text-zinc-500">Cost: <strong className="text-zinc-900">{fmt(totalCost)}</strong></span>
-          <span className="text-zinc-500">Gross: <strong className="text-zinc-900">{fmt(gross)}</strong></span>
-          <span className={`font-semibold ${gp >= Number(estimate.targetGpPct) ? 'text-green-600' : gp >= 15 ? 'text-amber-600' : 'text-red-600'}`}>GP: {gp.toFixed(2)}%</span>
+      <div className="flex items-center gap-3 px-4 py-2.5 border-b border-zinc-100 bg-white shrink-0">
+        <div className="flex items-center gap-1 bg-zinc-100 rounded-md p-0.5">
+          <button
+            onClick={() => setRolledUp(false)}
+            className={`px-3 py-1 text-xs rounded transition-colors ${!rolledUp ? 'bg-white text-zinc-800 shadow-sm' : 'text-zinc-500 hover:text-zinc-700'}`}
+          >
+            Expanded
+          </button>
+          <button
+            onClick={() => setRolledUp(true)}
+            className={`px-3 py-1 text-xs rounded transition-colors ${rolledUp ? 'bg-white text-zinc-800 shadow-sm' : 'text-zinc-500 hover:text-zinc-700'}`}
+          >
+            Rolled Up
+          </button>
+        </div>
+        {saving && <span className="text-xs text-zinc-400 animate-pulse">Saving…</span>}
+        <div className="ml-auto flex items-center gap-5 text-sm">
+          <span className="text-zinc-500">Cost <strong className="text-zinc-900 tabular-nums">{fmt(totalCost)}</strong></span>
+          <span className="text-zinc-500">Sell <strong className="text-zinc-700 tabular-nums">{fmt(totalSell)}</strong></span>
+          <span className={`font-semibold tabular-nums ${overallGp >= Number(estimate.targetGpPct) ? 'text-green-600' : overallGp >= 15 ? 'text-amber-600' : 'text-red-600'}`}>
+            GP {overallGp.toFixed(1)}%
+          </span>
         </div>
       </div>
 
-      {/* Add Section dropdown */}
-      {showAddSection && (
-        <div className="px-4 py-2 bg-zinc-50 border-b border-zinc-200 flex flex-wrap gap-2">
-          {orgTradeSections
-            .filter((s) => !estimate.tradeSections.some((es) => es.code === s.code))
-            .map((s) => (
-              <button
-                key={s.id}
-                onClick={() => handleAddSection(s.id)}
-                disabled={pending}
-                className="px-3 py-1.5 text-xs border border-zinc-200 rounded-md bg-white hover:bg-zinc-50"
-              >
-                {s.code} — {s.name}
-              </button>
-            ))}
-          {orgTradeSections.filter((s) => !estimate.tradeSections.some((es) => es.code === s.code)).length === 0 && (
-            <span className="text-xs text-zinc-400">All trade sections added. Seed trade sections first.</span>
-          )}
-        </div>
-      )}
-
-      {/* Add Area inline */}
-      {showAddArea && (
-        <div className="px-4 py-2 bg-zinc-50 border-b border-zinc-200 flex items-center gap-2">
-          <input
-            value={newAreaName}
-            onChange={(e) => setNewAreaName(e.target.value)}
-            placeholder="Area name…"
-            className="border border-zinc-200 rounded px-3 py-1.5 text-sm"
-            onKeyDown={(e) => e.key === 'Enter' && handleAddArea()}
-          />
-          <button onClick={handleAddArea} disabled={pending} className="px-3 py-1.5 text-sm bg-brand text-white rounded">Add</button>
-          <button onClick={() => setShowAddArea(false)} className="px-3 py-1.5 text-sm border border-zinc-200 rounded">Cancel</button>
-        </div>
-      )}
-
       {/* Table */}
       <div className="flex-1 overflow-auto">
-        <table className="w-full text-sm border-collapse min-w-[900px]">
-          <thead className="sticky top-0 bg-white z-10 border-b border-zinc-200">
+        <table className="w-full text-sm border-collapse" style={{ minWidth: 1100 }}>
+          <thead className="sticky top-0 bg-white z-20 border-b border-zinc-200">
             <tr>
-              <th className="px-3 py-2.5 text-left text-xs font-semibold text-zinc-500 w-12">Code</th>
-              <th className="px-3 py-2.5 text-left text-xs font-semibold text-zinc-500">Description</th>
-              <th className="px-2 py-2.5 text-left text-xs font-semibold text-zinc-500 w-20">Type</th>
-              <th className="px-2 py-2.5 text-right text-xs font-semibold text-zinc-500 w-20">Qty</th>
-              <th className="px-2 py-2.5 text-left text-xs font-semibold text-zinc-500 w-16">Unit</th>
-              <th className="px-2 py-2.5 text-right text-xs font-semibold text-zinc-500 w-28">Rate</th>
-              <th className="px-2 py-2.5 text-right text-xs font-semibold text-zinc-500 w-28">Total</th>
-              <th className="px-2 py-2.5 text-left text-xs font-semibold text-zinc-500 w-24">Area</th>
-              <th className="px-2 py-2.5 w-20"></th>
+              <TH width="w-20">Code</TH>
+              <TH>Description</TH>
+              <TH width="w-16">Unit</TH>
+              <TH align="right" width="w-20">Qty</TH>
+              <TH align="right" width="w-24">Rate</TH>
+              <TH align="right" width="w-28">Total Cost</TH>
+              <TH align="right" width="w-20">Mkup %</TH>
+              <TH align="right" width="w-20">DM %</TH>
+              <TH align="right" width="w-28">Total Sell</TH>
+              <TH align="right" width="w-20">GP %</TH>
+              <TH width="w-24">Flags</TH>
+              <TH width="w-32">Trade Pkg</TH>
             </tr>
           </thead>
           <tbody>
             {estimate.tradeSections.length === 0 && (
-              <tr><td colSpan={9} className="px-4 py-12 text-center text-sm text-zinc-400">No trade sections yet. Add a section to start building your cost plan.</td></tr>
+              <tr>
+                <td colSpan={12} className="px-4 py-16 text-center text-sm text-zinc-400">
+                  No trade sections yet.
+                </td>
+              </tr>
             )}
+
             {estimate.tradeSections.map((section) => {
-              const sectionLines = estimate.lines.filter((l) => l.tradeSectionId === section.id);
-              const sectionTotal = sectionLines.filter((l) => !l.isOption && !l.isLockaway && !l.isHidden).reduce((s, l) => s + Number(l.total), 0);
+              const sectionLines = lines.filter((l) => l.tradeSectionId === section.id);
+              const sectionCost = sectionLines
+                .filter((l) => (l.lineStructure === 'STANDARD_LINE' || l.lineStructure === 'PROJECT_SUM_LINE') && !l.isOption && !l.isLockaway && !l.isHidden)
+                .reduce((s, l) => s + l.total, 0);
+              const sectionSell = sectionLines
+                .filter((l) => (l.lineStructure === 'STANDARD_LINE' || l.lineStructure === 'PROJECT_SUM_LINE') && !l.isOption && !l.isLockaway && !l.isHidden)
+                .reduce((s, l) => s + calcSell(l.total, l.markupPct, defaultMarkup), 0);
+              const sectionGp = calcGp(sectionCost, sectionSell);
+              const isCollapsed = collapsed.has(section.id);
+
               return (
-                <>
-                  <tr key={`section-${section.id}`} className="bg-zinc-50/80">
-                    <td colSpan={6} className="px-3 py-2 text-xs font-semibold text-zinc-700 uppercase tracking-wide">
-                      {section.code && <span className="text-zinc-400 mr-1.5">{section.code}</span>}
-                      {section.name}
+                <tbody key={section.id}>
+                  {/* Section header row */}
+                  <tr className="bg-[#1e3a5f] text-white">
+                    <td className="sticky left-0 bg-[#1e3a5f] px-2 py-2 z-10">
+                      <button
+                        onClick={() => toggleCollapse(section.id)}
+                        className="text-blue-200 hover:text-white text-xs mr-1 w-4 inline-block text-center"
+                        title={isCollapsed ? 'Expand' : 'Collapse'}
+                      >
+                        {isCollapsed ? '▶' : '▼'}
+                      </button>
+                      <span className="text-blue-200 text-[11px] font-mono">{section.code}</span>
                     </td>
-                    <td className="px-2 py-2 text-right text-xs font-bold text-zinc-800">{fmt(sectionTotal)}</td>
+                    <td colSpan={4} className="px-2 py-2">
+                      <span className="text-sm font-semibold tracking-wide">{section.name}</span>
+                    </td>
+                    <td className="px-2 py-2 text-right text-sm font-bold tabular-nums">{fmt(sectionCost)}</td>
+                    <td colSpan={2}></td>
+                    <td className="px-2 py-2 text-right text-sm font-medium tabular-nums text-blue-200">{fmt(sectionSell)}</td>
+                    <td className={`px-2 py-2 text-right text-sm font-bold tabular-nums ${sectionGp >= Number(estimate.targetGpPct) ? 'text-green-300' : 'text-amber-300'}`}>
+                      {sectionGp.toFixed(1)}%
+                    </td>
                     <td colSpan={2}></td>
                   </tr>
-                  {sectionLines.map((line) => (
-                    <LineRow
-                      key={`line-${line.id}-${refreshKey}`}
-                      line={line}
-                      estimateId={estimate.id}
-                      sections={estimate.tradeSections}
-                      areas={estimate.areas}
-                      packages={estimate.tradePackages}
-                      onMutate={mutate}
-                    />
-                  ))}
-                  <AddLineRow
-                    key={`add-${section.id}-${refreshKey}`}
-                    estimateId={estimate.id}
-                    sections={estimate.tradeSections}
-                    areas={estimate.areas}
-                    packages={estimate.tradePackages}
-                    defaultSectionId={section.id}
-                    onAdded={mutate}
-                  />
-                </>
+
+                  {/* Lines */}
+                  {!isCollapsed && !rolledUp && sectionLines.map((line) => {
+                    if (line.lineStructure === 'SECTION_HEADER') {
+                      return (
+                        <tr key={line.id} className="bg-zinc-800 text-white" onContextMenu={(e) => { e.preventDefault(); setCtxMenu({ x: e.clientX, y: e.clientY, lineId: line.id }); }}>
+                          <td className="sticky left-0 bg-zinc-800 px-2 py-1.5 z-10 text-xs text-zinc-400 font-mono">
+                            {line.lineCode}
+                          </td>
+                          <td colSpan={11} className="px-2 py-1.5 text-sm font-bold tracking-wide">
+                            {line.description}
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    if (line.lineStructure === 'SUB_HEADING') {
+                      return (
+                        <tr key={line.id} className="bg-zinc-50" onContextMenu={(e) => { e.preventDefault(); setCtxMenu({ x: e.clientX, y: e.clientY, lineId: line.id }); }}>
+                          <td className="sticky left-0 bg-zinc-50 px-2 py-1 z-10 text-xs text-zinc-400"></td>
+                          <td colSpan={11} className="px-2 py-1 text-sm italic text-zinc-500 font-medium pl-4">
+                            {line.description}
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    if (line.lineStructure === 'NOTE_LINE') {
+                      return (
+                        <tr key={line.id} className="bg-white" onContextMenu={(e) => { e.preventDefault(); setCtxMenu({ x: e.clientX, y: e.clientY, lineId: line.id }); }}>
+                          <td className="sticky left-0 bg-white px-2 py-0.5 z-10 text-xs text-zinc-300"></td>
+                          <td colSpan={11} className="px-2 py-0.5 text-xs italic text-zinc-400 pl-8">
+                            {line.description}
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    // STANDARD_LINE and PROJECT_SUM_LINE
+                    return (
+                      <StandardRow
+                        key={line.id}
+                        line={line}
+                        estimateId={estimate.id}
+                        defaultMarkupPct={defaultMarkup}
+                        packages={estimate.tradePackages}
+                        onPatch={patchLine}
+                        onContextMenu={(e, id) => setCtxMenu({ x: e.clientX, y: e.clientY, lineId: id })}
+                      />
+                    );
+                  })}
+
+                  {/* Add line row (expanded mode only) */}
+                  {!isCollapsed && !rolledUp && (
+                    <tr>
+                      <td colSpan={12} className="px-2 py-1 border-b border-zinc-100">
+                        {adding === section.id ? (
+                          <span className="text-xs text-zinc-400 animate-pulse">Adding…</span>
+                        ) : (
+                          <button
+                            onClick={() => { setAdding(section.id); handleAddLine(section.id); }}
+                            className="text-xs text-brand hover:underline"
+                          >
+                            + Add line
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
               );
             })}
-
-            {/* Unassigned lines */}
-            {estimate.lines.filter((l) => !l.tradeSectionId).length > 0 && (
-              <>
-                <tr className="bg-zinc-50/80">
-                  <td colSpan={9} className="px-3 py-2 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Unassigned</td>
-                </tr>
-                {estimate.lines.filter((l) => !l.tradeSectionId).map((line) => (
-                  <LineRow key={`line-${line.id}-${refreshKey}`} line={line} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} packages={estimate.tradePackages} onMutate={mutate} />
-                ))}
-              </>
-            )}
-
-            {/* Global add line (no section) */}
-            {estimate.tradeSections.length === 0 && (
-              <AddLineRow key={`add-global-${refreshKey}`} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} packages={estimate.tradePackages} onAdded={mutate} />
-            )}
           </tbody>
 
-          {/* Footer totals */}
-          <tfoot className="sticky bottom-0 bg-white border-t-2 border-zinc-200">
-            <tr>
-              <td colSpan={6} className="px-3 py-3 text-sm font-semibold text-zinc-700 text-right">Total Cost</td>
-              <td className="px-2 py-3 text-right text-sm font-bold text-zinc-900">{fmt(totalCost)}</td>
+          {/* Footer */}
+          <tfoot className="sticky bottom-0 bg-white border-t-2 border-zinc-300 z-20">
+            <tr className="bg-zinc-50">
+              <td colSpan={5} className="px-3 py-3 text-sm font-semibold text-zinc-700 text-right">Total</td>
+              <td className="px-2 py-3 text-right text-sm font-bold text-zinc-900 tabular-nums">{fmt(totalCost)}</td>
+              <td colSpan={2}></td>
+              <td className="px-2 py-3 text-right text-sm font-bold text-zinc-700 tabular-nums">{fmt(totalSell)}</td>
+              <td className={`px-2 py-3 text-right text-sm font-bold tabular-nums ${overallGp >= Number(estimate.targetGpPct) ? 'text-green-600' : overallGp >= 15 ? 'text-amber-600' : 'text-red-600'}`}>
+                {overallGp.toFixed(1)}%
+              </td>
               <td colSpan={2}></td>
             </tr>
             <tr>
-              <td colSpan={6} className="px-3 py-2 text-xs text-zinc-500 text-right">Gross Revenue ({Number(estimate.defaultMarkupPct).toFixed(2)}% markup + {Number(estimate.costRecoveryPct).toFixed(2)}% recovery)</td>
-              <td className="px-2 py-2 text-right text-xs font-medium text-zinc-700">{fmt(gross)}</td>
-              <td colSpan={2}></td>
-            </tr>
-            <tr>
-              <td colSpan={6} className="px-3 py-2 text-xs text-zinc-500 text-right">Gross Profit %</td>
-              <td className={`px-2 py-2 text-right text-xs font-bold ${gp >= Number(estimate.targetGpPct) ? 'text-green-600' : gp >= 15 ? 'text-amber-600' : 'text-red-600'}`}>{gp.toFixed(2)}%</td>
-              <td colSpan={2}></td>
+              <td colSpan={5} className="px-3 py-1.5 text-xs text-zinc-400 text-right">
+                Gross Revenue (+{Number(estimate.costRecoveryPct).toFixed(2)}% recovery)
+              </td>
+              <td colSpan={3}></td>
+              <td className="px-2 py-1.5 text-right text-xs text-zinc-500 tabular-nums">{fmt(grossRevenue)}</td>
+              <td colSpan={3}></td>
             </tr>
           </tfoot>
         </table>
       </div>
+
+      {/* Context menu */}
+      {ctxMenu && (
+        <ContextMenu
+          x={ctxMenu.x}
+          y={ctxMenu.y}
+          onAction={(action) => handleContextAction(action, ctxMenu.lineId)}
+          onClose={() => setCtxMenu(null)}
+        />
+      )}
     </div>
   );
 }

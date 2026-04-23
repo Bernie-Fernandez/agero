@@ -526,6 +526,17 @@ export const EstimateLineType = {
 export type EstimateLineType = (typeof EstimateLineType)[keyof typeof EstimateLineType]
 
 
+export const EstimateLineStructure = {
+  SECTION_HEADER: 'SECTION_HEADER',
+  SUB_HEADING: 'SUB_HEADING',
+  STANDARD_LINE: 'STANDARD_LINE',
+  NOTE_LINE: 'NOTE_LINE',
+  PROJECT_SUM_LINE: 'PROJECT_SUM_LINE'
+} as const
+
+export type EstimateLineStructure = (typeof EstimateLineStructure)[keyof typeof EstimateLineStructure]
+
+
 export const QuoteStatus = {
   PENDING: 'PENDING',
   RECEIVED: 'RECEIVED',

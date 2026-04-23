@@ -2375,6 +2375,16 @@ enum EstimateLineType {
   @@schema("projects")
 }
 
+enum EstimateLineStructure {
+  SECTION_HEADER
+  SUB_HEADING
+  STANDARD_LINE
+  NOTE_LINE
+  PROJECT_SUM_LINE
+
+  @@schema("projects")
+}
+
 enum QuoteStatus {
   PENDING
   RECEIVED
@@ -2407,6 +2417,7 @@ model Estimate {
   client               Company?       @relation("EstimateClient", fields: [clientId], references: [id], onDelete: SetNull)
   status               EstimateStatus @default(DRAFT)
   pipelineStage        Int            @default(3) @map("pipeline_stage")
+  confidencePct        Int?           @map("confidence_pct")
   hubspotDealId        String?        @map("hubspot_deal_id")
   addressStreet        String?        @map("address_street")
   addressSuburb        String?        @map("address_suburb")
@@ -2514,11 +2525,14 @@ model EstimateLine {
   tradeSectionId  String?              @map("trade_section_id") @db.Uuid
   tradeSection    EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
   description     String
+  lineStructure   EstimateLineStructure @default(STANDARD_LINE) @map("line_structure")
+  lineCode        String?              @map("line_code")
   type            EstimateLineType     @default(MATERIAL)
   quantity        Decimal              @default(0) @db.Decimal(14, 4)
   unit            String?
   rate            Decimal              @default(0) @db.Decimal(14, 4)
   total           Decimal              @default(0) @db.Decimal(14, 2)
+  markupPct       Decimal?             @map("markup_pct") @db.Decimal(5, 2)
   isRisk          Boolean              @default(false) @map("is_risk")
   isOption        Boolean              @default(false) @map("is_option")
   isPcSum         Boolean              @default(false) @map("is_pc_sum")

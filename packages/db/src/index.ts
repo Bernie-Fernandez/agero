@@ -36,3 +36,5 @@ export const prismaErp = new Proxy({} as PrismaClient, {
 });
 
 export * from "./generated/prisma/client";
+export { DEFAULT_COST_PLAN } from "../prisma/cost-plan-defaults";
+export type { DefaultLine, DefaultSection } from "../prisma/cost-plan-defaults";

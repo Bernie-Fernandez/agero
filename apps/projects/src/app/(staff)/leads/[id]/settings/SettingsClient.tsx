@@ -1,5 +1,5 @@
 'use client';
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { showToast, ToastContainer } from '@/components/Toast';
 import { updateEstimateSettings, convertToProject } from '../actions';
@@ -10,6 +10,17 @@ const JOB_TYPES = [
 ];
 
 const AU_STATES = ['VIC', 'NSW', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'];
+
+const PIPELINE_STAGES: Record<number, string> = {
+  3: 'Qualified', 4: 'Submission', 5: 'Awaiting Decision',
+  6: 'Intent to Negotiate', 7: 'Won', 8: 'Lost',
+  9: 'Withdrawn', 10: 'Unsuccessful', 11: 'Dead',
+  12: 'Declined', 13: 'Sub Withdrawn',
+};
+
+const STAGE_CONFIDENCE: Record<number, number> = {
+  3:25,4:40,5:50,6:65,7:100,8:0,9:0,10:0,11:0,12:0,13:0,
+};
 
 type Estimate = {
   id: string;
@@ -29,6 +40,8 @@ type Estimate = {
   floorAreaM2: number | string | null;
   estimatorId: string | null;
   revenueCostCodeId: string | null;
+  pipelineStage: number;
+  confidencePct: number | null;
   tradePackageHighPct: number | string | null;
   tradePackageMedPct: number | string | null;
   tradePackageLowPct: number | string | null;
@@ -69,6 +82,9 @@ export default function SettingsClient({
   const router = useRouter();
   const [tab, setTab] = useState<Tab>('general');
   const [saving, startTransition] = useTransition();
+  const [stage, setStage] = useState(estimate.pipelineStage ?? 3);
+  const [confidence, setConfidence] = useState(estimate.confidencePct ?? STAGE_CONFIDENCE[estimate.pipelineStage ?? 3] ?? 25);
+  const [confidenceOverridden, setConfidenceOverridden] = useState(false);
 
   function handleSave(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -137,6 +153,36 @@ export default function SettingsClient({
                   <input name="addressPostcode" defaultValue={estimate.addressPostcode ?? ''} placeholder="Postcode" maxLength={4} className={inputCls} />
                 </div>
               </div>
+            </div>
+            <div>
+              <label className={labelCls}>Stage / Confidence</label>
+              <div className="flex gap-2">
+                <select
+                  name="pipelineStage"
+                  value={stage}
+                  onChange={(e) => {
+                    const s = Number(e.target.value);
+                    setStage(s);
+                    if (!confidenceOverridden) setConfidence(STAGE_CONFIDENCE[s] ?? 0);
+                  }}
+                  className="flex-1 border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+                >
+                  {Object.entries(PIPELINE_STAGES).map(([k, v]) => (
+                    <option key={k} value={k}>{v}</option>
+                  ))}
+                </select>
+                <div className="flex items-center gap-1 w-28">
+                  <input
+                    name="confidencePct"
+                    type="number" min="0" max="100"
+                    value={confidence}
+                    onChange={(e) => { setConfidence(Number(e.target.value)); setConfidenceOverridden(true); }}
+                    className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+                  />
+                  <span className="text-zinc-400 text-sm shrink-0">%</span>
+                </div>
+              </div>
+              <p className="mt-1 text-xs text-zinc-400">Confidence auto-fills by stage; override if needed.</p>
             </div>
             <div>
               <label className={labelCls}>Job Type</label>

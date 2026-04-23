@@ -30,6 +30,7 @@ export type EstimateLineAvgAggregateOutputType = {
   quantity: runtime.Decimal | null
   rate: runtime.Decimal | null
   total: runtime.Decimal | null
+  markupPct: runtime.Decimal | null
   declaredMarginPct: runtime.Decimal | null
   order: number | null
 }
@@ -38,6 +39,7 @@ export type EstimateLineSumAggregateOutputType = {
   quantity: runtime.Decimal | null
   rate: runtime.Decimal | null
   total: runtime.Decimal | null
+  markupPct: runtime.Decimal | null
   declaredMarginPct: runtime.Decimal | null
   order: number | null
 }
@@ -49,11 +51,14 @@ export type EstimateLineMinAggregateOutputType = {
   scenarioId: string | null
   tradeSectionId: string | null
   description: string | null
+  lineStructure: $Enums.EstimateLineStructure | null
+  lineCode: string | null
   type: $Enums.EstimateLineType | null
   quantity: runtime.Decimal | null
   unit: string | null
   rate: runtime.Decimal | null
   total: runtime.Decimal | null
+  markupPct: runtime.Decimal | null
   isRisk: boolean | null
   isOption: boolean | null
   isPcSum: boolean | null
@@ -74,11 +79,14 @@ export type EstimateLineMaxAggregateOutputType = {
   scenarioId: string | null
   tradeSectionId: string | null
   description: string | null
+  lineStructure: $Enums.EstimateLineStructure | null
+  lineCode: string | null
   type: $Enums.EstimateLineType | null
   quantity: runtime.Decimal | null
   unit: string | null
   rate: runtime.Decimal | null
   total: runtime.Decimal | null
+  markupPct: runtime.Decimal | null
   isRisk: boolean | null
   isOption: boolean | null
   isPcSum: boolean | null
@@ -99,11 +107,14 @@ export type EstimateLineCountAggregateOutputType = {
   scenarioId: number
   tradeSectionId: number
   description: number
+  lineStructure: number
+  lineCode: number
   type: number
   quantity: number
   unit: number
   rate: number
   total: number
+  markupPct: number
   isRisk: number
   isOption: number
   isPcSum: number
@@ -123,6 +134,7 @@ export type EstimateLineAvgAggregateInputType = {
   quantity?: true
   rate?: true
   total?: true
+  markupPct?: true
   declaredMarginPct?: true
   order?: true
 }
@@ -131,6 +143,7 @@ export type EstimateLineSumAggregateInputType = {
   quantity?: true
   rate?: true
   total?: true
+  markupPct?: true
   declaredMarginPct?: true
   order?: true
 }
@@ -142,11 +155,14 @@ export type EstimateLineMinAggregateInputType = {
   scenarioId?: true
   tradeSectionId?: true
   description?: true
+  lineStructure?: true
+  lineCode?: true
   type?: true
   quantity?: true
   unit?: true
   rate?: true
   total?: true
+  markupPct?: true
   isRisk?: true
   isOption?: true
   isPcSum?: true
@@ -167,11 +183,14 @@ export type EstimateLineMaxAggregateInputType = {
   scenarioId?: true
   tradeSectionId?: true
   description?: true
+  lineStructure?: true
+  lineCode?: true
   type?: true
   quantity?: true
   unit?: true
   rate?: true
   total?: true
+  markupPct?: true
   isRisk?: true
   isOption?: true
   isPcSum?: true
@@ -192,11 +211,14 @@ export type EstimateLineCountAggregateInputType = {
   scenarioId?: true
   tradeSectionId?: true
   description?: true
+  lineStructure?: true
+  lineCode?: true
   type?: true
   quantity?: true
   unit?: true
   rate?: true
   total?: true
+  markupPct?: true
   isRisk?: true
   isOption?: true
   isPcSum?: true
@@ -304,11 +326,14 @@ export type EstimateLineGroupByOutputType = {
   scenarioId: string | null
   tradeSectionId: string | null
   description: string
+  lineStructure: $Enums.EstimateLineStructure
+  lineCode: string | null
   type: $Enums.EstimateLineType
   quantity: runtime.Decimal
   unit: string | null
   rate: runtime.Decimal
   total: runtime.Decimal
+  markupPct: runtime.Decimal | null
   isRisk: boolean
   isOption: boolean
   isPcSum: boolean
@@ -352,11 +377,14 @@ export type EstimateLineWhereInput = {
   scenarioId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   tradeSectionId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   description?: Prisma.StringFilter<"EstimateLine"> | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFilter<"EstimateLine"> | $Enums.EstimateLineStructure
+  lineCode?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   type?: Prisma.EnumEstimateLineTypeFilter<"EstimateLine"> | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   rate?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.DecimalNullableFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isOption?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isPcSum?: Prisma.BoolFilter<"EstimateLine"> | boolean
@@ -387,11 +415,14 @@ export type EstimateLineOrderByWithRelationInput = {
   scenarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeSectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
+  lineStructure?: Prisma.SortOrder
+  lineCode?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unit?: Prisma.SortOrderInput | Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrderInput | Prisma.SortOrder
   isRisk?: Prisma.SortOrder
   isOption?: Prisma.SortOrder
   isPcSum?: Prisma.SortOrder
@@ -425,11 +456,14 @@ export type EstimateLineWhereUniqueInput = Prisma.AtLeast<{
   scenarioId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   tradeSectionId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   description?: Prisma.StringFilter<"EstimateLine"> | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFilter<"EstimateLine"> | $Enums.EstimateLineStructure
+  lineCode?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   type?: Prisma.EnumEstimateLineTypeFilter<"EstimateLine"> | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   rate?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.DecimalNullableFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isOption?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isPcSum?: Prisma.BoolFilter<"EstimateLine"> | boolean
@@ -460,11 +494,14 @@ export type EstimateLineOrderByWithAggregationInput = {
   scenarioId?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeSectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrder
+  lineStructure?: Prisma.SortOrder
+  lineCode?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unit?: Prisma.SortOrderInput | Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrderInput | Prisma.SortOrder
   isRisk?: Prisma.SortOrder
   isOption?: Prisma.SortOrder
   isPcSum?: Prisma.SortOrder
@@ -493,11 +530,14 @@ export type EstimateLineScalarWhereWithAggregatesInput = {
   scenarioId?: Prisma.UuidNullableWithAggregatesFilter<"EstimateLine"> | string | null
   tradeSectionId?: Prisma.UuidNullableWithAggregatesFilter<"EstimateLine"> | string | null
   description?: Prisma.StringWithAggregatesFilter<"EstimateLine"> | string
+  lineStructure?: Prisma.EnumEstimateLineStructureWithAggregatesFilter<"EstimateLine"> | $Enums.EstimateLineStructure
+  lineCode?: Prisma.StringNullableWithAggregatesFilter<"EstimateLine"> | string | null
   type?: Prisma.EnumEstimateLineTypeWithAggregatesFilter<"EstimateLine"> | $Enums.EstimateLineType
   quantity?: Prisma.DecimalWithAggregatesFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.StringNullableWithAggregatesFilter<"EstimateLine"> | string | null
   rate?: Prisma.DecimalWithAggregatesFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalWithAggregatesFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.DecimalNullableWithAggregatesFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolWithAggregatesFilter<"EstimateLine"> | boolean
   isOption?: Prisma.BoolWithAggregatesFilter<"EstimateLine"> | boolean
   isPcSum?: Prisma.BoolWithAggregatesFilter<"EstimateLine"> | boolean
@@ -514,11 +554,14 @@ export type EstimateLineScalarWhereWithAggregatesInput = {
 export type EstimateLineCreateInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -548,11 +591,14 @@ export type EstimateLineUncheckedCreateInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -574,11 +620,14 @@ export type EstimateLineUncheckedCreateInput = {
 export type EstimateLineUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -608,11 +657,14 @@ export type EstimateLineUncheckedUpdateInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -638,11 +690,14 @@ export type EstimateLineCreateManyInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -659,11 +714,14 @@ export type EstimateLineCreateManyInput = {
 export type EstimateLineUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -683,11 +741,14 @@ export type EstimateLineUncheckedUpdateManyInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -718,11 +779,14 @@ export type EstimateLineCountOrderByAggregateInput = {
   scenarioId?: Prisma.SortOrder
   tradeSectionId?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  lineStructure?: Prisma.SortOrder
+  lineCode?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrder
   isRisk?: Prisma.SortOrder
   isOption?: Prisma.SortOrder
   isPcSum?: Prisma.SortOrder
@@ -740,6 +804,7 @@ export type EstimateLineAvgOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrder
   declaredMarginPct?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
@@ -751,11 +816,14 @@ export type EstimateLineMaxOrderByAggregateInput = {
   scenarioId?: Prisma.SortOrder
   tradeSectionId?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  lineStructure?: Prisma.SortOrder
+  lineCode?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrder
   isRisk?: Prisma.SortOrder
   isOption?: Prisma.SortOrder
   isPcSum?: Prisma.SortOrder
@@ -776,11 +844,14 @@ export type EstimateLineMinOrderByAggregateInput = {
   scenarioId?: Prisma.SortOrder
   tradeSectionId?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  lineStructure?: Prisma.SortOrder
+  lineCode?: Prisma.SortOrder
   type?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   unit?: Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrder
   isRisk?: Prisma.SortOrder
   isOption?: Prisma.SortOrder
   isPcSum?: Prisma.SortOrder
@@ -798,6 +869,7 @@ export type EstimateLineSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   rate?: Prisma.SortOrder
   total?: Prisma.SortOrder
+  markupPct?: Prisma.SortOrder
   declaredMarginPct?: Prisma.SortOrder
   order?: Prisma.SortOrder
 }
@@ -975,6 +1047,10 @@ export type EstimateLineUncheckedUpdateManyWithoutTradeSectionNestedInput = {
   deleteMany?: Prisma.EstimateLineScalarWhereInput | Prisma.EstimateLineScalarWhereInput[]
 }
 
+export type EnumEstimateLineStructureFieldUpdateOperationsInput = {
+  set?: $Enums.EstimateLineStructure
+}
+
 export type EnumEstimateLineTypeFieldUpdateOperationsInput = {
   set?: $Enums.EstimateLineType
 }
@@ -1094,11 +1170,14 @@ export type EstimateLineUpdateOneRequiredWithoutScopeAttachmentsNestedInput = {
 export type EstimateLineCreateWithoutEstimateInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1126,11 +1205,14 @@ export type EstimateLineUncheckedCreateWithoutEstimateInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1185,11 +1267,14 @@ export type EstimateLineScalarWhereInput = {
   scenarioId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   tradeSectionId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   description?: Prisma.StringFilter<"EstimateLine"> | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFilter<"EstimateLine"> | $Enums.EstimateLineStructure
+  lineCode?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   type?: Prisma.EnumEstimateLineTypeFilter<"EstimateLine"> | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   rate?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.DecimalNullableFilter<"EstimateLine"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isOption?: Prisma.BoolFilter<"EstimateLine"> | boolean
   isPcSum?: Prisma.BoolFilter<"EstimateLine"> | boolean
@@ -1206,11 +1291,14 @@ export type EstimateLineScalarWhereInput = {
 export type EstimateLineCreateWithoutAreaInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1238,11 +1326,14 @@ export type EstimateLineUncheckedCreateWithoutAreaInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1290,11 +1381,14 @@ export type EstimateLineUpdateManyWithWhereWithoutAreaInput = {
 export type EstimateLineCreateWithoutScenarioInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1322,11 +1416,14 @@ export type EstimateLineUncheckedCreateWithoutScenarioInput = {
   areaId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1374,11 +1471,14 @@ export type EstimateLineUpdateManyWithWhereWithoutScenarioInput = {
 export type EstimateLineCreateWithoutTradeSectionInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1406,11 +1506,14 @@ export type EstimateLineUncheckedCreateWithoutTradeSectionInput = {
   areaId?: string | null
   scenarioId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1458,11 +1561,14 @@ export type EstimateLineUpdateManyWithWhereWithoutTradeSectionInput = {
 export type EstimateLineCreateWithoutQuantitiesInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1491,11 +1597,14 @@ export type EstimateLineUncheckedCreateWithoutQuantitiesInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1532,11 +1641,14 @@ export type EstimateLineUpdateToOneWithWhereWithoutQuantitiesInput = {
 export type EstimateLineUpdateWithoutQuantitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1565,11 +1677,14 @@ export type EstimateLineUncheckedUpdateWithoutQuantitiesInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1590,11 +1705,14 @@ export type EstimateLineUncheckedUpdateWithoutQuantitiesInput = {
 export type EstimateLineCreateWithoutOptionLinesInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1623,11 +1741,14 @@ export type EstimateLineUncheckedCreateWithoutOptionLinesInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1664,11 +1785,14 @@ export type EstimateLineUpdateToOneWithWhereWithoutOptionLinesInput = {
 export type EstimateLineUpdateWithoutOptionLinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1697,11 +1821,14 @@ export type EstimateLineUncheckedUpdateWithoutOptionLinesInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1722,11 +1849,14 @@ export type EstimateLineUncheckedUpdateWithoutOptionLinesInput = {
 export type EstimateLineCreateWithoutLockawayLinesInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1755,11 +1885,14 @@ export type EstimateLineUncheckedCreateWithoutLockawayLinesInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1796,11 +1929,14 @@ export type EstimateLineUpdateToOneWithWhereWithoutLockawayLinesInput = {
 export type EstimateLineUpdateWithoutLockawayLinesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1829,11 +1965,14 @@ export type EstimateLineUncheckedUpdateWithoutLockawayLinesInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1854,11 +1993,14 @@ export type EstimateLineUncheckedUpdateWithoutLockawayLinesInput = {
 export type EstimateLineCreateWithoutTagsInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1887,11 +2029,14 @@ export type EstimateLineUncheckedCreateWithoutTagsInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -1928,11 +2073,14 @@ export type EstimateLineUpdateToOneWithWhereWithoutTagsInput = {
 export type EstimateLineUpdateWithoutTagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1961,11 +2109,14 @@ export type EstimateLineUncheckedUpdateWithoutTagsInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1986,11 +2137,14 @@ export type EstimateLineUncheckedUpdateWithoutTagsInput = {
 export type EstimateLineCreateWithoutTradePackageInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2019,11 +2173,14 @@ export type EstimateLineUncheckedCreateWithoutTradePackageInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2070,11 +2227,14 @@ export type EstimateLineUpdateManyWithWhereWithoutTradePackageInput = {
 export type EstimateLineCreateWithoutScopeAttachmentsInput = {
   id?: string
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2103,11 +2263,14 @@ export type EstimateLineUncheckedCreateWithoutScopeAttachmentsInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2144,11 +2307,14 @@ export type EstimateLineUpdateToOneWithWhereWithoutScopeAttachmentsInput = {
 export type EstimateLineUpdateWithoutScopeAttachmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2177,11 +2343,14 @@ export type EstimateLineUncheckedUpdateWithoutScopeAttachmentsInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2205,11 +2374,14 @@ export type EstimateLineCreateManyEstimateInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2226,11 +2398,14 @@ export type EstimateLineCreateManyEstimateInput = {
 export type EstimateLineUpdateWithoutEstimateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2258,11 +2433,14 @@ export type EstimateLineUncheckedUpdateWithoutEstimateInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2287,11 +2465,14 @@ export type EstimateLineUncheckedUpdateManyWithoutEstimateInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2311,11 +2492,14 @@ export type EstimateLineCreateManyAreaInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2332,11 +2516,14 @@ export type EstimateLineCreateManyAreaInput = {
 export type EstimateLineUpdateWithoutAreaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2364,11 +2551,14 @@ export type EstimateLineUncheckedUpdateWithoutAreaInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2393,11 +2583,14 @@ export type EstimateLineUncheckedUpdateManyWithoutAreaInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2417,11 +2610,14 @@ export type EstimateLineCreateManyScenarioInput = {
   areaId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2438,11 +2634,14 @@ export type EstimateLineCreateManyScenarioInput = {
 export type EstimateLineUpdateWithoutScenarioInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2470,11 +2669,14 @@ export type EstimateLineUncheckedUpdateWithoutScenarioInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2499,11 +2701,14 @@ export type EstimateLineUncheckedUpdateManyWithoutScenarioInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2523,11 +2728,14 @@ export type EstimateLineCreateManyTradeSectionInput = {
   areaId?: string | null
   scenarioId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2544,11 +2752,14 @@ export type EstimateLineCreateManyTradeSectionInput = {
 export type EstimateLineUpdateWithoutTradeSectionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2576,11 +2787,14 @@ export type EstimateLineUncheckedUpdateWithoutTradeSectionInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2605,11 +2819,14 @@ export type EstimateLineUncheckedUpdateManyWithoutTradeSectionInput = {
   areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2630,11 +2847,14 @@ export type EstimateLineCreateManyTradePackageInput = {
   scenarioId?: string | null
   tradeSectionId?: string | null
   description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
   type?: $Enums.EstimateLineType
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: string | null
   rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2650,11 +2870,14 @@ export type EstimateLineCreateManyTradePackageInput = {
 export type EstimateLineUpdateWithoutTradePackageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2683,11 +2906,14 @@ export type EstimateLineUncheckedUpdateWithoutTradePackageInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2712,11 +2938,14 @@ export type EstimateLineUncheckedUpdateManyWithoutTradePackageInput = {
   scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
   quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -2803,11 +3032,14 @@ export type EstimateLineSelect<ExtArgs extends runtime.Types.Extensions.Internal
   scenarioId?: boolean
   tradeSectionId?: boolean
   description?: boolean
+  lineStructure?: boolean
+  lineCode?: boolean
   type?: boolean
   quantity?: boolean
   unit?: boolean
   rate?: boolean
   total?: boolean
+  markupPct?: boolean
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2839,11 +3071,14 @@ export type EstimateLineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   scenarioId?: boolean
   tradeSectionId?: boolean
   description?: boolean
+  lineStructure?: boolean
+  lineCode?: boolean
   type?: boolean
   quantity?: boolean
   unit?: boolean
   rate?: boolean
   total?: boolean
+  markupPct?: boolean
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2869,11 +3104,14 @@ export type EstimateLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   scenarioId?: boolean
   tradeSectionId?: boolean
   description?: boolean
+  lineStructure?: boolean
+  lineCode?: boolean
   type?: boolean
   quantity?: boolean
   unit?: boolean
   rate?: boolean
   total?: boolean
+  markupPct?: boolean
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2899,11 +3137,14 @@ export type EstimateLineSelectScalar = {
   scenarioId?: boolean
   tradeSectionId?: boolean
   description?: boolean
+  lineStructure?: boolean
+  lineCode?: boolean
   type?: boolean
   quantity?: boolean
   unit?: boolean
   rate?: boolean
   total?: boolean
+  markupPct?: boolean
   isRisk?: boolean
   isOption?: boolean
   isPcSum?: boolean
@@ -2917,7 +3158,7 @@ export type EstimateLineSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EstimateLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "areaId" | "scenarioId" | "tradeSectionId" | "description" | "type" | "quantity" | "unit" | "rate" | "total" | "isRisk" | "isOption" | "isPcSum" | "isLockaway" | "isHidden" | "declaredMarginPct" | "tradePackageId" | "notes" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["estimateLine"]>
+export type EstimateLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "areaId" | "scenarioId" | "tradeSectionId" | "description" | "lineStructure" | "lineCode" | "type" | "quantity" | "unit" | "rate" | "total" | "markupPct" | "isRisk" | "isOption" | "isPcSum" | "isLockaway" | "isHidden" | "declaredMarginPct" | "tradePackageId" | "notes" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["estimateLine"]>
 export type EstimateLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
   area?: boolean | Prisma.EstimateLine$areaArgs<ExtArgs>
@@ -2967,11 +3208,14 @@ export type $EstimateLinePayload<ExtArgs extends runtime.Types.Extensions.Intern
     scenarioId: string | null
     tradeSectionId: string | null
     description: string
+    lineStructure: $Enums.EstimateLineStructure
+    lineCode: string | null
     type: $Enums.EstimateLineType
     quantity: runtime.Decimal
     unit: string | null
     rate: runtime.Decimal
     total: runtime.Decimal
+    markupPct: runtime.Decimal | null
     isRisk: boolean
     isOption: boolean
     isPcSum: boolean
@@ -3422,11 +3666,14 @@ export interface EstimateLineFieldRefs {
   readonly scenarioId: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly tradeSectionId: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly description: Prisma.FieldRef<"EstimateLine", 'String'>
+  readonly lineStructure: Prisma.FieldRef<"EstimateLine", 'EstimateLineStructure'>
+  readonly lineCode: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly type: Prisma.FieldRef<"EstimateLine", 'EstimateLineType'>
   readonly quantity: Prisma.FieldRef<"EstimateLine", 'Decimal'>
   readonly unit: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly rate: Prisma.FieldRef<"EstimateLine", 'Decimal'>
   readonly total: Prisma.FieldRef<"EstimateLine", 'Decimal'>
+  readonly markupPct: Prisma.FieldRef<"EstimateLine", 'Decimal'>
   readonly isRisk: Prisma.FieldRef<"EstimateLine", 'Boolean'>
   readonly isOption: Prisma.FieldRef<"EstimateLine", 'Boolean'>
   readonly isPcSum: Prisma.FieldRef<"EstimateLine", 'Boolean'>

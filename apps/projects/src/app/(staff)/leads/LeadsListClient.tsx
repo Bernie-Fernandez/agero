@@ -100,11 +100,15 @@ function NewLeadPanel({
   currentUserId: string;
   onCreated: (id: string) => void;
 }) {
+  const STAGE_CONFIDENCE: Record<number, number> = { 3:25,4:40,5:50,6:65,7:100,8:0,9:0,10:0,11:0,12:0,13:0 };
   const [saving, setSaving] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [query, setQuery] = useState('');
   const [selectedClient, setSelectedClient] = useState<Company | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [stage, setStage] = useState(3);
+  const [confidence, setConfidence] = useState(25);
+  const [confidenceOverridden, setConfidenceOverridden] = useState(false);
   const filtered = clients.filter((c) => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 10);
 
   function validate(fd: FormData) {
@@ -212,6 +216,40 @@ function NewLeadPanel({
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Stage + Confidence */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Stage / Confidence</label>
+          <div className="flex gap-2">
+            <select
+              name="pipelineStage"
+              value={stage}
+              onChange={(e) => {
+                const s = Number(e.target.value);
+                setStage(s);
+                if (!confidenceOverridden) setConfidence(STAGE_CONFIDENCE[s] ?? 0);
+              }}
+              className="flex-1 border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+            >
+              {Object.entries(PIPELINE_STAGES).map(([k, v]) => (
+                <option key={k} value={k}>{v}</option>
+              ))}
+            </select>
+            <div className="flex items-center gap-1 w-28">
+              <input
+                name="confidencePct"
+                type="number"
+                min="0"
+                max="100"
+                value={confidence}
+                onChange={(e) => { setConfidence(Number(e.target.value)); setConfidenceOverridden(true); }}
+                className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+              />
+              <span className="text-zinc-400 text-sm shrink-0">%</span>
+            </div>
+          </div>
+          <p className="mt-1 text-xs text-zinc-400">Confidence auto-fills by stage; override if needed.</p>
         </div>
 
         {/* Job Type */}

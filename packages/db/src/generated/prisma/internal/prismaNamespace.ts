@@ -8927,6 +8927,7 @@ export const EstimateScalarFieldEnum = {
   clientId: 'clientId',
   status: 'status',
   pipelineStage: 'pipelineStage',
+  confidencePct: 'confidencePct',
   hubspotDealId: 'hubspotDealId',
   addressStreet: 'addressStreet',
   addressSuburb: 'addressSuburb',
@@ -9001,11 +9002,14 @@ export const EstimateLineScalarFieldEnum = {
   scenarioId: 'scenarioId',
   tradeSectionId: 'tradeSectionId',
   description: 'description',
+  lineStructure: 'lineStructure',
+  lineCode: 'lineCode',
   type: 'type',
   quantity: 'quantity',
   unit: 'unit',
   rate: 'rate',
   total: 'total',
+  markupPct: 'markupPct',
   isRisk: 'isRisk',
   isOption: 'isOption',
   isPcSum: 'isPcSum',
@@ -9987,6 +9991,20 @@ export type EnumEstimateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
  * Reference to a field of type 'EstimateStatus[]'
  */
 export type ListEnumEstimateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimateStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EstimateLineStructure'
+ */
+export type EnumEstimateLineStructureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimateLineStructure'>
+    
+
+
+/**
+ * Reference to a field of type 'EstimateLineStructure[]'
+ */
+export type ListEnumEstimateLineStructureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimateLineStructure[]'>
     
 
 

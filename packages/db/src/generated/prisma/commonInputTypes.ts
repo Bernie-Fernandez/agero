@@ -1258,11 +1258,28 @@ export type EnumEstimateStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumEstimateStatusFilter<$PrismaModel>
 }
 
+export type EnumEstimateLineStructureFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstimateLineStructure | Prisma.EnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  in?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel> | $Enums.EstimateLineStructure
+}
+
 export type EnumEstimateLineTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.EstimateLineType | Prisma.EnumEstimateLineTypeFieldRefInput<$PrismaModel>
   in?: $Enums.EstimateLineType[] | Prisma.ListEnumEstimateLineTypeFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstimateLineType[] | Prisma.ListEnumEstimateLineTypeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstimateLineTypeFilter<$PrismaModel> | $Enums.EstimateLineType
+}
+
+export type EnumEstimateLineStructureWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstimateLineStructure | Prisma.EnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  in?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstimateLineStructureWithAggregatesFilter<$PrismaModel> | $Enums.EstimateLineStructure
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel>
 }
 
 export type EnumEstimateLineTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -2535,11 +2552,28 @@ export type NestedEnumEstimateStatusWithAggregatesFilter<$PrismaModel = never> =
   _max?: Prisma.NestedEnumEstimateStatusFilter<$PrismaModel>
 }
 
+export type NestedEnumEstimateLineStructureFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstimateLineStructure | Prisma.EnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  in?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel> | $Enums.EstimateLineStructure
+}
+
 export type NestedEnumEstimateLineTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.EstimateLineType | Prisma.EnumEstimateLineTypeFieldRefInput<$PrismaModel>
   in?: $Enums.EstimateLineType[] | Prisma.ListEnumEstimateLineTypeFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstimateLineType[] | Prisma.ListEnumEstimateLineTypeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstimateLineTypeFilter<$PrismaModel> | $Enums.EstimateLineType
+}
+
+export type NestedEnumEstimateLineStructureWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EstimateLineStructure | Prisma.EnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  in?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  notIn?: $Enums.EstimateLineStructure[] | Prisma.ListEnumEstimateLineStructureFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumEstimateLineStructureWithAggregatesFilter<$PrismaModel> | $Enums.EstimateLineStructure
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEstimateLineStructureFilter<$PrismaModel>
 }
 
 export type NestedEnumEstimateLineTypeWithAggregatesFilter<$PrismaModel = never> = {
