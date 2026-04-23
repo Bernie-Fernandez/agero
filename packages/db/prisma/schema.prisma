@@ -239,6 +239,7 @@ model Organisation {
   designMonitoredUrls DesignMonitoredUrl[]
   designTrendItems   DesignTrendItem[]
   designChatbotSessions DesignChatbotSession[]
+  estimates             Estimate[]
 
   @@map("organisations")
   @@schema("projects")
@@ -294,6 +295,8 @@ model User {
   designMonitoredUrlsCreated DesignMonitoredUrl[] @relation("DesignMonitoredUrlCreatedBy")
   designTrendItemsSubmitted DesignTrendItem[]  @relation("DesignTrendItemSubmittedBy")
   designChatbotSessions   DesignChatbotSession[] @relation("DesignChatbotSessionUser")
+  createdEstimates        Estimate[]             @relation("EstimateCreatedBy")
+  estimateSnapshots       EstimateSnapshot[]     @relation("EstimateSnapshotCreatedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -347,6 +350,7 @@ model Project {
   permits             Permit[]
   emergencyContacts   EmergencyContact[]
   safetyInspections   SafetyInspection[]
+  convertedFromEstimates Estimate[]          @relation("EstimateConvertedProject")
 
   @@index([organisationId])
   @@map("projects")
@@ -443,6 +447,8 @@ model Company {
   expertiseTags       CompanyExpertiseTag[]
   projectAssignments  ProjectSubcontractor[]
   portalUsers         PortalUser[]
+  clientEstimates     Estimate[]            @relation("EstimateClient")
+  tradeQuotes         TradeQuote[]          @relation("TradeQuoteSubcontractor")
 
   @@index([organisationId])
   @@map("companies")
@@ -2342,4 +2348,342 @@ model DesignChatbotMessage {
 
   @@map("design_chatbot_message")
   @@schema("design")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMS — estimating (projects schema)
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum EstimateStatus {
+  DRAFT
+  ACTIVE
+  CONVERTED
+  ARCHIVED
+
+  @@schema("projects")
+}
+
+enum EstimateLineType {
+  LABOUR
+  MATERIAL
+  SUBCONTRACTOR
+  ALLOWANCE
+  PROVISIONAL_SUM
+
+  @@schema("projects")
+}
+
+enum QuoteStatus {
+  PENDING
+  RECEIVED
+  AWARDED
+  DECLINED
+
+  @@schema("projects")
+}
+
+enum TradeLetStatus {
+  NOT_STARTED
+  QUOTING
+  AWARDED
+  COMPLETE
+
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESTIMATING MODELS — projects schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Estimate {
+  id                   String         @id @default(uuid()) @db.Uuid
+  organisationId       String         @map("organisation_id") @db.Uuid
+  organisation         Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  leadNumber           String         @unique @map("lead_number")
+  title                String
+  clientId             String?        @map("client_id") @db.Uuid
+  client               Company?       @relation("EstimateClient", fields: [clientId], references: [id], onDelete: SetNull)
+  status               EstimateStatus @default(DRAFT)
+  targetGpPct          Decimal        @default(22.50) @map("target_gp_pct") @db.Decimal(5, 2)
+  minGpPct             Decimal        @default(15.00) @map("min_gp_pct") @db.Decimal(5, 2)
+  defaultMarkupPct     Decimal        @default(48.15) @map("default_markup_pct") @db.Decimal(5, 2)
+  costRecoveryPct      Decimal        @default(10.00) @map("cost_recovery_pct") @db.Decimal(5, 2)
+  budgetCoverageTarget Decimal        @default(70.00) @map("budget_coverage_target") @db.Decimal(5, 2)
+  notes                String?        @db.Text
+  convertedToProjectId String?        @map("converted_to_project_id") @db.Uuid
+  convertedToProject   Project?       @relation("EstimateConvertedProject", fields: [convertedToProjectId], references: [id], onDelete: SetNull)
+  createdById          String         @map("created_by_id") @db.Uuid
+  createdBy            User           @relation("EstimateCreatedBy", fields: [createdById], references: [id])
+  createdAt            DateTime       @default(now()) @map("created_at")
+  updatedAt            DateTime       @updatedAt @map("updated_at")
+
+  areas          EstimateArea[]
+  scenarios      EstimateScenario[]
+  tradeSections  EstimateTradeSection[]
+  lines          EstimateLine[]
+  options        EstimateOption[]
+  lockaways      EstimateLockaway[]
+  insightTags    EstimateInsightTag[]
+  tradePackages  TradePackage[]
+  snapshots      EstimateSnapshot[]
+
+  @@index([organisationId])
+  @@map("estimates")
+  @@schema("projects")
+}
+
+model EstimateArea {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  order      Int      @default(0)
+
+  lines EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_areas")
+  @@schema("projects")
+}
+
+model EstimateScenario {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  isBase     Boolean  @default(false) @map("is_base")
+  order      Int      @default(0)
+
+  lines EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_scenarios")
+  @@schema("projects")
+}
+
+model EstimateTradeSection {
+  id             String    @id @default(uuid()) @db.Uuid
+  organisationId String?   @map("organisation_id") @db.Uuid
+  estimateId     String?   @map("estimate_id") @db.Uuid
+  estimate       Estimate? @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name           String
+  code           String?
+  order          Int       @default(0)
+
+  lines          EstimateLine[]
+  tradePackages  TradePackage[]
+  scopeItems     ScopeLibraryItem[]
+
+  @@index([estimateId])
+  @@map("estimate_trade_sections")
+  @@schema("projects")
+}
+
+model EstimateLine {
+  id              String               @id @default(uuid()) @db.Uuid
+  estimateId      String               @map("estimate_id") @db.Uuid
+  estimate        Estimate             @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  areaId          String?              @map("area_id") @db.Uuid
+  area            EstimateArea?        @relation(fields: [areaId], references: [id], onDelete: SetNull)
+  scenarioId      String?              @map("scenario_id") @db.Uuid
+  scenario        EstimateScenario?    @relation(fields: [scenarioId], references: [id], onDelete: SetNull)
+  tradeSectionId  String?              @map("trade_section_id") @db.Uuid
+  tradeSection    EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  description     String
+  type            EstimateLineType     @default(MATERIAL)
+  quantity        Decimal              @default(0) @db.Decimal(14, 4)
+  unit            String?
+  rate            Decimal              @default(0) @db.Decimal(14, 4)
+  total           Decimal              @default(0) @db.Decimal(14, 2)
+  isRisk          Boolean              @default(false) @map("is_risk")
+  isOption        Boolean              @default(false) @map("is_option")
+  isPcSum         Boolean              @default(false) @map("is_pc_sum")
+  isLockaway      Boolean              @default(false) @map("is_lockaway")
+  isHidden        Boolean              @default(false) @map("is_hidden")
+  notes           String?              @db.Text
+  order           Int                  @default(0)
+  createdAt       DateTime             @default(now()) @map("created_at")
+  updatedAt       DateTime             @updatedAt @map("updated_at")
+
+  quantities       EstimateLineQuantity[]
+  tags             EstimateLineTag[]
+  optionLines      EstimateOptionLine[]
+  lockawayLines    EstimateLockawayLine[]
+  scopeAttachments EstimateLineScopeAttachment[]
+
+  @@index([estimateId])
+  @@map("estimate_lines")
+  @@schema("projects")
+}
+
+model EstimateLineQuantity {
+  id       String       @id @default(uuid()) @db.Uuid
+  lineId   String       @map("line_id") @db.Uuid
+  line     EstimateLine @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  label    String
+  quantity Decimal      @default(0) @db.Decimal(14, 4)
+
+  @@index([lineId])
+  @@map("estimate_line_quantities")
+  @@schema("projects")
+}
+
+model EstimateOption {
+  id          String   @id @default(uuid()) @db.Uuid
+  estimateId  String   @map("estimate_id") @db.Uuid
+  estimate    Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name        String
+  description String?  @db.Text
+  totalCost   Decimal  @default(0) @map("total_cost") @db.Decimal(14, 2)
+
+  lines EstimateOptionLine[]
+
+  @@index([estimateId])
+  @@map("estimate_options")
+  @@schema("projects")
+}
+
+model EstimateOptionLine {
+  id       String         @id @default(uuid()) @db.Uuid
+  optionId String         @map("option_id") @db.Uuid
+  option   EstimateOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  lineId   String         @map("line_id") @db.Uuid
+  line     EstimateLine   @relation(fields: [lineId], references: [id], onDelete: Cascade)
+
+  @@unique([optionId, lineId])
+  @@map("estimate_option_lines")
+  @@schema("projects")
+}
+
+model EstimateLockaway {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  notes      String?  @db.Text
+
+  lines EstimateLockawayLine[]
+
+  @@index([estimateId])
+  @@map("estimate_lockaways")
+  @@schema("projects")
+}
+
+model EstimateLockawayLine {
+  id          String           @id @default(uuid()) @db.Uuid
+  lockawayId  String           @map("lockaway_id") @db.Uuid
+  lockaway    EstimateLockaway @relation(fields: [lockawayId], references: [id], onDelete: Cascade)
+  lineId      String           @map("line_id") @db.Uuid
+  line        EstimateLine     @relation(fields: [lineId], references: [id], onDelete: Cascade)
+
+  @@unique([lockawayId, lineId])
+  @@map("estimate_lockaway_lines")
+  @@schema("projects")
+}
+
+model EstimateInsightTag {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  color      String   @default("#6366f1")
+
+  lineAssignments EstimateLineTag[]
+
+  @@index([estimateId])
+  @@map("estimate_insight_tags")
+  @@schema("projects")
+}
+
+model EstimateLineTag {
+  id    String             @id @default(uuid()) @db.Uuid
+  lineId String            @map("line_id") @db.Uuid
+  line   EstimateLine      @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  tagId  String            @map("tag_id") @db.Uuid
+  tag    EstimateInsightTag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([lineId, tagId])
+  @@map("estimate_line_tags")
+  @@schema("projects")
+}
+
+model TradePackage {
+  id             String               @id @default(uuid()) @db.Uuid
+  estimateId     String               @map("estimate_id") @db.Uuid
+  estimate       Estimate             @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  tradeSectionId String?              @map("trade_section_id") @db.Uuid
+  tradeSection   EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  name           String
+  scope          String?              @db.Text
+  status         TradeLetStatus       @default(NOT_STARTED)
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+
+  quotes TradeQuote[]
+
+  @@index([estimateId])
+  @@map("trade_packages")
+  @@schema("projects")
+}
+
+model TradeQuote {
+  id                String       @id @default(uuid()) @db.Uuid
+  packageId         String       @map("package_id") @db.Uuid
+  package           TradePackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  subcontractorId   String?      @map("subcontractor_id") @db.Uuid
+  subcontractor     Company?     @relation("TradeQuoteSubcontractor", fields: [subcontractorId], references: [id], onDelete: SetNull)
+  amount            Decimal?     @db.Decimal(14, 2)
+  status            QuoteStatus  @default(PENDING)
+  receivedAt        DateTime?    @map("received_at")
+  notes             String?      @db.Text
+  createdAt         DateTime     @default(now()) @map("created_at")
+
+  @@index([packageId])
+  @@map("trade_quotes")
+  @@schema("projects")
+}
+
+model EstimateSnapshot {
+  id           String   @id @default(uuid()) @db.Uuid
+  estimateId   String   @map("estimate_id") @db.Uuid
+  estimate     Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  label        String
+  snapshotData Json     @map("snapshot_data")
+  createdById  String   @map("created_by_id") @db.Uuid
+  createdBy    User     @relation("EstimateSnapshotCreatedBy", fields: [createdById], references: [id])
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([estimateId])
+  @@map("estimate_snapshots")
+  @@schema("projects")
+}
+
+model ScopeLibraryItem {
+  id             String                @id @default(uuid()) @db.Uuid
+  organisationId String                @map("organisation_id") @db.Uuid
+  tradeSectionId String?               @map("trade_section_id") @db.Uuid
+  tradeSection   EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  description    String
+  unit           String?
+  notes          String?               @db.Text
+  isGlobal       Boolean               @default(false) @map("is_global")
+  createdAt      DateTime              @default(now()) @map("created_at")
+
+  attachments EstimateLineScopeAttachment[]
+
+  @@index([organisationId])
+  @@map("scope_library_items")
+  @@schema("projects")
+}
+
+model EstimateLineScopeAttachment {
+  id               String           @id @default(uuid()) @db.Uuid
+  lineId           String           @map("line_id") @db.Uuid
+  line             EstimateLine     @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  scopeLibraryItemId String         @map("scope_library_item_id") @db.Uuid
+  scopeItem        ScopeLibraryItem @relation(fields: [scopeLibraryItemId], references: [id], onDelete: Cascade)
+
+  @@unique([lineId, scopeLibraryItemId])
+  @@map("estimate_line_scope_attachments")
+  @@schema("projects")
 }

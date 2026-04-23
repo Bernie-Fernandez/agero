@@ -205,6 +205,34 @@ function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
   );
 }
 
+// ── EstimatingSubItems ────────────────────────────────────────────────────────
+
+function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
+  const leadMatch = pathname.match(/^\/leads\/([^/]+)/);
+  const leadId = leadMatch?.[1];
+
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
+      {leadId && (
+        <>
+          <NavLink href={`/leads/${leadId}/dashboard`} label="Dashboard" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/cost-plan`} label="Cost Plan" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/analysis`} label="Analysis" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/options`} label="Options & R&O" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/lockaway`} label="Lockaway" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/insights`} label="Insights" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/scope-library`} label="Scope Library" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/trade-letting`} label="Trade Letting" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/reports`} label="Reports" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/settings`} label="Settings" depth={2} onItemClick={onItemClick} />
+        </>
+      )}
+    </div>
+  );
+}
+
 // ── DesignSubItems ────────────────────────────────────────────────────────────
 
 function DesignSubItems({ onItemClick, pendingApprovals }: { onItemClick?: () => void; pendingApprovals: number }) {
@@ -298,8 +326,10 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
         <ProjectSubItems onItemClick={onItemClick} />
       </Section>
 
-      {/* Estimating — stubbed */}
-      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} stubbed />
+      {/* Estimating */}
+      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} onItemClick={onItemClick}>
+        <EstimatingSubItems onItemClick={onItemClick} />
+      </Section>
 
       {/* Finance — stubbed */}
       <Section sectionKey="finance" label="Finance" defaultOpen={false} stubbed />
