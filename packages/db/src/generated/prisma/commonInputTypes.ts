@@ -1054,6 +1054,193 @@ export type EnumImsPoStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumImsPoStatusFilter<$PrismaModel>
 }
 
+export type EnumDesignSourceTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceType | Prisma.EnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel> | $Enums.DesignSourceType
+}
+
+export type EnumDesignSourceCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceCategory | Prisma.EnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel> | $Enums.DesignSourceCategory
+}
+
+export type EnumDesignIndustryTagFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignIndustryTag | Prisma.EnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel> | $Enums.DesignIndustryTag
+}
+
+export type EnumDesignFileTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFileType | Prisma.EnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel> | $Enums.DesignFileType | null
+}
+
+export type EnumDesignSourceStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceStatus | Prisma.EnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel> | $Enums.DesignSourceStatus
+}
+
+export type EnumDesignSourceTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceType | Prisma.EnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel>
+}
+
+export type EnumDesignSourceCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceCategory | Prisma.EnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceCategoryWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel>
+}
+
+export type EnumDesignIndustryTagWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignIndustryTag | Prisma.EnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignIndustryTagWithAggregatesFilter<$PrismaModel> | $Enums.DesignIndustryTag
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel>
+}
+
+export type EnumDesignFileTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFileType | Prisma.EnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDesignFileTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.DesignFileType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel>
+}
+
+export type EnumDesignSourceStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceStatus | Prisma.EnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel>
+}
+
+export type EnumDesignSettingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSettingStatus | Prisma.EnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel> | $Enums.DesignSettingStatus
+}
+
+export type EnumDesignSettingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSettingStatus | Prisma.EnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSettingStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignSettingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel>
+}
+
+export type EnumDesignProposalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignProposalStatus | Prisma.EnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel> | $Enums.DesignProposalStatus
+}
+
+export type EnumDesignProposalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignProposalStatus | Prisma.EnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignProposalStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignProposalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel>
+}
+
+export type EnumDesignFetchScheduleFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFetchSchedule | Prisma.EnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel> | $Enums.DesignFetchSchedule
+}
+
+export type EnumDesignFetchScheduleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFetchSchedule | Prisma.EnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignFetchScheduleWithAggregatesFilter<$PrismaModel> | $Enums.DesignFetchSchedule
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel>
+}
+
+export type EnumDesignTrendSourceTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendSourceType | Prisma.EnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel> | $Enums.DesignTrendSourceType
+}
+
+export type EnumDesignTrendStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendStatus | Prisma.EnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel> | $Enums.DesignTrendStatus
+}
+
+export type EnumDesignTrendSourceTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendSourceType | Prisma.EnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendSourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.DesignTrendSourceType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel>
+}
+
+export type EnumDesignTrendStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendStatus | Prisma.EnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignTrendStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel>
+}
+
+export type EnumDesignChatRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignChatRole | Prisma.EnumDesignChatRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel> | $Enums.DesignChatRole
+}
+
+export type EnumDesignChatRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignChatRole | Prisma.EnumDesignChatRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignChatRoleWithAggregatesFilter<$PrismaModel> | $Enums.DesignChatRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2074,6 +2261,193 @@ export type NestedEnumImsPoStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumImsPoStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumImsPoStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignSourceTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceType | Prisma.EnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel> | $Enums.DesignSourceType
+}
+
+export type NestedEnumDesignSourceCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceCategory | Prisma.EnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel> | $Enums.DesignSourceCategory
+}
+
+export type NestedEnumDesignIndustryTagFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignIndustryTag | Prisma.EnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel> | $Enums.DesignIndustryTag
+}
+
+export type NestedEnumDesignFileTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFileType | Prisma.EnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel> | $Enums.DesignFileType | null
+}
+
+export type NestedEnumDesignSourceStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceStatus | Prisma.EnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel> | $Enums.DesignSourceStatus
+}
+
+export type NestedEnumDesignSourceTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceType | Prisma.EnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceType[] | Prisma.ListEnumDesignSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignSourceCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceCategory | Prisma.EnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceCategory[] | Prisma.ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceCategoryWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignIndustryTagWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignIndustryTag | Prisma.EnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignIndustryTag[] | Prisma.ListEnumDesignIndustryTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignIndustryTagWithAggregatesFilter<$PrismaModel> | $Enums.DesignIndustryTag
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignIndustryTagFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignFileTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFileType | Prisma.EnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DesignFileType[] | Prisma.ListEnumDesignFileTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDesignFileTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.DesignFileType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignFileTypeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignSourceStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSourceStatus | Prisma.EnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSourceStatus[] | Prisma.ListEnumDesignSourceStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSourceStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignSourceStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSourceStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignSettingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSettingStatus | Prisma.EnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel> | $Enums.DesignSettingStatus
+}
+
+export type NestedEnumDesignSettingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignSettingStatus | Prisma.EnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignSettingStatus[] | Prisma.ListEnumDesignSettingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignSettingStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignSettingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignSettingStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignProposalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignProposalStatus | Prisma.EnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel> | $Enums.DesignProposalStatus
+}
+
+export type NestedEnumDesignProposalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignProposalStatus | Prisma.EnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignProposalStatus[] | Prisma.ListEnumDesignProposalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignProposalStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignProposalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignProposalStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignFetchScheduleFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFetchSchedule | Prisma.EnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel> | $Enums.DesignFetchSchedule
+}
+
+export type NestedEnumDesignFetchScheduleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignFetchSchedule | Prisma.EnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignFetchSchedule[] | Prisma.ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignFetchScheduleWithAggregatesFilter<$PrismaModel> | $Enums.DesignFetchSchedule
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignFetchScheduleFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignTrendSourceTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendSourceType | Prisma.EnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel> | $Enums.DesignTrendSourceType
+}
+
+export type NestedEnumDesignTrendStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendStatus | Prisma.EnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel> | $Enums.DesignTrendStatus
+}
+
+export type NestedEnumDesignTrendSourceTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendSourceType | Prisma.EnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendSourceType[] | Prisma.ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendSourceTypeWithAggregatesFilter<$PrismaModel> | $Enums.DesignTrendSourceType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignTrendSourceTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignTrendStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignTrendStatus | Prisma.EnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignTrendStatus[] | Prisma.ListEnumDesignTrendStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignTrendStatusWithAggregatesFilter<$PrismaModel> | $Enums.DesignTrendStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignTrendStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDesignChatRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignChatRole | Prisma.EnumDesignChatRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel> | $Enums.DesignChatRole
+}
+
+export type NestedEnumDesignChatRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DesignChatRole | Prisma.EnumDesignChatRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DesignChatRole[] | Prisma.ListEnumDesignChatRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDesignChatRoleWithAggregatesFilter<$PrismaModel> | $Enums.DesignChatRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDesignChatRoleFilter<$PrismaModel>
 }
 
 

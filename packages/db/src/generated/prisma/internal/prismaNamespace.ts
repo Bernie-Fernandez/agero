@@ -448,7 +448,19 @@ export const ModelName = {
   ImsMeetingAttendee: 'ImsMeetingAttendee',
   ImsAction: 'ImsAction',
   ImsClientSurvey: 'ImsClientSurvey',
-  ImsSupplierPurchase: 'ImsSupplierPurchase'
+  ImsSupplierPurchase: 'ImsSupplierPurchase',
+  DesignSource: 'DesignSource',
+  DesignSourceVersion: 'DesignSourceVersion',
+  DesignSettingGlobal: 'DesignSettingGlobal',
+  DesignSettingGlobalAudit: 'DesignSettingGlobalAudit',
+  DesignSettingNonGlobal: 'DesignSettingNonGlobal',
+  DesignSettingNonGlobalProposal: 'DesignSettingNonGlobalProposal',
+  DesignExpiryConfig: 'DesignExpiryConfig',
+  DesignRssFeed: 'DesignRssFeed',
+  DesignMonitoredUrl: 'DesignMonitoredUrl',
+  DesignTrendItem: 'DesignTrendItem',
+  DesignChatbotSession: 'DesignChatbotSession',
+  DesignChatbotMessage: 'DesignChatbotMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -464,7 +476,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase"
+    modelProps: "organisation" | "user" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -5278,6 +5290,894 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DesignSource: {
+      payload: Prisma.$DesignSourcePayload<ExtArgs>
+      fields: Prisma.DesignSourceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSourceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSourceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSourceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSourceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        findMany: {
+          args: Prisma.DesignSourceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>[]
+        }
+        create: {
+          args: Prisma.DesignSourceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        createMany: {
+          args: Prisma.DesignSourceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSourceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSourceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        update: {
+          args: Prisma.DesignSourceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSourceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSourceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSourceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSourceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourcePayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSourceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSource>
+        }
+        groupBy: {
+          args: Prisma.DesignSourceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSourceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSourceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSourceCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignSourceVersion: {
+      payload: Prisma.$DesignSourceVersionPayload<ExtArgs>
+      fields: Prisma.DesignSourceVersionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSourceVersionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSourceVersionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSourceVersionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSourceVersionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        findMany: {
+          args: Prisma.DesignSourceVersionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>[]
+        }
+        create: {
+          args: Prisma.DesignSourceVersionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        createMany: {
+          args: Prisma.DesignSourceVersionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSourceVersionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSourceVersionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        update: {
+          args: Prisma.DesignSourceVersionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSourceVersionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSourceVersionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSourceVersionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSourceVersionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSourceVersionPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSourceVersionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSourceVersion>
+        }
+        groupBy: {
+          args: Prisma.DesignSourceVersionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSourceVersionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSourceVersionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSourceVersionCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignSettingGlobal: {
+      payload: Prisma.$DesignSettingGlobalPayload<ExtArgs>
+      fields: Prisma.DesignSettingGlobalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSettingGlobalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSettingGlobalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSettingGlobalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSettingGlobalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        findMany: {
+          args: Prisma.DesignSettingGlobalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>[]
+        }
+        create: {
+          args: Prisma.DesignSettingGlobalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        createMany: {
+          args: Prisma.DesignSettingGlobalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSettingGlobalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSettingGlobalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        update: {
+          args: Prisma.DesignSettingGlobalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSettingGlobalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSettingGlobalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSettingGlobalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSettingGlobalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSettingGlobalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSettingGlobal>
+        }
+        groupBy: {
+          args: Prisma.DesignSettingGlobalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingGlobalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSettingGlobalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingGlobalCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignSettingGlobalAudit: {
+      payload: Prisma.$DesignSettingGlobalAuditPayload<ExtArgs>
+      fields: Prisma.DesignSettingGlobalAuditFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSettingGlobalAuditFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSettingGlobalAuditFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSettingGlobalAuditFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSettingGlobalAuditFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        findMany: {
+          args: Prisma.DesignSettingGlobalAuditFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>[]
+        }
+        create: {
+          args: Prisma.DesignSettingGlobalAuditCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        createMany: {
+          args: Prisma.DesignSettingGlobalAuditCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSettingGlobalAuditCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSettingGlobalAuditDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        update: {
+          args: Prisma.DesignSettingGlobalAuditUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSettingGlobalAuditDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSettingGlobalAuditUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSettingGlobalAuditUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSettingGlobalAuditUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingGlobalAuditPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSettingGlobalAuditAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSettingGlobalAudit>
+        }
+        groupBy: {
+          args: Prisma.DesignSettingGlobalAuditGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingGlobalAuditGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSettingGlobalAuditCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingGlobalAuditCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignSettingNonGlobal: {
+      payload: Prisma.$DesignSettingNonGlobalPayload<ExtArgs>
+      fields: Prisma.DesignSettingNonGlobalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSettingNonGlobalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSettingNonGlobalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSettingNonGlobalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSettingNonGlobalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        findMany: {
+          args: Prisma.DesignSettingNonGlobalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>[]
+        }
+        create: {
+          args: Prisma.DesignSettingNonGlobalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        createMany: {
+          args: Prisma.DesignSettingNonGlobalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSettingNonGlobalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSettingNonGlobalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        update: {
+          args: Prisma.DesignSettingNonGlobalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSettingNonGlobalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSettingNonGlobalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSettingNonGlobalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSettingNonGlobalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSettingNonGlobalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSettingNonGlobal>
+        }
+        groupBy: {
+          args: Prisma.DesignSettingNonGlobalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingNonGlobalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSettingNonGlobalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingNonGlobalCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignSettingNonGlobalProposal: {
+      payload: Prisma.$DesignSettingNonGlobalProposalPayload<ExtArgs>
+      fields: Prisma.DesignSettingNonGlobalProposalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignSettingNonGlobalProposalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignSettingNonGlobalProposalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignSettingNonGlobalProposalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignSettingNonGlobalProposalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        findMany: {
+          args: Prisma.DesignSettingNonGlobalProposalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>[]
+        }
+        create: {
+          args: Prisma.DesignSettingNonGlobalProposalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        createMany: {
+          args: Prisma.DesignSettingNonGlobalProposalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignSettingNonGlobalProposalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignSettingNonGlobalProposalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        update: {
+          args: Prisma.DesignSettingNonGlobalProposalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignSettingNonGlobalProposalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignSettingNonGlobalProposalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignSettingNonGlobalProposalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignSettingNonGlobalProposalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignSettingNonGlobalProposalPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignSettingNonGlobalProposalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignSettingNonGlobalProposal>
+        }
+        groupBy: {
+          args: Prisma.DesignSettingNonGlobalProposalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingNonGlobalProposalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignSettingNonGlobalProposalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignSettingNonGlobalProposalCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignExpiryConfig: {
+      payload: Prisma.$DesignExpiryConfigPayload<ExtArgs>
+      fields: Prisma.DesignExpiryConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignExpiryConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignExpiryConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignExpiryConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignExpiryConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        findMany: {
+          args: Prisma.DesignExpiryConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>[]
+        }
+        create: {
+          args: Prisma.DesignExpiryConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        createMany: {
+          args: Prisma.DesignExpiryConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignExpiryConfigCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignExpiryConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        update: {
+          args: Prisma.DesignExpiryConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignExpiryConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignExpiryConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignExpiryConfigUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignExpiryConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignExpiryConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignExpiryConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignExpiryConfig>
+        }
+        groupBy: {
+          args: Prisma.DesignExpiryConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignExpiryConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignExpiryConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignExpiryConfigCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignRssFeed: {
+      payload: Prisma.$DesignRssFeedPayload<ExtArgs>
+      fields: Prisma.DesignRssFeedFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignRssFeedFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignRssFeedFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignRssFeedFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignRssFeedFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        findMany: {
+          args: Prisma.DesignRssFeedFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>[]
+        }
+        create: {
+          args: Prisma.DesignRssFeedCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        createMany: {
+          args: Prisma.DesignRssFeedCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignRssFeedCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignRssFeedDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        update: {
+          args: Prisma.DesignRssFeedUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignRssFeedDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignRssFeedUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignRssFeedUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignRssFeedUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignRssFeedPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignRssFeedAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignRssFeed>
+        }
+        groupBy: {
+          args: Prisma.DesignRssFeedGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignRssFeedGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignRssFeedCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignRssFeedCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignMonitoredUrl: {
+      payload: Prisma.$DesignMonitoredUrlPayload<ExtArgs>
+      fields: Prisma.DesignMonitoredUrlFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignMonitoredUrlFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignMonitoredUrlFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignMonitoredUrlFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignMonitoredUrlFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        findMany: {
+          args: Prisma.DesignMonitoredUrlFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>[]
+        }
+        create: {
+          args: Prisma.DesignMonitoredUrlCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        createMany: {
+          args: Prisma.DesignMonitoredUrlCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignMonitoredUrlCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignMonitoredUrlDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        update: {
+          args: Prisma.DesignMonitoredUrlUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignMonitoredUrlDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignMonitoredUrlUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignMonitoredUrlUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignMonitoredUrlUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignMonitoredUrlPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignMonitoredUrlAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignMonitoredUrl>
+        }
+        groupBy: {
+          args: Prisma.DesignMonitoredUrlGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignMonitoredUrlGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignMonitoredUrlCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignMonitoredUrlCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignTrendItem: {
+      payload: Prisma.$DesignTrendItemPayload<ExtArgs>
+      fields: Prisma.DesignTrendItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignTrendItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignTrendItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignTrendItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignTrendItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        findMany: {
+          args: Prisma.DesignTrendItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>[]
+        }
+        create: {
+          args: Prisma.DesignTrendItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        createMany: {
+          args: Prisma.DesignTrendItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignTrendItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignTrendItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        update: {
+          args: Prisma.DesignTrendItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignTrendItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignTrendItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignTrendItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignTrendItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignTrendItemPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignTrendItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignTrendItem>
+        }
+        groupBy: {
+          args: Prisma.DesignTrendItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignTrendItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignTrendItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignTrendItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignChatbotSession: {
+      payload: Prisma.$DesignChatbotSessionPayload<ExtArgs>
+      fields: Prisma.DesignChatbotSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignChatbotSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignChatbotSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.DesignChatbotSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignChatbotSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        findMany: {
+          args: Prisma.DesignChatbotSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>[]
+        }
+        create: {
+          args: Prisma.DesignChatbotSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        createMany: {
+          args: Prisma.DesignChatbotSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignChatbotSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>[]
+        }
+        delete: {
+          args: Prisma.DesignChatbotSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        update: {
+          args: Prisma.DesignChatbotSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignChatbotSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignChatbotSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignChatbotSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignChatbotSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.DesignChatbotSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignChatbotSession>
+        }
+        groupBy: {
+          args: Prisma.DesignChatbotSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignChatbotSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignChatbotSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignChatbotSessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    DesignChatbotMessage: {
+      payload: Prisma.$DesignChatbotMessagePayload<ExtArgs>
+      fields: Prisma.DesignChatbotMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DesignChatbotMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DesignChatbotMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.DesignChatbotMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DesignChatbotMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        findMany: {
+          args: Prisma.DesignChatbotMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>[]
+        }
+        create: {
+          args: Prisma.DesignChatbotMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        createMany: {
+          args: Prisma.DesignChatbotMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DesignChatbotMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.DesignChatbotMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        update: {
+          args: Prisma.DesignChatbotMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.DesignChatbotMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DesignChatbotMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DesignChatbotMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.DesignChatbotMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DesignChatbotMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.DesignChatbotMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDesignChatbotMessage>
+        }
+        groupBy: {
+          args: Prisma.DesignChatbotMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignChatbotMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DesignChatbotMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DesignChatbotMessageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -6540,6 +7440,210 @@ export const ImsSupplierPurchaseScalarFieldEnum = {
 export type ImsSupplierPurchaseScalarFieldEnum = (typeof ImsSupplierPurchaseScalarFieldEnum)[keyof typeof ImsSupplierPurchaseScalarFieldEnum]
 
 
+export const DesignSourceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  type: 'type',
+  category: 'category',
+  industryTag: 'industryTag',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  url: 'url',
+  fetchedContent: 'fetchedContent',
+  status: 'status',
+  isActive: 'isActive',
+  expiryDate: 'expiryDate',
+  expiryReminderSent: 'expiryReminderSent',
+  notes: 'notes',
+  versionNumber: 'versionNumber',
+  submittedById: 'submittedById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSourceScalarFieldEnum = (typeof DesignSourceScalarFieldEnum)[keyof typeof DesignSourceScalarFieldEnum]
+
+
+export const DesignSourceVersionScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  versionNumber: 'versionNumber',
+  title: 'title',
+  notes: 'notes',
+  filePath: 'filePath',
+  url: 'url',
+  isActive: 'isActive',
+  changeSummary: 'changeSummary',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSourceVersionScalarFieldEnum = (typeof DesignSourceVersionScalarFieldEnum)[keyof typeof DesignSourceVersionScalarFieldEnum]
+
+
+export const DesignSettingGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingGlobalScalarFieldEnum = (typeof DesignSettingGlobalScalarFieldEnum)[keyof typeof DesignSettingGlobalScalarFieldEnum]
+
+
+export const DesignSettingGlobalAuditScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  previousValue: 'previousValue',
+  newValue: 'newValue',
+  reason: 'reason',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSettingGlobalAuditScalarFieldEnum = (typeof DesignSettingGlobalAuditScalarFieldEnum)[keyof typeof DesignSettingGlobalAuditScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  expiryDate: 'expiryDate',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingNonGlobalScalarFieldEnum = (typeof DesignSettingNonGlobalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalProposalScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  organisationId: 'organisationId',
+  proposedKey: 'proposedKey',
+  proposedLabel: 'proposedLabel',
+  proposedValue: 'proposedValue',
+  reason: 'reason',
+  status: 'status',
+  proposedById: 'proposedById',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignSettingNonGlobalProposalScalarFieldEnum = (typeof DesignSettingNonGlobalProposalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalProposalScalarFieldEnum]
+
+
+export const DesignExpiryConfigScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  defaultExpiryMonths: 'defaultExpiryMonths',
+  reminderDaysBefore: 'reminderDaysBefore',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignExpiryConfigScalarFieldEnum = (typeof DesignExpiryConfigScalarFieldEnum)[keyof typeof DesignExpiryConfigScalarFieldEnum]
+
+
+export const DesignRssFeedScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignRssFeedScalarFieldEnum = (typeof DesignRssFeedScalarFieldEnum)[keyof typeof DesignRssFeedScalarFieldEnum]
+
+
+export const DesignMonitoredUrlScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  fetchSchedule: 'fetchSchedule',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  lastContentHash: 'lastContentHash',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignMonitoredUrlScalarFieldEnum = (typeof DesignMonitoredUrlScalarFieldEnum)[keyof typeof DesignMonitoredUrlScalarFieldEnum]
+
+
+export const DesignTrendItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  sourceName: 'sourceName',
+  sourceType: 'sourceType',
+  url: 'url',
+  excerpt: 'excerpt',
+  engagementScore: 'engagementScore',
+  publishedAt: 'publishedAt',
+  fetchedAt: 'fetchedAt',
+  status: 'status',
+  rssFeedId: 'rssFeedId',
+  monitoredUrlId: 'monitoredUrlId',
+  submittedById: 'submittedById',
+  addedToSourceId: 'addedToSourceId',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignTrendItemScalarFieldEnum = (typeof DesignTrendItemScalarFieldEnum)[keyof typeof DesignTrendItemScalarFieldEnum]
+
+
+export const DesignChatbotSessionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  userId: 'userId',
+  title: 'title',
+  summary: 'summary',
+  sourceId: 'sourceId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignChatbotSessionScalarFieldEnum = (typeof DesignChatbotSessionScalarFieldEnum)[keyof typeof DesignChatbotSessionScalarFieldEnum]
+
+
+export const DesignChatbotMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignChatbotMessageScalarFieldEnum = (typeof DesignChatbotMessageScalarFieldEnum)[keyof typeof DesignChatbotMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -7210,6 +8314,160 @@ export type ListEnumImsPoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'DesignSourceType'
+ */
+export type EnumDesignSourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceType'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSourceType[]'
+ */
+export type ListEnumDesignSourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSourceCategory'
+ */
+export type EnumDesignSourceCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSourceCategory[]'
+ */
+export type ListEnumDesignSourceCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignIndustryTag'
+ */
+export type EnumDesignIndustryTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignIndustryTag'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignIndustryTag[]'
+ */
+export type ListEnumDesignIndustryTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignIndustryTag[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignFileType'
+ */
+export type EnumDesignFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignFileType'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignFileType[]'
+ */
+export type ListEnumDesignFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignFileType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSourceStatus'
+ */
+export type EnumDesignSourceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSourceStatus[]'
+ */
+export type ListEnumDesignSourceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSourceStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSettingStatus'
+ */
+export type EnumDesignSettingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSettingStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignSettingStatus[]'
+ */
+export type ListEnumDesignSettingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignSettingStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignProposalStatus'
+ */
+export type EnumDesignProposalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignProposalStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignProposalStatus[]'
+ */
+export type ListEnumDesignProposalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignProposalStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignFetchSchedule'
+ */
+export type EnumDesignFetchScheduleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignFetchSchedule'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignFetchSchedule[]'
+ */
+export type ListEnumDesignFetchScheduleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignFetchSchedule[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignTrendSourceType'
+ */
+export type EnumDesignTrendSourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignTrendSourceType'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignTrendSourceType[]'
+ */
+export type ListEnumDesignTrendSourceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignTrendSourceType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignTrendStatus'
+ */
+export type EnumDesignTrendStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignTrendStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignTrendStatus[]'
+ */
+export type ListEnumDesignTrendStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignTrendStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignChatRole'
+ */
+export type EnumDesignChatRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignChatRole'>
+    
+
+
+/**
+ * Reference to a field of type 'DesignChatRole[]'
+ */
+export type ListEnumDesignChatRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DesignChatRole[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7382,6 +8640,18 @@ export type GlobalOmitConfig = {
   imsAction?: Prisma.ImsActionOmit
   imsClientSurvey?: Prisma.ImsClientSurveyOmit
   imsSupplierPurchase?: Prisma.ImsSupplierPurchaseOmit
+  designSource?: Prisma.DesignSourceOmit
+  designSourceVersion?: Prisma.DesignSourceVersionOmit
+  designSettingGlobal?: Prisma.DesignSettingGlobalOmit
+  designSettingGlobalAudit?: Prisma.DesignSettingGlobalAuditOmit
+  designSettingNonGlobal?: Prisma.DesignSettingNonGlobalOmit
+  designSettingNonGlobalProposal?: Prisma.DesignSettingNonGlobalProposalOmit
+  designExpiryConfig?: Prisma.DesignExpiryConfigOmit
+  designRssFeed?: Prisma.DesignRssFeedOmit
+  designMonitoredUrl?: Prisma.DesignMonitoredUrlOmit
+  designTrendItem?: Prisma.DesignTrendItemOmit
+  designChatbotSession?: Prisma.DesignChatbotSessionOmit
+  designChatbotMessage?: Prisma.DesignChatbotMessageOmit
 }
 
 /* Types for Logging */

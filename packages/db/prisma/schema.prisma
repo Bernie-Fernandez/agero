@@ -13,7 +13,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  schemas  = ["projects", "ims"]
+  schemas  = ["projects", "ims", "design"]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -230,6 +230,15 @@ model Organisation {
   permits            Permit[]
   emergencyContacts  EmergencyContact[]
   safetyInspections  SafetyInspection[]
+  designSources      DesignSource[]
+  designGlobalSettings DesignSettingGlobal[]
+  designNonGlobalSettings DesignSettingNonGlobal[]
+  designNonGlobalProposals DesignSettingNonGlobalProposal[]
+  designExpiryConfig DesignExpiryConfig?
+  designRssFeeds     DesignRssFeed[]
+  designMonitoredUrls DesignMonitoredUrl[]
+  designTrendItems   DesignTrendItem[]
+  designChatbotSessions DesignChatbotSession[]
 
   @@map("organisations")
   @@schema("projects")
@@ -272,6 +281,19 @@ model User {
   raisedHazards        Hazard[]               @relation("HazardRaisedBy")
   issuedPermits        Permit[]               @relation("PermitIssuedBy")
   conductedInspections SafetyInspection[]     @relation("InspectionConductedBy")
+  designSourcesSubmitted  DesignSource[]      @relation("DesignSourceSubmittedBy")
+  designSourcesApproved   DesignSource[]      @relation("DesignSourceApprovedBy")
+  designSourceVersions    DesignSourceVersion[] @relation("DesignSourceVersionChangedBy")
+  designGlobalSettingsCreated DesignSettingGlobal[] @relation("DesignGlobalSettingCreatedBy")
+  designGlobalAudits      DesignSettingGlobalAudit[] @relation("DesignGlobalAuditChangedBy")
+  designNonGlobalSettingsCreated DesignSettingNonGlobal[] @relation("DesignNonGlobalSettingCreatedBy")
+  designProposalsProposed DesignSettingNonGlobalProposal[] @relation("DesignProposalProposedBy")
+  designProposalsReviewed DesignSettingNonGlobalProposal[] @relation("DesignProposalReviewedBy")
+  designExpiryConfigUpdated DesignExpiryConfig[] @relation("DesignExpiryConfigUpdatedBy")
+  designRssFeedsCreated   DesignRssFeed[]      @relation("DesignRssFeedCreatedBy")
+  designMonitoredUrlsCreated DesignMonitoredUrl[] @relation("DesignMonitoredUrlCreatedBy")
+  designTrendItemsSubmitted DesignTrendItem[]  @relation("DesignTrendItemSubmittedBy")
+  designChatbotSessions   DesignChatbotSession[] @relation("DesignChatbotSessionUser")
 
   @@index([organisationId])
   @@map("users")
@@ -1972,4 +1994,352 @@ model ImsSupplierPurchase {
 
   @@map("ims_supplier_purchases")
   @@schema("ims")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DESIGN STUDIO — design schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum DesignSourceType {
+  GLOBAL
+  NON_GLOBAL
+
+  @@schema("design")
+}
+
+enum DesignSourceCategory {
+  COMPLIANCE
+  PAST_PROJECT
+  DESIGN_RULES
+  RESEARCH_TRENDS
+  CLIENT_BRIEF
+  CHATBOT_LEARNING
+  OTHER
+
+  @@schema("design")
+}
+
+enum DesignIndustryTag {
+  OFFICE
+  RETAIL
+  HOSPITALITY
+  EDUCATION
+  HEALTHCARE
+  MIXED
+  ALL
+
+  @@schema("design")
+}
+
+enum DesignFileType {
+  PDF
+  DOCX
+
+  @@schema("design")
+}
+
+enum DesignSourceStatus {
+  PENDING_APPROVAL
+  PENDING_INDEX
+  INDEXED
+  FAILED
+  EXPIRED
+
+  @@schema("design")
+}
+
+enum DesignSettingStatus {
+  ACTIVE
+  INACTIVE
+
+  @@schema("design")
+}
+
+enum DesignProposalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+
+  @@schema("design")
+}
+
+enum DesignFetchSchedule {
+  MANUAL
+  DAILY
+  WEEKLY
+
+  @@schema("design")
+}
+
+enum DesignTrendSourceType {
+  RSS
+  MONITORED_URL
+  MANUAL
+
+  @@schema("design")
+}
+
+enum DesignTrendStatus {
+  NEW
+  ADDED_TO_SOURCES
+  DISMISSED
+
+  @@schema("design")
+}
+
+enum DesignChatRole {
+  USER
+  ASSISTANT
+
+  @@schema("design")
+}
+
+model DesignSource {
+  id             String               @id @default(cuid())
+  organisationId String               @map("organisation_id") @db.Uuid
+  organisation   Organisation         @relation(fields: [organisationId], references: [id])
+  title          String
+  type           DesignSourceType
+  category       DesignSourceCategory
+  industryTag    DesignIndustryTag    @map("industry_tag")
+  filePath       String?              @map("file_path")
+  fileType       DesignFileType?      @map("file_type")
+  url            String?
+  fetchedContent String?              @map("fetched_content") @db.Text
+  status         DesignSourceStatus   @default(PENDING_INDEX)
+  isActive       Boolean              @default(true) @map("is_active")
+  expiryDate     DateTime             @map("expiry_date")
+  expiryReminderSent Boolean          @default(false) @map("expiry_reminder_sent")
+  notes          String?              @db.Text
+  versionNumber  Int                  @default(1) @map("version_number")
+  submittedById  String               @map("submitted_by_id") @db.Uuid
+  submittedBy    User                 @relation("DesignSourceSubmittedBy", fields: [submittedById], references: [id])
+  approvedById   String?              @map("approved_by_id") @db.Uuid
+  approvedBy     User?                @relation("DesignSourceApprovedBy", fields: [approvedById], references: [id])
+  approvedAt     DateTime?            @map("approved_at")
+  rejectionReason String?             @map("rejection_reason") @db.Text
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+
+  versions       DesignSourceVersion[]
+  trendItems     DesignTrendItem[]     @relation("TrendItemSource")
+  chatbotSessions DesignChatbotSession[]
+
+  @@map("design_source")
+  @@schema("design")
+}
+
+model DesignSourceVersion {
+  id            String       @id @default(cuid())
+  sourceId      String       @map("source_id")
+  source        DesignSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  versionNumber Int          @map("version_number")
+  title         String
+  notes         String?      @db.Text
+  filePath      String?      @map("file_path")
+  url           String?
+  isActive      Boolean      @map("is_active")
+  changeSummary String?      @map("change_summary") @db.Text
+  changedById   String       @map("changed_by_id") @db.Uuid
+  changedBy     User         @relation("DesignSourceVersionChangedBy", fields: [changedById], references: [id])
+  changedAt     DateTime     @default(now()) @map("changed_at")
+
+  @@map("design_source_version")
+  @@schema("design")
+}
+
+model DesignSettingGlobal {
+  id             String    @id @default(cuid())
+  organisationId String    @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  key            String
+  label          String
+  value          String    @db.Text
+  description    String?   @db.Text
+  category       String
+  createdById    String    @map("created_by_id") @db.Uuid
+  createdBy      User      @relation("DesignGlobalSettingCreatedBy", fields: [createdById], references: [id])
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  auditLogs      DesignSettingGlobalAudit[]
+
+  @@unique([organisationId, key])
+  @@map("design_setting_global")
+  @@schema("design")
+}
+
+model DesignSettingGlobalAudit {
+  id            String              @id @default(cuid())
+  settingId     String              @map("setting_id")
+  setting       DesignSettingGlobal @relation(fields: [settingId], references: [id], onDelete: Cascade)
+  previousValue String              @map("previous_value") @db.Text
+  newValue      String              @map("new_value") @db.Text
+  reason        String?             @db.Text
+  changedById   String              @map("changed_by_id") @db.Uuid
+  changedBy     User                @relation("DesignGlobalAuditChangedBy", fields: [changedById], references: [id])
+  changedAt     DateTime            @default(now()) @map("changed_at")
+
+  @@map("design_setting_global_audit")
+  @@schema("design")
+}
+
+model DesignSettingNonGlobal {
+  id             String              @id @default(cuid())
+  organisationId String              @map("organisation_id") @db.Uuid
+  organisation   Organisation        @relation(fields: [organisationId], references: [id])
+  key            String
+  label          String
+  value          String              @db.Text
+  description    String?             @db.Text
+  category       String
+  status         DesignSettingStatus @default(ACTIVE)
+  expiryDate     DateTime?           @map("expiry_date")
+  createdById    String              @map("created_by_id") @db.Uuid
+  createdBy      User                @relation("DesignNonGlobalSettingCreatedBy", fields: [createdById], references: [id])
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  proposals      DesignSettingNonGlobalProposal[]
+
+  @@unique([organisationId, key])
+  @@map("design_setting_nonglobal")
+  @@schema("design")
+}
+
+model DesignSettingNonGlobalProposal {
+  id              String                  @id @default(cuid())
+  settingId       String?                 @map("setting_id")
+  setting         DesignSettingNonGlobal? @relation(fields: [settingId], references: [id])
+  organisationId  String                  @map("organisation_id") @db.Uuid
+  organisation    Organisation            @relation(fields: [organisationId], references: [id])
+  proposedKey     String                  @map("proposed_key")
+  proposedLabel   String                  @map("proposed_label")
+  proposedValue   String                  @map("proposed_value") @db.Text
+  reason          String?                 @db.Text
+  status          DesignProposalStatus    @default(PENDING)
+  proposedById    String                  @map("proposed_by_id") @db.Uuid
+  proposedBy      User                    @relation("DesignProposalProposedBy", fields: [proposedById], references: [id])
+  reviewedById    String?                 @map("reviewed_by_id") @db.Uuid
+  reviewedBy      User?                   @relation("DesignProposalReviewedBy", fields: [reviewedById], references: [id])
+  reviewedAt      DateTime?               @map("reviewed_at")
+  rejectionReason String?                 @map("rejection_reason") @db.Text
+  createdAt       DateTime                @default(now()) @map("created_at")
+
+  @@map("design_setting_nonglobal_proposal")
+  @@schema("design")
+}
+
+model DesignExpiryConfig {
+  id                   String       @id @default(cuid())
+  organisationId       String       @unique @map("organisation_id") @db.Uuid
+  organisation         Organisation @relation(fields: [organisationId], references: [id])
+  defaultExpiryMonths  Int          @default(12) @map("default_expiry_months")
+  reminderDaysBefore   Int          @default(30) @map("reminder_days_before")
+  updatedById          String       @map("updated_by_id") @db.Uuid
+  updatedBy            User         @relation("DesignExpiryConfigUpdatedBy", fields: [updatedById], references: [id])
+  updatedAt            DateTime     @updatedAt @map("updated_at")
+
+  @@map("design_expiry_config")
+  @@schema("design")
+}
+
+model DesignRssFeed {
+  id            String    @id @default(cuid())
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation  Organisation @relation(fields: [organisationId], references: [id])
+  name          String
+  url           String
+  isActive      Boolean   @default(true) @map("is_active")
+  lastFetchedAt DateTime? @map("last_fetched_at")
+  createdById   String    @map("created_by_id") @db.Uuid
+  createdBy     User      @relation("DesignRssFeedCreatedBy", fields: [createdById], references: [id])
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  trendItems    DesignTrendItem[]
+
+  @@map("design_rss_feed")
+  @@schema("design")
+}
+
+model DesignMonitoredUrl {
+  id               String              @id @default(cuid())
+  organisationId   String              @map("organisation_id") @db.Uuid
+  organisation     Organisation        @relation(fields: [organisationId], references: [id])
+  name             String
+  url              String
+  fetchSchedule    DesignFetchSchedule @default(DAILY) @map("fetch_schedule")
+  isActive         Boolean             @default(true) @map("is_active")
+  lastFetchedAt    DateTime?           @map("last_fetched_at")
+  lastContentHash  String?             @map("last_content_hash")
+  createdById      String              @map("created_by_id") @db.Uuid
+  createdBy        User                @relation("DesignMonitoredUrlCreatedBy", fields: [createdById], references: [id])
+  createdAt        DateTime            @default(now()) @map("created_at")
+  updatedAt        DateTime            @updatedAt @map("updated_at")
+
+  trendItems       DesignTrendItem[]
+
+  @@map("design_monitored_url")
+  @@schema("design")
+}
+
+model DesignTrendItem {
+  id               String                @id @default(cuid())
+  organisationId   String                @map("organisation_id") @db.Uuid
+  organisation     Organisation          @relation(fields: [organisationId], references: [id])
+  title            String
+  sourceName       String                @map("source_name")
+  sourceType       DesignTrendSourceType @map("source_type")
+  url              String?
+  excerpt          String?               @db.Text
+  engagementScore  Int?                  @map("engagement_score")
+  publishedAt      DateTime?             @map("published_at")
+  fetchedAt        DateTime              @default(now()) @map("fetched_at")
+  status           DesignTrendStatus     @default(NEW)
+  rssFeedId        String?               @map("rss_feed_id")
+  rssFeed          DesignRssFeed?        @relation(fields: [rssFeedId], references: [id])
+  monitoredUrlId   String?               @map("monitored_url_id")
+  monitoredUrl     DesignMonitoredUrl?   @relation(fields: [monitoredUrlId], references: [id])
+  submittedById    String?               @map("submitted_by_id") @db.Uuid
+  submittedBy      User?                 @relation("DesignTrendItemSubmittedBy", fields: [submittedById], references: [id])
+  addedToSourceId  String?               @map("added_to_source_id")
+  addedToSource    DesignSource?         @relation("TrendItemSource", fields: [addedToSourceId], references: [id])
+  createdAt        DateTime              @default(now()) @map("created_at")
+
+  @@map("design_trend_item")
+  @@schema("design")
+}
+
+model DesignChatbotSession {
+  id             String       @id @default(cuid())
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  userId         String       @map("user_id") @db.Uuid
+  user           User         @relation("DesignChatbotSessionUser", fields: [userId], references: [id])
+  title          String?
+  summary        String?      @db.Text
+  sourceId       String?      @map("source_id")
+  source         DesignSource? @relation(fields: [sourceId], references: [id])
+  startedAt      DateTime     @default(now()) @map("started_at")
+  endedAt        DateTime?    @map("ended_at")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  messages       DesignChatbotMessage[]
+
+  @@map("design_chatbot_session")
+  @@schema("design")
+}
+
+model DesignChatbotMessage {
+  id        String                @id @default(cuid())
+  sessionId String                @map("session_id")
+  session   DesignChatbotSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      DesignChatRole
+  content   String                @db.Text
+  createdAt DateTime              @default(now()) @map("created_at")
+
+  @@map("design_chatbot_message")
+  @@schema("design")
 }

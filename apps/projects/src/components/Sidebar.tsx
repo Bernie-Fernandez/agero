@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { getUserBookmarks } from '@/lib/bookmarks/actions';
+import { getDesignPendingApprovalCount } from '@/app/(staff)/design/settings/actions';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -188,6 +189,44 @@ function BookmarksFlyout({ onClose }: { onClose: () => void }) {
   );
 }
 
+// ── LockedItem ────────────────────────────────────────────────────────────────
+
+function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
+  return (
+    <div
+      title="Coming in Design Studio 2"
+      className={`flex items-center justify-between px-3 py-[7px] text-[13px] rounded-md cursor-default select-none ${depth === 1 ? 'pl-6' : depth === 2 ? 'pl-9' : ''} text-zinc-300`}
+    >
+      <span>{label}</span>
+      <svg className="w-3.5 h-3.5 text-zinc-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    </div>
+  );
+}
+
+// ── DesignSubItems ────────────────────────────────────────────────────────────
+
+function DesignSubItems({ onItemClick, pendingApprovals }: { onItemClick?: () => void; pendingApprovals: number }) {
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <NavLink href="/design" label="Home" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/design/sources" label="Sources" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/design/trends" label="Trends" depth={1} onItemClick={onItemClick} />
+      <div className="relative">
+        <NavLink href="/design/settings" label="Settings" depth={1} onItemClick={onItemClick} />
+        {pendingApprovals > 0 && (
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none pointer-events-none">
+            {pendingApprovals}
+          </span>
+        )}
+      </div>
+      <NavLink href="/design/chatbot" label="Chatbot" depth={1} onItemClick={onItemClick} />
+      <LockedItem label="Design Generator" depth={1} />
+    </div>
+  );
+}
+
 // ── HseqSubItems ──────────────────────────────────────────────────────────────
 
 function HseqSubItems({ onItemClick }: { onItemClick?: () => void }) {
@@ -224,6 +263,11 @@ function ProjectSubItems({ onItemClick }: { onItemClick?: () => void }) {
 
 function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
   const [bookmarksOpen, setBookmarksOpen] = useState(false);
+  const [pendingApprovals, setPendingApprovals] = useState(0);
+
+  useEffect(() => {
+    getDesignPendingApprovalCount().then(setPendingApprovals).catch(() => {});
+  }, []);
 
   return (
     <nav className="py-3 px-2 space-y-0.5 relative">
@@ -265,6 +309,11 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
 
       {/* Marketing — stubbed */}
       <Section sectionKey="marketing" label="Marketing" defaultOpen={false} stubbed />
+
+      {/* Design Studio */}
+      <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
+        <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
+      </Section>
 
       {/* Admin */}
       <Section sectionKey="admin" label="Admin" defaultOpen={false} onItemClick={onItemClick}>

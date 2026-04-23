@@ -115,7 +115,19 @@ export const ModelName = {
   ImsMeetingAttendee: 'ImsMeetingAttendee',
   ImsAction: 'ImsAction',
   ImsClientSurvey: 'ImsClientSurvey',
-  ImsSupplierPurchase: 'ImsSupplierPurchase'
+  ImsSupplierPurchase: 'ImsSupplierPurchase',
+  DesignSource: 'DesignSource',
+  DesignSourceVersion: 'DesignSourceVersion',
+  DesignSettingGlobal: 'DesignSettingGlobal',
+  DesignSettingGlobalAudit: 'DesignSettingGlobalAudit',
+  DesignSettingNonGlobal: 'DesignSettingNonGlobal',
+  DesignSettingNonGlobalProposal: 'DesignSettingNonGlobalProposal',
+  DesignExpiryConfig: 'DesignExpiryConfig',
+  DesignRssFeed: 'DesignRssFeed',
+  DesignMonitoredUrl: 'DesignMonitoredUrl',
+  DesignTrendItem: 'DesignTrendItem',
+  DesignChatbotSession: 'DesignChatbotSession',
+  DesignChatbotMessage: 'DesignChatbotMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1355,6 +1367,210 @@ export const ImsSupplierPurchaseScalarFieldEnum = {
 } as const
 
 export type ImsSupplierPurchaseScalarFieldEnum = (typeof ImsSupplierPurchaseScalarFieldEnum)[keyof typeof ImsSupplierPurchaseScalarFieldEnum]
+
+
+export const DesignSourceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  type: 'type',
+  category: 'category',
+  industryTag: 'industryTag',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  url: 'url',
+  fetchedContent: 'fetchedContent',
+  status: 'status',
+  isActive: 'isActive',
+  expiryDate: 'expiryDate',
+  expiryReminderSent: 'expiryReminderSent',
+  notes: 'notes',
+  versionNumber: 'versionNumber',
+  submittedById: 'submittedById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSourceScalarFieldEnum = (typeof DesignSourceScalarFieldEnum)[keyof typeof DesignSourceScalarFieldEnum]
+
+
+export const DesignSourceVersionScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  versionNumber: 'versionNumber',
+  title: 'title',
+  notes: 'notes',
+  filePath: 'filePath',
+  url: 'url',
+  isActive: 'isActive',
+  changeSummary: 'changeSummary',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSourceVersionScalarFieldEnum = (typeof DesignSourceVersionScalarFieldEnum)[keyof typeof DesignSourceVersionScalarFieldEnum]
+
+
+export const DesignSettingGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingGlobalScalarFieldEnum = (typeof DesignSettingGlobalScalarFieldEnum)[keyof typeof DesignSettingGlobalScalarFieldEnum]
+
+
+export const DesignSettingGlobalAuditScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  previousValue: 'previousValue',
+  newValue: 'newValue',
+  reason: 'reason',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSettingGlobalAuditScalarFieldEnum = (typeof DesignSettingGlobalAuditScalarFieldEnum)[keyof typeof DesignSettingGlobalAuditScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  expiryDate: 'expiryDate',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingNonGlobalScalarFieldEnum = (typeof DesignSettingNonGlobalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalProposalScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  organisationId: 'organisationId',
+  proposedKey: 'proposedKey',
+  proposedLabel: 'proposedLabel',
+  proposedValue: 'proposedValue',
+  reason: 'reason',
+  status: 'status',
+  proposedById: 'proposedById',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignSettingNonGlobalProposalScalarFieldEnum = (typeof DesignSettingNonGlobalProposalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalProposalScalarFieldEnum]
+
+
+export const DesignExpiryConfigScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  defaultExpiryMonths: 'defaultExpiryMonths',
+  reminderDaysBefore: 'reminderDaysBefore',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignExpiryConfigScalarFieldEnum = (typeof DesignExpiryConfigScalarFieldEnum)[keyof typeof DesignExpiryConfigScalarFieldEnum]
+
+
+export const DesignRssFeedScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignRssFeedScalarFieldEnum = (typeof DesignRssFeedScalarFieldEnum)[keyof typeof DesignRssFeedScalarFieldEnum]
+
+
+export const DesignMonitoredUrlScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  fetchSchedule: 'fetchSchedule',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  lastContentHash: 'lastContentHash',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignMonitoredUrlScalarFieldEnum = (typeof DesignMonitoredUrlScalarFieldEnum)[keyof typeof DesignMonitoredUrlScalarFieldEnum]
+
+
+export const DesignTrendItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  sourceName: 'sourceName',
+  sourceType: 'sourceType',
+  url: 'url',
+  excerpt: 'excerpt',
+  engagementScore: 'engagementScore',
+  publishedAt: 'publishedAt',
+  fetchedAt: 'fetchedAt',
+  status: 'status',
+  rssFeedId: 'rssFeedId',
+  monitoredUrlId: 'monitoredUrlId',
+  submittedById: 'submittedById',
+  addedToSourceId: 'addedToSourceId',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignTrendItemScalarFieldEnum = (typeof DesignTrendItemScalarFieldEnum)[keyof typeof DesignTrendItemScalarFieldEnum]
+
+
+export const DesignChatbotSessionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  userId: 'userId',
+  title: 'title',
+  summary: 'summary',
+  sourceId: 'sourceId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignChatbotSessionScalarFieldEnum = (typeof DesignChatbotSessionScalarFieldEnum)[keyof typeof DesignChatbotSessionScalarFieldEnum]
+
+
+export const DesignChatbotMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignChatbotMessageScalarFieldEnum = (typeof DesignChatbotMessageScalarFieldEnum)[keyof typeof DesignChatbotMessageScalarFieldEnum]
 
 
 export const SortOrder = {

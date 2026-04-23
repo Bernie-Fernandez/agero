@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/design/cron/rss-poller",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/design/cron/url-fetcher",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/design/cron/expiry",
+      "schedule": "0 1 * * *"
+    }
+  ]
+}

@@ -398,3 +398,108 @@ export const ImsPoStatus = {
 } as const
 
 export type ImsPoStatus = (typeof ImsPoStatus)[keyof typeof ImsPoStatus]
+
+
+export const DesignSourceType = {
+  GLOBAL: 'GLOBAL',
+  NON_GLOBAL: 'NON_GLOBAL'
+} as const
+
+export type DesignSourceType = (typeof DesignSourceType)[keyof typeof DesignSourceType]
+
+
+export const DesignSourceCategory = {
+  COMPLIANCE: 'COMPLIANCE',
+  PAST_PROJECT: 'PAST_PROJECT',
+  DESIGN_RULES: 'DESIGN_RULES',
+  RESEARCH_TRENDS: 'RESEARCH_TRENDS',
+  CLIENT_BRIEF: 'CLIENT_BRIEF',
+  CHATBOT_LEARNING: 'CHATBOT_LEARNING',
+  OTHER: 'OTHER'
+} as const
+
+export type DesignSourceCategory = (typeof DesignSourceCategory)[keyof typeof DesignSourceCategory]
+
+
+export const DesignIndustryTag = {
+  OFFICE: 'OFFICE',
+  RETAIL: 'RETAIL',
+  HOSPITALITY: 'HOSPITALITY',
+  EDUCATION: 'EDUCATION',
+  HEALTHCARE: 'HEALTHCARE',
+  MIXED: 'MIXED',
+  ALL: 'ALL'
+} as const
+
+export type DesignIndustryTag = (typeof DesignIndustryTag)[keyof typeof DesignIndustryTag]
+
+
+export const DesignFileType = {
+  PDF: 'PDF',
+  DOCX: 'DOCX'
+} as const
+
+export type DesignFileType = (typeof DesignFileType)[keyof typeof DesignFileType]
+
+
+export const DesignSourceStatus = {
+  PENDING_APPROVAL: 'PENDING_APPROVAL',
+  PENDING_INDEX: 'PENDING_INDEX',
+  INDEXED: 'INDEXED',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type DesignSourceStatus = (typeof DesignSourceStatus)[keyof typeof DesignSourceStatus]
+
+
+export const DesignSettingStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type DesignSettingStatus = (typeof DesignSettingStatus)[keyof typeof DesignSettingStatus]
+
+
+export const DesignProposalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type DesignProposalStatus = (typeof DesignProposalStatus)[keyof typeof DesignProposalStatus]
+
+
+export const DesignFetchSchedule = {
+  MANUAL: 'MANUAL',
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY'
+} as const
+
+export type DesignFetchSchedule = (typeof DesignFetchSchedule)[keyof typeof DesignFetchSchedule]
+
+
+export const DesignTrendSourceType = {
+  RSS: 'RSS',
+  MONITORED_URL: 'MONITORED_URL',
+  MANUAL: 'MANUAL'
+} as const
+
+export type DesignTrendSourceType = (typeof DesignTrendSourceType)[keyof typeof DesignTrendSourceType]
+
+
+export const DesignTrendStatus = {
+  NEW: 'NEW',
+  ADDED_TO_SOURCES: 'ADDED_TO_SOURCES',
+  DISMISSED: 'DISMISSED'
+} as const
+
+export type DesignTrendStatus = (typeof DesignTrendStatus)[keyof typeof DesignTrendStatus]
+
+
+export const DesignChatRole = {
+  USER: 'USER',
+  ASSISTANT: 'ASSISTANT'
+} as const
+
+export type DesignChatRole = (typeof DesignChatRole)[keyof typeof DesignChatRole]

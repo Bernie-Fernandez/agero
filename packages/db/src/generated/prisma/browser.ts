@@ -342,3 +342,63 @@ export type ImsClientSurvey = Prisma.ImsClientSurveyModel
  * 
  */
 export type ImsSupplierPurchase = Prisma.ImsSupplierPurchaseModel
+/**
+ * Model DesignSource
+ * 
+ */
+export type DesignSource = Prisma.DesignSourceModel
+/**
+ * Model DesignSourceVersion
+ * 
+ */
+export type DesignSourceVersion = Prisma.DesignSourceVersionModel
+/**
+ * Model DesignSettingGlobal
+ * 
+ */
+export type DesignSettingGlobal = Prisma.DesignSettingGlobalModel
+/**
+ * Model DesignSettingGlobalAudit
+ * 
+ */
+export type DesignSettingGlobalAudit = Prisma.DesignSettingGlobalAuditModel
+/**
+ * Model DesignSettingNonGlobal
+ * 
+ */
+export type DesignSettingNonGlobal = Prisma.DesignSettingNonGlobalModel
+/**
+ * Model DesignSettingNonGlobalProposal
+ * 
+ */
+export type DesignSettingNonGlobalProposal = Prisma.DesignSettingNonGlobalProposalModel
+/**
+ * Model DesignExpiryConfig
+ * 
+ */
+export type DesignExpiryConfig = Prisma.DesignExpiryConfigModel
+/**
+ * Model DesignRssFeed
+ * 
+ */
+export type DesignRssFeed = Prisma.DesignRssFeedModel
+/**
+ * Model DesignMonitoredUrl
+ * 
+ */
+export type DesignMonitoredUrl = Prisma.DesignMonitoredUrlModel
+/**
+ * Model DesignTrendItem
+ * 
+ */
+export type DesignTrendItem = Prisma.DesignTrendItemModel
+/**
+ * Model DesignChatbotSession
+ * 
+ */
+export type DesignChatbotSession = Prisma.DesignChatbotSessionModel
+/**
+ * Model DesignChatbotMessage
+ * 
+ */
+export type DesignChatbotMessage = Prisma.DesignChatbotMessageModel
