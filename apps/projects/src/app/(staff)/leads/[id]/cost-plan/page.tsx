@@ -20,6 +20,7 @@ export default async function CostPlanPage({ params }: { params: Promise<{ id: s
         },
         orderBy: [{ tradeSectionId: 'asc' }, { order: 'asc' }],
       },
+      tradePackages: { select: { id: true, name: true }, orderBy: { name: 'asc' } },
     },
   });
 

@@ -15,6 +15,7 @@ type Estimate = {
   leadNumber: string;
   title: string;
   status: string;
+  pipelineStage: number;
   targetGpPct: number | string;
   minGpPct: number | string;
   createdAt: Date | string;
@@ -25,6 +26,8 @@ type Estimate = {
 };
 
 type Company = { id: string; name: string };
+type AppUser = { id: string; firstName: string; lastName: string };
+type RevenueCode = { id: string; catCode: string; codeDescription: string };
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -32,7 +35,7 @@ const ALL_COLUMNS = [
   { key: 'leadNumber', label: 'Lead No.', always: true },
   { key: 'title', label: 'Title', always: true },
   { key: 'client', label: 'Client' },
-  { key: 'status', label: 'Status' },
+  { key: 'status', label: 'Stage' },
   { key: 'targetGp', label: 'Target GP%' },
   { key: 'lines', label: 'Lines' },
   { key: 'createdBy', label: 'Created By' },
@@ -41,19 +44,42 @@ const ALL_COLUMNS = [
 
 const DEFAULT_VISIBLE = ['leadNumber', 'title', 'client', 'status', 'targetGp', 'createdBy', 'createdAt'];
 
-const STATUS_LABELS: Record<string, string> = {
-  DRAFT: 'Draft',
-  ACTIVE: 'Active',
-  CONVERTED: 'Converted',
-  ARCHIVED: 'Archived',
+const PIPELINE_STAGES: Record<number, string> = {
+  3: 'Qualified',
+  4: 'Submission',
+  5: 'Awaiting Decision',
+  6: 'Intent to Negotiate',
+  7: 'Won',
+  8: 'Lost',
+  9: 'Withdrawn',
+  10: 'Unsuccessful',
+  11: 'Dead',
+  12: 'Declined',
+  13: 'Sub Withdrawn',
 };
 
-const STATUS_COLORS: Record<string, string> = {
-  DRAFT: 'bg-zinc-100 text-zinc-600',
-  ACTIVE: 'bg-blue-100 text-blue-700',
-  CONVERTED: 'bg-green-100 text-green-700',
-  ARCHIVED: 'bg-amber-100 text-amber-700',
+const PIPELINE_COLORS: Record<number, string> = {
+  3: 'bg-blue-100 text-blue-700',
+  4: 'bg-violet-100 text-violet-700',
+  5: 'bg-amber-100 text-amber-700',
+  6: 'bg-orange-100 text-orange-700',
+  7: 'bg-green-100 text-green-700',
+  8: 'bg-red-100 text-red-700',
+  9: 'bg-zinc-100 text-zinc-600',
+  10: 'bg-zinc-100 text-zinc-500',
+  11: 'bg-zinc-200 text-zinc-500',
+  12: 'bg-rose-100 text-rose-600',
+  13: 'bg-zinc-100 text-zinc-500',
 };
+
+const JOB_TYPES = [
+  'Commercial Fitout',
+  'Refurbishment',
+  'Make Good',
+  'Design & Construct',
+  'Minor Works',
+  'Other',
+];
 
 // ─── New Lead Panel ──────────────────────────────────────────────────────────
 
@@ -61,25 +87,48 @@ function NewLeadPanel({
   open,
   onClose,
   clients,
+  users,
+  revenueCodes,
+  currentUserId,
   onCreated,
 }: {
   open: boolean;
   onClose: () => void;
   clients: Company[];
+  users: AppUser[];
+  revenueCodes: RevenueCode[];
+  currentUserId: string;
   onCreated: (id: string) => void;
 }) {
   const [saving, setSaving] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [query, setQuery] = useState('');
   const [selectedClient, setSelectedClient] = useState<Company | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const filtered = clients.filter((c) => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 10);
 
+  function validate(fd: FormData) {
+    const e: Record<string, string> = {};
+    if (!fd.get('title')) e.title = 'Required';
+    if (!selectedClient) e.client = 'Select a client from CRM';
+    if (!fd.get('addressStreet')) e.addressStreet = 'Required';
+    if (!fd.get('addressSuburb')) e.addressSuburb = 'Required';
+    if (!fd.get('addressState')) e.addressState = 'Required';
+    if (!fd.get('addressPostcode')) e.addressPostcode = 'Required';
+    if (!fd.get('jobType')) e.jobType = 'Required';
+    if (!fd.get('estimatorId')) e.estimatorId = 'Required';
+    if (!fd.get('revenueCostCodeId')) e.revenueCostCodeId = 'Required';
+    return e;
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    if (selectedClient) fd.set('clientId', selectedClient.id);
+    const errs = validate(fd);
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSaving(true);
     try {
-      const fd = new FormData(e.currentTarget);
-      if (selectedClient) fd.set('clientId', selectedClient.id);
       const id = await createLead(fd);
       showToast('Lead created');
       onCreated(id as string);
@@ -89,71 +138,129 @@ function NewLeadPanel({
     }
   }
 
+  const field = (key: string) => errors[key]
+    ? 'w-full border border-red-400 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-300'
+    : 'w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30';
+
   return (
     <SlidePanel isOpen={open} onClose={onClose} title="New Lead">
       <form onSubmit={handleSubmit} className="p-6 space-y-5">
+        {/* Title */}
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Title <span className="text-red-500">*</span></label>
-          <input
-            name="title"
-            required
-            placeholder="e.g. Level 3 Fitout — 123 Collins St"
-            className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
-          />
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Project Name <span className="text-red-500">*</span></label>
+          <input name="title" placeholder="e.g. Level 3 Fitout — 123 Collins St" className={field('title')} onChange={() => setErrors((p) => ({ ...p, title: '' }))} />
+          {errors.title && <p className="mt-1 text-xs text-red-500">{errors.title}</p>}
         </div>
 
+        {/* Client */}
         <div className="relative">
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Client</label>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">
+            Client <span className="text-red-500">*</span>
+            <a href="/crm/companies/new" target="_blank" className="ml-2 text-xs text-brand font-normal hover:underline">Add to CRM first</a>
+          </label>
           <input
             type="text"
             placeholder="Search clients…"
             value={selectedClient ? selectedClient.name : query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setSelectedClient(null);
-              setShowDropdown(true);
-            }}
+            onChange={(e) => { setQuery(e.target.value); setSelectedClient(null); setShowDropdown(true); setErrors((p) => ({ ...p, client: '' })); }}
             onFocus={() => setShowDropdown(true)}
-            className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+            className={field('client')}
           />
           {showDropdown && filtered.length > 0 && !selectedClient && (
             <div className="absolute z-10 mt-1 w-full bg-white border border-zinc-200 rounded-md shadow-lg max-h-48 overflow-y-auto">
               {filtered.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  className="w-full text-left px-3 py-2 text-sm hover:bg-zinc-50"
-                  onMouseDown={() => { setSelectedClient(c); setShowDropdown(false); }}
-                >
+                <button key={c.id} type="button" className="w-full text-left px-3 py-2 text-sm hover:bg-zinc-50"
+                  onMouseDown={() => { setSelectedClient(c); setShowDropdown(false); }}>
                   {c.name}
                 </button>
               ))}
             </div>
           )}
-          {selectedClient && (
-            <button type="button" className="absolute right-3 top-8 text-zinc-400 hover:text-zinc-600 text-xs" onClick={() => { setSelectedClient(null); setQuery(''); }}>
-              ✕ clear
-            </button>
+          {showDropdown && filtered.length === 0 && query && !selectedClient && (
+            <div className="absolute z-10 mt-1 w-full bg-white border border-zinc-200 rounded-md shadow-lg p-3 text-xs text-zinc-400">
+              No clients found. <a href="/crm/companies/new" target="_blank" className="text-brand hover:underline">Add to CRM</a>
+            </div>
           )}
+          {selectedClient && (
+            <button type="button" className="absolute right-3 top-8 text-zinc-400 hover:text-zinc-600 text-xs"
+              onClick={() => { setSelectedClient(null); setQuery(''); }}>✕ clear</button>
+          )}
+          {errors.client && <p className="mt-1 text-xs text-red-500">{errors.client}</p>}
         </div>
 
+        {/* Address */}
         <div>
-          <label className="block text-sm font-medium text-zinc-700 mb-1">Notes</label>
-          <textarea
-            name="notes"
-            rows={3}
-            placeholder="Brief description of the opportunity…"
-            className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 resize-none"
-          />
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Address <span className="text-red-500">*</span></label>
+          <div className="space-y-2">
+            <input name="addressStreet" placeholder="Street address" className={field('addressStreet')} onChange={() => setErrors((p) => ({ ...p, addressStreet: '' }))} />
+            {errors.addressStreet && <p className="text-xs text-red-500">{errors.addressStreet}</p>}
+            <div className="grid grid-cols-3 gap-2">
+              <div className="col-span-1">
+                <input name="addressSuburb" placeholder="Suburb" className={field('addressSuburb')} onChange={() => setErrors((p) => ({ ...p, addressSuburb: '' }))} />
+                {errors.addressSuburb && <p className="text-xs text-red-500">{errors.addressSuburb}</p>}
+              </div>
+              <div>
+                <select name="addressState" defaultValue="" className={field('addressState')} onChange={() => setErrors((p) => ({ ...p, addressState: '' }))}>
+                  <option value="" disabled>State</option>
+                  {['VIC','NSW','QLD','WA','SA','TAS','ACT','NT'].map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+                {errors.addressState && <p className="text-xs text-red-500">{errors.addressState}</p>}
+              </div>
+              <div>
+                <input name="addressPostcode" placeholder="Postcode" maxLength={4} className={field('addressPostcode')} onChange={() => setErrors((p) => ({ ...p, addressPostcode: '' }))} />
+                {errors.addressPostcode && <p className="text-xs text-red-500">{errors.addressPostcode}</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Job Type */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Job Type <span className="text-red-500">*</span></label>
+          <select name="jobType" defaultValue="" className={field('jobType')} onChange={() => setErrors((p) => ({ ...p, jobType: '' }))}>
+            <option value="" disabled>Select job type</option>
+            {JOB_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+          {errors.jobType && <p className="mt-1 text-xs text-red-500">{errors.jobType}</p>}
+        </div>
+
+        {/* Revenue Code */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Revenue Code <span className="text-red-500">*</span></label>
+          <select name="revenueCostCodeId" defaultValue="" className={field('revenueCostCodeId')} onChange={() => setErrors((p) => ({ ...p, revenueCostCodeId: '' }))}>
+            <option value="" disabled>Select revenue code</option>
+            {revenueCodes.map((rc) => <option key={rc.id} value={rc.id}>{rc.catCode} — {rc.codeDescription}</option>)}
+          </select>
+          {errors.revenueCostCodeId && <p className="mt-1 text-xs text-red-500">{errors.revenueCostCodeId}</p>}
+        </div>
+
+        {/* Estimator */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Estimator <span className="text-red-500">*</span></label>
+          <select name="estimatorId" defaultValue={currentUserId} className={field('estimatorId')} onChange={() => setErrors((p) => ({ ...p, estimatorId: '' }))}>
+            {users.map((u) => <option key={u.id} value={u.id}>{u.firstName} {u.lastName}</option>)}
+          </select>
+          {errors.estimatorId && <p className="mt-1 text-xs text-red-500">{errors.estimatorId}</p>}
+        </div>
+
+        {/* Floor Area */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Floor Area (m²)</label>
+          <input name="floorAreaM2" type="number" min="0" step="0.01" placeholder="e.g. 850"
+            className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30" />
+        </div>
+
+        {/* Notes */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 mb-1">Lead Notes</label>
+          <textarea name="notes" rows={3} placeholder="Brief description of the opportunity…"
+            className="w-full border border-zinc-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 resize-none" />
         </div>
 
         <div className="flex justify-end gap-3 pt-2">
           <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-zinc-600 hover:text-zinc-900">Cancel</button>
-          <button
-            type="submit"
-            disabled={saving}
-            className="px-4 py-2 text-sm bg-brand text-white rounded-md hover:bg-brand/90 disabled:opacity-50"
-          >
+          <button type="submit" disabled={saving}
+            className="px-4 py-2 text-sm bg-brand text-white rounded-md hover:bg-brand/90 disabled:opacity-50">
             {saving ? 'Creating…' : 'Create Lead'}
           </button>
         </div>
@@ -214,13 +321,19 @@ function ColumnPicker({
 export default function LeadsListClient({
   initialLeads,
   clients,
+  users,
+  revenueCodes,
+  currentUserId,
 }: {
   initialLeads: Estimate[];
   clients: Company[];
+  users: AppUser[];
+  revenueCodes: RevenueCode[];
+  currentUserId: string;
 }) {
   const router = useRouter();
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('ALL');
+  const [stageFilter, setStageFilter] = useState('ALL');
   const [visibleCols, setVisibleCols] = useState<string[]>(DEFAULT_VISIBLE);
   const [panelOpen, setPanelOpen] = useState(false);
   const { widths: colWidths, startResize: handleResize } = useColumnResize(
@@ -229,7 +342,7 @@ export default function LeadsListClient({
   );
 
   const filtered = initialLeads.filter((e) => {
-    if (statusFilter !== 'ALL' && e.status !== statusFilter) return false;
+    if (stageFilter !== 'ALL' && e.pipelineStage !== Number(stageFilter)) return false;
     if (search) {
       const q = search.toLowerCase();
       if (
@@ -273,12 +386,12 @@ export default function LeadsListClient({
           className="w-56 border border-zinc-200 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
         />
         <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
+          value={stageFilter}
+          onChange={(e) => setStageFilter(e.target.value)}
           className="border border-zinc-200 rounded-md px-3 py-1.5 text-sm focus:outline-none"
         >
-          <option value="ALL">All Statuses</option>
-          {Object.entries(STATUS_LABELS).map(([k, v]) => (
+          <option value="ALL">All Stages</option>
+          {Object.entries(PIPELINE_STAGES).map(([k, v]) => (
             <option key={k} value={k}>{v}</option>
           ))}
         </select>
@@ -330,8 +443,8 @@ export default function LeadsListClient({
                   )}
                   {visibleCols.includes('status') && (
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[e.status] ?? 'bg-zinc-100 text-zinc-600'}`}>
-                        {STATUS_LABELS[e.status] ?? e.status}
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${PIPELINE_COLORS[e.pipelineStage] ?? 'bg-zinc-100 text-zinc-600'}`}>
+                        {PIPELINE_STAGES[e.pipelineStage] ?? `Stage ${e.pipelineStage}`}
                       </span>
                     </td>
                   )}
@@ -360,6 +473,9 @@ export default function LeadsListClient({
         open={panelOpen}
         onClose={() => setPanelOpen(false)}
         clients={clients}
+        users={users}
+        revenueCodes={revenueCodes}
+        currentUserId={currentUserId}
         onCreated={handleCreated}
       />
     </div>

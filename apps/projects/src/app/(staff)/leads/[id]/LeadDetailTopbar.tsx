@@ -7,18 +7,29 @@ type Estimate = {
   leadNumber: string;
   title: string;
   status: string;
+  pipelineStage: number;
   client: { name: string } | null;
 };
 
-const STATUS_COLORS: Record<string, string> = {
-  DRAFT: 'bg-zinc-100 text-zinc-600',
-  ACTIVE: 'bg-blue-100 text-blue-700',
-  CONVERTED: 'bg-green-100 text-green-700',
-  ARCHIVED: 'bg-amber-100 text-amber-700',
+const PIPELINE_STAGES: Record<number, string> = {
+  3: 'Qualified', 4: 'Submission', 5: 'Awaiting Decision',
+  6: 'Intent to Negotiate', 7: 'Won', 8: 'Lost',
+  9: 'Withdrawn', 10: 'Unsuccessful', 11: 'Dead',
+  12: 'Declined', 13: 'Sub Withdrawn',
 };
 
-const STATUS_LABELS: Record<string, string> = {
-  DRAFT: 'Draft', ACTIVE: 'Active', CONVERTED: 'Converted', ARCHIVED: 'Archived',
+const PIPELINE_COLORS: Record<number, string> = {
+  3: 'bg-blue-100 text-blue-700',
+  4: 'bg-violet-100 text-violet-700',
+  5: 'bg-amber-100 text-amber-700',
+  6: 'bg-orange-100 text-orange-700',
+  7: 'bg-green-100 text-green-700',
+  8: 'bg-red-100 text-red-700',
+  9: 'bg-zinc-100 text-zinc-600',
+  10: 'bg-zinc-100 text-zinc-500',
+  11: 'bg-zinc-200 text-zinc-500',
+  12: 'bg-rose-100 text-rose-600',
+  13: 'bg-zinc-100 text-zinc-500',
 };
 
 const TABS = [
@@ -54,8 +65,8 @@ export default function LeadDetailTopbar({ estimate }: { estimate: Estimate }) {
           {estimate.client && (
             <span className="text-zinc-400 text-sm truncate shrink-0">{estimate.client.name}</span>
           )}
-          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${STATUS_COLORS[estimate.status] ?? 'bg-zinc-100 text-zinc-600'}`}>
-            {STATUS_LABELS[estimate.status] ?? estimate.status}
+          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${PIPELINE_COLORS[estimate.pipelineStage] ?? 'bg-zinc-100 text-zinc-600'}`}>
+            {PIPELINE_STAGES[estimate.pipelineStage] ?? `Stage ${estimate.pipelineStage}`}
           </span>
         </div>
       </div>

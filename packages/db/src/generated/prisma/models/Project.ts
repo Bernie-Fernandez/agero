@@ -440,6 +440,7 @@ export type ProjectWhereInput = {
   permits?: Prisma.PermitListRelationFilter
   emergencyContacts?: Prisma.EmergencyContactListRelationFilter
   safetyInspections?: Prisma.SafetyInspectionListRelationFilter
+  convertedFromEstimates?: Prisma.EstimateListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -485,6 +486,7 @@ export type ProjectOrderByWithRelationInput = {
   permits?: Prisma.PermitOrderByRelationAggregateInput
   emergencyContacts?: Prisma.EmergencyContactOrderByRelationAggregateInput
   safetyInspections?: Prisma.SafetyInspectionOrderByRelationAggregateInput
+  convertedFromEstimates?: Prisma.EstimateOrderByRelationAggregateInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -533,6 +535,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   permits?: Prisma.PermitListRelationFilter
   emergencyContacts?: Prisma.EmergencyContactListRelationFilter
   safetyInspections?: Prisma.SafetyInspectionListRelationFilter
+  convertedFromEstimates?: Prisma.EstimateListRelationFilter
 }, "id">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -646,6 +649,7 @@ export type ProjectCreateInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -685,6 +689,7 @@ export type ProjectUncheckedCreateInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -724,6 +729,7 @@ export type ProjectUpdateInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -763,6 +769,7 @@ export type ProjectUncheckedUpdateInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -1361,6 +1368,22 @@ export type ProjectUpdateOneWithoutSafetyInspectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutSafetyInspectionsInput, Prisma.ProjectUpdateWithoutSafetyInspectionsInput>, Prisma.ProjectUncheckedUpdateWithoutSafetyInspectionsInput>
 }
 
+export type ProjectCreateNestedOneWithoutConvertedFromEstimatesInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedCreateWithoutConvertedFromEstimatesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutConvertedFromEstimatesInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedCreateWithoutConvertedFromEstimatesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutConvertedFromEstimatesInput
+  upsert?: Prisma.ProjectUpsertWithoutConvertedFromEstimatesInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutConvertedFromEstimatesInput, Prisma.ProjectUpdateWithoutConvertedFromEstimatesInput>, Prisma.ProjectUncheckedUpdateWithoutConvertedFromEstimatesInput>
+}
+
 export type ProjectCreateWithoutOrganisationInput = {
   id?: string
   name: string
@@ -1397,6 +1420,7 @@ export type ProjectCreateWithoutOrganisationInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOrganisationInput = {
@@ -1435,6 +1459,7 @@ export type ProjectUncheckedCreateWithoutOrganisationInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOrganisationInput = {
@@ -1535,6 +1560,7 @@ export type ProjectCreateWithoutCreatedByInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutCreatedByInput = {
@@ -1573,6 +1599,7 @@ export type ProjectUncheckedCreateWithoutCreatedByInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutCreatedByInput = {
@@ -1621,6 +1648,7 @@ export type ProjectCreateWithoutProjectManagerInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutProjectManagerInput = {
@@ -1659,6 +1687,7 @@ export type ProjectUncheckedCreateWithoutProjectManagerInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutProjectManagerInput = {
@@ -1707,6 +1736,7 @@ export type ProjectCreateWithoutSiteManagerInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSiteManagerInput = {
@@ -1745,6 +1775,7 @@ export type ProjectUncheckedCreateWithoutSiteManagerInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSiteManagerInput = {
@@ -1793,6 +1824,7 @@ export type ProjectCreateWithoutProjectEstimatorInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutProjectEstimatorInput = {
@@ -1831,6 +1863,7 @@ export type ProjectUncheckedCreateWithoutProjectEstimatorInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutProjectEstimatorInput = {
@@ -1943,6 +1976,7 @@ export type ProjectCreateWithoutSubcontractorsInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSubcontractorsInput = {
@@ -1981,6 +2015,7 @@ export type ProjectUncheckedCreateWithoutSubcontractorsInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSubcontractorsInput = {
@@ -2035,6 +2070,7 @@ export type ProjectUpdateWithoutSubcontractorsInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSubcontractorsInput = {
@@ -2073,6 +2109,7 @@ export type ProjectUncheckedUpdateWithoutSubcontractorsInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateWithoutClientInput = {
@@ -2111,6 +2148,7 @@ export type ProjectCreateWithoutClientInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutClientInput = {
@@ -2149,6 +2187,7 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutClientInput = {
@@ -2213,6 +2252,7 @@ export type ProjectCreateWithoutIncidentsInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutIncidentsInput = {
@@ -2251,6 +2291,7 @@ export type ProjectUncheckedCreateWithoutIncidentsInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutIncidentsInput = {
@@ -2305,6 +2346,7 @@ export type ProjectUpdateWithoutIncidentsInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutIncidentsInput = {
@@ -2343,6 +2385,7 @@ export type ProjectUncheckedUpdateWithoutIncidentsInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateWithoutHazardsInput = {
@@ -2381,6 +2424,7 @@ export type ProjectCreateWithoutHazardsInput = {
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutHazardsInput = {
@@ -2419,6 +2463,7 @@ export type ProjectUncheckedCreateWithoutHazardsInput = {
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutHazardsInput = {
@@ -2473,6 +2518,7 @@ export type ProjectUpdateWithoutHazardsInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutHazardsInput = {
@@ -2511,6 +2557,7 @@ export type ProjectUncheckedUpdateWithoutHazardsInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateWithoutPermitsInput = {
@@ -2549,6 +2596,7 @@ export type ProjectCreateWithoutPermitsInput = {
   hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutPermitsInput = {
@@ -2587,6 +2635,7 @@ export type ProjectUncheckedCreateWithoutPermitsInput = {
   hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutPermitsInput = {
@@ -2641,6 +2690,7 @@ export type ProjectUpdateWithoutPermitsInput = {
   hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutPermitsInput = {
@@ -2679,6 +2729,7 @@ export type ProjectUncheckedUpdateWithoutPermitsInput = {
   hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateWithoutEmergencyContactsInput = {
@@ -2717,6 +2768,7 @@ export type ProjectCreateWithoutEmergencyContactsInput = {
   hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutEmergencyContactsInput = {
@@ -2755,6 +2807,7 @@ export type ProjectUncheckedCreateWithoutEmergencyContactsInput = {
   hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutEmergencyContactsInput = {
@@ -2809,6 +2862,7 @@ export type ProjectUpdateWithoutEmergencyContactsInput = {
   hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutEmergencyContactsInput = {
@@ -2847,6 +2901,7 @@ export type ProjectUncheckedUpdateWithoutEmergencyContactsInput = {
   hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectCreateWithoutSafetyInspectionsInput = {
@@ -2885,6 +2940,7 @@ export type ProjectCreateWithoutSafetyInspectionsInput = {
   hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
   permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutSafetyInspectionsInput = {
@@ -2923,6 +2979,7 @@ export type ProjectUncheckedCreateWithoutSafetyInspectionsInput = {
   hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
   permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutConvertedToProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutSafetyInspectionsInput = {
@@ -2977,6 +3034,7 @@ export type ProjectUpdateWithoutSafetyInspectionsInput = {
   hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSafetyInspectionsInput = {
@@ -3015,6 +3073,179 @@ export type ProjectUncheckedUpdateWithoutSafetyInspectionsInput = {
   hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
+}
+
+export type ProjectCreateWithoutConvertedFromEstimatesInput = {
+  id?: string
+  name: string
+  projectNumber?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutProjectsInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientProjectsInput
+  projectManager?: Prisma.UserCreateNestedOneWithoutManagedProjectsInput
+  siteManager?: Prisma.UserCreateNestedOneWithoutSiteProjectsInput
+  projectEstimator?: Prisma.UserCreateNestedOneWithoutEstimatedProjectsInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedProjectsInput
+  subcontractors?: Prisma.ProjectSubcontractorCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutConvertedFromEstimatesInput = {
+  id?: string
+  organisationId: string
+  name: string
+  projectNumber?: string | null
+  clientId?: string | null
+  status?: $Enums.ProjectStatus
+  contractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: string | null
+  startDate?: Date | string | null
+  endDate?: Date | string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  projectManagerId?: string | null
+  siteManagerId?: string | null
+  projectEstimatorId?: string | null
+  createdById: string
+  plannedStart?: Date | string | null
+  plannedFinish?: Date | string | null
+  practicalCompletion?: Date | string | null
+  additionalDays?: number | null
+  contractSignedDate?: Date | string | null
+  retentionType?: string | null
+  variationMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: string | null
+  buildingType?: string | null
+  sizeM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutProjectInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutProjectInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutProjectInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutProjectInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutProjectInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutConvertedFromEstimatesInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedCreateWithoutConvertedFromEstimatesInput>
+}
+
+export type ProjectUpsertWithoutConvertedFromEstimatesInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedUpdateWithoutConvertedFromEstimatesInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedCreateWithoutConvertedFromEstimatesInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutConvertedFromEstimatesInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutConvertedFromEstimatesInput, Prisma.ProjectUncheckedUpdateWithoutConvertedFromEstimatesInput>
+}
+
+export type ProjectUpdateWithoutConvertedFromEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutProjectsNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientProjectsNestedInput
+  projectManager?: Prisma.UserUpdateOneWithoutManagedProjectsNestedInput
+  siteManager?: Prisma.UserUpdateOneWithoutSiteProjectsNestedInput
+  projectEstimator?: Prisma.UserUpdateOneWithoutEstimatedProjectsNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedProjectsNestedInput
+  subcontractors?: Prisma.ProjectSubcontractorUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutConvertedFromEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  projectNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  contractValue?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  siteAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  siteManagerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  projectEstimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  plannedStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  plannedFinish?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  practicalCompletion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  additionalDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  contractSignedDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retentionType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  variationMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  projectBrief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subcontractors?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutProjectNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutProjectNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutProjectNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyOrganisationInput = {
@@ -3085,6 +3316,7 @@ export type ProjectUpdateWithoutOrganisationInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOrganisationInput = {
@@ -3123,6 +3355,7 @@ export type ProjectUncheckedUpdateWithoutOrganisationInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOrganisationInput = {
@@ -3321,6 +3554,7 @@ export type ProjectUpdateWithoutCreatedByInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutCreatedByInput = {
@@ -3359,6 +3593,7 @@ export type ProjectUncheckedUpdateWithoutCreatedByInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutCreatedByInput = {
@@ -3429,6 +3664,7 @@ export type ProjectUpdateWithoutProjectManagerInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
@@ -3467,6 +3703,7 @@ export type ProjectUncheckedUpdateWithoutProjectManagerInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutProjectManagerInput = {
@@ -3537,6 +3774,7 @@ export type ProjectUpdateWithoutSiteManagerInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
@@ -3575,6 +3813,7 @@ export type ProjectUncheckedUpdateWithoutSiteManagerInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutSiteManagerInput = {
@@ -3645,6 +3884,7 @@ export type ProjectUpdateWithoutProjectEstimatorInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutProjectEstimatorInput = {
@@ -3683,6 +3923,7 @@ export type ProjectUncheckedUpdateWithoutProjectEstimatorInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutProjectEstimatorInput = {
@@ -3785,6 +4026,7 @@ export type ProjectUpdateWithoutClientInput = {
   permits?: Prisma.PermitUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutClientInput = {
@@ -3823,6 +4065,7 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   permits?: Prisma.PermitUncheckedUpdateManyWithoutProjectNestedInput
   emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutProjectNestedInput
   safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutProjectNestedInput
+  convertedFromEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutConvertedToProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -3869,6 +4112,7 @@ export type ProjectCountOutputType = {
   permits: number
   emergencyContacts: number
   safetyInspections: number
+  convertedFromEstimates: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3878,6 +4122,7 @@ export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   permits?: boolean | ProjectCountOutputTypeCountPermitsArgs
   emergencyContacts?: boolean | ProjectCountOutputTypeCountEmergencyContactsArgs
   safetyInspections?: boolean | ProjectCountOutputTypeCountSafetyInspectionsArgs
+  convertedFromEstimates?: boolean | ProjectCountOutputTypeCountConvertedFromEstimatesArgs
 }
 
 /**
@@ -3932,6 +4177,13 @@ export type ProjectCountOutputTypeCountSafetyInspectionsArgs<ExtArgs extends run
   where?: Prisma.SafetyInspectionWhereInput
 }
 
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountConvertedFromEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3976,6 +4228,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   permits?: boolean | Prisma.Project$permitsArgs<ExtArgs>
   emergencyContacts?: boolean | Prisma.Project$emergencyContactsArgs<ExtArgs>
   safetyInspections?: boolean | Prisma.Project$safetyInspectionsArgs<ExtArgs>
+  convertedFromEstimates?: boolean | Prisma.Project$convertedFromEstimatesArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -4104,6 +4357,7 @@ export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   permits?: boolean | Prisma.Project$permitsArgs<ExtArgs>
   emergencyContacts?: boolean | Prisma.Project$emergencyContactsArgs<ExtArgs>
   safetyInspections?: boolean | Prisma.Project$safetyInspectionsArgs<ExtArgs>
+  convertedFromEstimates?: boolean | Prisma.Project$convertedFromEstimatesArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4138,6 +4392,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     permits: Prisma.$PermitPayload<ExtArgs>[]
     emergencyContacts: Prisma.$EmergencyContactPayload<ExtArgs>[]
     safetyInspections: Prisma.$SafetyInspectionPayload<ExtArgs>[]
+    convertedFromEstimates: Prisma.$EstimatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4576,6 +4831,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   permits<T extends Prisma.Project$permitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$permitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PermitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emergencyContacts<T extends Prisma.Project$emergencyContactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$emergencyContactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmergencyContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   safetyInspections<T extends Prisma.Project$safetyInspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$safetyInspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SafetyInspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  convertedFromEstimates<T extends Prisma.Project$convertedFromEstimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$convertedFromEstimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5253,6 +5509,30 @@ export type Project$safetyInspectionsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.SafetyInspectionScalarFieldEnum | Prisma.SafetyInspectionScalarFieldEnum[]
+}
+
+/**
+ * Project.convertedFromEstimates
+ */
+export type Project$convertedFromEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimate
+   */
+  select?: Prisma.EstimateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimate
+   */
+  omit?: Prisma.EstimateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateInclude<ExtArgs> | null
+  where?: Prisma.EstimateWhereInput
+  orderBy?: Prisma.EstimateOrderByWithRelationInput | Prisma.EstimateOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
 }
 
 /**

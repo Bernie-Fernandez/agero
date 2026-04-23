@@ -296,6 +296,7 @@ model User {
   designTrendItemsSubmitted DesignTrendItem[]  @relation("DesignTrendItemSubmittedBy")
   designChatbotSessions   DesignChatbotSession[] @relation("DesignChatbotSessionUser")
   createdEstimates        Estimate[]             @relation("EstimateCreatedBy")
+  estimatesAsEstimator    Estimate[]             @relation("EstimateEstimator")
   estimateSnapshots       EstimateSnapshot[]     @relation("EstimateSnapshotCreatedBy")
 
   @@index([organisationId])
@@ -538,7 +539,8 @@ model CostCode {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  companyTrades CompanyTrade[]
+  companyTrades    CompanyTrade[]
+  revenueEstimates Estimate[] @relation("EstimateRevenueCostCode")
 
   @@index([organisationId])
   @@map("cost_codes")
@@ -2404,11 +2406,33 @@ model Estimate {
   clientId             String?        @map("client_id") @db.Uuid
   client               Company?       @relation("EstimateClient", fields: [clientId], references: [id], onDelete: SetNull)
   status               EstimateStatus @default(DRAFT)
+  pipelineStage        Int            @default(3) @map("pipeline_stage")
+  hubspotDealId        String?        @map("hubspot_deal_id")
+  addressStreet        String?        @map("address_street")
+  addressSuburb        String?        @map("address_suburb")
+  addressState         String?        @map("address_state")
+  addressPostcode      String?        @map("address_postcode")
+  jobType              String?        @map("job_type")
+  floorAreaM2          Decimal?       @map("floor_area_m2") @db.Decimal(10, 2)
+  estimatorId          String?        @map("estimator_id") @db.Uuid
+  estimator            User?          @relation("EstimateEstimator", fields: [estimatorId], references: [id])
+  revenueCostCodeId    String?        @map("revenue_cost_code_id") @db.Uuid
+  revenueCostCode      CostCode?      @relation("EstimateRevenueCostCode", fields: [revenueCostCodeId], references: [id])
   targetGpPct          Decimal        @default(22.50) @map("target_gp_pct") @db.Decimal(5, 2)
   minGpPct             Decimal        @default(15.00) @map("min_gp_pct") @db.Decimal(5, 2)
   defaultMarkupPct     Decimal        @default(48.15) @map("default_markup_pct") @db.Decimal(5, 2)
   costRecoveryPct      Decimal        @default(10.00) @map("cost_recovery_pct") @db.Decimal(5, 2)
   budgetCoverageTarget Decimal        @default(70.00) @map("budget_coverage_target") @db.Decimal(5, 2)
+  declaredMarginDefaultPct Decimal?   @map("declared_margin_default_pct") @db.Decimal(5, 2)
+  tradePackageHighPct  Decimal?       @map("trade_package_high_pct") @db.Decimal(5, 2)
+  tradePackageMedPct   Decimal?       @map("trade_package_med_pct") @db.Decimal(5, 2)
+  tradePackageLowPct   Decimal?       @map("trade_package_low_pct") @db.Decimal(5, 2)
+  marketEvalHighPct    Decimal?       @map("market_eval_high_pct") @db.Decimal(5, 2)
+  marketEvalMedPct     Decimal?       @map("market_eval_med_pct") @db.Decimal(5, 2)
+  marketEvalLowPct     Decimal?       @map("market_eval_low_pct") @db.Decimal(5, 2)
+  currencySymbol       String         @default("$") @map("currency_symbol")
+  costPerUnitLabel     String?        @map("cost_per_unit_label")
+  taxCodeName          String         @default("GST") @map("tax_code_name")
   notes                String?        @db.Text
   convertedToProjectId String?        @map("converted_to_project_id") @db.Uuid
   convertedToProject   Project?       @relation("EstimateConvertedProject", fields: [convertedToProjectId], references: [id], onDelete: SetNull)
@@ -2499,11 +2523,14 @@ model EstimateLine {
   isOption        Boolean              @default(false) @map("is_option")
   isPcSum         Boolean              @default(false) @map("is_pc_sum")
   isLockaway      Boolean              @default(false) @map("is_lockaway")
-  isHidden        Boolean              @default(false) @map("is_hidden")
-  notes           String?              @db.Text
-  order           Int                  @default(0)
-  createdAt       DateTime             @default(now()) @map("created_at")
-  updatedAt       DateTime             @updatedAt @map("updated_at")
+  isHidden           Boolean              @default(false) @map("is_hidden")
+  declaredMarginPct  Decimal?             @map("declared_margin_pct") @db.Decimal(5, 2)
+  tradePackageId     String?              @map("trade_package_id") @db.Uuid
+  tradePackage       TradePackage?        @relation("EstimateLinePackage", fields: [tradePackageId], references: [id], onDelete: SetNull)
+  notes              String?              @db.Text
+  order              Int                  @default(0)
+  createdAt          DateTime             @default(now()) @map("created_at")
+  updatedAt          DateTime             @updatedAt @map("updated_at")
 
   quantities       EstimateLineQuantity[]
   tags             EstimateLineTag[]
@@ -2619,7 +2646,8 @@ model TradePackage {
   createdAt      DateTime             @default(now()) @map("created_at")
   updatedAt      DateTime             @updatedAt @map("updated_at")
 
-  quotes TradeQuote[]
+  quotes        TradeQuote[]
+  assignedLines EstimateLine[] @relation("EstimateLinePackage")
 
   @@index([estimateId])
   @@map("trade_packages")

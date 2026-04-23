@@ -1,9 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import ProjectSwitcher from './ProjectSwitcher';
+import LeadSwitcher from './LeadSwitcher';
 
 type Project = { id: string; name: string };
+type Lead = { id: string; leadNumber: string; title: string; pipelineStage: number };
 
 function EntityPill() {
   const [open, setOpen] = useState(false);
@@ -42,12 +45,17 @@ function EntityPill() {
 export default function Topbar({
   userInitials,
   projects,
+  leads,
   onMenuToggle,
 }: {
   userInitials: string;
   projects: Project[];
+  leads: Lead[];
   onMenuToggle: () => void;
 }) {
+  const pathname = usePathname();
+  const onLeadsRoute = pathname.startsWith('/leads');
+
   return (
     <header className="fixed top-0 left-0 right-0 h-12 bg-white border-b border-zinc-200 flex items-center px-4 gap-3 z-30">
       {/* Logo zone */}
@@ -67,7 +75,11 @@ export default function Topbar({
 
       <EntityPill />
 
-      <ProjectSwitcher projects={projects} />
+      {onLeadsRoute ? (
+        <LeadSwitcher leads={leads} />
+      ) : (
+        <ProjectSwitcher projects={projects} />
+      )}
 
       <div className="flex-1 min-w-0" />
 

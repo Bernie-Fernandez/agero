@@ -10,14 +10,21 @@ export default async function NavShell({ children }: { children: ReactNode }) {
     ? `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase()
     : '?';
 
-  const projects = await prisma.project.findMany({
-    select: { id: true, name: true },
-    orderBy: { name: 'asc' },
-  });
+  const [projects, leads] = await Promise.all([
+    prisma.project.findMany({
+      select: { id: true, name: true },
+      orderBy: { name: 'asc' },
+    }),
+    prisma.estimate.findMany({
+      where: { pipelineStage: { lte: 6 } },
+      select: { id: true, leadNumber: true, title: true, pipelineStage: true },
+      orderBy: { updatedAt: 'desc' },
+    }),
+  ]);
 
   return (
     <ProjectContextProvider projects={projects}>
-      <NavShellLayout userInitials={initials} projects={projects}>
+      <NavShellLayout userInitials={initials} projects={projects} leads={leads}>
         {children}
       </NavShellLayout>
     </ProjectContextProvider>

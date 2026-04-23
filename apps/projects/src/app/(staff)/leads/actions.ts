@@ -37,6 +37,10 @@ export async function createLead(fd: FormData) {
   const user = await requireAppUser();
   const leadNumber = await generateLeadNumber(user.organisationId);
   const clientId = (fd.get('clientId') as string) || null;
+  const estimatorId = (fd.get('estimatorId') as string) || user.id;
+  const revenueCostCodeId = (fd.get('revenueCostCodeId') as string) || null;
+  const floorAreaRaw = fd.get('floorAreaM2') as string;
+  const floorAreaM2 = floorAreaRaw ? parseFloat(floorAreaRaw) : null;
 
   const estimate = await prisma.estimate.create({
     data: {
@@ -46,6 +50,15 @@ export async function createLead(fd: FormData) {
       clientId: clientId || undefined,
       notes: (fd.get('notes') as string) || null,
       createdById: user.id,
+      pipelineStage: 3,
+      addressStreet: (fd.get('addressStreet') as string) || null,
+      addressSuburb: (fd.get('addressSuburb') as string) || null,
+      addressState: (fd.get('addressState') as string) || null,
+      addressPostcode: (fd.get('addressPostcode') as string) || null,
+      jobType: (fd.get('jobType') as string) || null,
+      estimatorId,
+      revenueCostCodeId: revenueCostCodeId || undefined,
+      floorAreaM2: floorAreaM2 ?? undefined,
     },
   });
   revalidatePath('/leads');

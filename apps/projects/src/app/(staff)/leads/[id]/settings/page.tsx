@@ -7,7 +7,7 @@ export default async function EstimateSettingsPage({ params }: { params: Promise
   const { id } = await params;
   const user = await requireAppUser();
 
-  const [estimate, clients] = await Promise.all([
+  const [estimate, clients, users, revenueCodes] = await Promise.all([
     prisma.estimate.findFirst({
       where: { id, organisationId: user.organisationId },
       include: { client: { select: { id: true, name: true } } },
@@ -17,9 +17,26 @@ export default async function EstimateSettingsPage({ params }: { params: Promise
       select: { id: true, name: true },
       orderBy: { name: 'asc' },
     }),
+    prisma.user.findMany({
+      where: { organisationId: user.organisationId, isActive: true },
+      select: { id: true, firstName: true, lastName: true },
+      orderBy: [{ firstName: 'asc' }, { lastName: 'asc' }],
+    }),
+    prisma.costCode.findMany({
+      where: { organisationId: user.organisationId, codeType: 'REVENUE' },
+      select: { id: true, catCode: true, codeDescription: true },
+      orderBy: { catCode: 'asc' },
+    }),
   ]);
 
   if (!estimate) notFound();
 
-  return <SettingsClient estimate={estimate as never} clients={clients} />;
+  return (
+    <SettingsClient
+      estimate={estimate as never}
+      clients={clients}
+      users={users}
+      revenueCodes={revenueCodes}
+    />
+  );
 }

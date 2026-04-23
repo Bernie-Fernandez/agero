@@ -5,7 +5,7 @@ import LeadsListClient from './LeadsListClient';
 export default async function LeadsPage() {
   const user = await requireAppUser();
 
-  const [leads, clients] = await Promise.all([
+  const [leads, clients, users, revenueCodes] = await Promise.all([
     prisma.estimate.findMany({
       where: { organisationId: user.organisationId },
       include: {
@@ -20,7 +20,25 @@ export default async function LeadsPage() {
       select: { id: true, name: true },
       orderBy: { name: 'asc' },
     }),
+    prisma.user.findMany({
+      where: { organisationId: user.organisationId, isActive: true },
+      select: { id: true, firstName: true, lastName: true },
+      orderBy: [{ firstName: 'asc' }, { lastName: 'asc' }],
+    }),
+    prisma.costCode.findMany({
+      where: { organisationId: user.organisationId, codeType: 'REVENUE' },
+      select: { id: true, catCode: true, codeDescription: true },
+      orderBy: { catCode: 'asc' },
+    }),
   ]);
 
-  return <LeadsListClient initialLeads={leads as never} clients={clients} />;
+  return (
+    <LeadsListClient
+      initialLeads={leads as never}
+      clients={clients}
+      users={users}
+      revenueCodes={revenueCodes}
+      currentUserId={user.id}
+    />
+  );
 }

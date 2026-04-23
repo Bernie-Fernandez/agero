@@ -20,6 +20,7 @@ export default async function LeadDetailLayout({
       leadNumber: true,
       title: true,
       status: true,
+      pipelineStage: true,
       client: { select: { name: true } },
     },
   });

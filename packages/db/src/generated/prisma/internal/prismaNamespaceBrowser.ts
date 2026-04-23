@@ -127,7 +127,24 @@ export const ModelName = {
   DesignMonitoredUrl: 'DesignMonitoredUrl',
   DesignTrendItem: 'DesignTrendItem',
   DesignChatbotSession: 'DesignChatbotSession',
-  DesignChatbotMessage: 'DesignChatbotMessage'
+  DesignChatbotMessage: 'DesignChatbotMessage',
+  Estimate: 'Estimate',
+  EstimateArea: 'EstimateArea',
+  EstimateScenario: 'EstimateScenario',
+  EstimateTradeSection: 'EstimateTradeSection',
+  EstimateLine: 'EstimateLine',
+  EstimateLineQuantity: 'EstimateLineQuantity',
+  EstimateOption: 'EstimateOption',
+  EstimateOptionLine: 'EstimateOptionLine',
+  EstimateLockaway: 'EstimateLockaway',
+  EstimateLockawayLine: 'EstimateLockawayLine',
+  EstimateInsightTag: 'EstimateInsightTag',
+  EstimateLineTag: 'EstimateLineTag',
+  TradePackage: 'TradePackage',
+  TradeQuote: 'TradeQuote',
+  EstimateSnapshot: 'EstimateSnapshot',
+  ScopeLibraryItem: 'ScopeLibraryItem',
+  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1571,6 +1588,240 @@ export const DesignChatbotMessageScalarFieldEnum = {
 } as const
 
 export type DesignChatbotMessageScalarFieldEnum = (typeof DesignChatbotMessageScalarFieldEnum)[keyof typeof DesignChatbotMessageScalarFieldEnum]
+
+
+export const EstimateScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  leadNumber: 'leadNumber',
+  title: 'title',
+  clientId: 'clientId',
+  status: 'status',
+  pipelineStage: 'pipelineStage',
+  hubspotDealId: 'hubspotDealId',
+  addressStreet: 'addressStreet',
+  addressSuburb: 'addressSuburb',
+  addressState: 'addressState',
+  addressPostcode: 'addressPostcode',
+  jobType: 'jobType',
+  floorAreaM2: 'floorAreaM2',
+  estimatorId: 'estimatorId',
+  revenueCostCodeId: 'revenueCostCodeId',
+  targetGpPct: 'targetGpPct',
+  minGpPct: 'minGpPct',
+  defaultMarkupPct: 'defaultMarkupPct',
+  costRecoveryPct: 'costRecoveryPct',
+  budgetCoverageTarget: 'budgetCoverageTarget',
+  declaredMarginDefaultPct: 'declaredMarginDefaultPct',
+  tradePackageHighPct: 'tradePackageHighPct',
+  tradePackageMedPct: 'tradePackageMedPct',
+  tradePackageLowPct: 'tradePackageLowPct',
+  marketEvalHighPct: 'marketEvalHighPct',
+  marketEvalMedPct: 'marketEvalMedPct',
+  marketEvalLowPct: 'marketEvalLowPct',
+  currencySymbol: 'currencySymbol',
+  costPerUnitLabel: 'costPerUnitLabel',
+  taxCodeName: 'taxCodeName',
+  notes: 'notes',
+  convertedToProjectId: 'convertedToProjectId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
+
+
+export const EstimateAreaScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type EstimateAreaScalarFieldEnum = (typeof EstimateAreaScalarFieldEnum)[keyof typeof EstimateAreaScalarFieldEnum]
+
+
+export const EstimateScenarioScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  isBase: 'isBase',
+  order: 'order'
+} as const
+
+export type EstimateScenarioScalarFieldEnum = (typeof EstimateScenarioScalarFieldEnum)[keyof typeof EstimateScenarioScalarFieldEnum]
+
+
+export const EstimateTradeSectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  estimateId: 'estimateId',
+  name: 'name',
+  code: 'code',
+  order: 'order'
+} as const
+
+export type EstimateTradeSectionScalarFieldEnum = (typeof EstimateTradeSectionScalarFieldEnum)[keyof typeof EstimateTradeSectionScalarFieldEnum]
+
+
+export const EstimateLineScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  areaId: 'areaId',
+  scenarioId: 'scenarioId',
+  tradeSectionId: 'tradeSectionId',
+  description: 'description',
+  type: 'type',
+  quantity: 'quantity',
+  unit: 'unit',
+  rate: 'rate',
+  total: 'total',
+  isRisk: 'isRisk',
+  isOption: 'isOption',
+  isPcSum: 'isPcSum',
+  isLockaway: 'isLockaway',
+  isHidden: 'isHidden',
+  declaredMarginPct: 'declaredMarginPct',
+  tradePackageId: 'tradePackageId',
+  notes: 'notes',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateLineScalarFieldEnum = (typeof EstimateLineScalarFieldEnum)[keyof typeof EstimateLineScalarFieldEnum]
+
+
+export const EstimateLineQuantityScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  label: 'label',
+  quantity: 'quantity'
+} as const
+
+export type EstimateLineQuantityScalarFieldEnum = (typeof EstimateLineQuantityScalarFieldEnum)[keyof typeof EstimateLineQuantityScalarFieldEnum]
+
+
+export const EstimateOptionScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  description: 'description',
+  totalCost: 'totalCost'
+} as const
+
+export type EstimateOptionScalarFieldEnum = (typeof EstimateOptionScalarFieldEnum)[keyof typeof EstimateOptionScalarFieldEnum]
+
+
+export const EstimateOptionLineScalarFieldEnum = {
+  id: 'id',
+  optionId: 'optionId',
+  lineId: 'lineId'
+} as const
+
+export type EstimateOptionLineScalarFieldEnum = (typeof EstimateOptionLineScalarFieldEnum)[keyof typeof EstimateOptionLineScalarFieldEnum]
+
+
+export const EstimateLockawayScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  notes: 'notes'
+} as const
+
+export type EstimateLockawayScalarFieldEnum = (typeof EstimateLockawayScalarFieldEnum)[keyof typeof EstimateLockawayScalarFieldEnum]
+
+
+export const EstimateLockawayLineScalarFieldEnum = {
+  id: 'id',
+  lockawayId: 'lockawayId',
+  lineId: 'lineId'
+} as const
+
+export type EstimateLockawayLineScalarFieldEnum = (typeof EstimateLockawayLineScalarFieldEnum)[keyof typeof EstimateLockawayLineScalarFieldEnum]
+
+
+export const EstimateInsightTagScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  color: 'color'
+} as const
+
+export type EstimateInsightTagScalarFieldEnum = (typeof EstimateInsightTagScalarFieldEnum)[keyof typeof EstimateInsightTagScalarFieldEnum]
+
+
+export const EstimateLineTagScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  tagId: 'tagId'
+} as const
+
+export type EstimateLineTagScalarFieldEnum = (typeof EstimateLineTagScalarFieldEnum)[keyof typeof EstimateLineTagScalarFieldEnum]
+
+
+export const TradePackageScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  tradeSectionId: 'tradeSectionId',
+  name: 'name',
+  scope: 'scope',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TradePackageScalarFieldEnum = (typeof TradePackageScalarFieldEnum)[keyof typeof TradePackageScalarFieldEnum]
+
+
+export const TradeQuoteScalarFieldEnum = {
+  id: 'id',
+  packageId: 'packageId',
+  subcontractorId: 'subcontractorId',
+  amount: 'amount',
+  status: 'status',
+  receivedAt: 'receivedAt',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type TradeQuoteScalarFieldEnum = (typeof TradeQuoteScalarFieldEnum)[keyof typeof TradeQuoteScalarFieldEnum]
+
+
+export const EstimateSnapshotScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  label: 'label',
+  snapshotData: 'snapshotData',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimateSnapshotScalarFieldEnum = (typeof EstimateSnapshotScalarFieldEnum)[keyof typeof EstimateSnapshotScalarFieldEnum]
+
+
+export const ScopeLibraryItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  tradeSectionId: 'tradeSectionId',
+  description: 'description',
+  unit: 'unit',
+  notes: 'notes',
+  isGlobal: 'isGlobal',
+  createdAt: 'createdAt'
+} as const
+
+export type ScopeLibraryItemScalarFieldEnum = (typeof ScopeLibraryItemScalarFieldEnum)[keyof typeof ScopeLibraryItemScalarFieldEnum]
+
+
+export const EstimateLineScopeAttachmentScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  scopeLibraryItemId: 'scopeLibraryItemId'
+} as const
+
+export type EstimateLineScopeAttachmentScalarFieldEnum = (typeof EstimateLineScopeAttachmentScalarFieldEnum)[keyof typeof EstimateLineScopeAttachmentScalarFieldEnum]
 
 
 export const SortOrder = {

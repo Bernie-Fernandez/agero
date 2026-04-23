@@ -22,16 +22,36 @@ export async function getEstimate(id: string) {
 
 export async function updateEstimateSettings(id: string, fd: FormData) {
   const user = await requireAppUser();
+  const num = (key: string) => fd.get(key) ? Number(fd.get(key)) : undefined;
+  const str = (key: string) => (fd.get(key) as string) || null;
   await prisma.estimate.update({
     where: { id, organisationId: user.organisationId },
     data: {
       title: (fd.get('title') as string) || undefined,
-      targetGpPct: fd.get('targetGpPct') ? Number(fd.get('targetGpPct')) : undefined,
-      minGpPct: fd.get('minGpPct') ? Number(fd.get('minGpPct')) : undefined,
-      defaultMarkupPct: fd.get('defaultMarkupPct') ? Number(fd.get('defaultMarkupPct')) : undefined,
-      costRecoveryPct: fd.get('costRecoveryPct') ? Number(fd.get('costRecoveryPct')) : undefined,
-      budgetCoverageTarget: fd.get('budgetCoverageTarget') ? Number(fd.get('budgetCoverageTarget')) : undefined,
-      notes: (fd.get('notes') as string) || null,
+      notes: str('notes'),
+      addressStreet: str('addressStreet'),
+      addressSuburb: str('addressSuburb'),
+      addressState: str('addressState'),
+      addressPostcode: str('addressPostcode'),
+      jobType: str('jobType'),
+      floorAreaM2: num('floorAreaM2'),
+      estimatorId: (fd.get('estimatorId') as string) || undefined,
+      revenueCostCodeId: (fd.get('revenueCostCodeId') as string) || undefined,
+      targetGpPct: num('targetGpPct'),
+      minGpPct: num('minGpPct'),
+      defaultMarkupPct: num('defaultMarkupPct'),
+      costRecoveryPct: num('costRecoveryPct'),
+      budgetCoverageTarget: num('budgetCoverageTarget'),
+      tradePackageHighPct: num('tradePackageHighPct'),
+      tradePackageMedPct: num('tradePackageMedPct'),
+      tradePackageLowPct: num('tradePackageLowPct'),
+      marketEvalHighPct: num('marketEvalHighPct'),
+      marketEvalMedPct: num('marketEvalMedPct'),
+      marketEvalLowPct: num('marketEvalLowPct'),
+      declaredMarginDefaultPct: num('declaredMarginDefaultPct'),
+      currencySymbol: (fd.get('currencySymbol') as string) || '$',
+      costPerUnitLabel: str('costPerUnitLabel'),
+      taxCodeName: (fd.get('taxCodeName') as string) || 'GST',
     },
   });
   revalidatePath(`/leads/${id}`);
@@ -90,6 +110,10 @@ export async function createLine(estimateId: string, fd: FormData) {
   const total = qty.mul(rate);
   const count = await prisma.estimateLine.count({ where: { estimateId } });
 
+  const dmRaw = fd.get('declaredMarginPct') as string;
+  const declaredMarginPct = dmRaw ? new Decimal(dmRaw).toDecimalPlaces(2).toNumber() : null;
+  const tradePackageId = (fd.get('tradePackageId') as string) || null;
+
   await prisma.estimateLine.create({
     data: {
       estimateId,
@@ -109,6 +133,8 @@ export async function createLine(estimateId: string, fd: FormData) {
       isHidden: fd.get('isHidden') === 'true',
       notes: (fd.get('notes') as string) || null,
       order: count,
+      declaredMarginPct: declaredMarginPct ?? undefined,
+      tradePackageId: tradePackageId || undefined,
     },
   });
   revalidatePath(`/leads/${estimateId}/cost-plan`);
@@ -118,6 +144,10 @@ export async function updateLine(lineId: string, estimateId: string, fd: FormDat
   const qty = new Decimal(fd.get('quantity') as string || '0');
   const rate = new Decimal(fd.get('rate') as string || '0');
   const total = qty.mul(rate);
+
+  const dmRaw = fd.get('declaredMarginPct') as string;
+  const declaredMarginPct = dmRaw ? new Decimal(dmRaw).toDecimalPlaces(2).toNumber() : null;
+  const tradePackageId = (fd.get('tradePackageId') as string) || null;
 
   await prisma.estimateLine.update({
     where: { id: lineId },
@@ -134,6 +164,8 @@ export async function updateLine(lineId: string, estimateId: string, fd: FormDat
       isLockaway: fd.get('isLockaway') === 'true',
       isHidden: fd.get('isHidden') === 'true',
       notes: (fd.get('notes') as string) || null,
+      declaredMarginPct: declaredMarginPct,
+      tradePackageId: tradePackageId || undefined,
     },
   });
   revalidatePath(`/leads/${estimateId}/cost-plan`);

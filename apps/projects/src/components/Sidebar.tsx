@@ -78,6 +78,7 @@ function Section({
   label,
   children,
   defaultOpen = false,
+  forceOpen = false,
   stubbed = false,
   onItemClick,
 }: {
@@ -85,20 +86,22 @@ function Section({
   label: string;
   children?: React.ReactNode;
   defaultOpen?: boolean;
+  forceOpen?: boolean;
   stubbed?: boolean;
   onItemClick?: () => void;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  const [open, setOpen] = useState(defaultOpen || forceOpen);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    if (forceOpen) { setOpen(true); return; }
     const stored = localStorage.getItem(`agero_sidebar_${sectionKey}`);
     if (stored !== null) setOpen(stored === 'true');
     setHydrated(true);
-  }, [sectionKey]);
+  }, [sectionKey, forceOpen]);
 
   function toggle() {
-    if (stubbed) return;
+    if (stubbed || forceOpen) return;
     const next = !open;
     setOpen(next);
     if (hydrated) localStorage.setItem(`agero_sidebar_${sectionKey}`, String(next));
@@ -216,7 +219,7 @@ function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
     <div className="ml-1 mt-0.5 space-y-0.5">
       <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
       {leadId && (
-        <>
+        <div className="ml-1 mt-0.5 space-y-0.5 border-l border-zinc-100 pl-2">
           <NavLink href={`/leads/${leadId}/dashboard`} label="Dashboard" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/cost-plan`} label="Cost Plan" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/analysis`} label="Analysis" depth={2} onItemClick={onItemClick} />
@@ -227,7 +230,7 @@ function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
           <NavLink href={`/leads/${leadId}/trade-letting`} label="Trade Letting" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/reports`} label="Reports" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/settings`} label="Settings" depth={2} onItemClick={onItemClick} />
-        </>
+        </div>
       )}
     </div>
   );
@@ -290,8 +293,10 @@ function ProjectSubItems({ onItemClick }: { onItemClick?: () => void }) {
 // ── SidebarNav ───────────────────────────────────────────────────────────────
 
 function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
   const [bookmarksOpen, setBookmarksOpen] = useState(false);
   const [pendingApprovals, setPendingApprovals] = useState(0);
+  const onLeadsRoute = pathname.startsWith('/leads');
 
   useEffect(() => {
     getDesignPendingApprovalCount().then(setPendingApprovals).catch(() => {});
@@ -327,7 +332,7 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
       </Section>
 
       {/* Estimating */}
-      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} onItemClick={onItemClick}>
+      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
         <EstimatingSubItems onItemClick={onItemClick} />
       </Section>
 

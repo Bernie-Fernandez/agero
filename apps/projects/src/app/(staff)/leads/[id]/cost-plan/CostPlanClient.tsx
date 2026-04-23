@@ -8,6 +8,7 @@ import { createLine, updateLine, deleteLine, addTradeSectionToEstimate, createAr
 type TradeSection = { id: string; name: string; code: string | null; order: number };
 type Area = { id: string; name: string };
 type Scenario = { id: string; name: string; isBase: boolean };
+type TradePackage = { id: string; name: string };
 type Line = {
   id: string;
   description: string;
@@ -24,6 +25,8 @@ type Line = {
   notes: string | null;
   tradeSectionId: string | null;
   areaId: string | null;
+  declaredMarginPct: number | string | null;
+  tradePackageId: string | null;
   tradeSection: { id: string; name: string; code: string | null } | null;
   area: { id: string; name: string } | null;
 };
@@ -37,6 +40,7 @@ type Estimate = {
   areas: Area[];
   scenarios: Scenario[];
   lines: Line[];
+  tradePackages: TradePackage[];
 };
 
 const LINE_TYPES = ['LABOUR', 'MATERIAL', 'SUBCONTRACTOR', 'ALLOWANCE', 'PROVISIONAL_SUM'];
@@ -61,12 +65,14 @@ function LineRow({
   estimateId,
   sections,
   areas,
+  packages,
   onMutate,
 }: {
   line: Line;
   estimateId: string;
   sections: TradeSection[];
   areas: Area[];
+  packages: TradePackage[];
   onMutate: () => void;
 }) {
   const [editing, setEditing] = useState(false);
@@ -85,6 +91,8 @@ function LineRow({
     isLockaway: line.isLockaway,
     isHidden: line.isHidden,
     notes: line.notes ?? '',
+    declaredMarginPct: line.declaredMarginPct != null ? String(Number(line.declaredMarginPct)) : '',
+    tradePackageId: line.tradePackageId ?? '',
   });
 
   const calcTotal = Number(form.quantity) * Number(form.rate);
@@ -133,18 +141,27 @@ function LineRow({
           <input type="number" value={form.rate} onChange={(e) => setForm((f) => ({ ...f, rate: e.target.value }))} className="border border-zinc-200 rounded px-2 py-1 text-sm w-24" />
         </td>
         <td className="px-2 py-2 text-sm text-zinc-700 font-medium">{fmt(calcTotal)}</td>
-        <td className="px-2 py-2">
-          <div className="flex flex-wrap gap-1">
+        <td className="px-2 py-2" colSpan={2}>
+          <div className="flex flex-wrap gap-x-2 gap-y-1">
             {(['isRisk', 'isOption', 'isPcSum', 'isLockaway', 'isHidden'] as const).map((flag) => (
               <label key={flag} className="flex items-center gap-0.5 text-[10px] cursor-pointer">
                 <input type="checkbox" checked={form[flag]} onChange={(e) => setForm((f) => ({ ...f, [flag]: e.target.checked }))} />
-                {flag === 'isRisk' ? 'R&O' : flag === 'isOption' ? 'Opt' : flag === 'isPcSum' ? 'PC' : flag === 'isLockaway' ? 'Lock' : 'Hid'}
+                {flag === 'isRisk' ? 'R&O' : flag === 'isOption' ? 'OPT' : flag === 'isPcSum' ? 'PC' : flag === 'isLockaway' ? 'LOCK' : 'HID'}
               </label>
             ))}
+            <div className="flex items-center gap-1 ml-1">
+              <span className="text-[10px] text-zinc-400">DM%</span>
+              <input type="number" step="0.01" min="0" max="100" value={form.declaredMarginPct}
+                onChange={(e) => setForm((f) => ({ ...f, declaredMarginPct: e.target.value }))}
+                className="border border-zinc-200 rounded px-1 py-0.5 text-xs w-14" placeholder="—" />
+            </div>
+            <select value={form.tradePackageId} onChange={(e) => setForm((f) => ({ ...f, tradePackageId: e.target.value }))}
+              className="border border-zinc-200 rounded px-1 py-0.5 text-xs">
+              <option value="">No package</option>
+              {packages.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+            </select>
           </div>
-        </td>
-        <td className="px-2 py-2">
-          <div className="flex gap-1">
+          <div className="flex gap-1 mt-2">
             <button onClick={handleSave} disabled={pending} className="px-2 py-1 text-xs bg-brand text-white rounded hover:bg-brand/90 disabled:opacity-50">Save</button>
             <button onClick={() => setEditing(false)} className="px-2 py-1 text-xs border border-zinc-200 rounded hover:bg-zinc-50">Cancel</button>
           </div>
@@ -154,16 +171,19 @@ function LineRow({
   }
 
   return (
-    <tr className="border-b border-zinc-100 hover:bg-zinc-50 group">
+    <tr className={`border-b border-zinc-100 hover:bg-zinc-50 group${line.isHidden ? ' opacity-50' : ''}`}>
       <td className="px-3 py-2 text-xs text-zinc-400">{line.tradeSection?.code ?? ''}</td>
       <td className="px-3 py-2 text-sm text-zinc-800">
         <span>{line.description}</span>
-        <div className="flex gap-1 mt-0.5">
+        <div className="flex gap-1 mt-0.5 flex-wrap">
+          {line.isOption && <FlagBadge label="OPT" color="bg-blue-100 text-blue-700" />}
           {line.isRisk && <FlagBadge label="R&O" color="bg-amber-100 text-amber-700" />}
-          {line.isOption && <FlagBadge label="OPT" color="bg-purple-100 text-purple-700" />}
-          {line.isPcSum && <FlagBadge label="PC" color="bg-blue-100 text-blue-700" />}
-          {line.isLockaway && <FlagBadge label="LOCK" color="bg-orange-100 text-orange-700" />}
-          {line.isHidden && <FlagBadge label="HID" color="bg-zinc-100 text-zinc-500" />}
+          {line.isHidden && <FlagBadge label="HID" color="bg-zinc-100 text-zinc-400 opacity-70" />}
+          {line.isPcSum && <FlagBadge label="PC" color="bg-purple-100 text-purple-700" />}
+          {line.isLockaway && <FlagBadge label="LOCK" color="bg-navy-100 text-[#1e3a5f] bg-[#dbeafe]" />}
+          {line.declaredMarginPct != null && (
+            <FlagBadge label={`DM ${Number(line.declaredMarginPct).toFixed(0)}%`} color="bg-blue-50 text-blue-600 border border-blue-200" />
+          )}
         </div>
       </td>
       <td className="px-2 py-2 text-xs text-zinc-500">{TYPE_LABELS[line.type] ?? line.type}</td>
@@ -192,12 +212,14 @@ function AddLineRow({
   estimateId,
   sections,
   areas,
+  packages,
   defaultSectionId,
   onAdded,
 }: {
   estimateId: string;
   sections: TradeSection[];
   areas: Area[];
+  packages: TradePackage[];
   defaultSectionId?: string;
   onAdded: () => void;
 }) {
@@ -207,6 +229,7 @@ function AddLineRow({
     description: '', type: 'MATERIAL', quantity: '1', unit: '', rate: '0',
     tradeSectionId: defaultSectionId ?? '', areaId: '',
     isRisk: false, isOption: false, isPcSum: false, isLockaway: false, isHidden: false,
+    declaredMarginPct: '', tradePackageId: '',
   });
 
   function handleAdd() {
@@ -401,6 +424,7 @@ export default function CostPlanClient({
                       estimateId={estimate.id}
                       sections={estimate.tradeSections}
                       areas={estimate.areas}
+                      packages={estimate.tradePackages}
                       onMutate={mutate}
                     />
                   ))}
@@ -409,6 +433,7 @@ export default function CostPlanClient({
                     estimateId={estimate.id}
                     sections={estimate.tradeSections}
                     areas={estimate.areas}
+                    packages={estimate.tradePackages}
                     defaultSectionId={section.id}
                     onAdded={mutate}
                   />
@@ -423,14 +448,14 @@ export default function CostPlanClient({
                   <td colSpan={9} className="px-3 py-2 text-xs font-semibold text-zinc-400 uppercase tracking-wide">Unassigned</td>
                 </tr>
                 {estimate.lines.filter((l) => !l.tradeSectionId).map((line) => (
-                  <LineRow key={`line-${line.id}-${refreshKey}`} line={line} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} onMutate={mutate} />
+                  <LineRow key={`line-${line.id}-${refreshKey}`} line={line} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} packages={estimate.tradePackages} onMutate={mutate} />
                 ))}
               </>
             )}
 
             {/* Global add line (no section) */}
             {estimate.tradeSections.length === 0 && (
-              <AddLineRow key={`add-global-${refreshKey}`} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} onAdded={mutate} />
+              <AddLineRow key={`add-global-${refreshKey}`} estimateId={estimate.id} sections={estimate.tradeSections} areas={estimate.areas} packages={estimate.tradePackages} onAdded={mutate} />
             )}
           </tbody>
 

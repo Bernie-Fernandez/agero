@@ -503,3 +503,44 @@ export const DesignChatRole = {
 } as const
 
 export type DesignChatRole = (typeof DesignChatRole)[keyof typeof DesignChatRole]
+
+
+export const EstimateStatus = {
+  DRAFT: 'DRAFT',
+  ACTIVE: 'ACTIVE',
+  CONVERTED: 'CONVERTED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]
+
+
+export const EstimateLineType = {
+  LABOUR: 'LABOUR',
+  MATERIAL: 'MATERIAL',
+  SUBCONTRACTOR: 'SUBCONTRACTOR',
+  ALLOWANCE: 'ALLOWANCE',
+  PROVISIONAL_SUM: 'PROVISIONAL_SUM'
+} as const
+
+export type EstimateLineType = (typeof EstimateLineType)[keyof typeof EstimateLineType]
+
+
+export const QuoteStatus = {
+  PENDING: 'PENDING',
+  RECEIVED: 'RECEIVED',
+  AWARDED: 'AWARDED',
+  DECLINED: 'DECLINED'
+} as const
+
+export type QuoteStatus = (typeof QuoteStatus)[keyof typeof QuoteStatus]
+
+
+export const TradeLetStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  QUOTING: 'QUOTING',
+  AWARDED: 'AWARDED',
+  COMPLETE: 'COMPLETE'
+} as const
+
+export type TradeLetStatus = (typeof TradeLetStatus)[keyof typeof TradeLetStatus]

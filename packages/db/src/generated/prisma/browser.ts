@@ -402,3 +402,88 @@ export type DesignChatbotSession = Prisma.DesignChatbotSessionModel
  * 
  */
 export type DesignChatbotMessage = Prisma.DesignChatbotMessageModel
+/**
+ * Model Estimate
+ * 
+ */
+export type Estimate = Prisma.EstimateModel
+/**
+ * Model EstimateArea
+ * 
+ */
+export type EstimateArea = Prisma.EstimateAreaModel
+/**
+ * Model EstimateScenario
+ * 
+ */
+export type EstimateScenario = Prisma.EstimateScenarioModel
+/**
+ * Model EstimateTradeSection
+ * 
+ */
+export type EstimateTradeSection = Prisma.EstimateTradeSectionModel
+/**
+ * Model EstimateLine
+ * 
+ */
+export type EstimateLine = Prisma.EstimateLineModel
+/**
+ * Model EstimateLineQuantity
+ * 
+ */
+export type EstimateLineQuantity = Prisma.EstimateLineQuantityModel
+/**
+ * Model EstimateOption
+ * 
+ */
+export type EstimateOption = Prisma.EstimateOptionModel
+/**
+ * Model EstimateOptionLine
+ * 
+ */
+export type EstimateOptionLine = Prisma.EstimateOptionLineModel
+/**
+ * Model EstimateLockaway
+ * 
+ */
+export type EstimateLockaway = Prisma.EstimateLockawayModel
+/**
+ * Model EstimateLockawayLine
+ * 
+ */
+export type EstimateLockawayLine = Prisma.EstimateLockawayLineModel
+/**
+ * Model EstimateInsightTag
+ * 
+ */
+export type EstimateInsightTag = Prisma.EstimateInsightTagModel
+/**
+ * Model EstimateLineTag
+ * 
+ */
+export type EstimateLineTag = Prisma.EstimateLineTagModel
+/**
+ * Model TradePackage
+ * 
+ */
+export type TradePackage = Prisma.TradePackageModel
+/**
+ * Model TradeQuote
+ * 
+ */
+export type TradeQuote = Prisma.TradeQuoteModel
+/**
+ * Model EstimateSnapshot
+ * 
+ */
+export type EstimateSnapshot = Prisma.EstimateSnapshotModel
+/**
+ * Model ScopeLibraryItem
+ * 
+ */
+export type ScopeLibraryItem = Prisma.ScopeLibraryItemModel
+/**
+ * Model EstimateLineScopeAttachment
+ * 
+ */
+export type EstimateLineScopeAttachment = Prisma.EstimateLineScopeAttachmentModel
