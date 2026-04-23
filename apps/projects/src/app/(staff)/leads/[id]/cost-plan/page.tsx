@@ -16,6 +16,7 @@ export default async function CostPlanPage({ params }: { params: Promise<{ id: s
       lines: {
         include: {
           tradeSection: { select: { id: true, name: true, code: true } },
+          quantities: true,
         },
         orderBy: [{ tradeSectionId: 'asc' }, { order: 'asc' }],
       },
