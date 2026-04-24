@@ -8,11 +8,12 @@ export function getXeroClient() {
     clientSecret: process.env.XERO_CLIENT_SECRET!,
     redirectUris: [process.env.XERO_REDIRECT_URI!],
     scopes: [
-      'openid', 'profile', 'email',
+      'openid', 'profile', 'email', 'offline_access',
       'accounting.reports.profitandloss.read',
       'accounting.reports.balancesheet.read',
       'accounting.reports.banksummary.read',
-      'offline_access',
+      'accounting.reports.aged.read',
+      'accounting.settings.read',
     ],
   });
 }

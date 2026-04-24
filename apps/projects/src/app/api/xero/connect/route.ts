@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { requireAppUser } from '@/lib/auth';
 
 const XERO_AUTH_URL = 'https://login.xero.com/identity/connect/authorize';
-const SCOPES = 'openid profile email accounting.reports.profitandloss.read accounting.reports.balancesheet.read accounting.reports.banksummary.read offline_access';
+const SCOPES = 'openid profile email offline_access accounting.reports.profitandloss.read accounting.reports.balancesheet.read accounting.reports.banksummary.read accounting.reports.aged.read accounting.settings.read';
 
 export async function GET() {
   const user = await requireAppUser();
