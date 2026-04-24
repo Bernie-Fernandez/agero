@@ -1,8 +1,10 @@
 ﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ROLE_METADATA } from '@/lib/permissions';
 import AddUserWizard from './AddUserWizard';
+
+type RoleItem = { value: string; label: string; tier: string; stream: string };
+type PresetMap = Record<string, { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> }>;
 
 type User = {
   id: string;
@@ -44,18 +46,19 @@ const TIER_COLORS: Record<string, string> = {
   Support: 'bg-zinc-100 text-zinc-600',
 };
 
-export default function UsersListClient({ users }: { users: User[] }) {
+export default function UsersListClient({ users, roles, allPresets }: { users: User[]; roles: RoleItem[]; allPresets: PresetMap }) {
   const [search, setSearch] = useState('');
   const [streamFilter, setStreamFilter] = useState('ALL');
   const [tierFilter, setTierFilter] = useState('ALL');
   const [statusFilter, setStatusFilter] = useState('active');
   const [showWizard, setShowWizard] = useState(false);
 
-  const streams = [...new Set(Object.values(ROLE_METADATA).map((r) => r.stream))].sort();
+  const roleMap = Object.fromEntries(roles.map((r) => [r.value, r]));
+  const streams = [...new Set(roles.map((r) => r.stream))].sort();
   const tiers = ['Executive', 'Senior', 'Mid', 'Operational', 'Support'];
 
   const filtered = users.filter((u) => {
-    const meta = ROLE_METADATA[u.role as keyof typeof ROLE_METADATA];
+    const meta = roleMap[u.role];
     if (statusFilter === 'active' && !u.isActive) return false;
     if (statusFilter === 'inactive' && u.isActive) return false;
     if (streamFilter !== 'ALL' && meta?.stream !== streamFilter) return false;
@@ -129,7 +132,7 @@ export default function UsersListClient({ users }: { users: User[] }) {
               <tr><td colSpan={7} className="px-4 py-12 text-center text-sm text-zinc-400">No users found.</td></tr>
             )}
             {filtered.map((u) => {
-              const meta = ROLE_METADATA[u.role as keyof typeof ROLE_METADATA];
+              const meta = roleMap[u.role];
               return (
                 <tr key={u.id} className={`border-b border-zinc-50 hover:bg-zinc-50/50 ${!u.isActive ? 'opacity-50' : ''}`}>
                   <td className="px-4 py-3">
@@ -166,7 +169,7 @@ export default function UsersListClient({ users }: { users: User[] }) {
         </table>
       </div>
 
-      {showWizard && <AddUserWizard onClose={() => setShowWizard(false)} />}
+      {showWizard && <AddUserWizard onClose={() => setShowWizard(false)} roles={roles} allPresets={allPresets} />}
     </div>
   );
 }

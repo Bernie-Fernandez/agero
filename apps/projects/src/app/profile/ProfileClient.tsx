@@ -1,8 +1,8 @@
 ﻿'use client';
 import { useState, useTransition } from 'react';
-import { ROLE_METADATA } from '@/lib/permissions';
-import type { PermissionSet } from '@/lib/permissions';
 import { updateMyProfile } from '@/app/admin/users/actions';
+
+type PermissionSet = { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> };
 
 const MODULE_LABELS: Record<string, string> = {
   admin: 'Admin Panel', finance: 'Finance & Cost Control', estimating: 'Estimating & Leads',

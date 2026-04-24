@@ -1,8 +1,6 @@
 ﻿'use client';
 import { useState, useTransition } from 'react';
 import Link from 'next/link';
-import { ROLE_METADATA, getRolePreset } from '@/lib/permissions';
-import type { PermissionSet } from '@/lib/permissions';
 import {
   toggleUserActive, updateUserProfile, updateUserPermissions,
   resetToRolePreset, addTrainingRecord, deleteTrainingRecord,
@@ -19,7 +17,10 @@ const MAF_LABELS: Record<string, string> = {
   subcontract_variation: 'Subcontract Variation', subcontract_claim: 'Subcontract Claim',
   client_variation: 'Client Variation', head_contract: 'Head Contract', tender_submission: 'Tender Submission',
 };
-const ROLES = Object.entries(ROLE_METADATA).map(([value, meta]) => ({ value, ...meta }));
+
+type PermissionSet = { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> };
+type RoleItem = { value: string; label: string; tier: string; stream: string };
+type RoleMeta = { label: string; tier: string; stream: string } | undefined;
 
 type TrainingRecord = {
   id: string; trainingName: string; completedDate: Date | null;
@@ -56,14 +57,14 @@ function fmtDate(d: Date | null | undefined) {
 
 type Tab = 'profile' | 'access' | 'gmail' | 'employment' | 'safety' | 'emergency';
 
-export default function UserDetailClient({ user }: { user: User }) {
+export default function UserDetailClient({ user, roleMeta, rolePreset, roles }: { user: User; roleMeta: RoleMeta; rolePreset: PermissionSet; roles: RoleItem[] }) {
   const [tab, setTab] = useState<Tab>('profile');
   const [pending, startTransition] = useTransition();
   const [activeTogglePending, startActiveToggle] = useTransition();
   const [showAddTraining, setShowAddTraining] = useState(false);
   const [saved, setSaved] = useState('');
 
-  const meta = ROLE_METADATA[user.role as keyof typeof ROLE_METADATA];
+  const meta = roleMeta;
   const initials = user.initials || `${user.firstName[0]}${user.lastName[0]}`.toUpperCase();
 
   function flash(msg: string) { setSaved(msg); setTimeout(() => setSaved(''), 2500); }
@@ -115,8 +116,8 @@ export default function UserDetailClient({ user }: { user: User }) {
     });
   }
 
-  const perm = (user.permissions ?? getRolePreset(user.role)) as PermissionSet;
-  const preset = getRolePreset(user.role);
+  const perm = (user.permissions ?? rolePreset) as PermissionSet;
+  const preset = rolePreset;
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'profile', label: 'Profile' },
@@ -213,7 +214,7 @@ export default function UserDetailClient({ user }: { user: User }) {
             <div>
               <label className="block text-xs font-medium text-zinc-600 mb-1">Role</label>
               <select name="role" defaultValue={user.role} className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30">
-                {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label} ({r.tier})</option>)}
+                {roles.map((r) => <option key={r.value} value={r.value}>{r.label} ({r.tier})</option>)}
               </select>
             </div>
             <input type="hidden" name="isActive" value={user.isActive ? 'true' : 'false'} />

@@ -1,7 +1,6 @@
 ﻿'use client';
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { ROLE_METADATA, getRolePreset } from '@/lib/permissions';
 import { createUser } from './actions';
 
 const MODULE_LABELS: Record<string, string> = {
@@ -9,17 +8,18 @@ const MODULE_LABELS: Record<string, string> = {
   crm: 'CRM & Subcontractor Register', delivery: 'Project Delivery', safety: 'Safety', marketing: 'Marketing & Bid Mgmt',
 };
 
-const ROLES = Object.entries(ROLE_METADATA).map(([value, meta]) => ({ value, ...meta }));
+type RoleItem = { value: string; label: string; tier: string; stream: string };
+type PresetMap = Record<string, { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> }>;
 
-export default function AddUserWizard({ onClose }: { onClose: () => void }) {
+export default function AddUserWizard({ onClose, roles, allPresets }: { onClose: () => void; roles: RoleItem[]; allPresets: PresetMap }) {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [pending, startTransition] = useTransition();
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', role: 'PROJECT_COORDINATOR', employmentType: '' });
   const [error, setError] = useState('');
 
-  const meta = ROLE_METADATA[form.role as keyof typeof ROLE_METADATA];
-  const preset = getRolePreset(form.role);
+  const meta = roles.find((r) => r.value === form.role);
+  const preset = allPresets[form.role] ?? { modules: {}, maf: {} };
 
   function handleStep1() {
     if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim()) {
@@ -94,7 +94,7 @@ export default function AddUserWizard({ onClose }: { onClose: () => void }) {
               <div>
                 <label className="block text-xs font-medium text-zinc-600 mb-1">Role / Position</label>
                 <select value={form.role} onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))} className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30">
-                  {ROLES.map((r) => <option key={r.value} value={r.value}>{r.label} ({r.tier})</option>)}
+                  {roles.map((r) => <option key={r.value} value={r.value}>{r.label} ({r.tier})</option>)}
                 </select>
               </div>
               <div>

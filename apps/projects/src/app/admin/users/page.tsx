@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { requireDirector } from "@/lib/auth";
-import { ROLE_METADATA } from "@agero/db";
-import Link from "next/link";
+import { ROLE_METADATA, getRolePreset } from "@agero/db";
 import UsersListClient from "./UsersListClient";
 
 export default async function UsersPage() {
@@ -27,5 +26,17 @@ export default async function UsersPage() {
     },
   });
 
-  return <UsersListClient users={users as never} />;
+  const roles = Object.entries(ROLE_METADATA).map(([value, meta]) => ({
+    value,
+    label: meta.label,
+    tier: meta.tier,
+    stream: meta.stream,
+  }));
+
+  const allPresets: Record<string, { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> }> = {};
+  for (const { value } of roles) {
+    allPresets[value] = getRolePreset(value) as { modules: Record<string, string>; maf: Record<string, { state: string; limit: number }> };
+  }
+
+  return <UsersListClient users={users as never} roles={roles} allPresets={allPresets} />;
 }
