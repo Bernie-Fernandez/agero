@@ -18,5 +18,13 @@ export async function GET() {
     `scope=${encodeURIComponent(SCOPES)}`,
   ].join('&');
 
-  return NextResponse.redirect(`${XERO_AUTH_URL}?${params}`);
+  const consentUrl = `${XERO_AUTH_URL}?${params}`;
+
+  console.log('[xero/connect] SCOPE string (pre-encode):', SCOPES);
+  console.log('[xero/connect] SCOPE encoded:', encodeURIComponent(SCOPES));
+  console.log('[xero/connect] XERO_CLIENT_ID present:', !!process.env.XERO_CLIENT_ID);
+  console.log('[xero/connect] XERO_REDIRECT_URI:', process.env.XERO_REDIRECT_URI);
+  console.log('[xero/connect] Full consent URL:', consentUrl);
+
+  return NextResponse.redirect(consentUrl);
 }
