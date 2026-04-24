@@ -265,6 +265,13 @@ export type OrganisationWhereInput = {
   designTrendItems?: Prisma.DesignTrendItemListRelationFilter
   designChatbotSessions?: Prisma.DesignChatbotSessionListRelationFilter
   estimates?: Prisma.EstimateListRelationFilter
+  financeProjects?: Prisma.FinanceProjectListRelationFilter
+  xeroPnl?: Prisma.XeroPnLListRelationFilter
+  xeroBankBalances?: Prisma.XeroBankBalanceListRelationFilter
+  annualBudgets?: Prisma.AnnualBudgetListRelationFilter
+  securedForecasts?: Prisma.SecuredForecastListRelationFilter
+  monthEndStatuses?: Prisma.MonthEndStatusListRelationFilter
+  xeroConnection?: Prisma.XOR<Prisma.XeroConnectionNullableScalarRelationFilter, Prisma.XeroConnectionWhereInput> | null
 }
 
 export type OrganisationOrderByWithRelationInput = {
@@ -307,6 +314,13 @@ export type OrganisationOrderByWithRelationInput = {
   designTrendItems?: Prisma.DesignTrendItemOrderByRelationAggregateInput
   designChatbotSessions?: Prisma.DesignChatbotSessionOrderByRelationAggregateInput
   estimates?: Prisma.EstimateOrderByRelationAggregateInput
+  financeProjects?: Prisma.FinanceProjectOrderByRelationAggregateInput
+  xeroPnl?: Prisma.XeroPnLOrderByRelationAggregateInput
+  xeroBankBalances?: Prisma.XeroBankBalanceOrderByRelationAggregateInput
+  annualBudgets?: Prisma.AnnualBudgetOrderByRelationAggregateInput
+  securedForecasts?: Prisma.SecuredForecastOrderByRelationAggregateInput
+  monthEndStatuses?: Prisma.MonthEndStatusOrderByRelationAggregateInput
+  xeroConnection?: Prisma.XeroConnectionOrderByWithRelationInput
 }
 
 export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
@@ -352,6 +366,13 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   designTrendItems?: Prisma.DesignTrendItemListRelationFilter
   designChatbotSessions?: Prisma.DesignChatbotSessionListRelationFilter
   estimates?: Prisma.EstimateListRelationFilter
+  financeProjects?: Prisma.FinanceProjectListRelationFilter
+  xeroPnl?: Prisma.XeroPnLListRelationFilter
+  xeroBankBalances?: Prisma.XeroBankBalanceListRelationFilter
+  annualBudgets?: Prisma.AnnualBudgetListRelationFilter
+  securedForecasts?: Prisma.SecuredForecastListRelationFilter
+  monthEndStatuses?: Prisma.MonthEndStatusListRelationFilter
+  xeroConnection?: Prisma.XOR<Prisma.XeroConnectionNullableScalarRelationFilter, Prisma.XeroConnectionWhereInput> | null
 }, "id">
 
 export type OrganisationOrderByWithAggregationInput = {
@@ -430,6 +451,13 @@ export type OrganisationCreateInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateInput = {
@@ -472,6 +500,13 @@ export type OrganisationUncheckedCreateInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUpdateInput = {
@@ -514,6 +549,13 @@ export type OrganisationUpdateInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateInput = {
@@ -556,6 +598,13 @@ export type OrganisationUncheckedUpdateInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateManyInput = {
@@ -1043,6 +1092,104 @@ export type OrganisationUpdateOneRequiredWithoutEstimatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutEstimatesInput, Prisma.OrganisationUpdateWithoutEstimatesInput>, Prisma.OrganisationUncheckedUpdateWithoutEstimatesInput>
 }
 
+export type OrganisationCreateNestedOneWithoutMonthEndStatusesInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedCreateWithoutMonthEndStatusesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutMonthEndStatusesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutMonthEndStatusesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedCreateWithoutMonthEndStatusesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutMonthEndStatusesInput
+  upsert?: Prisma.OrganisationUpsertWithoutMonthEndStatusesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutMonthEndStatusesInput, Prisma.OrganisationUpdateWithoutMonthEndStatusesInput>, Prisma.OrganisationUncheckedUpdateWithoutMonthEndStatusesInput>
+}
+
+export type OrganisationCreateNestedOneWithoutXeroConnectionInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedCreateWithoutXeroConnectionInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroConnectionInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutXeroConnectionNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedCreateWithoutXeroConnectionInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroConnectionInput
+  upsert?: Prisma.OrganisationUpsertWithoutXeroConnectionInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutXeroConnectionInput, Prisma.OrganisationUpdateWithoutXeroConnectionInput>, Prisma.OrganisationUncheckedUpdateWithoutXeroConnectionInput>
+}
+
+export type OrganisationCreateNestedOneWithoutFinanceProjectsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedCreateWithoutFinanceProjectsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutFinanceProjectsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedCreateWithoutFinanceProjectsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutFinanceProjectsInput
+  upsert?: Prisma.OrganisationUpsertWithoutFinanceProjectsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutFinanceProjectsInput, Prisma.OrganisationUpdateWithoutFinanceProjectsInput>, Prisma.OrganisationUncheckedUpdateWithoutFinanceProjectsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutXeroPnlInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroPnlInput, Prisma.OrganisationUncheckedCreateWithoutXeroPnlInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroPnlInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutXeroPnlNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroPnlInput, Prisma.OrganisationUncheckedCreateWithoutXeroPnlInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroPnlInput
+  upsert?: Prisma.OrganisationUpsertWithoutXeroPnlInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutXeroPnlInput, Prisma.OrganisationUpdateWithoutXeroPnlInput>, Prisma.OrganisationUncheckedUpdateWithoutXeroPnlInput>
+}
+
+export type OrganisationCreateNestedOneWithoutXeroBankBalancesInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedCreateWithoutXeroBankBalancesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroBankBalancesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutXeroBankBalancesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedCreateWithoutXeroBankBalancesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroBankBalancesInput
+  upsert?: Prisma.OrganisationUpsertWithoutXeroBankBalancesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutXeroBankBalancesInput, Prisma.OrganisationUpdateWithoutXeroBankBalancesInput>, Prisma.OrganisationUncheckedUpdateWithoutXeroBankBalancesInput>
+}
+
+export type OrganisationCreateNestedOneWithoutAnnualBudgetsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedCreateWithoutAnnualBudgetsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutAnnualBudgetsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutAnnualBudgetsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedCreateWithoutAnnualBudgetsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutAnnualBudgetsInput
+  upsert?: Prisma.OrganisationUpsertWithoutAnnualBudgetsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutAnnualBudgetsInput, Prisma.OrganisationUpdateWithoutAnnualBudgetsInput>, Prisma.OrganisationUncheckedUpdateWithoutAnnualBudgetsInput>
+}
+
+export type OrganisationCreateNestedOneWithoutSecuredForecastsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedCreateWithoutSecuredForecastsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutSecuredForecastsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutSecuredForecastsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedCreateWithoutSecuredForecastsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutSecuredForecastsInput
+  upsert?: Prisma.OrganisationUpsertWithoutSecuredForecastsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutSecuredForecastsInput, Prisma.OrganisationUpdateWithoutSecuredForecastsInput>, Prisma.OrganisationUncheckedUpdateWithoutSecuredForecastsInput>
+}
+
 export type OrganisationCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -1082,6 +1229,13 @@ export type OrganisationCreateWithoutUsersInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUsersInput = {
@@ -1123,6 +1277,13 @@ export type OrganisationUncheckedCreateWithoutUsersInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUsersInput = {
@@ -1180,6 +1341,13 @@ export type OrganisationUpdateWithoutUsersInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUsersInput = {
@@ -1221,6 +1389,13 @@ export type OrganisationUncheckedUpdateWithoutUsersInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutProjectsInput = {
@@ -1262,6 +1437,13 @@ export type OrganisationCreateWithoutProjectsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutProjectsInput = {
@@ -1303,6 +1485,13 @@ export type OrganisationUncheckedCreateWithoutProjectsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutProjectsInput = {
@@ -1360,6 +1549,13 @@ export type OrganisationUpdateWithoutProjectsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutProjectsInput = {
@@ -1401,6 +1597,13 @@ export type OrganisationUncheckedUpdateWithoutProjectsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCompaniesInput = {
@@ -1442,6 +1645,13 @@ export type OrganisationCreateWithoutCompaniesInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCompaniesInput = {
@@ -1483,6 +1693,13 @@ export type OrganisationUncheckedCreateWithoutCompaniesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCompaniesInput = {
@@ -1540,6 +1757,13 @@ export type OrganisationUpdateWithoutCompaniesInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
@@ -1581,6 +1805,13 @@ export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactsInput = {
@@ -1622,6 +1853,13 @@ export type OrganisationCreateWithoutContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactsInput = {
@@ -1663,6 +1901,13 @@ export type OrganisationUncheckedCreateWithoutContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactsInput = {
@@ -1720,6 +1965,13 @@ export type OrganisationUpdateWithoutContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactsInput = {
@@ -1761,6 +2013,13 @@ export type OrganisationUncheckedUpdateWithoutContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCostCodesInput = {
@@ -1802,6 +2061,13 @@ export type OrganisationCreateWithoutCostCodesInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCostCodesInput = {
@@ -1843,6 +2109,13 @@ export type OrganisationUncheckedCreateWithoutCostCodesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCostCodesInput = {
@@ -1900,6 +2173,13 @@ export type OrganisationUpdateWithoutCostCodesInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
@@ -1941,6 +2221,13 @@ export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
@@ -1982,6 +2269,13 @@ export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
@@ -2023,6 +2317,13 @@ export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutInsurancePolicyTypesInput = {
@@ -2080,6 +2381,13 @@ export type OrganisationUpdateWithoutInsurancePolicyTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
@@ -2121,6 +2429,13 @@ export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCommunicationsInput = {
@@ -2162,6 +2477,13 @@ export type OrganisationCreateWithoutCommunicationsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
@@ -2203,6 +2525,13 @@ export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCommunicationsInput = {
@@ -2260,6 +2589,13 @@ export type OrganisationUpdateWithoutCommunicationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
@@ -2301,6 +2637,13 @@ export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutNotificationsInput = {
@@ -2342,6 +2685,13 @@ export type OrganisationCreateWithoutNotificationsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutNotificationsInput = {
@@ -2383,6 +2733,13 @@ export type OrganisationUncheckedCreateWithoutNotificationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutNotificationsInput = {
@@ -2440,6 +2797,13 @@ export type OrganisationUpdateWithoutNotificationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
@@ -2481,6 +2845,13 @@ export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAlertThresholdsInput = {
@@ -2522,6 +2893,13 @@ export type OrganisationCreateWithoutAlertThresholdsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
@@ -2563,6 +2941,13 @@ export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAlertThresholdsInput = {
@@ -2620,6 +3005,13 @@ export type OrganisationUpdateWithoutAlertThresholdsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
@@ -2661,6 +3053,13 @@ export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactTypesInput = {
@@ -2702,6 +3101,13 @@ export type OrganisationCreateWithoutContactTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactTypesInput = {
@@ -2743,6 +3149,13 @@ export type OrganisationUncheckedCreateWithoutContactTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactTypesInput = {
@@ -2800,6 +3213,13 @@ export type OrganisationUpdateWithoutContactTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
@@ -2841,6 +3261,13 @@ export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAssociationLabelsInput = {
@@ -2882,6 +3309,13 @@ export type OrganisationCreateWithoutAssociationLabelsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
@@ -2923,6 +3357,13 @@ export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAssociationLabelsInput = {
@@ -2980,6 +3421,13 @@ export type OrganisationUpdateWithoutAssociationLabelsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
@@ -3021,6 +3469,13 @@ export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPaymentTermsListInput = {
@@ -3062,6 +3517,13 @@ export type OrganisationCreateWithoutPaymentTermsListInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
@@ -3103,6 +3565,13 @@ export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPaymentTermsListInput = {
@@ -3160,6 +3629,13 @@ export type OrganisationUpdateWithoutPaymentTermsListInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
@@ -3201,6 +3677,13 @@ export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutIncidentsInput = {
@@ -3242,6 +3725,13 @@ export type OrganisationCreateWithoutIncidentsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutIncidentsInput = {
@@ -3283,6 +3773,13 @@ export type OrganisationUncheckedCreateWithoutIncidentsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutIncidentsInput = {
@@ -3340,6 +3837,13 @@ export type OrganisationUpdateWithoutIncidentsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
@@ -3381,6 +3885,13 @@ export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutHazardsInput = {
@@ -3422,6 +3933,13 @@ export type OrganisationCreateWithoutHazardsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutHazardsInput = {
@@ -3463,6 +3981,13 @@ export type OrganisationUncheckedCreateWithoutHazardsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutHazardsInput = {
@@ -3520,6 +4045,13 @@ export type OrganisationUpdateWithoutHazardsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutHazardsInput = {
@@ -3561,6 +4093,13 @@ export type OrganisationUncheckedUpdateWithoutHazardsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPermitsInput = {
@@ -3602,6 +4141,13 @@ export type OrganisationCreateWithoutPermitsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPermitsInput = {
@@ -3643,6 +4189,13 @@ export type OrganisationUncheckedCreateWithoutPermitsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPermitsInput = {
@@ -3700,6 +4253,13 @@ export type OrganisationUpdateWithoutPermitsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPermitsInput = {
@@ -3741,6 +4301,13 @@ export type OrganisationUncheckedUpdateWithoutPermitsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutEmergencyContactsInput = {
@@ -3782,6 +4349,13 @@ export type OrganisationCreateWithoutEmergencyContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
@@ -3823,6 +4397,13 @@ export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutEmergencyContactsInput = {
@@ -3880,6 +4461,13 @@ export type OrganisationUpdateWithoutEmergencyContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
@@ -3921,6 +4509,13 @@ export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutSafetyInspectionsInput = {
@@ -3962,6 +4557,13 @@ export type OrganisationCreateWithoutSafetyInspectionsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
@@ -4003,6 +4605,13 @@ export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutSafetyInspectionsInput = {
@@ -4060,6 +4669,13 @@ export type OrganisationUpdateWithoutSafetyInspectionsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
@@ -4101,6 +4717,13 @@ export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignSourcesInput = {
@@ -4142,6 +4765,13 @@ export type OrganisationCreateWithoutDesignSourcesInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignSourcesInput = {
@@ -4183,6 +4813,13 @@ export type OrganisationUncheckedCreateWithoutDesignSourcesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignSourcesInput = {
@@ -4240,6 +4877,13 @@ export type OrganisationUpdateWithoutDesignSourcesInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignSourcesInput = {
@@ -4281,6 +4925,13 @@ export type OrganisationUncheckedUpdateWithoutDesignSourcesInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignGlobalSettingsInput = {
@@ -4322,6 +4973,13 @@ export type OrganisationCreateWithoutDesignGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignGlobalSettingsInput = {
@@ -4363,6 +5021,13 @@ export type OrganisationUncheckedCreateWithoutDesignGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignGlobalSettingsInput = {
@@ -4420,6 +5085,13 @@ export type OrganisationUpdateWithoutDesignGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignGlobalSettingsInput = {
@@ -4461,6 +5133,13 @@ export type OrganisationUncheckedUpdateWithoutDesignGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignNonGlobalSettingsInput = {
@@ -4502,6 +5181,13 @@ export type OrganisationCreateWithoutDesignNonGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignNonGlobalSettingsInput = {
@@ -4543,6 +5229,13 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignNonGlobalSettingsInput = {
@@ -4600,6 +5293,13 @@ export type OrganisationUpdateWithoutDesignNonGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignNonGlobalSettingsInput = {
@@ -4641,6 +5341,13 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalSettingsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignNonGlobalProposalsInput = {
@@ -4682,6 +5389,13 @@ export type OrganisationCreateWithoutDesignNonGlobalProposalsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignNonGlobalProposalsInput = {
@@ -4723,6 +5437,13 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalProposalsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignNonGlobalProposalsInput = {
@@ -4780,6 +5501,13 @@ export type OrganisationUpdateWithoutDesignNonGlobalProposalsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignNonGlobalProposalsInput = {
@@ -4821,6 +5549,13 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalProposalsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignExpiryConfigInput = {
@@ -4862,6 +5597,13 @@ export type OrganisationCreateWithoutDesignExpiryConfigInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignExpiryConfigInput = {
@@ -4903,6 +5645,13 @@ export type OrganisationUncheckedCreateWithoutDesignExpiryConfigInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignExpiryConfigInput = {
@@ -4960,6 +5709,13 @@ export type OrganisationUpdateWithoutDesignExpiryConfigInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignExpiryConfigInput = {
@@ -5001,6 +5757,13 @@ export type OrganisationUncheckedUpdateWithoutDesignExpiryConfigInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignRssFeedsInput = {
@@ -5042,6 +5805,13 @@ export type OrganisationCreateWithoutDesignRssFeedsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignRssFeedsInput = {
@@ -5083,6 +5853,13 @@ export type OrganisationUncheckedCreateWithoutDesignRssFeedsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignRssFeedsInput = {
@@ -5140,6 +5917,13 @@ export type OrganisationUpdateWithoutDesignRssFeedsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignRssFeedsInput = {
@@ -5181,6 +5965,13 @@ export type OrganisationUncheckedUpdateWithoutDesignRssFeedsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignMonitoredUrlsInput = {
@@ -5222,6 +6013,13 @@ export type OrganisationCreateWithoutDesignMonitoredUrlsInput = {
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignMonitoredUrlsInput = {
@@ -5263,6 +6061,13 @@ export type OrganisationUncheckedCreateWithoutDesignMonitoredUrlsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignMonitoredUrlsInput = {
@@ -5320,6 +6125,13 @@ export type OrganisationUpdateWithoutDesignMonitoredUrlsInput = {
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignMonitoredUrlsInput = {
@@ -5361,6 +6173,13 @@ export type OrganisationUncheckedUpdateWithoutDesignMonitoredUrlsInput = {
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignTrendItemsInput = {
@@ -5402,6 +6221,13 @@ export type OrganisationCreateWithoutDesignTrendItemsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignTrendItemsInput = {
@@ -5443,6 +6269,13 @@ export type OrganisationUncheckedCreateWithoutDesignTrendItemsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignTrendItemsInput = {
@@ -5500,6 +6333,13 @@ export type OrganisationUpdateWithoutDesignTrendItemsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignTrendItemsInput = {
@@ -5541,6 +6381,13 @@ export type OrganisationUncheckedUpdateWithoutDesignTrendItemsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignChatbotSessionsInput = {
@@ -5582,6 +6429,13 @@ export type OrganisationCreateWithoutDesignChatbotSessionsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -5623,6 +6477,13 @@ export type OrganisationUncheckedCreateWithoutDesignChatbotSessionsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -5680,6 +6541,13 @@ export type OrganisationUpdateWithoutDesignChatbotSessionsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -5721,6 +6589,13 @@ export type OrganisationUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutEstimatesInput = {
@@ -5762,6 +6637,13 @@ export type OrganisationCreateWithoutEstimatesInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
   designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutEstimatesInput = {
@@ -5803,6 +6685,13 @@ export type OrganisationUncheckedCreateWithoutEstimatesInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
   designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutEstimatesInput = {
@@ -5860,6 +6749,13 @@ export type OrganisationUpdateWithoutEstimatesInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
   designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutEstimatesInput = {
@@ -5901,6 +6797,1469 @@ export type OrganisationUncheckedUpdateWithoutEstimatesInput = {
   designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
   designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutMonthEndStatusesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutMonthEndStatusesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutMonthEndStatusesInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedCreateWithoutMonthEndStatusesInput>
+}
+
+export type OrganisationUpsertWithoutMonthEndStatusesInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedUpdateWithoutMonthEndStatusesInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedCreateWithoutMonthEndStatusesInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutMonthEndStatusesInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutMonthEndStatusesInput, Prisma.OrganisationUncheckedUpdateWithoutMonthEndStatusesInput>
+}
+
+export type OrganisationUpdateWithoutMonthEndStatusesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutMonthEndStatusesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutXeroConnectionInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutXeroConnectionInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutXeroConnectionInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedCreateWithoutXeroConnectionInput>
+}
+
+export type OrganisationUpsertWithoutXeroConnectionInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedUpdateWithoutXeroConnectionInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedCreateWithoutXeroConnectionInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutXeroConnectionInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedUpdateWithoutXeroConnectionInput>
+}
+
+export type OrganisationUpdateWithoutXeroConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutXeroConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutFinanceProjectsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutFinanceProjectsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutFinanceProjectsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedCreateWithoutFinanceProjectsInput>
+}
+
+export type OrganisationUpsertWithoutFinanceProjectsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedUpdateWithoutFinanceProjectsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedCreateWithoutFinanceProjectsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutFinanceProjectsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutFinanceProjectsInput, Prisma.OrganisationUncheckedUpdateWithoutFinanceProjectsInput>
+}
+
+export type OrganisationUpdateWithoutFinanceProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutFinanceProjectsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutXeroPnlInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutXeroPnlInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutXeroPnlInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroPnlInput, Prisma.OrganisationUncheckedCreateWithoutXeroPnlInput>
+}
+
+export type OrganisationUpsertWithoutXeroPnlInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroPnlInput, Prisma.OrganisationUncheckedUpdateWithoutXeroPnlInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroPnlInput, Prisma.OrganisationUncheckedCreateWithoutXeroPnlInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutXeroPnlInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroPnlInput, Prisma.OrganisationUncheckedUpdateWithoutXeroPnlInput>
+}
+
+export type OrganisationUpdateWithoutXeroPnlInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutXeroPnlInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutXeroBankBalancesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutXeroBankBalancesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutXeroBankBalancesInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedCreateWithoutXeroBankBalancesInput>
+}
+
+export type OrganisationUpsertWithoutXeroBankBalancesInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedUpdateWithoutXeroBankBalancesInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedCreateWithoutXeroBankBalancesInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutXeroBankBalancesInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroBankBalancesInput, Prisma.OrganisationUncheckedUpdateWithoutXeroBankBalancesInput>
+}
+
+export type OrganisationUpdateWithoutXeroBankBalancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutXeroBankBalancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutAnnualBudgetsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutAnnualBudgetsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutAnnualBudgetsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedCreateWithoutAnnualBudgetsInput>
+}
+
+export type OrganisationUpsertWithoutAnnualBudgetsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedUpdateWithoutAnnualBudgetsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedCreateWithoutAnnualBudgetsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutAnnualBudgetsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutAnnualBudgetsInput, Prisma.OrganisationUncheckedUpdateWithoutAnnualBudgetsInput>
+}
+
+export type OrganisationUpdateWithoutAnnualBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutAnnualBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutSecuredForecastsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutSecuredForecastsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutSecuredForecastsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedCreateWithoutSecuredForecastsInput>
+}
+
+export type OrganisationUpsertWithoutSecuredForecastsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedUpdateWithoutSecuredForecastsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedCreateWithoutSecuredForecastsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutSecuredForecastsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutSecuredForecastsInput, Prisma.OrganisationUncheckedUpdateWithoutSecuredForecastsInput>
+}
+
+export type OrganisationUpdateWithoutSecuredForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutSecuredForecastsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 
@@ -5935,6 +8294,12 @@ export type OrganisationCountOutputType = {
   designTrendItems: number
   designChatbotSessions: number
   estimates: number
+  financeProjects: number
+  xeroPnl: number
+  xeroBankBalances: number
+  annualBudgets: number
+  securedForecasts: number
+  monthEndStatuses: number
 }
 
 export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5964,6 +8329,12 @@ export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   designTrendItems?: boolean | OrganisationCountOutputTypeCountDesignTrendItemsArgs
   designChatbotSessions?: boolean | OrganisationCountOutputTypeCountDesignChatbotSessionsArgs
   estimates?: boolean | OrganisationCountOutputTypeCountEstimatesArgs
+  financeProjects?: boolean | OrganisationCountOutputTypeCountFinanceProjectsArgs
+  xeroPnl?: boolean | OrganisationCountOutputTypeCountXeroPnlArgs
+  xeroBankBalances?: boolean | OrganisationCountOutputTypeCountXeroBankBalancesArgs
+  annualBudgets?: boolean | OrganisationCountOutputTypeCountAnnualBudgetsArgs
+  securedForecasts?: boolean | OrganisationCountOutputTypeCountSecuredForecastsArgs
+  monthEndStatuses?: boolean | OrganisationCountOutputTypeCountMonthEndStatusesArgs
 }
 
 /**
@@ -6158,6 +8529,48 @@ export type OrganisationCountOutputTypeCountEstimatesArgs<ExtArgs extends runtim
   where?: Prisma.EstimateWhereInput
 }
 
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountFinanceProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FinanceProjectWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountXeroPnlArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.XeroPnLWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountXeroBankBalancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.XeroBankBalanceWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountAnnualBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnnualBudgetWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountSecuredForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SecuredForecastWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
+export type OrganisationCountOutputTypeCountMonthEndStatusesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MonthEndStatusWhereInput
+}
+
 
 export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6199,6 +8612,13 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   designTrendItems?: boolean | Prisma.Organisation$designTrendItemsArgs<ExtArgs>
   designChatbotSessions?: boolean | Prisma.Organisation$designChatbotSessionsArgs<ExtArgs>
   estimates?: boolean | Prisma.Organisation$estimatesArgs<ExtArgs>
+  financeProjects?: boolean | Prisma.Organisation$financeProjectsArgs<ExtArgs>
+  xeroPnl?: boolean | Prisma.Organisation$xeroPnlArgs<ExtArgs>
+  xeroBankBalances?: boolean | Prisma.Organisation$xeroBankBalancesArgs<ExtArgs>
+  annualBudgets?: boolean | Prisma.Organisation$annualBudgetsArgs<ExtArgs>
+  securedForecasts?: boolean | Prisma.Organisation$securedForecastsArgs<ExtArgs>
+  monthEndStatuses?: boolean | Prisma.Organisation$monthEndStatusesArgs<ExtArgs>
+  xeroConnection?: boolean | Prisma.Organisation$xeroConnectionArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organisation"]>
 
@@ -6276,6 +8696,13 @@ export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   designTrendItems?: boolean | Prisma.Organisation$designTrendItemsArgs<ExtArgs>
   designChatbotSessions?: boolean | Prisma.Organisation$designChatbotSessionsArgs<ExtArgs>
   estimates?: boolean | Prisma.Organisation$estimatesArgs<ExtArgs>
+  financeProjects?: boolean | Prisma.Organisation$financeProjectsArgs<ExtArgs>
+  xeroPnl?: boolean | Prisma.Organisation$xeroPnlArgs<ExtArgs>
+  xeroBankBalances?: boolean | Prisma.Organisation$xeroBankBalancesArgs<ExtArgs>
+  annualBudgets?: boolean | Prisma.Organisation$annualBudgetsArgs<ExtArgs>
+  securedForecasts?: boolean | Prisma.Organisation$securedForecastsArgs<ExtArgs>
+  monthEndStatuses?: boolean | Prisma.Organisation$monthEndStatusesArgs<ExtArgs>
+  xeroConnection?: boolean | Prisma.Organisation$xeroConnectionArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganisationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6311,6 +8738,13 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     designTrendItems: Prisma.$DesignTrendItemPayload<ExtArgs>[]
     designChatbotSessions: Prisma.$DesignChatbotSessionPayload<ExtArgs>[]
     estimates: Prisma.$EstimatePayload<ExtArgs>[]
+    financeProjects: Prisma.$FinanceProjectPayload<ExtArgs>[]
+    xeroPnl: Prisma.$XeroPnLPayload<ExtArgs>[]
+    xeroBankBalances: Prisma.$XeroBankBalancePayload<ExtArgs>[]
+    annualBudgets: Prisma.$AnnualBudgetPayload<ExtArgs>[]
+    securedForecasts: Prisma.$SecuredForecastPayload<ExtArgs>[]
+    monthEndStatuses: Prisma.$MonthEndStatusPayload<ExtArgs>[]
+    xeroConnection: Prisma.$XeroConnectionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6746,6 +9180,13 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   designTrendItems<T extends Prisma.Organisation$designTrendItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$designTrendItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DesignTrendItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   designChatbotSessions<T extends Prisma.Organisation$designChatbotSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$designChatbotSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DesignChatbotSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   estimates<T extends Prisma.Organisation$estimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$estimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  financeProjects<T extends Prisma.Organisation$financeProjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$financeProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinanceProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  xeroPnl<T extends Prisma.Organisation$xeroPnlArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$xeroPnlArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$XeroPnLPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  xeroBankBalances<T extends Prisma.Organisation$xeroBankBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$xeroBankBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$XeroBankBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  annualBudgets<T extends Prisma.Organisation$annualBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$annualBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnnualBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  securedForecasts<T extends Prisma.Organisation$securedForecastsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$securedForecastsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SecuredForecastPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  monthEndStatuses<T extends Prisma.Organisation$monthEndStatusesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$monthEndStatusesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MonthEndStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  xeroConnection<T extends Prisma.Organisation$xeroConnectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$xeroConnectionArgs<ExtArgs>>): Prisma.Prisma__XeroConnectionClient<runtime.Types.Result.GetResult<Prisma.$XeroConnectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7820,6 +10261,169 @@ export type Organisation$estimatesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
+}
+
+/**
+ * Organisation.financeProjects
+ */
+export type Organisation$financeProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FinanceProject
+   */
+  select?: Prisma.FinanceProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FinanceProject
+   */
+  omit?: Prisma.FinanceProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FinanceProjectInclude<ExtArgs> | null
+  where?: Prisma.FinanceProjectWhereInput
+  orderBy?: Prisma.FinanceProjectOrderByWithRelationInput | Prisma.FinanceProjectOrderByWithRelationInput[]
+  cursor?: Prisma.FinanceProjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FinanceProjectScalarFieldEnum | Prisma.FinanceProjectScalarFieldEnum[]
+}
+
+/**
+ * Organisation.xeroPnl
+ */
+export type Organisation$xeroPnlArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XeroPnL
+   */
+  select?: Prisma.XeroPnLSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XeroPnL
+   */
+  omit?: Prisma.XeroPnLOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XeroPnLInclude<ExtArgs> | null
+  where?: Prisma.XeroPnLWhereInput
+  orderBy?: Prisma.XeroPnLOrderByWithRelationInput | Prisma.XeroPnLOrderByWithRelationInput[]
+  cursor?: Prisma.XeroPnLWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.XeroPnLScalarFieldEnum | Prisma.XeroPnLScalarFieldEnum[]
+}
+
+/**
+ * Organisation.xeroBankBalances
+ */
+export type Organisation$xeroBankBalancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XeroBankBalance
+   */
+  select?: Prisma.XeroBankBalanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XeroBankBalance
+   */
+  omit?: Prisma.XeroBankBalanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XeroBankBalanceInclude<ExtArgs> | null
+  where?: Prisma.XeroBankBalanceWhereInput
+  orderBy?: Prisma.XeroBankBalanceOrderByWithRelationInput | Prisma.XeroBankBalanceOrderByWithRelationInput[]
+  cursor?: Prisma.XeroBankBalanceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.XeroBankBalanceScalarFieldEnum | Prisma.XeroBankBalanceScalarFieldEnum[]
+}
+
+/**
+ * Organisation.annualBudgets
+ */
+export type Organisation$annualBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AnnualBudget
+   */
+  select?: Prisma.AnnualBudgetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AnnualBudget
+   */
+  omit?: Prisma.AnnualBudgetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AnnualBudgetInclude<ExtArgs> | null
+  where?: Prisma.AnnualBudgetWhereInput
+  orderBy?: Prisma.AnnualBudgetOrderByWithRelationInput | Prisma.AnnualBudgetOrderByWithRelationInput[]
+  cursor?: Prisma.AnnualBudgetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AnnualBudgetScalarFieldEnum | Prisma.AnnualBudgetScalarFieldEnum[]
+}
+
+/**
+ * Organisation.securedForecasts
+ */
+export type Organisation$securedForecastsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SecuredForecast
+   */
+  select?: Prisma.SecuredForecastSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SecuredForecast
+   */
+  omit?: Prisma.SecuredForecastOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SecuredForecastInclude<ExtArgs> | null
+  where?: Prisma.SecuredForecastWhereInput
+  orderBy?: Prisma.SecuredForecastOrderByWithRelationInput | Prisma.SecuredForecastOrderByWithRelationInput[]
+  cursor?: Prisma.SecuredForecastWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SecuredForecastScalarFieldEnum | Prisma.SecuredForecastScalarFieldEnum[]
+}
+
+/**
+ * Organisation.monthEndStatuses
+ */
+export type Organisation$monthEndStatusesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MonthEndStatus
+   */
+  select?: Prisma.MonthEndStatusSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MonthEndStatus
+   */
+  omit?: Prisma.MonthEndStatusOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MonthEndStatusInclude<ExtArgs> | null
+  where?: Prisma.MonthEndStatusWhereInput
+  orderBy?: Prisma.MonthEndStatusOrderByWithRelationInput | Prisma.MonthEndStatusOrderByWithRelationInput[]
+  cursor?: Prisma.MonthEndStatusWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MonthEndStatusScalarFieldEnum | Prisma.MonthEndStatusScalarFieldEnum[]
+}
+
+/**
+ * Organisation.xeroConnection
+ */
+export type Organisation$xeroConnectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XeroConnection
+   */
+  select?: Prisma.XeroConnectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XeroConnection
+   */
+  omit?: Prisma.XeroConnectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XeroConnectionInclude<ExtArgs> | null
+  where?: Prisma.XeroConnectionWhereInput
 }
 
 /**

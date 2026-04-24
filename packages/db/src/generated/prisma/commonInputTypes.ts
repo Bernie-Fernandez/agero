@@ -1394,6 +1394,57 @@ export type EnumQuoteStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumQuoteStatusFilter<$PrismaModel>
 }
 
+export type EnumMonthEndStatusEnumFilter<$PrismaModel = never> = {
+  equals?: $Enums.MonthEndStatusEnum | Prisma.EnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  in?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel> | $Enums.MonthEndStatusEnum
+}
+
+export type EnumMonthEndStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MonthEndStatusEnum | Prisma.EnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  in?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMonthEndStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.MonthEndStatusEnum
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel>
+}
+
+export type EnumXeroConnectionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.XeroConnectionStatus | Prisma.EnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel> | $Enums.XeroConnectionStatus
+}
+
+export type EnumXeroConnectionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.XeroConnectionStatus | Prisma.EnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumXeroConnectionStatusWithAggregatesFilter<$PrismaModel> | $Enums.XeroConnectionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel>
+}
+
+export type EnumFinanceProjectStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FinanceProjectStatus | Prisma.EnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel> | $Enums.FinanceProjectStatus
+}
+
+export type EnumFinanceProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FinanceProjectStatus | Prisma.EnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFinanceProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.FinanceProjectStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2727,6 +2778,57 @@ export type NestedEnumQuoteStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumQuoteStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumQuoteStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumMonthEndStatusEnumFilter<$PrismaModel = never> = {
+  equals?: $Enums.MonthEndStatusEnum | Prisma.EnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  in?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel> | $Enums.MonthEndStatusEnum
+}
+
+export type NestedEnumMonthEndStatusEnumWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MonthEndStatusEnum | Prisma.EnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  in?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MonthEndStatusEnum[] | Prisma.ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMonthEndStatusEnumWithAggregatesFilter<$PrismaModel> | $Enums.MonthEndStatusEnum
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMonthEndStatusEnumFilter<$PrismaModel>
+}
+
+export type NestedEnumXeroConnectionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.XeroConnectionStatus | Prisma.EnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel> | $Enums.XeroConnectionStatus
+}
+
+export type NestedEnumXeroConnectionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.XeroConnectionStatus | Prisma.EnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.XeroConnectionStatus[] | Prisma.ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumXeroConnectionStatusWithAggregatesFilter<$PrismaModel> | $Enums.XeroConnectionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumXeroConnectionStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumFinanceProjectStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FinanceProjectStatus | Prisma.EnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel> | $Enums.FinanceProjectStatus
+}
+
+export type NestedEnumFinanceProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FinanceProjectStatus | Prisma.EnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.FinanceProjectStatus[] | Prisma.ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumFinanceProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.FinanceProjectStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFinanceProjectStatusFilter<$PrismaModel>
 }
 
 

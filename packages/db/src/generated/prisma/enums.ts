@@ -581,3 +581,32 @@ export const TradeLetStatus = {
 } as const
 
 export type TradeLetStatus = (typeof TradeLetStatus)[keyof typeof TradeLetStatus]
+
+
+export const MonthEndStatusEnum = {
+  OPEN: 'OPEN',
+  READY: 'READY',
+  SYNCED: 'SYNCED',
+  LOCKED: 'LOCKED'
+} as const
+
+export type MonthEndStatusEnum = (typeof MonthEndStatusEnum)[keyof typeof MonthEndStatusEnum]
+
+
+export const XeroConnectionStatus = {
+  CONNECTED: 'CONNECTED',
+  DISCONNECTED: 'DISCONNECTED',
+  ERROR: 'ERROR'
+} as const
+
+export type XeroConnectionStatus = (typeof XeroConnectionStatus)[keyof typeof XeroConnectionStatus]
+
+
+export const FinanceProjectStatus = {
+  AWARDED: 'AWARDED',
+  BACKLOG: 'BACKLOG',
+  DLP: 'DLP',
+  CLOSED: 'CLOSED'
+} as const
+
+export type FinanceProjectStatus = (typeof FinanceProjectStatus)[keyof typeof FinanceProjectStatus]

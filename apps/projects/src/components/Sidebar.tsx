@@ -208,6 +208,32 @@ function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
   );
 }
 
+// ── FinanceSubItems ───────────────────────────────────────────────────────────
+
+function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
+  const onSettings = pathname.startsWith('/finance/settings');
+
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <StubbedItem label="Dashboard" depth={1} />
+      <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
+      <StubbedItem label="Planned Work" depth={1} />
+      <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
+      <StubbedItem label="Reports" depth={1} />
+      <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />
+      <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
+        <NavLink href="/finance/settings/xero" label="Xero Connection" depth={2} onItemClick={onItemClick} />
+        <NavLink href="/finance/settings/month-status" label="Month Status" depth={2} onItemClick={onItemClick} />
+        <StubbedItem label="S-Curves" depth={2} />
+        <StubbedItem label="HubSpot Sync" depth={2} />
+        <StubbedItem label="Deal Defaults" depth={2} />
+      </Section>
+    </div>
+  );
+}
+
 // ── EstimatingSubItems ────────────────────────────────────────────────────────
 
 function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
@@ -336,8 +362,10 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
         <EstimatingSubItems onItemClick={onItemClick} />
       </Section>
 
-      {/* Finance — stubbed */}
-      <Section sectionKey="finance" label="Finance" defaultOpen={false} stubbed />
+      {/* Finance */}
+      <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>
+        <FinanceSubItems onItemClick={onItemClick} />
+      </Section>
 
       {/* Reporting — stubbed */}
       <Section sectionKey="reporting" label="Reporting" defaultOpen={false} stubbed />

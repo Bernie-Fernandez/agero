@@ -265,6 +265,13 @@ model Organisation {
   designTrendItems   DesignTrendItem[]
   designChatbotSessions DesignChatbotSession[]
   estimates             Estimate[]
+  financeProjects       FinanceProject[]
+  xeroPnl               XeroPnL[]
+  xeroBankBalances      XeroBankBalance[]
+  annualBudgets         AnnualBudget[]
+  securedForecasts      SecuredForecast[]
+  monthEndStatuses      MonthEndStatus[]
+  xeroConnection        XeroConnection?
 
   @@map("organisations")
   @@schema("projects")
@@ -354,6 +361,8 @@ model User {
   estimateSnapshots       EstimateSnapshot[]     @relation("EstimateSnapshotCreatedBy")
   auditLogs               AuditLog[]             @relation("AuditLogUser")
   trainingRecords         UserTraining[]
+  monthEndStatusesMarked  MonthEndStatus[]       @relation("MonthEndStatusMarkedBy")
+  xeroConnectionsMade     XeroConnection[]       @relation("XeroConnectionConnectedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -2819,5 +2828,218 @@ model EstimateLineScopeAttachment {
 
   @@unique([lineId, scopeLibraryItemId])
   @@map("estimate_line_scope_attachments")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FINANCE MODULE — Sprint 8
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum MonthEndStatusEnum {
+  OPEN
+  READY
+  SYNCED
+  LOCKED
+
+  @@schema("projects")
+}
+
+enum XeroConnectionStatus {
+  CONNECTED
+  DISCONNECTED
+  ERROR
+
+  @@schema("projects")
+}
+
+enum FinanceProjectStatus {
+  AWARDED
+  BACKLOG
+  DLP
+  CLOSED
+
+  @@schema("projects")
+}
+
+model MonthEndStatus {
+  id               String             @id @default(uuid()) @db.Uuid
+  organisationId   String             @map("organisation_id") @db.Uuid
+  organisation     Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth      DateTime           @map("report_month") @db.Date
+  status           MonthEndStatusEnum @default(OPEN)
+  markedReadyById  String?            @map("marked_ready_by_id") @db.Uuid
+  markedReadyBy    User?              @relation("MonthEndStatusMarkedBy", fields: [markedReadyById], references: [id], onDelete: SetNull)
+  markedReadyAt    DateTime?          @map("marked_ready_at")
+  xeroSyncedAt     DateTime?          @map("xero_synced_at")
+  lockedAt         DateTime?          @map("locked_at")
+  notes            String?            @db.Text
+  dataVerifiedAt   DateTime?          @map("data_verified_at")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("month_end_statuses")
+  @@schema("projects")
+}
+
+model XeroConnection {
+  id              String               @id @default(uuid()) @db.Uuid
+  organisationId  String               @unique @map("organisation_id") @db.Uuid
+  organisation    Organisation         @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  xeroTenantId    String?              @map("xero_tenant_id")
+  xeroOrgName     String?              @map("xero_org_name")
+  accessToken     String               @map("access_token") @db.Text
+  refreshToken    String               @map("refresh_token") @db.Text
+  tokenExpiry     DateTime             @map("token_expiry")
+  connectedById   String               @map("connected_by_id") @db.Uuid
+  connectedBy     User                 @relation("XeroConnectionConnectedBy", fields: [connectedById], references: [id])
+  connectedAt     DateTime             @default(now()) @map("connected_at")
+  lastUsedAt      DateTime?            @map("last_used_at")
+  status          XeroConnectionStatus @default(CONNECTED)
+
+  @@map("xero_connections")
+  @@schema("projects")
+}
+
+model FinanceProject {
+  id                    String               @id @default(uuid()) @db.Uuid
+  organisationId        String               @map("organisation_id") @db.Uuid
+  organisation          Organisation         @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth           DateTime             @map("report_month") @db.Date
+  jobNumber             String               @map("job_number")
+  projectName           String               @map("project_name")
+  status                FinanceProjectStatus @default(AWARDED)
+  practicalCompletionDate DateTime?          @map("practical_completion_date") @db.Date
+  forecastContractValue Decimal              @default(0) @map("forecast_contract_value") @db.Decimal(14, 2)
+  forecastFinalCosts    Decimal              @default(0) @map("forecast_final_costs") @db.Decimal(14, 2)
+  riskAndOpportunity    Decimal              @default(0) @map("risk_and_opportunity") @db.Decimal(14, 2)
+  forecastMarginDollars Decimal              @default(0) @map("forecast_margin_dollars") @db.Decimal(14, 2)
+  forecastMarginPercent Decimal              @default(0) @map("forecast_margin_percent") @db.Decimal(7, 4)
+  targetExitMarginPercent Decimal?           @map("target_exit_margin_percent") @db.Decimal(7, 4)
+  claimTotal            Decimal              @default(0) @map("claim_total") @db.Decimal(14, 2)
+  claimRetention        Decimal              @default(0) @map("claim_retention") @db.Decimal(14, 2)
+  subClaims             Decimal              @default(0) @map("sub_claims") @db.Decimal(14, 2)
+  subRetention          Decimal              @default(0) @map("sub_retention") @db.Decimal(14, 2)
+  creditors             Decimal              @default(0) @map("creditors") @db.Decimal(14, 2)
+  labour                Decimal              @default(0) @map("labour") @db.Decimal(14, 2)
+  totalCost             Decimal              @default(0) @map("total_cost") @db.Decimal(14, 2)
+  wip                   Decimal              @default(0) @map("wip") @db.Decimal(14, 2)
+  notes                 String?              @db.Text
+  dataVerified          Boolean              @default(false) @map("data_verified")
+  deletedAt             DateTime?            @map("deleted_at")
+  createdAt             DateTime             @default(now()) @map("created_at")
+  updatedAt             DateTime             @updatedAt @map("updated_at")
+
+  securedForecasts SecuredForecast[]
+
+  @@index([organisationId, reportMonth])
+  @@map("finance_projects")
+  @@schema("projects")
+}
+
+model XeroPnL {
+  id                  String       @id @default(uuid()) @db.Uuid
+  organisationId      String       @map("organisation_id") @db.Uuid
+  organisation        Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth         DateTime     @map("report_month") @db.Date
+  revenue             Decimal      @default(0) @db.Decimal(14, 2)
+  costOfSales         Decimal      @default(0) @map("cost_of_sales") @db.Decimal(14, 2)
+  directLabour        Decimal      @default(0) @map("direct_labour") @db.Decimal(14, 2)
+  grossProfit         Decimal      @default(0) @map("gross_profit") @db.Decimal(14, 2)
+  indirectExpenses    Decimal      @default(0) @map("indirect_expenses") @db.Decimal(14, 2)
+  indirectLabour      Decimal      @default(0) @map("indirect_labour") @db.Decimal(14, 2)
+  marketingExpenses   Decimal      @default(0) @map("marketing_expenses") @db.Decimal(14, 2)
+  netProfitBeforeTax  Decimal      @default(0) @map("net_profit_before_tax") @db.Decimal(14, 2)
+  debtorDays          Decimal?     @map("debtor_days") @db.Decimal(7, 2)
+  creditorDays        Decimal?     @map("creditor_days") @db.Decimal(7, 2)
+  tradeDebtors        Decimal?     @map("trade_debtors") @db.Decimal(14, 2)
+  tradeCreditors      Decimal?     @map("trade_creditors") @db.Decimal(14, 2)
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("xero_pnl")
+  @@schema("projects")
+}
+
+model XeroBankBalance {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth    DateTime     @map("report_month") @db.Date
+  accountName    String       @map("account_name")
+  accountCode    String?      @map("account_code")
+  balance        Decimal      @default(0) @db.Decimal(14, 2)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth, accountName])
+  @@index([organisationId, reportMonth])
+  @@map("xero_bank_balances")
+  @@schema("projects")
+}
+
+model AnnualBudget {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financialYear  Int          @map("financial_year")
+  category       String
+  lineItem       String       @map("line_item")
+  jul            Decimal      @default(0) @db.Decimal(14, 2)
+  aug            Decimal      @default(0) @db.Decimal(14, 2)
+  sep            Decimal      @default(0) @db.Decimal(14, 2)
+  oct            Decimal      @default(0) @db.Decimal(14, 2)
+  nov            Decimal      @default(0) @db.Decimal(14, 2)
+  dec            Decimal      @default(0) @db.Decimal(14, 2)
+  jan            Decimal      @default(0) @db.Decimal(14, 2)
+  feb            Decimal      @default(0) @db.Decimal(14, 2)
+  mar            Decimal      @default(0) @db.Decimal(14, 2)
+  apr            Decimal      @default(0) @db.Decimal(14, 2)
+  may            Decimal      @default(0) @db.Decimal(14, 2)
+  jun            Decimal      @default(0) @db.Decimal(14, 2)
+  total          Decimal      @default(0) @db.Decimal(14, 2)
+  displayOrder   Int          @default(0) @map("display_order")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId, financialYear])
+  @@map("annual_budgets")
+  @@schema("projects")
+}
+
+model SecuredForecast {
+  id               String         @id @default(uuid()) @db.Uuid
+  organisationId   String         @map("organisation_id") @db.Uuid
+  organisation     Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financeProjectId String?        @map("finance_project_id") @db.Uuid
+  financeProject   FinanceProject? @relation(fields: [financeProjectId], references: [id], onDelete: SetNull)
+  financialYear    Int            @map("financial_year")
+  jobNumber        String         @map("job_number")
+  projectName      String         @map("project_name")
+  status           String
+  marginPercent    Decimal        @default(0) @map("margin_percent") @db.Decimal(7, 4)
+  jul              Decimal        @default(0) @db.Decimal(14, 2)
+  aug              Decimal        @default(0) @db.Decimal(14, 2)
+  sep              Decimal        @default(0) @db.Decimal(14, 2)
+  oct              Decimal        @default(0) @db.Decimal(14, 2)
+  nov              Decimal        @default(0) @db.Decimal(14, 2)
+  dec              Decimal        @default(0) @db.Decimal(14, 2)
+  jan              Decimal        @default(0) @db.Decimal(14, 2)
+  feb              Decimal        @default(0) @db.Decimal(14, 2)
+  mar              Decimal        @default(0) @db.Decimal(14, 2)
+  apr              Decimal        @default(0) @db.Decimal(14, 2)
+  may              Decimal        @default(0) @db.Decimal(14, 2)
+  jun              Decimal        @default(0) @db.Decimal(14, 2)
+  nextYearWip      Decimal        @default(0) @map("next_year_wip") @db.Decimal(14, 2)
+  total            Decimal        @default(0) @db.Decimal(14, 2)
+  createdAt        DateTime       @default(now()) @map("created_at")
+  updatedAt        DateTime       @updatedAt @map("updated_at")
+
+  @@unique([organisationId, financialYear, jobNumber])
+  @@index([organisationId, financialYear])
+  @@map("secured_forecasts")
   @@schema("projects")
 }

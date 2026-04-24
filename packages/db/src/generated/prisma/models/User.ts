@@ -543,6 +543,8 @@ export type UserWhereInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   trainingRecords?: Prisma.UserTrainingListRelationFilter
+  monthEndStatusesMarked?: Prisma.MonthEndStatusListRelationFilter
+  xeroConnectionsMade?: Prisma.XeroConnectionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -626,6 +628,8 @@ export type UserOrderByWithRelationInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   trainingRecords?: Prisma.UserTrainingOrderByRelationAggregateInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusOrderByRelationAggregateInput
+  xeroConnectionsMade?: Prisma.XeroConnectionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -712,6 +716,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   estimateSnapshots?: Prisma.EstimateSnapshotListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   trainingRecords?: Prisma.UserTrainingListRelationFilter
+  monthEndStatusesMarked?: Prisma.MonthEndStatusListRelationFilter
+  xeroConnectionsMade?: Prisma.XeroConnectionListRelationFilter
 }, "id" | "clerkId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -890,6 +896,8 @@ export type UserCreateInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -972,6 +980,8 @@ export type UserUncheckedCreateInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUpdateInput = {
@@ -1054,6 +1064,8 @@ export type UserUpdateInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -1136,6 +1148,8 @@ export type UserUncheckedUpdateInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -2055,6 +2069,36 @@ export type UserUpdateOneRequiredWithoutEstimateSnapshotsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEstimateSnapshotsInput, Prisma.UserUpdateWithoutEstimateSnapshotsInput>, Prisma.UserUncheckedUpdateWithoutEstimateSnapshotsInput>
 }
 
+export type UserCreateNestedOneWithoutMonthEndStatusesMarkedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedCreateWithoutMonthEndStatusesMarkedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMonthEndStatusesMarkedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutMonthEndStatusesMarkedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedCreateWithoutMonthEndStatusesMarkedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMonthEndStatusesMarkedInput
+  upsert?: Prisma.UserUpsertWithoutMonthEndStatusesMarkedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMonthEndStatusesMarkedInput, Prisma.UserUpdateWithoutMonthEndStatusesMarkedInput>, Prisma.UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput>
+}
+
+export type UserCreateNestedOneWithoutXeroConnectionsMadeInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedCreateWithoutXeroConnectionsMadeInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutXeroConnectionsMadeInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutXeroConnectionsMadeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedCreateWithoutXeroConnectionsMadeInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutXeroConnectionsMadeInput
+  upsert?: Prisma.UserUpsertWithoutXeroConnectionsMadeInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutXeroConnectionsMadeInput, Prisma.UserUpdateWithoutXeroConnectionsMadeInput>, Prisma.UserUncheckedUpdateWithoutXeroConnectionsMadeInput>
+}
+
 export type UserCreateWithoutOrganisationInput = {
   id?: string
   clerkId: string
@@ -2134,6 +2178,8 @@ export type UserCreateWithoutOrganisationInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationInput = {
@@ -2215,6 +2261,8 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationInput = {
@@ -2369,6 +2417,8 @@ export type UserCreateWithoutAuditLogsInput = {
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2450,6 +2500,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2547,6 +2599,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2628,6 +2682,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutTrainingRecordsInput = {
@@ -2709,6 +2765,8 @@ export type UserCreateWithoutTrainingRecordsInput = {
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutTrainingRecordsInput = {
@@ -2790,6 +2848,8 @@ export type UserUncheckedCreateWithoutTrainingRecordsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutTrainingRecordsInput = {
@@ -2887,6 +2947,8 @@ export type UserUpdateWithoutTrainingRecordsInput = {
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
@@ -2968,6 +3030,8 @@ export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutManagedProjectsInput = {
@@ -3049,6 +3113,8 @@ export type UserCreateWithoutManagedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -3130,6 +3196,8 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -3216,6 +3284,8 @@ export type UserCreateWithoutSiteProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutSiteProjectsInput = {
@@ -3297,6 +3367,8 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutSiteProjectsInput = {
@@ -3383,6 +3455,8 @@ export type UserCreateWithoutEstimatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
@@ -3464,6 +3538,8 @@ export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatedProjectsInput = {
@@ -3550,6 +3626,8 @@ export type UserCreateWithoutCreatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProjectsInput = {
@@ -3631,6 +3709,8 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProjectsInput = {
@@ -3728,6 +3808,8 @@ export type UserUpdateWithoutManagedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -3809,6 +3891,8 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutSiteProjectsInput = {
@@ -3901,6 +3985,8 @@ export type UserUpdateWithoutSiteProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSiteProjectsInput = {
@@ -3982,6 +4068,8 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutEstimatedProjectsInput = {
@@ -4074,6 +4162,8 @@ export type UserUpdateWithoutEstimatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
@@ -4155,6 +4245,8 @@ export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProjectsInput = {
@@ -4247,6 +4339,8 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
@@ -4328,6 +4422,8 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutProjectSubAssignmentsInput = {
@@ -4409,6 +4505,8 @@ export type UserCreateWithoutProjectSubAssignmentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
@@ -4490,6 +4588,8 @@ export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutProjectSubAssignmentsInput = {
@@ -4587,6 +4687,8 @@ export type UserUpdateWithoutProjectSubAssignmentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
@@ -4668,6 +4770,8 @@ export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutCreatedCompaniesInput = {
@@ -4749,6 +4853,8 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
@@ -4830,6 +4936,8 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedCompaniesInput = {
@@ -4927,6 +5035,8 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
@@ -5008,6 +5118,8 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutOwnedContactsInput = {
@@ -5089,6 +5201,8 @@ export type UserCreateWithoutOwnedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutOwnedContactsInput = {
@@ -5170,6 +5284,8 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutOwnedContactsInput = {
@@ -5256,6 +5372,8 @@ export type UserCreateWithoutCreatedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedContactsInput = {
@@ -5337,6 +5455,8 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedContactsInput = {
@@ -5434,6 +5554,8 @@ export type UserUpdateWithoutOwnedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedContactsInput = {
@@ -5515,6 +5637,8 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedContactsInput = {
@@ -5607,6 +5731,8 @@ export type UserUpdateWithoutCreatedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedContactsInput = {
@@ -5688,6 +5814,8 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPoliciesInput = {
@@ -5769,6 +5897,8 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
@@ -5850,6 +5980,8 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPoliciesInput = {
@@ -5947,6 +6079,8 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
@@ -6028,6 +6162,8 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutUploadedDocsInput = {
@@ -6109,6 +6245,8 @@ export type UserCreateWithoutUploadedDocsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedDocsInput = {
@@ -6190,6 +6328,8 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedDocsInput = {
@@ -6287,6 +6427,8 @@ export type UserUpdateWithoutUploadedDocsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedDocsInput = {
@@ -6368,6 +6510,8 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutCompanyNotesInput = {
@@ -6449,6 +6593,8 @@ export type UserCreateWithoutCompanyNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCompanyNotesInput = {
@@ -6530,6 +6676,8 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCompanyNotesInput = {
@@ -6627,6 +6775,8 @@ export type UserUpdateWithoutCompanyNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyNotesInput = {
@@ -6708,6 +6858,8 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutContactNotesInput = {
@@ -6789,6 +6941,8 @@ export type UserCreateWithoutContactNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutContactNotesInput = {
@@ -6870,6 +7024,8 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutContactNotesInput = {
@@ -6967,6 +7123,8 @@ export type UserUpdateWithoutContactNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutContactNotesInput = {
@@ -7048,6 +7206,8 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutApprovedProfilesInput = {
@@ -7129,6 +7289,8 @@ export type UserCreateWithoutApprovedProfilesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedProfilesInput = {
@@ -7210,6 +7372,8 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedProfilesInput = {
@@ -7307,6 +7471,8 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
@@ -7388,6 +7554,8 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutSentInvitationsInput = {
@@ -7469,6 +7637,8 @@ export type UserCreateWithoutSentInvitationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -7550,6 +7720,8 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -7647,6 +7819,8 @@ export type UserUpdateWithoutSentInvitationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -7728,6 +7902,8 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutSentCommunicationsInput = {
@@ -7809,6 +7985,8 @@ export type UserCreateWithoutSentCommunicationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutSentCommunicationsInput = {
@@ -7890,6 +8068,8 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutSentCommunicationsInput = {
@@ -7987,6 +8167,8 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
@@ -8068,6 +8250,8 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -8149,6 +8333,8 @@ export type UserCreateWithoutNotificationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -8230,6 +8416,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -8327,6 +8515,8 @@ export type UserUpdateWithoutNotificationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -8408,6 +8598,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutReportedIncidentsInput = {
@@ -8489,6 +8681,8 @@ export type UserCreateWithoutReportedIncidentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutReportedIncidentsInput = {
@@ -8570,6 +8764,8 @@ export type UserUncheckedCreateWithoutReportedIncidentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutReportedIncidentsInput = {
@@ -8667,6 +8863,8 @@ export type UserUpdateWithoutReportedIncidentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
@@ -8748,6 +8946,8 @@ export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutRaisedHazardsInput = {
@@ -8829,6 +9029,8 @@ export type UserCreateWithoutRaisedHazardsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutRaisedHazardsInput = {
@@ -8910,6 +9112,8 @@ export type UserUncheckedCreateWithoutRaisedHazardsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutRaisedHazardsInput = {
@@ -9007,6 +9211,8 @@ export type UserUpdateWithoutRaisedHazardsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
@@ -9088,6 +9294,8 @@ export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutIssuedPermitsInput = {
@@ -9169,6 +9377,8 @@ export type UserCreateWithoutIssuedPermitsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutIssuedPermitsInput = {
@@ -9250,6 +9460,8 @@ export type UserUncheckedCreateWithoutIssuedPermitsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutIssuedPermitsInput = {
@@ -9347,6 +9559,8 @@ export type UserUpdateWithoutIssuedPermitsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
@@ -9428,6 +9642,8 @@ export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutConductedInspectionsInput = {
@@ -9509,6 +9725,8 @@ export type UserCreateWithoutConductedInspectionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutConductedInspectionsInput = {
@@ -9590,6 +9808,8 @@ export type UserUncheckedCreateWithoutConductedInspectionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutConductedInspectionsInput = {
@@ -9687,6 +9907,8 @@ export type UserUpdateWithoutConductedInspectionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
@@ -9768,6 +9990,8 @@ export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourcesSubmittedInput = {
@@ -9849,6 +10073,8 @@ export type UserCreateWithoutDesignSourcesSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
@@ -9930,6 +10156,8 @@ export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesSubmittedInput = {
@@ -10016,6 +10244,8 @@ export type UserCreateWithoutDesignSourcesApprovedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
@@ -10097,6 +10327,8 @@ export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesApprovedInput = {
@@ -10194,6 +10426,8 @@ export type UserUpdateWithoutDesignSourcesSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
@@ -10275,6 +10509,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutDesignSourcesApprovedInput = {
@@ -10367,6 +10603,8 @@ export type UserUpdateWithoutDesignSourcesApprovedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
@@ -10448,6 +10686,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourceVersionsInput = {
@@ -10529,6 +10769,8 @@ export type UserCreateWithoutDesignSourceVersionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
@@ -10610,6 +10852,8 @@ export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourceVersionsInput = {
@@ -10707,6 +10951,8 @@ export type UserUpdateWithoutDesignSourceVersionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
@@ -10788,6 +11034,8 @@ export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -10869,6 +11117,8 @@ export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -10950,6 +11200,8 @@ export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalSettingsCreatedInput = {
@@ -11047,6 +11299,8 @@ export type UserUpdateWithoutDesignGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
@@ -11128,6 +11382,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalAuditsInput = {
@@ -11209,6 +11465,8 @@ export type UserCreateWithoutDesignGlobalAuditsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
@@ -11290,6 +11548,8 @@ export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalAuditsInput = {
@@ -11387,6 +11647,8 @@ export type UserUpdateWithoutDesignGlobalAuditsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
@@ -11468,6 +11730,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -11549,6 +11813,8 @@ export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -11630,6 +11896,8 @@ export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -11727,6 +11995,8 @@ export type UserUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -11808,6 +12078,8 @@ export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignProposalsProposedInput = {
@@ -11889,6 +12161,8 @@ export type UserCreateWithoutDesignProposalsProposedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
@@ -11970,6 +12244,8 @@ export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsProposedInput = {
@@ -12056,6 +12332,8 @@ export type UserCreateWithoutDesignProposalsReviewedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
@@ -12137,6 +12415,8 @@ export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsReviewedInput = {
@@ -12234,6 +12514,8 @@ export type UserUpdateWithoutDesignProposalsProposedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
@@ -12315,6 +12597,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutDesignProposalsReviewedInput = {
@@ -12407,6 +12691,8 @@ export type UserUpdateWithoutDesignProposalsReviewedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
@@ -12488,6 +12774,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -12569,6 +12857,8 @@ export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -12650,6 +12940,8 @@ export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignExpiryConfigUpdatedInput = {
@@ -12747,6 +13039,8 @@ export type UserUpdateWithoutDesignExpiryConfigUpdatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
@@ -12828,6 +13122,8 @@ export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignRssFeedsCreatedInput = {
@@ -12909,6 +13205,8 @@ export type UserCreateWithoutDesignRssFeedsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
@@ -12990,6 +13288,8 @@ export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignRssFeedsCreatedInput = {
@@ -13087,6 +13387,8 @@ export type UserUpdateWithoutDesignRssFeedsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
@@ -13168,6 +13470,8 @@ export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -13249,6 +13553,8 @@ export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -13330,6 +13636,8 @@ export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignMonitoredUrlsCreatedInput = {
@@ -13427,6 +13735,8 @@ export type UserUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -13508,6 +13818,8 @@ export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -13589,6 +13901,8 @@ export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -13670,6 +13984,8 @@ export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignTrendItemsSubmittedInput = {
@@ -13767,6 +14083,8 @@ export type UserUpdateWithoutDesignTrendItemsSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
@@ -13848,6 +14166,8 @@ export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutDesignChatbotSessionsInput = {
@@ -13929,6 +14249,8 @@ export type UserCreateWithoutDesignChatbotSessionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -14010,6 +14332,8 @@ export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -14107,6 +14431,8 @@ export type UserUpdateWithoutDesignChatbotSessionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -14188,6 +14514,8 @@ export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutEstimatesAsEstimatorInput = {
@@ -14269,6 +14597,8 @@ export type UserCreateWithoutEstimatesAsEstimatorInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
@@ -14350,6 +14680,8 @@ export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatesAsEstimatorInput = {
@@ -14436,6 +14768,8 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -14517,6 +14851,8 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -14614,6 +14950,8 @@ export type UserUpdateWithoutEstimatesAsEstimatorInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
@@ -14695,6 +15033,8 @@ export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedEstimatesInput = {
@@ -14787,6 +15127,8 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -14868,6 +15210,8 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserCreateWithoutEstimateSnapshotsInput = {
@@ -14949,6 +15293,8 @@ export type UserCreateWithoutEstimateSnapshotsInput = {
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
@@ -15030,6 +15376,8 @@ export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimateSnapshotsInput = {
@@ -15127,6 +15475,8 @@ export type UserUpdateWithoutEstimateSnapshotsInput = {
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
@@ -15208,6 +15558,704 @@ export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+}
+
+export type UserCreateWithoutMonthEndStatusesMarkedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+}
+
+export type UserUncheckedCreateWithoutMonthEndStatusesMarkedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+}
+
+export type UserCreateOrConnectWithoutMonthEndStatusesMarkedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedCreateWithoutMonthEndStatusesMarkedInput>
+}
+
+export type UserUpsertWithoutMonthEndStatusesMarkedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedCreateWithoutMonthEndStatusesMarkedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMonthEndStatusesMarkedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMonthEndStatusesMarkedInput, Prisma.UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput>
+}
+
+export type UserUpdateWithoutMonthEndStatusesMarkedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+}
+
+export type UserCreateWithoutXeroConnectionsMadeInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+}
+
+export type UserUncheckedCreateWithoutXeroConnectionsMadeInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+}
+
+export type UserCreateOrConnectWithoutXeroConnectionsMadeInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedCreateWithoutXeroConnectionsMadeInput>
+}
+
+export type UserUpsertWithoutXeroConnectionsMadeInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedUpdateWithoutXeroConnectionsMadeInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedCreateWithoutXeroConnectionsMadeInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutXeroConnectionsMadeInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutXeroConnectionsMadeInput, Prisma.UserUncheckedUpdateWithoutXeroConnectionsMadeInput>
+}
+
+export type UserUpdateWithoutXeroConnectionsMadeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutXeroConnectionsMadeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
 }
 
 export type UserCreateManyOrganisationInput = {
@@ -15332,6 +16380,8 @@ export type UserUpdateWithoutOrganisationInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationInput = {
@@ -15413,6 +16463,8 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganisationInput = {
@@ -15502,6 +16554,8 @@ export type UserCountOutputType = {
   estimateSnapshots: number
   auditLogs: number
   trainingRecords: number
+  monthEndStatusesMarked: number
+  xeroConnectionsMade: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -15543,6 +16597,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   estimateSnapshots?: boolean | UserCountOutputTypeCountEstimateSnapshotsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   trainingRecords?: boolean | UserCountOutputTypeCountTrainingRecordsArgs
+  monthEndStatusesMarked?: boolean | UserCountOutputTypeCountMonthEndStatusesMarkedArgs
+  xeroConnectionsMade?: boolean | UserCountOutputTypeCountXeroConnectionsMadeArgs
 }
 
 /**
@@ -15821,6 +16877,20 @@ export type UserCountOutputTypeCountTrainingRecordsArgs<ExtArgs extends runtime.
   where?: Prisma.UserTrainingWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMonthEndStatusesMarkedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MonthEndStatusWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountXeroConnectionsMadeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.XeroConnectionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -15903,6 +16973,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   estimateSnapshots?: boolean | Prisma.User$estimateSnapshotsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   trainingRecords?: boolean | Prisma.User$trainingRecordsArgs<ExtArgs>
+  monthEndStatusesMarked?: boolean | Prisma.User$monthEndStatusesMarkedArgs<ExtArgs>
+  xeroConnectionsMade?: boolean | Prisma.User$xeroConnectionsMadeArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -16081,6 +17153,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   estimateSnapshots?: boolean | Prisma.User$estimateSnapshotsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   trainingRecords?: boolean | Prisma.User$trainingRecordsArgs<ExtArgs>
+  monthEndStatusesMarked?: boolean | Prisma.User$monthEndStatusesMarkedArgs<ExtArgs>
+  xeroConnectionsMade?: boolean | Prisma.User$xeroConnectionsMadeArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -16132,6 +17206,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     estimateSnapshots: Prisma.$EstimateSnapshotPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     trainingRecords: Prisma.$UserTrainingPayload<ExtArgs>[]
+    monthEndStatusesMarked: Prisma.$MonthEndStatusPayload<ExtArgs>[]
+    xeroConnectionsMade: Prisma.$XeroConnectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -16608,6 +17684,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   estimateSnapshots<T extends Prisma.User$estimateSnapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$estimateSnapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trainingRecords<T extends Prisma.User$trainingRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTrainingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  monthEndStatusesMarked<T extends Prisma.User$monthEndStatusesMarkedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$monthEndStatusesMarkedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MonthEndStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  xeroConnectionsMade<T extends Prisma.User$xeroConnectionsMadeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$xeroConnectionsMadeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$XeroConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17988,6 +19066,54 @@ export type User$trainingRecordsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.UserTrainingScalarFieldEnum | Prisma.UserTrainingScalarFieldEnum[]
+}
+
+/**
+ * User.monthEndStatusesMarked
+ */
+export type User$monthEndStatusesMarkedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MonthEndStatus
+   */
+  select?: Prisma.MonthEndStatusSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MonthEndStatus
+   */
+  omit?: Prisma.MonthEndStatusOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MonthEndStatusInclude<ExtArgs> | null
+  where?: Prisma.MonthEndStatusWhereInput
+  orderBy?: Prisma.MonthEndStatusOrderByWithRelationInput | Prisma.MonthEndStatusOrderByWithRelationInput[]
+  cursor?: Prisma.MonthEndStatusWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MonthEndStatusScalarFieldEnum | Prisma.MonthEndStatusScalarFieldEnum[]
+}
+
+/**
+ * User.xeroConnectionsMade
+ */
+export type User$xeroConnectionsMadeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XeroConnection
+   */
+  select?: Prisma.XeroConnectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XeroConnection
+   */
+  omit?: Prisma.XeroConnectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XeroConnectionInclude<ExtArgs> | null
+  where?: Prisma.XeroConnectionWhereInput
+  orderBy?: Prisma.XeroConnectionOrderByWithRelationInput | Prisma.XeroConnectionOrderByWithRelationInput[]
+  cursor?: Prisma.XeroConnectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.XeroConnectionScalarFieldEnum | Prisma.XeroConnectionScalarFieldEnum[]
 }
 
 /**

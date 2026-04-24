@@ -479,7 +479,14 @@ export const ModelName = {
   TradeQuote: 'TradeQuote',
   EstimateSnapshot: 'EstimateSnapshot',
   ScopeLibraryItem: 'ScopeLibraryItem',
-  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment'
+  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment',
+  MonthEndStatus: 'MonthEndStatus',
+  XeroConnection: 'XeroConnection',
+  FinanceProject: 'FinanceProject',
+  XeroPnL: 'XeroPnL',
+  XeroBankBalance: 'XeroBankBalance',
+  AnnualBudget: 'AnnualBudget',
+  SecuredForecast: 'SecuredForecast'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -495,7 +502,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment"
+    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -7603,6 +7610,524 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MonthEndStatus: {
+      payload: Prisma.$MonthEndStatusPayload<ExtArgs>
+      fields: Prisma.MonthEndStatusFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MonthEndStatusFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MonthEndStatusFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        findFirst: {
+          args: Prisma.MonthEndStatusFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MonthEndStatusFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        findMany: {
+          args: Prisma.MonthEndStatusFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>[]
+        }
+        create: {
+          args: Prisma.MonthEndStatusCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        createMany: {
+          args: Prisma.MonthEndStatusCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MonthEndStatusCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>[]
+        }
+        delete: {
+          args: Prisma.MonthEndStatusDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        update: {
+          args: Prisma.MonthEndStatusUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        deleteMany: {
+          args: Prisma.MonthEndStatusDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MonthEndStatusUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MonthEndStatusUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>[]
+        }
+        upsert: {
+          args: Prisma.MonthEndStatusUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthEndStatusPayload>
+        }
+        aggregate: {
+          args: Prisma.MonthEndStatusAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMonthEndStatus>
+        }
+        groupBy: {
+          args: Prisma.MonthEndStatusGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MonthEndStatusGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MonthEndStatusCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MonthEndStatusCountAggregateOutputType> | number
+        }
+      }
+    }
+    XeroConnection: {
+      payload: Prisma.$XeroConnectionPayload<ExtArgs>
+      fields: Prisma.XeroConnectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XeroConnectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XeroConnectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        findFirst: {
+          args: Prisma.XeroConnectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XeroConnectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        findMany: {
+          args: Prisma.XeroConnectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>[]
+        }
+        create: {
+          args: Prisma.XeroConnectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        createMany: {
+          args: Prisma.XeroConnectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XeroConnectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>[]
+        }
+        delete: {
+          args: Prisma.XeroConnectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        update: {
+          args: Prisma.XeroConnectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.XeroConnectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XeroConnectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XeroConnectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.XeroConnectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroConnectionPayload>
+        }
+        aggregate: {
+          args: Prisma.XeroConnectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXeroConnection>
+        }
+        groupBy: {
+          args: Prisma.XeroConnectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroConnectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XeroConnectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroConnectionCountAggregateOutputType> | number
+        }
+      }
+    }
+    FinanceProject: {
+      payload: Prisma.$FinanceProjectPayload<ExtArgs>
+      fields: Prisma.FinanceProjectFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FinanceProjectFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FinanceProjectFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        findFirst: {
+          args: Prisma.FinanceProjectFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FinanceProjectFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        findMany: {
+          args: Prisma.FinanceProjectFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>[]
+        }
+        create: {
+          args: Prisma.FinanceProjectCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        createMany: {
+          args: Prisma.FinanceProjectCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FinanceProjectCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>[]
+        }
+        delete: {
+          args: Prisma.FinanceProjectDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        update: {
+          args: Prisma.FinanceProjectUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        deleteMany: {
+          args: Prisma.FinanceProjectDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FinanceProjectUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FinanceProjectUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>[]
+        }
+        upsert: {
+          args: Prisma.FinanceProjectUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FinanceProjectPayload>
+        }
+        aggregate: {
+          args: Prisma.FinanceProjectAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFinanceProject>
+        }
+        groupBy: {
+          args: Prisma.FinanceProjectGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FinanceProjectGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FinanceProjectCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FinanceProjectCountAggregateOutputType> | number
+        }
+      }
+    }
+    XeroPnL: {
+      payload: Prisma.$XeroPnLPayload<ExtArgs>
+      fields: Prisma.XeroPnLFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XeroPnLFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XeroPnLFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        findFirst: {
+          args: Prisma.XeroPnLFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XeroPnLFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        findMany: {
+          args: Prisma.XeroPnLFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>[]
+        }
+        create: {
+          args: Prisma.XeroPnLCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        createMany: {
+          args: Prisma.XeroPnLCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XeroPnLCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>[]
+        }
+        delete: {
+          args: Prisma.XeroPnLDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        update: {
+          args: Prisma.XeroPnLUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        deleteMany: {
+          args: Prisma.XeroPnLDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XeroPnLUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XeroPnLUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>[]
+        }
+        upsert: {
+          args: Prisma.XeroPnLUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLPayload>
+        }
+        aggregate: {
+          args: Prisma.XeroPnLAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXeroPnL>
+        }
+        groupBy: {
+          args: Prisma.XeroPnLGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroPnLGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XeroPnLCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroPnLCountAggregateOutputType> | number
+        }
+      }
+    }
+    XeroBankBalance: {
+      payload: Prisma.$XeroBankBalancePayload<ExtArgs>
+      fields: Prisma.XeroBankBalanceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XeroBankBalanceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XeroBankBalanceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        findFirst: {
+          args: Prisma.XeroBankBalanceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XeroBankBalanceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        findMany: {
+          args: Prisma.XeroBankBalanceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>[]
+        }
+        create: {
+          args: Prisma.XeroBankBalanceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        createMany: {
+          args: Prisma.XeroBankBalanceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XeroBankBalanceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>[]
+        }
+        delete: {
+          args: Prisma.XeroBankBalanceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        update: {
+          args: Prisma.XeroBankBalanceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        deleteMany: {
+          args: Prisma.XeroBankBalanceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XeroBankBalanceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XeroBankBalanceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>[]
+        }
+        upsert: {
+          args: Prisma.XeroBankBalanceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroBankBalancePayload>
+        }
+        aggregate: {
+          args: Prisma.XeroBankBalanceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXeroBankBalance>
+        }
+        groupBy: {
+          args: Prisma.XeroBankBalanceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroBankBalanceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XeroBankBalanceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroBankBalanceCountAggregateOutputType> | number
+        }
+      }
+    }
+    AnnualBudget: {
+      payload: Prisma.$AnnualBudgetPayload<ExtArgs>
+      fields: Prisma.AnnualBudgetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AnnualBudgetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AnnualBudgetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        findFirst: {
+          args: Prisma.AnnualBudgetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AnnualBudgetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        findMany: {
+          args: Prisma.AnnualBudgetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>[]
+        }
+        create: {
+          args: Prisma.AnnualBudgetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        createMany: {
+          args: Prisma.AnnualBudgetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AnnualBudgetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>[]
+        }
+        delete: {
+          args: Prisma.AnnualBudgetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        update: {
+          args: Prisma.AnnualBudgetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        deleteMany: {
+          args: Prisma.AnnualBudgetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AnnualBudgetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AnnualBudgetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>[]
+        }
+        upsert: {
+          args: Prisma.AnnualBudgetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AnnualBudgetPayload>
+        }
+        aggregate: {
+          args: Prisma.AnnualBudgetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAnnualBudget>
+        }
+        groupBy: {
+          args: Prisma.AnnualBudgetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AnnualBudgetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AnnualBudgetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AnnualBudgetCountAggregateOutputType> | number
+        }
+      }
+    }
+    SecuredForecast: {
+      payload: Prisma.$SecuredForecastPayload<ExtArgs>
+      fields: Prisma.SecuredForecastFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SecuredForecastFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SecuredForecastFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        findFirst: {
+          args: Prisma.SecuredForecastFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SecuredForecastFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        findMany: {
+          args: Prisma.SecuredForecastFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>[]
+        }
+        create: {
+          args: Prisma.SecuredForecastCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        createMany: {
+          args: Prisma.SecuredForecastCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SecuredForecastCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>[]
+        }
+        delete: {
+          args: Prisma.SecuredForecastDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        update: {
+          args: Prisma.SecuredForecastUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        deleteMany: {
+          args: Prisma.SecuredForecastDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SecuredForecastUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SecuredForecastUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>[]
+        }
+        upsert: {
+          args: Prisma.SecuredForecastUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SecuredForecastPayload>
+        }
+        aggregate: {
+          args: Prisma.SecuredForecastAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSecuredForecast>
+        }
+        groupBy: {
+          args: Prisma.SecuredForecastGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SecuredForecastGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SecuredForecastCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SecuredForecastCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -9366,6 +9891,167 @@ export const EstimateLineScopeAttachmentScalarFieldEnum = {
 export type EstimateLineScopeAttachmentScalarFieldEnum = (typeof EstimateLineScopeAttachmentScalarFieldEnum)[keyof typeof EstimateLineScopeAttachmentScalarFieldEnum]
 
 
+export const MonthEndStatusScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  markedReadyById: 'markedReadyById',
+  markedReadyAt: 'markedReadyAt',
+  xeroSyncedAt: 'xeroSyncedAt',
+  lockedAt: 'lockedAt',
+  notes: 'notes',
+  dataVerifiedAt: 'dataVerifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MonthEndStatusScalarFieldEnum = (typeof MonthEndStatusScalarFieldEnum)[keyof typeof MonthEndStatusScalarFieldEnum]
+
+
+export const XeroConnectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  xeroTenantId: 'xeroTenantId',
+  xeroOrgName: 'xeroOrgName',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  tokenExpiry: 'tokenExpiry',
+  connectedById: 'connectedById',
+  connectedAt: 'connectedAt',
+  lastUsedAt: 'lastUsedAt',
+  status: 'status'
+} as const
+
+export type XeroConnectionScalarFieldEnum = (typeof XeroConnectionScalarFieldEnum)[keyof typeof XeroConnectionScalarFieldEnum]
+
+
+export const FinanceProjectScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  practicalCompletionDate: 'practicalCompletionDate',
+  forecastContractValue: 'forecastContractValue',
+  forecastFinalCosts: 'forecastFinalCosts',
+  riskAndOpportunity: 'riskAndOpportunity',
+  forecastMarginDollars: 'forecastMarginDollars',
+  forecastMarginPercent: 'forecastMarginPercent',
+  targetExitMarginPercent: 'targetExitMarginPercent',
+  claimTotal: 'claimTotal',
+  claimRetention: 'claimRetention',
+  subClaims: 'subClaims',
+  subRetention: 'subRetention',
+  creditors: 'creditors',
+  labour: 'labour',
+  totalCost: 'totalCost',
+  wip: 'wip',
+  notes: 'notes',
+  dataVerified: 'dataVerified',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinanceProjectScalarFieldEnum = (typeof FinanceProjectScalarFieldEnum)[keyof typeof FinanceProjectScalarFieldEnum]
+
+
+export const XeroPnLScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  revenue: 'revenue',
+  costOfSales: 'costOfSales',
+  directLabour: 'directLabour',
+  grossProfit: 'grossProfit',
+  indirectExpenses: 'indirectExpenses',
+  indirectLabour: 'indirectLabour',
+  marketingExpenses: 'marketingExpenses',
+  netProfitBeforeTax: 'netProfitBeforeTax',
+  debtorDays: 'debtorDays',
+  creditorDays: 'creditorDays',
+  tradeDebtors: 'tradeDebtors',
+  tradeCreditors: 'tradeCreditors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroPnLScalarFieldEnum = (typeof XeroPnLScalarFieldEnum)[keyof typeof XeroPnLScalarFieldEnum]
+
+
+export const XeroBankBalanceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  accountName: 'accountName',
+  accountCode: 'accountCode',
+  balance: 'balance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroBankBalanceScalarFieldEnum = (typeof XeroBankBalanceScalarFieldEnum)[keyof typeof XeroBankBalanceScalarFieldEnum]
+
+
+export const AnnualBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  category: 'category',
+  lineItem: 'lineItem',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  total: 'total',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AnnualBudgetScalarFieldEnum = (typeof AnnualBudgetScalarFieldEnum)[keyof typeof AnnualBudgetScalarFieldEnum]
+
+
+export const SecuredForecastScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  financialYear: 'financialYear',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  marginPercent: 'marginPercent',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYearWip: 'nextYearWip',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SecuredForecastScalarFieldEnum = (typeof SecuredForecastScalarFieldEnum)[keyof typeof SecuredForecastScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -10282,6 +10968,48 @@ export type ListEnumQuoteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'MonthEndStatusEnum'
+ */
+export type EnumMonthEndStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MonthEndStatusEnum'>
+    
+
+
+/**
+ * Reference to a field of type 'MonthEndStatusEnum[]'
+ */
+export type ListEnumMonthEndStatusEnumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MonthEndStatusEnum[]'>
+    
+
+
+/**
+ * Reference to a field of type 'XeroConnectionStatus'
+ */
+export type EnumXeroConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'XeroConnectionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'XeroConnectionStatus[]'
+ */
+export type ListEnumXeroConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'XeroConnectionStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FinanceProjectStatus'
+ */
+export type EnumFinanceProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FinanceProjectStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FinanceProjectStatus[]'
+ */
+export type ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FinanceProjectStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -10485,6 +11213,13 @@ export type GlobalOmitConfig = {
   estimateSnapshot?: Prisma.EstimateSnapshotOmit
   scopeLibraryItem?: Prisma.ScopeLibraryItemOmit
   estimateLineScopeAttachment?: Prisma.EstimateLineScopeAttachmentOmit
+  monthEndStatus?: Prisma.MonthEndStatusOmit
+  xeroConnection?: Prisma.XeroConnectionOmit
+  financeProject?: Prisma.FinanceProjectOmit
+  xeroPnL?: Prisma.XeroPnLOmit
+  xeroBankBalance?: Prisma.XeroBankBalanceOmit
+  annualBudget?: Prisma.AnnualBudgetOmit
+  securedForecast?: Prisma.SecuredForecastOmit
 }
 
 /* Types for Logging */

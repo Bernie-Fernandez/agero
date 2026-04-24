@@ -146,7 +146,14 @@ export const ModelName = {
   TradeQuote: 'TradeQuote',
   EstimateSnapshot: 'EstimateSnapshot',
   ScopeLibraryItem: 'ScopeLibraryItem',
-  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment'
+  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment',
+  MonthEndStatus: 'MonthEndStatus',
+  XeroConnection: 'XeroConnection',
+  FinanceProject: 'FinanceProject',
+  XeroPnL: 'XeroPnL',
+  XeroBankBalance: 'XeroBankBalance',
+  AnnualBudget: 'AnnualBudget',
+  SecuredForecast: 'SecuredForecast'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1887,6 +1894,167 @@ export const EstimateLineScopeAttachmentScalarFieldEnum = {
 } as const
 
 export type EstimateLineScopeAttachmentScalarFieldEnum = (typeof EstimateLineScopeAttachmentScalarFieldEnum)[keyof typeof EstimateLineScopeAttachmentScalarFieldEnum]
+
+
+export const MonthEndStatusScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  markedReadyById: 'markedReadyById',
+  markedReadyAt: 'markedReadyAt',
+  xeroSyncedAt: 'xeroSyncedAt',
+  lockedAt: 'lockedAt',
+  notes: 'notes',
+  dataVerifiedAt: 'dataVerifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MonthEndStatusScalarFieldEnum = (typeof MonthEndStatusScalarFieldEnum)[keyof typeof MonthEndStatusScalarFieldEnum]
+
+
+export const XeroConnectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  xeroTenantId: 'xeroTenantId',
+  xeroOrgName: 'xeroOrgName',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  tokenExpiry: 'tokenExpiry',
+  connectedById: 'connectedById',
+  connectedAt: 'connectedAt',
+  lastUsedAt: 'lastUsedAt',
+  status: 'status'
+} as const
+
+export type XeroConnectionScalarFieldEnum = (typeof XeroConnectionScalarFieldEnum)[keyof typeof XeroConnectionScalarFieldEnum]
+
+
+export const FinanceProjectScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  practicalCompletionDate: 'practicalCompletionDate',
+  forecastContractValue: 'forecastContractValue',
+  forecastFinalCosts: 'forecastFinalCosts',
+  riskAndOpportunity: 'riskAndOpportunity',
+  forecastMarginDollars: 'forecastMarginDollars',
+  forecastMarginPercent: 'forecastMarginPercent',
+  targetExitMarginPercent: 'targetExitMarginPercent',
+  claimTotal: 'claimTotal',
+  claimRetention: 'claimRetention',
+  subClaims: 'subClaims',
+  subRetention: 'subRetention',
+  creditors: 'creditors',
+  labour: 'labour',
+  totalCost: 'totalCost',
+  wip: 'wip',
+  notes: 'notes',
+  dataVerified: 'dataVerified',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinanceProjectScalarFieldEnum = (typeof FinanceProjectScalarFieldEnum)[keyof typeof FinanceProjectScalarFieldEnum]
+
+
+export const XeroPnLScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  revenue: 'revenue',
+  costOfSales: 'costOfSales',
+  directLabour: 'directLabour',
+  grossProfit: 'grossProfit',
+  indirectExpenses: 'indirectExpenses',
+  indirectLabour: 'indirectLabour',
+  marketingExpenses: 'marketingExpenses',
+  netProfitBeforeTax: 'netProfitBeforeTax',
+  debtorDays: 'debtorDays',
+  creditorDays: 'creditorDays',
+  tradeDebtors: 'tradeDebtors',
+  tradeCreditors: 'tradeCreditors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroPnLScalarFieldEnum = (typeof XeroPnLScalarFieldEnum)[keyof typeof XeroPnLScalarFieldEnum]
+
+
+export const XeroBankBalanceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  accountName: 'accountName',
+  accountCode: 'accountCode',
+  balance: 'balance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroBankBalanceScalarFieldEnum = (typeof XeroBankBalanceScalarFieldEnum)[keyof typeof XeroBankBalanceScalarFieldEnum]
+
+
+export const AnnualBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  category: 'category',
+  lineItem: 'lineItem',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  total: 'total',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AnnualBudgetScalarFieldEnum = (typeof AnnualBudgetScalarFieldEnum)[keyof typeof AnnualBudgetScalarFieldEnum]
+
+
+export const SecuredForecastScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  financialYear: 'financialYear',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  marginPercent: 'marginPercent',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYearWip: 'nextYearWip',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SecuredForecastScalarFieldEnum = (typeof SecuredForecastScalarFieldEnum)[keyof typeof SecuredForecastScalarFieldEnum]
 
 
 export const SortOrder = {

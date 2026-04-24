@@ -497,3 +497,38 @@ export type ScopeLibraryItem = Prisma.ScopeLibraryItemModel
  * 
  */
 export type EstimateLineScopeAttachment = Prisma.EstimateLineScopeAttachmentModel
+/**
+ * Model MonthEndStatus
+ * 
+ */
+export type MonthEndStatus = Prisma.MonthEndStatusModel
+/**
+ * Model XeroConnection
+ * 
+ */
+export type XeroConnection = Prisma.XeroConnectionModel
+/**
+ * Model FinanceProject
+ * 
+ */
+export type FinanceProject = Prisma.FinanceProjectModel
+/**
+ * Model XeroPnL
+ * 
+ */
+export type XeroPnL = Prisma.XeroPnLModel
+/**
+ * Model XeroBankBalance
+ * 
+ */
+export type XeroBankBalance = Prisma.XeroBankBalanceModel
+/**
+ * Model AnnualBudget
+ * 
+ */
+export type AnnualBudget = Prisma.AnnualBudgetModel
+/**
+ * Model SecuredForecast
+ * 
+ */
+export type SecuredForecast = Prisma.SecuredForecastModel
