@@ -9,8 +9,9 @@ export function getXeroClient() {
     redirectUris: [process.env.XERO_REDIRECT_URI!],
     scopes: [
       'openid', 'profile', 'email',
-      'accounting.reports.read',
-      'accounting.settings.read',
+      'accounting.reports.profitandloss.read',
+      'accounting.reports.balancesheet.read',
+      'accounting.reports.banksummary.read',
       'offline_access',
     ],
   });
