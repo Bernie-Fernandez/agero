@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
@@ -396,7 +396,7 @@ export async function createScopeLibraryItem(fd: FormData) {
 
 export async function deleteScopeLibraryItem(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.scopeLibraryItem.delete({ where: { id } });
   revalidatePath('/leads');
 }

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 
@@ -21,7 +21,7 @@ export async function POST() {
 
   const user = await prisma.user.findUnique({ where: { clerkId: userId } });
   if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') {
+  if (user.role !== 'DIRECTOR') {
     return NextResponse.json({ error: 'Admin only' }, { status: 403 });
   }
 

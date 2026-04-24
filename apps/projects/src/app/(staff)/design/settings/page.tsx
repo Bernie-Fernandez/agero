@@ -1,4 +1,4 @@
-import { requireAppUser } from '@/lib/auth';
+﻿import { requireAppUser } from '@/lib/auth';
 import {
   getGlobalSettings, getNonGlobalSettings, getPendingProposals,
   getDesignExpiryConfig, getRssFeeds, getMonitoredUrls,
@@ -7,7 +7,7 @@ import SettingsClient from './SettingsClient';
 
 export default async function DesignSettingsPage() {
   const user = await requireAppUser();
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
 
   const [globalSettings, nonGlobalSettings, proposals, expiryConfig, rssFeeds, monitoredUrls] = await Promise.all([
     isAdmin ? getGlobalSettings(user.organisationId) : [],

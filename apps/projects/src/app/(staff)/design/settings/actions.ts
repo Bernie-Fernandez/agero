@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
@@ -30,7 +30,7 @@ export async function getGlobalSettings(organisationId: string) {
 
 export async function createGlobalSetting(fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSettingGlobal.create({
     data: {
       organisationId: user.organisationId,
@@ -47,7 +47,7 @@ export async function createGlobalSetting(fd: FormData) {
 
 export async function updateGlobalSetting(id: string, fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const existing = await prisma.designSettingGlobal.findUniqueOrThrow({ where: { id } });
   const newValue = fd.get('value') as string;
   const reason = (fd.get('reason') as string) || '';
@@ -76,7 +76,7 @@ export async function updateGlobalSetting(id: string, fd: FormData) {
 
 export async function deleteGlobalSetting(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSettingGlobal.delete({ where: { id } });
   revalidatePath('/design/settings');
 }
@@ -128,7 +128,7 @@ export async function getPendingProposals(organisationId: string) {
 
 export async function approveProposal(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const proposal = await prisma.designSettingNonGlobalProposal.findUniqueOrThrow({ where: { id } });
 
   await prisma.$transaction(async (tx) => {
@@ -160,7 +160,7 @@ export async function approveProposal(id: string) {
 
 export async function rejectProposal(id: string, reason: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSettingNonGlobalProposal.update({
     where: { id },
     data: { status: 'REJECTED', reviewedById: user.id, reviewedAt: new Date(), rejectionReason: reason },
@@ -173,7 +173,7 @@ export async function rejectProposal(id: string, reason: string) {
 
 export async function updateExpiryConfig(fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designExpiryConfig.upsert({
     where: { organisationId: user.organisationId },
     create: {
@@ -208,7 +208,7 @@ const DEFAULT_RSS_FEEDS = [
 
 export async function seedDefaultRssFeeds() {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   let created = 0;
   for (const feed of DEFAULT_RSS_FEEDS) {
     const existing = await prisma.designRssFeed.findFirst({
@@ -235,7 +235,7 @@ export async function getRssFeeds(organisationId: string) {
 
 export async function createRssFeed(fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designRssFeed.create({
     data: {
       organisationId: user.organisationId,
@@ -249,7 +249,7 @@ export async function createRssFeed(fd: FormData) {
 
 export async function updateRssFeed(id: string, fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designRssFeed.update({
     where: { id },
     data: {
@@ -263,14 +263,14 @@ export async function updateRssFeed(id: string, fd: FormData) {
 
 export async function deleteRssFeed(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designRssFeed.delete({ where: { id } });
   revalidatePath('/design/settings');
 }
 
 export async function toggleRssFeed(id: string, isActive: boolean) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designRssFeed.update({ where: { id }, data: { isActive } });
   revalidatePath('/design/settings');
 }
@@ -287,7 +287,7 @@ export async function getMonitoredUrls(organisationId: string) {
 
 export async function createMonitoredUrl(fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designMonitoredUrl.create({
     data: {
       organisationId: user.organisationId,
@@ -302,7 +302,7 @@ export async function createMonitoredUrl(fd: FormData) {
 
 export async function deleteMonitoredUrl(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designMonitoredUrl.delete({ where: { id } });
   revalidatePath('/design/settings');
 }

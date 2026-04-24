@@ -28,6 +28,16 @@ export type Organisation = Prisma.OrganisationModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model UserTraining
+ * 
+ */
+export type UserTraining = Prisma.UserTrainingModel
+/**
  * Model Project
  * 
  */

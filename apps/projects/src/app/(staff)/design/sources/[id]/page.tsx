@@ -1,4 +1,4 @@
-import { requireAppUser } from '@/lib/auth';
+﻿import { requireAppUser } from '@/lib/auth';
 import { getSource } from '../actions';
 import { notFound } from 'next/navigation';
 import SourceDetailClient from './SourceDetailClient';
@@ -8,6 +8,6 @@ export default async function SourceDetailPage({ params }: { params: Promise<{ i
   const { id } = await params;
   const source = await getSource(id);
   if (!source) notFound();
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   return <SourceDetailClient source={source as never} isAdmin={isAdmin} />;
 }

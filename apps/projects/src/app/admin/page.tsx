@@ -42,10 +42,15 @@ const SECTIONS = [
     href: "/admin/users",
     description: "Manage staff accounts, roles, and access within Agero ERP.",
   },
+  {
+    title: "Audit Trail",
+    href: "/admin/audit",
+    description: "View all system events — creates, updates, deletes, permission changes.",
+  },
 ];
 
 export default async function AdminPage() {
-  const [costCodeCount, insTypeCount, ptCount, thresholdCount, contactTypeCount, assocLabelCount, expertiseTagCount, userCount] = await Promise.all([
+  const [costCodeCount, insTypeCount, ptCount, thresholdCount, contactTypeCount, assocLabelCount, expertiseTagCount, userCount, auditCount] = await Promise.all([
     prisma.costCode.count(),
     prisma.insurancePolicyType.count(),
     prisma.paymentTerm.count(),
@@ -54,6 +59,7 @@ export default async function AdminPage() {
     prisma.associationLabel.count(),
     prisma.expertiseTag.count(),
     prisma.user.count(),
+    prisma.auditLog.count(),
   ]);
 
   const counts: Record<string, number> = {
@@ -65,6 +71,7 @@ export default async function AdminPage() {
     "Association Labels": assocLabelCount,
     "Expertise Tags": expertiseTagCount,
     "Users": userCount,
+    "Audit Trail": auditCount,
   };
 
   return (

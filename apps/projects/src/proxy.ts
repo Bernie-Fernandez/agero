@@ -26,6 +26,20 @@ const isErpRoute = createRouteMatcher([
   "/subcontractors(.*)",
   "/admin(.*)",
 ]);
+const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
+const isFinanceRoute = createRouteMatcher(["/finance(.*)"]);
+const isEstimatingRoute = createRouteMatcher(["/leads(.*)", "/estimating(.*)"]);
+const isSafetyRoute = createRouteMatcher(["/safety(.*)", "/inductions(.*)", "/site(.*)"]);
+const isMarketingRoute = createRouteMatcher(["/marketing(.*)", "/tenders(.*)"]);
+
+// Roles with admin access
+const ADMIN_ROLES = ["DIRECTOR", "GENERAL_MANAGER"];
+// Roles with finance access
+const FINANCE_ROLES = ["DIRECTOR","GENERAL_MANAGER","CONSTRUCTION_MANAGER","PROJECT_DIRECTOR","FINANCIAL_CONTROLLER","BOOKKEEPER","SENIOR_CONTRACTS_ADMIN","CONTRACTS_ADMIN"];
+// Roles with estimating access
+const ESTIMATING_ROLES = ["DIRECTOR","GENERAL_MANAGER","CONSTRUCTION_MANAGER","PROJECT_DIRECTOR","SENIOR_CONSULTANT_PRECON","SENIOR_ESTIMATOR","CONSULTANT_PRECON","ESTIMATOR","BUSINESS_DEVELOPER","SALES_EXEC_ADMIN"];
+// Roles with marketing access
+const MARKETING_ROLES = ["DIRECTOR","GENERAL_MANAGER","CONSTRUCTION_MANAGER","PROJECT_DIRECTOR","BUSINESS_DEVELOPER","SALES_EXEC_ADMIN","MARKETING_COORD"];
 
 export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {
   const { userId, sessionClaims } = await auth();
@@ -44,6 +58,22 @@ export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {
   // Protect non-public routes
   if (!isPublicRoute(request)) {
     await auth.protect();
+  }
+
+  // Module permission gates (role from Clerk session metadata)
+  if (userId && role) {
+    if (isAdminRoute(request) && !ADMIN_ROLES.includes(role)) {
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+    if (isFinanceRoute(request) && !FINANCE_ROLES.includes(role)) {
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+    if (isEstimatingRoute(request) && !ESTIMATING_ROLES.includes(role)) {
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+    if (isMarketingRoute(request) && !MARKETING_ROLES.includes(role)) {
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
   }
 
   const requestHeaders = new Headers(request.headers);

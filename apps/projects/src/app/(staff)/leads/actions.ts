@@ -1,8 +1,9 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { DEFAULT_COST_PLAN } from '@agero/db';
+import { createAuditLog } from '@/lib/audit';
 
 const STAGE_CONFIDENCE: Record<number, number> = {
   3: 25, 4: 40, 5: 50, 6: 65, 7: 100,
@@ -107,6 +108,7 @@ export async function createLead(fd: FormData) {
   // Seed default cost plan for every new lead
   await createDefaultCostPlan(estimate.id, 48.15);
 
+  await createAuditLog({ userId: user.id, action: 'CREATE', entity: 'Estimate', entityId: estimate.id });
   revalidatePath('/leads');
   return estimate.id;
 }
@@ -123,7 +125,7 @@ export async function updateLeadStatus(id: string, status: string) {
 
 export async function deleteLead(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.estimate.delete({ where: { id, organisationId: user.organisationId } });
   revalidatePath('/leads');
 }

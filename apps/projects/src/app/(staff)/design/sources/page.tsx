@@ -1,4 +1,4 @@
-import { requireAppUser } from '@/lib/auth';
+﻿import { requireAppUser } from '@/lib/auth';
 import { getSources } from './actions';
 import SourcesListClient from './SourcesListClient';
 
@@ -9,7 +9,7 @@ export default async function SourcesPage({
 }) {
   const user = await requireAppUser();
   const sp = await searchParams;
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
 
   const sources = await getSources(user.organisationId, {
     type: sp.type,

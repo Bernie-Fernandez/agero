@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
@@ -9,7 +9,7 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 export async function getChatbotSessions() {
   const user = await requireAppUser();
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   return prisma.designChatbotSession.findMany({
     where: isAdmin ? { organisationId: user.organisationId } : { userId: user.id },
     include: {
@@ -22,7 +22,7 @@ export async function getChatbotSessions() {
 
 export async function getChatbotSession(id: string) {
   const user = await requireAppUser();
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   const session = await prisma.designChatbotSession.findUniqueOrThrow({
     where: { id },
     include: {

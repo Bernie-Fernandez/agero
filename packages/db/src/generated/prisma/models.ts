@@ -10,6 +10,8 @@
  */
 export type * from './models/Organisation'
 export type * from './models/User'
+export type * from './models/AuditLog'
+export type * from './models/UserTraining'
 export type * from './models/Project'
 export type * from './models/ProjectSubcontractor'
 export type * from './models/Company'

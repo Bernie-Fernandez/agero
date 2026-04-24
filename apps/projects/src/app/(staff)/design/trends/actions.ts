@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
@@ -44,7 +44,7 @@ export async function submitTrendItem(fd: FormData) {
 export async function addTrendItemToSources(id: string) {
   const user = await requireAppUser();
   const item = await prisma.designTrendItem.findUniqueOrThrow({ where: { id } });
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   const config = await prisma.designExpiryConfig.findUnique({ where: { organisationId: user.organisationId } });
   const expiryDate = new Date();
   expiryDate.setMonth(expiryDate.getMonth() + (config?.defaultExpiryMonths ?? 12));
@@ -82,7 +82,7 @@ export async function dismissTrendItem(id: string) {
 
 export async function fetchRssFeed(feedId: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const feed = await prisma.designRssFeed.findUniqueOrThrow({ where: { id: feedId } });
 
   try {
@@ -140,7 +140,7 @@ export async function fetchRssFeed(feedId: string) {
 
 export async function fetchMonitoredUrl(urlId: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const mu = await prisma.designMonitoredUrl.findUniqueOrThrow({ where: { id: urlId } });
 
   try {

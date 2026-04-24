@@ -28,7 +28,17 @@
       "Bash(python3 -c ' *4)",
       "Bash(powershell *)",
       "Bash(python3 *)",
-      "Bash(python3.exe --version)"
+      "Bash(python3.exe --version)",
+      "Bash(git stash *)",
+      "Bash(cd /tmp)",
+      "Bash(cp \"C:/Users/bfern/Downloads/Agero_DesignStudio1_ClaudeCode_Instruction.docx\" doc.zip)",
+      "Bash(unzip -p doc.zip word/document.xml)",
+      "PowerShell(npx prisma generate 2>&1 | Select-Object -Last 15)",
+      "Bash(cp \"C:/Users/bfern/Downloads/Agero_ERP_Sprint12_Estimating_v2.docx\" sprint12.zip)",
+      "Bash(unzip -p sprint12.zip word/document.xml)",
+      "Bash(npx next *)",
+      "Bash(xargs grep *)",
+      "Bash(xargs sed *)"
     ]
   }
 }

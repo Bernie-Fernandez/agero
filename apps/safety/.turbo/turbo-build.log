@@ -2,7 +2,6 @@
 > @agero/safety@0.1.0 build
 > next build
 
-⚠ Found lockfile missing swc dependencies, patching...
 ▲ Next.js 16.2.2 (Turbopack)
 - Environments: .env.local, .env
 - Experiments (use with caution):
@@ -10,18 +9,15 @@
   · staleTimes
 
   Creating an optimized production build ...
-⚠ Found lockfile missing swc dependencies, patching...
-⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
-⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
-✓ Compiled successfully in 9.0s
+✓ Compiled successfully in 18.0s
   Running TypeScript ...
-  Finished TypeScript in 8.2s ...
+  Finished TypeScript in 27.8s ...
   Collecting page data using 11 workers ...
   Generating static pages using 11 workers (0/19) ...
   Generating static pages using 11 workers (4/19) 
   Generating static pages using 11 workers (9/19) 
   Generating static pages using 11 workers (14/19) 
-✓ Generating static pages using 11 workers (19/19) in 776ms
+✓ Generating static pages using 11 workers (19/19) in 981ms
   Finalizing page optimization ...
 
 Route (app)
@@ -66,8 +62,3 @@ Route (app)
 ○  (Static)   prerendered as static content
 ƒ  (Dynamic)  server-rendered on demand
 
-npm notice
-npm notice New minor version of npm available! 11.11.0 -> 11.12.1
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
-npm notice To update run: npm install -g npm@11.12.1
-npm notice

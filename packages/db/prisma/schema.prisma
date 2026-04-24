@@ -22,13 +22,38 @@ datasource db {
 
 enum UserRole {
   DIRECTOR
+  GENERAL_MANAGER
   CONSTRUCTION_MANAGER
-  PROJECT_MANAGER
-  CONTRACTS_ADMINISTRATOR
-  ESTIMATOR
-  SITE_MANAGER
+  PROJECT_DIRECTOR
   FINANCIAL_CONTROLLER
-  ADMINISTRATOR
+  SENIOR_CONSULTANT_PRECON
+  SENIOR_ESTIMATOR
+  SENIOR_CONTRACTS_ADMIN
+  PROJECT_MANAGER_DELIVERY
+  PROJECT_MANAGER_FRONTEND
+  SITE_MANAGER
+  CONSULTANT_PRECON
+  ESTIMATOR
+  CONTRACTS_ADMIN
+  BUSINESS_DEVELOPER
+  BOOKKEEPER
+  HUMAN_RESOURCES
+  JUNIOR_PM
+  SITE_SUPERVISOR
+  PRECON_ASSOCIATE
+  BID_MANAGER
+  PROJECT_COORDINATOR
+  PROJECT_ADMIN
+  ASST_SITE_SUPERVISOR
+  SALES_EXEC_ADMIN
+
+  @@schema("projects")
+}
+
+enum EmploymentType {
+  SALARIED
+  CONTRACT
+  WAGES
 
   @@schema("projects")
 }
@@ -258,6 +283,35 @@ model User {
   role           UserRole
   isActive       Boolean  @default(true) @map("is_active")
   avatarUrl      String?  @map("avatar_url")
+  initials       String?
+  signatureUrl   String?  @map("signature_url")
+  phone          String?
+  employmentType EmploymentType? @map("employment_type")
+  startDate      DateTime?       @map("start_date")
+  normalRate     Decimal?        @map("normal_rate") @db.Decimal(10, 2)
+  overtimeRate   Decimal?        @map("overtime_rate") @db.Decimal(10, 2)
+  contractUrl    String?         @map("contract_url")
+  contractReviewDate DateTime?   @map("contract_review_date")
+  probationEndDate   DateTime?   @map("probation_end_date")
+  hrNotes        String?         @map("hr_notes") @db.Text
+  safetyInductionNo String?      @map("safety_induction_no")
+  safetyLevel    String?         @map("safety_level")
+  safetyExpiry   DateTime?       @map("safety_expiry")
+  licenceNo      String?         @map("licence_no")
+  licenceType    String?         @map("licence_type")
+  licenceExpiry  DateTime?       @map("licence_expiry")
+  whiteCardNo    String?         @map("white_card_no")
+  whiteCardExpiry DateTime?      @map("white_card_expiry")
+  nokName        String?         @map("nok_name")
+  nokRelationship String?        @map("nok_relationship")
+  nokPhone       String?         @map("nok_phone")
+  nok2Name       String?         @map("nok2_name")
+  nok2Relationship String?       @map("nok2_relationship")
+  nok2Phone      String?         @map("nok2_phone")
+  medicalNotes   String?         @map("medical_notes") @db.Text
+  gmailConnected Boolean         @default(false) @map("gmail_connected")
+  gmailEmail     String?         @map("gmail_email")
+  permissions    Json?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -298,9 +352,47 @@ model User {
   createdEstimates        Estimate[]             @relation("EstimateCreatedBy")
   estimatesAsEstimator    Estimate[]             @relation("EstimateEstimator")
   estimateSnapshots       EstimateSnapshot[]     @relation("EstimateSnapshotCreatedBy")
+  auditLogs               AuditLog[]             @relation("AuditLogUser")
+  trainingRecords         UserTraining[]
 
   @@index([organisationId])
   @@map("users")
+  @@schema("projects")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  user      User     @relation("AuditLogUser", fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  entity    String
+  entityId  String?  @map("entity_id")
+  projectId String?  @map("project_id")
+  detail    Json?
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([entity])
+  @@index([createdAt])
+  @@map("audit_logs")
+  @@schema("projects")
+}
+
+model UserTraining {
+  id             String    @id @default(uuid()) @db.Uuid
+  userId         String    @map("user_id") @db.Uuid
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trainingName   String    @map("training_name")
+  completedDate  DateTime? @map("completed_date")
+  expiryDate     DateTime? @map("expiry_date")
+  certificateUrl String?   @map("certificate_url")
+  notes          String?   @db.Text
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("user_training")
   @@schema("projects")
 }
 

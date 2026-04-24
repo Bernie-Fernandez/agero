@@ -38,3 +38,5 @@ export const prismaErp = new Proxy({} as PrismaClient, {
 export * from "./generated/prisma/client";
 export { DEFAULT_COST_PLAN } from "../prisma/cost-plan-defaults";
 export type { DefaultLine, DefaultSection } from "../prisma/cost-plan-defaults";
+export { getRolePreset, resolvePermissions, canAccess, canApprove, ROLE_METADATA, ALL_ROLES } from "./permissions";
+export type { PermissionSet, ModuleAccess, MafAuthority } from "./permissions";

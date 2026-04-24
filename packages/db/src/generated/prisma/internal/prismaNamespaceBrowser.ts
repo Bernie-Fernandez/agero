@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Organisation: 'Organisation',
   User: 'User',
+  AuditLog: 'AuditLog',
+  UserTraining: 'UserTraining',
   Project: 'Project',
   ProjectSubcontractor: 'ProjectSubcontractor',
   Company: 'Company',
@@ -192,11 +194,70 @@ export const UserScalarFieldEnum = {
   role: 'role',
   isActive: 'isActive',
   avatarUrl: 'avatarUrl',
+  initials: 'initials',
+  signatureUrl: 'signatureUrl',
+  phone: 'phone',
+  employmentType: 'employmentType',
+  startDate: 'startDate',
+  normalRate: 'normalRate',
+  overtimeRate: 'overtimeRate',
+  contractUrl: 'contractUrl',
+  contractReviewDate: 'contractReviewDate',
+  probationEndDate: 'probationEndDate',
+  hrNotes: 'hrNotes',
+  safetyInductionNo: 'safetyInductionNo',
+  safetyLevel: 'safetyLevel',
+  safetyExpiry: 'safetyExpiry',
+  licenceNo: 'licenceNo',
+  licenceType: 'licenceType',
+  licenceExpiry: 'licenceExpiry',
+  whiteCardNo: 'whiteCardNo',
+  whiteCardExpiry: 'whiteCardExpiry',
+  nokName: 'nokName',
+  nokRelationship: 'nokRelationship',
+  nokPhone: 'nokPhone',
+  nok2Name: 'nok2Name',
+  nok2Relationship: 'nok2Relationship',
+  nok2Phone: 'nok2Phone',
+  medicalNotes: 'medicalNotes',
+  gmailConnected: 'gmailConnected',
+  gmailEmail: 'gmailEmail',
+  permissions: 'permissions',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entity: 'entity',
+  entityId: 'entityId',
+  projectId: 'projectId',
+  detail: 'detail',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const UserTrainingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  trainingName: 'trainingName',
+  completedDate: 'completedDate',
+  expiryDate: 'expiryDate',
+  certificateUrl: 'certificateUrl',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserTrainingScalarFieldEnum = (typeof UserTrainingScalarFieldEnum)[keyof typeof UserTrainingScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {
@@ -1834,6 +1895,14 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const JsonNullValueInput = {

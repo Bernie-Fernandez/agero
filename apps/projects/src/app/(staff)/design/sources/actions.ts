@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
@@ -52,7 +52,7 @@ export async function getSource(id: string) {
 export async function createSourceFromFile(fd: FormData) {
   const user = await requireAppUser();
   const file = fd.get('file') as File | null;
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   const expiryDate = await getExpiryDate(user.organisationId);
 
   let filePath: string | null = null;
@@ -92,7 +92,7 @@ export async function createSourceFromFile(fd: FormData) {
 export async function createSourceFromUrl(fd: FormData) {
   const user = await requireAppUser();
   const url = fd.get('url') as string;
-  const isAdmin = user.role === 'DIRECTOR' || user.role === 'ADMINISTRATOR';
+  const isAdmin = user.role === 'DIRECTOR';
   const expiryDate = await getExpiryDate(user.organisationId);
 
   let fetchedContent: string | null = null;
@@ -125,7 +125,7 @@ export async function createSourceFromUrl(fd: FormData) {
 
 export async function updateSource(id: string, fd: FormData) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const existing = await prisma.designSource.findUniqueOrThrow({ where: { id } });
 
   // Create version snapshot before update
@@ -161,7 +161,7 @@ export async function updateSource(id: string, fd: FormData) {
 
 export async function approveSource(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSource.update({
     where: { id },
     data: { status: 'PENDING_INDEX', approvedById: user.id, approvedAt: new Date() },
@@ -172,7 +172,7 @@ export async function approveSource(id: string) {
 
 export async function rejectSource(id: string, reason: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSource.update({
     where: { id },
     data: { status: 'FAILED', rejectionReason: reason },
@@ -183,7 +183,7 @@ export async function rejectSource(id: string, reason: string) {
 
 export async function toggleSourceActive(id: string, isActive: boolean) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSource.update({ where: { id }, data: { isActive } });
   revalidatePath(`/design/sources/${id}`);
   revalidatePath('/design/sources');
@@ -191,7 +191,7 @@ export async function toggleSourceActive(id: string, isActive: boolean) {
 
 export async function renewSourceExpiry(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const source = await prisma.designSource.findUniqueOrThrow({ where: { id } });
   const expiryDate = await getExpiryDate(source.organisationId);
   await prisma.designSource.update({
@@ -204,7 +204,7 @@ export async function renewSourceExpiry(id: string) {
 
 export async function reindexSource(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   const source = await prisma.designSource.findUniqueOrThrow({ where: { id } });
 
   if (source.url) {
@@ -224,7 +224,7 @@ export async function reindexSource(id: string) {
 
 export async function deleteSource(id: string) {
   const user = await requireAppUser();
-  if (user.role !== 'DIRECTOR' && user.role !== 'ADMINISTRATOR') throw new Error('Admin only');
+  if (user.role !== 'DIRECTOR') throw new Error('Admin only');
   await prisma.designSource.delete({ where: { id } });
   revalidatePath('/design/sources');
 }

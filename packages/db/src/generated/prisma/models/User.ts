@@ -20,8 +20,20 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  normalRate: runtime.Decimal | null
+  overtimeRate: runtime.Decimal | null
+}
+
+export type UserSumAggregateOutputType = {
+  normalRate: runtime.Decimal | null
+  overtimeRate: runtime.Decimal | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -35,6 +47,34 @@ export type UserMinAggregateOutputType = {
   role: $Enums.UserRole | null
   isActive: boolean | null
   avatarUrl: string | null
+  initials: string | null
+  signatureUrl: string | null
+  phone: string | null
+  employmentType: $Enums.EmploymentType | null
+  startDate: Date | null
+  normalRate: runtime.Decimal | null
+  overtimeRate: runtime.Decimal | null
+  contractUrl: string | null
+  contractReviewDate: Date | null
+  probationEndDate: Date | null
+  hrNotes: string | null
+  safetyInductionNo: string | null
+  safetyLevel: string | null
+  safetyExpiry: Date | null
+  licenceNo: string | null
+  licenceType: string | null
+  licenceExpiry: Date | null
+  whiteCardNo: string | null
+  whiteCardExpiry: Date | null
+  nokName: string | null
+  nokRelationship: string | null
+  nokPhone: string | null
+  nok2Name: string | null
+  nok2Relationship: string | null
+  nok2Phone: string | null
+  medicalNotes: string | null
+  gmailConnected: boolean | null
+  gmailEmail: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +90,34 @@ export type UserMaxAggregateOutputType = {
   role: $Enums.UserRole | null
   isActive: boolean | null
   avatarUrl: string | null
+  initials: string | null
+  signatureUrl: string | null
+  phone: string | null
+  employmentType: $Enums.EmploymentType | null
+  startDate: Date | null
+  normalRate: runtime.Decimal | null
+  overtimeRate: runtime.Decimal | null
+  contractUrl: string | null
+  contractReviewDate: Date | null
+  probationEndDate: Date | null
+  hrNotes: string | null
+  safetyInductionNo: string | null
+  safetyLevel: string | null
+  safetyExpiry: Date | null
+  licenceNo: string | null
+  licenceType: string | null
+  licenceExpiry: Date | null
+  whiteCardNo: string | null
+  whiteCardExpiry: Date | null
+  nokName: string | null
+  nokRelationship: string | null
+  nokPhone: string | null
+  nok2Name: string | null
+  nok2Relationship: string | null
+  nok2Phone: string | null
+  medicalNotes: string | null
+  gmailConnected: boolean | null
+  gmailEmail: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,11 +133,50 @@ export type UserCountAggregateOutputType = {
   role: number
   isActive: number
   avatarUrl: number
+  initials: number
+  signatureUrl: number
+  phone: number
+  employmentType: number
+  startDate: number
+  normalRate: number
+  overtimeRate: number
+  contractUrl: number
+  contractReviewDate: number
+  probationEndDate: number
+  hrNotes: number
+  safetyInductionNo: number
+  safetyLevel: number
+  safetyExpiry: number
+  licenceNo: number
+  licenceType: number
+  licenceExpiry: number
+  whiteCardNo: number
+  whiteCardExpiry: number
+  nokName: number
+  nokRelationship: number
+  nokPhone: number
+  nok2Name: number
+  nok2Relationship: number
+  nok2Phone: number
+  medicalNotes: number
+  gmailConnected: number
+  gmailEmail: number
+  permissions: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  normalRate?: true
+  overtimeRate?: true
+}
+
+export type UserSumAggregateInputType = {
+  normalRate?: true
+  overtimeRate?: true
+}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -82,6 +189,34 @@ export type UserMinAggregateInputType = {
   role?: true
   isActive?: true
   avatarUrl?: true
+  initials?: true
+  signatureUrl?: true
+  phone?: true
+  employmentType?: true
+  startDate?: true
+  normalRate?: true
+  overtimeRate?: true
+  contractUrl?: true
+  contractReviewDate?: true
+  probationEndDate?: true
+  hrNotes?: true
+  safetyInductionNo?: true
+  safetyLevel?: true
+  safetyExpiry?: true
+  licenceNo?: true
+  licenceType?: true
+  licenceExpiry?: true
+  whiteCardNo?: true
+  whiteCardExpiry?: true
+  nokName?: true
+  nokRelationship?: true
+  nokPhone?: true
+  nok2Name?: true
+  nok2Relationship?: true
+  nok2Phone?: true
+  medicalNotes?: true
+  gmailConnected?: true
+  gmailEmail?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +232,34 @@ export type UserMaxAggregateInputType = {
   role?: true
   isActive?: true
   avatarUrl?: true
+  initials?: true
+  signatureUrl?: true
+  phone?: true
+  employmentType?: true
+  startDate?: true
+  normalRate?: true
+  overtimeRate?: true
+  contractUrl?: true
+  contractReviewDate?: true
+  probationEndDate?: true
+  hrNotes?: true
+  safetyInductionNo?: true
+  safetyLevel?: true
+  safetyExpiry?: true
+  licenceNo?: true
+  licenceType?: true
+  licenceExpiry?: true
+  whiteCardNo?: true
+  whiteCardExpiry?: true
+  nokName?: true
+  nokRelationship?: true
+  nokPhone?: true
+  nok2Name?: true
+  nok2Relationship?: true
+  nok2Phone?: true
+  medicalNotes?: true
+  gmailConnected?: true
+  gmailEmail?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +275,35 @@ export type UserCountAggregateInputType = {
   role?: true
   isActive?: true
   avatarUrl?: true
+  initials?: true
+  signatureUrl?: true
+  phone?: true
+  employmentType?: true
+  startDate?: true
+  normalRate?: true
+  overtimeRate?: true
+  contractUrl?: true
+  contractReviewDate?: true
+  probationEndDate?: true
+  hrNotes?: true
+  safetyInductionNo?: true
+  safetyLevel?: true
+  safetyExpiry?: true
+  licenceNo?: true
+  licenceType?: true
+  licenceExpiry?: true
+  whiteCardNo?: true
+  whiteCardExpiry?: true
+  nokName?: true
+  nokRelationship?: true
+  nokPhone?: true
+  nok2Name?: true
+  nok2Relationship?: true
+  nok2Phone?: true
+  medicalNotes?: true
+  gmailConnected?: true
+  gmailEmail?: true
+  permissions?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -155,6 +347,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -185,6 +389,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -200,9 +406,40 @@ export type UserGroupByOutputType = {
   role: $Enums.UserRole
   isActive: boolean
   avatarUrl: string | null
+  initials: string | null
+  signatureUrl: string | null
+  phone: string | null
+  employmentType: $Enums.EmploymentType | null
+  startDate: Date | null
+  normalRate: runtime.Decimal | null
+  overtimeRate: runtime.Decimal | null
+  contractUrl: string | null
+  contractReviewDate: Date | null
+  probationEndDate: Date | null
+  hrNotes: string | null
+  safetyInductionNo: string | null
+  safetyLevel: string | null
+  safetyExpiry: Date | null
+  licenceNo: string | null
+  licenceType: string | null
+  licenceExpiry: Date | null
+  whiteCardNo: string | null
+  whiteCardExpiry: Date | null
+  nokName: string | null
+  nokRelationship: string | null
+  nokPhone: string | null
+  nok2Name: string | null
+  nok2Relationship: string | null
+  nok2Phone: string | null
+  medicalNotes: string | null
+  gmailConnected: boolean
+  gmailEmail: string | null
+  permissions: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -236,6 +473,35 @@ export type UserWhereInput = {
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   isActive?: Prisma.BoolFilter<"User"> | boolean
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  initials?: Prisma.StringNullableFilter<"User"> | string | null
+  signatureUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  employmentType?: Prisma.EnumEmploymentTypeNullableFilter<"User"> | $Enums.EmploymentType | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  normalRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  contractReviewDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  probationEndDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  hrNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyInductionNo?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyLevel?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  licenceNo?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceType?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  whiteCardNo?: Prisma.StringNullableFilter<"User"> | string | null
+  whiteCardExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  nokName?: Prisma.StringNullableFilter<"User"> | string | null
+  nokRelationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nokPhone?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Name?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Relationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Phone?: Prisma.StringNullableFilter<"User"> | string | null
+  medicalNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  gmailConnected?: Prisma.BoolFilter<"User"> | boolean
+  gmailEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  permissions?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -275,6 +541,8 @@ export type UserWhereInput = {
   createdEstimates?: Prisma.EstimateListRelationFilter
   estimatesAsEstimator?: Prisma.EstimateListRelationFilter
   estimateSnapshots?: Prisma.EstimateSnapshotListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
+  trainingRecords?: Prisma.UserTrainingListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -288,6 +556,35 @@ export type UserOrderByWithRelationInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  initials?: Prisma.SortOrderInput | Prisma.SortOrder
+  signatureUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentType?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  normalRate?: Prisma.SortOrderInput | Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractReviewDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  probationEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  hrNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyInductionNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceType?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  whiteCardNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  whiteCardExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokName?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokRelationship?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Name?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Relationship?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmailConnected?: Prisma.SortOrder
+  gmailEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  permissions?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
@@ -327,6 +624,8 @@ export type UserOrderByWithRelationInput = {
   createdEstimates?: Prisma.EstimateOrderByRelationAggregateInput
   estimatesAsEstimator?: Prisma.EstimateOrderByRelationAggregateInput
   estimateSnapshots?: Prisma.EstimateSnapshotOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  trainingRecords?: Prisma.UserTrainingOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -343,6 +642,35 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   isActive?: Prisma.BoolFilter<"User"> | boolean
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  initials?: Prisma.StringNullableFilter<"User"> | string | null
+  signatureUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  employmentType?: Prisma.EnumEmploymentTypeNullableFilter<"User"> | $Enums.EmploymentType | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  normalRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  contractReviewDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  probationEndDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  hrNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyInductionNo?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyLevel?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  licenceNo?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceType?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  whiteCardNo?: Prisma.StringNullableFilter<"User"> | string | null
+  whiteCardExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  nokName?: Prisma.StringNullableFilter<"User"> | string | null
+  nokRelationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nokPhone?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Name?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Relationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Phone?: Prisma.StringNullableFilter<"User"> | string | null
+  medicalNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  gmailConnected?: Prisma.BoolFilter<"User"> | boolean
+  gmailEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  permissions?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -382,6 +710,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdEstimates?: Prisma.EstimateListRelationFilter
   estimatesAsEstimator?: Prisma.EstimateListRelationFilter
   estimateSnapshots?: Prisma.EstimateSnapshotListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
+  trainingRecords?: Prisma.UserTrainingListRelationFilter
 }, "id" | "clerkId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -395,11 +725,42 @@ export type UserOrderByWithAggregationInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  initials?: Prisma.SortOrderInput | Prisma.SortOrder
+  signatureUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentType?: Prisma.SortOrderInput | Prisma.SortOrder
+  startDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  normalRate?: Prisma.SortOrderInput | Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractReviewDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  probationEndDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  hrNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyInductionNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  safetyExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceType?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenceExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  whiteCardNo?: Prisma.SortOrderInput | Prisma.SortOrder
+  whiteCardExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokName?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokRelationship?: Prisma.SortOrderInput | Prisma.SortOrder
+  nokPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Name?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Relationship?: Prisma.SortOrderInput | Prisma.SortOrder
+  nok2Phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  gmailConnected?: Prisma.SortOrder
+  gmailEmail?: Prisma.SortOrderInput | Prisma.SortOrder
+  permissions?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -416,6 +777,35 @@ export type UserScalarWhereWithAggregatesInput = {
   role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  initials?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  signatureUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  employmentType?: Prisma.EnumEmploymentTypeNullableWithAggregatesFilter<"User"> | $Enums.EmploymentType | null
+  startDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  normalRate?: Prisma.DecimalNullableWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.DecimalNullableWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  contractReviewDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  probationEndDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  hrNotes?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  safetyInductionNo?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  safetyLevel?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  safetyExpiry?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  licenceNo?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  licenceType?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  licenceExpiry?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  whiteCardNo?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  whiteCardExpiry?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  nokName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  nokRelationship?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  nokPhone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  nok2Name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  nok2Relationship?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  nok2Phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  medicalNotes?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  gmailConnected?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  gmailEmail?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  permissions?: Prisma.JsonNullableWithAggregatesFilter<"User">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -430,6 +820,35 @@ export type UserCreateInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -469,6 +888,8 @@ export type UserCreateInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -482,6 +903,35 @@ export type UserUncheckedCreateInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -520,6 +970,8 @@ export type UserUncheckedCreateInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -532,6 +984,35 @@ export type UserUpdateInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -571,6 +1052,8 @@ export type UserUpdateInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -584,6 +1067,35 @@ export type UserUncheckedUpdateInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -622,6 +1134,8 @@ export type UserUncheckedUpdateInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -635,6 +1149,35 @@ export type UserCreateManyInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -649,6 +1192,35 @@ export type UserUpdateManyMutationInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -664,6 +1236,35 @@ export type UserUncheckedUpdateManyInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -689,8 +1290,42 @@ export type UserCountOrderByAggregateInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  initials?: Prisma.SortOrder
+  signatureUrl?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  employmentType?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  normalRate?: Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrder
+  contractUrl?: Prisma.SortOrder
+  contractReviewDate?: Prisma.SortOrder
+  probationEndDate?: Prisma.SortOrder
+  hrNotes?: Prisma.SortOrder
+  safetyInductionNo?: Prisma.SortOrder
+  safetyLevel?: Prisma.SortOrder
+  safetyExpiry?: Prisma.SortOrder
+  licenceNo?: Prisma.SortOrder
+  licenceType?: Prisma.SortOrder
+  licenceExpiry?: Prisma.SortOrder
+  whiteCardNo?: Prisma.SortOrder
+  whiteCardExpiry?: Prisma.SortOrder
+  nokName?: Prisma.SortOrder
+  nokRelationship?: Prisma.SortOrder
+  nokPhone?: Prisma.SortOrder
+  nok2Name?: Prisma.SortOrder
+  nok2Relationship?: Prisma.SortOrder
+  nok2Phone?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  gmailConnected?: Prisma.SortOrder
+  gmailEmail?: Prisma.SortOrder
+  permissions?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  normalRate?: Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -704,6 +1339,34 @@ export type UserMaxOrderByAggregateInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  initials?: Prisma.SortOrder
+  signatureUrl?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  employmentType?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  normalRate?: Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrder
+  contractUrl?: Prisma.SortOrder
+  contractReviewDate?: Prisma.SortOrder
+  probationEndDate?: Prisma.SortOrder
+  hrNotes?: Prisma.SortOrder
+  safetyInductionNo?: Prisma.SortOrder
+  safetyLevel?: Prisma.SortOrder
+  safetyExpiry?: Prisma.SortOrder
+  licenceNo?: Prisma.SortOrder
+  licenceType?: Prisma.SortOrder
+  licenceExpiry?: Prisma.SortOrder
+  whiteCardNo?: Prisma.SortOrder
+  whiteCardExpiry?: Prisma.SortOrder
+  nokName?: Prisma.SortOrder
+  nokRelationship?: Prisma.SortOrder
+  nokPhone?: Prisma.SortOrder
+  nok2Name?: Prisma.SortOrder
+  nok2Relationship?: Prisma.SortOrder
+  nok2Phone?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  gmailConnected?: Prisma.SortOrder
+  gmailEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -719,18 +1382,51 @@ export type UserMinOrderByAggregateInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
+  initials?: Prisma.SortOrder
+  signatureUrl?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  employmentType?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  normalRate?: Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrder
+  contractUrl?: Prisma.SortOrder
+  contractReviewDate?: Prisma.SortOrder
+  probationEndDate?: Prisma.SortOrder
+  hrNotes?: Prisma.SortOrder
+  safetyInductionNo?: Prisma.SortOrder
+  safetyLevel?: Prisma.SortOrder
+  safetyExpiry?: Prisma.SortOrder
+  licenceNo?: Prisma.SortOrder
+  licenceType?: Prisma.SortOrder
+  licenceExpiry?: Prisma.SortOrder
+  whiteCardNo?: Prisma.SortOrder
+  whiteCardExpiry?: Prisma.SortOrder
+  nokName?: Prisma.SortOrder
+  nokRelationship?: Prisma.SortOrder
+  nokPhone?: Prisma.SortOrder
+  nok2Name?: Prisma.SortOrder
+  nok2Relationship?: Prisma.SortOrder
+  nok2Phone?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  gmailConnected?: Prisma.SortOrder
+  gmailEmail?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
+export type UserSumOrderByAggregateInput = {
+  normalRate?: Prisma.SortOrder
+  overtimeRate?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCreateNestedManyWithoutOrganisationInput = {
@@ -781,6 +1477,50 @@ export type EnumUserRoleFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type NullableEnumEmploymentTypeFieldUpdateOperationsInput = {
+  set?: $Enums.EmploymentType | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type UserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type UserCreateNestedOneWithoutTrainingRecordsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainingRecordsInput, Prisma.UserUncheckedCreateWithoutTrainingRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainingRecordsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTrainingRecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainingRecordsInput, Prisma.UserUncheckedCreateWithoutTrainingRecordsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainingRecordsInput
+  upsert?: Prisma.UserUpsertWithoutTrainingRecordsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTrainingRecordsInput, Prisma.UserUpdateWithoutTrainingRecordsInput>, Prisma.UserUncheckedUpdateWithoutTrainingRecordsInput>
 }
 
 export type UserCreateNestedOneWithoutManagedProjectsInput = {
@@ -1325,6 +2065,35 @@ export type UserCreateWithoutOrganisationInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
@@ -1363,6 +2132,8 @@ export type UserCreateWithoutOrganisationInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationInput = {
@@ -1375,6 +2146,35 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1413,6 +2213,8 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationInput = {
@@ -1455,8 +2257,717 @@ export type UserScalarWhereInput = {
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   isActive?: Prisma.BoolFilter<"User"> | boolean
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  initials?: Prisma.StringNullableFilter<"User"> | string | null
+  signatureUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  employmentType?: Prisma.EnumEmploymentTypeNullableFilter<"User"> | $Enums.EmploymentType | null
+  startDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  normalRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.DecimalNullableFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  contractReviewDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  probationEndDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  hrNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyInductionNo?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyLevel?: Prisma.StringNullableFilter<"User"> | string | null
+  safetyExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  licenceNo?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceType?: Prisma.StringNullableFilter<"User"> | string | null
+  licenceExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  whiteCardNo?: Prisma.StringNullableFilter<"User"> | string | null
+  whiteCardExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  nokName?: Prisma.StringNullableFilter<"User"> | string | null
+  nokRelationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nokPhone?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Name?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Relationship?: Prisma.StringNullableFilter<"User"> | string | null
+  nok2Phone?: Prisma.StringNullableFilter<"User"> | string | null
+  medicalNotes?: Prisma.StringNullableFilter<"User"> | string | null
+  gmailConnected?: Prisma.BoolFilter<"User"> | boolean
+  gmailEmail?: Prisma.StringNullableFilter<"User"> | string | null
+  permissions?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+}
+
+export type UserCreateWithoutAuditLogsInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type UserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type UserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTrainingRecordsInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTrainingRecordsInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTrainingRecordsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainingRecordsInput, Prisma.UserUncheckedCreateWithoutTrainingRecordsInput>
+}
+
+export type UserUpsertWithoutTrainingRecordsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTrainingRecordsInput, Prisma.UserUncheckedUpdateWithoutTrainingRecordsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainingRecordsInput, Prisma.UserUncheckedCreateWithoutTrainingRecordsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTrainingRecordsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTrainingRecordsInput, Prisma.UserUncheckedUpdateWithoutTrainingRecordsInput>
+}
+
+export type UserUpdateWithoutTrainingRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutManagedProjectsInput = {
@@ -1469,6 +2980,35 @@ export type UserCreateWithoutManagedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -1507,6 +3047,8 @@ export type UserCreateWithoutManagedProjectsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -1520,6 +3062,35 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1557,6 +3128,8 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -1574,6 +3147,35 @@ export type UserCreateWithoutSiteProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -1612,6 +3214,8 @@ export type UserCreateWithoutSiteProjectsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSiteProjectsInput = {
@@ -1625,6 +3229,35 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1662,6 +3295,8 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSiteProjectsInput = {
@@ -1679,6 +3314,35 @@ export type UserCreateWithoutEstimatedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -1717,6 +3381,8 @@ export type UserCreateWithoutEstimatedProjectsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
@@ -1730,6 +3396,35 @@ export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -1767,6 +3462,8 @@ export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEstimatedProjectsInput = {
@@ -1784,6 +3481,35 @@ export type UserCreateWithoutCreatedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -1822,6 +3548,8 @@ export type UserCreateWithoutCreatedProjectsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProjectsInput = {
@@ -1835,6 +3563,35 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
@@ -1872,6 +3629,8 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProjectsInput = {
@@ -1900,6 +3659,35 @@ export type UserUpdateWithoutManagedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -1938,6 +3726,8 @@ export type UserUpdateWithoutManagedProjectsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -1951,6 +3741,35 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -1988,6 +3807,8 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutSiteProjectsInput = {
@@ -2011,6 +3832,35 @@ export type UserUpdateWithoutSiteProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -2049,6 +3899,8 @@ export type UserUpdateWithoutSiteProjectsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSiteProjectsInput = {
@@ -2062,6 +3914,35 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2099,6 +3980,8 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutEstimatedProjectsInput = {
@@ -2122,6 +4005,35 @@ export type UserUpdateWithoutEstimatedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -2160,6 +4072,8 @@ export type UserUpdateWithoutEstimatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
@@ -2173,6 +4087,35 @@ export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2210,6 +4153,8 @@ export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCreatedProjectsInput = {
@@ -2233,6 +4178,35 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -2271,6 +4245,8 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
@@ -2284,6 +4260,35 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
@@ -2321,6 +4326,8 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProjectSubAssignmentsInput = {
@@ -2333,6 +4340,35 @@ export type UserCreateWithoutProjectSubAssignmentsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -2371,6 +4407,8 @@ export type UserCreateWithoutProjectSubAssignmentsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
@@ -2384,6 +4422,35 @@ export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2421,6 +4488,8 @@ export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProjectSubAssignmentsInput = {
@@ -2449,6 +4518,35 @@ export type UserUpdateWithoutProjectSubAssignmentsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -2487,6 +4585,8 @@ export type UserUpdateWithoutProjectSubAssignmentsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
@@ -2500,6 +4600,35 @@ export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2537,6 +4666,8 @@ export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedCompaniesInput = {
@@ -2549,6 +4680,35 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -2587,6 +4747,8 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
@@ -2600,6 +4762,35 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2637,6 +4828,8 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedCompaniesInput = {
@@ -2665,6 +4858,35 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -2703,6 +4925,8 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
@@ -2716,6 +4940,35 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -2753,6 +5006,8 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOwnedContactsInput = {
@@ -2765,6 +5020,35 @@ export type UserCreateWithoutOwnedContactsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -2803,6 +5087,8 @@ export type UserCreateWithoutOwnedContactsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOwnedContactsInput = {
@@ -2816,6 +5102,35 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2853,6 +5168,8 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOwnedContactsInput = {
@@ -2870,6 +5187,35 @@ export type UserCreateWithoutCreatedContactsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -2908,6 +5254,8 @@ export type UserCreateWithoutCreatedContactsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedContactsInput = {
@@ -2921,6 +5269,35 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -2958,6 +5335,8 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedContactsInput = {
@@ -2986,6 +5365,35 @@ export type UserUpdateWithoutOwnedContactsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3024,6 +5432,8 @@ export type UserUpdateWithoutOwnedContactsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedContactsInput = {
@@ -3037,6 +5447,35 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3074,6 +5513,8 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCreatedContactsInput = {
@@ -3097,6 +5538,35 @@ export type UserUpdateWithoutCreatedContactsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3135,6 +5605,8 @@ export type UserUpdateWithoutCreatedContactsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedContactsInput = {
@@ -3148,6 +5620,35 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3185,6 +5686,8 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedPoliciesInput = {
@@ -3197,6 +5700,35 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -3235,6 +5767,8 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
@@ -3248,6 +5782,35 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3285,6 +5848,8 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPoliciesInput = {
@@ -3313,6 +5878,35 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3351,6 +5945,8 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
@@ -3364,6 +5960,35 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3401,6 +6026,8 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutUploadedDocsInput = {
@@ -3413,6 +6040,35 @@ export type UserCreateWithoutUploadedDocsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -3451,6 +6107,8 @@ export type UserCreateWithoutUploadedDocsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUploadedDocsInput = {
@@ -3464,6 +6122,35 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3501,6 +6188,8 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUploadedDocsInput = {
@@ -3529,6 +6218,35 @@ export type UserUpdateWithoutUploadedDocsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3567,6 +6285,8 @@ export type UserUpdateWithoutUploadedDocsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedDocsInput = {
@@ -3580,6 +6300,35 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3617,6 +6366,8 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCompanyNotesInput = {
@@ -3629,6 +6380,35 @@ export type UserCreateWithoutCompanyNotesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -3667,6 +6447,8 @@ export type UserCreateWithoutCompanyNotesInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCompanyNotesInput = {
@@ -3680,6 +6462,35 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3717,6 +6528,8 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCompanyNotesInput = {
@@ -3745,6 +6558,35 @@ export type UserUpdateWithoutCompanyNotesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3783,6 +6625,8 @@ export type UserUpdateWithoutCompanyNotesInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyNotesInput = {
@@ -3796,6 +6640,35 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -3833,6 +6706,8 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutContactNotesInput = {
@@ -3845,6 +6720,35 @@ export type UserCreateWithoutContactNotesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -3883,6 +6787,8 @@ export type UserCreateWithoutContactNotesInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutContactNotesInput = {
@@ -3896,6 +6802,35 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -3933,6 +6868,8 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutContactNotesInput = {
@@ -3961,6 +6898,35 @@ export type UserUpdateWithoutContactNotesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -3999,6 +6965,8 @@ export type UserUpdateWithoutContactNotesInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutContactNotesInput = {
@@ -4012,6 +6980,35 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -4049,6 +7046,8 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutApprovedProfilesInput = {
@@ -4061,6 +7060,35 @@ export type UserCreateWithoutApprovedProfilesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -4099,6 +7127,8 @@ export type UserCreateWithoutApprovedProfilesInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedProfilesInput = {
@@ -4112,6 +7142,35 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -4149,6 +7208,8 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedProfilesInput = {
@@ -4177,6 +7238,35 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -4215,6 +7305,8 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
@@ -4228,6 +7320,35 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -4265,6 +7386,8 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSentInvitationsInput = {
@@ -4277,6 +7400,35 @@ export type UserCreateWithoutSentInvitationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -4315,6 +7467,8 @@ export type UserCreateWithoutSentInvitationsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -4328,6 +7482,35 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -4365,6 +7548,8 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -4393,6 +7578,35 @@ export type UserUpdateWithoutSentInvitationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -4431,6 +7645,8 @@ export type UserUpdateWithoutSentInvitationsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -4444,6 +7660,35 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -4481,6 +7726,8 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSentCommunicationsInput = {
@@ -4493,6 +7740,35 @@ export type UserCreateWithoutSentCommunicationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -4531,6 +7807,8 @@ export type UserCreateWithoutSentCommunicationsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentCommunicationsInput = {
@@ -4544,6 +7822,35 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -4581,6 +7888,8 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentCommunicationsInput = {
@@ -4609,6 +7918,35 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -4647,6 +7985,8 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
@@ -4660,6 +8000,35 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -4697,6 +8066,8 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -4709,6 +8080,35 @@ export type UserCreateWithoutNotificationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -4747,6 +8147,8 @@ export type UserCreateWithoutNotificationsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -4760,6 +8162,35 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -4797,6 +8228,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -4825,6 +8258,35 @@ export type UserUpdateWithoutNotificationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -4863,6 +8325,8 @@ export type UserUpdateWithoutNotificationsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -4876,6 +8340,35 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -4913,6 +8406,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReportedIncidentsInput = {
@@ -4925,6 +8420,35 @@ export type UserCreateWithoutReportedIncidentsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -4963,6 +8487,8 @@ export type UserCreateWithoutReportedIncidentsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReportedIncidentsInput = {
@@ -4976,6 +8502,35 @@ export type UserUncheckedCreateWithoutReportedIncidentsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5013,6 +8568,8 @@ export type UserUncheckedCreateWithoutReportedIncidentsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReportedIncidentsInput = {
@@ -5041,6 +8598,35 @@ export type UserUpdateWithoutReportedIncidentsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -5079,6 +8665,8 @@ export type UserUpdateWithoutReportedIncidentsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
@@ -5092,6 +8680,35 @@ export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -5129,6 +8746,8 @@ export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRaisedHazardsInput = {
@@ -5141,6 +8760,35 @@ export type UserCreateWithoutRaisedHazardsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -5179,6 +8827,8 @@ export type UserCreateWithoutRaisedHazardsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRaisedHazardsInput = {
@@ -5192,6 +8842,35 @@ export type UserUncheckedCreateWithoutRaisedHazardsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5229,6 +8908,8 @@ export type UserUncheckedCreateWithoutRaisedHazardsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRaisedHazardsInput = {
@@ -5257,6 +8938,35 @@ export type UserUpdateWithoutRaisedHazardsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -5295,6 +9005,8 @@ export type UserUpdateWithoutRaisedHazardsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
@@ -5308,6 +9020,35 @@ export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -5345,6 +9086,8 @@ export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutIssuedPermitsInput = {
@@ -5357,6 +9100,35 @@ export type UserCreateWithoutIssuedPermitsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -5395,6 +9167,8 @@ export type UserCreateWithoutIssuedPermitsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutIssuedPermitsInput = {
@@ -5408,6 +9182,35 @@ export type UserUncheckedCreateWithoutIssuedPermitsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5445,6 +9248,8 @@ export type UserUncheckedCreateWithoutIssuedPermitsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutIssuedPermitsInput = {
@@ -5473,6 +9278,35 @@ export type UserUpdateWithoutIssuedPermitsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -5511,6 +9345,8 @@ export type UserUpdateWithoutIssuedPermitsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
@@ -5524,6 +9360,35 @@ export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -5561,6 +9426,8 @@ export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutConductedInspectionsInput = {
@@ -5573,6 +9440,35 @@ export type UserCreateWithoutConductedInspectionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -5611,6 +9507,8 @@ export type UserCreateWithoutConductedInspectionsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConductedInspectionsInput = {
@@ -5624,6 +9522,35 @@ export type UserUncheckedCreateWithoutConductedInspectionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5661,6 +9588,8 @@ export type UserUncheckedCreateWithoutConductedInspectionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConductedInspectionsInput = {
@@ -5689,6 +9618,35 @@ export type UserUpdateWithoutConductedInspectionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -5727,6 +9685,8 @@ export type UserUpdateWithoutConductedInspectionsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
@@ -5740,6 +9700,35 @@ export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -5777,6 +9766,8 @@ export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignSourcesSubmittedInput = {
@@ -5789,6 +9780,35 @@ export type UserCreateWithoutDesignSourcesSubmittedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -5827,6 +9847,8 @@ export type UserCreateWithoutDesignSourcesSubmittedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
@@ -5840,6 +9862,35 @@ export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5877,6 +9928,8 @@ export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesSubmittedInput = {
@@ -5894,6 +9947,35 @@ export type UserCreateWithoutDesignSourcesApprovedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -5932,6 +10014,8 @@ export type UserCreateWithoutDesignSourcesApprovedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
@@ -5945,6 +10029,35 @@ export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -5982,6 +10095,8 @@ export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesApprovedInput = {
@@ -6010,6 +10125,35 @@ export type UserUpdateWithoutDesignSourcesSubmittedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -6048,6 +10192,8 @@ export type UserUpdateWithoutDesignSourcesSubmittedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
@@ -6061,6 +10207,35 @@ export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6098,6 +10273,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutDesignSourcesApprovedInput = {
@@ -6121,6 +10298,35 @@ export type UserUpdateWithoutDesignSourcesApprovedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -6159,6 +10365,8 @@ export type UserUpdateWithoutDesignSourcesApprovedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
@@ -6172,6 +10380,35 @@ export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6209,6 +10446,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignSourceVersionsInput = {
@@ -6221,6 +10460,35 @@ export type UserCreateWithoutDesignSourceVersionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -6259,6 +10527,8 @@ export type UserCreateWithoutDesignSourceVersionsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
@@ -6272,6 +10542,35 @@ export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -6309,6 +10608,8 @@ export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourceVersionsInput = {
@@ -6337,6 +10638,35 @@ export type UserUpdateWithoutDesignSourceVersionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -6375,6 +10705,8 @@ export type UserUpdateWithoutDesignSourceVersionsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
@@ -6388,6 +10720,35 @@ export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6425,6 +10786,8 @@ export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -6437,6 +10800,35 @@ export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -6475,6 +10867,8 @@ export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -6488,6 +10882,35 @@ export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -6525,6 +10948,8 @@ export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalSettingsCreatedInput = {
@@ -6553,6 +10978,35 @@ export type UserUpdateWithoutDesignGlobalSettingsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -6591,6 +11045,8 @@ export type UserUpdateWithoutDesignGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
@@ -6604,6 +11060,35 @@ export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6641,6 +11126,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalAuditsInput = {
@@ -6653,6 +11140,35 @@ export type UserCreateWithoutDesignGlobalAuditsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -6691,6 +11207,8 @@ export type UserCreateWithoutDesignGlobalAuditsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
@@ -6704,6 +11222,35 @@ export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -6741,6 +11288,8 @@ export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalAuditsInput = {
@@ -6769,6 +11318,35 @@ export type UserUpdateWithoutDesignGlobalAuditsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -6807,6 +11385,8 @@ export type UserUpdateWithoutDesignGlobalAuditsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
@@ -6820,6 +11400,35 @@ export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -6857,6 +11466,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -6869,6 +11480,35 @@ export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -6907,6 +11547,8 @@ export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -6920,6 +11562,35 @@ export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -6957,6 +11628,8 @@ export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -6985,6 +11658,35 @@ export type UserUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -7023,6 +11725,8 @@ export type UserUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -7036,6 +11740,35 @@ export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7073,6 +11806,8 @@ export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignProposalsProposedInput = {
@@ -7085,6 +11820,35 @@ export type UserCreateWithoutDesignProposalsProposedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -7123,6 +11887,8 @@ export type UserCreateWithoutDesignProposalsProposedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
@@ -7136,6 +11902,35 @@ export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -7173,6 +11968,8 @@ export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsProposedInput = {
@@ -7190,6 +11987,35 @@ export type UserCreateWithoutDesignProposalsReviewedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -7228,6 +12054,8 @@ export type UserCreateWithoutDesignProposalsReviewedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
@@ -7241,6 +12069,35 @@ export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -7278,6 +12135,8 @@ export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsReviewedInput = {
@@ -7306,6 +12165,35 @@ export type UserUpdateWithoutDesignProposalsProposedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -7344,6 +12232,8 @@ export type UserUpdateWithoutDesignProposalsProposedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
@@ -7357,6 +12247,35 @@ export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7394,6 +12313,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutDesignProposalsReviewedInput = {
@@ -7417,6 +12338,35 @@ export type UserUpdateWithoutDesignProposalsReviewedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -7455,6 +12405,8 @@ export type UserUpdateWithoutDesignProposalsReviewedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
@@ -7468,6 +12420,35 @@ export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7505,6 +12486,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -7517,6 +12500,35 @@ export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -7555,6 +12567,8 @@ export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -7568,6 +12582,35 @@ export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -7605,6 +12648,8 @@ export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignExpiryConfigUpdatedInput = {
@@ -7633,6 +12678,35 @@ export type UserUpdateWithoutDesignExpiryConfigUpdatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -7671,6 +12745,8 @@ export type UserUpdateWithoutDesignExpiryConfigUpdatedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
@@ -7684,6 +12760,35 @@ export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7721,6 +12826,8 @@ export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignRssFeedsCreatedInput = {
@@ -7733,6 +12840,35 @@ export type UserCreateWithoutDesignRssFeedsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -7771,6 +12907,8 @@ export type UserCreateWithoutDesignRssFeedsCreatedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
@@ -7784,6 +12922,35 @@ export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -7821,6 +12988,8 @@ export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignRssFeedsCreatedInput = {
@@ -7849,6 +13018,35 @@ export type UserUpdateWithoutDesignRssFeedsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -7887,6 +13085,8 @@ export type UserUpdateWithoutDesignRssFeedsCreatedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
@@ -7900,6 +13100,35 @@ export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7937,6 +13166,8 @@ export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -7949,6 +13180,35 @@ export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -7987,6 +13247,8 @@ export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -8000,6 +13262,35 @@ export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -8037,6 +13328,8 @@ export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignMonitoredUrlsCreatedInput = {
@@ -8065,6 +13358,35 @@ export type UserUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -8103,6 +13425,8 @@ export type UserUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -8116,6 +13440,35 @@ export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -8153,6 +13506,8 @@ export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -8165,6 +13520,35 @@ export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -8203,6 +13587,8 @@ export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -8216,6 +13602,35 @@ export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -8253,6 +13668,8 @@ export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignTrendItemsSubmittedInput = {
@@ -8281,6 +13698,35 @@ export type UserUpdateWithoutDesignTrendItemsSubmittedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -8319,6 +13765,8 @@ export type UserUpdateWithoutDesignTrendItemsSubmittedInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
@@ -8332,6 +13780,35 @@ export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -8369,6 +13846,8 @@ export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDesignChatbotSessionsInput = {
@@ -8381,6 +13860,35 @@ export type UserCreateWithoutDesignChatbotSessionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -8419,6 +13927,8 @@ export type UserCreateWithoutDesignChatbotSessionsInput = {
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -8432,6 +13942,35 @@ export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -8469,6 +14008,8 @@ export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -8497,6 +14038,35 @@ export type UserUpdateWithoutDesignChatbotSessionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -8535,6 +14105,8 @@ export type UserUpdateWithoutDesignChatbotSessionsInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -8548,6 +14120,35 @@ export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -8585,6 +14186,8 @@ export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEstimatesAsEstimatorInput = {
@@ -8597,6 +14200,35 @@ export type UserCreateWithoutEstimatesAsEstimatorInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -8635,6 +14267,8 @@ export type UserCreateWithoutEstimatesAsEstimatorInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
@@ -8648,6 +14282,35 @@ export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -8685,6 +14348,8 @@ export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEstimatesAsEstimatorInput = {
@@ -8702,6 +14367,35 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -8740,6 +14434,8 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -8753,6 +14449,35 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -8790,6 +14515,8 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -8818,6 +14545,35 @@ export type UserUpdateWithoutEstimatesAsEstimatorInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -8856,6 +14612,8 @@ export type UserUpdateWithoutEstimatesAsEstimatorInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
@@ -8869,6 +14627,35 @@ export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -8906,6 +14693,8 @@ export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCreatedEstimatesInput = {
@@ -8929,6 +14718,35 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -8967,6 +14785,8 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -8980,6 +14800,35 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -9017,6 +14866,8 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEstimateSnapshotsInput = {
@@ -9029,6 +14880,35 @@ export type UserCreateWithoutEstimateSnapshotsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
@@ -9067,6 +14947,8 @@ export type UserCreateWithoutEstimateSnapshotsInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
   createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
@@ -9080,6 +14962,35 @@ export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
@@ -9117,6 +15028,8 @@ export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
   createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEstimateSnapshotsInput = {
@@ -9145,6 +15058,35 @@ export type UserUpdateWithoutEstimateSnapshotsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
@@ -9183,6 +15125,8 @@ export type UserUpdateWithoutEstimateSnapshotsInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
@@ -9196,6 +15140,35 @@ export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -9233,6 +15206,8 @@ export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
   designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyOrganisationInput = {
@@ -9245,6 +15220,35 @@ export type UserCreateManyOrganisationInput = {
   role: $Enums.UserRole
   isActive?: boolean
   avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -9259,6 +15263,35 @@ export type UserUpdateWithoutOrganisationInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
@@ -9297,6 +15330,8 @@ export type UserUpdateWithoutOrganisationInput = {
   createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationInput = {
@@ -9309,6 +15344,35 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -9347,6 +15411,8 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
   estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
   estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganisationInput = {
@@ -9359,6 +15425,35 @@ export type UserUncheckedUpdateManyWithoutOrganisationInput = {
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -9405,6 +15500,8 @@ export type UserCountOutputType = {
   createdEstimates: number
   estimatesAsEstimator: number
   estimateSnapshots: number
+  auditLogs: number
+  trainingRecords: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -9444,6 +15541,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   createdEstimates?: boolean | UserCountOutputTypeCountCreatedEstimatesArgs
   estimatesAsEstimator?: boolean | UserCountOutputTypeCountEstimatesAsEstimatorArgs
   estimateSnapshots?: boolean | UserCountOutputTypeCountEstimateSnapshotsArgs
+  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  trainingRecords?: boolean | UserCountOutputTypeCountTrainingRecordsArgs
 }
 
 /**
@@ -9708,6 +15807,20 @@ export type UserCountOutputTypeCountEstimateSnapshotsArgs<ExtArgs extends runtim
   where?: Prisma.EstimateSnapshotWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTrainingRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserTrainingWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -9720,6 +15833,35 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   role?: boolean
   isActive?: boolean
   avatarUrl?: boolean
+  initials?: boolean
+  signatureUrl?: boolean
+  phone?: boolean
+  employmentType?: boolean
+  startDate?: boolean
+  normalRate?: boolean
+  overtimeRate?: boolean
+  contractUrl?: boolean
+  contractReviewDate?: boolean
+  probationEndDate?: boolean
+  hrNotes?: boolean
+  safetyInductionNo?: boolean
+  safetyLevel?: boolean
+  safetyExpiry?: boolean
+  licenceNo?: boolean
+  licenceType?: boolean
+  licenceExpiry?: boolean
+  whiteCardNo?: boolean
+  whiteCardExpiry?: boolean
+  nokName?: boolean
+  nokRelationship?: boolean
+  nokPhone?: boolean
+  nok2Name?: boolean
+  nok2Relationship?: boolean
+  nok2Phone?: boolean
+  medicalNotes?: boolean
+  gmailConnected?: boolean
+  gmailEmail?: boolean
+  permissions?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -9759,6 +15901,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdEstimates?: boolean | Prisma.User$createdEstimatesArgs<ExtArgs>
   estimatesAsEstimator?: boolean | Prisma.User$estimatesAsEstimatorArgs<ExtArgs>
   estimateSnapshots?: boolean | Prisma.User$estimateSnapshotsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  trainingRecords?: boolean | Prisma.User$trainingRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -9773,6 +15917,35 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   role?: boolean
   isActive?: boolean
   avatarUrl?: boolean
+  initials?: boolean
+  signatureUrl?: boolean
+  phone?: boolean
+  employmentType?: boolean
+  startDate?: boolean
+  normalRate?: boolean
+  overtimeRate?: boolean
+  contractUrl?: boolean
+  contractReviewDate?: boolean
+  probationEndDate?: boolean
+  hrNotes?: boolean
+  safetyInductionNo?: boolean
+  safetyLevel?: boolean
+  safetyExpiry?: boolean
+  licenceNo?: boolean
+  licenceType?: boolean
+  licenceExpiry?: boolean
+  whiteCardNo?: boolean
+  whiteCardExpiry?: boolean
+  nokName?: boolean
+  nokRelationship?: boolean
+  nokPhone?: boolean
+  nok2Name?: boolean
+  nok2Relationship?: boolean
+  nok2Phone?: boolean
+  medicalNotes?: boolean
+  gmailConnected?: boolean
+  gmailEmail?: boolean
+  permissions?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -9789,6 +15962,35 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   role?: boolean
   isActive?: boolean
   avatarUrl?: boolean
+  initials?: boolean
+  signatureUrl?: boolean
+  phone?: boolean
+  employmentType?: boolean
+  startDate?: boolean
+  normalRate?: boolean
+  overtimeRate?: boolean
+  contractUrl?: boolean
+  contractReviewDate?: boolean
+  probationEndDate?: boolean
+  hrNotes?: boolean
+  safetyInductionNo?: boolean
+  safetyLevel?: boolean
+  safetyExpiry?: boolean
+  licenceNo?: boolean
+  licenceType?: boolean
+  licenceExpiry?: boolean
+  whiteCardNo?: boolean
+  whiteCardExpiry?: boolean
+  nokName?: boolean
+  nokRelationship?: boolean
+  nokPhone?: boolean
+  nok2Name?: boolean
+  nok2Relationship?: boolean
+  nok2Phone?: boolean
+  medicalNotes?: boolean
+  gmailConnected?: boolean
+  gmailEmail?: boolean
+  permissions?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -9805,11 +16007,40 @@ export type UserSelectScalar = {
   role?: boolean
   isActive?: boolean
   avatarUrl?: boolean
+  initials?: boolean
+  signatureUrl?: boolean
+  phone?: boolean
+  employmentType?: boolean
+  startDate?: boolean
+  normalRate?: boolean
+  overtimeRate?: boolean
+  contractUrl?: boolean
+  contractReviewDate?: boolean
+  probationEndDate?: boolean
+  hrNotes?: boolean
+  safetyInductionNo?: boolean
+  safetyLevel?: boolean
+  safetyExpiry?: boolean
+  licenceNo?: boolean
+  licenceType?: boolean
+  licenceExpiry?: boolean
+  whiteCardNo?: boolean
+  whiteCardExpiry?: boolean
+  nokName?: boolean
+  nokRelationship?: boolean
+  nokPhone?: boolean
+  nok2Name?: boolean
+  nok2Relationship?: boolean
+  nok2Phone?: boolean
+  medicalNotes?: boolean
+  gmailConnected?: boolean
+  gmailEmail?: boolean
+  permissions?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkId" | "organisationId" | "firstName" | "lastName" | "email" | "mobile" | "role" | "isActive" | "avatarUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkId" | "organisationId" | "firstName" | "lastName" | "email" | "mobile" | "role" | "isActive" | "avatarUrl" | "initials" | "signatureUrl" | "phone" | "employmentType" | "startDate" | "normalRate" | "overtimeRate" | "contractUrl" | "contractReviewDate" | "probationEndDate" | "hrNotes" | "safetyInductionNo" | "safetyLevel" | "safetyExpiry" | "licenceNo" | "licenceType" | "licenceExpiry" | "whiteCardNo" | "whiteCardExpiry" | "nokName" | "nokRelationship" | "nokPhone" | "nok2Name" | "nok2Relationship" | "nok2Phone" | "medicalNotes" | "gmailConnected" | "gmailEmail" | "permissions" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   createdProjects?: boolean | Prisma.User$createdProjectsArgs<ExtArgs>
@@ -9848,6 +16079,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdEstimates?: boolean | Prisma.User$createdEstimatesArgs<ExtArgs>
   estimatesAsEstimator?: boolean | Prisma.User$estimatesAsEstimatorArgs<ExtArgs>
   estimateSnapshots?: boolean | Prisma.User$estimateSnapshotsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  trainingRecords?: boolean | Prisma.User$trainingRecordsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -9897,6 +16130,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdEstimates: Prisma.$EstimatePayload<ExtArgs>[]
     estimatesAsEstimator: Prisma.$EstimatePayload<ExtArgs>[]
     estimateSnapshots: Prisma.$EstimateSnapshotPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    trainingRecords: Prisma.$UserTrainingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -9909,6 +16144,35 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     role: $Enums.UserRole
     isActive: boolean
     avatarUrl: string | null
+    initials: string | null
+    signatureUrl: string | null
+    phone: string | null
+    employmentType: $Enums.EmploymentType | null
+    startDate: Date | null
+    normalRate: runtime.Decimal | null
+    overtimeRate: runtime.Decimal | null
+    contractUrl: string | null
+    contractReviewDate: Date | null
+    probationEndDate: Date | null
+    hrNotes: string | null
+    safetyInductionNo: string | null
+    safetyLevel: string | null
+    safetyExpiry: Date | null
+    licenceNo: string | null
+    licenceType: string | null
+    licenceExpiry: Date | null
+    whiteCardNo: string | null
+    whiteCardExpiry: Date | null
+    nokName: string | null
+    nokRelationship: string | null
+    nokPhone: string | null
+    nok2Name: string | null
+    nok2Relationship: string | null
+    nok2Phone: string | null
+    medicalNotes: string | null
+    gmailConnected: boolean
+    gmailEmail: string | null
+    permissions: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -10342,6 +16606,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   createdEstimates<T extends Prisma.User$createdEstimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdEstimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   estimatesAsEstimator<T extends Prisma.User$estimatesAsEstimatorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$estimatesAsEstimatorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   estimateSnapshots<T extends Prisma.User$estimateSnapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$estimateSnapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  trainingRecords<T extends Prisma.User$trainingRecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTrainingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10381,6 +16647,35 @@ export interface UserFieldRefs {
   readonly role: Prisma.FieldRef<"User", 'UserRole'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
+  readonly initials: Prisma.FieldRef<"User", 'String'>
+  readonly signatureUrl: Prisma.FieldRef<"User", 'String'>
+  readonly phone: Prisma.FieldRef<"User", 'String'>
+  readonly employmentType: Prisma.FieldRef<"User", 'EmploymentType'>
+  readonly startDate: Prisma.FieldRef<"User", 'DateTime'>
+  readonly normalRate: Prisma.FieldRef<"User", 'Decimal'>
+  readonly overtimeRate: Prisma.FieldRef<"User", 'Decimal'>
+  readonly contractUrl: Prisma.FieldRef<"User", 'String'>
+  readonly contractReviewDate: Prisma.FieldRef<"User", 'DateTime'>
+  readonly probationEndDate: Prisma.FieldRef<"User", 'DateTime'>
+  readonly hrNotes: Prisma.FieldRef<"User", 'String'>
+  readonly safetyInductionNo: Prisma.FieldRef<"User", 'String'>
+  readonly safetyLevel: Prisma.FieldRef<"User", 'String'>
+  readonly safetyExpiry: Prisma.FieldRef<"User", 'DateTime'>
+  readonly licenceNo: Prisma.FieldRef<"User", 'String'>
+  readonly licenceType: Prisma.FieldRef<"User", 'String'>
+  readonly licenceExpiry: Prisma.FieldRef<"User", 'DateTime'>
+  readonly whiteCardNo: Prisma.FieldRef<"User", 'String'>
+  readonly whiteCardExpiry: Prisma.FieldRef<"User", 'DateTime'>
+  readonly nokName: Prisma.FieldRef<"User", 'String'>
+  readonly nokRelationship: Prisma.FieldRef<"User", 'String'>
+  readonly nokPhone: Prisma.FieldRef<"User", 'String'>
+  readonly nok2Name: Prisma.FieldRef<"User", 'String'>
+  readonly nok2Relationship: Prisma.FieldRef<"User", 'String'>
+  readonly nok2Phone: Prisma.FieldRef<"User", 'String'>
+  readonly medicalNotes: Prisma.FieldRef<"User", 'String'>
+  readonly gmailConnected: Prisma.FieldRef<"User", 'Boolean'>
+  readonly gmailEmail: Prisma.FieldRef<"User", 'String'>
+  readonly permissions: Prisma.FieldRef<"User", 'Json'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -11645,6 +17940,54 @@ export type User$estimateSnapshotsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.EstimateSnapshotScalarFieldEnum | Prisma.EstimateSnapshotScalarFieldEnum[]
+}
+
+/**
+ * User.auditLogs
+ */
+export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AuditLog
+   */
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AuditLog
+   */
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.trainingRecords
+ */
+export type User$trainingRecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserTraining
+   */
+  select?: Prisma.UserTrainingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserTraining
+   */
+  omit?: Prisma.UserTrainingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserTrainingInclude<ExtArgs> | null
+  where?: Prisma.UserTrainingWhereInput
+  orderBy?: Prisma.UserTrainingOrderByWithRelationInput | Prisma.UserTrainingOrderByWithRelationInput[]
+  cursor?: Prisma.UserTrainingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserTrainingScalarFieldEnum | Prisma.UserTrainingScalarFieldEnum[]
 }
 
 /**
