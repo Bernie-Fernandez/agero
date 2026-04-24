@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ROLE_METADATA } from '@agero/db';
+import { ROLE_METADATA } from '@/lib/permissions';
 import AddUserWizard from './AddUserWizard';
 
 type User = {

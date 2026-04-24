@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 import { useState, useTransition } from 'react';
-import { ROLE_METADATA } from '@agero/db';
-import type { PermissionSet } from '@agero/db';
+import { ROLE_METADATA } from '@/lib/permissions';
+import type { PermissionSet } from '@/lib/permissions';
 import { updateMyProfile } from '@/app/admin/users/actions';
 
 const MODULE_LABELS: Record<string, string> = {

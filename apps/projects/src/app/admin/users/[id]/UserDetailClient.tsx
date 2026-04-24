@@ -1,8 +1,8 @@
-'use client';
+﻿'use client';
 import { useState, useTransition } from 'react';
 import Link from 'next/link';
-import { ROLE_METADATA, getRolePreset } from '@agero/db';
-import type { PermissionSet } from '@agero/db';
+import { ROLE_METADATA, getRolePreset } from '@/lib/permissions';
+import type { PermissionSet } from '@/lib/permissions';
 import {
   toggleUserActive, updateUserProfile, updateUserPermissions,
   resetToRolePreset, addTrainingRecord, deleteTrainingRecord,

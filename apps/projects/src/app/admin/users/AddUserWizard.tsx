@@ -1,7 +1,7 @@
-'use client';
+﻿'use client';
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { ROLE_METADATA, getRolePreset } from '@agero/db';
+import { ROLE_METADATA, getRolePreset } from '@/lib/permissions';
 import { createUser } from './actions';
 
 const MODULE_LABELS: Record<string, string> = {
