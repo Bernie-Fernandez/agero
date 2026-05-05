@@ -6,6 +6,14 @@ import { useClerk } from '@clerk/nextjs';
 import ProjectSwitcher from './ProjectSwitcher';
 import LeadSwitcher from './LeadSwitcher';
 
+const INDIRECT_PREFIXES = ['/finance', '/crm', '/admin', '/reporting', '/marketing'];
+
+function isIndirectRoute(pathname: string) {
+  return INDIRECT_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(p + '/')
+  );
+}
+
 type Project = { id: string; name: string };
 type Lead = { id: string; leadNumber: string; title: string; pipelineStage: number };
 
@@ -146,6 +154,7 @@ export default function Topbar({
 }) {
   const pathname = usePathname();
   const onLeadsRoute = pathname.startsWith('/leads');
+  const isIndirect = isIndirectRoute(pathname);
 
   return (
     <header className="fixed top-0 left-0 right-0 h-12 bg-white border-b border-zinc-200 flex items-center px-4 gap-3 z-30">
@@ -164,10 +173,12 @@ export default function Topbar({
 
       <EntityPill />
 
-      {onLeadsRoute ? (
-        <LeadSwitcher leads={leads} />
-      ) : (
-        <ProjectSwitcher projects={projects} />
+      {!isIndirect && (
+        onLeadsRoute ? (
+          <LeadSwitcher leads={leads} />
+        ) : (
+          <ProjectSwitcher projects={projects} />
+        )
       )}
 
       <div className="flex-1 min-w-0" />

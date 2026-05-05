@@ -192,6 +192,16 @@ function BookmarksFlyout({ onClose }: { onClose: () => void }) {
   );
 }
 
+// ── GroupLabel ────────────────────────────────────────────────────────────────
+
+function GroupLabel({ label }: { label: string }) {
+  return (
+    <div className="px-3 pt-4 pb-1">
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">{label}</span>
+    </div>
+  );
+}
+
 // ── LockedItem ────────────────────────────────────────────────────────────────
 
 function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
@@ -346,39 +356,37 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
         {bookmarksOpen && <BookmarksFlyout onClose={() => setBookmarksOpen(false)} />}
       </div>
 
-      {/* CRM */}
+      {/* ── Project (Direct) ─────────────────────────────────────────────── */}
+      <GroupLabel label="Project" />
+
+      <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
+        <ProjectSubItems onItemClick={onItemClick} />
+      </Section>
+
+      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
+        <EstimatingSubItems onItemClick={onItemClick} />
+      </Section>
+
+      <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
+        <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
+      </Section>
+
+      {/* ── Business (Indirect) ──────────────────────────────────────────── */}
+      <GroupLabel label="Business" />
+
       <Section sectionKey="crm" label="CRM" defaultOpen={true} onItemClick={onItemClick}>
         <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
         <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
       </Section>
 
-      {/* Projects */}
-      <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
-        <ProjectSubItems onItemClick={onItemClick} />
-      </Section>
-
-      {/* Estimating */}
-      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
-        <EstimatingSubItems onItemClick={onItemClick} />
-      </Section>
-
-      {/* Finance */}
       <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>
         <FinanceSubItems onItemClick={onItemClick} />
       </Section>
 
-      {/* Reporting — stubbed */}
       <Section sectionKey="reporting" label="Reporting" defaultOpen={false} stubbed />
 
-      {/* Marketing — stubbed */}
       <Section sectionKey="marketing" label="Marketing" defaultOpen={false} stubbed />
 
-      {/* Design Studio */}
-      <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
-        <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
-      </Section>
-
-      {/* Admin */}
       <Section sectionKey="admin" label="Admin" defaultOpen={false} onItemClick={onItemClick}>
         <NavLink href="/admin" label="Settings" depth={1} onItemClick={onItemClick} />
       </Section>
