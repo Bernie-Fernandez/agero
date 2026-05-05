@@ -290,6 +290,7 @@ export type CostCodeWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"CostCode"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   companyTrades?: Prisma.CompanyTradeListRelationFilter
+  revenueEstimates?: Prisma.EstimateListRelationFilter
 }
 
 export type CostCodeOrderByWithRelationInput = {
@@ -309,6 +310,7 @@ export type CostCodeOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
   companyTrades?: Prisma.CompanyTradeOrderByRelationAggregateInput
+  revenueEstimates?: Prisma.EstimateOrderByRelationAggregateInput
 }
 
 export type CostCodeWhereUniqueInput = Prisma.AtLeast<{
@@ -331,6 +333,7 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"CostCode"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   companyTrades?: Prisma.CompanyTradeListRelationFilter
+  revenueEstimates?: Prisma.EstimateListRelationFilter
 }, "id" | "catCode">
 
 export type CostCodeOrderByWithAggregationInput = {
@@ -391,6 +394,7 @@ export type CostCodeCreateInput = {
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCostCodesInput
   companyTrades?: Prisma.CompanyTradeCreateNestedManyWithoutCostCodeInput
+  revenueEstimates?: Prisma.EstimateCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeUncheckedCreateInput = {
@@ -409,6 +413,7 @@ export type CostCodeUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   companyTrades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCostCodeInput
+  revenueEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeUpdateInput = {
@@ -427,6 +432,7 @@ export type CostCodeUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCostCodesNestedInput
   companyTrades?: Prisma.CompanyTradeUpdateManyWithoutCostCodeNestedInput
+  revenueEstimates?: Prisma.EstimateUpdateManyWithoutRevenueCostCodeNestedInput
 }
 
 export type CostCodeUncheckedUpdateInput = {
@@ -445,6 +451,7 @@ export type CostCodeUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   companyTrades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCostCodeNestedInput
+  revenueEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutRevenueCostCodeNestedInput
 }
 
 export type CostCodeCreateManyInput = {
@@ -571,6 +578,11 @@ export type CostCodeScalarRelationFilter = {
   isNot?: Prisma.CostCodeWhereInput
 }
 
+export type CostCodeNullableScalarRelationFilter = {
+  is?: Prisma.CostCodeWhereInput | null
+  isNot?: Prisma.CostCodeWhereInput | null
+}
+
 export type CostCodeCreateNestedManyWithoutOrganisationInput = {
   create?: Prisma.XOR<Prisma.CostCodeCreateWithoutOrganisationInput, Prisma.CostCodeUncheckedCreateWithoutOrganisationInput> | Prisma.CostCodeCreateWithoutOrganisationInput[] | Prisma.CostCodeUncheckedCreateWithoutOrganisationInput[]
   connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutOrganisationInput | Prisma.CostCodeCreateOrConnectWithoutOrganisationInput[]
@@ -631,6 +643,22 @@ export type CostCodeUpdateOneRequiredWithoutCompanyTradesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CostCodeUpdateToOneWithWhereWithoutCompanyTradesInput, Prisma.CostCodeUpdateWithoutCompanyTradesInput>, Prisma.CostCodeUncheckedUpdateWithoutCompanyTradesInput>
 }
 
+export type CostCodeCreateNestedOneWithoutRevenueEstimatesInput = {
+  create?: Prisma.XOR<Prisma.CostCodeCreateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedCreateWithoutRevenueEstimatesInput>
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutRevenueEstimatesInput
+  connect?: Prisma.CostCodeWhereUniqueInput
+}
+
+export type CostCodeUpdateOneWithoutRevenueEstimatesNestedInput = {
+  create?: Prisma.XOR<Prisma.CostCodeCreateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedCreateWithoutRevenueEstimatesInput>
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutRevenueEstimatesInput
+  upsert?: Prisma.CostCodeUpsertWithoutRevenueEstimatesInput
+  disconnect?: Prisma.CostCodeWhereInput | boolean
+  delete?: Prisma.CostCodeWhereInput | boolean
+  connect?: Prisma.CostCodeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CostCodeUpdateToOneWithWhereWithoutRevenueEstimatesInput, Prisma.CostCodeUpdateWithoutRevenueEstimatesInput>, Prisma.CostCodeUncheckedUpdateWithoutRevenueEstimatesInput>
+}
+
 export type CostCodeCreateWithoutOrganisationInput = {
   id?: string
   groupCode: string
@@ -646,6 +674,7 @@ export type CostCodeCreateWithoutOrganisationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   companyTrades?: Prisma.CompanyTradeCreateNestedManyWithoutCostCodeInput
+  revenueEstimates?: Prisma.EstimateCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeUncheckedCreateWithoutOrganisationInput = {
@@ -663,6 +692,7 @@ export type CostCodeUncheckedCreateWithoutOrganisationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   companyTrades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCostCodeInput
+  revenueEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeCreateOrConnectWithoutOrganisationInput = {
@@ -726,6 +756,7 @@ export type CostCodeCreateWithoutCompanyTradesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutCostCodesInput
+  revenueEstimates?: Prisma.EstimateCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeUncheckedCreateWithoutCompanyTradesInput = {
@@ -743,6 +774,7 @@ export type CostCodeUncheckedCreateWithoutCompanyTradesInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  revenueEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutRevenueCostCodeInput
 }
 
 export type CostCodeCreateOrConnectWithoutCompanyTradesInput = {
@@ -776,6 +808,7 @@ export type CostCodeUpdateWithoutCompanyTradesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCostCodesNestedInput
+  revenueEstimates?: Prisma.EstimateUpdateManyWithoutRevenueCostCodeNestedInput
 }
 
 export type CostCodeUncheckedUpdateWithoutCompanyTradesInput = {
@@ -793,6 +826,95 @@ export type CostCodeUncheckedUpdateWithoutCompanyTradesInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  revenueEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutRevenueCostCodeNestedInput
+}
+
+export type CostCodeCreateWithoutRevenueEstimatesInput = {
+  id?: string
+  groupCode: string
+  groupName: string
+  catCode: string
+  codeDescription: string
+  glCode?: string | null
+  codeType: $Enums.CostCodeType
+  isTradeCategory?: boolean
+  isActive?: boolean
+  displayOrder?: number | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutCostCodesInput
+  companyTrades?: Prisma.CompanyTradeCreateNestedManyWithoutCostCodeInput
+}
+
+export type CostCodeUncheckedCreateWithoutRevenueEstimatesInput = {
+  id?: string
+  organisationId: string
+  groupCode: string
+  groupName: string
+  catCode: string
+  codeDescription: string
+  glCode?: string | null
+  codeType: $Enums.CostCodeType
+  isTradeCategory?: boolean
+  isActive?: boolean
+  displayOrder?: number | null
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  companyTrades?: Prisma.CompanyTradeUncheckedCreateNestedManyWithoutCostCodeInput
+}
+
+export type CostCodeCreateOrConnectWithoutRevenueEstimatesInput = {
+  where: Prisma.CostCodeWhereUniqueInput
+  create: Prisma.XOR<Prisma.CostCodeCreateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedCreateWithoutRevenueEstimatesInput>
+}
+
+export type CostCodeUpsertWithoutRevenueEstimatesInput = {
+  update: Prisma.XOR<Prisma.CostCodeUpdateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedUpdateWithoutRevenueEstimatesInput>
+  create: Prisma.XOR<Prisma.CostCodeCreateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedCreateWithoutRevenueEstimatesInput>
+  where?: Prisma.CostCodeWhereInput
+}
+
+export type CostCodeUpdateToOneWithWhereWithoutRevenueEstimatesInput = {
+  where?: Prisma.CostCodeWhereInput
+  data: Prisma.XOR<Prisma.CostCodeUpdateWithoutRevenueEstimatesInput, Prisma.CostCodeUncheckedUpdateWithoutRevenueEstimatesInput>
+}
+
+export type CostCodeUpdateWithoutRevenueEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  groupCode?: Prisma.StringFieldUpdateOperationsInput | string
+  groupName?: Prisma.StringFieldUpdateOperationsInput | string
+  catCode?: Prisma.StringFieldUpdateOperationsInput | string
+  codeDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  glCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeType?: Prisma.EnumCostCodeTypeFieldUpdateOperationsInput | $Enums.CostCodeType
+  isTradeCategory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutCostCodesNestedInput
+  companyTrades?: Prisma.CompanyTradeUpdateManyWithoutCostCodeNestedInput
+}
+
+export type CostCodeUncheckedUpdateWithoutRevenueEstimatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  groupCode?: Prisma.StringFieldUpdateOperationsInput | string
+  groupName?: Prisma.StringFieldUpdateOperationsInput | string
+  catCode?: Prisma.StringFieldUpdateOperationsInput | string
+  codeDescription?: Prisma.StringFieldUpdateOperationsInput | string
+  glCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeType?: Prisma.EnumCostCodeTypeFieldUpdateOperationsInput | $Enums.CostCodeType
+  isTradeCategory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayOrder?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  companyTrades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCostCodeNestedInput
 }
 
 export type CostCodeCreateManyOrganisationInput = {
@@ -826,6 +948,7 @@ export type CostCodeUpdateWithoutOrganisationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   companyTrades?: Prisma.CompanyTradeUpdateManyWithoutCostCodeNestedInput
+  revenueEstimates?: Prisma.EstimateUpdateManyWithoutRevenueCostCodeNestedInput
 }
 
 export type CostCodeUncheckedUpdateWithoutOrganisationInput = {
@@ -843,6 +966,7 @@ export type CostCodeUncheckedUpdateWithoutOrganisationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   companyTrades?: Prisma.CompanyTradeUncheckedUpdateManyWithoutCostCodeNestedInput
+  revenueEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutRevenueCostCodeNestedInput
 }
 
 export type CostCodeUncheckedUpdateManyWithoutOrganisationInput = {
@@ -868,10 +992,12 @@ export type CostCodeUncheckedUpdateManyWithoutOrganisationInput = {
 
 export type CostCodeCountOutputType = {
   companyTrades: number
+  revenueEstimates: number
 }
 
 export type CostCodeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   companyTrades?: boolean | CostCodeCountOutputTypeCountCompanyTradesArgs
+  revenueEstimates?: boolean | CostCodeCountOutputTypeCountRevenueEstimatesArgs
 }
 
 /**
@@ -889,6 +1015,13 @@ export type CostCodeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
  */
 export type CostCodeCountOutputTypeCountCompanyTradesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CompanyTradeWhereInput
+}
+
+/**
+ * CostCodeCountOutputType without action
+ */
+export type CostCodeCountOutputTypeCountRevenueEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateWhereInput
 }
 
 
@@ -909,6 +1042,7 @@ export type CostCodeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   companyTrades?: boolean | Prisma.CostCode$companyTradesArgs<ExtArgs>
+  revenueEstimates?: boolean | Prisma.CostCode$revenueEstimatesArgs<ExtArgs>
   _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["costCode"]>
 
@@ -969,6 +1103,7 @@ export type CostCodeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type CostCodeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   companyTrades?: boolean | Prisma.CostCode$companyTradesArgs<ExtArgs>
+  revenueEstimates?: boolean | Prisma.CostCode$revenueEstimatesArgs<ExtArgs>
   _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CostCodeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -983,6 +1118,7 @@ export type $CostCodePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     organisation: Prisma.$OrganisationPayload<ExtArgs>
     companyTrades: Prisma.$CompanyTradePayload<ExtArgs>[]
+    revenueEstimates: Prisma.$EstimatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1395,6 +1531,7 @@ export interface Prisma__CostCodeClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organisation<T extends Prisma.OrganisationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganisationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganisationClient<runtime.Types.Result.GetResult<Prisma.$OrganisationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   companyTrades<T extends Prisma.CostCode$companyTradesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CostCode$companyTradesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyTradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  revenueEstimates<T extends Prisma.CostCode$revenueEstimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CostCode$revenueEstimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1860,6 +1997,30 @@ export type CostCode$companyTradesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.CompanyTradeScalarFieldEnum | Prisma.CompanyTradeScalarFieldEnum[]
+}
+
+/**
+ * CostCode.revenueEstimates
+ */
+export type CostCode$revenueEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimate
+   */
+  select?: Prisma.EstimateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimate
+   */
+  omit?: Prisma.EstimateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateInclude<ExtArgs> | null
+  where?: Prisma.EstimateWhereInput
+  orderBy?: Prisma.EstimateOrderByWithRelationInput | Prisma.EstimateOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateScalarFieldEnum | Prisma.EstimateScalarFieldEnum[]
 }
 
 /**

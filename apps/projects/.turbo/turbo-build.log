@@ -3,25 +3,142 @@
 > next build
 
 ▲ Next.js 16.2.2 (Turbopack)
+- Environments: .env.local
 - Experiments (use with caution):
   · serverActions
   · staleTimes
 
   Creating an optimized production build ...
-✓ Compiled successfully in 4.2s
+✓ Compiled successfully in 29.6s
   Running TypeScript ...
-  Finished TypeScript in 2.9s ...
-  Collecting page data using 4 workers ...
-  Generating static pages using 4 workers (0/3) ...
-✓ Generating static pages using 4 workers (3/3) in 747ms
+  Finished TypeScript in 36.3s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/64) ...
+  Generating static pages using 11 workers (16/64) 
+  Generating static pages using 11 workers (32/64) 
+  Generating static pages using 11 workers (48/64) 
+(node:38432) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 error listeners added to [BoundPool]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Generating static pages using 11 workers (64/64) in 2.2s
   Finalizing page optimization ...
 
 Route (app)
 ┌ ○ /
-└ ○ /_not-found
+├ ○ /_not-found
+├ ƒ /admin
+├ ƒ /admin/association-labels
+├ ƒ /admin/association-labels/[id]/edit
+├ ƒ /admin/association-labels/new
+├ ƒ /admin/contact-types
+├ ƒ /admin/contact-types/[id]/edit
+├ ƒ /admin/contact-types/new
+├ ƒ /admin/cost-codes
+├ ƒ /admin/cost-codes/[id]/edit
+├ ƒ /admin/cost-codes/new
+├ ƒ /admin/expertise-tags
+├ ƒ /admin/expertise-tags/[id]/edit
+├ ƒ /admin/expertise-tags/new
+├ ƒ /admin/inductions/generic/builder
+├ ƒ /admin/insurance-types
+├ ƒ /admin/insurance-types/[id]/edit
+├ ƒ /admin/insurance-types/new
+├ ƒ /admin/payment-terms
+├ ƒ /admin/payment-terms/[id]/edit
+├ ƒ /admin/payment-terms/new
+├ ƒ /admin/thresholds
+├ ƒ /admin/thresholds/new
+├ ƒ /admin/users
+├ ƒ /admin/users/[id]/edit
+├ ƒ /api/design/cron/expiry
+├ ƒ /api/design/cron/rss-poller
+├ ƒ /api/design/cron/url-fetcher
+├ ƒ /api/design/seed-rss
+├ ƒ /api/estimating/seed-trades
+├ ƒ /api/induction-chat
+├ ƒ /api/leads/[id]/cost-plan
+├ ƒ /api/leads/[id]/cost-plan/lines
+├ ƒ /api/leads/[id]/cost-plan/lines/[lineId]
+├ ƒ /api/leads/[id]/cost-plan/lines/[lineId]/quantities
+├ ƒ /api/leads/[id]/cost-plan/summary
+├ ƒ /crm/companies
+├ ƒ /crm/companies/[id]
+├ ƒ /crm/companies/[id]/contacts/[ccId]/edit
+├ ƒ /crm/companies/[id]/edit
+├ ƒ /crm/companies/new
+├ ƒ /crm/contacts
+├ ƒ /crm/contacts/[id]
+├ ƒ /crm/contacts/[id]/edit
+├ ƒ /crm/contacts/new
+├ ƒ /dashboard
+├ ƒ /design
+├ ƒ /design/chatbot
+├ ƒ /design/chatbot/[id]
+├ ƒ /design/generator
+├ ƒ /design/settings
+├ ƒ /design/settings/approvals
+├ ƒ /design/sources
+├ ƒ /design/sources/[id]
+├ ƒ /design/sources/new
+├ ƒ /design/trends
+├ ƒ /design/trends/submit
+├ ƒ /hazards
+├ ƒ /incidents
+├ ƒ /inductions
+├ ƒ /inductions/[id]
+├ ƒ /inductions/new
+├ ƒ /inspections
+├ ƒ /leads
+├ ƒ /leads/[id]
+├ ƒ /leads/[id]/analysis
+├ ƒ /leads/[id]/cost-plan
+├ ƒ /leads/[id]/dashboard
+├ ƒ /leads/[id]/insights
+├ ƒ /leads/[id]/lockaway
+├ ƒ /leads/[id]/options
+├ ƒ /leads/[id]/reports
+├ ƒ /leads/[id]/scope-library
+├ ƒ /leads/[id]/settings
+├ ƒ /leads/[id]/trade-letting
+├ ƒ /onboarding
+├ ƒ /organisations
+├ ƒ /organisations/[id]
+├ ƒ /organisations/[id]/workers
+├ ƒ /permits
+├ ƒ /portal/dashboard
+├ ƒ /portal/documents
+├ ƒ /portal/insurance
+├ ƒ /portal/login
+├ ƒ /portal/register/[token]
+├ ƒ /portal/sign-out
+├ ƒ /portal/workers
+├ ƒ /projects
+├ ƒ /projects/[id]
+├ ƒ /projects/[id]/attendance
+├ ƒ /projects/[id]/edit
+├ ƒ /projects/[id]/induction
+├ ƒ /projects/[id]/induction/builder
+├ ƒ /projects/[id]/induction/swms-questions
+├ ƒ /projects/[id]/subcontractors/[orgId]/swms
+├ ƒ /register/[inviteToken]
+├ ƒ /register/[inviteToken]/confirmed
+├ ƒ /sign-in/[[...sign-in]]
+├ ƒ /sign-up/[[...sign-up]]
+├ ƒ /site/[projectToken]
+├ ƒ /site/[projectToken]/confirmed
+├ ƒ /subcontractors
+├ ƒ /subcontractors/[id]
+├ ƒ /subcontractors/[id]/documents
+├ ƒ /subcontractors/new
+├ ƒ /supervisor
+├ ○ /unauthorized
+├ ƒ /worker/dashboard
+├ ƒ /worker/inductions
+├ ƒ /worker/login
+└ ƒ /worker/profile
 
 
 ƒ Proxy (Middleware)
 
-○  (Static)  prerendered as static content
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
 

@@ -21,6 +21,7 @@ const pool = new Pool({ connectionString });
 // Fixed IDs — preserve these forever
 const SEED_ORGANISATION_ID = "a1000000-0000-0000-0000-000000000001";
 const SEED_USER_ID = "b2000000-0000-0000-0000-000000000001";
+const SEED_USER2_ID = "b2000000-0000-0000-0000-000000000002";
 const TEST_PROJECT_ID = "9b64a2a7-f8fe-4b51-8c44-d5f550e35a3c";
 
 // ─── Cost Codes from R2SA-216_CostCodesAlllExcel.xls ───────────────────────
@@ -213,6 +214,51 @@ async function seed() {
       );
       if (result.rowCount && result.rowCount > 0) thresholdCount++;
     }
+
+    // ── Sprint 13 ──────────────────────────────────────────────────────────────
+
+    // 8. Update Bernard Fernandez — role to DIRECTOR, set permissions (exec preset)
+    const execPermissions = JSON.stringify({
+      modules: { admin: 'full', finance: 'full', estimating: 'full', crm: 'full', delivery: 'full', safety: 'full', marketing: 'full' },
+      maf: {
+        subcontract_award: { state: 'approve', limit: 0 },
+        supplier_order: { state: 'approve', limit: 0 },
+        subcontract_variation: { state: 'approve', limit: 0 },
+        subcontract_claim: { state: 'approve', limit: 0 },
+        client_variation: { state: 'approve', limit: 0 },
+        head_contract: { state: 'approve', limit: 0 },
+        tender_submission: { state: 'approve', limit: 0 },
+      },
+    });
+    await client.query(
+      `UPDATE projects.users SET role = 'DIRECTOR', permissions = $1::jsonb, gmail_connected = false, updated_at = NOW() WHERE id = $2`,
+      [execPermissions, SEED_USER_ID]
+    );
+
+    // 9. Upsert Michelle Vieira — SALES_EXEC_ADMIN
+    const salesPreset = JSON.stringify({
+      modules: { admin: 'none', finance: 'none', estimating: 'none', crm: 'read', delivery: 'read', safety: 'own', marketing: 'read' },
+      maf: {
+        subcontract_award: { state: 'none', limit: 0 },
+        supplier_order: { state: 'none', limit: 0 },
+        subcontract_variation: { state: 'none', limit: 0 },
+        subcontract_claim: { state: 'none', limit: 0 },
+        client_variation: { state: 'none', limit: 0 },
+        head_contract: { state: 'none', limit: 0 },
+        tender_submission: { state: 'none', limit: 0 },
+      },
+    });
+    await client.query(
+      `INSERT INTO projects.users
+         (id, organisation_id, clerk_id, first_name, last_name, email, role, is_active, gmail_connected, permissions, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, true, false, $8::jsonb, NOW(), NOW())
+       ON CONFLICT (id) DO UPDATE SET
+         role = EXCLUDED.role,
+         permissions = EXCLUDED.permissions,
+         gmail_connected = false,
+         updated_at = NOW()`,
+      [SEED_USER2_ID, SEED_ORGANISATION_ID, 'seed_michelle_placeholder', 'Michelle', 'Vieira', 'mvieira@agero.com.au', 'SALES_EXEC_ADMIN', salesPreset]
+    );
 
     await client.query("COMMIT");
 

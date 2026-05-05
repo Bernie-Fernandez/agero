@@ -3,6 +3,7 @@ import { prisma, ProjectStatus } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { createAuditLog } from '@/lib/audit';
 
 const VALID_STATUSES = Object.values(ProjectStatus);
 
@@ -26,7 +27,7 @@ export async function createProject(formData: FormData) {
   const startDateRaw = (formData.get('startDate') as string)?.trim();
   const endDateRaw = (formData.get('endDate') as string)?.trim();
 
-  await prisma.project.create({
+  const project = await prisma.project.create({
     data: {
       organisationId: user.organisationId,
       createdById: user.id,
@@ -41,12 +42,13 @@ export async function createProject(formData: FormData) {
     },
   });
 
+  await createAuditLog({ userId: user.id, action: 'CREATE', entity: 'Project', entityId: project.id });
   revalidatePath('/projects');
   redirect('/projects');
 }
 
 export async function updateProject(id: string, formData: FormData) {
-  await requireAppUser();
+  const user = await requireAppUser();
 
   const name = (formData.get('name') as string)?.trim();
   if (!name) redirect(`/projects/${id}/edit?error=missing-name`);
@@ -74,6 +76,7 @@ export async function updateProject(id: string, formData: FormData) {
     },
   });
 
+  await createAuditLog({ userId: user.id, action: 'UPDATE', entity: 'Project', entityId: id });
   revalidatePath(`/projects/${id}`);
   revalidatePath('/projects');
   redirect(`/projects/${id}`);

@@ -5,6 +5,7 @@ import { requireAppUser, canEdit } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createStorageAdminClient } from "@/lib/supabase/server";
+import { createAuditLog } from "@/lib/audit";
 
 const VALID_TYPES = ["SUBCONTRACTOR", "CLIENT", "CONSULTANT", "SUPPLIER"] as const;
 
@@ -333,6 +334,7 @@ export async function createCompany(formData: FormData) {
     await prisma.subcontractorProfile.create({ data: { companyId: company.id } });
   }
 
+  await createAuditLog({ userId: user.id, action: 'CREATE', entity: 'Company', entityId: company.id });
   revalidatePath("/crm/companies");
   redirect(`/crm/companies/${company.id}`);
 }
@@ -340,7 +342,7 @@ export async function createCompany(formData: FormData) {
 // ─── Update ──────────────────────────────────────────────────────────────────
 
 export async function updateCompany(id: string, formData: FormData) {
-  await requireAppUser();
+  const user = await requireAppUser();
 
   const name = (formData.get("name") as string)?.trim();
   if (!name) redirect(`/crm/companies/${id}/edit?error=missing-name`);
@@ -435,6 +437,7 @@ export async function updateCompany(id: string, formData: FormData) {
     await prisma.subcontractorProfile.create({ data: { companyId: id } });
   }
 
+  await createAuditLog({ userId: user.id, action: 'UPDATE', entity: 'Company', entityId: id });
   revalidatePath("/crm/companies");
   revalidatePath(`/crm/companies/${id}`);
   redirect(`/crm/companies/${id}`);
@@ -478,6 +481,7 @@ export async function unblacklistCompany(id: string) {
 export async function deleteCompany(id: string) {
   const user = await requireAppUser();
   if (user.role !== "DIRECTOR") redirect("/unauthorized");
+  await createAuditLog({ userId: user.id, action: 'DELETE', entity: 'Company', entityId: id });
   await prisma.company.delete({ where: { id } });
   revalidatePath("/crm/companies");
   redirect("/crm/companies");

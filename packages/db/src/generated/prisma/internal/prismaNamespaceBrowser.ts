@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Organisation: 'Organisation',
   User: 'User',
+  AuditLog: 'AuditLog',
+  UserTraining: 'UserTraining',
   Project: 'Project',
   ProjectSubcontractor: 'ProjectSubcontractor',
   Company: 'Company',
@@ -115,7 +117,43 @@ export const ModelName = {
   ImsMeetingAttendee: 'ImsMeetingAttendee',
   ImsAction: 'ImsAction',
   ImsClientSurvey: 'ImsClientSurvey',
-  ImsSupplierPurchase: 'ImsSupplierPurchase'
+  ImsSupplierPurchase: 'ImsSupplierPurchase',
+  DesignSource: 'DesignSource',
+  DesignSourceVersion: 'DesignSourceVersion',
+  DesignSettingGlobal: 'DesignSettingGlobal',
+  DesignSettingGlobalAudit: 'DesignSettingGlobalAudit',
+  DesignSettingNonGlobal: 'DesignSettingNonGlobal',
+  DesignSettingNonGlobalProposal: 'DesignSettingNonGlobalProposal',
+  DesignExpiryConfig: 'DesignExpiryConfig',
+  DesignRssFeed: 'DesignRssFeed',
+  DesignMonitoredUrl: 'DesignMonitoredUrl',
+  DesignTrendItem: 'DesignTrendItem',
+  DesignChatbotSession: 'DesignChatbotSession',
+  DesignChatbotMessage: 'DesignChatbotMessage',
+  Estimate: 'Estimate',
+  EstimateArea: 'EstimateArea',
+  EstimateScenario: 'EstimateScenario',
+  EstimateTradeSection: 'EstimateTradeSection',
+  EstimateLine: 'EstimateLine',
+  EstimateLineQuantity: 'EstimateLineQuantity',
+  EstimateOption: 'EstimateOption',
+  EstimateOptionLine: 'EstimateOptionLine',
+  EstimateLockaway: 'EstimateLockaway',
+  EstimateLockawayLine: 'EstimateLockawayLine',
+  EstimateInsightTag: 'EstimateInsightTag',
+  EstimateLineTag: 'EstimateLineTag',
+  TradePackage: 'TradePackage',
+  TradeQuote: 'TradeQuote',
+  EstimateSnapshot: 'EstimateSnapshot',
+  ScopeLibraryItem: 'ScopeLibraryItem',
+  EstimateLineScopeAttachment: 'EstimateLineScopeAttachment',
+  MonthEndStatus: 'MonthEndStatus',
+  XeroConnection: 'XeroConnection',
+  FinanceProject: 'FinanceProject',
+  XeroPnL: 'XeroPnL',
+  XeroBankBalance: 'XeroBankBalance',
+  AnnualBudget: 'AnnualBudget',
+  SecuredForecast: 'SecuredForecast'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -163,11 +201,70 @@ export const UserScalarFieldEnum = {
   role: 'role',
   isActive: 'isActive',
   avatarUrl: 'avatarUrl',
+  initials: 'initials',
+  signatureUrl: 'signatureUrl',
+  phone: 'phone',
+  employmentType: 'employmentType',
+  startDate: 'startDate',
+  normalRate: 'normalRate',
+  overtimeRate: 'overtimeRate',
+  contractUrl: 'contractUrl',
+  contractReviewDate: 'contractReviewDate',
+  probationEndDate: 'probationEndDate',
+  hrNotes: 'hrNotes',
+  safetyInductionNo: 'safetyInductionNo',
+  safetyLevel: 'safetyLevel',
+  safetyExpiry: 'safetyExpiry',
+  licenceNo: 'licenceNo',
+  licenceType: 'licenceType',
+  licenceExpiry: 'licenceExpiry',
+  whiteCardNo: 'whiteCardNo',
+  whiteCardExpiry: 'whiteCardExpiry',
+  nokName: 'nokName',
+  nokRelationship: 'nokRelationship',
+  nokPhone: 'nokPhone',
+  nok2Name: 'nok2Name',
+  nok2Relationship: 'nok2Relationship',
+  nok2Phone: 'nok2Phone',
+  medicalNotes: 'medicalNotes',
+  gmailConnected: 'gmailConnected',
+  gmailEmail: 'gmailEmail',
+  permissions: 'permissions',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entity: 'entity',
+  entityId: 'entityId',
+  projectId: 'projectId',
+  detail: 'detail',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt'
+} as const
+
+export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const UserTrainingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  trainingName: 'trainingName',
+  completedDate: 'completedDate',
+  expiryDate: 'expiryDate',
+  certificateUrl: 'certificateUrl',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserTrainingScalarFieldEnum = (typeof UserTrainingScalarFieldEnum)[keyof typeof UserTrainingScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {
@@ -1357,12 +1454,623 @@ export const ImsSupplierPurchaseScalarFieldEnum = {
 export type ImsSupplierPurchaseScalarFieldEnum = (typeof ImsSupplierPurchaseScalarFieldEnum)[keyof typeof ImsSupplierPurchaseScalarFieldEnum]
 
 
+export const DesignSourceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  type: 'type',
+  category: 'category',
+  industryTag: 'industryTag',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  url: 'url',
+  fetchedContent: 'fetchedContent',
+  status: 'status',
+  isActive: 'isActive',
+  expiryDate: 'expiryDate',
+  expiryReminderSent: 'expiryReminderSent',
+  notes: 'notes',
+  versionNumber: 'versionNumber',
+  submittedById: 'submittedById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSourceScalarFieldEnum = (typeof DesignSourceScalarFieldEnum)[keyof typeof DesignSourceScalarFieldEnum]
+
+
+export const DesignSourceVersionScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  versionNumber: 'versionNumber',
+  title: 'title',
+  notes: 'notes',
+  filePath: 'filePath',
+  url: 'url',
+  isActive: 'isActive',
+  changeSummary: 'changeSummary',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSourceVersionScalarFieldEnum = (typeof DesignSourceVersionScalarFieldEnum)[keyof typeof DesignSourceVersionScalarFieldEnum]
+
+
+export const DesignSettingGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingGlobalScalarFieldEnum = (typeof DesignSettingGlobalScalarFieldEnum)[keyof typeof DesignSettingGlobalScalarFieldEnum]
+
+
+export const DesignSettingGlobalAuditScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  previousValue: 'previousValue',
+  newValue: 'newValue',
+  reason: 'reason',
+  changedById: 'changedById',
+  changedAt: 'changedAt'
+} as const
+
+export type DesignSettingGlobalAuditScalarFieldEnum = (typeof DesignSettingGlobalAuditScalarFieldEnum)[keyof typeof DesignSettingGlobalAuditScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  key: 'key',
+  label: 'label',
+  value: 'value',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  expiryDate: 'expiryDate',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignSettingNonGlobalScalarFieldEnum = (typeof DesignSettingNonGlobalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalScalarFieldEnum]
+
+
+export const DesignSettingNonGlobalProposalScalarFieldEnum = {
+  id: 'id',
+  settingId: 'settingId',
+  organisationId: 'organisationId',
+  proposedKey: 'proposedKey',
+  proposedLabel: 'proposedLabel',
+  proposedValue: 'proposedValue',
+  reason: 'reason',
+  status: 'status',
+  proposedById: 'proposedById',
+  reviewedById: 'reviewedById',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignSettingNonGlobalProposalScalarFieldEnum = (typeof DesignSettingNonGlobalProposalScalarFieldEnum)[keyof typeof DesignSettingNonGlobalProposalScalarFieldEnum]
+
+
+export const DesignExpiryConfigScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  defaultExpiryMonths: 'defaultExpiryMonths',
+  reminderDaysBefore: 'reminderDaysBefore',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignExpiryConfigScalarFieldEnum = (typeof DesignExpiryConfigScalarFieldEnum)[keyof typeof DesignExpiryConfigScalarFieldEnum]
+
+
+export const DesignRssFeedScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignRssFeedScalarFieldEnum = (typeof DesignRssFeedScalarFieldEnum)[keyof typeof DesignRssFeedScalarFieldEnum]
+
+
+export const DesignMonitoredUrlScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  url: 'url',
+  fetchSchedule: 'fetchSchedule',
+  isActive: 'isActive',
+  lastFetchedAt: 'lastFetchedAt',
+  lastContentHash: 'lastContentHash',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignMonitoredUrlScalarFieldEnum = (typeof DesignMonitoredUrlScalarFieldEnum)[keyof typeof DesignMonitoredUrlScalarFieldEnum]
+
+
+export const DesignTrendItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  title: 'title',
+  sourceName: 'sourceName',
+  sourceType: 'sourceType',
+  url: 'url',
+  excerpt: 'excerpt',
+  engagementScore: 'engagementScore',
+  publishedAt: 'publishedAt',
+  fetchedAt: 'fetchedAt',
+  status: 'status',
+  rssFeedId: 'rssFeedId',
+  monitoredUrlId: 'monitoredUrlId',
+  submittedById: 'submittedById',
+  addedToSourceId: 'addedToSourceId',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignTrendItemScalarFieldEnum = (typeof DesignTrendItemScalarFieldEnum)[keyof typeof DesignTrendItemScalarFieldEnum]
+
+
+export const DesignChatbotSessionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  userId: 'userId',
+  title: 'title',
+  summary: 'summary',
+  sourceId: 'sourceId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DesignChatbotSessionScalarFieldEnum = (typeof DesignChatbotSessionScalarFieldEnum)[keyof typeof DesignChatbotSessionScalarFieldEnum]
+
+
+export const DesignChatbotMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type DesignChatbotMessageScalarFieldEnum = (typeof DesignChatbotMessageScalarFieldEnum)[keyof typeof DesignChatbotMessageScalarFieldEnum]
+
+
+export const EstimateScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  leadNumber: 'leadNumber',
+  title: 'title',
+  clientId: 'clientId',
+  status: 'status',
+  pipelineStage: 'pipelineStage',
+  confidencePct: 'confidencePct',
+  hubspotDealId: 'hubspotDealId',
+  addressStreet: 'addressStreet',
+  addressSuburb: 'addressSuburb',
+  addressState: 'addressState',
+  addressPostcode: 'addressPostcode',
+  jobType: 'jobType',
+  floorAreaM2: 'floorAreaM2',
+  estimatorId: 'estimatorId',
+  revenueCostCodeId: 'revenueCostCodeId',
+  targetGpPct: 'targetGpPct',
+  minGpPct: 'minGpPct',
+  defaultMarkupPct: 'defaultMarkupPct',
+  costRecoveryPct: 'costRecoveryPct',
+  budgetCoverageTarget: 'budgetCoverageTarget',
+  declaredMarginDefaultPct: 'declaredMarginDefaultPct',
+  tradePackageHighPct: 'tradePackageHighPct',
+  tradePackageMedPct: 'tradePackageMedPct',
+  tradePackageLowPct: 'tradePackageLowPct',
+  marketEvalHighPct: 'marketEvalHighPct',
+  marketEvalMedPct: 'marketEvalMedPct',
+  marketEvalLowPct: 'marketEvalLowPct',
+  currencySymbol: 'currencySymbol',
+  costPerUnitLabel: 'costPerUnitLabel',
+  taxCodeName: 'taxCodeName',
+  notes: 'notes',
+  convertedToProjectId: 'convertedToProjectId',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateScalarFieldEnum = (typeof EstimateScalarFieldEnum)[keyof typeof EstimateScalarFieldEnum]
+
+
+export const EstimateAreaScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type EstimateAreaScalarFieldEnum = (typeof EstimateAreaScalarFieldEnum)[keyof typeof EstimateAreaScalarFieldEnum]
+
+
+export const EstimateScenarioScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  isBase: 'isBase',
+  order: 'order'
+} as const
+
+export type EstimateScenarioScalarFieldEnum = (typeof EstimateScenarioScalarFieldEnum)[keyof typeof EstimateScenarioScalarFieldEnum]
+
+
+export const EstimateTradeSectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  estimateId: 'estimateId',
+  name: 'name',
+  code: 'code',
+  order: 'order'
+} as const
+
+export type EstimateTradeSectionScalarFieldEnum = (typeof EstimateTradeSectionScalarFieldEnum)[keyof typeof EstimateTradeSectionScalarFieldEnum]
+
+
+export const EstimateLineScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  areaId: 'areaId',
+  scenarioId: 'scenarioId',
+  tradeSectionId: 'tradeSectionId',
+  description: 'description',
+  lineStructure: 'lineStructure',
+  lineCode: 'lineCode',
+  type: 'type',
+  quantity: 'quantity',
+  unit: 'unit',
+  rate: 'rate',
+  total: 'total',
+  markupPct: 'markupPct',
+  isRisk: 'isRisk',
+  isOption: 'isOption',
+  isPcSum: 'isPcSum',
+  isLockaway: 'isLockaway',
+  isHidden: 'isHidden',
+  declaredMarginPct: 'declaredMarginPct',
+  tradePackageId: 'tradePackageId',
+  notes: 'notes',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateLineScalarFieldEnum = (typeof EstimateLineScalarFieldEnum)[keyof typeof EstimateLineScalarFieldEnum]
+
+
+export const EstimateLineQuantityScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  label: 'label',
+  quantity: 'quantity'
+} as const
+
+export type EstimateLineQuantityScalarFieldEnum = (typeof EstimateLineQuantityScalarFieldEnum)[keyof typeof EstimateLineQuantityScalarFieldEnum]
+
+
+export const EstimateOptionScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  description: 'description',
+  totalCost: 'totalCost'
+} as const
+
+export type EstimateOptionScalarFieldEnum = (typeof EstimateOptionScalarFieldEnum)[keyof typeof EstimateOptionScalarFieldEnum]
+
+
+export const EstimateOptionLineScalarFieldEnum = {
+  id: 'id',
+  optionId: 'optionId',
+  lineId: 'lineId'
+} as const
+
+export type EstimateOptionLineScalarFieldEnum = (typeof EstimateOptionLineScalarFieldEnum)[keyof typeof EstimateOptionLineScalarFieldEnum]
+
+
+export const EstimateLockawayScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  notes: 'notes'
+} as const
+
+export type EstimateLockawayScalarFieldEnum = (typeof EstimateLockawayScalarFieldEnum)[keyof typeof EstimateLockawayScalarFieldEnum]
+
+
+export const EstimateLockawayLineScalarFieldEnum = {
+  id: 'id',
+  lockawayId: 'lockawayId',
+  lineId: 'lineId'
+} as const
+
+export type EstimateLockawayLineScalarFieldEnum = (typeof EstimateLockawayLineScalarFieldEnum)[keyof typeof EstimateLockawayLineScalarFieldEnum]
+
+
+export const EstimateInsightTagScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  name: 'name',
+  color: 'color'
+} as const
+
+export type EstimateInsightTagScalarFieldEnum = (typeof EstimateInsightTagScalarFieldEnum)[keyof typeof EstimateInsightTagScalarFieldEnum]
+
+
+export const EstimateLineTagScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  tagId: 'tagId'
+} as const
+
+export type EstimateLineTagScalarFieldEnum = (typeof EstimateLineTagScalarFieldEnum)[keyof typeof EstimateLineTagScalarFieldEnum]
+
+
+export const TradePackageScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  tradeSectionId: 'tradeSectionId',
+  name: 'name',
+  scope: 'scope',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TradePackageScalarFieldEnum = (typeof TradePackageScalarFieldEnum)[keyof typeof TradePackageScalarFieldEnum]
+
+
+export const TradeQuoteScalarFieldEnum = {
+  id: 'id',
+  packageId: 'packageId',
+  subcontractorId: 'subcontractorId',
+  amount: 'amount',
+  status: 'status',
+  receivedAt: 'receivedAt',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type TradeQuoteScalarFieldEnum = (typeof TradeQuoteScalarFieldEnum)[keyof typeof TradeQuoteScalarFieldEnum]
+
+
+export const EstimateSnapshotScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  label: 'label',
+  snapshotData: 'snapshotData',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimateSnapshotScalarFieldEnum = (typeof EstimateSnapshotScalarFieldEnum)[keyof typeof EstimateSnapshotScalarFieldEnum]
+
+
+export const ScopeLibraryItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  tradeSectionId: 'tradeSectionId',
+  description: 'description',
+  unit: 'unit',
+  notes: 'notes',
+  isGlobal: 'isGlobal',
+  createdAt: 'createdAt'
+} as const
+
+export type ScopeLibraryItemScalarFieldEnum = (typeof ScopeLibraryItemScalarFieldEnum)[keyof typeof ScopeLibraryItemScalarFieldEnum]
+
+
+export const EstimateLineScopeAttachmentScalarFieldEnum = {
+  id: 'id',
+  lineId: 'lineId',
+  scopeLibraryItemId: 'scopeLibraryItemId'
+} as const
+
+export type EstimateLineScopeAttachmentScalarFieldEnum = (typeof EstimateLineScopeAttachmentScalarFieldEnum)[keyof typeof EstimateLineScopeAttachmentScalarFieldEnum]
+
+
+export const MonthEndStatusScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  markedReadyById: 'markedReadyById',
+  markedReadyAt: 'markedReadyAt',
+  xeroSyncedAt: 'xeroSyncedAt',
+  lockedAt: 'lockedAt',
+  notes: 'notes',
+  dataVerifiedAt: 'dataVerifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MonthEndStatusScalarFieldEnum = (typeof MonthEndStatusScalarFieldEnum)[keyof typeof MonthEndStatusScalarFieldEnum]
+
+
+export const XeroConnectionScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  xeroTenantId: 'xeroTenantId',
+  xeroOrgName: 'xeroOrgName',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  tokenExpiry: 'tokenExpiry',
+  connectedById: 'connectedById',
+  connectedAt: 'connectedAt',
+  lastUsedAt: 'lastUsedAt',
+  status: 'status'
+} as const
+
+export type XeroConnectionScalarFieldEnum = (typeof XeroConnectionScalarFieldEnum)[keyof typeof XeroConnectionScalarFieldEnum]
+
+
+export const FinanceProjectScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  practicalCompletionDate: 'practicalCompletionDate',
+  forecastContractValue: 'forecastContractValue',
+  forecastFinalCosts: 'forecastFinalCosts',
+  riskAndOpportunity: 'riskAndOpportunity',
+  forecastMarginDollars: 'forecastMarginDollars',
+  forecastMarginPercent: 'forecastMarginPercent',
+  targetExitMarginPercent: 'targetExitMarginPercent',
+  claimTotal: 'claimTotal',
+  claimRetention: 'claimRetention',
+  subClaims: 'subClaims',
+  subRetention: 'subRetention',
+  creditors: 'creditors',
+  labour: 'labour',
+  totalCost: 'totalCost',
+  wip: 'wip',
+  notes: 'notes',
+  dataVerified: 'dataVerified',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinanceProjectScalarFieldEnum = (typeof FinanceProjectScalarFieldEnum)[keyof typeof FinanceProjectScalarFieldEnum]
+
+
+export const XeroPnLScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  revenue: 'revenue',
+  costOfSales: 'costOfSales',
+  directLabour: 'directLabour',
+  grossProfit: 'grossProfit',
+  indirectExpenses: 'indirectExpenses',
+  indirectLabour: 'indirectLabour',
+  marketingExpenses: 'marketingExpenses',
+  netProfitBeforeTax: 'netProfitBeforeTax',
+  debtorDays: 'debtorDays',
+  creditorDays: 'creditorDays',
+  tradeDebtors: 'tradeDebtors',
+  tradeCreditors: 'tradeCreditors',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroPnLScalarFieldEnum = (typeof XeroPnLScalarFieldEnum)[keyof typeof XeroPnLScalarFieldEnum]
+
+
+export const XeroBankBalanceScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  accountName: 'accountName',
+  accountCode: 'accountCode',
+  balance: 'balance',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroBankBalanceScalarFieldEnum = (typeof XeroBankBalanceScalarFieldEnum)[keyof typeof XeroBankBalanceScalarFieldEnum]
+
+
+export const AnnualBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  category: 'category',
+  lineItem: 'lineItem',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  total: 'total',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AnnualBudgetScalarFieldEnum = (typeof AnnualBudgetScalarFieldEnum)[keyof typeof AnnualBudgetScalarFieldEnum]
+
+
+export const SecuredForecastScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  financialYear: 'financialYear',
+  jobNumber: 'jobNumber',
+  projectName: 'projectName',
+  status: 'status',
+  marginPercent: 'marginPercent',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYearWip: 'nextYearWip',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SecuredForecastScalarFieldEnum = (typeof SecuredForecastScalarFieldEnum)[keyof typeof SecuredForecastScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const JsonNullValueInput = {

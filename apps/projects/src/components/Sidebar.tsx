@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { getUserBookmarks } from '@/lib/bookmarks/actions';
+import { getDesignPendingApprovalCount } from '@/app/(staff)/design/settings/actions';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -77,6 +78,7 @@ function Section({
   label,
   children,
   defaultOpen = false,
+  forceOpen = false,
   stubbed = false,
   onItemClick,
 }: {
@@ -84,20 +86,22 @@ function Section({
   label: string;
   children?: React.ReactNode;
   defaultOpen?: boolean;
+  forceOpen?: boolean;
   stubbed?: boolean;
   onItemClick?: () => void;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  const [open, setOpen] = useState(defaultOpen || forceOpen);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    if (forceOpen) { setOpen(true); return; }
     const stored = localStorage.getItem(`agero_sidebar_${sectionKey}`);
     if (stored !== null) setOpen(stored === 'true');
     setHydrated(true);
-  }, [sectionKey]);
+  }, [sectionKey, forceOpen]);
 
   function toggle() {
-    if (stubbed) return;
+    if (stubbed || forceOpen) return;
     const next = !open;
     setOpen(next);
     if (hydrated) localStorage.setItem(`agero_sidebar_${sectionKey}`, String(next));
@@ -188,6 +192,108 @@ function BookmarksFlyout({ onClose }: { onClose: () => void }) {
   );
 }
 
+// ── GroupLabel ────────────────────────────────────────────────────────────────
+
+function GroupLabel({ label }: { label: string }) {
+  return (
+    <div className="px-3 pt-4 pb-1">
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">{label}</span>
+    </div>
+  );
+}
+
+// ── LockedItem ────────────────────────────────────────────────────────────────
+
+function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
+  return (
+    <div
+      title="Coming in Design Studio 2"
+      className={`flex items-center justify-between px-3 py-[7px] text-[13px] rounded-md cursor-default select-none ${depth === 1 ? 'pl-6' : depth === 2 ? 'pl-9' : ''} text-zinc-300`}
+    >
+      <span>{label}</span>
+      <svg className="w-3.5 h-3.5 text-zinc-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    </div>
+  );
+}
+
+// ── FinanceSubItems ───────────────────────────────────────────────────────────
+
+function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
+  const onSettings = pathname.startsWith('/finance/settings');
+
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <StubbedItem label="Dashboard" depth={1} />
+      <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
+      <StubbedItem label="Planned Work" depth={1} />
+      <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
+      <StubbedItem label="Reports" depth={1} />
+      <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />
+      <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
+        <NavLink href="/finance/settings/xero" label="Xero Connection" depth={2} onItemClick={onItemClick} />
+        <NavLink href="/finance/settings/month-status" label="Month Status" depth={2} onItemClick={onItemClick} />
+        <StubbedItem label="S-Curves" depth={2} />
+        <StubbedItem label="HubSpot Sync" depth={2} />
+        <StubbedItem label="Deal Defaults" depth={2} />
+      </Section>
+    </div>
+  );
+}
+
+// ── EstimatingSubItems ────────────────────────────────────────────────────────
+
+function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
+  const leadMatch = pathname.match(/^\/leads\/([^/]+)/);
+  const leadId = leadMatch?.[1];
+
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
+      {leadId && (
+        <div className="ml-1 mt-0.5 space-y-0.5 border-l border-zinc-100 pl-2">
+          <NavLink href={`/leads/${leadId}/dashboard`} label="Dashboard" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/cost-plan`} label="Cost Plan" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/analysis`} label="Analysis" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/options`} label="Options & R&O" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/lockaway`} label="Lockaway" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/insights`} label="Insights" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/scope-library`} label="Scope Library" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/trade-letting`} label="Trade Letting" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/reports`} label="Reports" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/settings`} label="Settings" depth={2} onItemClick={onItemClick} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── DesignSubItems ────────────────────────────────────────────────────────────
+
+function DesignSubItems({ onItemClick, pendingApprovals }: { onItemClick?: () => void; pendingApprovals: number }) {
+  return (
+    <div className="ml-1 mt-0.5 space-y-0.5">
+      <NavLink href="/design" label="Home" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/design/sources" label="Sources" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/design/trends" label="Trends" depth={1} onItemClick={onItemClick} />
+      <div className="relative">
+        <NavLink href="/design/settings" label="Settings" depth={1} onItemClick={onItemClick} />
+        {pendingApprovals > 0 && (
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none pointer-events-none">
+            {pendingApprovals}
+          </span>
+        )}
+      </div>
+      <NavLink href="/design/chatbot" label="Chatbot" depth={1} onItemClick={onItemClick} />
+      <LockedItem label="Design Generator" depth={1} />
+    </div>
+  );
+}
+
 // ── HseqSubItems ──────────────────────────────────────────────────────────────
 
 function HseqSubItems({ onItemClick }: { onItemClick?: () => void }) {
@@ -223,7 +329,14 @@ function ProjectSubItems({ onItemClick }: { onItemClick?: () => void }) {
 // ── SidebarNav ───────────────────────────────────────────────────────────────
 
 function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
+  const pathname = usePathname();
   const [bookmarksOpen, setBookmarksOpen] = useState(false);
+  const [pendingApprovals, setPendingApprovals] = useState(0);
+  const onLeadsRoute = pathname.startsWith('/leads');
+
+  useEffect(() => {
+    getDesignPendingApprovalCount().then(setPendingApprovals).catch(() => {});
+  }, []);
 
   return (
     <nav className="py-3 px-2 space-y-0.5 relative">
@@ -243,30 +356,37 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
         {bookmarksOpen && <BookmarksFlyout onClose={() => setBookmarksOpen(false)} />}
       </div>
 
-      {/* CRM */}
+      {/* ── Project (Direct) ─────────────────────────────────────────────── */}
+      <GroupLabel label="Project" />
+
+      <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
+        <ProjectSubItems onItemClick={onItemClick} />
+      </Section>
+
+      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
+        <EstimatingSubItems onItemClick={onItemClick} />
+      </Section>
+
+      <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
+        <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
+      </Section>
+
+      {/* ── Business (Indirect) ──────────────────────────────────────────── */}
+      <GroupLabel label="Business" />
+
       <Section sectionKey="crm" label="CRM" defaultOpen={true} onItemClick={onItemClick}>
         <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
         <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
       </Section>
 
-      {/* Projects */}
-      <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
-        <ProjectSubItems onItemClick={onItemClick} />
+      <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>
+        <FinanceSubItems onItemClick={onItemClick} />
       </Section>
 
-      {/* Estimating — stubbed */}
-      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} stubbed />
-
-      {/* Finance — stubbed */}
-      <Section sectionKey="finance" label="Finance" defaultOpen={false} stubbed />
-
-      {/* Reporting — stubbed */}
       <Section sectionKey="reporting" label="Reporting" defaultOpen={false} stubbed />
 
-      {/* Marketing — stubbed */}
       <Section sectionKey="marketing" label="Marketing" defaultOpen={false} stubbed />
 
-      {/* Admin */}
       <Section sectionKey="admin" label="Admin" defaultOpen={false} onItemClick={onItemClick}>
         <NavLink href="/admin" label="Settings" depth={1} onItemClick={onItemClick} />
       </Section>

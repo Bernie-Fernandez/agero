@@ -13,7 +13,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  schemas  = ["projects", "ims"]
+  schemas  = ["projects", "ims", "design"]
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,13 +22,38 @@ datasource db {
 
 enum UserRole {
   DIRECTOR
+  GENERAL_MANAGER
   CONSTRUCTION_MANAGER
-  PROJECT_MANAGER
-  CONTRACTS_ADMINISTRATOR
-  ESTIMATOR
-  SITE_MANAGER
+  PROJECT_DIRECTOR
   FINANCIAL_CONTROLLER
-  ADMINISTRATOR
+  SENIOR_CONSULTANT_PRECON
+  SENIOR_ESTIMATOR
+  SENIOR_CONTRACTS_ADMIN
+  PROJECT_MANAGER_DELIVERY
+  PROJECT_MANAGER_FRONTEND
+  SITE_MANAGER
+  CONSULTANT_PRECON
+  ESTIMATOR
+  CONTRACTS_ADMIN
+  BUSINESS_DEVELOPER
+  BOOKKEEPER
+  HUMAN_RESOURCES
+  JUNIOR_PM
+  SITE_SUPERVISOR
+  PRECON_ASSOCIATE
+  BID_MANAGER
+  PROJECT_COORDINATOR
+  PROJECT_ADMIN
+  ASST_SITE_SUPERVISOR
+  SALES_EXEC_ADMIN
+
+  @@schema("projects")
+}
+
+enum EmploymentType {
+  SALARIED
+  CONTRACT
+  WAGES
 
   @@schema("projects")
 }
@@ -230,6 +255,23 @@ model Organisation {
   permits            Permit[]
   emergencyContacts  EmergencyContact[]
   safetyInspections  SafetyInspection[]
+  designSources      DesignSource[]
+  designGlobalSettings DesignSettingGlobal[]
+  designNonGlobalSettings DesignSettingNonGlobal[]
+  designNonGlobalProposals DesignSettingNonGlobalProposal[]
+  designExpiryConfig DesignExpiryConfig?
+  designRssFeeds     DesignRssFeed[]
+  designMonitoredUrls DesignMonitoredUrl[]
+  designTrendItems   DesignTrendItem[]
+  designChatbotSessions DesignChatbotSession[]
+  estimates             Estimate[]
+  financeProjects       FinanceProject[]
+  xeroPnl               XeroPnL[]
+  xeroBankBalances      XeroBankBalance[]
+  annualBudgets         AnnualBudget[]
+  securedForecasts      SecuredForecast[]
+  monthEndStatuses      MonthEndStatus[]
+  xeroConnection        XeroConnection?
 
   @@map("organisations")
   @@schema("projects")
@@ -248,6 +290,35 @@ model User {
   role           UserRole
   isActive       Boolean  @default(true) @map("is_active")
   avatarUrl      String?  @map("avatar_url")
+  initials       String?
+  signatureUrl   String?  @map("signature_url")
+  phone          String?
+  employmentType EmploymentType? @map("employment_type")
+  startDate      DateTime?       @map("start_date")
+  normalRate     Decimal?        @map("normal_rate") @db.Decimal(10, 2)
+  overtimeRate   Decimal?        @map("overtime_rate") @db.Decimal(10, 2)
+  contractUrl    String?         @map("contract_url")
+  contractReviewDate DateTime?   @map("contract_review_date")
+  probationEndDate   DateTime?   @map("probation_end_date")
+  hrNotes        String?         @map("hr_notes") @db.Text
+  safetyInductionNo String?      @map("safety_induction_no")
+  safetyLevel    String?         @map("safety_level")
+  safetyExpiry   DateTime?       @map("safety_expiry")
+  licenceNo      String?         @map("licence_no")
+  licenceType    String?         @map("licence_type")
+  licenceExpiry  DateTime?       @map("licence_expiry")
+  whiteCardNo    String?         @map("white_card_no")
+  whiteCardExpiry DateTime?      @map("white_card_expiry")
+  nokName        String?         @map("nok_name")
+  nokRelationship String?        @map("nok_relationship")
+  nokPhone       String?         @map("nok_phone")
+  nok2Name       String?         @map("nok2_name")
+  nok2Relationship String?       @map("nok2_relationship")
+  nok2Phone      String?         @map("nok2_phone")
+  medicalNotes   String?         @map("medical_notes") @db.Text
+  gmailConnected Boolean         @default(false) @map("gmail_connected")
+  gmailEmail     String?         @map("gmail_email")
+  permissions    Json?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -272,9 +343,65 @@ model User {
   raisedHazards        Hazard[]               @relation("HazardRaisedBy")
   issuedPermits        Permit[]               @relation("PermitIssuedBy")
   conductedInspections SafetyInspection[]     @relation("InspectionConductedBy")
+  designSourcesSubmitted  DesignSource[]      @relation("DesignSourceSubmittedBy")
+  designSourcesApproved   DesignSource[]      @relation("DesignSourceApprovedBy")
+  designSourceVersions    DesignSourceVersion[] @relation("DesignSourceVersionChangedBy")
+  designGlobalSettingsCreated DesignSettingGlobal[] @relation("DesignGlobalSettingCreatedBy")
+  designGlobalAudits      DesignSettingGlobalAudit[] @relation("DesignGlobalAuditChangedBy")
+  designNonGlobalSettingsCreated DesignSettingNonGlobal[] @relation("DesignNonGlobalSettingCreatedBy")
+  designProposalsProposed DesignSettingNonGlobalProposal[] @relation("DesignProposalProposedBy")
+  designProposalsReviewed DesignSettingNonGlobalProposal[] @relation("DesignProposalReviewedBy")
+  designExpiryConfigUpdated DesignExpiryConfig[] @relation("DesignExpiryConfigUpdatedBy")
+  designRssFeedsCreated   DesignRssFeed[]      @relation("DesignRssFeedCreatedBy")
+  designMonitoredUrlsCreated DesignMonitoredUrl[] @relation("DesignMonitoredUrlCreatedBy")
+  designTrendItemsSubmitted DesignTrendItem[]  @relation("DesignTrendItemSubmittedBy")
+  designChatbotSessions   DesignChatbotSession[] @relation("DesignChatbotSessionUser")
+  createdEstimates        Estimate[]             @relation("EstimateCreatedBy")
+  estimatesAsEstimator    Estimate[]             @relation("EstimateEstimator")
+  estimateSnapshots       EstimateSnapshot[]     @relation("EstimateSnapshotCreatedBy")
+  auditLogs               AuditLog[]             @relation("AuditLogUser")
+  trainingRecords         UserTraining[]
+  monthEndStatusesMarked  MonthEndStatus[]       @relation("MonthEndStatusMarkedBy")
+  xeroConnectionsMade     XeroConnection[]       @relation("XeroConnectionConnectedBy")
 
   @@index([organisationId])
   @@map("users")
+  @@schema("projects")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  user      User     @relation("AuditLogUser", fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  entity    String
+  entityId  String?  @map("entity_id")
+  projectId String?  @map("project_id")
+  detail    Json?
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([entity])
+  @@index([createdAt])
+  @@map("audit_logs")
+  @@schema("projects")
+}
+
+model UserTraining {
+  id             String    @id @default(uuid()) @db.Uuid
+  userId         String    @map("user_id") @db.Uuid
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trainingName   String    @map("training_name")
+  completedDate  DateTime? @map("completed_date")
+  expiryDate     DateTime? @map("expiry_date")
+  certificateUrl String?   @map("certificate_url")
+  notes          String?   @db.Text
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("user_training")
   @@schema("projects")
 }
 
@@ -325,6 +452,7 @@ model Project {
   permits             Permit[]
   emergencyContacts   EmergencyContact[]
   safetyInspections   SafetyInspection[]
+  convertedFromEstimates Estimate[]          @relation("EstimateConvertedProject")
 
   @@index([organisationId])
   @@map("projects")
@@ -421,6 +549,8 @@ model Company {
   expertiseTags       CompanyExpertiseTag[]
   projectAssignments  ProjectSubcontractor[]
   portalUsers         PortalUser[]
+  clientEstimates     Estimate[]            @relation("EstimateClient")
+  tradeQuotes         TradeQuote[]          @relation("TradeQuoteSubcontractor")
 
   @@index([organisationId])
   @@map("companies")
@@ -510,7 +640,8 @@ model CostCode {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  companyTrades CompanyTrade[]
+  companyTrades    CompanyTrade[]
+  revenueEstimates Estimate[] @relation("EstimateRevenueCostCode")
 
   @@index([organisationId])
   @@map("cost_codes")
@@ -1972,4 +2103,943 @@ model ImsSupplierPurchase {
 
   @@map("ims_supplier_purchases")
   @@schema("ims")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DESIGN STUDIO — design schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum DesignSourceType {
+  GLOBAL
+  NON_GLOBAL
+
+  @@schema("design")
+}
+
+enum DesignSourceCategory {
+  COMPLIANCE
+  PAST_PROJECT
+  DESIGN_RULES
+  RESEARCH_TRENDS
+  CLIENT_BRIEF
+  CHATBOT_LEARNING
+  OTHER
+
+  @@schema("design")
+}
+
+enum DesignIndustryTag {
+  OFFICE
+  RETAIL
+  HOSPITALITY
+  EDUCATION
+  HEALTHCARE
+  MIXED
+  ALL
+
+  @@schema("design")
+}
+
+enum DesignFileType {
+  PDF
+  DOCX
+
+  @@schema("design")
+}
+
+enum DesignSourceStatus {
+  PENDING_APPROVAL
+  PENDING_INDEX
+  INDEXED
+  FAILED
+  EXPIRED
+
+  @@schema("design")
+}
+
+enum DesignSettingStatus {
+  ACTIVE
+  INACTIVE
+
+  @@schema("design")
+}
+
+enum DesignProposalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+
+  @@schema("design")
+}
+
+enum DesignFetchSchedule {
+  MANUAL
+  DAILY
+  WEEKLY
+
+  @@schema("design")
+}
+
+enum DesignTrendSourceType {
+  RSS
+  MONITORED_URL
+  MANUAL
+
+  @@schema("design")
+}
+
+enum DesignTrendStatus {
+  NEW
+  ADDED_TO_SOURCES
+  DISMISSED
+
+  @@schema("design")
+}
+
+enum DesignChatRole {
+  USER
+  ASSISTANT
+
+  @@schema("design")
+}
+
+model DesignSource {
+  id             String               @id @default(cuid())
+  organisationId String               @map("organisation_id") @db.Uuid
+  organisation   Organisation         @relation(fields: [organisationId], references: [id])
+  title          String
+  type           DesignSourceType
+  category       DesignSourceCategory
+  industryTag    DesignIndustryTag    @map("industry_tag")
+  filePath       String?              @map("file_path")
+  fileType       DesignFileType?      @map("file_type")
+  url            String?
+  fetchedContent String?              @map("fetched_content") @db.Text
+  status         DesignSourceStatus   @default(PENDING_INDEX)
+  isActive       Boolean              @default(true) @map("is_active")
+  expiryDate     DateTime             @map("expiry_date")
+  expiryReminderSent Boolean          @default(false) @map("expiry_reminder_sent")
+  notes          String?              @db.Text
+  versionNumber  Int                  @default(1) @map("version_number")
+  submittedById  String               @map("submitted_by_id") @db.Uuid
+  submittedBy    User                 @relation("DesignSourceSubmittedBy", fields: [submittedById], references: [id])
+  approvedById   String?              @map("approved_by_id") @db.Uuid
+  approvedBy     User?                @relation("DesignSourceApprovedBy", fields: [approvedById], references: [id])
+  approvedAt     DateTime?            @map("approved_at")
+  rejectionReason String?             @map("rejection_reason") @db.Text
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+
+  versions       DesignSourceVersion[]
+  trendItems     DesignTrendItem[]     @relation("TrendItemSource")
+  chatbotSessions DesignChatbotSession[]
+
+  @@map("design_source")
+  @@schema("design")
+}
+
+model DesignSourceVersion {
+  id            String       @id @default(cuid())
+  sourceId      String       @map("source_id")
+  source        DesignSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  versionNumber Int          @map("version_number")
+  title         String
+  notes         String?      @db.Text
+  filePath      String?      @map("file_path")
+  url           String?
+  isActive      Boolean      @map("is_active")
+  changeSummary String?      @map("change_summary") @db.Text
+  changedById   String       @map("changed_by_id") @db.Uuid
+  changedBy     User         @relation("DesignSourceVersionChangedBy", fields: [changedById], references: [id])
+  changedAt     DateTime     @default(now()) @map("changed_at")
+
+  @@map("design_source_version")
+  @@schema("design")
+}
+
+model DesignSettingGlobal {
+  id             String    @id @default(cuid())
+  organisationId String    @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  key            String
+  label          String
+  value          String    @db.Text
+  description    String?   @db.Text
+  category       String
+  createdById    String    @map("created_by_id") @db.Uuid
+  createdBy      User      @relation("DesignGlobalSettingCreatedBy", fields: [createdById], references: [id])
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  auditLogs      DesignSettingGlobalAudit[]
+
+  @@unique([organisationId, key])
+  @@map("design_setting_global")
+  @@schema("design")
+}
+
+model DesignSettingGlobalAudit {
+  id            String              @id @default(cuid())
+  settingId     String              @map("setting_id")
+  setting       DesignSettingGlobal @relation(fields: [settingId], references: [id], onDelete: Cascade)
+  previousValue String              @map("previous_value") @db.Text
+  newValue      String              @map("new_value") @db.Text
+  reason        String?             @db.Text
+  changedById   String              @map("changed_by_id") @db.Uuid
+  changedBy     User                @relation("DesignGlobalAuditChangedBy", fields: [changedById], references: [id])
+  changedAt     DateTime            @default(now()) @map("changed_at")
+
+  @@map("design_setting_global_audit")
+  @@schema("design")
+}
+
+model DesignSettingNonGlobal {
+  id             String              @id @default(cuid())
+  organisationId String              @map("organisation_id") @db.Uuid
+  organisation   Organisation        @relation(fields: [organisationId], references: [id])
+  key            String
+  label          String
+  value          String              @db.Text
+  description    String?             @db.Text
+  category       String
+  status         DesignSettingStatus @default(ACTIVE)
+  expiryDate     DateTime?           @map("expiry_date")
+  createdById    String              @map("created_by_id") @db.Uuid
+  createdBy      User                @relation("DesignNonGlobalSettingCreatedBy", fields: [createdById], references: [id])
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  proposals      DesignSettingNonGlobalProposal[]
+
+  @@unique([organisationId, key])
+  @@map("design_setting_nonglobal")
+  @@schema("design")
+}
+
+model DesignSettingNonGlobalProposal {
+  id              String                  @id @default(cuid())
+  settingId       String?                 @map("setting_id")
+  setting         DesignSettingNonGlobal? @relation(fields: [settingId], references: [id])
+  organisationId  String                  @map("organisation_id") @db.Uuid
+  organisation    Organisation            @relation(fields: [organisationId], references: [id])
+  proposedKey     String                  @map("proposed_key")
+  proposedLabel   String                  @map("proposed_label")
+  proposedValue   String                  @map("proposed_value") @db.Text
+  reason          String?                 @db.Text
+  status          DesignProposalStatus    @default(PENDING)
+  proposedById    String                  @map("proposed_by_id") @db.Uuid
+  proposedBy      User                    @relation("DesignProposalProposedBy", fields: [proposedById], references: [id])
+  reviewedById    String?                 @map("reviewed_by_id") @db.Uuid
+  reviewedBy      User?                   @relation("DesignProposalReviewedBy", fields: [reviewedById], references: [id])
+  reviewedAt      DateTime?               @map("reviewed_at")
+  rejectionReason String?                 @map("rejection_reason") @db.Text
+  createdAt       DateTime                @default(now()) @map("created_at")
+
+  @@map("design_setting_nonglobal_proposal")
+  @@schema("design")
+}
+
+model DesignExpiryConfig {
+  id                   String       @id @default(cuid())
+  organisationId       String       @unique @map("organisation_id") @db.Uuid
+  organisation         Organisation @relation(fields: [organisationId], references: [id])
+  defaultExpiryMonths  Int          @default(12) @map("default_expiry_months")
+  reminderDaysBefore   Int          @default(30) @map("reminder_days_before")
+  updatedById          String       @map("updated_by_id") @db.Uuid
+  updatedBy            User         @relation("DesignExpiryConfigUpdatedBy", fields: [updatedById], references: [id])
+  updatedAt            DateTime     @updatedAt @map("updated_at")
+
+  @@map("design_expiry_config")
+  @@schema("design")
+}
+
+model DesignRssFeed {
+  id            String    @id @default(cuid())
+  organisationId String   @map("organisation_id") @db.Uuid
+  organisation  Organisation @relation(fields: [organisationId], references: [id])
+  name          String
+  url           String
+  isActive      Boolean   @default(true) @map("is_active")
+  lastFetchedAt DateTime? @map("last_fetched_at")
+  createdById   String    @map("created_by_id") @db.Uuid
+  createdBy     User      @relation("DesignRssFeedCreatedBy", fields: [createdById], references: [id])
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  trendItems    DesignTrendItem[]
+
+  @@map("design_rss_feed")
+  @@schema("design")
+}
+
+model DesignMonitoredUrl {
+  id               String              @id @default(cuid())
+  organisationId   String              @map("organisation_id") @db.Uuid
+  organisation     Organisation        @relation(fields: [organisationId], references: [id])
+  name             String
+  url              String
+  fetchSchedule    DesignFetchSchedule @default(DAILY) @map("fetch_schedule")
+  isActive         Boolean             @default(true) @map("is_active")
+  lastFetchedAt    DateTime?           @map("last_fetched_at")
+  lastContentHash  String?             @map("last_content_hash")
+  createdById      String              @map("created_by_id") @db.Uuid
+  createdBy        User                @relation("DesignMonitoredUrlCreatedBy", fields: [createdById], references: [id])
+  createdAt        DateTime            @default(now()) @map("created_at")
+  updatedAt        DateTime            @updatedAt @map("updated_at")
+
+  trendItems       DesignTrendItem[]
+
+  @@map("design_monitored_url")
+  @@schema("design")
+}
+
+model DesignTrendItem {
+  id               String                @id @default(cuid())
+  organisationId   String                @map("organisation_id") @db.Uuid
+  organisation     Organisation          @relation(fields: [organisationId], references: [id])
+  title            String
+  sourceName       String                @map("source_name")
+  sourceType       DesignTrendSourceType @map("source_type")
+  url              String?
+  excerpt          String?               @db.Text
+  engagementScore  Int?                  @map("engagement_score")
+  publishedAt      DateTime?             @map("published_at")
+  fetchedAt        DateTime              @default(now()) @map("fetched_at")
+  status           DesignTrendStatus     @default(NEW)
+  rssFeedId        String?               @map("rss_feed_id")
+  rssFeed          DesignRssFeed?        @relation(fields: [rssFeedId], references: [id])
+  monitoredUrlId   String?               @map("monitored_url_id")
+  monitoredUrl     DesignMonitoredUrl?   @relation(fields: [monitoredUrlId], references: [id])
+  submittedById    String?               @map("submitted_by_id") @db.Uuid
+  submittedBy      User?                 @relation("DesignTrendItemSubmittedBy", fields: [submittedById], references: [id])
+  addedToSourceId  String?               @map("added_to_source_id")
+  addedToSource    DesignSource?         @relation("TrendItemSource", fields: [addedToSourceId], references: [id])
+  createdAt        DateTime              @default(now()) @map("created_at")
+
+  @@map("design_trend_item")
+  @@schema("design")
+}
+
+model DesignChatbotSession {
+  id             String       @id @default(cuid())
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  userId         String       @map("user_id") @db.Uuid
+  user           User         @relation("DesignChatbotSessionUser", fields: [userId], references: [id])
+  title          String?
+  summary        String?      @db.Text
+  sourceId       String?      @map("source_id")
+  source         DesignSource? @relation(fields: [sourceId], references: [id])
+  startedAt      DateTime     @default(now()) @map("started_at")
+  endedAt        DateTime?    @map("ended_at")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  messages       DesignChatbotMessage[]
+
+  @@map("design_chatbot_session")
+  @@schema("design")
+}
+
+model DesignChatbotMessage {
+  id        String                @id @default(cuid())
+  sessionId String                @map("session_id")
+  session   DesignChatbotSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      DesignChatRole
+  content   String                @db.Text
+  createdAt DateTime              @default(now()) @map("created_at")
+
+  @@map("design_chatbot_message")
+  @@schema("design")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMS — estimating (projects schema)
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum EstimateStatus {
+  DRAFT
+  ACTIVE
+  CONVERTED
+  ARCHIVED
+
+  @@schema("projects")
+}
+
+enum EstimateLineType {
+  LABOUR
+  MATERIAL
+  SUBCONTRACTOR
+  ALLOWANCE
+  PROVISIONAL_SUM
+
+  @@schema("projects")
+}
+
+enum EstimateLineStructure {
+  SECTION_HEADER
+  SUB_HEADING
+  STANDARD_LINE
+  NOTE_LINE
+  PROJECT_SUM_LINE
+
+  @@schema("projects")
+}
+
+enum QuoteStatus {
+  PENDING
+  RECEIVED
+  AWARDED
+  DECLINED
+
+  @@schema("projects")
+}
+
+enum TradeLetStatus {
+  NOT_STARTED
+  QUOTING
+  AWARDED
+  COMPLETE
+
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESTIMATING MODELS — projects schema
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Estimate {
+  id                   String         @id @default(uuid()) @db.Uuid
+  organisationId       String         @map("organisation_id") @db.Uuid
+  organisation         Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  leadNumber           String         @unique @map("lead_number")
+  title                String
+  clientId             String?        @map("client_id") @db.Uuid
+  client               Company?       @relation("EstimateClient", fields: [clientId], references: [id], onDelete: SetNull)
+  status               EstimateStatus @default(DRAFT)
+  pipelineStage        Int            @default(3) @map("pipeline_stage")
+  confidencePct        Int?           @map("confidence_pct")
+  hubspotDealId        String?        @map("hubspot_deal_id")
+  addressStreet        String?        @map("address_street")
+  addressSuburb        String?        @map("address_suburb")
+  addressState         String?        @map("address_state")
+  addressPostcode      String?        @map("address_postcode")
+  jobType              String?        @map("job_type")
+  floorAreaM2          Decimal?       @map("floor_area_m2") @db.Decimal(10, 2)
+  estimatorId          String?        @map("estimator_id") @db.Uuid
+  estimator            User?          @relation("EstimateEstimator", fields: [estimatorId], references: [id])
+  revenueCostCodeId    String?        @map("revenue_cost_code_id") @db.Uuid
+  revenueCostCode      CostCode?      @relation("EstimateRevenueCostCode", fields: [revenueCostCodeId], references: [id])
+  targetGpPct          Decimal        @default(22.50) @map("target_gp_pct") @db.Decimal(5, 2)
+  minGpPct             Decimal        @default(15.00) @map("min_gp_pct") @db.Decimal(5, 2)
+  defaultMarkupPct     Decimal        @default(48.15) @map("default_markup_pct") @db.Decimal(5, 2)
+  costRecoveryPct      Decimal        @default(10.00) @map("cost_recovery_pct") @db.Decimal(5, 2)
+  budgetCoverageTarget Decimal        @default(70.00) @map("budget_coverage_target") @db.Decimal(5, 2)
+  declaredMarginDefaultPct Decimal?   @map("declared_margin_default_pct") @db.Decimal(5, 2)
+  tradePackageHighPct  Decimal?       @map("trade_package_high_pct") @db.Decimal(5, 2)
+  tradePackageMedPct   Decimal?       @map("trade_package_med_pct") @db.Decimal(5, 2)
+  tradePackageLowPct   Decimal?       @map("trade_package_low_pct") @db.Decimal(5, 2)
+  marketEvalHighPct    Decimal?       @map("market_eval_high_pct") @db.Decimal(5, 2)
+  marketEvalMedPct     Decimal?       @map("market_eval_med_pct") @db.Decimal(5, 2)
+  marketEvalLowPct     Decimal?       @map("market_eval_low_pct") @db.Decimal(5, 2)
+  currencySymbol       String         @default("$") @map("currency_symbol")
+  costPerUnitLabel     String?        @map("cost_per_unit_label")
+  taxCodeName          String         @default("GST") @map("tax_code_name")
+  notes                String?        @db.Text
+  convertedToProjectId String?        @map("converted_to_project_id") @db.Uuid
+  convertedToProject   Project?       @relation("EstimateConvertedProject", fields: [convertedToProjectId], references: [id], onDelete: SetNull)
+  createdById          String         @map("created_by_id") @db.Uuid
+  createdBy            User           @relation("EstimateCreatedBy", fields: [createdById], references: [id])
+  createdAt            DateTime       @default(now()) @map("created_at")
+  updatedAt            DateTime       @updatedAt @map("updated_at")
+
+  areas          EstimateArea[]
+  scenarios      EstimateScenario[]
+  tradeSections  EstimateTradeSection[]
+  lines          EstimateLine[]
+  options        EstimateOption[]
+  lockaways      EstimateLockaway[]
+  insightTags    EstimateInsightTag[]
+  tradePackages  TradePackage[]
+  snapshots      EstimateSnapshot[]
+
+  @@index([organisationId])
+  @@map("estimates")
+  @@schema("projects")
+}
+
+model EstimateArea {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  order      Int      @default(0)
+
+  lines EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_areas")
+  @@schema("projects")
+}
+
+model EstimateScenario {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  isBase     Boolean  @default(false) @map("is_base")
+  order      Int      @default(0)
+
+  lines EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_scenarios")
+  @@schema("projects")
+}
+
+model EstimateTradeSection {
+  id             String    @id @default(uuid()) @db.Uuid
+  organisationId String?   @map("organisation_id") @db.Uuid
+  estimateId     String?   @map("estimate_id") @db.Uuid
+  estimate       Estimate? @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name           String
+  code           String?
+  order          Int       @default(0)
+
+  lines          EstimateLine[]
+  tradePackages  TradePackage[]
+  scopeItems     ScopeLibraryItem[]
+
+  @@index([estimateId])
+  @@map("estimate_trade_sections")
+  @@schema("projects")
+}
+
+model EstimateLine {
+  id              String               @id @default(uuid()) @db.Uuid
+  estimateId      String               @map("estimate_id") @db.Uuid
+  estimate        Estimate             @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  areaId          String?              @map("area_id") @db.Uuid
+  area            EstimateArea?        @relation(fields: [areaId], references: [id], onDelete: SetNull)
+  scenarioId      String?              @map("scenario_id") @db.Uuid
+  scenario        EstimateScenario?    @relation(fields: [scenarioId], references: [id], onDelete: SetNull)
+  tradeSectionId  String?              @map("trade_section_id") @db.Uuid
+  tradeSection    EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  description     String
+  lineStructure   EstimateLineStructure @default(STANDARD_LINE) @map("line_structure")
+  lineCode        String?              @map("line_code")
+  type            EstimateLineType     @default(MATERIAL)
+  quantity        Decimal              @default(0) @db.Decimal(14, 4)
+  unit            String?
+  rate            Decimal              @default(0) @db.Decimal(14, 4)
+  total           Decimal              @default(0) @db.Decimal(14, 2)
+  markupPct       Decimal?             @map("markup_pct") @db.Decimal(5, 2)
+  isRisk          Boolean              @default(false) @map("is_risk")
+  isOption        Boolean              @default(false) @map("is_option")
+  isPcSum         Boolean              @default(false) @map("is_pc_sum")
+  isLockaway      Boolean              @default(false) @map("is_lockaway")
+  isHidden           Boolean              @default(false) @map("is_hidden")
+  declaredMarginPct  Decimal?             @map("declared_margin_pct") @db.Decimal(5, 2)
+  tradePackageId     String?              @map("trade_package_id") @db.Uuid
+  tradePackage       TradePackage?        @relation("EstimateLinePackage", fields: [tradePackageId], references: [id], onDelete: SetNull)
+  notes              String?              @db.Text
+  order              Int                  @default(0)
+  createdAt          DateTime             @default(now()) @map("created_at")
+  updatedAt          DateTime             @updatedAt @map("updated_at")
+
+  quantities       EstimateLineQuantity[]
+  tags             EstimateLineTag[]
+  optionLines      EstimateOptionLine[]
+  lockawayLines    EstimateLockawayLine[]
+  scopeAttachments EstimateLineScopeAttachment[]
+
+  @@index([estimateId])
+  @@map("estimate_lines")
+  @@schema("projects")
+}
+
+model EstimateLineQuantity {
+  id       String       @id @default(uuid()) @db.Uuid
+  lineId   String       @map("line_id") @db.Uuid
+  line     EstimateLine @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  label    String
+  quantity Decimal      @default(0) @db.Decimal(14, 4)
+
+  @@index([lineId])
+  @@map("estimate_line_quantities")
+  @@schema("projects")
+}
+
+model EstimateOption {
+  id          String   @id @default(uuid()) @db.Uuid
+  estimateId  String   @map("estimate_id") @db.Uuid
+  estimate    Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name        String
+  description String?  @db.Text
+  totalCost   Decimal  @default(0) @map("total_cost") @db.Decimal(14, 2)
+
+  lines EstimateOptionLine[]
+
+  @@index([estimateId])
+  @@map("estimate_options")
+  @@schema("projects")
+}
+
+model EstimateOptionLine {
+  id       String         @id @default(uuid()) @db.Uuid
+  optionId String         @map("option_id") @db.Uuid
+  option   EstimateOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  lineId   String         @map("line_id") @db.Uuid
+  line     EstimateLine   @relation(fields: [lineId], references: [id], onDelete: Cascade)
+
+  @@unique([optionId, lineId])
+  @@map("estimate_option_lines")
+  @@schema("projects")
+}
+
+model EstimateLockaway {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  notes      String?  @db.Text
+
+  lines EstimateLockawayLine[]
+
+  @@index([estimateId])
+  @@map("estimate_lockaways")
+  @@schema("projects")
+}
+
+model EstimateLockawayLine {
+  id          String           @id @default(uuid()) @db.Uuid
+  lockawayId  String           @map("lockaway_id") @db.Uuid
+  lockaway    EstimateLockaway @relation(fields: [lockawayId], references: [id], onDelete: Cascade)
+  lineId      String           @map("line_id") @db.Uuid
+  line        EstimateLine     @relation(fields: [lineId], references: [id], onDelete: Cascade)
+
+  @@unique([lockawayId, lineId])
+  @@map("estimate_lockaway_lines")
+  @@schema("projects")
+}
+
+model EstimateInsightTag {
+  id         String   @id @default(uuid()) @db.Uuid
+  estimateId String   @map("estimate_id") @db.Uuid
+  estimate   Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  name       String
+  color      String   @default("#6366f1")
+
+  lineAssignments EstimateLineTag[]
+
+  @@index([estimateId])
+  @@map("estimate_insight_tags")
+  @@schema("projects")
+}
+
+model EstimateLineTag {
+  id    String             @id @default(uuid()) @db.Uuid
+  lineId String            @map("line_id") @db.Uuid
+  line   EstimateLine      @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  tagId  String            @map("tag_id") @db.Uuid
+  tag    EstimateInsightTag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([lineId, tagId])
+  @@map("estimate_line_tags")
+  @@schema("projects")
+}
+
+model TradePackage {
+  id             String               @id @default(uuid()) @db.Uuid
+  estimateId     String               @map("estimate_id") @db.Uuid
+  estimate       Estimate             @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  tradeSectionId String?              @map("trade_section_id") @db.Uuid
+  tradeSection   EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  name           String
+  scope          String?              @db.Text
+  status         TradeLetStatus       @default(NOT_STARTED)
+  createdAt      DateTime             @default(now()) @map("created_at")
+  updatedAt      DateTime             @updatedAt @map("updated_at")
+
+  quotes        TradeQuote[]
+  assignedLines EstimateLine[] @relation("EstimateLinePackage")
+
+  @@index([estimateId])
+  @@map("trade_packages")
+  @@schema("projects")
+}
+
+model TradeQuote {
+  id                String       @id @default(uuid()) @db.Uuid
+  packageId         String       @map("package_id") @db.Uuid
+  package           TradePackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  subcontractorId   String?      @map("subcontractor_id") @db.Uuid
+  subcontractor     Company?     @relation("TradeQuoteSubcontractor", fields: [subcontractorId], references: [id], onDelete: SetNull)
+  amount            Decimal?     @db.Decimal(14, 2)
+  status            QuoteStatus  @default(PENDING)
+  receivedAt        DateTime?    @map("received_at")
+  notes             String?      @db.Text
+  createdAt         DateTime     @default(now()) @map("created_at")
+
+  @@index([packageId])
+  @@map("trade_quotes")
+  @@schema("projects")
+}
+
+model EstimateSnapshot {
+  id           String   @id @default(uuid()) @db.Uuid
+  estimateId   String   @map("estimate_id") @db.Uuid
+  estimate     Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  label        String
+  snapshotData Json     @map("snapshot_data")
+  createdById  String   @map("created_by_id") @db.Uuid
+  createdBy    User     @relation("EstimateSnapshotCreatedBy", fields: [createdById], references: [id])
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([estimateId])
+  @@map("estimate_snapshots")
+  @@schema("projects")
+}
+
+model ScopeLibraryItem {
+  id             String                @id @default(uuid()) @db.Uuid
+  organisationId String                @map("organisation_id") @db.Uuid
+  tradeSectionId String?               @map("trade_section_id") @db.Uuid
+  tradeSection   EstimateTradeSection? @relation(fields: [tradeSectionId], references: [id], onDelete: SetNull)
+  description    String
+  unit           String?
+  notes          String?               @db.Text
+  isGlobal       Boolean               @default(false) @map("is_global")
+  createdAt      DateTime              @default(now()) @map("created_at")
+
+  attachments EstimateLineScopeAttachment[]
+
+  @@index([organisationId])
+  @@map("scope_library_items")
+  @@schema("projects")
+}
+
+model EstimateLineScopeAttachment {
+  id               String           @id @default(uuid()) @db.Uuid
+  lineId           String           @map("line_id") @db.Uuid
+  line             EstimateLine     @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  scopeLibraryItemId String         @map("scope_library_item_id") @db.Uuid
+  scopeItem        ScopeLibraryItem @relation(fields: [scopeLibraryItemId], references: [id], onDelete: Cascade)
+
+  @@unique([lineId, scopeLibraryItemId])
+  @@map("estimate_line_scope_attachments")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FINANCE MODULE — Sprint 8
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum MonthEndStatusEnum {
+  OPEN
+  READY
+  SYNCED
+  LOCKED
+
+  @@schema("projects")
+}
+
+enum XeroConnectionStatus {
+  CONNECTED
+  DISCONNECTED
+  ERROR
+
+  @@schema("projects")
+}
+
+enum FinanceProjectStatus {
+  AWARDED
+  BACKLOG
+  DLP
+  CLOSED
+
+  @@schema("projects")
+}
+
+model MonthEndStatus {
+  id               String             @id @default(uuid()) @db.Uuid
+  organisationId   String             @map("organisation_id") @db.Uuid
+  organisation     Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth      DateTime           @map("report_month") @db.Date
+  status           MonthEndStatusEnum @default(OPEN)
+  markedReadyById  String?            @map("marked_ready_by_id") @db.Uuid
+  markedReadyBy    User?              @relation("MonthEndStatusMarkedBy", fields: [markedReadyById], references: [id], onDelete: SetNull)
+  markedReadyAt    DateTime?          @map("marked_ready_at")
+  xeroSyncedAt     DateTime?          @map("xero_synced_at")
+  lockedAt         DateTime?          @map("locked_at")
+  notes            String?            @db.Text
+  dataVerifiedAt   DateTime?          @map("data_verified_at")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("month_end_statuses")
+  @@schema("projects")
+}
+
+model XeroConnection {
+  id              String               @id @default(uuid()) @db.Uuid
+  organisationId  String               @unique @map("organisation_id") @db.Uuid
+  organisation    Organisation         @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  xeroTenantId    String?              @map("xero_tenant_id")
+  xeroOrgName     String?              @map("xero_org_name")
+  accessToken     String               @map("access_token") @db.Text
+  refreshToken    String               @map("refresh_token") @db.Text
+  tokenExpiry     DateTime             @map("token_expiry")
+  connectedById   String               @map("connected_by_id") @db.Uuid
+  connectedBy     User                 @relation("XeroConnectionConnectedBy", fields: [connectedById], references: [id])
+  connectedAt     DateTime             @default(now()) @map("connected_at")
+  lastUsedAt      DateTime?            @map("last_used_at")
+  status          XeroConnectionStatus @default(CONNECTED)
+
+  @@map("xero_connections")
+  @@schema("projects")
+}
+
+model FinanceProject {
+  id                    String               @id @default(uuid()) @db.Uuid
+  organisationId        String               @map("organisation_id") @db.Uuid
+  organisation          Organisation         @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth           DateTime             @map("report_month") @db.Date
+  jobNumber             String               @map("job_number")
+  projectName           String               @map("project_name")
+  status                FinanceProjectStatus @default(AWARDED)
+  practicalCompletionDate DateTime?          @map("practical_completion_date") @db.Date
+  forecastContractValue Decimal              @default(0) @map("forecast_contract_value") @db.Decimal(14, 2)
+  forecastFinalCosts    Decimal              @default(0) @map("forecast_final_costs") @db.Decimal(14, 2)
+  riskAndOpportunity    Decimal              @default(0) @map("risk_and_opportunity") @db.Decimal(14, 2)
+  forecastMarginDollars Decimal              @default(0) @map("forecast_margin_dollars") @db.Decimal(14, 2)
+  forecastMarginPercent Decimal              @default(0) @map("forecast_margin_percent") @db.Decimal(7, 4)
+  targetExitMarginPercent Decimal?           @map("target_exit_margin_percent") @db.Decimal(7, 4)
+  claimTotal            Decimal              @default(0) @map("claim_total") @db.Decimal(14, 2)
+  claimRetention        Decimal              @default(0) @map("claim_retention") @db.Decimal(14, 2)
+  subClaims             Decimal              @default(0) @map("sub_claims") @db.Decimal(14, 2)
+  subRetention          Decimal              @default(0) @map("sub_retention") @db.Decimal(14, 2)
+  creditors             Decimal              @default(0) @map("creditors") @db.Decimal(14, 2)
+  labour                Decimal              @default(0) @map("labour") @db.Decimal(14, 2)
+  totalCost             Decimal              @default(0) @map("total_cost") @db.Decimal(14, 2)
+  wip                   Decimal              @default(0) @map("wip") @db.Decimal(14, 2)
+  notes                 String?              @db.Text
+  dataVerified          Boolean              @default(false) @map("data_verified")
+  deletedAt             DateTime?            @map("deleted_at")
+  createdAt             DateTime             @default(now()) @map("created_at")
+  updatedAt             DateTime             @updatedAt @map("updated_at")
+
+  securedForecasts SecuredForecast[]
+
+  @@index([organisationId, reportMonth])
+  @@map("finance_projects")
+  @@schema("projects")
+}
+
+model XeroPnL {
+  id                  String       @id @default(uuid()) @db.Uuid
+  organisationId      String       @map("organisation_id") @db.Uuid
+  organisation        Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth         DateTime     @map("report_month") @db.Date
+  revenue             Decimal      @default(0) @db.Decimal(14, 2)
+  costOfSales         Decimal      @default(0) @map("cost_of_sales") @db.Decimal(14, 2)
+  directLabour        Decimal      @default(0) @map("direct_labour") @db.Decimal(14, 2)
+  grossProfit         Decimal      @default(0) @map("gross_profit") @db.Decimal(14, 2)
+  indirectExpenses    Decimal      @default(0) @map("indirect_expenses") @db.Decimal(14, 2)
+  indirectLabour      Decimal      @default(0) @map("indirect_labour") @db.Decimal(14, 2)
+  marketingExpenses   Decimal      @default(0) @map("marketing_expenses") @db.Decimal(14, 2)
+  netProfitBeforeTax  Decimal      @default(0) @map("net_profit_before_tax") @db.Decimal(14, 2)
+  debtorDays          Decimal?     @map("debtor_days") @db.Decimal(7, 2)
+  creditorDays        Decimal?     @map("creditor_days") @db.Decimal(7, 2)
+  tradeDebtors        Decimal?     @map("trade_debtors") @db.Decimal(14, 2)
+  tradeCreditors      Decimal?     @map("trade_creditors") @db.Decimal(14, 2)
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("xero_pnl")
+  @@schema("projects")
+}
+
+model XeroBankBalance {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth    DateTime     @map("report_month") @db.Date
+  accountName    String       @map("account_name")
+  accountCode    String?      @map("account_code")
+  balance        Decimal      @default(0) @db.Decimal(14, 2)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth, accountName])
+  @@index([organisationId, reportMonth])
+  @@map("xero_bank_balances")
+  @@schema("projects")
+}
+
+model AnnualBudget {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financialYear  Int          @map("financial_year")
+  category       String
+  lineItem       String       @map("line_item")
+  jul            Decimal      @default(0) @db.Decimal(14, 2)
+  aug            Decimal      @default(0) @db.Decimal(14, 2)
+  sep            Decimal      @default(0) @db.Decimal(14, 2)
+  oct            Decimal      @default(0) @db.Decimal(14, 2)
+  nov            Decimal      @default(0) @db.Decimal(14, 2)
+  dec            Decimal      @default(0) @db.Decimal(14, 2)
+  jan            Decimal      @default(0) @db.Decimal(14, 2)
+  feb            Decimal      @default(0) @db.Decimal(14, 2)
+  mar            Decimal      @default(0) @db.Decimal(14, 2)
+  apr            Decimal      @default(0) @db.Decimal(14, 2)
+  may            Decimal      @default(0) @db.Decimal(14, 2)
+  jun            Decimal      @default(0) @db.Decimal(14, 2)
+  total          Decimal      @default(0) @db.Decimal(14, 2)
+  displayOrder   Int          @default(0) @map("display_order")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId, financialYear])
+  @@map("annual_budgets")
+  @@schema("projects")
+}
+
+model SecuredForecast {
+  id               String         @id @default(uuid()) @db.Uuid
+  organisationId   String         @map("organisation_id") @db.Uuid
+  organisation     Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financeProjectId String?        @map("finance_project_id") @db.Uuid
+  financeProject   FinanceProject? @relation(fields: [financeProjectId], references: [id], onDelete: SetNull)
+  financialYear    Int            @map("financial_year")
+  jobNumber        String         @map("job_number")
+  projectName      String         @map("project_name")
+  status           String
+  marginPercent    Decimal        @default(0) @map("margin_percent") @db.Decimal(7, 4)
+  jul              Decimal        @default(0) @db.Decimal(14, 2)
+  aug              Decimal        @default(0) @db.Decimal(14, 2)
+  sep              Decimal        @default(0) @db.Decimal(14, 2)
+  oct              Decimal        @default(0) @db.Decimal(14, 2)
+  nov              Decimal        @default(0) @db.Decimal(14, 2)
+  dec              Decimal        @default(0) @db.Decimal(14, 2)
+  jan              Decimal        @default(0) @db.Decimal(14, 2)
+  feb              Decimal        @default(0) @db.Decimal(14, 2)
+  mar              Decimal        @default(0) @db.Decimal(14, 2)
+  apr              Decimal        @default(0) @db.Decimal(14, 2)
+  may              Decimal        @default(0) @db.Decimal(14, 2)
+  jun              Decimal        @default(0) @db.Decimal(14, 2)
+  nextYearWip      Decimal        @default(0) @map("next_year_wip") @db.Decimal(14, 2)
+  total            Decimal        @default(0) @db.Decimal(14, 2)
+  createdAt        DateTime       @default(now()) @map("created_at")
+  updatedAt        DateTime       @updatedAt @map("updated_at")
+
+  @@unique([organisationId, financialYear, jobNumber])
+  @@index([organisationId, financialYear])
+  @@map("secured_forecasts")
+  @@schema("projects")
 }

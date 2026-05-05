@@ -11,16 +11,42 @@
 
 export const UserRole = {
   DIRECTOR: 'DIRECTOR',
+  GENERAL_MANAGER: 'GENERAL_MANAGER',
   CONSTRUCTION_MANAGER: 'CONSTRUCTION_MANAGER',
-  PROJECT_MANAGER: 'PROJECT_MANAGER',
-  CONTRACTS_ADMINISTRATOR: 'CONTRACTS_ADMINISTRATOR',
-  ESTIMATOR: 'ESTIMATOR',
-  SITE_MANAGER: 'SITE_MANAGER',
+  PROJECT_DIRECTOR: 'PROJECT_DIRECTOR',
   FINANCIAL_CONTROLLER: 'FINANCIAL_CONTROLLER',
-  ADMINISTRATOR: 'ADMINISTRATOR'
+  SENIOR_CONSULTANT_PRECON: 'SENIOR_CONSULTANT_PRECON',
+  SENIOR_ESTIMATOR: 'SENIOR_ESTIMATOR',
+  SENIOR_CONTRACTS_ADMIN: 'SENIOR_CONTRACTS_ADMIN',
+  PROJECT_MANAGER_DELIVERY: 'PROJECT_MANAGER_DELIVERY',
+  PROJECT_MANAGER_FRONTEND: 'PROJECT_MANAGER_FRONTEND',
+  SITE_MANAGER: 'SITE_MANAGER',
+  CONSULTANT_PRECON: 'CONSULTANT_PRECON',
+  ESTIMATOR: 'ESTIMATOR',
+  CONTRACTS_ADMIN: 'CONTRACTS_ADMIN',
+  BUSINESS_DEVELOPER: 'BUSINESS_DEVELOPER',
+  BOOKKEEPER: 'BOOKKEEPER',
+  HUMAN_RESOURCES: 'HUMAN_RESOURCES',
+  JUNIOR_PM: 'JUNIOR_PM',
+  SITE_SUPERVISOR: 'SITE_SUPERVISOR',
+  PRECON_ASSOCIATE: 'PRECON_ASSOCIATE',
+  BID_MANAGER: 'BID_MANAGER',
+  PROJECT_COORDINATOR: 'PROJECT_COORDINATOR',
+  PROJECT_ADMIN: 'PROJECT_ADMIN',
+  ASST_SITE_SUPERVISOR: 'ASST_SITE_SUPERVISOR',
+  SALES_EXEC_ADMIN: 'SALES_EXEC_ADMIN'
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const EmploymentType = {
+  SALARIED: 'SALARIED',
+  CONTRACT: 'CONTRACT',
+  WAGES: 'WAGES'
+} as const
+
+export type EmploymentType = (typeof EmploymentType)[keyof typeof EmploymentType]
 
 
 export const ProjectStatus = {
@@ -398,3 +424,189 @@ export const ImsPoStatus = {
 } as const
 
 export type ImsPoStatus = (typeof ImsPoStatus)[keyof typeof ImsPoStatus]
+
+
+export const DesignSourceType = {
+  GLOBAL: 'GLOBAL',
+  NON_GLOBAL: 'NON_GLOBAL'
+} as const
+
+export type DesignSourceType = (typeof DesignSourceType)[keyof typeof DesignSourceType]
+
+
+export const DesignSourceCategory = {
+  COMPLIANCE: 'COMPLIANCE',
+  PAST_PROJECT: 'PAST_PROJECT',
+  DESIGN_RULES: 'DESIGN_RULES',
+  RESEARCH_TRENDS: 'RESEARCH_TRENDS',
+  CLIENT_BRIEF: 'CLIENT_BRIEF',
+  CHATBOT_LEARNING: 'CHATBOT_LEARNING',
+  OTHER: 'OTHER'
+} as const
+
+export type DesignSourceCategory = (typeof DesignSourceCategory)[keyof typeof DesignSourceCategory]
+
+
+export const DesignIndustryTag = {
+  OFFICE: 'OFFICE',
+  RETAIL: 'RETAIL',
+  HOSPITALITY: 'HOSPITALITY',
+  EDUCATION: 'EDUCATION',
+  HEALTHCARE: 'HEALTHCARE',
+  MIXED: 'MIXED',
+  ALL: 'ALL'
+} as const
+
+export type DesignIndustryTag = (typeof DesignIndustryTag)[keyof typeof DesignIndustryTag]
+
+
+export const DesignFileType = {
+  PDF: 'PDF',
+  DOCX: 'DOCX'
+} as const
+
+export type DesignFileType = (typeof DesignFileType)[keyof typeof DesignFileType]
+
+
+export const DesignSourceStatus = {
+  PENDING_APPROVAL: 'PENDING_APPROVAL',
+  PENDING_INDEX: 'PENDING_INDEX',
+  INDEXED: 'INDEXED',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type DesignSourceStatus = (typeof DesignSourceStatus)[keyof typeof DesignSourceStatus]
+
+
+export const DesignSettingStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type DesignSettingStatus = (typeof DesignSettingStatus)[keyof typeof DesignSettingStatus]
+
+
+export const DesignProposalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type DesignProposalStatus = (typeof DesignProposalStatus)[keyof typeof DesignProposalStatus]
+
+
+export const DesignFetchSchedule = {
+  MANUAL: 'MANUAL',
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY'
+} as const
+
+export type DesignFetchSchedule = (typeof DesignFetchSchedule)[keyof typeof DesignFetchSchedule]
+
+
+export const DesignTrendSourceType = {
+  RSS: 'RSS',
+  MONITORED_URL: 'MONITORED_URL',
+  MANUAL: 'MANUAL'
+} as const
+
+export type DesignTrendSourceType = (typeof DesignTrendSourceType)[keyof typeof DesignTrendSourceType]
+
+
+export const DesignTrendStatus = {
+  NEW: 'NEW',
+  ADDED_TO_SOURCES: 'ADDED_TO_SOURCES',
+  DISMISSED: 'DISMISSED'
+} as const
+
+export type DesignTrendStatus = (typeof DesignTrendStatus)[keyof typeof DesignTrendStatus]
+
+
+export const DesignChatRole = {
+  USER: 'USER',
+  ASSISTANT: 'ASSISTANT'
+} as const
+
+export type DesignChatRole = (typeof DesignChatRole)[keyof typeof DesignChatRole]
+
+
+export const EstimateStatus = {
+  DRAFT: 'DRAFT',
+  ACTIVE: 'ACTIVE',
+  CONVERTED: 'CONVERTED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type EstimateStatus = (typeof EstimateStatus)[keyof typeof EstimateStatus]
+
+
+export const EstimateLineType = {
+  LABOUR: 'LABOUR',
+  MATERIAL: 'MATERIAL',
+  SUBCONTRACTOR: 'SUBCONTRACTOR',
+  ALLOWANCE: 'ALLOWANCE',
+  PROVISIONAL_SUM: 'PROVISIONAL_SUM'
+} as const
+
+export type EstimateLineType = (typeof EstimateLineType)[keyof typeof EstimateLineType]
+
+
+export const EstimateLineStructure = {
+  SECTION_HEADER: 'SECTION_HEADER',
+  SUB_HEADING: 'SUB_HEADING',
+  STANDARD_LINE: 'STANDARD_LINE',
+  NOTE_LINE: 'NOTE_LINE',
+  PROJECT_SUM_LINE: 'PROJECT_SUM_LINE'
+} as const
+
+export type EstimateLineStructure = (typeof EstimateLineStructure)[keyof typeof EstimateLineStructure]
+
+
+export const QuoteStatus = {
+  PENDING: 'PENDING',
+  RECEIVED: 'RECEIVED',
+  AWARDED: 'AWARDED',
+  DECLINED: 'DECLINED'
+} as const
+
+export type QuoteStatus = (typeof QuoteStatus)[keyof typeof QuoteStatus]
+
+
+export const TradeLetStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  QUOTING: 'QUOTING',
+  AWARDED: 'AWARDED',
+  COMPLETE: 'COMPLETE'
+} as const
+
+export type TradeLetStatus = (typeof TradeLetStatus)[keyof typeof TradeLetStatus]
+
+
+export const MonthEndStatusEnum = {
+  OPEN: 'OPEN',
+  READY: 'READY',
+  SYNCED: 'SYNCED',
+  LOCKED: 'LOCKED'
+} as const
+
+export type MonthEndStatusEnum = (typeof MonthEndStatusEnum)[keyof typeof MonthEndStatusEnum]
+
+
+export const XeroConnectionStatus = {
+  CONNECTED: 'CONNECTED',
+  DISCONNECTED: 'DISCONNECTED',
+  ERROR: 'ERROR'
+} as const
+
+export type XeroConnectionStatus = (typeof XeroConnectionStatus)[keyof typeof XeroConnectionStatus]
+
+
+export const FinanceProjectStatus = {
+  AWARDED: 'AWARDED',
+  BACKLOG: 'BACKLOG',
+  DLP: 'DLP',
+  CLOSED: 'CLOSED'
+} as const
+
+export type FinanceProjectStatus = (typeof FinanceProjectStatus)[keyof typeof FinanceProjectStatus]

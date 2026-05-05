@@ -52,6 +52,16 @@ export type Organisation = Prisma.OrganisationModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model UserTraining
+ * 
+ */
+export type UserTraining = Prisma.UserTrainingModel
+/**
  * Model Project
  * 
  */
@@ -366,3 +376,183 @@ export type ImsClientSurvey = Prisma.ImsClientSurveyModel
  * 
  */
 export type ImsSupplierPurchase = Prisma.ImsSupplierPurchaseModel
+/**
+ * Model DesignSource
+ * 
+ */
+export type DesignSource = Prisma.DesignSourceModel
+/**
+ * Model DesignSourceVersion
+ * 
+ */
+export type DesignSourceVersion = Prisma.DesignSourceVersionModel
+/**
+ * Model DesignSettingGlobal
+ * 
+ */
+export type DesignSettingGlobal = Prisma.DesignSettingGlobalModel
+/**
+ * Model DesignSettingGlobalAudit
+ * 
+ */
+export type DesignSettingGlobalAudit = Prisma.DesignSettingGlobalAuditModel
+/**
+ * Model DesignSettingNonGlobal
+ * 
+ */
+export type DesignSettingNonGlobal = Prisma.DesignSettingNonGlobalModel
+/**
+ * Model DesignSettingNonGlobalProposal
+ * 
+ */
+export type DesignSettingNonGlobalProposal = Prisma.DesignSettingNonGlobalProposalModel
+/**
+ * Model DesignExpiryConfig
+ * 
+ */
+export type DesignExpiryConfig = Prisma.DesignExpiryConfigModel
+/**
+ * Model DesignRssFeed
+ * 
+ */
+export type DesignRssFeed = Prisma.DesignRssFeedModel
+/**
+ * Model DesignMonitoredUrl
+ * 
+ */
+export type DesignMonitoredUrl = Prisma.DesignMonitoredUrlModel
+/**
+ * Model DesignTrendItem
+ * 
+ */
+export type DesignTrendItem = Prisma.DesignTrendItemModel
+/**
+ * Model DesignChatbotSession
+ * 
+ */
+export type DesignChatbotSession = Prisma.DesignChatbotSessionModel
+/**
+ * Model DesignChatbotMessage
+ * 
+ */
+export type DesignChatbotMessage = Prisma.DesignChatbotMessageModel
+/**
+ * Model Estimate
+ * 
+ */
+export type Estimate = Prisma.EstimateModel
+/**
+ * Model EstimateArea
+ * 
+ */
+export type EstimateArea = Prisma.EstimateAreaModel
+/**
+ * Model EstimateScenario
+ * 
+ */
+export type EstimateScenario = Prisma.EstimateScenarioModel
+/**
+ * Model EstimateTradeSection
+ * 
+ */
+export type EstimateTradeSection = Prisma.EstimateTradeSectionModel
+/**
+ * Model EstimateLine
+ * 
+ */
+export type EstimateLine = Prisma.EstimateLineModel
+/**
+ * Model EstimateLineQuantity
+ * 
+ */
+export type EstimateLineQuantity = Prisma.EstimateLineQuantityModel
+/**
+ * Model EstimateOption
+ * 
+ */
+export type EstimateOption = Prisma.EstimateOptionModel
+/**
+ * Model EstimateOptionLine
+ * 
+ */
+export type EstimateOptionLine = Prisma.EstimateOptionLineModel
+/**
+ * Model EstimateLockaway
+ * 
+ */
+export type EstimateLockaway = Prisma.EstimateLockawayModel
+/**
+ * Model EstimateLockawayLine
+ * 
+ */
+export type EstimateLockawayLine = Prisma.EstimateLockawayLineModel
+/**
+ * Model EstimateInsightTag
+ * 
+ */
+export type EstimateInsightTag = Prisma.EstimateInsightTagModel
+/**
+ * Model EstimateLineTag
+ * 
+ */
+export type EstimateLineTag = Prisma.EstimateLineTagModel
+/**
+ * Model TradePackage
+ * 
+ */
+export type TradePackage = Prisma.TradePackageModel
+/**
+ * Model TradeQuote
+ * 
+ */
+export type TradeQuote = Prisma.TradeQuoteModel
+/**
+ * Model EstimateSnapshot
+ * 
+ */
+export type EstimateSnapshot = Prisma.EstimateSnapshotModel
+/**
+ * Model ScopeLibraryItem
+ * 
+ */
+export type ScopeLibraryItem = Prisma.ScopeLibraryItemModel
+/**
+ * Model EstimateLineScopeAttachment
+ * 
+ */
+export type EstimateLineScopeAttachment = Prisma.EstimateLineScopeAttachmentModel
+/**
+ * Model MonthEndStatus
+ * 
+ */
+export type MonthEndStatus = Prisma.MonthEndStatusModel
+/**
+ * Model XeroConnection
+ * 
+ */
+export type XeroConnection = Prisma.XeroConnectionModel
+/**
+ * Model FinanceProject
+ * 
+ */
+export type FinanceProject = Prisma.FinanceProjectModel
+/**
+ * Model XeroPnL
+ * 
+ */
+export type XeroPnL = Prisma.XeroPnLModel
+/**
+ * Model XeroBankBalance
+ * 
+ */
+export type XeroBankBalance = Prisma.XeroBankBalanceModel
+/**
+ * Model AnnualBudget
+ * 
+ */
+export type AnnualBudget = Prisma.AnnualBudgetModel
+/**
+ * Model SecuredForecast
+ * 
+ */
+export type SecuredForecast = Prisma.SecuredForecastModel
