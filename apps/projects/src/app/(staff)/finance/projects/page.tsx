@@ -21,8 +21,8 @@ export default async function FinanceProjectsPage() {
 
   return (
     <FinanceProjectsClient
-      projects={projects as never}
-      monthStatuses={monthStatuses as never}
+      projects={JSON.parse(JSON.stringify(projects))}
+      monthStatuses={JSON.parse(JSON.stringify(monthStatuses))}
       defaultMonth={currentMonth.toISOString().split('T')[0]}
       organisationId={user.organisationId}
     />
