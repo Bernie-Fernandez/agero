@@ -19,20 +19,20 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "MBED — Independent Medical Property & Project Advisory Melbourne",
+  metadataBase: new URL("https://mbed.com.au"),
+  title: {
+    default: "MBED — Independent Medical Property & Project Advisory Melbourne",
+    template: "%s | MBED",
+  },
   description:
     "Independent medical property and project advisory for specialist practices. Site strategy, residential conversion, compliance, and delivery. Melbourne & Victoria.",
-  metadataBase: new URL("https://mbed.com.au"),
-  alternates: {
-    canonical: "https://mbed.com.au",
-  },
   openGraph: {
-    title: "MBED — Independent Medical Property & Project Advisory",
-    description:
-      "Embedded. Independent. So the only thing on your mind is your practice.",
-    url: "https://mbed.com.au",
-    type: "website",
     siteName: "MBED",
+    locale: "en_AU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
   robots: {
     index: true,
