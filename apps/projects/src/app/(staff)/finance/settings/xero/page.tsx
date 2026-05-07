@@ -10,5 +10,5 @@ export default async function XeroSettingsPage() {
     include: { connectedBy: { select: { firstName: true, lastName: true } } },
   });
 
-  return <XeroSettingsClient connection={conn as never} />;
+  return <XeroSettingsClient connection={JSON.parse(JSON.stringify(conn))} />;
 }

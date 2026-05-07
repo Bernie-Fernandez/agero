@@ -16,5 +16,5 @@ export default async function BudgetPage() {
     orderBy: [{ displayOrder: 'asc' }, { category: 'asc' }, { lineItem: 'asc' }],
   });
 
-  return <BudgetClient budgets={budgets as never} defaultFY={fy} organisationId={user.organisationId} />;
+  return <BudgetClient budgets={JSON.parse(JSON.stringify(budgets))} defaultFY={fy} organisationId={user.organisationId} />;
 }

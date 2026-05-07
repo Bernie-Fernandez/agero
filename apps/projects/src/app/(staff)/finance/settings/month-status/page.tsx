@@ -37,5 +37,5 @@ export default async function MonthStatusPage() {
     orderBy: { reportMonth: 'asc' },
   });
 
-  return <MonthStatusClient statuses={statuses as never} />;
+  return <MonthStatusClient statuses={JSON.parse(JSON.stringify(statuses))} />;
 }

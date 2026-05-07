@@ -16,5 +16,5 @@ export default async function SecuredForecastPage() {
     orderBy: { jobNumber: 'asc' },
   });
 
-  return <SecuredForecastClient forecasts={forecasts as never} defaultFY={fy} />;
+  return <SecuredForecastClient forecasts={JSON.parse(JSON.stringify(forecasts))} defaultFY={fy} />;
 }

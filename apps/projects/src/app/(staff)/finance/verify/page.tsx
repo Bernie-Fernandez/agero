@@ -30,11 +30,11 @@ export default async function VerifyPage() {
 
   return (
     <VerifyClient
-      pnl={pnl as never}
-      bankBalances={bankBalances as never}
-      projects={projects as never}
-      budgets={budgets as never}
-      monthStatus={monthStatus as never}
+      pnl={JSON.parse(JSON.stringify(pnl))}
+      bankBalances={JSON.parse(JSON.stringify(bankBalances))}
+      projects={JSON.parse(JSON.stringify(projects))}
+      budgets={JSON.parse(JSON.stringify(budgets))}
+      monthStatus={JSON.parse(JSON.stringify(monthStatus))}
       reportMonth="2026-03"
     />
   );
