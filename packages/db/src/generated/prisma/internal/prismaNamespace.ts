@@ -486,7 +486,11 @@ export const ModelName = {
   XeroPnL: 'XeroPnL',
   XeroBankBalance: 'XeroBankBalance',
   AnnualBudget: 'AnnualBudget',
-  SecuredForecast: 'SecuredForecast'
+  SecuredForecast: 'SecuredForecast',
+  PlannedDealRevenue: 'PlannedDealRevenue',
+  ManagementReport: 'ManagementReport',
+  WIPSchedule: 'WIPSchedule',
+  ManagementReportSection: 'ManagementReportSection'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -502,7 +506,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast"
+    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -8128,6 +8132,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PlannedDealRevenue: {
+      payload: Prisma.$PlannedDealRevenuePayload<ExtArgs>
+      fields: Prisma.PlannedDealRevenueFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlannedDealRevenueFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlannedDealRevenueFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        findFirst: {
+          args: Prisma.PlannedDealRevenueFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlannedDealRevenueFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        findMany: {
+          args: Prisma.PlannedDealRevenueFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>[]
+        }
+        create: {
+          args: Prisma.PlannedDealRevenueCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        createMany: {
+          args: Prisma.PlannedDealRevenueCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlannedDealRevenueCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>[]
+        }
+        delete: {
+          args: Prisma.PlannedDealRevenueDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        update: {
+          args: Prisma.PlannedDealRevenueUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        deleteMany: {
+          args: Prisma.PlannedDealRevenueDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlannedDealRevenueUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlannedDealRevenueUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>[]
+        }
+        upsert: {
+          args: Prisma.PlannedDealRevenueUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedDealRevenuePayload>
+        }
+        aggregate: {
+          args: Prisma.PlannedDealRevenueAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlannedDealRevenue>
+        }
+        groupBy: {
+          args: Prisma.PlannedDealRevenueGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlannedDealRevenueGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlannedDealRevenueCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlannedDealRevenueCountAggregateOutputType> | number
+        }
+      }
+    }
+    ManagementReport: {
+      payload: Prisma.$ManagementReportPayload<ExtArgs>
+      fields: Prisma.ManagementReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ManagementReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ManagementReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        findFirst: {
+          args: Prisma.ManagementReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ManagementReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        findMany: {
+          args: Prisma.ManagementReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>[]
+        }
+        create: {
+          args: Prisma.ManagementReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        createMany: {
+          args: Prisma.ManagementReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ManagementReportCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>[]
+        }
+        delete: {
+          args: Prisma.ManagementReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        update: {
+          args: Prisma.ManagementReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.ManagementReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ManagementReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ManagementReportUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>[]
+        }
+        upsert: {
+          args: Prisma.ManagementReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportPayload>
+        }
+        aggregate: {
+          args: Prisma.ManagementReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateManagementReport>
+        }
+        groupBy: {
+          args: Prisma.ManagementReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ManagementReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportCountAggregateOutputType> | number
+        }
+      }
+    }
+    WIPSchedule: {
+      payload: Prisma.$WIPSchedulePayload<ExtArgs>
+      fields: Prisma.WIPScheduleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WIPScheduleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WIPScheduleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        findFirst: {
+          args: Prisma.WIPScheduleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WIPScheduleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        findMany: {
+          args: Prisma.WIPScheduleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>[]
+        }
+        create: {
+          args: Prisma.WIPScheduleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        createMany: {
+          args: Prisma.WIPScheduleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WIPScheduleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>[]
+        }
+        delete: {
+          args: Prisma.WIPScheduleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        update: {
+          args: Prisma.WIPScheduleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        deleteMany: {
+          args: Prisma.WIPScheduleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WIPScheduleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WIPScheduleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>[]
+        }
+        upsert: {
+          args: Prisma.WIPScheduleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WIPSchedulePayload>
+        }
+        aggregate: {
+          args: Prisma.WIPScheduleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWIPSchedule>
+        }
+        groupBy: {
+          args: Prisma.WIPScheduleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WIPScheduleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WIPScheduleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WIPScheduleCountAggregateOutputType> | number
+        }
+      }
+    }
+    ManagementReportSection: {
+      payload: Prisma.$ManagementReportSectionPayload<ExtArgs>
+      fields: Prisma.ManagementReportSectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ManagementReportSectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ManagementReportSectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        findFirst: {
+          args: Prisma.ManagementReportSectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ManagementReportSectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        findMany: {
+          args: Prisma.ManagementReportSectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>[]
+        }
+        create: {
+          args: Prisma.ManagementReportSectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        createMany: {
+          args: Prisma.ManagementReportSectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ManagementReportSectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>[]
+        }
+        delete: {
+          args: Prisma.ManagementReportSectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        update: {
+          args: Prisma.ManagementReportSectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ManagementReportSectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ManagementReportSectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ManagementReportSectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ManagementReportSectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSectionPayload>
+        }
+        aggregate: {
+          args: Prisma.ManagementReportSectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateManagementReportSection>
+        }
+        groupBy: {
+          args: Prisma.ManagementReportSectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportSectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ManagementReportSectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportSectionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -9948,6 +10248,7 @@ export const FinanceProjectScalarFieldEnum = {
   labour: 'labour',
   totalCost: 'totalCost',
   wip: 'wip',
+  costToComplete: 'costToComplete',
   notes: 'notes',
   dataVerified: 'dataVerified',
   deletedAt: 'deletedAt',
@@ -10050,6 +10351,94 @@ export const SecuredForecastScalarFieldEnum = {
 } as const
 
 export type SecuredForecastScalarFieldEnum = (typeof SecuredForecastScalarFieldEnum)[keyof typeof SecuredForecastScalarFieldEnum]
+
+
+export const PlannedDealRevenueScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  stage: 'stage',
+  dealName: 'dealName',
+  probability: 'probability',
+  marginPercent: 'marginPercent',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYear: 'nextYear',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlannedDealRevenueScalarFieldEnum = (typeof PlannedDealRevenueScalarFieldEnum)[keyof typeof PlannedDealRevenueScalarFieldEnum]
+
+
+export const ManagementReportScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  preparedById: 'preparedById',
+  generatedAt: 'generatedAt',
+  reviewedAt: 'reviewedAt',
+  finalisedAt: 'finalisedAt',
+  finalisedById: 'finalisedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportScalarFieldEnum = (typeof ManagementReportScalarFieldEnum)[keyof typeof ManagementReportScalarFieldEnum]
+
+
+export const WIPScheduleScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  managementReportId: 'managementReportId',
+  reportMonth: 'reportMonth',
+  contractValue: 'contractValue',
+  estimatedTotalCost: 'estimatedTotalCost',
+  costsToDate: 'costsToDate',
+  costToComplete: 'costToComplete',
+  pctComplete: 'pctComplete',
+  earnedRevenue: 'earnedRevenue',
+  billedToDate: 'billedToDate',
+  overbilledUnderbilled: 'overbilledUnderbilled',
+  estimatedGrossProfit: 'estimatedGrossProfit',
+  estimatedGpPct: 'estimatedGpPct',
+  flag: 'flag',
+  flagReason: 'flagReason',
+  costToCompleteEstimated: 'costToCompleteEstimated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WIPScheduleScalarFieldEnum = (typeof WIPScheduleScalarFieldEnum)[keyof typeof WIPScheduleScalarFieldEnum]
+
+
+export const ManagementReportSectionScalarFieldEnum = {
+  id: 'id',
+  managementReportId: 'managementReportId',
+  sectionKey: 'sectionKey',
+  aiDraft: 'aiDraft',
+  editedContent: 'editedContent',
+  aiGeneratedAt: 'aiGeneratedAt',
+  lastEditedAt: 'lastEditedAt',
+  lastEditedById: 'lastEditedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportSectionScalarFieldEnum = (typeof ManagementReportSectionScalarFieldEnum)[keyof typeof ManagementReportSectionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -11010,6 +11399,34 @@ export type ListEnumFinanceProjectStatusFieldRefInput<$PrismaModel> = FieldRefIn
 
 
 /**
+ * Reference to a field of type 'ManagementReportStatus'
+ */
+export type EnumManagementReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagementReportStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ManagementReportStatus[]'
+ */
+export type ListEnumManagementReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagementReportStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WIPFlag'
+ */
+export type EnumWIPFlagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WIPFlag'>
+    
+
+
+/**
+ * Reference to a field of type 'WIPFlag[]'
+ */
+export type ListEnumWIPFlagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WIPFlag[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -11220,6 +11637,10 @@ export type GlobalOmitConfig = {
   xeroBankBalance?: Prisma.XeroBankBalanceOmit
   annualBudget?: Prisma.AnnualBudgetOmit
   securedForecast?: Prisma.SecuredForecastOmit
+  plannedDealRevenue?: Prisma.PlannedDealRevenueOmit
+  managementReport?: Prisma.ManagementReportOmit
+  wIPSchedule?: Prisma.WIPScheduleOmit
+  managementReportSection?: Prisma.ManagementReportSectionOmit
 }
 
 /* Types for Logging */

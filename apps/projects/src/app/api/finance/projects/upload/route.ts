@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
       const subRetention = toNum(row['Sub Retention'] ?? 0);
       const creditors = toNum(row['Creditors'] ?? 0);
       const labour = toNum(row['Labour'] ?? row['Direct Labour'] ?? 0);
+      const costToComplete = row['Cost to Complete'] ?? row['CostToComplete'] ?? null;
 
       const cv = parseFloat(forecastContractValue);
       const fc = parseFloat(forecastFinalCosts);
@@ -77,6 +78,7 @@ export async function POST(req: NextRequest) {
         forecastMarginPercent: marginPct.toFixed(6), claimTotal, claimRetention,
         subClaims, subRetention, creditors, labour,
         totalCost: totalCost.toFixed(2), wip: wip.toFixed(2),
+        costToComplete: costToComplete ? toNum(costToComplete) : null,
       };
 
       if (existing) {

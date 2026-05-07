@@ -153,7 +153,11 @@ export const ModelName = {
   XeroPnL: 'XeroPnL',
   XeroBankBalance: 'XeroBankBalance',
   AnnualBudget: 'AnnualBudget',
-  SecuredForecast: 'SecuredForecast'
+  SecuredForecast: 'SecuredForecast',
+  PlannedDealRevenue: 'PlannedDealRevenue',
+  ManagementReport: 'ManagementReport',
+  WIPSchedule: 'WIPSchedule',
+  ManagementReportSection: 'ManagementReportSection'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1953,6 +1957,7 @@ export const FinanceProjectScalarFieldEnum = {
   labour: 'labour',
   totalCost: 'totalCost',
   wip: 'wip',
+  costToComplete: 'costToComplete',
   notes: 'notes',
   dataVerified: 'dataVerified',
   deletedAt: 'deletedAt',
@@ -2055,6 +2060,94 @@ export const SecuredForecastScalarFieldEnum = {
 } as const
 
 export type SecuredForecastScalarFieldEnum = (typeof SecuredForecastScalarFieldEnum)[keyof typeof SecuredForecastScalarFieldEnum]
+
+
+export const PlannedDealRevenueScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  stage: 'stage',
+  dealName: 'dealName',
+  probability: 'probability',
+  marginPercent: 'marginPercent',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYear: 'nextYear',
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlannedDealRevenueScalarFieldEnum = (typeof PlannedDealRevenueScalarFieldEnum)[keyof typeof PlannedDealRevenueScalarFieldEnum]
+
+
+export const ManagementReportScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  preparedById: 'preparedById',
+  generatedAt: 'generatedAt',
+  reviewedAt: 'reviewedAt',
+  finalisedAt: 'finalisedAt',
+  finalisedById: 'finalisedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportScalarFieldEnum = (typeof ManagementReportScalarFieldEnum)[keyof typeof ManagementReportScalarFieldEnum]
+
+
+export const WIPScheduleScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  managementReportId: 'managementReportId',
+  reportMonth: 'reportMonth',
+  contractValue: 'contractValue',
+  estimatedTotalCost: 'estimatedTotalCost',
+  costsToDate: 'costsToDate',
+  costToComplete: 'costToComplete',
+  pctComplete: 'pctComplete',
+  earnedRevenue: 'earnedRevenue',
+  billedToDate: 'billedToDate',
+  overbilledUnderbilled: 'overbilledUnderbilled',
+  estimatedGrossProfit: 'estimatedGrossProfit',
+  estimatedGpPct: 'estimatedGpPct',
+  flag: 'flag',
+  flagReason: 'flagReason',
+  costToCompleteEstimated: 'costToCompleteEstimated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WIPScheduleScalarFieldEnum = (typeof WIPScheduleScalarFieldEnum)[keyof typeof WIPScheduleScalarFieldEnum]
+
+
+export const ManagementReportSectionScalarFieldEnum = {
+  id: 'id',
+  managementReportId: 'managementReportId',
+  sectionKey: 'sectionKey',
+  aiDraft: 'aiDraft',
+  editedContent: 'editedContent',
+  aiGeneratedAt: 'aiGeneratedAt',
+  lastEditedAt: 'lastEditedAt',
+  lastEditedById: 'lastEditedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportSectionScalarFieldEnum = (typeof ManagementReportSectionScalarFieldEnum)[keyof typeof ManagementReportSectionScalarFieldEnum]
 
 
 export const SortOrder = {

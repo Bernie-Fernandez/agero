@@ -231,7 +231,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <StubbedItem label="Planned Work" depth={1} />
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
-      <StubbedItem label="Reports" depth={1} />
+      <NavLink href="/finance/reports" label="Reports" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />
       <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
         <NavLink href="/finance/settings/xero" label="Xero Connection" depth={2} onItemClick={onItemClick} />

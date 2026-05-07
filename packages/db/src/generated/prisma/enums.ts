@@ -610,3 +610,22 @@ export const FinanceProjectStatus = {
 } as const
 
 export type FinanceProjectStatus = (typeof FinanceProjectStatus)[keyof typeof FinanceProjectStatus]
+
+
+export const WIPFlag = {
+  GREEN: 'GREEN',
+  AMBER: 'AMBER',
+  RED: 'RED',
+  NONE: 'NONE'
+} as const
+
+export type WIPFlag = (typeof WIPFlag)[keyof typeof WIPFlag]
+
+
+export const ManagementReportStatus = {
+  DRAFT: 'DRAFT',
+  REVIEW: 'REVIEW',
+  FINAL: 'FINAL'
+} as const
+
+export type ManagementReportStatus = (typeof ManagementReportStatus)[keyof typeof ManagementReportStatus]

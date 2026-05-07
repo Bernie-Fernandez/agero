@@ -272,6 +272,9 @@ model Organisation {
   securedForecasts      SecuredForecast[]
   monthEndStatuses      MonthEndStatus[]
   xeroConnection        XeroConnection?
+  managementReports     ManagementReport[]
+  wipSchedules          WIPSchedule[]
+  plannedDealRevenues   PlannedDealRevenue[]
 
   @@map("organisations")
   @@schema("projects")
@@ -363,6 +366,9 @@ model User {
   trainingRecords         UserTraining[]
   monthEndStatusesMarked  MonthEndStatus[]       @relation("MonthEndStatusMarkedBy")
   xeroConnectionsMade     XeroConnection[]       @relation("XeroConnectionConnectedBy")
+  managementReportsPrepared ManagementReport[]   @relation("ManagementReportPreparedBy")
+  managementReportsFinalised ManagementReport[]  @relation("ManagementReportFinalisedBy")
+  managementReportSectionsEdited ManagementReportSection[] @relation("ManagementReportSectionEditor")
 
   @@index([organisationId])
   @@map("users")
@@ -2925,6 +2931,7 @@ model FinanceProject {
   labour                Decimal              @default(0) @map("labour") @db.Decimal(14, 2)
   totalCost             Decimal              @default(0) @map("total_cost") @db.Decimal(14, 2)
   wip                   Decimal              @default(0) @map("wip") @db.Decimal(14, 2)
+  costToComplete        Decimal?             @map("cost_to_complete") @db.Decimal(14, 2)
   notes                 String?              @db.Text
   dataVerified          Boolean              @default(false) @map("data_verified")
   deletedAt             DateTime?            @map("deleted_at")
@@ -2932,6 +2939,7 @@ model FinanceProject {
   updatedAt             DateTime             @updatedAt @map("updated_at")
 
   securedForecasts SecuredForecast[]
+  wipSchedules     WIPSchedule[]
 
   @@index([organisationId, reportMonth])
   @@map("finance_projects")
@@ -3041,5 +3049,132 @@ model SecuredForecast {
   @@unique([organisationId, financialYear, jobNumber])
   @@index([organisationId, financialYear])
   @@map("secured_forecasts")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FINANCE MODULE — Sprint 9
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum WIPFlag {
+  GREEN
+  AMBER
+  RED
+  NONE
+
+  @@schema("projects")
+}
+
+enum ManagementReportStatus {
+  DRAFT
+  REVIEW
+  FINAL
+
+  @@schema("projects")
+}
+
+model PlannedDealRevenue {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financialYear  Int          @map("financial_year")
+  stage          String
+  dealName       String       @map("deal_name")
+  probability    Decimal      @default(0) @db.Decimal(5, 4)
+  marginPercent  Decimal      @default(0) @map("margin_percent") @db.Decimal(7, 4)
+  jul            Decimal      @default(0) @db.Decimal(14, 2)
+  aug            Decimal      @default(0) @db.Decimal(14, 2)
+  sep            Decimal      @default(0) @db.Decimal(14, 2)
+  oct            Decimal      @default(0) @db.Decimal(14, 2)
+  nov            Decimal      @default(0) @db.Decimal(14, 2)
+  dec            Decimal      @default(0) @db.Decimal(14, 2)
+  jan            Decimal      @default(0) @db.Decimal(14, 2)
+  feb            Decimal      @default(0) @db.Decimal(14, 2)
+  mar            Decimal      @default(0) @db.Decimal(14, 2)
+  apr            Decimal      @default(0) @db.Decimal(14, 2)
+  may            Decimal      @default(0) @db.Decimal(14, 2)
+  jun            Decimal      @default(0) @db.Decimal(14, 2)
+  nextYear       Decimal      @default(0) @map("next_year") @db.Decimal(14, 2)
+  total          Decimal      @default(0) @db.Decimal(14, 2)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([organisationId, financialYear])
+  @@map("planned_deal_revenues")
+  @@schema("projects")
+}
+
+model ManagementReport {
+  id             String                 @id @default(uuid()) @db.Uuid
+  organisationId String                 @map("organisation_id") @db.Uuid
+  organisation   Organisation           @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth    DateTime               @map("report_month") @db.Date
+  status         ManagementReportStatus @default(DRAFT)
+  preparedById   String                 @map("prepared_by_id") @db.Uuid
+  preparedBy     User                   @relation("ManagementReportPreparedBy", fields: [preparedById], references: [id])
+  generatedAt    DateTime               @default(now()) @map("generated_at")
+  reviewedAt     DateTime?              @map("reviewed_at")
+  finalisedAt    DateTime?              @map("finalised_at")
+  finalisedById  String?                @map("finalised_by_id") @db.Uuid
+  finalisedBy    User?                  @relation("ManagementReportFinalisedBy", fields: [finalisedById], references: [id])
+  createdAt      DateTime               @default(now()) @map("created_at")
+  updatedAt      DateTime               @updatedAt @map("updated_at")
+
+  sections   ManagementReportSection[]
+  wipEntries WIPSchedule[]
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("management_reports")
+  @@schema("projects")
+}
+
+model WIPSchedule {
+  id                   String           @id @default(uuid()) @db.Uuid
+  organisationId       String           @map("organisation_id") @db.Uuid
+  organisation         Organisation     @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financeProjectId     String           @map("finance_project_id") @db.Uuid
+  financeProject       FinanceProject   @relation(fields: [financeProjectId], references: [id], onDelete: Cascade)
+  managementReportId   String           @map("management_report_id") @db.Uuid
+  managementReport     ManagementReport @relation(fields: [managementReportId], references: [id], onDelete: Cascade)
+  reportMonth          DateTime         @map("report_month") @db.Date
+  contractValue        Decimal          @default(0) @map("contract_value") @db.Decimal(14, 2)
+  estimatedTotalCost   Decimal          @default(0) @map("estimated_total_cost") @db.Decimal(14, 2)
+  costsToDate          Decimal          @default(0) @map("costs_to_date") @db.Decimal(14, 2)
+  costToComplete       Decimal          @default(0) @map("cost_to_complete") @db.Decimal(14, 2)
+  pctComplete          Decimal          @default(0) @map("pct_complete") @db.Decimal(7, 4)
+  earnedRevenue        Decimal          @default(0) @map("earned_revenue") @db.Decimal(14, 2)
+  billedToDate         Decimal          @default(0) @map("billed_to_date") @db.Decimal(14, 2)
+  overbilledUnderbilled Decimal         @default(0) @map("overbilled_underbilled") @db.Decimal(14, 2)
+  estimatedGrossProfit Decimal          @default(0) @map("estimated_gross_profit") @db.Decimal(14, 2)
+  estimatedGpPct       Decimal          @default(0) @map("estimated_gp_pct") @db.Decimal(7, 4)
+  flag                 WIPFlag          @default(NONE)
+  flagReason           String?          @map("flag_reason") @db.Text
+  costToCompleteEstimated Boolean       @default(false) @map("cost_to_complete_estimated")
+  createdAt            DateTime         @default(now()) @map("created_at")
+  updatedAt            DateTime         @updatedAt @map("updated_at")
+
+  @@unique([managementReportId, financeProjectId])
+  @@index([organisationId, reportMonth])
+  @@map("wip_schedules")
+  @@schema("projects")
+}
+
+model ManagementReportSection {
+  id                 String           @id @default(uuid()) @db.Uuid
+  managementReportId String           @map("management_report_id") @db.Uuid
+  managementReport   ManagementReport @relation(fields: [managementReportId], references: [id], onDelete: Cascade)
+  sectionKey         String           @map("section_key")
+  aiDraft            String?          @map("ai_draft") @db.Text
+  editedContent      String?          @map("edited_content") @db.Text
+  aiGeneratedAt      DateTime?        @map("ai_generated_at")
+  lastEditedAt       DateTime?        @map("last_edited_at")
+  lastEditedById     String?          @map("last_edited_by_id") @db.Uuid
+  lastEditedBy       User?            @relation("ManagementReportSectionEditor", fields: [lastEditedById], references: [id])
+  createdAt          DateTime         @default(now()) @map("created_at")
+  updatedAt          DateTime         @updatedAt @map("updated_at")
+
+  @@unique([managementReportId, sectionKey])
+  @@map("management_report_sections")
   @@schema("projects")
 }

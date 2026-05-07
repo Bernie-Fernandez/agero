@@ -26,6 +26,7 @@ type FinanceProject = {
   labour: string;
   notes: string | null;
   practicalCompletionDate: string | null;
+  costToComplete: string | null;
 };
 
 type MonthStatus = { reportMonth: string; status: string };
@@ -43,7 +44,7 @@ const EMPTY_FORM = {
   jobNumber: '', projectName: '', status: 'AWARDED' as ProjectStatus,
   practicalCompletionDate: '',
   forecastContractValue: '', forecastFinalCosts: '', riskAndOpportunity: '0',
-  targetExitMarginPercent: '',
+  targetExitMarginPercent: '', costToComplete: '',
   claimTotal: '', claimRetention: '', subClaims: '', subRetention: '',
   creditors: '', labour: '', notes: '',
 };
@@ -125,6 +126,7 @@ export default function FinanceProjectsClient({
       forecastFinalCosts: p.forecastFinalCosts,
       riskAndOpportunity: p.riskAndOpportunity,
       targetExitMarginPercent: p.targetExitMarginPercent ? (parseFloat(p.targetExitMarginPercent) * 100).toString() : '',
+      costToComplete: p.costToComplete ?? '',
       claimTotal: p.claimTotal,
       claimRetention: p.claimRetention,
       subClaims: p.subClaims,
@@ -142,6 +144,7 @@ export default function FinanceProjectsClient({
       ...form,
       reportMonth: selectedMonth,
       targetExitMarginPercent: form.targetExitMarginPercent ? (parseFloat(form.targetExitMarginPercent) / 100).toString() : null,
+      costToComplete: form.costToComplete ? form.costToComplete : null,
       forecastMarginDollars: derived.marginDollars.toFixed(2),
       forecastMarginPercent: derived.marginPct.toFixed(6),
       totalCost: derived.totalCost.toFixed(2),
@@ -326,6 +329,7 @@ export default function FinanceProjectsClient({
                 <div className="grid grid-cols-2 gap-4">
                   {field('Forecast Contract Value ($)', 'forecastContractValue', 'number')}
                   {field('Forecast Final Costs ($)', 'forecastFinalCosts', 'number')}
+                  {field('Cost to Complete (Estimate) ($)', 'costToComplete', 'number', 'Enter the estimated remaining cost to complete this project. Used for WIP percentage completion calculation. If blank, WIP will estimate using Forecast Final Costs minus Costs to Date.')}
                   {field('Risk & Opportunity Adjustment ($)', 'riskAndOpportunity', 'number', 'Enter negative value for risk')}
                   {field('Target Exit Margin % (from cost plan)', 'targetExitMarginPercent', 'number')}
                 </div>

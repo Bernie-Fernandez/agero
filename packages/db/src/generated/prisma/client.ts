@@ -556,3 +556,23 @@ export type AnnualBudget = Prisma.AnnualBudgetModel
  * 
  */
 export type SecuredForecast = Prisma.SecuredForecastModel
+/**
+ * Model PlannedDealRevenue
+ * 
+ */
+export type PlannedDealRevenue = Prisma.PlannedDealRevenueModel
+/**
+ * Model ManagementReport
+ * 
+ */
+export type ManagementReport = Prisma.ManagementReportModel
+/**
+ * Model WIPSchedule
+ * 
+ */
+export type WIPSchedule = Prisma.WIPScheduleModel
+/**
+ * Model ManagementReportSection
+ * 
+ */
+export type ManagementReportSection = Prisma.ManagementReportSectionModel

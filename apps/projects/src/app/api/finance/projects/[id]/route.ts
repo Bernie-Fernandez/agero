@@ -13,7 +13,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     forecastContractValue, forecastFinalCosts, riskAndOpportunity,
     forecastMarginDollars, forecastMarginPercent, targetExitMarginPercent,
     claimTotal, claimRetention, subClaims, subRetention,
-    creditors, labour, totalCost, wip, notes,
+    creditors, labour, totalCost, wip, notes, costToComplete,
   } = body;
 
   const record = await prisma.financeProject.updateMany({
@@ -38,6 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       totalCost: totalCost || '0',
       wip: wip || '0',
       notes: notes || null,
+      costToComplete: costToComplete ?? null,
     },
   });
 

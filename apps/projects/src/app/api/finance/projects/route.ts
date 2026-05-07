@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     forecastContractValue, forecastFinalCosts, riskAndOpportunity,
     forecastMarginDollars, forecastMarginPercent, targetExitMarginPercent,
     claimTotal, claimRetention, subClaims, subRetention,
-    creditors, labour, totalCost, wip, notes,
+    creditors, labour, totalCost, wip, notes, costToComplete,
   } = body;
 
   const record = await prisma.financeProject.create({
@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
       totalCost: totalCost || '0',
       wip: wip || '0',
       notes: notes || null,
+      costToComplete: costToComplete ?? null,
     },
   });
 
