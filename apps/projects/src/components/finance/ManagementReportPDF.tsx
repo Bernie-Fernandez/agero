@@ -119,71 +119,65 @@ export function ManagementReportPDF({ data }: { data: any }) {
       </Page>
 
       {/* Page 2 — Business Unit Summary */}
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} orientation="landscape">
         <PageNumber />
         <Text style={styles.heading2}>Business Unit Summary — {reportMonthLabel}</Text>
-
-        <View style={styles.row}>
-          <View style={styles.col}>
-            <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.awardedMargin)}</Text>
-              <Text style={styles.kpiLabel}>Margin on Awarded ({fmtPct(busUnit.awardedMarginRate)})</Text>
-            </View>
+        <View style={styles.table}>
+          <View style={styles.tableHeader}>
+            <Text style={[styles.tableHeaderCellLabel, { flex: 1.4 }]}>Business Unit</Text>
+            <Text style={styles.tableHeaderCell}>YTD Actual $</Text>
+            <Text style={styles.tableHeaderCell}>YTD Budget $</Text>
+            <Text style={styles.tableHeaderCell}>Variance $</Text>
+            <Text style={styles.tableHeaderCell}>Variance %</Text>
+            <Text style={styles.tableHeaderCell}>Margin %</Text>
+            <Text style={styles.tableHeaderCell}>FY Forecast $</Text>
+            <Text style={styles.tableHeaderCell}>FY Budget $</Text>
+            <Text style={styles.tableHeaderCell}>FY Var $</Text>
+            <Text style={styles.tableHeaderCell}>FY Var %</Text>
           </View>
-          <View style={styles.col}>
-            <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.backlogMargin)}</Text>
-              <Text style={styles.kpiLabel}>Margin on Backlog ({fmtPct(busUnit.backlogMarginRate)})</Text>
+          {([
+            { label: 'Awarded Projects', data: busUnit.awarded },
+            { label: 'Backlog Projects', data: busUnit.backlog },
+          ] as { label: string; data: { ytdActualMargin: number | null; ytdBudgetMargin: number; ytdVarianceDollars: number | null; ytdVariancePct: number | null; ytdMarginPct: number | null; fyForecastMargin: number; fyBudgetMargin: number | null; fyVarianceDollars: number | null; fyVariancePct: number | null } }[]).map(({ label, data }, i) => (
+            <View key={label} style={i % 2 === 0 ? styles.tableRow : styles.tableRowAlt}>
+              <Text style={[styles.tableCellLabel, { flex: 1.4, fontFamily: 'Helvetica-Bold' }]}>{label}</Text>
+              <Text style={[styles.tableCellNum, { fontFamily: 'Helvetica-Bold' }]}>{data.ytdActualMargin != null ? fmt(data.ytdActualMargin) : '—'}</Text>
+              <Text style={styles.tableCellNum}>{fmt(data.ytdBudgetMargin)}</Text>
+              <Text style={[styles.tableCellNum, data.ytdVarianceDollars != null && data.ytdVarianceDollars < 0 ? styles.redText : styles.greenText]}>
+                {data.ytdVarianceDollars != null ? fmt(data.ytdVarianceDollars) : '—'}
+              </Text>
+              <Text style={[styles.tableCellNum, data.ytdVariancePct != null && data.ytdVariancePct < -0.05 ? styles.redText : {}]}>
+                {data.ytdVariancePct != null ? fmtPct(data.ytdVariancePct) : '—'}
+              </Text>
+              <Text style={styles.tableCellNum}>{data.ytdMarginPct != null ? fmtPct(data.ytdMarginPct) : '—'}</Text>
+              <Text style={[styles.tableCellNum, { fontFamily: 'Helvetica-Bold' }]}>{fmt(data.fyForecastMargin)}</Text>
+              <Text style={styles.tableCellNum}>{data.fyBudgetMargin != null ? fmt(data.fyBudgetMargin) : '—'}</Text>
+              <Text style={[styles.tableCellNum, data.fyVarianceDollars != null && data.fyVarianceDollars < 0 ? styles.redText : styles.greenText]}>
+                {data.fyVarianceDollars != null ? fmt(data.fyVarianceDollars) : '—'}
+              </Text>
+              <Text style={[styles.tableCellNum, data.fyVariancePct != null && data.fyVariancePct < -0.05 ? styles.redText : {}]}>
+                {data.fyVariancePct != null ? fmtPct(data.fyVariancePct) : '—'}
+              </Text>
             </View>
-          </View>
-          <View style={styles.col}>
-            <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.fyForecastMargin)}</Text>
-              <Text style={styles.kpiLabel}>FY Forecast Margin</Text>
-            </View>
-          </View>
+          ))}
         </View>
 
-        <View style={styles.row}>
+        <View style={[styles.row, { marginTop: 12 }]}>
           <View style={styles.col}>
             <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.netProjectCashFlow)}</Text>
+              <Text style={styles.kpiValue}>{busUnit.netProjectCashFlow != null ? fmt(busUnit.netProjectCashFlow) : '—'}</Text>
               <Text style={styles.kpiLabel}>Net Project Cash Flow</Text>
             </View>
           </View>
           <View style={styles.col}>
-            <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.cashBalance)}</Text>
-              <Text style={styles.kpiLabel}>Cash Balance</Text>
+            <View style={[styles.kpiCard, { backgroundColor: busUnit.netCashVsGrossMargin != null && busUnit.netCashVsGrossMargin < 0 ? '#FEE2E2' : '#DCFCE7' }]}>
+              <Text style={[styles.kpiValue, { color: busUnit.netCashVsGrossMargin != null && busUnit.netCashVsGrossMargin < 0 ? RED : GREEN_C }]}>
+                {busUnit.netCashVsGrossMargin != null ? fmt(busUnit.netCashVsGrossMargin) : '—'}
+              </Text>
+              <Text style={styles.kpiLabel}>Net Cash Flow vs Gross Margin</Text>
             </View>
           </View>
-          <View style={styles.col}>
-            <View style={styles.kpiCard}>
-              <Text style={styles.kpiValue}>{fmt(busUnit.workingCapital)}</Text>
-              <Text style={styles.kpiLabel}>Working Capital</Text>
-            </View>
-          </View>
-        </View>
-
-        <Text style={styles.heading3}>Liquidity Ratios</Text>
-        <View style={styles.table}>
-          <View style={styles.tableHeader}>
-            <Text style={styles.tableHeaderCellLabel}>Metric</Text>
-            <Text style={styles.tableHeaderCell}>Value</Text>
-            <Text style={styles.tableHeaderCell}>Target</Text>
-          </View>
-          {[
-            { label: 'Current Ratio', value: busUnit.currentRatio != null ? fmtNum(busUnit.currentRatio) : '—', target: '>1.2' },
-            { label: 'Quick Ratio', value: busUnit.quickRatio != null ? fmtNum(busUnit.quickRatio) : '—', target: '>1.0' },
-            { label: 'Debtor Days', value: busUnit.debtorDays != null ? fmtNum(busUnit.debtorDays, 0) + ' days' : '—', target: '<45 days' },
-            { label: 'Creditor Days', value: busUnit.creditorDays != null ? fmtNum(busUnit.creditorDays, 0) + ' days' : '—', target: '<45 days' },
-          ].map((row, i) => (
-            <View key={row.label} style={i % 2 === 0 ? styles.tableRow : styles.tableRowAlt}>
-              <Text style={styles.tableCellLabel}>{row.label}</Text>
-              <Text style={styles.tableCell}>{row.value}</Text>
-              <Text style={styles.tableCell}>{row.target}</Text>
-            </View>
-          ))}
+          <View style={styles.col} />
         </View>
 
         <SectionCommentary content={getSection('business_unit_summary')} />

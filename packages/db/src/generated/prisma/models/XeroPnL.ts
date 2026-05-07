@@ -39,6 +39,13 @@ export type XeroPnLAvgAggregateOutputType = {
   creditorDays: runtime.Decimal | null
   tradeDebtors: runtime.Decimal | null
   tradeCreditors: runtime.Decimal | null
+  awardedGrossProfitYtd: runtime.Decimal | null
+  awardedRevenueYtd: runtime.Decimal | null
+  backlogGrossProfitYtd: runtime.Decimal | null
+  backlogRevenueYtd: runtime.Decimal | null
+  netProjectCashFlow: runtime.Decimal | null
+  awardedYtdBudgetMargin: runtime.Decimal | null
+  backlogYtdBudgetMargin: runtime.Decimal | null
 }
 
 export type XeroPnLSumAggregateOutputType = {
@@ -54,6 +61,13 @@ export type XeroPnLSumAggregateOutputType = {
   creditorDays: runtime.Decimal | null
   tradeDebtors: runtime.Decimal | null
   tradeCreditors: runtime.Decimal | null
+  awardedGrossProfitYtd: runtime.Decimal | null
+  awardedRevenueYtd: runtime.Decimal | null
+  backlogGrossProfitYtd: runtime.Decimal | null
+  backlogRevenueYtd: runtime.Decimal | null
+  netProjectCashFlow: runtime.Decimal | null
+  awardedYtdBudgetMargin: runtime.Decimal | null
+  backlogYtdBudgetMargin: runtime.Decimal | null
 }
 
 export type XeroPnLMinAggregateOutputType = {
@@ -72,6 +86,13 @@ export type XeroPnLMinAggregateOutputType = {
   creditorDays: runtime.Decimal | null
   tradeDebtors: runtime.Decimal | null
   tradeCreditors: runtime.Decimal | null
+  awardedGrossProfitYtd: runtime.Decimal | null
+  awardedRevenueYtd: runtime.Decimal | null
+  backlogGrossProfitYtd: runtime.Decimal | null
+  backlogRevenueYtd: runtime.Decimal | null
+  netProjectCashFlow: runtime.Decimal | null
+  awardedYtdBudgetMargin: runtime.Decimal | null
+  backlogYtdBudgetMargin: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -92,6 +113,13 @@ export type XeroPnLMaxAggregateOutputType = {
   creditorDays: runtime.Decimal | null
   tradeDebtors: runtime.Decimal | null
   tradeCreditors: runtime.Decimal | null
+  awardedGrossProfitYtd: runtime.Decimal | null
+  awardedRevenueYtd: runtime.Decimal | null
+  backlogGrossProfitYtd: runtime.Decimal | null
+  backlogRevenueYtd: runtime.Decimal | null
+  netProjectCashFlow: runtime.Decimal | null
+  awardedYtdBudgetMargin: runtime.Decimal | null
+  backlogYtdBudgetMargin: runtime.Decimal | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -112,6 +140,13 @@ export type XeroPnLCountAggregateOutputType = {
   creditorDays: number
   tradeDebtors: number
   tradeCreditors: number
+  awardedGrossProfitYtd: number
+  awardedRevenueYtd: number
+  backlogGrossProfitYtd: number
+  backlogRevenueYtd: number
+  netProjectCashFlow: number
+  awardedYtdBudgetMargin: number
+  backlogYtdBudgetMargin: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -131,6 +166,13 @@ export type XeroPnLAvgAggregateInputType = {
   creditorDays?: true
   tradeDebtors?: true
   tradeCreditors?: true
+  awardedGrossProfitYtd?: true
+  awardedRevenueYtd?: true
+  backlogGrossProfitYtd?: true
+  backlogRevenueYtd?: true
+  netProjectCashFlow?: true
+  awardedYtdBudgetMargin?: true
+  backlogYtdBudgetMargin?: true
 }
 
 export type XeroPnLSumAggregateInputType = {
@@ -146,6 +188,13 @@ export type XeroPnLSumAggregateInputType = {
   creditorDays?: true
   tradeDebtors?: true
   tradeCreditors?: true
+  awardedGrossProfitYtd?: true
+  awardedRevenueYtd?: true
+  backlogGrossProfitYtd?: true
+  backlogRevenueYtd?: true
+  netProjectCashFlow?: true
+  awardedYtdBudgetMargin?: true
+  backlogYtdBudgetMargin?: true
 }
 
 export type XeroPnLMinAggregateInputType = {
@@ -164,6 +213,13 @@ export type XeroPnLMinAggregateInputType = {
   creditorDays?: true
   tradeDebtors?: true
   tradeCreditors?: true
+  awardedGrossProfitYtd?: true
+  awardedRevenueYtd?: true
+  backlogGrossProfitYtd?: true
+  backlogRevenueYtd?: true
+  netProjectCashFlow?: true
+  awardedYtdBudgetMargin?: true
+  backlogYtdBudgetMargin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -184,6 +240,13 @@ export type XeroPnLMaxAggregateInputType = {
   creditorDays?: true
   tradeDebtors?: true
   tradeCreditors?: true
+  awardedGrossProfitYtd?: true
+  awardedRevenueYtd?: true
+  backlogGrossProfitYtd?: true
+  backlogRevenueYtd?: true
+  netProjectCashFlow?: true
+  awardedYtdBudgetMargin?: true
+  backlogYtdBudgetMargin?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -204,6 +267,13 @@ export type XeroPnLCountAggregateInputType = {
   creditorDays?: true
   tradeDebtors?: true
   tradeCreditors?: true
+  awardedGrossProfitYtd?: true
+  awardedRevenueYtd?: true
+  backlogGrossProfitYtd?: true
+  backlogRevenueYtd?: true
+  netProjectCashFlow?: true
+  awardedYtdBudgetMargin?: true
+  backlogYtdBudgetMargin?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -311,6 +381,13 @@ export type XeroPnLGroupByOutputType = {
   creditorDays: runtime.Decimal | null
   tradeDebtors: runtime.Decimal | null
   tradeCreditors: runtime.Decimal | null
+  awardedGrossProfitYtd: runtime.Decimal | null
+  awardedRevenueYtd: runtime.Decimal | null
+  backlogGrossProfitYtd: runtime.Decimal | null
+  backlogRevenueYtd: runtime.Decimal | null
+  netProjectCashFlow: runtime.Decimal | null
+  awardedYtdBudgetMargin: runtime.Decimal | null
+  backlogYtdBudgetMargin: runtime.Decimal | null
   createdAt: Date
   updatedAt: Date
   _count: XeroPnLCountAggregateOutputType | null
@@ -354,6 +431,13 @@ export type XeroPnLWhereInput = {
   creditorDays?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -375,6 +459,13 @@ export type XeroPnLOrderByWithRelationInput = {
   creditorDays?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
@@ -400,6 +491,13 @@ export type XeroPnLWhereUniqueInput = Prisma.AtLeast<{
   creditorDays?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -421,6 +519,13 @@ export type XeroPnLOrderByWithAggregationInput = {
   creditorDays?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrderInput | Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrderInput | Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrderInput | Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrderInput | Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.XeroPnLCountOrderByAggregateInput
@@ -449,6 +554,13 @@ export type XeroPnLScalarWhereWithAggregatesInput = {
   creditorDays?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.DecimalNullableWithAggregatesFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"XeroPnL"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"XeroPnL"> | Date | string
 }
@@ -468,6 +580,13 @@ export type XeroPnLCreateInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutXeroPnlInput
@@ -489,6 +608,13 @@ export type XeroPnLUncheckedCreateInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -508,6 +634,13 @@ export type XeroPnLUpdateInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutXeroPnlNestedInput
@@ -529,6 +662,13 @@ export type XeroPnLUncheckedUpdateInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -549,6 +689,13 @@ export type XeroPnLCreateManyInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -568,6 +715,13 @@ export type XeroPnLUpdateManyMutationInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -588,6 +742,13 @@ export type XeroPnLUncheckedUpdateManyInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -623,6 +784,13 @@ export type XeroPnLCountOrderByAggregateInput = {
   creditorDays?: Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -640,6 +808,13 @@ export type XeroPnLAvgOrderByAggregateInput = {
   creditorDays?: Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrder
 }
 
 export type XeroPnLMaxOrderByAggregateInput = {
@@ -658,6 +833,13 @@ export type XeroPnLMaxOrderByAggregateInput = {
   creditorDays?: Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -678,6 +860,13 @@ export type XeroPnLMinOrderByAggregateInput = {
   creditorDays?: Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -695,6 +884,13 @@ export type XeroPnLSumOrderByAggregateInput = {
   creditorDays?: Prisma.SortOrder
   tradeDebtors?: Prisma.SortOrder
   tradeCreditors?: Prisma.SortOrder
+  awardedGrossProfitYtd?: Prisma.SortOrder
+  awardedRevenueYtd?: Prisma.SortOrder
+  backlogGrossProfitYtd?: Prisma.SortOrder
+  backlogRevenueYtd?: Prisma.SortOrder
+  netProjectCashFlow?: Prisma.SortOrder
+  awardedYtdBudgetMargin?: Prisma.SortOrder
+  backlogYtdBudgetMargin?: Prisma.SortOrder
 }
 
 export type XeroPnLCreateNestedManyWithoutOrganisationInput = {
@@ -754,6 +950,13 @@ export type XeroPnLCreateWithoutOrganisationInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -773,6 +976,13 @@ export type XeroPnLUncheckedCreateWithoutOrganisationInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -822,6 +1032,13 @@ export type XeroPnLScalarWhereInput = {
   creditorDays?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.DecimalNullableFilter<"XeroPnL"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"XeroPnL"> | Date | string
 }
@@ -841,6 +1058,13 @@ export type XeroPnLCreateManyOrganisationInput = {
   creditorDays?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -860,6 +1084,13 @@ export type XeroPnLUpdateWithoutOrganisationInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -879,6 +1110,13 @@ export type XeroPnLUncheckedUpdateWithoutOrganisationInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -898,6 +1136,13 @@ export type XeroPnLUncheckedUpdateManyWithoutOrganisationInput = {
   creditorDays?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeDebtors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   tradeCreditors?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogGrossProfitYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogRevenueYtd?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  netProjectCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  awardedYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  backlogYtdBudgetMargin?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -920,6 +1165,13 @@ export type XeroPnLSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   creditorDays?: boolean
   tradeDebtors?: boolean
   tradeCreditors?: boolean
+  awardedGrossProfitYtd?: boolean
+  awardedRevenueYtd?: boolean
+  backlogGrossProfitYtd?: boolean
+  backlogRevenueYtd?: boolean
+  netProjectCashFlow?: boolean
+  awardedYtdBudgetMargin?: boolean
+  backlogYtdBudgetMargin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -941,6 +1193,13 @@ export type XeroPnLSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   creditorDays?: boolean
   tradeDebtors?: boolean
   tradeCreditors?: boolean
+  awardedGrossProfitYtd?: boolean
+  awardedRevenueYtd?: boolean
+  backlogGrossProfitYtd?: boolean
+  backlogRevenueYtd?: boolean
+  netProjectCashFlow?: boolean
+  awardedYtdBudgetMargin?: boolean
+  backlogYtdBudgetMargin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -962,6 +1221,13 @@ export type XeroPnLSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   creditorDays?: boolean
   tradeDebtors?: boolean
   tradeCreditors?: boolean
+  awardedGrossProfitYtd?: boolean
+  awardedRevenueYtd?: boolean
+  backlogGrossProfitYtd?: boolean
+  backlogRevenueYtd?: boolean
+  netProjectCashFlow?: boolean
+  awardedYtdBudgetMargin?: boolean
+  backlogYtdBudgetMargin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -983,11 +1249,18 @@ export type XeroPnLSelectScalar = {
   creditorDays?: boolean
   tradeDebtors?: boolean
   tradeCreditors?: boolean
+  awardedGrossProfitYtd?: boolean
+  awardedRevenueYtd?: boolean
+  backlogGrossProfitYtd?: boolean
+  backlogRevenueYtd?: boolean
+  netProjectCashFlow?: boolean
+  awardedYtdBudgetMargin?: boolean
+  backlogYtdBudgetMargin?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type XeroPnLOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "revenue" | "costOfSales" | "directLabour" | "grossProfit" | "indirectExpenses" | "indirectLabour" | "marketingExpenses" | "netProfitBeforeTax" | "debtorDays" | "creditorDays" | "tradeDebtors" | "tradeCreditors" | "createdAt" | "updatedAt", ExtArgs["result"]["xeroPnL"]>
+export type XeroPnLOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "revenue" | "costOfSales" | "directLabour" | "grossProfit" | "indirectExpenses" | "indirectLabour" | "marketingExpenses" | "netProfitBeforeTax" | "debtorDays" | "creditorDays" | "tradeDebtors" | "tradeCreditors" | "awardedGrossProfitYtd" | "awardedRevenueYtd" | "backlogGrossProfitYtd" | "backlogRevenueYtd" | "netProjectCashFlow" | "awardedYtdBudgetMargin" | "backlogYtdBudgetMargin" | "createdAt" | "updatedAt", ExtArgs["result"]["xeroPnL"]>
 export type XeroPnLInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
 }
@@ -1019,6 +1292,13 @@ export type $XeroPnLPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     creditorDays: runtime.Decimal | null
     tradeDebtors: runtime.Decimal | null
     tradeCreditors: runtime.Decimal | null
+    awardedGrossProfitYtd: runtime.Decimal | null
+    awardedRevenueYtd: runtime.Decimal | null
+    backlogGrossProfitYtd: runtime.Decimal | null
+    backlogRevenueYtd: runtime.Decimal | null
+    netProjectCashFlow: runtime.Decimal | null
+    awardedYtdBudgetMargin: runtime.Decimal | null
+    backlogYtdBudgetMargin: runtime.Decimal | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["xeroPnL"]>
@@ -1460,6 +1740,13 @@ export interface XeroPnLFieldRefs {
   readonly creditorDays: Prisma.FieldRef<"XeroPnL", 'Decimal'>
   readonly tradeDebtors: Prisma.FieldRef<"XeroPnL", 'Decimal'>
   readonly tradeCreditors: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly awardedGrossProfitYtd: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly awardedRevenueYtd: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly backlogGrossProfitYtd: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly backlogRevenueYtd: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly netProjectCashFlow: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly awardedYtdBudgetMargin: Prisma.FieldRef<"XeroPnL", 'Decimal'>
+  readonly backlogYtdBudgetMargin: Prisma.FieldRef<"XeroPnL", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"XeroPnL", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"XeroPnL", 'DateTime'>
 }

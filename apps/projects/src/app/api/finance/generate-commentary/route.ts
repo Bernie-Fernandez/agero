@@ -27,7 +27,14 @@ async function buildPrompt(sectionKey: string, reportMonth: Date, organisationId
   switch (sectionKey) {
     case 'business_unit_summary': {
       const data = await calcBusinessUnitSummary(organisationId, reportMonth);
-      return `Write financial commentary for the Business Unit Summary for ${month}. Awarded margin: ${fmt(data.awardedMargin)} (rate: ${fmtPct(data.awardedMarginRate)}). Backlog margin: ${fmt(data.backlogMargin)} (rate: ${fmtPct(data.backlogMarginRate)}). Net project cash flow: ${fmt(data.netProjectCashFlow)}. Net cash vs gross margin variance: ${fmt(data.netCashVsGrossMargin)}. Current ratio: ${data.currentRatio?.toFixed(2) ?? 'N/A'} (target >1.2). Quick ratio: ${data.quickRatio?.toFixed(2) ?? 'N/A'} (target >1.0). Working capital: ${fmt(data.workingCapital)}. Debtor days: ${data.debtorDays?.toFixed(0) ?? 'N/A'} (target <45). Creditor days: ${data.creditorDays?.toFixed(0) ?? 'N/A'} (target <45). Full year margin forecast: ${fmt(data.fyForecastMargin)}. Cash balance: ${fmt(data.cashBalance)}.`;
+      const awd = data.awarded;
+      const bkl = data.backlog;
+      return `Write financial commentary for the Business Unit Summary for ${month}. ` +
+        `Awarded projects: YTD actual margin ${awd.ytdActualMargin != null ? fmt(awd.ytdActualMargin) : 'N/A'} vs YTD budget ${fmt(awd.ytdBudgetMargin)} (variance ${awd.ytdVarianceDollars != null ? fmt(awd.ytdVarianceDollars) : 'N/A'}, ${awd.ytdVariancePct != null ? fmtPct(awd.ytdVariancePct) : 'N/A'}). Awarded margin %: ${awd.ytdMarginPct != null ? fmtPct(awd.ytdMarginPct) : 'N/A'}. ` +
+        `Awarded FY forecast margin ${fmt(awd.fyForecastMargin)} vs FY budget ${awd.fyBudgetMargin != null ? fmt(awd.fyBudgetMargin) : 'N/A'} (FY variance ${awd.fyVarianceDollars != null ? fmt(awd.fyVarianceDollars) : 'N/A'}). ` +
+        `Backlog projects: YTD actual margin ${bkl.ytdActualMargin != null ? fmt(bkl.ytdActualMargin) : 'N/A'} vs YTD budget ${fmt(bkl.ytdBudgetMargin)} (variance ${bkl.ytdVarianceDollars != null ? fmt(bkl.ytdVarianceDollars) : 'N/A'}). Backlog margin %: ${bkl.ytdMarginPct != null ? fmtPct(bkl.ytdMarginPct) : 'N/A'}. ` +
+        `Backlog FY forecast margin ${fmt(bkl.fyForecastMargin)} vs FY budget ${bkl.fyBudgetMargin != null ? fmt(bkl.fyBudgetMargin) : 'N/A'}. ` +
+        `Net project cash flow: ${data.netProjectCashFlow != null ? fmt(data.netProjectCashFlow) : 'N/A'}. Net cash vs gross margin: ${data.netCashVsGrossMargin != null ? fmt(data.netCashVsGrossMargin) : 'N/A'}.`;
     }
 
     case 'consolidated_pl': {
@@ -76,8 +83,8 @@ async function buildPrompt(sectionKey: string, reportMonth: Date, organisationId
         where: { organisationId, reportMonth, deletedAt: null },
       });
       const subPayments = projects.reduce((s, p) => s + parseFloat(String(p.subClaims || 0)), 0);
-      const cashOutlook = busUnit.cashBalance > 100000 ? 'positive' : busUnit.cashBalance > 0 ? 'tight' : 'negative';
-      return `Write a Month Ahead commentary for ${nextMonth}. Expected progress claims to issue: ${fmt(nextMonthRevenue)} based on secured forecast. Subcontractor payments due: approximately ${fmt(subPayments * 0.3)} (estimated 30% of current sub claims). Cash position outlook: ${cashOutlook} based on current bank balance of ${fmt(busUnit.cashBalance)} and expected inflows/outflows.`;
+      const awardedFyForecast = busUnit.awarded.fyForecastMargin + busUnit.backlog.fyForecastMargin;
+      return `Write a Month Ahead commentary for ${nextMonth}. Expected progress claims to issue: ${fmt(nextMonthRevenue)} based on secured forecast. Subcontractor payments due: approximately ${fmt(subPayments * 0.3)} (estimated 30% of current sub claims). Combined FY forecast margin: ${fmt(awardedFyForecast)}. Net project cash flow: ${busUnit.netProjectCashFlow != null ? fmt(busUnit.netProjectCashFlow) : 'N/A'}.`;
     }
 
     default:

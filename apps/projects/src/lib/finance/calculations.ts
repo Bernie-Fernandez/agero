@@ -33,19 +33,20 @@ function n(v: unknown): number {
 
 export function getFinancialYear(date: Date): number {
   const month = date.getUTCMonth() + 1;
-  return month >= 7 ? date.getUTCFullYear() : date.getUTCFullYear() - 1;
+  // Convention: FY2026 = Jul 2025 – Jun 2026 (year the FY ends)
+  return month >= 7 ? date.getUTCFullYear() + 1 : date.getUTCFullYear();
 }
 
 export function getMonthsYtd(reportMonth: Date): Date[] {
   const fy = getFinancialYear(reportMonth);
   const months: Date[] = [];
-  // FY runs Jul–Jun
+  // FY runs Jul(fy-1)–Jun(fy), e.g. FY2026 = Jul 2025 – Jun 2026
   for (let m = 7; m <= 12; m++) {
-    const d = new Date(Date.UTC(fy, m - 1, 1));
+    const d = new Date(Date.UTC(fy - 1, m - 1, 1));
     if (d <= reportMonth) months.push(d);
   }
   for (let m = 1; m <= 6; m++) {
-    const d = new Date(Date.UTC(fy + 1, m - 1, 1));
+    const d = new Date(Date.UTC(fy, m - 1, 1));
     if (d <= reportMonth) months.push(d);
   }
   return months;
@@ -114,96 +115,107 @@ export function calcWIP(p: FinanceProjectRow, targetExitMarginDecimal: number) {
 
 // ─── Business Unit Summary ────────────────────────────────────────────────────
 
-export async function calcBusinessUnitSummary(organisationId: string, reportMonth: Date) {
-  const monthStr = reportMonth.toISOString();
-  const fy = getFinancialYear(reportMonth);
-  const ytdMonths = getMonthsYtd(reportMonth);
+const SF_MONTHS = ['jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr', 'may', 'jun'] as const;
+type SFMonthKey = typeof SF_MONTHS[number];
 
-  const [projects, pnl, bankBalances, budgetRows, securedForecasts] = await Promise.all([
-    prisma.financeProject.findMany({
-      where: { organisationId, reportMonth: reportMonth, deletedAt: null },
-    }),
-    prisma.xeroPnL.findFirst({
-      where: { organisationId, reportMonth: reportMonth },
-    }),
-    prisma.xeroBankBalance.findMany({
-      where: { organisationId, reportMonth: reportMonth },
-    }),
-    prisma.annualBudget.findMany({
-      where: { organisationId, financialYear: fy },
-    }),
-    prisma.securedForecast.findMany({
-      where: { organisationId, financialYear: fy },
-    }),
+// SecuredForecast monthly columns store margin dollars (GP) directly — do NOT multiply by marginPercent
+function sfMarginForMonths(forecasts: { [k: string]: unknown }[], status: string, months: SFMonthKey[]): number {
+  return forecasts
+    .filter((sf) => sf.status === status)
+    .reduce((sum, sf) => sum + months.reduce((s, m) => s + n(sf[m]), 0), 0);
+}
+
+function ytdMonthKeys(ytdDates: Date[]): SFMonthKey[] {
+  return ytdDates.map((d) => SF_MONTHS[d.getUTCMonth() >= 6 ? d.getUTCMonth() - 6 : d.getUTCMonth() + 6] as SFMonthKey);
+}
+
+export async function calcBusinessUnitSummary(organisationId: string, reportMonth: Date) {
+  const fy = getFinancialYear(reportMonth);
+  const ytdDates = getMonthsYtd(reportMonth);
+  const ytdKeys = ytdMonthKeys(ytdDates);
+
+  const [pnl, budgetRows, securedForecasts] = await Promise.all([
+    prisma.xeroPnL.findFirst({ where: { organisationId, reportMonth } }),
+    prisma.annualBudget.findMany({ where: { organisationId, financialYear: fy } }),
+    prisma.securedForecast.findMany({ where: { organisationId, financialYear: fy } }),
   ]);
 
-  const awarded = projects.filter((p) => p.status === 'AWARDED');
-  const backlog = projects.filter((p) => p.status === 'BACKLOG');
+  // YTD actuals — from manually-entered XeroPnL fields
+  const awardedGpYtd = pnl?.awardedGrossProfitYtd ? n(pnl.awardedGrossProfitYtd) : null;
+  const awardedRevYtd = pnl?.awardedRevenueYtd ? n(pnl.awardedRevenueYtd) : null;
+  const backlogGpYtd = pnl?.backlogGrossProfitYtd ? n(pnl.backlogGrossProfitYtd) : null;
+  const backlogRevYtd = pnl?.backlogRevenueYtd ? n(pnl.backlogRevenueYtd) : null;
+  const netCashFlow = pnl?.netProjectCashFlow ? n(pnl.netProjectCashFlow) : null;
 
-  const awardedMargin = awarded.reduce((s, p) => s + n(p.forecastMarginDollars), 0);
-  const awardedCV = awarded.reduce((s, p) => s + n(p.forecastContractValue), 0);
-  const backlogMargin = backlog.reduce((s, p) => s + n(p.forecastMarginDollars), 0);
-  const backlogCV = backlog.reduce((s, p) => s + n(p.forecastContractValue), 0);
+  // YTD Budget — from manually-entered XeroPnL fields (seeded from (B) Budget sheet)
+  const awardedYtdBudget = pnl?.awardedYtdBudgetMargin != null ? n(pnl.awardedYtdBudgetMargin) : 0;
+  const backlogYtdBudget = pnl?.backlogYtdBudgetMargin != null ? n(pnl.backlogYtdBudgetMargin) : 0;
 
-  const netProjectCashFlow = projects.reduce((s, p) => s + n(p.claimTotal) - n(p.totalCost), 0);
-  const grossMarginFromPnl = pnl ? n(pnl.grossProfit) : 0;
-  const netCashVsGrossMargin = netProjectCashFlow - grossMarginFromPnl;
+  // FY Forecast = YTD actual GP + remaining months of SecuredForecast × marginPercent
+  const remainingKeys = SF_MONTHS.filter((m) => !ytdKeys.includes(m));
+  const awardedFyForecast = (awardedGpYtd ?? 0) + sfMarginForMonths(securedForecasts, 'AWARDED', remainingKeys);
+  const backlogFyForecast = (backlogGpYtd ?? 0) + sfMarginForMonths(securedForecasts, 'BACKLOG', remainingKeys);
 
-  // Liquidity ratios from Xero P&L (use trade debtors/creditors as proxies)
-  const ar = pnl?.tradeDebtors ? n(pnl.tradeDebtors) : 0;
-  const ap = pnl?.tradeCreditors ? n(pnl.tradeCreditors) : 0;
-  const cash = bankBalances.reduce((s, b) => s + n(b.balance), 0);
-  const revenue = pnl ? n(pnl.revenue) : 0;
+  // FY Budget — from AnnualBudget line items keyed by 'awarded' / 'backlog'
+  const awardedBudgetRow = budgetRows.find((r) => r.lineItem.toLowerCase().includes('awarded'));
+  const backlogBudgetRow = budgetRows.find((r) => r.lineItem.toLowerCase().includes('backlog'));
+  const awardedFyBudget = awardedBudgetRow ? n(awardedBudgetRow.total) : null;
+  const backlogFyBudget = backlogBudgetRow ? n(backlogBudgetRow.total) : null;
 
-  const currentRatio = ap > 0 ? (cash + ar) / ap : null;
-  const quickRatio = ap > 0 ? (cash + ar) / ap : null;
-  const workingCapital = cash + ar - ap;
-  const debtorDays = revenue > 0 ? (ar / revenue) * 30 : pnl?.debtorDays ? n(pnl.debtorDays) : null;
-  const creditorDays = pnl ? n(pnl.creditorDays) : null;
+  // Derived figures for Awarded
+  const awardedYtdVarD = awardedGpYtd !== null ? awardedGpYtd - awardedYtdBudget : null;
+  const awardedYtdVarPct = awardedYtdBudget !== 0 && awardedYtdVarD !== null ? awardedYtdVarD / awardedYtdBudget : null;
+  const awardedYtdMarginPct = awardedRevYtd !== null && awardedRevYtd !== 0 && awardedGpYtd !== null ? awardedGpYtd / awardedRevYtd : null;
+  const awardedFyVarD = awardedFyBudget !== null ? awardedFyForecast - awardedFyBudget : null;
+  const awardedFyVarPct = awardedFyBudget !== null && awardedFyBudget !== 0 && awardedFyVarD !== null ? awardedFyVarD / awardedFyBudget : null;
 
-  // FY forecast margin (awarded projects projected revenue * margin %)
-  const remainingMonths = getRemainingFYMonths(reportMonth);
-  let fyForecastMargin = awardedMargin;
-  for (const sf of securedForecasts.filter((s) => s.status === 'AWARDED' || s.status === 'BACKLOG')) {
-    const marginPct = n(sf.marginPercent);
-    for (const m of remainingMonths) {
-      const key = monthKey(m) as keyof typeof sf;
-      const rev = n(sf[key as keyof typeof sf]);
-      fyForecastMargin += rev * marginPct;
-    }
-  }
+  // Derived figures for Backlog
+  const backlogYtdVarD = backlogGpYtd !== null ? backlogGpYtd - backlogYtdBudget : null;
+  const backlogYtdVarPct = backlogYtdBudget !== 0 && backlogYtdVarD !== null ? backlogYtdVarD / backlogYtdBudget : null;
+  const backlogYtdMarginPct = backlogRevYtd !== null && backlogRevYtd !== 0 && backlogGpYtd !== null ? backlogGpYtd / backlogRevYtd : null;
+  const backlogFyVarD = backlogFyBudget !== null ? backlogFyForecast - backlogFyBudget : null;
+  const backlogFyVarPct = backlogFyBudget !== null && backlogFyBudget !== 0 && backlogFyVarD !== null ? backlogFyVarD / backlogFyBudget : null;
 
-  // Budget figures
-  const budgetMarginRow = budgetRows.find((r) => r.lineItem.toLowerCase().includes('margin'));
-  const budgetAwardedMargin = budgetMarginRow ? ytdMonths.reduce((s, m) => {
-    const k = getMonthBudgetKey(m) as keyof typeof budgetMarginRow;
-    return s + n(budgetMarginRow[k]);
-  }, 0) : null;
+  // Net Cash Flow vs Gross Margin
+  const totalGpYtd = (awardedGpYtd ?? 0) + (backlogGpYtd ?? 0);
+  const netCashVsGrossMargin = netCashFlow !== null ? netCashFlow - totalGpYtd : null;
 
   return {
-    awardedMargin,
-    awardedMarginRate: awardedCV > 0 ? awardedMargin / awardedCV : 0,
-    backlogMargin,
-    backlogMarginRate: backlogCV > 0 ? backlogMargin / backlogCV : 0,
-    netProjectCashFlow,
+    awarded: {
+      ytdActualMargin: awardedGpYtd,
+      ytdActualRevenue: awardedRevYtd,
+      ytdBudgetMargin: awardedYtdBudget,
+      ytdVarianceDollars: awardedYtdVarD,
+      ytdVariancePct: awardedYtdVarPct,
+      ytdMarginPct: awardedYtdMarginPct,
+      fyForecastMargin: awardedFyForecast,
+      fyBudgetMargin: awardedFyBudget,
+      fyVarianceDollars: awardedFyVarD,
+      fyVariancePct: awardedFyVarPct,
+    },
+    backlog: {
+      ytdActualMargin: backlogGpYtd,
+      ytdActualRevenue: backlogRevYtd,
+      ytdBudgetMargin: backlogYtdBudget,
+      ytdVarianceDollars: backlogYtdVarD,
+      ytdVariancePct: backlogYtdVarPct,
+      ytdMarginPct: backlogYtdMarginPct,
+      fyForecastMargin: backlogFyForecast,
+      fyBudgetMargin: backlogFyBudget,
+      fyVarianceDollars: backlogFyVarD,
+      fyVariancePct: backlogFyVarPct,
+    },
+    netProjectCashFlow: netCashFlow,
     netCashVsGrossMargin,
-    currentRatio,
-    quickRatio,
-    workingCapital,
-    debtorDays,
-    creditorDays,
-    fyForecastMargin,
-    budgetAwardedMargin,
-    cashBalance: cash,
-    reportMonth: monthStr,
+    reportMonth: reportMonth.toISOString(),
   };
 }
 
 function getRemainingFYMonths(reportMonth: Date): Date[] {
   const fy = getFinancialYear(reportMonth);
   const allFYMonths: Date[] = [];
-  for (let m = 7; m <= 12; m++) allFYMonths.push(new Date(Date.UTC(fy, m - 1, 1)));
-  for (let m = 1; m <= 6; m++) allFYMonths.push(new Date(Date.UTC(fy + 1, m - 1, 1)));
+  for (let m = 7; m <= 12; m++) allFYMonths.push(new Date(Date.UTC(fy - 1, m - 1, 1)));
+  for (let m = 1; m <= 6; m++) allFYMonths.push(new Date(Date.UTC(fy, m - 1, 1)));
   return allFYMonths.filter((m) => m > reportMonth);
 }
 

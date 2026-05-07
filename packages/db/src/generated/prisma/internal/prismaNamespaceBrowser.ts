@@ -1984,6 +1984,13 @@ export const XeroPnLScalarFieldEnum = {
   creditorDays: 'creditorDays',
   tradeDebtors: 'tradeDebtors',
   tradeCreditors: 'tradeCreditors',
+  awardedGrossProfitYtd: 'awardedGrossProfitYtd',
+  awardedRevenueYtd: 'awardedRevenueYtd',
+  backlogGrossProfitYtd: 'backlogGrossProfitYtd',
+  backlogRevenueYtd: 'backlogRevenueYtd',
+  netProjectCashFlow: 'netProjectCashFlow',
+  awardedYtdBudgetMargin: 'awardedYtdBudgetMargin',
+  backlogYtdBudgetMargin: 'backlogYtdBudgetMargin',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

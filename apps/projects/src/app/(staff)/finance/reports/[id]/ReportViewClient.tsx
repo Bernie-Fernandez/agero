@@ -344,34 +344,54 @@ export default function ReportViewClient({ report: initialReport, calculations }
 
       {/* Section 1 — Business Unit Summary */}
       <ReportSection title="Business Unit Summary" sectionKey="business_unit_summary" reportId={report.id} sections={sections} isFinal={isFinal} onSectionUpdate={handleSectionUpdate}>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-          {[
-            { label: 'Margin on Awarded', value: fmt(busUnit.awardedMargin), sub: fmtPct(busUnit.awardedMarginRate) },
-            { label: 'Margin on Backlog', value: fmt(busUnit.backlogMargin), sub: fmtPct(busUnit.backlogMarginRate) },
-            { label: 'FY Forecast Margin', value: fmt(busUnit.fyForecastMargin), sub: '' },
-            { label: 'Net Project Cash Flow', value: fmt(busUnit.netProjectCashFlow), sub: '' },
-            { label: 'Cash Balance', value: fmt(busUnit.cashBalance), sub: '' },
-            { label: 'Working Capital', value: fmt(busUnit.workingCapital), sub: '' },
-          ].map((k) => (
-            <div key={k.label} className="bg-zinc-50 rounded-lg p-4">
-              <div className="text-lg font-bold text-zinc-900">{k.value}</div>
-              <div className="text-xs text-zinc-500 mt-1">{k.label}{k.sub ? ` (${k.sub})` : ''}</div>
-            </div>
-          ))}
-        </div>
-        <h3 className="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">Liquidity Ratios</h3>
         <div className="overflow-auto">
-          <table className="w-full text-sm border border-zinc-100 rounded-lg overflow-hidden">
-            <thead className="bg-zinc-50">
-              <tr><TH>Metric</TH><TH right>Value</TH><TH right>Target</TH></tr>
+          <table className="w-full text-sm min-w-[700px]">
+            <thead className="bg-zinc-50 border-b border-zinc-200">
+              <tr>
+                <TH>Business Unit</TH>
+                <TH right>YTD Actual $</TH>
+                <TH right>YTD Budget $</TH>
+                <TH right>Variance $</TH>
+                <TH right>Variance %</TH>
+                <TH right>Margin %</TH>
+                <TH right>FY Forecast $</TH>
+                <TH right>FY Budget $</TH>
+                <TH right>FY Var $</TH>
+                <TH right>FY Var %</TH>
+              </tr>
             </thead>
             <tbody className="divide-y divide-zinc-100">
-              <tr><TD>Current Ratio</TD><TD right>{busUnit.currentRatio != null ? fmtNum(busUnit.currentRatio) : '—'}</TD><TD right>&gt;1.2</TD></tr>
-              <tr className="bg-zinc-50/50"><TD>Quick Ratio</TD><TD right>{busUnit.quickRatio != null ? fmtNum(busUnit.quickRatio) : '—'}</TD><TD right>&gt;1.0 (industry 1.4)</TD></tr>
-              <tr><TD>Debtor Days</TD><TD right>{busUnit.debtorDays != null ? fmtNum(busUnit.debtorDays, 0) + ' days' : '—'}</TD><TD right>&lt;45 days</TD></tr>
-              <tr className="bg-zinc-50/50"><TD>Creditor Days</TD><TD right>{busUnit.creditorDays != null ? fmtNum(busUnit.creditorDays, 0) + ' days' : '—'}</TD><TD right>&lt;45 days</TD></tr>
+              {([
+                { label: 'Awarded Projects', data: busUnit.awarded },
+                { label: 'Backlog Projects', data: busUnit.backlog },
+              ] as { label: string; data: { ytdActualMargin: number | null; ytdBudgetMargin: number; ytdVarianceDollars: number | null; ytdVariancePct: number | null; ytdMarginPct: number | null; fyForecastMargin: number; fyBudgetMargin: number | null; fyVarianceDollars: number | null; fyVariancePct: number | null } }[]).map(({ label, data }, i) => (
+                <tr key={label} className={i % 2 === 0 ? '' : 'bg-zinc-50/50'}>
+                  <TD bold>{label}</TD>
+                  <TD right bold>{data.ytdActualMargin != null ? fmt(data.ytdActualMargin) : '—'}</TD>
+                  <TD right>{fmt(data.ytdBudgetMargin)}</TD>
+                  <TD right red={data.ytdVarianceDollars != null && data.ytdVarianceDollars < 0} green={data.ytdVarianceDollars != null && data.ytdVarianceDollars >= 0}>
+                    {data.ytdVarianceDollars != null ? fmt(data.ytdVarianceDollars) : '—'}
+                  </TD>
+                  <TD right red={data.ytdVariancePct != null && data.ytdVariancePct < -0.05}>
+                    {data.ytdVariancePct != null ? fmtPct(data.ytdVariancePct) : '—'}
+                  </TD>
+                  <TD right>{data.ytdMarginPct != null ? fmtPct(data.ytdMarginPct) : '—'}</TD>
+                  <TD right bold>{fmt(data.fyForecastMargin)}</TD>
+                  <TD right>{data.fyBudgetMargin != null ? fmt(data.fyBudgetMargin) : '—'}</TD>
+                  <TD right red={data.fyVarianceDollars != null && data.fyVarianceDollars < 0} green={data.fyVarianceDollars != null && data.fyVarianceDollars >= 0}>
+                    {data.fyVarianceDollars != null ? fmt(data.fyVarianceDollars) : '—'}
+                  </TD>
+                  <TD right red={data.fyVariancePct != null && data.fyVariancePct < -0.05}>
+                    {data.fyVariancePct != null ? fmtPct(data.fyVariancePct) : '—'}
+                  </TD>
+                </tr>
+              ))}
             </tbody>
           </table>
+        </div>
+        <div className="mt-4 flex gap-8 text-sm text-zinc-600 border-t border-zinc-100 pt-4">
+          <div>Net Project Cash Flow: <span className="font-semibold text-zinc-900">{busUnit.netProjectCashFlow != null ? fmt(busUnit.netProjectCashFlow) : '—'}</span></div>
+          <div>Net Cash vs Gross Margin: <span className={`font-semibold ${busUnit.netCashVsGrossMargin != null && busUnit.netCashVsGrossMargin < 0 ? 'text-red-600' : 'text-zinc-900'}`}>{busUnit.netCashVsGrossMargin != null ? fmt(busUnit.netCashVsGrossMargin) : '—'}</span></div>
         </div>
       </ReportSection>
 

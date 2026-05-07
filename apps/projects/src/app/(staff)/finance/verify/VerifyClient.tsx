@@ -5,6 +5,10 @@ type PnL = {
   revenue: string; costOfSales: string; directLabour: string; grossProfit: string;
   indirectExpenses: string; indirectLabour: string; marketingExpenses: string;
   netProfitBeforeTax: string; debtorDays: string | null; creditorDays: string | null;
+  awardedGrossProfitYtd: string | null; awardedRevenueYtd: string | null;
+  backlogGrossProfitYtd: string | null; backlogRevenueYtd: string | null;
+  netProjectCashFlow: string | null;
+  awardedYtdBudgetMargin: string | null; backlogYtdBudgetMargin: string | null;
 } | null;
 
 type BankBalance = { accountName: string; balance: string };
@@ -77,6 +81,30 @@ export default function VerifyClient({
 }) {
   const [confirming, setConfirming] = useState(false);
   const [confirmed, setConfirmed] = useState(monthStatus?.dataVerifiedAt != null);
+
+  const [buForm, setBuForm] = useState({
+    awardedGrossProfitYtd: pnl?.awardedGrossProfitYtd ?? '',
+    awardedRevenueYtd: pnl?.awardedRevenueYtd ?? '',
+    backlogGrossProfitYtd: pnl?.backlogGrossProfitYtd ?? '',
+    backlogRevenueYtd: pnl?.backlogRevenueYtd ?? '',
+    netProjectCashFlow: pnl?.netProjectCashFlow ?? '',
+    awardedYtdBudgetMargin: pnl?.awardedYtdBudgetMargin ?? '',
+    backlogYtdBudgetMargin: pnl?.backlogYtdBudgetMargin ?? '',
+  });
+  const [buSaving, setBuSaving] = useState(false);
+  const [buSaved, setBuSaved] = useState(false);
+
+  async function saveBuFields() {
+    setBuSaving(true);
+    setBuSaved(false);
+    await fetch('/api/finance/pnl', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reportMonth: `${reportMonth}-01`, ...buForm }),
+    });
+    setBuSaving(false);
+    setBuSaved(true);
+  }
 
   async function confirmData() {
     setConfirming(true);
@@ -157,6 +185,49 @@ export default function VerifyClient({
           )}
         </tbody>
       </Panel>
+
+      {/* Business Unit Manual Entry Panel */}
+      <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden mb-6">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 bg-zinc-50">
+          <div>
+            <h2 className="text-sm font-semibold text-zinc-800">Business Unit Summary — Manual Entry</h2>
+            <p className="text-xs text-zinc-500 mt-0.5">Manually entered from Xero each month for the Business Unit Summary report section.</p>
+          </div>
+          {buSaved && <span className="text-xs text-green-600 font-semibold">Saved</span>}
+        </div>
+        <div className="p-4 grid grid-cols-2 gap-4">
+          {([
+            ['awardedGrossProfitYtd', 'Awarded GP YTD ($)'],
+            ['awardedRevenueYtd', 'Awarded Revenue YTD ($)'],
+            ['awardedYtdBudgetMargin', 'Awarded YTD Budget Margin ($)'],
+            ['backlogGrossProfitYtd', 'Backlog GP YTD ($)'],
+            ['backlogRevenueYtd', 'Backlog Revenue YTD ($)'],
+            ['backlogYtdBudgetMargin', 'Backlog YTD Budget Margin ($)'],
+            ['netProjectCashFlow', 'Net Project Cash Flow ($)'],
+          ] as [keyof typeof buForm, string][]).map(([key, label]) => (
+            <div key={key}>
+              <label className="block text-xs font-medium text-zinc-600 mb-1">{label}</label>
+              <input
+                type="number"
+                step="0.01"
+                value={buForm[key]}
+                onChange={(e) => { setBuForm((f) => ({ ...f, [key]: e.target.value })); setBuSaved(false); }}
+                className="w-full border border-zinc-300 rounded-lg px-3 py-2 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-brand/50"
+                placeholder="0.00"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="px-4 pb-4">
+          <button
+            onClick={saveBuFields}
+            disabled={buSaving}
+            className="px-4 py-2 bg-brand hover:bg-brand/90 text-white text-sm font-medium rounded-lg disabled:opacity-50"
+          >
+            {buSaving ? 'Saving…' : 'Save Business Unit Fields'}
+          </button>
+        </div>
+      </div>
 
       {/* Bank Balances Panel */}
       <Panel title="Bank Balances — March 2026" allClear={bankAllClear}>
