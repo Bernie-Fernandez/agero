@@ -398,39 +398,96 @@ export default function ReportViewClient({ report: initialReport, calculations }
       {/* Section 2 — Consolidated P&L */}
       <ReportSection title="Consolidated P&L" sectionKey="consolidated_pl" reportId={report.id} sections={sections} isFinal={isFinal} onSectionUpdate={handleSectionUpdate}>
         <div className="overflow-auto">
-          <table className="w-full text-sm min-w-[700px]">
-            <thead className="bg-zinc-50 border-b border-zinc-200">
-              <tr>
-                <TH>Line Item</TH>
-                <TH right>This Month</TH>
-                <TH right>YTD Actual</TH>
-                <TH right>YTD Budget</TH>
-                <TH right>Variance $</TH>
-                <TH right>Variance %</TH>
+          <table className="w-full text-sm min-w-[1100px]">
+            <thead>
+              {/* Group headers */}
+              <tr className="border-b border-zinc-200">
+                <th className="px-3 py-2 text-left text-xs font-semibold text-zinc-500 uppercase tracking-wide w-40" />
+                <th colSpan={3} className="px-3 py-2 text-center text-xs font-semibold text-zinc-700 uppercase tracking-wide border-l border-zinc-200 bg-zinc-50">Month</th>
+                <th colSpan={3} className="px-3 py-2 text-center text-xs font-semibold text-zinc-700 uppercase tracking-wide border-l border-zinc-200 bg-zinc-50">Year to Date</th>
+                <th colSpan={2} className="px-3 py-2 text-center text-xs font-semibold text-zinc-700 uppercase tracking-wide border-l border-zinc-200 bg-zinc-50">Full Year 2025–26</th>
+              </tr>
+              {/* Column headers */}
+              <tr className="bg-zinc-50 border-b border-zinc-200">
+                <th className="px-3 py-2 text-left text-xs font-semibold text-zinc-500 uppercase tracking-wide">Line Item</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide border-l border-zinc-200">Actual</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide">Budgeted</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide">Variance $</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide border-l border-zinc-200">Actual</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide">Budgeted</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide">Variance $</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide border-l border-zinc-200">Budget</th>
+                <th className="px-3 py-2 text-right text-xs font-semibold text-zinc-500 uppercase tracking-wide">Forecast</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-100">
-              {[
-                { label: 'Revenue', tm: pnl.thisMonth.revenue, ytd: pnl.ytd.revenue, bud: pnl.budget.revenue, varD: pnl.variance.revenue, varP: pnl.variance.revenuePct },
-                { label: 'Cost of Sales', tm: pnl.thisMonth.costOfSales, ytd: pnl.ytd.costOfSales, bud: pnl.budget.costOfSales },
-                { label: 'Direct Labour', tm: pnl.thisMonth.directLabour, ytd: pnl.ytd.directLabour },
-                { label: 'Gross Profit', tm: pnl.thisMonth.grossProfit, ytd: pnl.ytd.grossProfit, bud: pnl.budget.grossProfit, varD: pnl.variance.grossProfit, varP: pnl.variance.grossProfitPct, bold: true },
-                { label: 'Gross Margin %', tm: pnl.thisMonth.grossMarginPct, ytd: pnl.ytd.grossMarginPct, isPct: true },
-                { label: 'Indirect Expenses', tm: pnl.thisMonth.indirectExpenses, ytd: pnl.ytd.indirectExpenses },
-                { label: 'Indirect Labour', tm: pnl.thisMonth.indirectLabour, ytd: pnl.ytd.indirectLabour },
-                { label: 'Marketing Expenses', tm: pnl.thisMonth.marketingExpenses, ytd: pnl.ytd.marketingExpenses },
-                { label: 'Net Profit Before Tax', tm: pnl.thisMonth.netProfitBeforeTax, ytd: pnl.ytd.netProfitBeforeTax, bud: pnl.budget.netProfitBeforeTax, varD: pnl.variance.netProfit, varP: pnl.variance.netProfitPct, bold: true },
-                { label: 'Net Profit Rate %', tm: pnl.thisMonth.netProfitRate, ytd: pnl.ytd.netProfitRate, isPct: true },
-              ].map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? '' : 'bg-zinc-50/50'}>
-                  <TD bold={row.bold}>{row.label}</TD>
-                  <TD right bold={row.bold}>{row.isPct ? fmtPct(row.tm ?? 0) : fmt(row.tm ?? 0)}</TD>
-                  <TD right bold={row.bold}>{row.isPct ? fmtPct(row.ytd ?? 0) : fmt(row.ytd ?? 0)}</TD>
-                  <TD right>{row.bud != null ? fmt(row.bud) : '—'}</TD>
-                  <TD right red={row.varD != null && row.varD < 0} green={row.varD != null && row.varD >= 0}>{row.varD != null ? fmt(row.varD) : '—'}</TD>
-                  <TD right red={row.varP != null && row.varP < -0.1}>{row.varP != null ? fmtPct(row.varP) : '—'}</TD>
-                </tr>
-              ))}
+              {([
+                { label: 'Revenue',              bold: false, isPct: false, isCost: false, profitLine: false,
+                  tmA: pnl.thisMonth.actual.revenue,           tmB: pnl.thisMonth.budget.revenue,           tmV: pnl.thisMonth.variance.revenue,
+                  ytdA: pnl.ytd.actual.revenue,                ytdB: pnl.ytd.budget.revenue,                ytdV: pnl.ytd.variance.revenue,
+                  fyB: pnl.fullYear.budget.revenue,            fyF: pnl.fullYear.forecast.revenue },
+                { label: 'Cost of Sales',        bold: false, isPct: false, isCost: true,  profitLine: false,
+                  tmA: pnl.thisMonth.actual.costOfSales,       tmB: pnl.thisMonth.budget.costOfSales,       tmV: pnl.thisMonth.variance.costOfSales,
+                  ytdA: pnl.ytd.actual.costOfSales,            ytdB: pnl.ytd.budget.costOfSales,            ytdV: pnl.ytd.variance.costOfSales,
+                  fyB: pnl.fullYear.budget.costOfSales,        fyF: pnl.fullYear.forecast.costOfSales },
+                { label: 'Direct Labour',        bold: false, isPct: false, isCost: true,  profitLine: false,
+                  tmA: pnl.thisMonth.actual.directLabour,      tmB: pnl.thisMonth.budget.directLabour,      tmV: pnl.thisMonth.variance.directLabour,
+                  ytdA: pnl.ytd.actual.directLabour,           ytdB: pnl.ytd.budget.directLabour,           ytdV: pnl.ytd.variance.directLabour,
+                  fyB: pnl.fullYear.budget.directLabour,       fyF: pnl.fullYear.forecast.directLabour },
+                { label: 'Gross Profit',         bold: true,  isPct: false, isCost: false, profitLine: true,
+                  tmA: pnl.thisMonth.actual.grossProfit,       tmB: pnl.thisMonth.budget.grossProfit,       tmV: pnl.thisMonth.variance.grossProfit,
+                  ytdA: pnl.ytd.actual.grossProfit,            ytdB: pnl.ytd.budget.grossProfit,            ytdV: pnl.ytd.variance.grossProfit,
+                  fyB: pnl.fullYear.budget.grossProfit,        fyF: pnl.fullYear.forecast.grossProfit },
+                { label: 'Gross Margin %',       bold: false, isPct: true,  isCost: false, profitLine: false, noVar: true,
+                  tmA: pnl.thisMonth.actual.grossMarginPct,    tmB: null, tmV: null,
+                  ytdA: pnl.ytd.actual.grossMarginPct,         ytdB: null, ytdV: null,
+                  fyB: null,                                   fyF: pnl.fullYear.forecast.grossMarginPct },
+                { label: 'Indirect Expenses',    bold: false, isPct: false, isCost: true,  profitLine: false,
+                  tmA: pnl.thisMonth.actual.indirectExpenses,  tmB: pnl.thisMonth.budget.indirectExpenses,  tmV: pnl.thisMonth.variance.indirectExpenses,
+                  ytdA: pnl.ytd.actual.indirectExpenses,       ytdB: pnl.ytd.budget.indirectExpenses,       ytdV: pnl.ytd.variance.indirectExpenses,
+                  fyB: pnl.fullYear.budget.indirectExpenses,   fyF: pnl.fullYear.forecast.indirectExpenses },
+                { label: 'Indirect Labour',      bold: false, isPct: false, isCost: true,  profitLine: false,
+                  tmA: pnl.thisMonth.actual.indirectLabour,    tmB: pnl.thisMonth.budget.indirectLabour,    tmV: pnl.thisMonth.variance.indirectLabour,
+                  ytdA: pnl.ytd.actual.indirectLabour,         ytdB: pnl.ytd.budget.indirectLabour,         ytdV: pnl.ytd.variance.indirectLabour,
+                  fyB: pnl.fullYear.budget.indirectLabour,     fyF: pnl.fullYear.forecast.indirectLabour },
+                { label: 'Marketing Expenses',   bold: false, isPct: false, isCost: true,  profitLine: false,
+                  tmA: pnl.thisMonth.actual.marketingExpenses, tmB: pnl.thisMonth.budget.marketingExpenses, tmV: pnl.thisMonth.variance.marketingExpenses,
+                  ytdA: pnl.ytd.actual.marketingExpenses,      ytdB: pnl.ytd.budget.marketingExpenses,      ytdV: pnl.ytd.variance.marketingExpenses,
+                  fyB: pnl.fullYear.budget.marketingExpenses,  fyF: pnl.fullYear.forecast.marketingExpenses },
+                { label: 'Net Profit Before Tax', bold: true, isPct: false, isCost: false, profitLine: true,
+                  tmA: pnl.thisMonth.actual.netProfitBeforeTax,  tmB: pnl.thisMonth.budget.netProfitBeforeTax,  tmV: pnl.thisMonth.variance.netProfitBeforeTax,
+                  ytdA: pnl.ytd.actual.netProfitBeforeTax,       ytdB: pnl.ytd.budget.netProfitBeforeTax,       ytdV: pnl.ytd.variance.netProfitBeforeTax,
+                  fyB: pnl.fullYear.budget.netProfitBeforeTax,   fyF: pnl.fullYear.forecast.netProfitBeforeTax },
+                { label: 'Net Profit Rate %',    bold: false, isPct: true,  isCost: false, profitLine: false, noVar: true,
+                  tmA: pnl.thisMonth.actual.netProfitRate,     tmB: null, tmV: null,
+                  ytdA: pnl.ytd.actual.netProfitRate,          ytdB: null, ytdV: null,
+                  fyB: null,                                   fyF: pnl.fullYear.forecast.netProfitRate },
+              ] as { label: string; bold?: boolean; isPct?: boolean; isCost?: boolean; profitLine?: boolean; noVar?: boolean; tmA: number; tmB: number | null; tmV: number | null; ytdA: number; ytdB: number | null; ytdV: number | null; fyB: number | null; fyF: number | null }[]).map((row, i) => {
+                // Variance is favourable when: revenue/profit lines → actual > budget (variance > 0 = green)
+                //                              cost lines → actual < budget (variance < 0 = green)
+                const varColour = (v: number | null) => {
+                  if (v == null || v === 0) return 'text-zinc-700';
+                  const fav = row.isCost ? v < 0 : v > 0;
+                  return fav ? 'text-green-600 font-medium' : 'text-red-600 font-medium';
+                };
+                const d = (v: number | null) => row.isPct ? (v != null ? fmtPct(v) : '—') : (v != null ? fmt(v) : '—');
+                return (
+                  <tr key={row.label} className={i % 2 === 0 ? '' : 'bg-zinc-50/50'}>
+                    <td className={`px-3 py-2.5 text-sm ${row.bold ? 'font-semibold text-zinc-900' : 'text-zinc-700'}`}>{row.label}</td>
+                    {/* Month */}
+                    <td className={`px-3 py-2.5 text-sm text-right border-l border-zinc-100 ${row.bold ? 'font-semibold text-zinc-900' : 'text-zinc-700'}`}>{d(row.tmA)}</td>
+                    <td className="px-3 py-2.5 text-sm text-right text-zinc-500">{d(row.tmB)}</td>
+                    <td className={`px-3 py-2.5 text-sm text-right ${row.noVar ? 'text-zinc-400' : varColour(row.tmV)}`}>{row.noVar ? '—' : d(row.tmV)}</td>
+                    {/* YTD */}
+                    <td className={`px-3 py-2.5 text-sm text-right border-l border-zinc-100 ${row.bold ? 'font-semibold text-zinc-900' : 'text-zinc-700'}`}>{d(row.ytdA)}</td>
+                    <td className="px-3 py-2.5 text-sm text-right text-zinc-500">{d(row.ytdB)}</td>
+                    <td className={`px-3 py-2.5 text-sm text-right ${row.noVar ? 'text-zinc-400' : varColour(row.ytdV)}`}>{row.noVar ? '—' : d(row.ytdV)}</td>
+                    {/* Full year */}
+                    <td className="px-3 py-2.5 text-sm text-right border-l border-zinc-100 text-zinc-500">{d(row.fyB)}</td>
+                    <td className={`px-3 py-2.5 text-sm text-right ${row.bold ? 'font-semibold text-zinc-900' : 'text-zinc-700'}`}>{d(row.fyF)}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

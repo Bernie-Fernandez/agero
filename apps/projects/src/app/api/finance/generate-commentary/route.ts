@@ -39,7 +39,17 @@ async function buildPrompt(sectionKey: string, reportMonth: Date, organisationId
 
     case 'consolidated_pl': {
       const data = await calcConsolidatedPnL(organisationId, reportMonth);
-      return `Write financial commentary for the Consolidated P&L for ${month}. Revenue this month: ${fmt(data.thisMonth.revenue)} vs budget ${data.budget.revenue ? fmt(data.budget.revenue) : 'N/A'}. YTD revenue: ${fmt(data.ytd.revenue)} vs budget ${fmt(data.budget.revenue)}. Gross profit this month: ${fmt(data.thisMonth.grossProfit)} (${fmtPct(data.thisMonth.grossMarginPct)} margin) vs target 25%. YTD gross profit: ${fmt(data.ytd.grossProfit)} (${fmtPct(data.ytd.grossMarginPct)} margin). Indirect expenses YTD: ${fmt(data.ytd.indirectExpenses)}. Net profit this month: ${fmt(data.thisMonth.netProfitBeforeTax)} (${fmtPct(data.thisMonth.netProfitRate)} rate). YTD net profit: ${fmt(data.ytd.netProfitBeforeTax)} vs budget ${fmt(data.budget.netProfitBeforeTax)}. Revenue variance vs budget: ${fmtPct(data.variance.revenuePct)}.`;
+      const tm = data.thisMonth; const ytd = data.ytd; const fy = data.fullYear;
+      return `Write financial commentary for the Consolidated P&L for ${month}. ` +
+        `Revenue this month: ${fmt(tm.actual.revenue)} vs budget ${fmt(tm.budget.revenue)} (variance ${fmt(tm.variance.revenue)}). ` +
+        `YTD revenue: ${fmt(ytd.actual.revenue)} vs budget ${fmt(ytd.budget.revenue)} (variance ${fmt(ytd.variance.revenue)}). ` +
+        `Gross profit this month: ${fmt(tm.actual.grossProfit)} (${fmtPct(tm.actual.grossMarginPct)} margin) vs budget ${fmt(tm.budget.grossProfit)}. ` +
+        `YTD gross profit: ${fmt(ytd.actual.grossProfit)} (${fmtPct(ytd.actual.grossMarginPct)} margin) vs budget ${fmt(ytd.budget.grossProfit)}. ` +
+        `YTD indirect expenses: ${fmt(ytd.actual.indirectExpenses)} vs budget ${fmt(ytd.budget.indirectExpenses)}. ` +
+        `YTD indirect labour: ${fmt(ytd.actual.indirectLabour)} vs budget ${fmt(ytd.budget.indirectLabour)}. ` +
+        `Net profit this month: ${fmt(tm.actual.netProfitBeforeTax)} (${fmtPct(tm.actual.netProfitRate)} rate) vs budget ${fmt(tm.budget.netProfitBeforeTax)}. ` +
+        `YTD net profit: ${fmt(ytd.actual.netProfitBeforeTax)} vs budget ${fmt(ytd.budget.netProfitBeforeTax)}. ` +
+        `Full year forecast: revenue ${fmt(fy.forecast.revenue)}, gross profit ${fmt(fy.forecast.grossProfit)} (${fmtPct(fy.forecast.grossMarginPct)} margin), net profit ${fmt(fy.forecast.netProfitBeforeTax)} vs FY budget ${fmt(fy.budget.netProfitBeforeTax)}.`;
     }
 
     case 'project_financial': {

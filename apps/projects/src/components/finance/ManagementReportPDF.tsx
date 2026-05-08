@@ -184,43 +184,91 @@ export function ManagementReportPDF({ data }: { data: any }) {
       </Page>
 
       {/* Page 3 — Consolidated P&L */}
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} orientation="landscape">
         <PageNumber />
         <Text style={styles.heading2}>Consolidated P&L — {reportMonthLabel}</Text>
         <View style={styles.table}>
+          {/* Group header row */}
+          <View style={{ flexDirection: 'row', backgroundColor: '#E4E4E7', paddingVertical: 3, paddingHorizontal: 4 }}>
+            <Text style={[styles.tableCellLabel, { flex: 1.6, fontSize: 7 }]} />
+            <Text style={{ flex: 3, fontSize: 7, fontFamily: 'Helvetica-Bold', textAlign: 'center', color: DARK }}>Month</Text>
+            <Text style={{ flex: 3, fontSize: 7, fontFamily: 'Helvetica-Bold', textAlign: 'center', color: DARK }}>Year to Date</Text>
+            <Text style={{ flex: 2, fontSize: 7, fontFamily: 'Helvetica-Bold', textAlign: 'center', color: DARK }}>Full Year 2025–26</Text>
+          </View>
           <View style={styles.tableHeader}>
-            <Text style={styles.tableHeaderCellLabel}>Line Item</Text>
-            <Text style={styles.tableHeaderCell}>This Month</Text>
-            <Text style={styles.tableHeaderCell}>YTD Actual</Text>
-            <Text style={styles.tableHeaderCell}>YTD Budget</Text>
+            <Text style={[styles.tableHeaderCellLabel, { flex: 1.6 }]}>Line Item</Text>
+            <Text style={styles.tableHeaderCell}>Actual</Text>
+            <Text style={styles.tableHeaderCell}>Budget</Text>
             <Text style={styles.tableHeaderCell}>Variance $</Text>
-            <Text style={styles.tableHeaderCell}>Variance %</Text>
+            <Text style={styles.tableHeaderCell}>Actual</Text>
+            <Text style={styles.tableHeaderCell}>Budget</Text>
+            <Text style={styles.tableHeaderCell}>Variance $</Text>
+            <Text style={styles.tableHeaderCell}>Budget</Text>
+            <Text style={styles.tableHeaderCell}>Forecast</Text>
           </View>
           {([
-            { label: 'Revenue', tm: pnl.thisMonth.revenue, ytd: pnl.ytd.revenue, bud: pnl.budget.revenue, varD: pnl.variance.revenue, varP: pnl.variance.revenuePct, isPct: false },
-            { label: 'Cost of Sales', tm: pnl.thisMonth.costOfSales, ytd: pnl.ytd.costOfSales, bud: pnl.budget.costOfSales, varD: null as number | null, varP: null as number | null, isPct: false },
-            { label: 'Direct Labour', tm: pnl.thisMonth.directLabour, ytd: pnl.ytd.directLabour, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: false },
-            { label: 'Gross Profit', tm: pnl.thisMonth.grossProfit, ytd: pnl.ytd.grossProfit, bud: pnl.budget.grossProfit, varD: pnl.variance.grossProfit, varP: pnl.variance.grossProfitPct, isPct: false },
-            { label: 'Gross Margin %', tm: pnl.thisMonth.grossMarginPct, ytd: pnl.ytd.grossMarginPct, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: true },
-            { label: 'Indirect Expenses', tm: pnl.thisMonth.indirectExpenses, ytd: pnl.ytd.indirectExpenses, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: false },
-            { label: 'Indirect Labour', tm: pnl.thisMonth.indirectLabour, ytd: pnl.ytd.indirectLabour, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: false },
-            { label: 'Marketing Expenses', tm: pnl.thisMonth.marketingExpenses, ytd: pnl.ytd.marketingExpenses, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: false },
-            { label: 'Net Profit Before Tax', tm: pnl.thisMonth.netProfitBeforeTax, ytd: pnl.ytd.netProfitBeforeTax, bud: pnl.budget.netProfitBeforeTax, varD: pnl.variance.netProfit, varP: pnl.variance.netProfitPct, isPct: false },
-            { label: 'Net Profit Rate %', tm: pnl.thisMonth.netProfitRate, ytd: pnl.ytd.netProfitRate, bud: null as number | null, varD: null as number | null, varP: null as number | null, isPct: true },
-          ] as { label: string; tm: number | null; ytd: number; bud: number | null; varD: number | null; varP: number | null; isPct: boolean }[]).map((row, i) => (
-            <View key={row.label} style={i % 2 === 0 ? styles.tableRow : styles.tableRowAlt}>
-              <Text style={styles.tableCellLabel}>{row.label}</Text>
-              <Text style={styles.tableCellNum}>{row.isPct ? (row.tm != null ? fmtPct(row.tm) : '—') : (row.tm != null ? fmt(row.tm) : '—')}</Text>
-              <Text style={styles.tableCellNum}>{row.isPct ? fmtPct(row.ytd) : fmt(row.ytd)}</Text>
-              <Text style={styles.tableCellNum}>{row.bud != null ? fmt(row.bud) : '—'}</Text>
-              <Text style={[styles.tableCellNum, row.varD != null && row.varD < 0 ? styles.redText : row.varD != null ? styles.greenText : {}]}>
-                {row.varD != null ? fmt(row.varD) : '—'}
-              </Text>
-              <Text style={[styles.tableCellNum, row.varP != null && row.varP < -0.1 ? styles.redText : {}]}>
-                {row.varP != null ? fmtPct(row.varP) : '—'}
-              </Text>
-            </View>
-          ))}
+            { label: 'Revenue',             bold: false, isPct: false, isCost: false,
+              tmA: pnl.thisMonth.actual.revenue,           tmB: pnl.thisMonth.budget.revenue,           tmV: pnl.thisMonth.variance.revenue,
+              ytdA: pnl.ytd.actual.revenue,                ytdB: pnl.ytd.budget.revenue,                ytdV: pnl.ytd.variance.revenue,
+              fyB: pnl.fullYear.budget.revenue,            fyF: pnl.fullYear.forecast.revenue },
+            { label: 'Cost of Sales',       bold: false, isPct: false, isCost: true,
+              tmA: pnl.thisMonth.actual.costOfSales,       tmB: pnl.thisMonth.budget.costOfSales,       tmV: pnl.thisMonth.variance.costOfSales,
+              ytdA: pnl.ytd.actual.costOfSales,            ytdB: pnl.ytd.budget.costOfSales,            ytdV: pnl.ytd.variance.costOfSales,
+              fyB: pnl.fullYear.budget.costOfSales,        fyF: pnl.fullYear.forecast.costOfSales },
+            { label: 'Direct Labour',       bold: false, isPct: false, isCost: true,
+              tmA: pnl.thisMonth.actual.directLabour,      tmB: pnl.thisMonth.budget.directLabour,      tmV: pnl.thisMonth.variance.directLabour,
+              ytdA: pnl.ytd.actual.directLabour,           ytdB: pnl.ytd.budget.directLabour,           ytdV: pnl.ytd.variance.directLabour,
+              fyB: pnl.fullYear.budget.directLabour,       fyF: pnl.fullYear.forecast.directLabour },
+            { label: 'Gross Profit',        bold: true,  isPct: false, isCost: false,
+              tmA: pnl.thisMonth.actual.grossProfit,       tmB: pnl.thisMonth.budget.grossProfit,       tmV: pnl.thisMonth.variance.grossProfit,
+              ytdA: pnl.ytd.actual.grossProfit,            ytdB: pnl.ytd.budget.grossProfit,            ytdV: pnl.ytd.variance.grossProfit,
+              fyB: pnl.fullYear.budget.grossProfit,        fyF: pnl.fullYear.forecast.grossProfit },
+            { label: 'Gross Margin %',      bold: false, isPct: true,  isCost: false, noVar: true,
+              tmA: pnl.thisMonth.actual.grossMarginPct,    tmB: null, tmV: null,
+              ytdA: pnl.ytd.actual.grossMarginPct,         ytdB: null, ytdV: null,
+              fyB: null,                                   fyF: pnl.fullYear.forecast.grossMarginPct },
+            { label: 'Indirect Expenses',   bold: false, isPct: false, isCost: true,
+              tmA: pnl.thisMonth.actual.indirectExpenses,  tmB: pnl.thisMonth.budget.indirectExpenses,  tmV: pnl.thisMonth.variance.indirectExpenses,
+              ytdA: pnl.ytd.actual.indirectExpenses,       ytdB: pnl.ytd.budget.indirectExpenses,       ytdV: pnl.ytd.variance.indirectExpenses,
+              fyB: pnl.fullYear.budget.indirectExpenses,   fyF: pnl.fullYear.forecast.indirectExpenses },
+            { label: 'Indirect Labour',     bold: false, isPct: false, isCost: true,
+              tmA: pnl.thisMonth.actual.indirectLabour,    tmB: pnl.thisMonth.budget.indirectLabour,    tmV: pnl.thisMonth.variance.indirectLabour,
+              ytdA: pnl.ytd.actual.indirectLabour,         ytdB: pnl.ytd.budget.indirectLabour,         ytdV: pnl.ytd.variance.indirectLabour,
+              fyB: pnl.fullYear.budget.indirectLabour,     fyF: pnl.fullYear.forecast.indirectLabour },
+            { label: 'Marketing Expenses',  bold: false, isPct: false, isCost: true,
+              tmA: pnl.thisMonth.actual.marketingExpenses, tmB: pnl.thisMonth.budget.marketingExpenses, tmV: pnl.thisMonth.variance.marketingExpenses,
+              ytdA: pnl.ytd.actual.marketingExpenses,      ytdB: pnl.ytd.budget.marketingExpenses,      ytdV: pnl.ytd.variance.marketingExpenses,
+              fyB: pnl.fullYear.budget.marketingExpenses,  fyF: pnl.fullYear.forecast.marketingExpenses },
+            { label: 'Net Profit Before Tax', bold: true, isPct: false, isCost: false,
+              tmA: pnl.thisMonth.actual.netProfitBeforeTax,  tmB: pnl.thisMonth.budget.netProfitBeforeTax,  tmV: pnl.thisMonth.variance.netProfitBeforeTax,
+              ytdA: pnl.ytd.actual.netProfitBeforeTax,       ytdB: pnl.ytd.budget.netProfitBeforeTax,       ytdV: pnl.ytd.variance.netProfitBeforeTax,
+              fyB: pnl.fullYear.budget.netProfitBeforeTax,   fyF: pnl.fullYear.forecast.netProfitBeforeTax },
+            { label: 'Net Profit Rate %',   bold: false, isPct: true,  isCost: false, noVar: true,
+              tmA: pnl.thisMonth.actual.netProfitRate,     tmB: null, tmV: null,
+              ytdA: pnl.ytd.actual.netProfitRate,          ytdB: null, ytdV: null,
+              fyB: null,                                   fyF: pnl.fullYear.forecast.netProfitRate },
+          ] as { label: string; bold: boolean; isPct: boolean; isCost: boolean; noVar?: boolean; tmA: number; tmB: number | null; tmV: number | null; ytdA: number; ytdB: number | null; ytdV: number | null; fyB: number | null; fyF: number | null }[]).map((row, i) => {
+            const d = (v: number | null) => row.isPct ? (v != null ? fmtPct(v) : '—') : (v != null ? fmt(v) : '—');
+            const vStyle = (v: number | null) => {
+              if (v == null || v === 0 || row.noVar) return {};
+              const fav = row.isCost ? v < 0 : v > 0;
+              return fav ? styles.greenText : styles.redText;
+            };
+            const labelStyle = row.bold ? { fontFamily: 'Helvetica-Bold' } : {};
+            return (
+              <View key={row.label} style={i % 2 === 0 ? styles.tableRow : styles.tableRowAlt}>
+                <Text style={[styles.tableCellLabel, { flex: 1.6 }, labelStyle]}>{row.label}</Text>
+                <Text style={[styles.tableCellNum, labelStyle]}>{d(row.tmA)}</Text>
+                <Text style={styles.tableCellNum}>{d(row.tmB)}</Text>
+                <Text style={[styles.tableCellNum, vStyle(row.tmV)]}>{row.noVar ? '—' : d(row.tmV)}</Text>
+                <Text style={[styles.tableCellNum, labelStyle]}>{d(row.ytdA)}</Text>
+                <Text style={styles.tableCellNum}>{d(row.ytdB)}</Text>
+                <Text style={[styles.tableCellNum, vStyle(row.ytdV)]}>{row.noVar ? '—' : d(row.ytdV)}</Text>
+                <Text style={styles.tableCellNum}>{d(row.fyB)}</Text>
+                <Text style={[styles.tableCellNum, labelStyle]}>{d(row.fyF)}</Text>
+              </View>
+            );
+          })}
         </View>
         <SectionCommentary content={getSection('consolidated_pl')} />
       </Page>

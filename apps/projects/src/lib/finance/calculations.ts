@@ -211,6 +211,26 @@ export async function calcBusinessUnitSummary(organisationId: string, reportMont
   };
 }
 
+// ─── Budget line groupings (exact names from annual_budgets table) ────────────
+
+const BUDGET_REVENUE_LINES = ['BF Sales'];
+const BUDGET_COS_LINES = [
+  'Proj. Costs - Building Surveyors', 'Proj. Costs - Client Specific Gifts',
+  'Proj. Costs - Consultants/Engineers', 'Proj. Costs - Contractors and Suppliers',
+  'Proj. Costs - Design/Arch. Costs', 'Proj. Costs - Management Costs',
+  'Proj. Costs - Parking', 'Proj. Costs - Prelim and General Other',
+  'Proj. Costs - Referral Fees', 'Proj. Costs - Specific Site Allowances/OHS/Site Equipment',
+  'Proj. Costs - Travel National', 'Proj Other Costs Fuel / Tolls',
+];
+const BUDGET_DL_LINES = ['Proj. Wages and Salaries', 'Proj. Staff Superannuation', 'Proj. Staff - Car Allowance'];
+const BUDGET_IL_LINES = ['Admin - Wages and Salaries', 'Admin Staff - Superannuation', 'Directors - Wages, Salary', 'Directors - Superannuation', 'Directors - EO Costs'];
+const BUDGET_MKT_LINES = ['Marketing - Advertising', 'Marketing - Entertainment', 'Marketing - Events', 'Marketing - General', 'Marketing - Graphics/Website Design/Co Collateral'];
+const BUDGET_SKIP_SET = new Set([
+  ...BUDGET_REVENUE_LINES, ...BUDGET_COS_LINES, ...BUDGET_DL_LINES,
+  ...BUDGET_IL_LINES, ...BUDGET_MKT_LINES,
+  'Awarded Projects Margin Budget', 'Backlog Projects Margin Budget',
+]);
+
 function getRemainingFYMonths(reportMonth: Date): Date[] {
   const fy = getFinancialYear(reportMonth);
   const allFYMonths: Date[] = [];
@@ -229,6 +249,8 @@ function getMonthBudgetKey(d: Date): string {
 export async function calcConsolidatedPnL(organisationId: string, reportMonth: Date) {
   const fy = getFinancialYear(reportMonth);
   const ytdMonths = getMonthsYtd(reportMonth);
+  const remainingMonths = getRemainingFYMonths(reportMonth);
+  const reportMonthKey = getMonthBudgetKey(reportMonth);
 
   const [pnlRecords, budgetRows, securedForecasts] = await Promise.all([
     prisma.xeroPnL.findMany({ where: { organisationId } }),
@@ -236,94 +258,120 @@ export async function calcConsolidatedPnL(organisationId: string, reportMonth: D
     prisma.securedForecast.findMany({ where: { organisationId, financialYear: fy } }),
   ]);
 
-  const thisMonthPnl = pnlRecords.find(
-    (p) => monthKey(p.reportMonth) === monthKey(reportMonth)
-  );
+  const thisMonthPnl = pnlRecords.find((p) => monthKey(p.reportMonth) === monthKey(reportMonth));
 
+  // YTD actuals from XeroPnL (summed across all YTD months)
   type PnLRow = typeof pnlRecords[number];
-  const sum = (field: keyof PnLRow) => {
-    return ytdMonths.reduce((s, m) => {
+  const sumYtd = (field: keyof PnLRow) =>
+    ytdMonths.reduce((s, m) => {
       const rec = pnlRecords.find((p) => monthKey(p.reportMonth) === monthKey(m));
       return s + (rec ? n(rec[field]) : 0);
     }, 0);
+
+  const ytdRevenue = sumYtd('revenue');
+  const ytdCoS = sumYtd('costOfSales');
+  const ytdDL = sumYtd('directLabour');
+  const ytdGP = sumYtd('grossProfit');
+  const ytdIndirectExp = sumYtd('indirectExpenses');
+  const ytdIndirectLab = sumYtd('indirectLabour');
+  const ytdMarketing = sumYtd('marketingExpenses');
+  const ytdNP = sumYtd('netProfitBeforeTax');
+
+  // Budget helpers using exact line item names
+  type BudRow = typeof budgetRows[number];
+  const bSum = (lines: string[], key: string) =>
+    budgetRows.filter((r) => lines.includes(r.lineItem))
+      .reduce((s, r) => s + n((r as unknown as Record<string, unknown>)[key]), 0);
+  const bIndExp = (key: string) =>
+    budgetRows.filter((r) => !BUDGET_SKIP_SET.has(r.lineItem))
+      .reduce((s, r) => s + n((r as unknown as Record<string, unknown>)[key]), 0);
+  const bSumFY = (lines: string[]) =>
+    budgetRows.filter((r) => lines.includes(r.lineItem)).reduce((s, r) => s + n(r.total), 0);
+  const bIndExpFY = () =>
+    budgetRows.filter((r) => !BUDGET_SKIP_SET.has(r.lineItem)).reduce((s, r) => s + n(r.total), 0);
+  const bSumYtd = (lines: string[]) =>
+    ytdMonths.reduce((s, m) => s + bSum(lines, getMonthBudgetKey(m)), 0);
+  const bIndExpYtd = () =>
+    ytdMonths.reduce((s, m) => s + bIndExp(getMonthBudgetKey(m)), 0);
+
+  // This-month budget
+  const tmBudRev = bSum(BUDGET_REVENUE_LINES, reportMonthKey);
+  const tmBudCoS = bSum(BUDGET_COS_LINES, reportMonthKey);
+  const tmBudDL  = bSum(BUDGET_DL_LINES, reportMonthKey);
+  const tmBudGP  = tmBudRev - tmBudCoS - tmBudDL;
+  const tmBudIE  = bIndExp(reportMonthKey);
+  const tmBudIL  = bSum(BUDGET_IL_LINES, reportMonthKey);
+  const tmBudMkt = bSum(BUDGET_MKT_LINES, reportMonthKey);
+  const tmBudNP  = tmBudGP - tmBudIE - tmBudIL - tmBudMkt;
+
+  // YTD budget
+  const ytdBudRev = bSumYtd(BUDGET_REVENUE_LINES);
+  const ytdBudCoS = bSumYtd(BUDGET_COS_LINES);
+  const ytdBudDL  = bSumYtd(BUDGET_DL_LINES);
+  const ytdBudGP  = ytdBudRev - ytdBudCoS - ytdBudDL;
+  const ytdBudIE  = bIndExpYtd();
+  const ytdBudIL  = bSumYtd(BUDGET_IL_LINES);
+  const ytdBudMkt = bSumYtd(BUDGET_MKT_LINES);
+  const ytdBudNP  = ytdBudGP - ytdBudIE - ytdBudIL - ytdBudMkt;
+
+  // Full-year budget (use .total column)
+  const fyBudRev = bSumFY(BUDGET_REVENUE_LINES);
+  const fyBudCoS = bSumFY(BUDGET_COS_LINES);
+  const fyBudDL  = bSumFY(BUDGET_DL_LINES);
+  const fyBudGP  = fyBudRev - fyBudCoS - fyBudDL;
+  const fyBudIE  = bIndExpFY();
+  const fyBudIL  = bSumFY(BUDGET_IL_LINES);
+  const fyBudMkt = bSumFY(BUDGET_MKT_LINES);
+  const fyBudNP  = fyBudGP - fyBudIE - fyBudIL - fyBudMkt;
+
+  // Full-year forecast: revenue = YTD + secured forecast remaining; costs = run rate
+  const ytdMonthCount = ytdMonths.length;
+  const remMonthCount = remainingMonths.length;
+  const runRate = (ytd: number) =>
+    ytdMonthCount > 0 ? ytd + (ytd / ytdMonthCount) * remMonthCount : ytd;
+
+  const sfRevRemaining = securedForecasts.reduce(
+    (s, sf) => s + remainingMonths.reduce(
+      (ms, m) => ms + n((sf as unknown as Record<string, unknown>)[getMonthBudgetKey(m)]), 0
+    ), 0
+  );
+  const fyFcRev = ytdRevenue + sfRevRemaining;
+  const fyFcCoS = runRate(ytdCoS);
+  const fyFcDL  = runRate(ytdDL);
+  const fyFcGP  = fyFcRev - fyFcCoS - fyFcDL;
+  const fyFcIE  = runRate(ytdIndirectExp);
+  const fyFcIL  = runRate(ytdIndirectLab);
+  const fyFcMkt = runRate(ytdMarketing);
+  const fyFcNP  = fyFcGP - fyFcIE - fyFcIL - fyFcMkt;
+
+  // This-month actuals
+  const tm = {
+    revenue:           thisMonthPnl ? n(thisMonthPnl.revenue) : 0,
+    costOfSales:       thisMonthPnl ? n(thisMonthPnl.costOfSales) : 0,
+    directLabour:      thisMonthPnl ? n(thisMonthPnl.directLabour) : 0,
+    grossProfit:       thisMonthPnl ? n(thisMonthPnl.grossProfit) : 0,
+    grossMarginPct:    thisMonthPnl && n(thisMonthPnl.revenue) > 0 ? n(thisMonthPnl.grossProfit) / n(thisMonthPnl.revenue) : 0,
+    indirectExpenses:  thisMonthPnl ? n(thisMonthPnl.indirectExpenses) : 0,
+    indirectLabour:    thisMonthPnl ? n(thisMonthPnl.indirectLabour) : 0,
+    marketingExpenses: thisMonthPnl ? n(thisMonthPnl.marketingExpenses) : 0,
+    netProfitBeforeTax: thisMonthPnl ? n(thisMonthPnl.netProfitBeforeTax) : 0,
+    netProfitRate:     thisMonthPnl && n(thisMonthPnl.revenue) > 0 ? n(thisMonthPnl.netProfitBeforeTax) / n(thisMonthPnl.revenue) : 0,
   };
-
-  const revenueYtd = sum('revenue');
-  const cosYtd = sum('costOfSales');
-  const dlYtd = sum('directLabour');
-  const gpYtd = sum('grossProfit');
-  const indirectExpYtd = sum('indirectExpenses');
-  const indirectLabYtd = sum('indirectLabour');
-  const mktExpYtd = sum('marketingExpenses');
-  const npYtd = sum('netProfitBeforeTax');
-
-  // FY Forecast = YTD actuals + remaining secured forecast revenue * margins
-  const remainingMonths = getRemainingFYMonths(reportMonth);
-  let fyForecastRevenue = revenueYtd;
-  for (const sf of securedForecasts) {
-    const marginPct = n(sf.marginPercent);
-    for (const m of remainingMonths) {
-      const key = getMonthBudgetKey(m) as keyof typeof sf;
-      const rev = n(sf[key]);
-      fyForecastRevenue += rev;
-    }
-  }
-
-  function getBudgetYtd(lineItemPattern: string) {
-    const row = budgetRows.find((r) => r.lineItem.toLowerCase().includes(lineItemPattern));
-    if (!row) return 0;
-    return ytdMonths.reduce((s, m) => {
-      const k = getMonthBudgetKey(m) as keyof typeof row;
-      return s + n(row[k]);
-    }, 0);
-  }
-
-  const budgetRevYtd = getBudgetYtd('revenue');
-  const budgetGpYtd = getBudgetYtd('gross profit');
-  const budgetNpYtd = getBudgetYtd('net profit');
-  const budgetCoSYtd = getBudgetYtd('cost of sales');
 
   return {
     thisMonth: {
-      revenue: thisMonthPnl ? n(thisMonthPnl.revenue) : 0,
-      costOfSales: thisMonthPnl ? n(thisMonthPnl.costOfSales) : 0,
-      directLabour: thisMonthPnl ? n(thisMonthPnl.directLabour) : 0,
-      grossProfit: thisMonthPnl ? n(thisMonthPnl.grossProfit) : 0,
-      grossMarginPct: thisMonthPnl && n(thisMonthPnl.revenue) > 0 ? n(thisMonthPnl.grossProfit) / n(thisMonthPnl.revenue) : 0,
-      indirectExpenses: thisMonthPnl ? n(thisMonthPnl.indirectExpenses) : 0,
-      indirectLabour: thisMonthPnl ? n(thisMonthPnl.indirectLabour) : 0,
-      marketingExpenses: thisMonthPnl ? n(thisMonthPnl.marketingExpenses) : 0,
-      netProfitBeforeTax: thisMonthPnl ? n(thisMonthPnl.netProfitBeforeTax) : 0,
-      netProfitRate: thisMonthPnl && n(thisMonthPnl.revenue) > 0 ? n(thisMonthPnl.netProfitBeforeTax) / n(thisMonthPnl.revenue) : 0,
+      actual: tm,
+      budget: { revenue: tmBudRev, costOfSales: tmBudCoS, directLabour: tmBudDL, grossProfit: tmBudGP, indirectExpenses: tmBudIE, indirectLabour: tmBudIL, marketingExpenses: tmBudMkt, netProfitBeforeTax: tmBudNP },
+      variance: { revenue: tm.revenue - tmBudRev, costOfSales: tm.costOfSales - tmBudCoS, directLabour: tm.directLabour - tmBudDL, grossProfit: tm.grossProfit - tmBudGP, indirectExpenses: tm.indirectExpenses - tmBudIE, indirectLabour: tm.indirectLabour - tmBudIL, marketingExpenses: tm.marketingExpenses - tmBudMkt, netProfitBeforeTax: tm.netProfitBeforeTax - tmBudNP },
     },
     ytd: {
-      revenue: revenueYtd,
-      costOfSales: cosYtd,
-      directLabour: dlYtd,
-      grossProfit: gpYtd,
-      grossMarginPct: revenueYtd > 0 ? gpYtd / revenueYtd : 0,
-      indirectExpenses: indirectExpYtd,
-      indirectLabour: indirectLabYtd,
-      marketingExpenses: mktExpYtd,
-      netProfitBeforeTax: npYtd,
-      netProfitRate: revenueYtd > 0 ? npYtd / revenueYtd : 0,
+      actual: { revenue: ytdRevenue, costOfSales: ytdCoS, directLabour: ytdDL, grossProfit: ytdGP, grossMarginPct: ytdRevenue > 0 ? ytdGP / ytdRevenue : 0, indirectExpenses: ytdIndirectExp, indirectLabour: ytdIndirectLab, marketingExpenses: ytdMarketing, netProfitBeforeTax: ytdNP, netProfitRate: ytdRevenue > 0 ? ytdNP / ytdRevenue : 0 },
+      budget: { revenue: ytdBudRev, costOfSales: ytdBudCoS, directLabour: ytdBudDL, grossProfit: ytdBudGP, indirectExpenses: ytdBudIE, indirectLabour: ytdBudIL, marketingExpenses: ytdBudMkt, netProfitBeforeTax: ytdBudNP },
+      variance: { revenue: ytdRevenue - ytdBudRev, costOfSales: ytdCoS - ytdBudCoS, directLabour: ytdDL - ytdBudDL, grossProfit: ytdGP - ytdBudGP, indirectExpenses: ytdIndirectExp - ytdBudIE, indirectLabour: ytdIndirectLab - ytdBudIL, marketingExpenses: ytdMarketing - ytdBudMkt, netProfitBeforeTax: ytdNP - ytdBudNP },
     },
-    fyForecast: {
-      revenue: fyForecastRevenue,
-    },
-    budget: {
-      revenue: budgetRevYtd,
-      costOfSales: budgetCoSYtd,
-      grossProfit: budgetGpYtd,
-      netProfitBeforeTax: budgetNpYtd,
-    },
-    variance: {
-      revenue: revenueYtd - budgetRevYtd,
-      revenuePct: budgetRevYtd !== 0 ? (revenueYtd - budgetRevYtd) / Math.abs(budgetRevYtd) : 0,
-      grossProfit: gpYtd - budgetGpYtd,
-      grossProfitPct: budgetGpYtd !== 0 ? (gpYtd - budgetGpYtd) / Math.abs(budgetGpYtd) : 0,
-      netProfit: npYtd - budgetNpYtd,
-      netProfitPct: budgetNpYtd !== 0 ? (npYtd - budgetNpYtd) / Math.abs(budgetNpYtd) : 0,
+    fullYear: {
+      budget:   { revenue: fyBudRev, costOfSales: fyBudCoS, directLabour: fyBudDL, grossProfit: fyBudGP, indirectExpenses: fyBudIE, indirectLabour: fyBudIL, marketingExpenses: fyBudMkt, netProfitBeforeTax: fyBudNP },
+      forecast: { revenue: fyFcRev, costOfSales: fyFcCoS, directLabour: fyFcDL, grossProfit: fyFcGP, grossMarginPct: fyFcRev > 0 ? fyFcGP / fyFcRev : 0, indirectExpenses: fyFcIE, indirectLabour: fyFcIL, marketingExpenses: fyFcMkt, netProfitBeforeTax: fyFcNP, netProfitRate: fyFcRev > 0 ? fyFcNP / fyFcRev : 0 },
     },
   };
 }
