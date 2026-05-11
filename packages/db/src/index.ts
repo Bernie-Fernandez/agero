@@ -1,6 +1,10 @@
 import { PrismaPg } from "@prisma/adapter-pg";
-import { Pool } from "pg";
+import { Pool, types } from "pg";
 import { PrismaClient } from "./generated/prisma/client";
+
+// postgres-date (used by pg-types) parses YYYY-MM-DD as local midnight.
+// Override to always return UTC midnight so getUTCMonth() is correct everywhere.
+types.setTypeParser(1082, (val: string) => (val ? new Date(val + "T00:00:00.000Z") : null));
 
 const globalForPrisma = globalThis as unknown as {
   erpPrisma: PrismaClient | undefined;
