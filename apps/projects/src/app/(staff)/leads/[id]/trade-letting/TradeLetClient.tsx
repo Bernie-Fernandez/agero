@@ -87,7 +87,7 @@ export default function TradeLetClient({
       <ToastContainer />
       <div className="max-w-4xl mx-auto space-y-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold text-zinc-800">Trade Letting</h2>
+          <h2 className="text-base font-semibold text-zinc-800">Trade Management</h2>
           <button onClick={() => setShowAdd(true)} className="px-3 py-1.5 text-sm bg-brand text-white rounded-md hover:bg-brand/90">+ New Package</button>
         </div>
 

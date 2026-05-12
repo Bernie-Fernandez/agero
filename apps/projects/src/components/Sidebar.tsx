@@ -253,7 +253,8 @@ function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
 
   return (
     <div className="ml-1 mt-0.5 space-y-0.5">
-      <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/leads" label="Estimates" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/admin/reference-library" label="Resource Library" depth={1} onItemClick={onItemClick} />
       {leadId && (
         <div className="ml-1 mt-0.5 space-y-0.5 border-l border-zinc-100 pl-2">
           <NavLink href={`/leads/${leadId}/dashboard`} label="Dashboard" depth={2} onItemClick={onItemClick} />
@@ -262,8 +263,7 @@ function EstimatingSubItems({ onItemClick }: { onItemClick?: () => void }) {
           <NavLink href={`/leads/${leadId}/options`} label="Options & R&O" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/lockaway`} label="Lockaway" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/insights`} label="Insights" depth={2} onItemClick={onItemClick} />
-          <NavLink href={`/leads/${leadId}/scope-library`} label="Scope Library" depth={2} onItemClick={onItemClick} />
-          <NavLink href={`/leads/${leadId}/trade-letting`} label="Trade Letting" depth={2} onItemClick={onItemClick} />
+          <NavLink href={`/leads/${leadId}/trade-letting`} label="Trade Management" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/reports`} label="Reports" depth={2} onItemClick={onItemClick} />
           <NavLink href={`/leads/${leadId}/settings`} label="Settings" depth={2} onItemClick={onItemClick} />
         </div>
@@ -377,6 +377,7 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
       <Section sectionKey="crm" label="CRM" defaultOpen={true} onItemClick={onItemClick}>
         <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
         <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
+        <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
       </Section>
 
       <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>

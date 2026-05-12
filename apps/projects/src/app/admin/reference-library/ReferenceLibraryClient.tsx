@@ -97,7 +97,7 @@ export default function ReferenceLibraryClient({
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900">Reference Library</h1>
+          <h1 className="text-2xl font-bold text-zinc-900">Resource Library</h1>
           <p className="text-sm text-zinc-500 mt-0.5">{items.length} measurement codes — {items.filter((i) => i.isActive).length} active</p>
         </div>
         <div className="flex gap-2">
