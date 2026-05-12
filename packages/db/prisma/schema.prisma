@@ -275,6 +275,8 @@ model Organisation {
   managementReports     ManagementReport[]
   wipSchedules          WIPSchedule[]
   plannedDealRevenues   PlannedDealRevenue[]
+  referenceLibraryItems ReferenceLibraryItem[]
+  scopeTemplates        ScopeTemplate[]
 
   @@map("organisations")
   @@schema("projects")
@@ -369,6 +371,14 @@ model User {
   managementReportsPrepared ManagementReport[]   @relation("ManagementReportPreparedBy")
   managementReportsFinalised ManagementReport[]  @relation("ManagementReportFinalisedBy")
   managementReportSectionsEdited ManagementReportSection[] @relation("ManagementReportSectionEditor")
+  rateLibraryUpdates      ReferenceLibraryRate[] @relation("RateLibraryUpdatedBy")
+  documentUploads         EstimateDocumentRegister[] @relation("DocumentRegisterUploader")
+  drawingAnswers          DrawingIntelligenceAnswer[] @relation("DrawingAnsweredBy")
+  takeoffImportsConfirmed TakeoffImport[]        @relation("TakeoffImportConfirmedBy")
+  takeoffImportsImported  TakeoffImport[]        @relation("TakeoffImportImportedBy")
+  scopeTemplateUpdates    ScopeTemplate[]        @relation("ScopeTemplateUpdatedBy")
+  lineScopeUpdates        EstimateLineScope[]    @relation("LineScopeUpdatedBy")
+  invitationsCreated      SubcontractorInvitation[] @relation("InvitationCreatedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -2568,6 +2578,12 @@ model Estimate {
   insightTags    EstimateInsightTag[]
   tradePackages  TradePackage[]
   snapshots      EstimateSnapshot[]
+  documentRegister EstimateDocumentRegister[]
+  drawingConvention EstimateDrawingConvention?
+  elementCodes   EstimateElementCode[]
+  intelligenceReports DrawingIntelligenceReport[]
+  takeoffImports TakeoffImport[]
+  invitations    SubcontractorInvitation[]
 
   @@index([organisationId])
   @@map("estimates")
@@ -2650,6 +2666,11 @@ model EstimateLine {
   tradePackage       TradePackage?        @relation("EstimateLinePackage", fields: [tradePackageId], references: [id], onDelete: SetNull)
   notes              String?              @db.Text
   order              Int                  @default(0)
+  architectCodeId    String?              @map("architect_code_id") @db.Uuid
+  architectCode      EstimateElementCode? @relation(fields: [architectCodeId], references: [id], onDelete: SetNull)
+  drawingRefId       String?              @map("drawing_ref_id") @db.Uuid
+  drawingRef         EstimateDocumentRegister? @relation(fields: [drawingRefId], references: [id], onDelete: SetNull)
+  buildupOverride    Json?                @map("buildup_override")
   createdAt          DateTime             @default(now()) @map("created_at")
   updatedAt          DateTime             @updatedAt @map("updated_at")
 
@@ -2658,6 +2679,8 @@ model EstimateLine {
   optionLines      EstimateOptionLine[]
   lockawayLines    EstimateLockawayLine[]
   scopeAttachments EstimateLineScopeAttachment[]
+  lineScope        EstimateLineScope?
+  takeoffMeasurements TakeoffMeasurement[]
 
   @@index([estimateId])
   @@map("estimate_lines")
@@ -3183,5 +3206,305 @@ model ManagementReportSection {
 
   @@unique([managementReportId, sectionKey])
   @@map("management_report_sections")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT 14 — Estimating Intelligence Foundation
+// ─────────────────────────────────────────────────────────────────────────────
+
+model ReferenceLibraryItem {
+  id                String   @id @default(uuid()) @db.Uuid
+  organisationId    String   @map("organisation_id") @db.Uuid
+  organisation      Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  ageroRef          String   @map("agero_ref")
+  displayName       String   @map("display_name")
+  tradeSectionCode  String   @map("trade_section_code")
+  tradeGroupColour  String   @map("trade_group_colour")
+  unit              String
+  natspecRef        String?  @map("natspec_ref")
+  asRef             String?  @map("as_ref")
+  bluebeamToolType  String   @map("bluebeam_tool_type")
+  defaultScopeText  String?  @map("default_scope_text") @db.Text
+  isActive          Boolean  @default(true) @map("is_active")
+  sortOrder         Int      @default(0) @map("sort_order")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  rates          ReferenceLibraryRate[]
+  buildUps       ReferenceLibraryBuildUp[]
+  scopeTemplates ScopeTemplate[]
+  takeoffMeasurements TakeoffMeasurement[]
+
+
+  @@unique([organisationId, ageroRef])
+  @@index([organisationId])
+  @@map("reference_library_items")
+  @@schema("projects")
+}
+
+model ReferenceLibraryRate {
+  id              String               @id @default(uuid()) @db.Uuid
+  referenceItemId String               @map("reference_item_id") @db.Uuid
+  referenceItem   ReferenceLibraryItem @relation(fields: [referenceItemId], references: [id], onDelete: Cascade)
+  organisationId  String               @map("organisation_id") @db.Uuid
+  rateType        String               @map("rate_type")
+  unitCost        Decimal              @map("unit_cost") @db.Decimal(14, 4)
+  labourCost      Decimal?             @map("labour_cost") @db.Decimal(14, 4)
+  materialsCost   Decimal?             @map("materials_cost") @db.Decimal(14, 4)
+  marginPct       Decimal?             @map("margin_pct") @db.Decimal(5, 2)
+  effectiveFrom   DateTime             @default(now()) @map("effective_from")
+  notes           String?              @db.Text
+  updatedById     String               @map("updated_by_id") @db.Uuid
+  updatedBy       User                 @relation("RateLibraryUpdatedBy", fields: [updatedById], references: [id])
+  updatedAt       DateTime             @updatedAt @map("updated_at")
+
+  @@index([referenceItemId])
+  @@map("reference_library_rates")
+  @@schema("projects")
+}
+
+model ReferenceLibraryBuildUp {
+  id                 String               @id @default(uuid()) @db.Uuid
+  referenceItemId    String               @map("reference_item_id") @db.Uuid
+  referenceItem      ReferenceLibraryItem @relation(fields: [referenceItemId], references: [id], onDelete: Cascade)
+  buildUpType        String               @map("build_up_type")
+  description        String
+  unit               String
+  quantityPerBaseUnit Decimal             @map("quantity_per_base_unit") @db.Decimal(14, 4)
+  unitRate           Decimal              @map("unit_rate") @db.Decimal(14, 4)
+  calculatedCost     Decimal              @map("calculated_cost") @db.Decimal(14, 4)
+  sortOrder          Int                  @default(0) @map("sort_order")
+  notes              String?              @db.Text
+
+  @@index([referenceItemId])
+  @@map("reference_library_build_ups")
+  @@schema("projects")
+}
+
+model EstimateDocumentRegister {
+  id              String    @id @default(uuid()) @db.Uuid
+  estimateId      String    @map("estimate_id") @db.Uuid
+  estimate        Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  discipline      String
+  documentRef     String    @map("document_ref")
+  documentTitle   String    @map("document_title")
+  revision        String
+  issueDate       DateTime? @map("issue_date")
+  issuedBy        String?   @map("issued_by")
+  status          String    @default("current")
+  pricedAgainst   Boolean   @default(false) @map("priced_against")
+  storageUrl      String?   @map("storage_url") @db.Text
+  uploadSizeBytes Int?      @map("upload_size_bytes")
+  uploadedById    String?   @map("uploaded_by_id") @db.Uuid
+  uploadedBy      User?     @relation("DocumentRegisterUploader", fields: [uploadedById], references: [id], onDelete: SetNull)
+  uploadedAt      DateTime? @map("uploaded_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  intelligenceReports DrawingIntelligenceReport[]
+  takeoffImports      TakeoffImport[]
+  elementCodes        EstimateElementCode[]
+  estimateLines       EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_document_registers")
+  @@schema("projects")
+}
+
+model EstimateDrawingConvention {
+  id                   String    @id @default(uuid()) @db.Uuid
+  estimateId           String    @unique @map("estimate_id") @db.Uuid
+  estimate             Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  spaceReferenceStyle  String    @default("plain_english") @map("space_reference_style")
+  revisionFormat       String?   @map("revision_format")
+  drawingNumberFormat  String?   @map("drawing_number_format")
+  architectFirm        String?   @map("architect_firm")
+  notes                String?   @db.Text
+
+  @@map("estimate_drawing_conventions")
+  @@schema("projects")
+}
+
+model EstimateElementCode {
+  id                 String    @id @default(uuid()) @db.Uuid
+  estimateId         String    @map("estimate_id") @db.Uuid
+  estimate           Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  code               String
+  category           String
+  name               String
+  description        String?   @db.Text
+  supplier           String?
+  locationNotes      String?   @map("location_notes")
+  leadTime           String?   @map("lead_time")
+  status             String    @default("current")
+  sourceDocumentId   String?   @map("source_document_id") @db.Uuid
+  sourceDocument     EstimateDocumentRegister? @relation(fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  procurementStatus  String?   @map("procurement_status")
+  boughtBy           String?   @map("bought_by")
+  installedBy        String?   @map("installed_by")
+  paymentStatus      String?   @map("payment_status")
+  deliveryDate       DateTime? @map("delivery_date")
+  createdAt          DateTime  @default(now()) @map("created_at")
+
+  estimateLines EstimateLine[]
+
+  @@index([estimateId])
+  @@map("estimate_element_codes")
+  @@schema("projects")
+}
+
+model DrawingIntelligenceReport {
+  id                        String    @id @default(uuid()) @db.Uuid
+  estimateId                String    @map("estimate_id") @db.Uuid
+  estimate                  Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  documentId                String    @map("document_id") @db.Uuid
+  document                  EstimateDocumentRegister @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  scanStatus                String    @default("pending") @map("scan_status")
+  pageCount                 Int?      @map("page_count")
+  disciplinesDetected       String[]  @map("disciplines_detected")
+  revisionsDetected         Json?     @map("revisions_detected")
+  mixedRevisionsDetected    Boolean   @default(false) @map("mixed_revisions_detected")
+  draftStatusDetected       Boolean   @default(false) @map("draft_status_detected")
+  scaleIssuesDetected       Boolean   @default(false) @map("scale_issues_detected")
+  questionnaireCompleted    Boolean   @default(false) @map("questionnaire_completed")
+  scannedAt                 DateTime? @map("scanned_at")
+  createdAt                 DateTime  @default(now()) @map("created_at")
+
+  questions DrawingIntelligenceQuestion[]
+
+  @@index([estimateId])
+  @@map("drawing_intelligence_reports")
+  @@schema("projects")
+}
+
+model DrawingIntelligenceQuestion {
+  id          String                    @id @default(uuid()) @db.Uuid
+  reportId    String                    @map("report_id") @db.Uuid
+  report      DrawingIntelligenceReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  layer       String
+  questionText String                   @map("question_text") @db.Text
+  isMandatory Boolean                   @default(true) @map("is_mandatory")
+  sortOrder   Int                       @default(0) @map("sort_order")
+
+  answer DrawingIntelligenceAnswer?
+
+  @@index([reportId])
+  @@map("drawing_intelligence_questions")
+  @@schema("projects")
+}
+
+model DrawingIntelligenceAnswer {
+  id          String                      @id @default(uuid()) @db.Uuid
+  questionId  String                      @unique @map("question_id") @db.Uuid
+  question    DrawingIntelligenceQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answerText  String                      @map("answer_text") @db.Text
+  answeredById String                     @map("answered_by_id") @db.Uuid
+  answeredBy  User                        @relation("DrawingAnsweredBy", fields: [answeredById], references: [id])
+  answeredAt  DateTime                    @default(now()) @map("answered_at")
+
+  @@map("drawing_intelligence_answers")
+  @@schema("projects")
+}
+
+model TakeoffImport {
+  id              String    @id @default(uuid()) @db.Uuid
+  estimateId      String    @map("estimate_id") @db.Uuid
+  estimate        Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  documentId      String?   @map("document_id") @db.Uuid
+  document        EstimateDocumentRegister? @relation(fields: [documentId], references: [id], onDelete: SetNull)
+  importStatus    String    @default("pending") @map("import_status")
+  csvFilename     String    @map("csv_filename")
+  csvStorageUrl   String?   @map("csv_storage_url") @db.Text
+  rowCount        Int?      @map("row_count")
+  mappedCount     Int?      @map("mapped_count")
+  unmappedCount   Int?      @map("unmapped_count")
+  confirmedById   String?   @map("confirmed_by_id") @db.Uuid
+  confirmedBy     User?     @relation("TakeoffImportConfirmedBy", fields: [confirmedById], references: [id], onDelete: SetNull)
+  confirmedAt     DateTime? @map("confirmed_at")
+  importedById    String    @map("imported_by_id") @db.Uuid
+  importedBy      User      @relation("TakeoffImportImportedBy", fields: [importedById], references: [id])
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  measurements TakeoffMeasurement[]
+
+  @@index([estimateId])
+  @@map("takeoff_imports")
+  @@schema("projects")
+}
+
+model TakeoffMeasurement {
+  id                String        @id @default(uuid()) @db.Uuid
+  importId          String        @map("import_id") @db.Uuid
+  import            TakeoffImport @relation(fields: [importId], references: [id], onDelete: Cascade)
+  bluebeamToolName  String        @map("bluebeam_tool_name")
+  ageroRef          String?       @map("agero_ref")
+  referenceItemId   String?       @map("reference_item_id") @db.Uuid
+  referenceItem     ReferenceLibraryItem? @relation(fields: [referenceItemId], references: [id], onDelete: SetNull)
+  measurementValue  Decimal       @map("measurement_value") @db.Decimal(14, 4)
+  unit              String
+  drawingSheet      String?       @map("drawing_sheet")
+  layerName         String?       @map("layer_name")
+  mappingStatus     String        @default("pending") @map("mapping_status")
+  mappedLineId      String?       @map("mapped_line_id") @db.Uuid
+  mappedLine        EstimateLine? @relation(fields: [mappedLineId], references: [id], onDelete: SetNull)
+
+  @@index([importId])
+  @@map("takeoff_measurements")
+  @@schema("projects")
+}
+
+model ScopeTemplate {
+  id              String    @id @default(uuid()) @db.Uuid
+  organisationId  String    @map("organisation_id") @db.Uuid
+  organisation    Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  referenceItemId String?   @map("reference_item_id") @db.Uuid
+  referenceItem   ReferenceLibraryItem? @relation(fields: [referenceItemId], references: [id], onDelete: SetNull)
+  tradeSectionCode String?  @map("trade_section_code")
+  scopeText       String    @map("scope_text") @db.Text
+  isActive        Boolean   @default(true) @map("is_active")
+  version         Int       @default(1)
+  updatedById     String?   @map("updated_by_id") @db.Uuid
+  updatedBy       User?     @relation("ScopeTemplateUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  @@index([organisationId])
+  @@map("scope_templates")
+  @@schema("projects")
+}
+
+model EstimateLineScope {
+  id                String       @id @default(uuid()) @db.Uuid
+  estimateLineId    String       @unique @map("estimate_line_id") @db.Uuid
+  estimateLine      EstimateLine @relation(fields: [estimateLineId], references: [id], onDelete: Cascade)
+  scopeText         String       @map("scope_text") @db.Text
+  isAutoGenerated   Boolean      @default(true) @map("is_auto_generated")
+  architectCode     String?      @map("architect_code")
+  includeInInvitation Boolean    @default(true) @map("include_in_invitation")
+  updatedById       String?      @map("updated_by_id") @db.Uuid
+  updatedBy         User?        @relation("LineScopeUpdatedBy", fields: [updatedById], references: [id], onDelete: SetNull)
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+
+  @@map("estimate_line_scopes")
+  @@schema("projects")
+}
+
+model SubcontractorInvitation {
+  id                  String    @id @default(uuid()) @db.Uuid
+  estimateId          String    @map("estimate_id") @db.Uuid
+  estimate            Estimate  @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  tradeSectionCode    String    @map("trade_section_code")
+  invitationType      String    @map("invitation_type")
+  status              String    @default("draft")
+  issuedAt            DateTime? @map("issued_at")
+  closeDate           DateTime? @map("close_date")
+  invitationPdfUrl    String?   @map("invitation_pdf_url") @db.Text
+  responseTemplateUrl String?   @map("response_template_url") @db.Text
+  notes               String?   @db.Text
+  createdById         String    @map("created_by_id") @db.Uuid
+  createdBy           User      @relation("InvitationCreatedBy", fields: [createdById], references: [id])
+  createdAt           DateTime  @default(now()) @map("created_at")
+
+  @@index([estimateId])
+  @@map("subcontractor_invitations")
   @@schema("projects")
 }

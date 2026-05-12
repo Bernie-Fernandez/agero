@@ -2,6 +2,8 @@ import { prisma } from '@/lib/prisma';
 import { requireAppUser } from '@/lib/auth';
 import { notFound } from 'next/navigation';
 import LeadDetailTopbar from './LeadDetailTopbar';
+import EstimateStepper from '@/components/estimate/EstimateStepper';
+import { getEstimateStepperState } from './stepper';
 
 export default async function LeadDetailLayout({
   children,
@@ -27,9 +29,12 @@ export default async function LeadDetailLayout({
 
   if (!estimate) notFound();
 
+  const stepperStages = await getEstimateStepperState(id);
+
   return (
     <div className="flex flex-col h-[calc(100vh-48px)]">
       <LeadDetailTopbar estimate={estimate} />
+      <EstimateStepper stages={stepperStages} estimateId={id} />
       <div className="flex-1 overflow-hidden">
         {children}
       </div>

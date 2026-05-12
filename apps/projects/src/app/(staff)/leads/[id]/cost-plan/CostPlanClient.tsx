@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { showToast, ToastContainer } from '@/components/Toast';
+import BuildUpPanel from '@/components/estimate/BuildUpPanel';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -323,14 +324,21 @@ function StandardRow({
       )}
       {/* Unit Rate */}
       <td className="px-1 py-1 w-[96px] min-w-[96px]">
-        <InlineCell
-          value={Number(line.rate) ? String(Number(line.rate)) : ''}
-          type="number"
-          align="right"
-          placeholder="0.00"
-          onCommit={(v) => debounce({ rate: Number(v) || 0 })}
-          cellId={`${line.id}-rate`}
-        />
+        <div className="flex items-center gap-0.5">
+          <div className="flex-1">
+            <InlineCell
+              value={Number(line.rate) ? String(Number(line.rate)) : ''}
+              type="number"
+              align="right"
+              placeholder="0.00"
+              onCommit={(v) => debounce({ rate: Number(v) || 0 })}
+              cellId={`${line.id}-rate`}
+            />
+          </div>
+          {line.lineCode && (
+            <BuildUpButton lineId={line.id} ageroRef={line.lineCode} estimateId={estimateId} onApply={(rate) => debounce({ rate })} />
+          )}
+        </div>
       </td>
       {/* Total Cost */}
       <td className="px-2 py-1 w-[100px] text-right text-sm font-medium text-zinc-800 tabular-nums">
@@ -393,6 +401,30 @@ function StandardRow({
         </select>
       </td>
     </tr>
+  );
+}
+
+function BuildUpButton({ lineId, ageroRef, estimateId, onApply }: { lineId: string; ageroRef: string; estimateId: string; onApply: (rate: number) => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        title="Build-up"
+        className="shrink-0 w-4 h-4 flex items-center justify-center text-zinc-300 hover:text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h8" />
+        </svg>
+      </button>
+      <BuildUpPanel
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        ageroRef={ageroRef}
+        estimateId={estimateId}
+        onApply={(rate) => { onApply(rate); setOpen(false); }}
+      />
+    </>
   );
 }
 

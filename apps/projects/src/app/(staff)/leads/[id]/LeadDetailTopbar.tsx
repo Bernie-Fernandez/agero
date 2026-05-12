@@ -39,9 +39,11 @@ const TABS = [
   { key: 'options', label: 'Options & R&O' },
   { key: 'lockaway', label: 'Lockaway' },
   { key: 'insights', label: 'Insights' },
-  { key: 'scope-library', label: 'Scope Library' },
-  { key: 'trade-letting', label: 'Trade Letting' },
+  { key: 'documents', label: 'Documents' },
+  { key: 'takeoff', label: 'Takeoff' },
+  { key: 'scope', label: 'Scope' },
   { key: 'reports', label: 'Reports' },
+  { key: 'trade-letting', label: 'Trade Letting' },
   { key: 'settings', label: 'Settings' },
 ];
 

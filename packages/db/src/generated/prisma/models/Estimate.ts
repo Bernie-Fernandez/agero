@@ -543,6 +543,12 @@ export type EstimateWhereInput = {
   insightTags?: Prisma.EstimateInsightTagListRelationFilter
   tradePackages?: Prisma.TradePackageListRelationFilter
   snapshots?: Prisma.EstimateSnapshotListRelationFilter
+  documentRegister?: Prisma.EstimateDocumentRegisterListRelationFilter
+  drawingConvention?: Prisma.XOR<Prisma.EstimateDrawingConventionNullableScalarRelationFilter, Prisma.EstimateDrawingConventionWhereInput> | null
+  elementCodes?: Prisma.EstimateElementCodeListRelationFilter
+  intelligenceReports?: Prisma.DrawingIntelligenceReportListRelationFilter
+  takeoffImports?: Prisma.TakeoffImportListRelationFilter
+  invitations?: Prisma.SubcontractorInvitationListRelationFilter
 }
 
 export type EstimateOrderByWithRelationInput = {
@@ -598,6 +604,12 @@ export type EstimateOrderByWithRelationInput = {
   insightTags?: Prisma.EstimateInsightTagOrderByRelationAggregateInput
   tradePackages?: Prisma.TradePackageOrderByRelationAggregateInput
   snapshots?: Prisma.EstimateSnapshotOrderByRelationAggregateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterOrderByRelationAggregateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionOrderByWithRelationInput
+  elementCodes?: Prisma.EstimateElementCodeOrderByRelationAggregateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportOrderByRelationAggregateInput
+  takeoffImports?: Prisma.TakeoffImportOrderByRelationAggregateInput
+  invitations?: Prisma.SubcontractorInvitationOrderByRelationAggregateInput
 }
 
 export type EstimateWhereUniqueInput = Prisma.AtLeast<{
@@ -656,6 +668,12 @@ export type EstimateWhereUniqueInput = Prisma.AtLeast<{
   insightTags?: Prisma.EstimateInsightTagListRelationFilter
   tradePackages?: Prisma.TradePackageListRelationFilter
   snapshots?: Prisma.EstimateSnapshotListRelationFilter
+  documentRegister?: Prisma.EstimateDocumentRegisterListRelationFilter
+  drawingConvention?: Prisma.XOR<Prisma.EstimateDrawingConventionNullableScalarRelationFilter, Prisma.EstimateDrawingConventionWhereInput> | null
+  elementCodes?: Prisma.EstimateElementCodeListRelationFilter
+  intelligenceReports?: Prisma.DrawingIntelligenceReportListRelationFilter
+  takeoffImports?: Prisma.TakeoffImportListRelationFilter
+  invitations?: Prisma.SubcontractorInvitationListRelationFilter
 }, "id" | "leadNumber">
 
 export type EstimateOrderByWithAggregationInput = {
@@ -793,6 +811,12 @@ export type EstimateCreateInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateInput = {
@@ -842,6 +866,12 @@ export type EstimateUncheckedCreateInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUpdateInput = {
@@ -891,6 +921,12 @@ export type EstimateUpdateInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateInput = {
@@ -940,6 +976,12 @@ export type EstimateUncheckedUpdateInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateManyInput = {
@@ -1616,6 +1658,90 @@ export type EstimateUpdateOneRequiredWithoutSnapshotsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutSnapshotsInput, Prisma.EstimateUpdateWithoutSnapshotsInput>, Prisma.EstimateUncheckedUpdateWithoutSnapshotsInput>
 }
 
+export type EstimateCreateNestedOneWithoutDocumentRegisterInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedCreateWithoutDocumentRegisterInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutDocumentRegisterInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutDocumentRegisterNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedCreateWithoutDocumentRegisterInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutDocumentRegisterInput
+  upsert?: Prisma.EstimateUpsertWithoutDocumentRegisterInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutDocumentRegisterInput, Prisma.EstimateUpdateWithoutDocumentRegisterInput>, Prisma.EstimateUncheckedUpdateWithoutDocumentRegisterInput>
+}
+
+export type EstimateCreateNestedOneWithoutDrawingConventionInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutDrawingConventionInput, Prisma.EstimateUncheckedCreateWithoutDrawingConventionInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutDrawingConventionInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutDrawingConventionNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutDrawingConventionInput, Prisma.EstimateUncheckedCreateWithoutDrawingConventionInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutDrawingConventionInput
+  upsert?: Prisma.EstimateUpsertWithoutDrawingConventionInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutDrawingConventionInput, Prisma.EstimateUpdateWithoutDrawingConventionInput>, Prisma.EstimateUncheckedUpdateWithoutDrawingConventionInput>
+}
+
+export type EstimateCreateNestedOneWithoutElementCodesInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutElementCodesInput, Prisma.EstimateUncheckedCreateWithoutElementCodesInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutElementCodesInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutElementCodesNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutElementCodesInput, Prisma.EstimateUncheckedCreateWithoutElementCodesInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutElementCodesInput
+  upsert?: Prisma.EstimateUpsertWithoutElementCodesInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutElementCodesInput, Prisma.EstimateUpdateWithoutElementCodesInput>, Prisma.EstimateUncheckedUpdateWithoutElementCodesInput>
+}
+
+export type EstimateCreateNestedOneWithoutIntelligenceReportsInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedCreateWithoutIntelligenceReportsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutIntelligenceReportsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutIntelligenceReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedCreateWithoutIntelligenceReportsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutIntelligenceReportsInput
+  upsert?: Prisma.EstimateUpsertWithoutIntelligenceReportsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutIntelligenceReportsInput, Prisma.EstimateUpdateWithoutIntelligenceReportsInput>, Prisma.EstimateUncheckedUpdateWithoutIntelligenceReportsInput>
+}
+
+export type EstimateCreateNestedOneWithoutTakeoffImportsInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedCreateWithoutTakeoffImportsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutTakeoffImportsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutTakeoffImportsNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedCreateWithoutTakeoffImportsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutTakeoffImportsInput
+  upsert?: Prisma.EstimateUpsertWithoutTakeoffImportsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutTakeoffImportsInput, Prisma.EstimateUpdateWithoutTakeoffImportsInput>, Prisma.EstimateUncheckedUpdateWithoutTakeoffImportsInput>
+}
+
+export type EstimateCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutInvitationsInput, Prisma.EstimateUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+}
+
+export type EstimateUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateCreateWithoutInvitationsInput, Prisma.EstimateUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.EstimateCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.EstimateUpsertWithoutInvitationsInput
+  connect?: Prisma.EstimateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateUpdateToOneWithWhereWithoutInvitationsInput, Prisma.EstimateUpdateWithoutInvitationsInput>, Prisma.EstimateUncheckedUpdateWithoutInvitationsInput>
+}
+
 export type EstimateCreateWithoutOrganisationInput = {
   id?: string
   leadNumber: string
@@ -1662,6 +1788,12 @@ export type EstimateCreateWithoutOrganisationInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutOrganisationInput = {
@@ -1710,6 +1842,12 @@ export type EstimateUncheckedCreateWithoutOrganisationInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutOrganisationInput = {
@@ -1827,6 +1965,12 @@ export type EstimateCreateWithoutCreatedByInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutCreatedByInput = {
@@ -1875,6 +2019,12 @@ export type EstimateUncheckedCreateWithoutCreatedByInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutCreatedByInput = {
@@ -1933,6 +2083,12 @@ export type EstimateCreateWithoutEstimatorInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutEstimatorInput = {
@@ -1981,6 +2137,12 @@ export type EstimateUncheckedCreateWithoutEstimatorInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutEstimatorInput = {
@@ -2071,6 +2233,12 @@ export type EstimateCreateWithoutConvertedToProjectInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutConvertedToProjectInput = {
@@ -2119,6 +2287,12 @@ export type EstimateUncheckedCreateWithoutConvertedToProjectInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutConvertedToProjectInput = {
@@ -2193,6 +2367,12 @@ export type EstimateCreateWithoutClientInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutClientInput = {
@@ -2241,6 +2421,12 @@ export type EstimateUncheckedCreateWithoutClientInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutClientInput = {
@@ -2315,6 +2501,12 @@ export type EstimateCreateWithoutRevenueCostCodeInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutRevenueCostCodeInput = {
@@ -2363,6 +2555,12 @@ export type EstimateUncheckedCreateWithoutRevenueCostCodeInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutRevenueCostCodeInput = {
@@ -2437,6 +2635,12 @@ export type EstimateCreateWithoutAreasInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutAreasInput = {
@@ -2485,6 +2689,12 @@ export type EstimateUncheckedCreateWithoutAreasInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutAreasInput = {
@@ -2549,6 +2759,12 @@ export type EstimateUpdateWithoutAreasInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutAreasInput = {
@@ -2597,6 +2813,12 @@ export type EstimateUncheckedUpdateWithoutAreasInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutScenariosInput = {
@@ -2645,6 +2867,12 @@ export type EstimateCreateWithoutScenariosInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutScenariosInput = {
@@ -2693,6 +2921,12 @@ export type EstimateUncheckedCreateWithoutScenariosInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutScenariosInput = {
@@ -2757,6 +2991,12 @@ export type EstimateUpdateWithoutScenariosInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutScenariosInput = {
@@ -2805,6 +3045,12 @@ export type EstimateUncheckedUpdateWithoutScenariosInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutTradeSectionsInput = {
@@ -2853,6 +3099,12 @@ export type EstimateCreateWithoutTradeSectionsInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutTradeSectionsInput = {
@@ -2901,6 +3153,12 @@ export type EstimateUncheckedCreateWithoutTradeSectionsInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutTradeSectionsInput = {
@@ -2965,6 +3223,12 @@ export type EstimateUpdateWithoutTradeSectionsInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutTradeSectionsInput = {
@@ -3013,6 +3277,12 @@ export type EstimateUncheckedUpdateWithoutTradeSectionsInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutLinesInput = {
@@ -3061,6 +3331,12 @@ export type EstimateCreateWithoutLinesInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutLinesInput = {
@@ -3109,6 +3385,12 @@ export type EstimateUncheckedCreateWithoutLinesInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutLinesInput = {
@@ -3173,6 +3455,12 @@ export type EstimateUpdateWithoutLinesInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutLinesInput = {
@@ -3221,6 +3509,12 @@ export type EstimateUncheckedUpdateWithoutLinesInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutOptionsInput = {
@@ -3269,6 +3563,12 @@ export type EstimateCreateWithoutOptionsInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutOptionsInput = {
@@ -3317,6 +3617,12 @@ export type EstimateUncheckedCreateWithoutOptionsInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutOptionsInput = {
@@ -3381,6 +3687,12 @@ export type EstimateUpdateWithoutOptionsInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutOptionsInput = {
@@ -3429,6 +3741,12 @@ export type EstimateUncheckedUpdateWithoutOptionsInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutLockawaysInput = {
@@ -3477,6 +3795,12 @@ export type EstimateCreateWithoutLockawaysInput = {
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutLockawaysInput = {
@@ -3525,6 +3849,12 @@ export type EstimateUncheckedCreateWithoutLockawaysInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutLockawaysInput = {
@@ -3589,6 +3919,12 @@ export type EstimateUpdateWithoutLockawaysInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutLockawaysInput = {
@@ -3637,6 +3973,12 @@ export type EstimateUncheckedUpdateWithoutLockawaysInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutInsightTagsInput = {
@@ -3685,6 +4027,12 @@ export type EstimateCreateWithoutInsightTagsInput = {
   lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutInsightTagsInput = {
@@ -3733,6 +4081,12 @@ export type EstimateUncheckedCreateWithoutInsightTagsInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutInsightTagsInput = {
@@ -3797,6 +4151,12 @@ export type EstimateUpdateWithoutInsightTagsInput = {
   lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutInsightTagsInput = {
@@ -3845,6 +4205,12 @@ export type EstimateUncheckedUpdateWithoutInsightTagsInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutTradePackagesInput = {
@@ -3893,6 +4259,12 @@ export type EstimateCreateWithoutTradePackagesInput = {
   lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutTradePackagesInput = {
@@ -3941,6 +4313,12 @@ export type EstimateUncheckedCreateWithoutTradePackagesInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutTradePackagesInput = {
@@ -4005,6 +4383,12 @@ export type EstimateUpdateWithoutTradePackagesInput = {
   lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutTradePackagesInput = {
@@ -4053,6 +4437,12 @@ export type EstimateUncheckedUpdateWithoutTradePackagesInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateWithoutSnapshotsInput = {
@@ -4101,6 +4491,12 @@ export type EstimateCreateWithoutSnapshotsInput = {
   lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
   insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateUncheckedCreateWithoutSnapshotsInput = {
@@ -4149,6 +4545,12 @@ export type EstimateUncheckedCreateWithoutSnapshotsInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
   insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
   tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
 }
 
 export type EstimateCreateOrConnectWithoutSnapshotsInput = {
@@ -4213,6 +4615,12 @@ export type EstimateUpdateWithoutSnapshotsInput = {
   lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutSnapshotsInput = {
@@ -4261,6 +4669,1404 @@ export type EstimateUncheckedUpdateWithoutSnapshotsInput = {
   lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutDocumentRegisterInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutDocumentRegisterInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutDocumentRegisterInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedCreateWithoutDocumentRegisterInput>
+}
+
+export type EstimateUpsertWithoutDocumentRegisterInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedUpdateWithoutDocumentRegisterInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedCreateWithoutDocumentRegisterInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutDocumentRegisterInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutDocumentRegisterInput, Prisma.EstimateUncheckedUpdateWithoutDocumentRegisterInput>
+}
+
+export type EstimateUpdateWithoutDocumentRegisterInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutDocumentRegisterInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutDrawingConventionInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutDrawingConventionInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutDrawingConventionInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutDrawingConventionInput, Prisma.EstimateUncheckedCreateWithoutDrawingConventionInput>
+}
+
+export type EstimateUpsertWithoutDrawingConventionInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutDrawingConventionInput, Prisma.EstimateUncheckedUpdateWithoutDrawingConventionInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutDrawingConventionInput, Prisma.EstimateUncheckedCreateWithoutDrawingConventionInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutDrawingConventionInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutDrawingConventionInput, Prisma.EstimateUncheckedUpdateWithoutDrawingConventionInput>
+}
+
+export type EstimateUpdateWithoutDrawingConventionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutDrawingConventionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutElementCodesInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutElementCodesInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutElementCodesInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutElementCodesInput, Prisma.EstimateUncheckedCreateWithoutElementCodesInput>
+}
+
+export type EstimateUpsertWithoutElementCodesInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutElementCodesInput, Prisma.EstimateUncheckedUpdateWithoutElementCodesInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutElementCodesInput, Prisma.EstimateUncheckedCreateWithoutElementCodesInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutElementCodesInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutElementCodesInput, Prisma.EstimateUncheckedUpdateWithoutElementCodesInput>
+}
+
+export type EstimateUpdateWithoutElementCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutElementCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutIntelligenceReportsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutIntelligenceReportsInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutIntelligenceReportsInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedCreateWithoutIntelligenceReportsInput>
+}
+
+export type EstimateUpsertWithoutIntelligenceReportsInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedUpdateWithoutIntelligenceReportsInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedCreateWithoutIntelligenceReportsInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutIntelligenceReportsInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutIntelligenceReportsInput, Prisma.EstimateUncheckedUpdateWithoutIntelligenceReportsInput>
+}
+
+export type EstimateUpdateWithoutIntelligenceReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutIntelligenceReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutTakeoffImportsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutTakeoffImportsInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutTakeoffImportsInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedCreateWithoutTakeoffImportsInput>
+}
+
+export type EstimateUpsertWithoutTakeoffImportsInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedUpdateWithoutTakeoffImportsInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedCreateWithoutTakeoffImportsInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutTakeoffImportsInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutTakeoffImportsInput, Prisma.EstimateUncheckedUpdateWithoutTakeoffImportsInput>
+}
+
+export type EstimateUpdateWithoutTakeoffImportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutTakeoffImportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateCreateWithoutInvitationsInput = {
+  id?: string
+  leadNumber: string
+  title: string
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutEstimatesInput
+  client?: Prisma.CompanyCreateNestedOneWithoutClientEstimatesInput
+  estimator?: Prisma.UserCreateNestedOneWithoutEstimatesAsEstimatorInput
+  revenueCostCode?: Prisma.CostCodeCreateNestedOneWithoutRevenueEstimatesInput
+  convertedToProject?: Prisma.ProjectCreateNestedOneWithoutConvertedFromEstimatesInput
+  createdBy: Prisma.UserCreateNestedOneWithoutCreatedEstimatesInput
+  areas?: Prisma.EstimateAreaCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateUncheckedCreateWithoutInvitationsInput = {
+  id?: string
+  organisationId: string
+  leadNumber: string
+  title: string
+  clientId?: string | null
+  status?: $Enums.EstimateStatus
+  pipelineStage?: number
+  confidencePct?: number | null
+  hubspotDealId?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  jobType?: string | null
+  floorAreaM2?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: string | null
+  revenueCostCodeId?: string | null
+  targetGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: string
+  costPerUnitLabel?: string | null
+  taxCodeName?: string
+  notes?: string | null
+  convertedToProjectId?: string | null
+  createdById: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  areas?: Prisma.EstimateAreaUncheckedCreateNestedManyWithoutEstimateInput
+  scenarios?: Prisma.EstimateScenarioUncheckedCreateNestedManyWithoutEstimateInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedCreateNestedManyWithoutEstimateInput
+  lines?: Prisma.EstimateLineUncheckedCreateNestedManyWithoutEstimateInput
+  options?: Prisma.EstimateOptionUncheckedCreateNestedManyWithoutEstimateInput
+  lockaways?: Prisma.EstimateLockawayUncheckedCreateNestedManyWithoutEstimateInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedCreateNestedManyWithoutEstimateInput
+  tradePackages?: Prisma.TradePackageUncheckedCreateNestedManyWithoutEstimateInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutEstimateInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutEstimateInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedCreateNestedOneWithoutEstimateInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedCreateNestedManyWithoutEstimateInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedCreateNestedManyWithoutEstimateInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutEstimateInput
+}
+
+export type EstimateCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.EstimateWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutInvitationsInput, Prisma.EstimateUncheckedCreateWithoutInvitationsInput>
+}
+
+export type EstimateUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.EstimateUpdateWithoutInvitationsInput, Prisma.EstimateUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.EstimateCreateWithoutInvitationsInput, Prisma.EstimateUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.EstimateWhereInput
+}
+
+export type EstimateUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.EstimateWhereInput
+  data: Prisma.XOR<Prisma.EstimateUpdateWithoutInvitationsInput, Prisma.EstimateUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type EstimateUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutEstimatesNestedInput
+  client?: Prisma.CompanyUpdateOneWithoutClientEstimatesNestedInput
+  estimator?: Prisma.UserUpdateOneWithoutEstimatesAsEstimatorNestedInput
+  revenueCostCode?: Prisma.CostCodeUpdateOneWithoutRevenueEstimatesNestedInput
+  convertedToProject?: Prisma.ProjectUpdateOneWithoutConvertedFromEstimatesNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutCreatedEstimatesNestedInput
+  areas?: Prisma.EstimateAreaUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+}
+
+export type EstimateUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  leadNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  clientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumEstimateStatusFieldUpdateOperationsInput | $Enums.EstimateStatus
+  pipelineStage?: Prisma.IntFieldUpdateOperationsInput | number
+  confidencePct?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  hubspotDealId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floorAreaM2?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  estimatorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  revenueCostCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minGpPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  defaultMarkupPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  costRecoveryPct?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  budgetCoverageTarget?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  declaredMarginDefaultPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalHighPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalMedPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marketEvalLowPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currencySymbol?: Prisma.StringFieldUpdateOperationsInput | string
+  costPerUnitLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxCodeName?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  convertedToProjectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  areas?: Prisma.EstimateAreaUncheckedUpdateManyWithoutEstimateNestedInput
+  scenarios?: Prisma.EstimateScenarioUncheckedUpdateManyWithoutEstimateNestedInput
+  tradeSections?: Prisma.EstimateTradeSectionUncheckedUpdateManyWithoutEstimateNestedInput
+  lines?: Prisma.EstimateLineUncheckedUpdateManyWithoutEstimateNestedInput
+  options?: Prisma.EstimateOptionUncheckedUpdateManyWithoutEstimateNestedInput
+  lockaways?: Prisma.EstimateLockawayUncheckedUpdateManyWithoutEstimateNestedInput
+  insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
+  tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
+  snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateCreateManyOrganisationInput = {
@@ -4348,6 +6154,12 @@ export type EstimateUpdateWithoutOrganisationInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutOrganisationInput = {
@@ -4396,6 +6208,12 @@ export type EstimateUncheckedUpdateWithoutOrganisationInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutOrganisationInput = {
@@ -4561,6 +6379,12 @@ export type EstimateUpdateWithoutCreatedByInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutCreatedByInput = {
@@ -4609,6 +6433,12 @@ export type EstimateUncheckedUpdateWithoutCreatedByInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutCreatedByInput = {
@@ -4696,6 +6526,12 @@ export type EstimateUpdateWithoutEstimatorInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutEstimatorInput = {
@@ -4744,6 +6580,12 @@ export type EstimateUncheckedUpdateWithoutEstimatorInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutEstimatorInput = {
@@ -4870,6 +6712,12 @@ export type EstimateUpdateWithoutConvertedToProjectInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutConvertedToProjectInput = {
@@ -4918,6 +6766,12 @@ export type EstimateUncheckedUpdateWithoutConvertedToProjectInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutConvertedToProjectInput = {
@@ -5044,6 +6898,12 @@ export type EstimateUpdateWithoutClientInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutClientInput = {
@@ -5092,6 +6952,12 @@ export type EstimateUncheckedUpdateWithoutClientInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutClientInput = {
@@ -5218,6 +7084,12 @@ export type EstimateUpdateWithoutRevenueCostCodeInput = {
   insightTags?: Prisma.EstimateInsightTagUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateWithoutRevenueCostCodeInput = {
@@ -5266,6 +7138,12 @@ export type EstimateUncheckedUpdateWithoutRevenueCostCodeInput = {
   insightTags?: Prisma.EstimateInsightTagUncheckedUpdateManyWithoutEstimateNestedInput
   tradePackages?: Prisma.TradePackageUncheckedUpdateManyWithoutEstimateNestedInput
   snapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutEstimateNestedInput
+  documentRegister?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutEstimateNestedInput
+  drawingConvention?: Prisma.EstimateDrawingConventionUncheckedUpdateOneWithoutEstimateNestedInput
+  elementCodes?: Prisma.EstimateElementCodeUncheckedUpdateManyWithoutEstimateNestedInput
+  intelligenceReports?: Prisma.DrawingIntelligenceReportUncheckedUpdateManyWithoutEstimateNestedInput
+  takeoffImports?: Prisma.TakeoffImportUncheckedUpdateManyWithoutEstimateNestedInput
+  invitations?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutEstimateNestedInput
 }
 
 export type EstimateUncheckedUpdateManyWithoutRevenueCostCodeInput = {
@@ -5322,6 +7200,11 @@ export type EstimateCountOutputType = {
   insightTags: number
   tradePackages: number
   snapshots: number
+  documentRegister: number
+  elementCodes: number
+  intelligenceReports: number
+  takeoffImports: number
+  invitations: number
 }
 
 export type EstimateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5334,6 +7217,11 @@ export type EstimateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   insightTags?: boolean | EstimateCountOutputTypeCountInsightTagsArgs
   tradePackages?: boolean | EstimateCountOutputTypeCountTradePackagesArgs
   snapshots?: boolean | EstimateCountOutputTypeCountSnapshotsArgs
+  documentRegister?: boolean | EstimateCountOutputTypeCountDocumentRegisterArgs
+  elementCodes?: boolean | EstimateCountOutputTypeCountElementCodesArgs
+  intelligenceReports?: boolean | EstimateCountOutputTypeCountIntelligenceReportsArgs
+  takeoffImports?: boolean | EstimateCountOutputTypeCountTakeoffImportsArgs
+  invitations?: boolean | EstimateCountOutputTypeCountInvitationsArgs
 }
 
 /**
@@ -5409,6 +7297,41 @@ export type EstimateCountOutputTypeCountSnapshotsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.EstimateSnapshotWhereInput
 }
 
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountDocumentRegisterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateDocumentRegisterWhereInput
+}
+
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountElementCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateElementCodeWhereInput
+}
+
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountIntelligenceReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DrawingIntelligenceReportWhereInput
+}
+
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountTakeoffImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TakeoffImportWhereInput
+}
+
+/**
+ * EstimateCountOutputType without action
+ */
+export type EstimateCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubcontractorInvitationWhereInput
+}
+
 
 export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5463,6 +7386,12 @@ export type EstimateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   insightTags?: boolean | Prisma.Estimate$insightTagsArgs<ExtArgs>
   tradePackages?: boolean | Prisma.Estimate$tradePackagesArgs<ExtArgs>
   snapshots?: boolean | Prisma.Estimate$snapshotsArgs<ExtArgs>
+  documentRegister?: boolean | Prisma.Estimate$documentRegisterArgs<ExtArgs>
+  drawingConvention?: boolean | Prisma.Estimate$drawingConventionArgs<ExtArgs>
+  elementCodes?: boolean | Prisma.Estimate$elementCodesArgs<ExtArgs>
+  intelligenceReports?: boolean | Prisma.Estimate$intelligenceReportsArgs<ExtArgs>
+  takeoffImports?: boolean | Prisma.Estimate$takeoffImportsArgs<ExtArgs>
+  invitations?: boolean | Prisma.Estimate$invitationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimate"]>
 
@@ -5615,6 +7544,12 @@ export type EstimateInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   insightTags?: boolean | Prisma.Estimate$insightTagsArgs<ExtArgs>
   tradePackages?: boolean | Prisma.Estimate$tradePackagesArgs<ExtArgs>
   snapshots?: boolean | Prisma.Estimate$snapshotsArgs<ExtArgs>
+  documentRegister?: boolean | Prisma.Estimate$documentRegisterArgs<ExtArgs>
+  drawingConvention?: boolean | Prisma.Estimate$drawingConventionArgs<ExtArgs>
+  elementCodes?: boolean | Prisma.Estimate$elementCodesArgs<ExtArgs>
+  intelligenceReports?: boolean | Prisma.Estimate$intelligenceReportsArgs<ExtArgs>
+  takeoffImports?: boolean | Prisma.Estimate$takeoffImportsArgs<ExtArgs>
+  invitations?: boolean | Prisma.Estimate$invitationsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstimateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5652,6 +7587,12 @@ export type $EstimatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     insightTags: Prisma.$EstimateInsightTagPayload<ExtArgs>[]
     tradePackages: Prisma.$TradePackagePayload<ExtArgs>[]
     snapshots: Prisma.$EstimateSnapshotPayload<ExtArgs>[]
+    documentRegister: Prisma.$EstimateDocumentRegisterPayload<ExtArgs>[]
+    drawingConvention: Prisma.$EstimateDrawingConventionPayload<ExtArgs> | null
+    elementCodes: Prisma.$EstimateElementCodePayload<ExtArgs>[]
+    intelligenceReports: Prisma.$DrawingIntelligenceReportPayload<ExtArgs>[]
+    takeoffImports: Prisma.$TakeoffImportPayload<ExtArgs>[]
+    invitations: Prisma.$SubcontractorInvitationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6100,6 +8041,12 @@ export interface Prisma__EstimateClient<T, Null = never, ExtArgs extends runtime
   insightTags<T extends Prisma.Estimate$insightTagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$insightTagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateInsightTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tradePackages<T extends Prisma.Estimate$tradePackagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$tradePackagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TradePackagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   snapshots<T extends Prisma.Estimate$snapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentRegister<T extends Prisma.Estimate$documentRegisterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$documentRegisterArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateDocumentRegisterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  drawingConvention<T extends Prisma.Estimate$drawingConventionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$drawingConventionArgs<ExtArgs>>): Prisma.Prisma__EstimateDrawingConventionClient<runtime.Types.Result.GetResult<Prisma.$EstimateDrawingConventionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  elementCodes<T extends Prisma.Estimate$elementCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$elementCodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateElementCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  intelligenceReports<T extends Prisma.Estimate$intelligenceReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$intelligenceReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DrawingIntelligenceReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  takeoffImports<T extends Prisma.Estimate$takeoffImportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$takeoffImportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TakeoffImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.Estimate$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Estimate$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubcontractorInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6856,6 +8803,145 @@ export type Estimate$snapshotsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.EstimateSnapshotScalarFieldEnum | Prisma.EstimateSnapshotScalarFieldEnum[]
+}
+
+/**
+ * Estimate.documentRegister
+ */
+export type Estimate$documentRegisterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateDocumentRegister
+   */
+  select?: Prisma.EstimateDocumentRegisterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateDocumentRegister
+   */
+  omit?: Prisma.EstimateDocumentRegisterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateDocumentRegisterInclude<ExtArgs> | null
+  where?: Prisma.EstimateDocumentRegisterWhereInput
+  orderBy?: Prisma.EstimateDocumentRegisterOrderByWithRelationInput | Prisma.EstimateDocumentRegisterOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateDocumentRegisterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateDocumentRegisterScalarFieldEnum | Prisma.EstimateDocumentRegisterScalarFieldEnum[]
+}
+
+/**
+ * Estimate.drawingConvention
+ */
+export type Estimate$drawingConventionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateDrawingConvention
+   */
+  select?: Prisma.EstimateDrawingConventionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateDrawingConvention
+   */
+  omit?: Prisma.EstimateDrawingConventionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateDrawingConventionInclude<ExtArgs> | null
+  where?: Prisma.EstimateDrawingConventionWhereInput
+}
+
+/**
+ * Estimate.elementCodes
+ */
+export type Estimate$elementCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateElementCode
+   */
+  select?: Prisma.EstimateElementCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateElementCode
+   */
+  omit?: Prisma.EstimateElementCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateElementCodeInclude<ExtArgs> | null
+  where?: Prisma.EstimateElementCodeWhereInput
+  orderBy?: Prisma.EstimateElementCodeOrderByWithRelationInput | Prisma.EstimateElementCodeOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateElementCodeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateElementCodeScalarFieldEnum | Prisma.EstimateElementCodeScalarFieldEnum[]
+}
+
+/**
+ * Estimate.intelligenceReports
+ */
+export type Estimate$intelligenceReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DrawingIntelligenceReport
+   */
+  select?: Prisma.DrawingIntelligenceReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DrawingIntelligenceReport
+   */
+  omit?: Prisma.DrawingIntelligenceReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DrawingIntelligenceReportInclude<ExtArgs> | null
+  where?: Prisma.DrawingIntelligenceReportWhereInput
+  orderBy?: Prisma.DrawingIntelligenceReportOrderByWithRelationInput | Prisma.DrawingIntelligenceReportOrderByWithRelationInput[]
+  cursor?: Prisma.DrawingIntelligenceReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DrawingIntelligenceReportScalarFieldEnum | Prisma.DrawingIntelligenceReportScalarFieldEnum[]
+}
+
+/**
+ * Estimate.takeoffImports
+ */
+export type Estimate$takeoffImportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TakeoffImport
+   */
+  select?: Prisma.TakeoffImportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TakeoffImport
+   */
+  omit?: Prisma.TakeoffImportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TakeoffImportInclude<ExtArgs> | null
+  where?: Prisma.TakeoffImportWhereInput
+  orderBy?: Prisma.TakeoffImportOrderByWithRelationInput | Prisma.TakeoffImportOrderByWithRelationInput[]
+  cursor?: Prisma.TakeoffImportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TakeoffImportScalarFieldEnum | Prisma.TakeoffImportScalarFieldEnum[]
+}
+
+/**
+ * Estimate.invitations
+ */
+export type Estimate$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubcontractorInvitation
+   */
+  select?: Prisma.SubcontractorInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubcontractorInvitation
+   */
+  omit?: Prisma.SubcontractorInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubcontractorInvitationInclude<ExtArgs> | null
+  where?: Prisma.SubcontractorInvitationWhereInput
+  orderBy?: Prisma.SubcontractorInvitationOrderByWithRelationInput | Prisma.SubcontractorInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.SubcontractorInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubcontractorInvitationScalarFieldEnum | Prisma.SubcontractorInvitationScalarFieldEnum[]
 }
 
 /**

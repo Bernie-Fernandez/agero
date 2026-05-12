@@ -552,3 +552,73 @@ export type WIPSchedule = Prisma.WIPScheduleModel
  * 
  */
 export type ManagementReportSection = Prisma.ManagementReportSectionModel
+/**
+ * Model ReferenceLibraryItem
+ * 
+ */
+export type ReferenceLibraryItem = Prisma.ReferenceLibraryItemModel
+/**
+ * Model ReferenceLibraryRate
+ * 
+ */
+export type ReferenceLibraryRate = Prisma.ReferenceLibraryRateModel
+/**
+ * Model ReferenceLibraryBuildUp
+ * 
+ */
+export type ReferenceLibraryBuildUp = Prisma.ReferenceLibraryBuildUpModel
+/**
+ * Model EstimateDocumentRegister
+ * 
+ */
+export type EstimateDocumentRegister = Prisma.EstimateDocumentRegisterModel
+/**
+ * Model EstimateDrawingConvention
+ * 
+ */
+export type EstimateDrawingConvention = Prisma.EstimateDrawingConventionModel
+/**
+ * Model EstimateElementCode
+ * 
+ */
+export type EstimateElementCode = Prisma.EstimateElementCodeModel
+/**
+ * Model DrawingIntelligenceReport
+ * 
+ */
+export type DrawingIntelligenceReport = Prisma.DrawingIntelligenceReportModel
+/**
+ * Model DrawingIntelligenceQuestion
+ * 
+ */
+export type DrawingIntelligenceQuestion = Prisma.DrawingIntelligenceQuestionModel
+/**
+ * Model DrawingIntelligenceAnswer
+ * 
+ */
+export type DrawingIntelligenceAnswer = Prisma.DrawingIntelligenceAnswerModel
+/**
+ * Model TakeoffImport
+ * 
+ */
+export type TakeoffImport = Prisma.TakeoffImportModel
+/**
+ * Model TakeoffMeasurement
+ * 
+ */
+export type TakeoffMeasurement = Prisma.TakeoffMeasurementModel
+/**
+ * Model ScopeTemplate
+ * 
+ */
+export type ScopeTemplate = Prisma.ScopeTemplateModel
+/**
+ * Model EstimateLineScope
+ * 
+ */
+export type EstimateLineScope = Prisma.EstimateLineScopeModel
+/**
+ * Model SubcontractorInvitation
+ * 
+ */
+export type SubcontractorInvitation = Prisma.SubcontractorInvitationModel

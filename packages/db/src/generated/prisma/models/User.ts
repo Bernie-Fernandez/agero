@@ -548,6 +548,14 @@ export type UserWhereInput = {
   managementReportsPrepared?: Prisma.ManagementReportListRelationFilter
   managementReportsFinalised?: Prisma.ManagementReportListRelationFilter
   managementReportSectionsEdited?: Prisma.ManagementReportSectionListRelationFilter
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateListRelationFilter
+  documentUploads?: Prisma.EstimateDocumentRegisterListRelationFilter
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerListRelationFilter
+  takeoffImportsConfirmed?: Prisma.TakeoffImportListRelationFilter
+  takeoffImportsImported?: Prisma.TakeoffImportListRelationFilter
+  scopeTemplateUpdates?: Prisma.ScopeTemplateListRelationFilter
+  lineScopeUpdates?: Prisma.EstimateLineScopeListRelationFilter
+  invitationsCreated?: Prisma.SubcontractorInvitationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -636,6 +644,14 @@ export type UserOrderByWithRelationInput = {
   managementReportsPrepared?: Prisma.ManagementReportOrderByRelationAggregateInput
   managementReportsFinalised?: Prisma.ManagementReportOrderByRelationAggregateInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionOrderByRelationAggregateInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateOrderByRelationAggregateInput
+  documentUploads?: Prisma.EstimateDocumentRegisterOrderByRelationAggregateInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerOrderByRelationAggregateInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportOrderByRelationAggregateInput
+  takeoffImportsImported?: Prisma.TakeoffImportOrderByRelationAggregateInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateOrderByRelationAggregateInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeOrderByRelationAggregateInput
+  invitationsCreated?: Prisma.SubcontractorInvitationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -727,6 +743,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   managementReportsPrepared?: Prisma.ManagementReportListRelationFilter
   managementReportsFinalised?: Prisma.ManagementReportListRelationFilter
   managementReportSectionsEdited?: Prisma.ManagementReportSectionListRelationFilter
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateListRelationFilter
+  documentUploads?: Prisma.EstimateDocumentRegisterListRelationFilter
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerListRelationFilter
+  takeoffImportsConfirmed?: Prisma.TakeoffImportListRelationFilter
+  takeoffImportsImported?: Prisma.TakeoffImportListRelationFilter
+  scopeTemplateUpdates?: Prisma.ScopeTemplateListRelationFilter
+  lineScopeUpdates?: Prisma.EstimateLineScopeListRelationFilter
+  invitationsCreated?: Prisma.SubcontractorInvitationListRelationFilter
 }, "id" | "clerkId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -910,6 +934,14 @@ export type UserCreateInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -997,6 +1029,14 @@ export type UserUncheckedCreateInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUpdateInput = {
@@ -1084,6 +1124,14 @@ export type UserUpdateInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -1171,6 +1219,14 @@ export type UserUncheckedUpdateInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -2166,6 +2222,126 @@ export type UserUpdateOneWithoutManagementReportSectionsEditedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutManagementReportSectionsEditedInput, Prisma.UserUpdateWithoutManagementReportSectionsEditedInput>, Prisma.UserUncheckedUpdateWithoutManagementReportSectionsEditedInput>
 }
 
+export type UserCreateNestedOneWithoutRateLibraryUpdatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedCreateWithoutRateLibraryUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRateLibraryUpdatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRateLibraryUpdatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedCreateWithoutRateLibraryUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRateLibraryUpdatesInput
+  upsert?: Prisma.UserUpsertWithoutRateLibraryUpdatesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRateLibraryUpdatesInput, Prisma.UserUpdateWithoutRateLibraryUpdatesInput>, Prisma.UserUncheckedUpdateWithoutRateLibraryUpdatesInput>
+}
+
+export type UserCreateNestedOneWithoutDocumentUploadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDocumentUploadsInput, Prisma.UserUncheckedCreateWithoutDocumentUploadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDocumentUploadsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutDocumentUploadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDocumentUploadsInput, Prisma.UserUncheckedCreateWithoutDocumentUploadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDocumentUploadsInput
+  upsert?: Prisma.UserUpsertWithoutDocumentUploadsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDocumentUploadsInput, Prisma.UserUpdateWithoutDocumentUploadsInput>, Prisma.UserUncheckedUpdateWithoutDocumentUploadsInput>
+}
+
+export type UserCreateNestedOneWithoutDrawingAnswersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDrawingAnswersInput, Prisma.UserUncheckedCreateWithoutDrawingAnswersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDrawingAnswersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDrawingAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDrawingAnswersInput, Prisma.UserUncheckedCreateWithoutDrawingAnswersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDrawingAnswersInput
+  upsert?: Prisma.UserUpsertWithoutDrawingAnswersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDrawingAnswersInput, Prisma.UserUpdateWithoutDrawingAnswersInput>, Prisma.UserUncheckedUpdateWithoutDrawingAnswersInput>
+}
+
+export type UserCreateNestedOneWithoutTakeoffImportsConfirmedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsConfirmedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTakeoffImportsConfirmedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutTakeoffImportsImportedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsImportedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTakeoffImportsImportedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutTakeoffImportsConfirmedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsConfirmedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTakeoffImportsConfirmedInput
+  upsert?: Prisma.UserUpsertWithoutTakeoffImportsConfirmedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTakeoffImportsConfirmedInput, Prisma.UserUpdateWithoutTakeoffImportsConfirmedInput>, Prisma.UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput>
+}
+
+export type UserUpdateOneRequiredWithoutTakeoffImportsImportedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsImportedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTakeoffImportsImportedInput
+  upsert?: Prisma.UserUpsertWithoutTakeoffImportsImportedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTakeoffImportsImportedInput, Prisma.UserUpdateWithoutTakeoffImportsImportedInput>, Prisma.UserUncheckedUpdateWithoutTakeoffImportsImportedInput>
+}
+
+export type UserCreateNestedOneWithoutScopeTemplateUpdatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedCreateWithoutScopeTemplateUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutScopeTemplateUpdatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutScopeTemplateUpdatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedCreateWithoutScopeTemplateUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutScopeTemplateUpdatesInput
+  upsert?: Prisma.UserUpsertWithoutScopeTemplateUpdatesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutScopeTemplateUpdatesInput, Prisma.UserUpdateWithoutScopeTemplateUpdatesInput>, Prisma.UserUncheckedUpdateWithoutScopeTemplateUpdatesInput>
+}
+
+export type UserCreateNestedOneWithoutLineScopeUpdatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedCreateWithoutLineScopeUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLineScopeUpdatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutLineScopeUpdatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedCreateWithoutLineScopeUpdatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLineScopeUpdatesInput
+  upsert?: Prisma.UserUpsertWithoutLineScopeUpdatesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLineScopeUpdatesInput, Prisma.UserUpdateWithoutLineScopeUpdatesInput>, Prisma.UserUncheckedUpdateWithoutLineScopeUpdatesInput>
+}
+
+export type UserCreateNestedOneWithoutInvitationsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInvitationsCreatedInput, Prisma.UserUncheckedCreateWithoutInvitationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvitationsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInvitationsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInvitationsCreatedInput, Prisma.UserUncheckedCreateWithoutInvitationsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInvitationsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutInvitationsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInvitationsCreatedInput, Prisma.UserUpdateWithoutInvitationsCreatedInput>, Prisma.UserUncheckedUpdateWithoutInvitationsCreatedInput>
+}
+
 export type UserCreateWithoutOrganisationInput = {
   id?: string
   clerkId: string
@@ -2250,6 +2426,14 @@ export type UserCreateWithoutOrganisationInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationInput = {
@@ -2336,6 +2520,14 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationInput = {
@@ -2495,6 +2687,14 @@ export type UserCreateWithoutAuditLogsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2581,6 +2781,14 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2683,6 +2891,14 @@ export type UserUpdateWithoutAuditLogsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2769,6 +2985,14 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutTrainingRecordsInput = {
@@ -2855,6 +3079,14 @@ export type UserCreateWithoutTrainingRecordsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutTrainingRecordsInput = {
@@ -2941,6 +3173,14 @@ export type UserUncheckedCreateWithoutTrainingRecordsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutTrainingRecordsInput = {
@@ -3043,6 +3283,14 @@ export type UserUpdateWithoutTrainingRecordsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
@@ -3129,6 +3377,14 @@ export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutManagedProjectsInput = {
@@ -3215,6 +3471,14 @@ export type UserCreateWithoutManagedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -3301,6 +3565,14 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -3392,6 +3664,14 @@ export type UserCreateWithoutSiteProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutSiteProjectsInput = {
@@ -3478,6 +3758,14 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutSiteProjectsInput = {
@@ -3569,6 +3857,14 @@ export type UserCreateWithoutEstimatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
@@ -3655,6 +3951,14 @@ export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatedProjectsInput = {
@@ -3746,6 +4050,14 @@ export type UserCreateWithoutCreatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProjectsInput = {
@@ -3832,6 +4144,14 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProjectsInput = {
@@ -3934,6 +4254,14 @@ export type UserUpdateWithoutManagedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -4020,6 +4348,14 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutSiteProjectsInput = {
@@ -4117,6 +4453,14 @@ export type UserUpdateWithoutSiteProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSiteProjectsInput = {
@@ -4203,6 +4547,14 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutEstimatedProjectsInput = {
@@ -4300,6 +4652,14 @@ export type UserUpdateWithoutEstimatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
@@ -4386,6 +4746,14 @@ export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProjectsInput = {
@@ -4483,6 +4851,14 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
@@ -4569,6 +4945,14 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutProjectSubAssignmentsInput = {
@@ -4655,6 +5039,14 @@ export type UserCreateWithoutProjectSubAssignmentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
@@ -4741,6 +5133,14 @@ export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutProjectSubAssignmentsInput = {
@@ -4843,6 +5243,14 @@ export type UserUpdateWithoutProjectSubAssignmentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
@@ -4929,6 +5337,14 @@ export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedCompaniesInput = {
@@ -5015,6 +5431,14 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
@@ -5101,6 +5525,14 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedCompaniesInput = {
@@ -5203,6 +5635,14 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
@@ -5289,6 +5729,14 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutOwnedContactsInput = {
@@ -5375,6 +5823,14 @@ export type UserCreateWithoutOwnedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutOwnedContactsInput = {
@@ -5461,6 +5917,14 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutOwnedContactsInput = {
@@ -5552,6 +6016,14 @@ export type UserCreateWithoutCreatedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedContactsInput = {
@@ -5638,6 +6110,14 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedContactsInput = {
@@ -5740,6 +6220,14 @@ export type UserUpdateWithoutOwnedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedContactsInput = {
@@ -5826,6 +6314,14 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedContactsInput = {
@@ -5923,6 +6419,14 @@ export type UserUpdateWithoutCreatedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedContactsInput = {
@@ -6009,6 +6513,14 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPoliciesInput = {
@@ -6095,6 +6607,14 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
@@ -6181,6 +6701,14 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPoliciesInput = {
@@ -6283,6 +6811,14 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
@@ -6369,6 +6905,14 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutUploadedDocsInput = {
@@ -6455,6 +6999,14 @@ export type UserCreateWithoutUploadedDocsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedDocsInput = {
@@ -6541,6 +7093,14 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedDocsInput = {
@@ -6643,6 +7203,14 @@ export type UserUpdateWithoutUploadedDocsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedDocsInput = {
@@ -6729,6 +7297,14 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutCompanyNotesInput = {
@@ -6815,6 +7391,14 @@ export type UserCreateWithoutCompanyNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCompanyNotesInput = {
@@ -6901,6 +7485,14 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCompanyNotesInput = {
@@ -7003,6 +7595,14 @@ export type UserUpdateWithoutCompanyNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyNotesInput = {
@@ -7089,6 +7689,14 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutContactNotesInput = {
@@ -7175,6 +7783,14 @@ export type UserCreateWithoutContactNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutContactNotesInput = {
@@ -7261,6 +7877,14 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutContactNotesInput = {
@@ -7363,6 +7987,14 @@ export type UserUpdateWithoutContactNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutContactNotesInput = {
@@ -7449,6 +8081,14 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutApprovedProfilesInput = {
@@ -7535,6 +8175,14 @@ export type UserCreateWithoutApprovedProfilesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedProfilesInput = {
@@ -7621,6 +8269,14 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedProfilesInput = {
@@ -7723,6 +8379,14 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
@@ -7809,6 +8473,14 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutSentInvitationsInput = {
@@ -7895,6 +8567,14 @@ export type UserCreateWithoutSentInvitationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -7981,6 +8661,14 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -8083,6 +8771,14 @@ export type UserUpdateWithoutSentInvitationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -8169,6 +8865,14 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutSentCommunicationsInput = {
@@ -8255,6 +8959,14 @@ export type UserCreateWithoutSentCommunicationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutSentCommunicationsInput = {
@@ -8341,6 +9053,14 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutSentCommunicationsInput = {
@@ -8443,6 +9163,14 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
@@ -8529,6 +9257,14 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -8615,6 +9351,14 @@ export type UserCreateWithoutNotificationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -8701,6 +9445,14 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -8803,6 +9555,14 @@ export type UserUpdateWithoutNotificationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -8889,6 +9649,14 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutReportedIncidentsInput = {
@@ -8975,6 +9743,14 @@ export type UserCreateWithoutReportedIncidentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutReportedIncidentsInput = {
@@ -9061,6 +9837,14 @@ export type UserUncheckedCreateWithoutReportedIncidentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutReportedIncidentsInput = {
@@ -9163,6 +9947,14 @@ export type UserUpdateWithoutReportedIncidentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
@@ -9249,6 +10041,14 @@ export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutRaisedHazardsInput = {
@@ -9335,6 +10135,14 @@ export type UserCreateWithoutRaisedHazardsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutRaisedHazardsInput = {
@@ -9421,6 +10229,14 @@ export type UserUncheckedCreateWithoutRaisedHazardsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutRaisedHazardsInput = {
@@ -9523,6 +10339,14 @@ export type UserUpdateWithoutRaisedHazardsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
@@ -9609,6 +10433,14 @@ export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutIssuedPermitsInput = {
@@ -9695,6 +10527,14 @@ export type UserCreateWithoutIssuedPermitsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutIssuedPermitsInput = {
@@ -9781,6 +10621,14 @@ export type UserUncheckedCreateWithoutIssuedPermitsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutIssuedPermitsInput = {
@@ -9883,6 +10731,14 @@ export type UserUpdateWithoutIssuedPermitsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
@@ -9969,6 +10825,14 @@ export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutConductedInspectionsInput = {
@@ -10055,6 +10919,14 @@ export type UserCreateWithoutConductedInspectionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutConductedInspectionsInput = {
@@ -10141,6 +11013,14 @@ export type UserUncheckedCreateWithoutConductedInspectionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutConductedInspectionsInput = {
@@ -10243,6 +11123,14 @@ export type UserUpdateWithoutConductedInspectionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
@@ -10329,6 +11217,14 @@ export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourcesSubmittedInput = {
@@ -10415,6 +11311,14 @@ export type UserCreateWithoutDesignSourcesSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
@@ -10501,6 +11405,14 @@ export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesSubmittedInput = {
@@ -10592,6 +11504,14 @@ export type UserCreateWithoutDesignSourcesApprovedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
@@ -10678,6 +11598,14 @@ export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesApprovedInput = {
@@ -10780,6 +11708,14 @@ export type UserUpdateWithoutDesignSourcesSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
@@ -10866,6 +11802,14 @@ export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutDesignSourcesApprovedInput = {
@@ -10963,6 +11907,14 @@ export type UserUpdateWithoutDesignSourcesApprovedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
@@ -11049,6 +12001,14 @@ export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourceVersionsInput = {
@@ -11135,6 +12095,14 @@ export type UserCreateWithoutDesignSourceVersionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
@@ -11221,6 +12189,14 @@ export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourceVersionsInput = {
@@ -11323,6 +12299,14 @@ export type UserUpdateWithoutDesignSourceVersionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
@@ -11409,6 +12393,14 @@ export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -11495,6 +12487,14 @@ export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -11581,6 +12581,14 @@ export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalSettingsCreatedInput = {
@@ -11683,6 +12691,14 @@ export type UserUpdateWithoutDesignGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
@@ -11769,6 +12785,14 @@ export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalAuditsInput = {
@@ -11855,6 +12879,14 @@ export type UserCreateWithoutDesignGlobalAuditsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
@@ -11941,6 +12973,14 @@ export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalAuditsInput = {
@@ -12043,6 +13083,14 @@ export type UserUpdateWithoutDesignGlobalAuditsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
@@ -12129,6 +13177,14 @@ export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -12215,6 +13271,14 @@ export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -12301,6 +13365,14 @@ export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -12403,6 +13475,14 @@ export type UserUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -12489,6 +13569,14 @@ export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignProposalsProposedInput = {
@@ -12575,6 +13663,14 @@ export type UserCreateWithoutDesignProposalsProposedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
@@ -12661,6 +13757,14 @@ export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsProposedInput = {
@@ -12752,6 +13856,14 @@ export type UserCreateWithoutDesignProposalsReviewedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
@@ -12838,6 +13950,14 @@ export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsReviewedInput = {
@@ -12940,6 +14060,14 @@ export type UserUpdateWithoutDesignProposalsProposedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
@@ -13026,6 +14154,14 @@ export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutDesignProposalsReviewedInput = {
@@ -13123,6 +14259,14 @@ export type UserUpdateWithoutDesignProposalsReviewedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
@@ -13209,6 +14353,14 @@ export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -13295,6 +14447,14 @@ export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -13381,6 +14541,14 @@ export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignExpiryConfigUpdatedInput = {
@@ -13483,6 +14651,14 @@ export type UserUpdateWithoutDesignExpiryConfigUpdatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
@@ -13569,6 +14745,14 @@ export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignRssFeedsCreatedInput = {
@@ -13655,6 +14839,14 @@ export type UserCreateWithoutDesignRssFeedsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
@@ -13741,6 +14933,14 @@ export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignRssFeedsCreatedInput = {
@@ -13843,6 +15043,14 @@ export type UserUpdateWithoutDesignRssFeedsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
@@ -13929,6 +15137,14 @@ export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -14015,6 +15231,14 @@ export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -14101,6 +15325,14 @@ export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignMonitoredUrlsCreatedInput = {
@@ -14203,6 +15435,14 @@ export type UserUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -14289,6 +15529,14 @@ export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -14375,6 +15623,14 @@ export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -14461,6 +15717,14 @@ export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignTrendItemsSubmittedInput = {
@@ -14563,6 +15827,14 @@ export type UserUpdateWithoutDesignTrendItemsSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
@@ -14649,6 +15921,14 @@ export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutDesignChatbotSessionsInput = {
@@ -14735,6 +16015,14 @@ export type UserCreateWithoutDesignChatbotSessionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -14821,6 +16109,14 @@ export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -14923,6 +16219,14 @@ export type UserUpdateWithoutDesignChatbotSessionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -15009,6 +16313,14 @@ export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEstimatesAsEstimatorInput = {
@@ -15095,6 +16407,14 @@ export type UserCreateWithoutEstimatesAsEstimatorInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
@@ -15181,6 +16501,14 @@ export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatesAsEstimatorInput = {
@@ -15272,6 +16600,14 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -15358,6 +16694,14 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -15460,6 +16804,14 @@ export type UserUpdateWithoutEstimatesAsEstimatorInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
@@ -15546,6 +16898,14 @@ export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedEstimatesInput = {
@@ -15643,6 +17003,14 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -15729,6 +17097,14 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutEstimateSnapshotsInput = {
@@ -15815,6 +17191,14 @@ export type UserCreateWithoutEstimateSnapshotsInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
@@ -15901,6 +17285,14 @@ export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimateSnapshotsInput = {
@@ -16003,6 +17395,14 @@ export type UserUpdateWithoutEstimateSnapshotsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
@@ -16089,6 +17489,14 @@ export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutMonthEndStatusesMarkedInput = {
@@ -16175,6 +17583,14 @@ export type UserCreateWithoutMonthEndStatusesMarkedInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutMonthEndStatusesMarkedInput = {
@@ -16261,6 +17677,14 @@ export type UserUncheckedCreateWithoutMonthEndStatusesMarkedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutMonthEndStatusesMarkedInput = {
@@ -16363,6 +17787,14 @@ export type UserUpdateWithoutMonthEndStatusesMarkedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput = {
@@ -16449,6 +17881,14 @@ export type UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutXeroConnectionsMadeInput = {
@@ -16535,6 +17975,14 @@ export type UserCreateWithoutXeroConnectionsMadeInput = {
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutXeroConnectionsMadeInput = {
@@ -16621,6 +18069,14 @@ export type UserUncheckedCreateWithoutXeroConnectionsMadeInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutXeroConnectionsMadeInput = {
@@ -16723,6 +18179,14 @@ export type UserUpdateWithoutXeroConnectionsMadeInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutXeroConnectionsMadeInput = {
@@ -16809,6 +18273,14 @@ export type UserUncheckedUpdateWithoutXeroConnectionsMadeInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutManagementReportsPreparedInput = {
@@ -16895,6 +18367,14 @@ export type UserCreateWithoutManagementReportsPreparedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportsPreparedInput = {
@@ -16981,6 +18461,14 @@ export type UserUncheckedCreateWithoutManagementReportsPreparedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportsPreparedInput = {
@@ -17072,6 +18560,14 @@ export type UserCreateWithoutManagementReportsFinalisedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportsFinalisedInput = {
@@ -17158,6 +18654,14 @@ export type UserUncheckedCreateWithoutManagementReportsFinalisedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportsFinalisedInput = {
@@ -17260,6 +18764,14 @@ export type UserUpdateWithoutManagementReportsPreparedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportsPreparedInput = {
@@ -17346,6 +18858,14 @@ export type UserUncheckedUpdateWithoutManagementReportsPreparedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUpsertWithoutManagementReportsFinalisedInput = {
@@ -17443,6 +18963,14 @@ export type UserUpdateWithoutManagementReportsFinalisedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportsFinalisedInput = {
@@ -17529,6 +19057,14 @@ export type UserUncheckedUpdateWithoutManagementReportsFinalisedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserCreateWithoutManagementReportSectionsEditedInput = {
@@ -17615,6 +19151,14 @@ export type UserCreateWithoutManagementReportSectionsEditedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
   managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportSectionsEditedInput = {
@@ -17701,6 +19245,14 @@ export type UserUncheckedCreateWithoutManagementReportSectionsEditedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
   managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportSectionsEditedInput = {
@@ -17803,6 +19355,14 @@ export type UserUpdateWithoutManagementReportSectionsEditedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportSectionsEditedInput = {
@@ -17889,6 +19449,3150 @@ export type UserUncheckedUpdateWithoutManagementReportSectionsEditedInput = {
   xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutRateLibraryUpdatesInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutRateLibraryUpdatesInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutRateLibraryUpdatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedCreateWithoutRateLibraryUpdatesInput>
+}
+
+export type UserUpsertWithoutRateLibraryUpdatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedUpdateWithoutRateLibraryUpdatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedCreateWithoutRateLibraryUpdatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRateLibraryUpdatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRateLibraryUpdatesInput, Prisma.UserUncheckedUpdateWithoutRateLibraryUpdatesInput>
+}
+
+export type UserUpdateWithoutRateLibraryUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRateLibraryUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutDocumentUploadsInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutDocumentUploadsInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutDocumentUploadsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDocumentUploadsInput, Prisma.UserUncheckedCreateWithoutDocumentUploadsInput>
+}
+
+export type UserUpsertWithoutDocumentUploadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDocumentUploadsInput, Prisma.UserUncheckedUpdateWithoutDocumentUploadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDocumentUploadsInput, Prisma.UserUncheckedCreateWithoutDocumentUploadsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDocumentUploadsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDocumentUploadsInput, Prisma.UserUncheckedUpdateWithoutDocumentUploadsInput>
+}
+
+export type UserUpdateWithoutDocumentUploadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDocumentUploadsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutDrawingAnswersInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutDrawingAnswersInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutDrawingAnswersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDrawingAnswersInput, Prisma.UserUncheckedCreateWithoutDrawingAnswersInput>
+}
+
+export type UserUpsertWithoutDrawingAnswersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDrawingAnswersInput, Prisma.UserUncheckedUpdateWithoutDrawingAnswersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDrawingAnswersInput, Prisma.UserUncheckedCreateWithoutDrawingAnswersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDrawingAnswersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDrawingAnswersInput, Prisma.UserUncheckedUpdateWithoutDrawingAnswersInput>
+}
+
+export type UserUpdateWithoutDrawingAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDrawingAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutTakeoffImportsConfirmedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutTakeoffImportsConfirmedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutTakeoffImportsConfirmedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsConfirmedInput>
+}
+
+export type UserCreateWithoutTakeoffImportsImportedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutTakeoffImportsImportedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutTakeoffImportsImportedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsImportedInput>
+}
+
+export type UserUpsertWithoutTakeoffImportsConfirmedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsConfirmedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTakeoffImportsConfirmedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTakeoffImportsConfirmedInput, Prisma.UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput>
+}
+
+export type UserUpdateWithoutTakeoffImportsConfirmedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUpsertWithoutTakeoffImportsImportedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedUpdateWithoutTakeoffImportsImportedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedCreateWithoutTakeoffImportsImportedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTakeoffImportsImportedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTakeoffImportsImportedInput, Prisma.UserUncheckedUpdateWithoutTakeoffImportsImportedInput>
+}
+
+export type UserUpdateWithoutTakeoffImportsImportedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTakeoffImportsImportedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutScopeTemplateUpdatesInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutScopeTemplateUpdatesInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutScopeTemplateUpdatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedCreateWithoutScopeTemplateUpdatesInput>
+}
+
+export type UserUpsertWithoutScopeTemplateUpdatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedUpdateWithoutScopeTemplateUpdatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedCreateWithoutScopeTemplateUpdatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutScopeTemplateUpdatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutScopeTemplateUpdatesInput, Prisma.UserUncheckedUpdateWithoutScopeTemplateUpdatesInput>
+}
+
+export type UserUpdateWithoutScopeTemplateUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutScopeTemplateUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutLineScopeUpdatesInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserUncheckedCreateWithoutLineScopeUpdatesInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+}
+
+export type UserCreateOrConnectWithoutLineScopeUpdatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedCreateWithoutLineScopeUpdatesInput>
+}
+
+export type UserUpsertWithoutLineScopeUpdatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedUpdateWithoutLineScopeUpdatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedCreateWithoutLineScopeUpdatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLineScopeUpdatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLineScopeUpdatesInput, Prisma.UserUncheckedUpdateWithoutLineScopeUpdatesInput>
+}
+
+export type UserUpdateWithoutLineScopeUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLineScopeUpdatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+}
+
+export type UserCreateWithoutInvitationsCreatedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserUncheckedCreateWithoutInvitationsCreatedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+}
+
+export type UserCreateOrConnectWithoutInvitationsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInvitationsCreatedInput, Prisma.UserUncheckedCreateWithoutInvitationsCreatedInput>
+}
+
+export type UserUpsertWithoutInvitationsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInvitationsCreatedInput, Prisma.UserUncheckedUpdateWithoutInvitationsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInvitationsCreatedInput, Prisma.UserUncheckedCreateWithoutInvitationsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInvitationsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInvitationsCreatedInput, Prisma.UserUncheckedUpdateWithoutInvitationsCreatedInput>
+}
+
+export type UserUpdateWithoutInvitationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInvitationsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
 }
 
 export type UserCreateManyOrganisationInput = {
@@ -18018,6 +22722,14 @@ export type UserUpdateWithoutOrganisationInput = {
   managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationInput = {
@@ -18104,6 +22816,14 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
   managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
   managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganisationInput = {
@@ -18198,6 +22918,14 @@ export type UserCountOutputType = {
   managementReportsPrepared: number
   managementReportsFinalised: number
   managementReportSectionsEdited: number
+  rateLibraryUpdates: number
+  documentUploads: number
+  drawingAnswers: number
+  takeoffImportsConfirmed: number
+  takeoffImportsImported: number
+  scopeTemplateUpdates: number
+  lineScopeUpdates: number
+  invitationsCreated: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -18244,6 +22972,14 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   managementReportsPrepared?: boolean | UserCountOutputTypeCountManagementReportsPreparedArgs
   managementReportsFinalised?: boolean | UserCountOutputTypeCountManagementReportsFinalisedArgs
   managementReportSectionsEdited?: boolean | UserCountOutputTypeCountManagementReportSectionsEditedArgs
+  rateLibraryUpdates?: boolean | UserCountOutputTypeCountRateLibraryUpdatesArgs
+  documentUploads?: boolean | UserCountOutputTypeCountDocumentUploadsArgs
+  drawingAnswers?: boolean | UserCountOutputTypeCountDrawingAnswersArgs
+  takeoffImportsConfirmed?: boolean | UserCountOutputTypeCountTakeoffImportsConfirmedArgs
+  takeoffImportsImported?: boolean | UserCountOutputTypeCountTakeoffImportsImportedArgs
+  scopeTemplateUpdates?: boolean | UserCountOutputTypeCountScopeTemplateUpdatesArgs
+  lineScopeUpdates?: boolean | UserCountOutputTypeCountLineScopeUpdatesArgs
+  invitationsCreated?: boolean | UserCountOutputTypeCountInvitationsCreatedArgs
 }
 
 /**
@@ -18557,6 +23293,62 @@ export type UserCountOutputTypeCountManagementReportSectionsEditedArgs<ExtArgs e
   where?: Prisma.ManagementReportSectionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRateLibraryUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReferenceLibraryRateWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDocumentUploadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateDocumentRegisterWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDrawingAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DrawingIntelligenceAnswerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTakeoffImportsConfirmedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TakeoffImportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTakeoffImportsImportedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TakeoffImportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountScopeTemplateUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScopeTemplateWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLineScopeUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimateLineScopeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInvitationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubcontractorInvitationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -18644,6 +23436,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   managementReportsPrepared?: boolean | Prisma.User$managementReportsPreparedArgs<ExtArgs>
   managementReportsFinalised?: boolean | Prisma.User$managementReportsFinalisedArgs<ExtArgs>
   managementReportSectionsEdited?: boolean | Prisma.User$managementReportSectionsEditedArgs<ExtArgs>
+  rateLibraryUpdates?: boolean | Prisma.User$rateLibraryUpdatesArgs<ExtArgs>
+  documentUploads?: boolean | Prisma.User$documentUploadsArgs<ExtArgs>
+  drawingAnswers?: boolean | Prisma.User$drawingAnswersArgs<ExtArgs>
+  takeoffImportsConfirmed?: boolean | Prisma.User$takeoffImportsConfirmedArgs<ExtArgs>
+  takeoffImportsImported?: boolean | Prisma.User$takeoffImportsImportedArgs<ExtArgs>
+  scopeTemplateUpdates?: boolean | Prisma.User$scopeTemplateUpdatesArgs<ExtArgs>
+  lineScopeUpdates?: boolean | Prisma.User$lineScopeUpdatesArgs<ExtArgs>
+  invitationsCreated?: boolean | Prisma.User$invitationsCreatedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -18827,6 +23627,14 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   managementReportsPrepared?: boolean | Prisma.User$managementReportsPreparedArgs<ExtArgs>
   managementReportsFinalised?: boolean | Prisma.User$managementReportsFinalisedArgs<ExtArgs>
   managementReportSectionsEdited?: boolean | Prisma.User$managementReportSectionsEditedArgs<ExtArgs>
+  rateLibraryUpdates?: boolean | Prisma.User$rateLibraryUpdatesArgs<ExtArgs>
+  documentUploads?: boolean | Prisma.User$documentUploadsArgs<ExtArgs>
+  drawingAnswers?: boolean | Prisma.User$drawingAnswersArgs<ExtArgs>
+  takeoffImportsConfirmed?: boolean | Prisma.User$takeoffImportsConfirmedArgs<ExtArgs>
+  takeoffImportsImported?: boolean | Prisma.User$takeoffImportsImportedArgs<ExtArgs>
+  scopeTemplateUpdates?: boolean | Prisma.User$scopeTemplateUpdatesArgs<ExtArgs>
+  lineScopeUpdates?: boolean | Prisma.User$lineScopeUpdatesArgs<ExtArgs>
+  invitationsCreated?: boolean | Prisma.User$invitationsCreatedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -18883,6 +23691,14 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     managementReportsPrepared: Prisma.$ManagementReportPayload<ExtArgs>[]
     managementReportsFinalised: Prisma.$ManagementReportPayload<ExtArgs>[]
     managementReportSectionsEdited: Prisma.$ManagementReportSectionPayload<ExtArgs>[]
+    rateLibraryUpdates: Prisma.$ReferenceLibraryRatePayload<ExtArgs>[]
+    documentUploads: Prisma.$EstimateDocumentRegisterPayload<ExtArgs>[]
+    drawingAnswers: Prisma.$DrawingIntelligenceAnswerPayload<ExtArgs>[]
+    takeoffImportsConfirmed: Prisma.$TakeoffImportPayload<ExtArgs>[]
+    takeoffImportsImported: Prisma.$TakeoffImportPayload<ExtArgs>[]
+    scopeTemplateUpdates: Prisma.$ScopeTemplatePayload<ExtArgs>[]
+    lineScopeUpdates: Prisma.$EstimateLineScopePayload<ExtArgs>[]
+    invitationsCreated: Prisma.$SubcontractorInvitationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -19364,6 +24180,14 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   managementReportsPrepared<T extends Prisma.User$managementReportsPreparedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$managementReportsPreparedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   managementReportsFinalised<T extends Prisma.User$managementReportsFinalisedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$managementReportsFinalisedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   managementReportSectionsEdited<T extends Prisma.User$managementReportSectionsEditedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$managementReportSectionsEditedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementReportSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rateLibraryUpdates<T extends Prisma.User$rateLibraryUpdatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$rateLibraryUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReferenceLibraryRatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentUploads<T extends Prisma.User$documentUploadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$documentUploadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateDocumentRegisterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  drawingAnswers<T extends Prisma.User$drawingAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$drawingAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DrawingIntelligenceAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  takeoffImportsConfirmed<T extends Prisma.User$takeoffImportsConfirmedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$takeoffImportsConfirmedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TakeoffImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  takeoffImportsImported<T extends Prisma.User$takeoffImportsImportedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$takeoffImportsImportedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TakeoffImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  scopeTemplateUpdates<T extends Prisma.User$scopeTemplateUpdatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$scopeTemplateUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScopeTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lineScopeUpdates<T extends Prisma.User$lineScopeUpdatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$lineScopeUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateLineScopePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitationsCreated<T extends Prisma.User$invitationsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubcontractorInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20864,6 +25688,198 @@ export type User$managementReportSectionsEditedArgs<ExtArgs extends runtime.Type
   take?: number
   skip?: number
   distinct?: Prisma.ManagementReportSectionScalarFieldEnum | Prisma.ManagementReportSectionScalarFieldEnum[]
+}
+
+/**
+ * User.rateLibraryUpdates
+ */
+export type User$rateLibraryUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReferenceLibraryRate
+   */
+  select?: Prisma.ReferenceLibraryRateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReferenceLibraryRate
+   */
+  omit?: Prisma.ReferenceLibraryRateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReferenceLibraryRateInclude<ExtArgs> | null
+  where?: Prisma.ReferenceLibraryRateWhereInput
+  orderBy?: Prisma.ReferenceLibraryRateOrderByWithRelationInput | Prisma.ReferenceLibraryRateOrderByWithRelationInput[]
+  cursor?: Prisma.ReferenceLibraryRateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReferenceLibraryRateScalarFieldEnum | Prisma.ReferenceLibraryRateScalarFieldEnum[]
+}
+
+/**
+ * User.documentUploads
+ */
+export type User$documentUploadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateDocumentRegister
+   */
+  select?: Prisma.EstimateDocumentRegisterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateDocumentRegister
+   */
+  omit?: Prisma.EstimateDocumentRegisterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateDocumentRegisterInclude<ExtArgs> | null
+  where?: Prisma.EstimateDocumentRegisterWhereInput
+  orderBy?: Prisma.EstimateDocumentRegisterOrderByWithRelationInput | Prisma.EstimateDocumentRegisterOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateDocumentRegisterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateDocumentRegisterScalarFieldEnum | Prisma.EstimateDocumentRegisterScalarFieldEnum[]
+}
+
+/**
+ * User.drawingAnswers
+ */
+export type User$drawingAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DrawingIntelligenceAnswer
+   */
+  select?: Prisma.DrawingIntelligenceAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DrawingIntelligenceAnswer
+   */
+  omit?: Prisma.DrawingIntelligenceAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DrawingIntelligenceAnswerInclude<ExtArgs> | null
+  where?: Prisma.DrawingIntelligenceAnswerWhereInput
+  orderBy?: Prisma.DrawingIntelligenceAnswerOrderByWithRelationInput | Prisma.DrawingIntelligenceAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.DrawingIntelligenceAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DrawingIntelligenceAnswerScalarFieldEnum | Prisma.DrawingIntelligenceAnswerScalarFieldEnum[]
+}
+
+/**
+ * User.takeoffImportsConfirmed
+ */
+export type User$takeoffImportsConfirmedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TakeoffImport
+   */
+  select?: Prisma.TakeoffImportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TakeoffImport
+   */
+  omit?: Prisma.TakeoffImportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TakeoffImportInclude<ExtArgs> | null
+  where?: Prisma.TakeoffImportWhereInput
+  orderBy?: Prisma.TakeoffImportOrderByWithRelationInput | Prisma.TakeoffImportOrderByWithRelationInput[]
+  cursor?: Prisma.TakeoffImportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TakeoffImportScalarFieldEnum | Prisma.TakeoffImportScalarFieldEnum[]
+}
+
+/**
+ * User.takeoffImportsImported
+ */
+export type User$takeoffImportsImportedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TakeoffImport
+   */
+  select?: Prisma.TakeoffImportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TakeoffImport
+   */
+  omit?: Prisma.TakeoffImportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TakeoffImportInclude<ExtArgs> | null
+  where?: Prisma.TakeoffImportWhereInput
+  orderBy?: Prisma.TakeoffImportOrderByWithRelationInput | Prisma.TakeoffImportOrderByWithRelationInput[]
+  cursor?: Prisma.TakeoffImportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TakeoffImportScalarFieldEnum | Prisma.TakeoffImportScalarFieldEnum[]
+}
+
+/**
+ * User.scopeTemplateUpdates
+ */
+export type User$scopeTemplateUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScopeTemplate
+   */
+  select?: Prisma.ScopeTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScopeTemplate
+   */
+  omit?: Prisma.ScopeTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScopeTemplateInclude<ExtArgs> | null
+  where?: Prisma.ScopeTemplateWhereInput
+  orderBy?: Prisma.ScopeTemplateOrderByWithRelationInput | Prisma.ScopeTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.ScopeTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScopeTemplateScalarFieldEnum | Prisma.ScopeTemplateScalarFieldEnum[]
+}
+
+/**
+ * User.lineScopeUpdates
+ */
+export type User$lineScopeUpdatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateLineScope
+   */
+  select?: Prisma.EstimateLineScopeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateLineScope
+   */
+  omit?: Prisma.EstimateLineScopeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateLineScopeInclude<ExtArgs> | null
+  where?: Prisma.EstimateLineScopeWhereInput
+  orderBy?: Prisma.EstimateLineScopeOrderByWithRelationInput | Prisma.EstimateLineScopeOrderByWithRelationInput[]
+  cursor?: Prisma.EstimateLineScopeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimateLineScopeScalarFieldEnum | Prisma.EstimateLineScopeScalarFieldEnum[]
+}
+
+/**
+ * User.invitationsCreated
+ */
+export type User$invitationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubcontractorInvitation
+   */
+  select?: Prisma.SubcontractorInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubcontractorInvitation
+   */
+  omit?: Prisma.SubcontractorInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubcontractorInvitationInclude<ExtArgs> | null
+  where?: Prisma.SubcontractorInvitationWhereInput
+  orderBy?: Prisma.SubcontractorInvitationOrderByWithRelationInput | Prisma.SubcontractorInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.SubcontractorInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubcontractorInvitationScalarFieldEnum | Prisma.SubcontractorInvitationScalarFieldEnum[]
 }
 
 /**

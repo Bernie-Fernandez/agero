@@ -157,7 +157,21 @@ export const ModelName = {
   PlannedDealRevenue: 'PlannedDealRevenue',
   ManagementReport: 'ManagementReport',
   WIPSchedule: 'WIPSchedule',
-  ManagementReportSection: 'ManagementReportSection'
+  ManagementReportSection: 'ManagementReportSection',
+  ReferenceLibraryItem: 'ReferenceLibraryItem',
+  ReferenceLibraryRate: 'ReferenceLibraryRate',
+  ReferenceLibraryBuildUp: 'ReferenceLibraryBuildUp',
+  EstimateDocumentRegister: 'EstimateDocumentRegister',
+  EstimateDrawingConvention: 'EstimateDrawingConvention',
+  EstimateElementCode: 'EstimateElementCode',
+  DrawingIntelligenceReport: 'DrawingIntelligenceReport',
+  DrawingIntelligenceQuestion: 'DrawingIntelligenceQuestion',
+  DrawingIntelligenceAnswer: 'DrawingIntelligenceAnswer',
+  TakeoffImport: 'TakeoffImport',
+  TakeoffMeasurement: 'TakeoffMeasurement',
+  ScopeTemplate: 'ScopeTemplate',
+  EstimateLineScope: 'EstimateLineScope',
+  SubcontractorInvitation: 'SubcontractorInvitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1762,6 +1776,9 @@ export const EstimateLineScalarFieldEnum = {
   tradePackageId: 'tradePackageId',
   notes: 'notes',
   order: 'order',
+  architectCodeId: 'architectCodeId',
+  drawingRefId: 'drawingRefId',
+  buildupOverride: 'buildupOverride',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2155,6 +2172,243 @@ export const ManagementReportSectionScalarFieldEnum = {
 } as const
 
 export type ManagementReportSectionScalarFieldEnum = (typeof ManagementReportSectionScalarFieldEnum)[keyof typeof ManagementReportSectionScalarFieldEnum]
+
+
+export const ReferenceLibraryItemScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  ageroRef: 'ageroRef',
+  displayName: 'displayName',
+  tradeSectionCode: 'tradeSectionCode',
+  tradeGroupColour: 'tradeGroupColour',
+  unit: 'unit',
+  natspecRef: 'natspecRef',
+  asRef: 'asRef',
+  bluebeamToolType: 'bluebeamToolType',
+  defaultScopeText: 'defaultScopeText',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReferenceLibraryItemScalarFieldEnum = (typeof ReferenceLibraryItemScalarFieldEnum)[keyof typeof ReferenceLibraryItemScalarFieldEnum]
+
+
+export const ReferenceLibraryRateScalarFieldEnum = {
+  id: 'id',
+  referenceItemId: 'referenceItemId',
+  organisationId: 'organisationId',
+  rateType: 'rateType',
+  unitCost: 'unitCost',
+  labourCost: 'labourCost',
+  materialsCost: 'materialsCost',
+  marginPct: 'marginPct',
+  effectiveFrom: 'effectiveFrom',
+  notes: 'notes',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReferenceLibraryRateScalarFieldEnum = (typeof ReferenceLibraryRateScalarFieldEnum)[keyof typeof ReferenceLibraryRateScalarFieldEnum]
+
+
+export const ReferenceLibraryBuildUpScalarFieldEnum = {
+  id: 'id',
+  referenceItemId: 'referenceItemId',
+  buildUpType: 'buildUpType',
+  description: 'description',
+  unit: 'unit',
+  quantityPerBaseUnit: 'quantityPerBaseUnit',
+  unitRate: 'unitRate',
+  calculatedCost: 'calculatedCost',
+  sortOrder: 'sortOrder',
+  notes: 'notes'
+} as const
+
+export type ReferenceLibraryBuildUpScalarFieldEnum = (typeof ReferenceLibraryBuildUpScalarFieldEnum)[keyof typeof ReferenceLibraryBuildUpScalarFieldEnum]
+
+
+export const EstimateDocumentRegisterScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  discipline: 'discipline',
+  documentRef: 'documentRef',
+  documentTitle: 'documentTitle',
+  revision: 'revision',
+  issueDate: 'issueDate',
+  issuedBy: 'issuedBy',
+  status: 'status',
+  pricedAgainst: 'pricedAgainst',
+  storageUrl: 'storageUrl',
+  uploadSizeBytes: 'uploadSizeBytes',
+  uploadedById: 'uploadedById',
+  uploadedAt: 'uploadedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimateDocumentRegisterScalarFieldEnum = (typeof EstimateDocumentRegisterScalarFieldEnum)[keyof typeof EstimateDocumentRegisterScalarFieldEnum]
+
+
+export const EstimateDrawingConventionScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  spaceReferenceStyle: 'spaceReferenceStyle',
+  revisionFormat: 'revisionFormat',
+  drawingNumberFormat: 'drawingNumberFormat',
+  architectFirm: 'architectFirm',
+  notes: 'notes'
+} as const
+
+export type EstimateDrawingConventionScalarFieldEnum = (typeof EstimateDrawingConventionScalarFieldEnum)[keyof typeof EstimateDrawingConventionScalarFieldEnum]
+
+
+export const EstimateElementCodeScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  code: 'code',
+  category: 'category',
+  name: 'name',
+  description: 'description',
+  supplier: 'supplier',
+  locationNotes: 'locationNotes',
+  leadTime: 'leadTime',
+  status: 'status',
+  sourceDocumentId: 'sourceDocumentId',
+  procurementStatus: 'procurementStatus',
+  boughtBy: 'boughtBy',
+  installedBy: 'installedBy',
+  paymentStatus: 'paymentStatus',
+  deliveryDate: 'deliveryDate',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimateElementCodeScalarFieldEnum = (typeof EstimateElementCodeScalarFieldEnum)[keyof typeof EstimateElementCodeScalarFieldEnum]
+
+
+export const DrawingIntelligenceReportScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  documentId: 'documentId',
+  scanStatus: 'scanStatus',
+  pageCount: 'pageCount',
+  disciplinesDetected: 'disciplinesDetected',
+  revisionsDetected: 'revisionsDetected',
+  mixedRevisionsDetected: 'mixedRevisionsDetected',
+  draftStatusDetected: 'draftStatusDetected',
+  scaleIssuesDetected: 'scaleIssuesDetected',
+  questionnaireCompleted: 'questionnaireCompleted',
+  scannedAt: 'scannedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DrawingIntelligenceReportScalarFieldEnum = (typeof DrawingIntelligenceReportScalarFieldEnum)[keyof typeof DrawingIntelligenceReportScalarFieldEnum]
+
+
+export const DrawingIntelligenceQuestionScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  layer: 'layer',
+  questionText: 'questionText',
+  isMandatory: 'isMandatory',
+  sortOrder: 'sortOrder'
+} as const
+
+export type DrawingIntelligenceQuestionScalarFieldEnum = (typeof DrawingIntelligenceQuestionScalarFieldEnum)[keyof typeof DrawingIntelligenceQuestionScalarFieldEnum]
+
+
+export const DrawingIntelligenceAnswerScalarFieldEnum = {
+  id: 'id',
+  questionId: 'questionId',
+  answerText: 'answerText',
+  answeredById: 'answeredById',
+  answeredAt: 'answeredAt'
+} as const
+
+export type DrawingIntelligenceAnswerScalarFieldEnum = (typeof DrawingIntelligenceAnswerScalarFieldEnum)[keyof typeof DrawingIntelligenceAnswerScalarFieldEnum]
+
+
+export const TakeoffImportScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  documentId: 'documentId',
+  importStatus: 'importStatus',
+  csvFilename: 'csvFilename',
+  csvStorageUrl: 'csvStorageUrl',
+  rowCount: 'rowCount',
+  mappedCount: 'mappedCount',
+  unmappedCount: 'unmappedCount',
+  confirmedById: 'confirmedById',
+  confirmedAt: 'confirmedAt',
+  importedById: 'importedById',
+  createdAt: 'createdAt'
+} as const
+
+export type TakeoffImportScalarFieldEnum = (typeof TakeoffImportScalarFieldEnum)[keyof typeof TakeoffImportScalarFieldEnum]
+
+
+export const TakeoffMeasurementScalarFieldEnum = {
+  id: 'id',
+  importId: 'importId',
+  bluebeamToolName: 'bluebeamToolName',
+  ageroRef: 'ageroRef',
+  referenceItemId: 'referenceItemId',
+  measurementValue: 'measurementValue',
+  unit: 'unit',
+  drawingSheet: 'drawingSheet',
+  layerName: 'layerName',
+  mappingStatus: 'mappingStatus',
+  mappedLineId: 'mappedLineId'
+} as const
+
+export type TakeoffMeasurementScalarFieldEnum = (typeof TakeoffMeasurementScalarFieldEnum)[keyof typeof TakeoffMeasurementScalarFieldEnum]
+
+
+export const ScopeTemplateScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  referenceItemId: 'referenceItemId',
+  tradeSectionCode: 'tradeSectionCode',
+  scopeText: 'scopeText',
+  isActive: 'isActive',
+  version: 'version',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScopeTemplateScalarFieldEnum = (typeof ScopeTemplateScalarFieldEnum)[keyof typeof ScopeTemplateScalarFieldEnum]
+
+
+export const EstimateLineScopeScalarFieldEnum = {
+  id: 'id',
+  estimateLineId: 'estimateLineId',
+  scopeText: 'scopeText',
+  isAutoGenerated: 'isAutoGenerated',
+  architectCode: 'architectCode',
+  includeInInvitation: 'includeInInvitation',
+  updatedById: 'updatedById',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EstimateLineScopeScalarFieldEnum = (typeof EstimateLineScopeScalarFieldEnum)[keyof typeof EstimateLineScopeScalarFieldEnum]
+
+
+export const SubcontractorInvitationScalarFieldEnum = {
+  id: 'id',
+  estimateId: 'estimateId',
+  tradeSectionCode: 'tradeSectionCode',
+  invitationType: 'invitationType',
+  status: 'status',
+  issuedAt: 'issuedAt',
+  closeDate: 'closeDate',
+  invitationPdfUrl: 'invitationPdfUrl',
+  responseTemplateUrl: 'responseTemplateUrl',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type SubcontractorInvitationScalarFieldEnum = (typeof SubcontractorInvitationScalarFieldEnum)[keyof typeof SubcontractorInvitationScalarFieldEnum]
 
 
 export const SortOrder = {

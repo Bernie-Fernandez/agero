@@ -68,6 +68,8 @@ export type EstimateLineMinAggregateOutputType = {
   tradePackageId: string | null
   notes: string | null
   order: number | null
+  architectCodeId: string | null
+  drawingRefId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -96,6 +98,8 @@ export type EstimateLineMaxAggregateOutputType = {
   tradePackageId: string | null
   notes: string | null
   order: number | null
+  architectCodeId: string | null
+  drawingRefId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -124,6 +128,9 @@ export type EstimateLineCountAggregateOutputType = {
   tradePackageId: number
   notes: number
   order: number
+  architectCodeId: number
+  drawingRefId: number
+  buildupOverride: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -172,6 +179,8 @@ export type EstimateLineMinAggregateInputType = {
   tradePackageId?: true
   notes?: true
   order?: true
+  architectCodeId?: true
+  drawingRefId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -200,6 +209,8 @@ export type EstimateLineMaxAggregateInputType = {
   tradePackageId?: true
   notes?: true
   order?: true
+  architectCodeId?: true
+  drawingRefId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -228,6 +239,9 @@ export type EstimateLineCountAggregateInputType = {
   tradePackageId?: true
   notes?: true
   order?: true
+  architectCodeId?: true
+  drawingRefId?: true
+  buildupOverride?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -343,6 +357,9 @@ export type EstimateLineGroupByOutputType = {
   tradePackageId: string | null
   notes: string | null
   order: number
+  architectCodeId: string | null
+  drawingRefId: string | null
+  buildupOverride: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: EstimateLineCountAggregateOutputType | null
@@ -394,6 +411,9 @@ export type EstimateLineWhereInput = {
   tradePackageId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   notes?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   order?: Prisma.IntFilter<"EstimateLine"> | number
+  architectCodeId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  drawingRefId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  buildupOverride?: Prisma.JsonNullableFilter<"EstimateLine">
   createdAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
@@ -401,11 +421,15 @@ export type EstimateLineWhereInput = {
   scenario?: Prisma.XOR<Prisma.EstimateScenarioNullableScalarRelationFilter, Prisma.EstimateScenarioWhereInput> | null
   tradeSection?: Prisma.XOR<Prisma.EstimateTradeSectionNullableScalarRelationFilter, Prisma.EstimateTradeSectionWhereInput> | null
   tradePackage?: Prisma.XOR<Prisma.TradePackageNullableScalarRelationFilter, Prisma.TradePackageWhereInput> | null
+  architectCode?: Prisma.XOR<Prisma.EstimateElementCodeNullableScalarRelationFilter, Prisma.EstimateElementCodeWhereInput> | null
+  drawingRef?: Prisma.XOR<Prisma.EstimateDocumentRegisterNullableScalarRelationFilter, Prisma.EstimateDocumentRegisterWhereInput> | null
   quantities?: Prisma.EstimateLineQuantityListRelationFilter
   tags?: Prisma.EstimateLineTagListRelationFilter
   optionLines?: Prisma.EstimateOptionLineListRelationFilter
   lockawayLines?: Prisma.EstimateLockawayLineListRelationFilter
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentListRelationFilter
+  lineScope?: Prisma.XOR<Prisma.EstimateLineScopeNullableScalarRelationFilter, Prisma.EstimateLineScopeWhereInput> | null
+  takeoffMeasurements?: Prisma.TakeoffMeasurementListRelationFilter
 }
 
 export type EstimateLineOrderByWithRelationInput = {
@@ -432,6 +456,9 @@ export type EstimateLineOrderByWithRelationInput = {
   tradePackageId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
+  architectCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  drawingRefId?: Prisma.SortOrderInput | Prisma.SortOrder
+  buildupOverride?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   estimate?: Prisma.EstimateOrderByWithRelationInput
@@ -439,11 +466,15 @@ export type EstimateLineOrderByWithRelationInput = {
   scenario?: Prisma.EstimateScenarioOrderByWithRelationInput
   tradeSection?: Prisma.EstimateTradeSectionOrderByWithRelationInput
   tradePackage?: Prisma.TradePackageOrderByWithRelationInput
+  architectCode?: Prisma.EstimateElementCodeOrderByWithRelationInput
+  drawingRef?: Prisma.EstimateDocumentRegisterOrderByWithRelationInput
   quantities?: Prisma.EstimateLineQuantityOrderByRelationAggregateInput
   tags?: Prisma.EstimateLineTagOrderByRelationAggregateInput
   optionLines?: Prisma.EstimateOptionLineOrderByRelationAggregateInput
   lockawayLines?: Prisma.EstimateLockawayLineOrderByRelationAggregateInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentOrderByRelationAggregateInput
+  lineScope?: Prisma.EstimateLineScopeOrderByWithRelationInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementOrderByRelationAggregateInput
 }
 
 export type EstimateLineWhereUniqueInput = Prisma.AtLeast<{
@@ -473,6 +504,9 @@ export type EstimateLineWhereUniqueInput = Prisma.AtLeast<{
   tradePackageId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   notes?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   order?: Prisma.IntFilter<"EstimateLine"> | number
+  architectCodeId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  drawingRefId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  buildupOverride?: Prisma.JsonNullableFilter<"EstimateLine">
   createdAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
   estimate?: Prisma.XOR<Prisma.EstimateScalarRelationFilter, Prisma.EstimateWhereInput>
@@ -480,11 +514,15 @@ export type EstimateLineWhereUniqueInput = Prisma.AtLeast<{
   scenario?: Prisma.XOR<Prisma.EstimateScenarioNullableScalarRelationFilter, Prisma.EstimateScenarioWhereInput> | null
   tradeSection?: Prisma.XOR<Prisma.EstimateTradeSectionNullableScalarRelationFilter, Prisma.EstimateTradeSectionWhereInput> | null
   tradePackage?: Prisma.XOR<Prisma.TradePackageNullableScalarRelationFilter, Prisma.TradePackageWhereInput> | null
+  architectCode?: Prisma.XOR<Prisma.EstimateElementCodeNullableScalarRelationFilter, Prisma.EstimateElementCodeWhereInput> | null
+  drawingRef?: Prisma.XOR<Prisma.EstimateDocumentRegisterNullableScalarRelationFilter, Prisma.EstimateDocumentRegisterWhereInput> | null
   quantities?: Prisma.EstimateLineQuantityListRelationFilter
   tags?: Prisma.EstimateLineTagListRelationFilter
   optionLines?: Prisma.EstimateOptionLineListRelationFilter
   lockawayLines?: Prisma.EstimateLockawayLineListRelationFilter
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentListRelationFilter
+  lineScope?: Prisma.XOR<Prisma.EstimateLineScopeNullableScalarRelationFilter, Prisma.EstimateLineScopeWhereInput> | null
+  takeoffMeasurements?: Prisma.TakeoffMeasurementListRelationFilter
 }, "id">
 
 export type EstimateLineOrderByWithAggregationInput = {
@@ -511,6 +549,9 @@ export type EstimateLineOrderByWithAggregationInput = {
   tradePackageId?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
+  architectCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  drawingRefId?: Prisma.SortOrderInput | Prisma.SortOrder
+  buildupOverride?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EstimateLineCountOrderByAggregateInput
@@ -547,6 +588,9 @@ export type EstimateLineScalarWhereWithAggregatesInput = {
   tradePackageId?: Prisma.UuidNullableWithAggregatesFilter<"EstimateLine"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"EstimateLine"> | string | null
   order?: Prisma.IntWithAggregatesFilter<"EstimateLine"> | number
+  architectCodeId?: Prisma.UuidNullableWithAggregatesFilter<"EstimateLine"> | string | null
+  drawingRefId?: Prisma.UuidNullableWithAggregatesFilter<"EstimateLine"> | string | null
+  buildupOverride?: Prisma.JsonNullableWithAggregatesFilter<"EstimateLine">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"EstimateLine"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"EstimateLine"> | Date | string
 }
@@ -570,6 +614,7 @@ export type EstimateLineCreateInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -577,11 +622,15 @@ export type EstimateLineCreateInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateInput = {
@@ -608,6 +657,9 @@ export type EstimateLineUncheckedCreateInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -615,6 +667,8 @@ export type EstimateLineUncheckedCreateInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUpdateInput = {
@@ -636,6 +690,7 @@ export type EstimateLineUpdateInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -643,11 +698,15 @@ export type EstimateLineUpdateInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateInput = {
@@ -674,6 +733,9 @@ export type EstimateLineUncheckedUpdateInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -681,6 +743,8 @@ export type EstimateLineUncheckedUpdateInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateManyInput = {
@@ -707,6 +771,9 @@ export type EstimateLineCreateManyInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -730,6 +797,7 @@ export type EstimateLineUpdateManyMutationInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -758,6 +826,9 @@ export type EstimateLineUncheckedUpdateManyInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -796,6 +867,9 @@ export type EstimateLineCountOrderByAggregateInput = {
   tradePackageId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  architectCodeId?: Prisma.SortOrder
+  drawingRefId?: Prisma.SortOrder
+  buildupOverride?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -833,6 +907,8 @@ export type EstimateLineMaxOrderByAggregateInput = {
   tradePackageId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  architectCodeId?: Prisma.SortOrder
+  drawingRefId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -861,6 +937,8 @@ export type EstimateLineMinOrderByAggregateInput = {
   tradePackageId?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  architectCodeId?: Prisma.SortOrder
+  drawingRefId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -877,6 +955,11 @@ export type EstimateLineSumOrderByAggregateInput = {
 export type EstimateLineScalarRelationFilter = {
   is?: Prisma.EstimateLineWhereInput
   isNot?: Prisma.EstimateLineWhereInput
+}
+
+export type EstimateLineNullableScalarRelationFilter = {
+  is?: Prisma.EstimateLineWhereInput | null
+  isNot?: Prisma.EstimateLineWhereInput | null
 }
 
 export type EstimateLineCreateNestedManyWithoutEstimateInput = {
@@ -1167,6 +1250,120 @@ export type EstimateLineUpdateOneRequiredWithoutScopeAttachmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateLineUpdateToOneWithWhereWithoutScopeAttachmentsInput, Prisma.EstimateLineUpdateWithoutScopeAttachmentsInput>, Prisma.EstimateLineUncheckedUpdateWithoutScopeAttachmentsInput>
 }
 
+export type EstimateLineCreateNestedManyWithoutDrawingRefInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput> | Prisma.EstimateLineCreateWithoutDrawingRefInput[] | Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput | Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput[]
+  createMany?: Prisma.EstimateLineCreateManyDrawingRefInputEnvelope
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+}
+
+export type EstimateLineUncheckedCreateNestedManyWithoutDrawingRefInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput> | Prisma.EstimateLineCreateWithoutDrawingRefInput[] | Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput | Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput[]
+  createMany?: Prisma.EstimateLineCreateManyDrawingRefInputEnvelope
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+}
+
+export type EstimateLineUpdateManyWithoutDrawingRefNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput> | Prisma.EstimateLineCreateWithoutDrawingRefInput[] | Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput | Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput[]
+  upsert?: Prisma.EstimateLineUpsertWithWhereUniqueWithoutDrawingRefInput | Prisma.EstimateLineUpsertWithWhereUniqueWithoutDrawingRefInput[]
+  createMany?: Prisma.EstimateLineCreateManyDrawingRefInputEnvelope
+  set?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  disconnect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  delete?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  update?: Prisma.EstimateLineUpdateWithWhereUniqueWithoutDrawingRefInput | Prisma.EstimateLineUpdateWithWhereUniqueWithoutDrawingRefInput[]
+  updateMany?: Prisma.EstimateLineUpdateManyWithWhereWithoutDrawingRefInput | Prisma.EstimateLineUpdateManyWithWhereWithoutDrawingRefInput[]
+  deleteMany?: Prisma.EstimateLineScalarWhereInput | Prisma.EstimateLineScalarWhereInput[]
+}
+
+export type EstimateLineUncheckedUpdateManyWithoutDrawingRefNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput> | Prisma.EstimateLineCreateWithoutDrawingRefInput[] | Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput | Prisma.EstimateLineCreateOrConnectWithoutDrawingRefInput[]
+  upsert?: Prisma.EstimateLineUpsertWithWhereUniqueWithoutDrawingRefInput | Prisma.EstimateLineUpsertWithWhereUniqueWithoutDrawingRefInput[]
+  createMany?: Prisma.EstimateLineCreateManyDrawingRefInputEnvelope
+  set?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  disconnect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  delete?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  update?: Prisma.EstimateLineUpdateWithWhereUniqueWithoutDrawingRefInput | Prisma.EstimateLineUpdateWithWhereUniqueWithoutDrawingRefInput[]
+  updateMany?: Prisma.EstimateLineUpdateManyWithWhereWithoutDrawingRefInput | Prisma.EstimateLineUpdateManyWithWhereWithoutDrawingRefInput[]
+  deleteMany?: Prisma.EstimateLineScalarWhereInput | Prisma.EstimateLineScalarWhereInput[]
+}
+
+export type EstimateLineCreateNestedManyWithoutArchitectCodeInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput> | Prisma.EstimateLineCreateWithoutArchitectCodeInput[] | Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput | Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput[]
+  createMany?: Prisma.EstimateLineCreateManyArchitectCodeInputEnvelope
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+}
+
+export type EstimateLineUncheckedCreateNestedManyWithoutArchitectCodeInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput> | Prisma.EstimateLineCreateWithoutArchitectCodeInput[] | Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput | Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput[]
+  createMany?: Prisma.EstimateLineCreateManyArchitectCodeInputEnvelope
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+}
+
+export type EstimateLineUpdateManyWithoutArchitectCodeNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput> | Prisma.EstimateLineCreateWithoutArchitectCodeInput[] | Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput | Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput[]
+  upsert?: Prisma.EstimateLineUpsertWithWhereUniqueWithoutArchitectCodeInput | Prisma.EstimateLineUpsertWithWhereUniqueWithoutArchitectCodeInput[]
+  createMany?: Prisma.EstimateLineCreateManyArchitectCodeInputEnvelope
+  set?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  disconnect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  delete?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  update?: Prisma.EstimateLineUpdateWithWhereUniqueWithoutArchitectCodeInput | Prisma.EstimateLineUpdateWithWhereUniqueWithoutArchitectCodeInput[]
+  updateMany?: Prisma.EstimateLineUpdateManyWithWhereWithoutArchitectCodeInput | Prisma.EstimateLineUpdateManyWithWhereWithoutArchitectCodeInput[]
+  deleteMany?: Prisma.EstimateLineScalarWhereInput | Prisma.EstimateLineScalarWhereInput[]
+}
+
+export type EstimateLineUncheckedUpdateManyWithoutArchitectCodeNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput> | Prisma.EstimateLineCreateWithoutArchitectCodeInput[] | Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput[]
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput | Prisma.EstimateLineCreateOrConnectWithoutArchitectCodeInput[]
+  upsert?: Prisma.EstimateLineUpsertWithWhereUniqueWithoutArchitectCodeInput | Prisma.EstimateLineUpsertWithWhereUniqueWithoutArchitectCodeInput[]
+  createMany?: Prisma.EstimateLineCreateManyArchitectCodeInputEnvelope
+  set?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  disconnect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  delete?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  connect?: Prisma.EstimateLineWhereUniqueInput | Prisma.EstimateLineWhereUniqueInput[]
+  update?: Prisma.EstimateLineUpdateWithWhereUniqueWithoutArchitectCodeInput | Prisma.EstimateLineUpdateWithWhereUniqueWithoutArchitectCodeInput[]
+  updateMany?: Prisma.EstimateLineUpdateManyWithWhereWithoutArchitectCodeInput | Prisma.EstimateLineUpdateManyWithWhereWithoutArchitectCodeInput[]
+  deleteMany?: Prisma.EstimateLineScalarWhereInput | Prisma.EstimateLineScalarWhereInput[]
+}
+
+export type EstimateLineCreateNestedOneWithoutTakeoffMeasurementsInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedCreateWithoutTakeoffMeasurementsInput>
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutTakeoffMeasurementsInput
+  connect?: Prisma.EstimateLineWhereUniqueInput
+}
+
+export type EstimateLineUpdateOneWithoutTakeoffMeasurementsNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedCreateWithoutTakeoffMeasurementsInput>
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutTakeoffMeasurementsInput
+  upsert?: Prisma.EstimateLineUpsertWithoutTakeoffMeasurementsInput
+  disconnect?: Prisma.EstimateLineWhereInput | boolean
+  delete?: Prisma.EstimateLineWhereInput | boolean
+  connect?: Prisma.EstimateLineWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateLineUpdateToOneWithWhereWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUpdateWithoutTakeoffMeasurementsInput>, Prisma.EstimateLineUncheckedUpdateWithoutTakeoffMeasurementsInput>
+}
+
+export type EstimateLineCreateNestedOneWithoutLineScopeInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutLineScopeInput, Prisma.EstimateLineUncheckedCreateWithoutLineScopeInput>
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutLineScopeInput
+  connect?: Prisma.EstimateLineWhereUniqueInput
+}
+
+export type EstimateLineUpdateOneRequiredWithoutLineScopeNestedInput = {
+  create?: Prisma.XOR<Prisma.EstimateLineCreateWithoutLineScopeInput, Prisma.EstimateLineUncheckedCreateWithoutLineScopeInput>
+  connectOrCreate?: Prisma.EstimateLineCreateOrConnectWithoutLineScopeInput
+  upsert?: Prisma.EstimateLineUpsertWithoutLineScopeInput
+  connect?: Prisma.EstimateLineWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EstimateLineUpdateToOneWithWhereWithoutLineScopeInput, Prisma.EstimateLineUpdateWithoutLineScopeInput>, Prisma.EstimateLineUncheckedUpdateWithoutLineScopeInput>
+}
+
 export type EstimateLineCreateWithoutEstimateInput = {
   id?: string
   description: string
@@ -1186,17 +1383,22 @@ export type EstimateLineCreateWithoutEstimateInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutEstimateInput = {
@@ -1222,6 +1424,9 @@ export type EstimateLineUncheckedCreateWithoutEstimateInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -1229,6 +1434,8 @@ export type EstimateLineUncheckedCreateWithoutEstimateInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutEstimateInput = {
@@ -1284,6 +1491,9 @@ export type EstimateLineScalarWhereInput = {
   tradePackageId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
   notes?: Prisma.StringNullableFilter<"EstimateLine"> | string | null
   order?: Prisma.IntFilter<"EstimateLine"> | number
+  architectCodeId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  drawingRefId?: Prisma.UuidNullableFilter<"EstimateLine"> | string | null
+  buildupOverride?: Prisma.JsonNullableFilter<"EstimateLine">
   createdAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EstimateLine"> | Date | string
 }
@@ -1307,17 +1517,22 @@ export type EstimateLineCreateWithoutAreaInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutAreaInput = {
@@ -1343,6 +1558,9 @@ export type EstimateLineUncheckedCreateWithoutAreaInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -1350,6 +1568,8 @@ export type EstimateLineUncheckedCreateWithoutAreaInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutAreaInput = {
@@ -1397,17 +1617,22 @@ export type EstimateLineCreateWithoutScenarioInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
   area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutScenarioInput = {
@@ -1433,6 +1658,9 @@ export type EstimateLineUncheckedCreateWithoutScenarioInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -1440,6 +1668,8 @@ export type EstimateLineUncheckedCreateWithoutScenarioInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutScenarioInput = {
@@ -1487,17 +1717,22 @@ export type EstimateLineCreateWithoutTradeSectionInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
   area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutTradeSectionInput = {
@@ -1523,6 +1758,9 @@ export type EstimateLineUncheckedCreateWithoutTradeSectionInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -1530,6 +1768,8 @@ export type EstimateLineUncheckedCreateWithoutTradeSectionInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutTradeSectionInput = {
@@ -1577,6 +1817,7 @@ export type EstimateLineCreateWithoutQuantitiesInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -1584,10 +1825,14 @@ export type EstimateLineCreateWithoutQuantitiesInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutQuantitiesInput = {
@@ -1614,12 +1859,17 @@ export type EstimateLineUncheckedCreateWithoutQuantitiesInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutQuantitiesInput = {
@@ -1657,6 +1907,7 @@ export type EstimateLineUpdateWithoutQuantitiesInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -1664,10 +1915,14 @@ export type EstimateLineUpdateWithoutQuantitiesInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutQuantitiesInput = {
@@ -1694,12 +1949,17 @@ export type EstimateLineUncheckedUpdateWithoutQuantitiesInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateWithoutOptionLinesInput = {
@@ -1721,6 +1981,7 @@ export type EstimateLineCreateWithoutOptionLinesInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -1728,10 +1989,14 @@ export type EstimateLineCreateWithoutOptionLinesInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutOptionLinesInput = {
@@ -1758,12 +2023,17 @@ export type EstimateLineUncheckedCreateWithoutOptionLinesInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutOptionLinesInput = {
@@ -1801,6 +2071,7 @@ export type EstimateLineUpdateWithoutOptionLinesInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -1808,10 +2079,14 @@ export type EstimateLineUpdateWithoutOptionLinesInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutOptionLinesInput = {
@@ -1838,12 +2113,17 @@ export type EstimateLineUncheckedUpdateWithoutOptionLinesInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateWithoutLockawayLinesInput = {
@@ -1865,6 +2145,7 @@ export type EstimateLineCreateWithoutLockawayLinesInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -1872,10 +2153,14 @@ export type EstimateLineCreateWithoutLockawayLinesInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutLockawayLinesInput = {
@@ -1902,12 +2187,17 @@ export type EstimateLineUncheckedCreateWithoutLockawayLinesInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutLockawayLinesInput = {
@@ -1945,6 +2235,7 @@ export type EstimateLineUpdateWithoutLockawayLinesInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -1952,10 +2243,14 @@ export type EstimateLineUpdateWithoutLockawayLinesInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutLockawayLinesInput = {
@@ -1982,12 +2277,17 @@ export type EstimateLineUncheckedUpdateWithoutLockawayLinesInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateWithoutTagsInput = {
@@ -2009,6 +2309,7 @@ export type EstimateLineCreateWithoutTagsInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -2016,10 +2317,14 @@ export type EstimateLineCreateWithoutTagsInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutTagsInput = {
@@ -2046,12 +2351,17 @@ export type EstimateLineUncheckedCreateWithoutTagsInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutTagsInput = {
@@ -2089,6 +2399,7 @@ export type EstimateLineUpdateWithoutTagsInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -2096,10 +2407,14 @@ export type EstimateLineUpdateWithoutTagsInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutTagsInput = {
@@ -2126,12 +2441,17 @@ export type EstimateLineUncheckedUpdateWithoutTagsInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateWithoutTradePackageInput = {
@@ -2153,17 +2473,22 @@ export type EstimateLineCreateWithoutTradePackageInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
   area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutTradePackageInput = {
@@ -2189,6 +2514,9 @@ export type EstimateLineUncheckedCreateWithoutTradePackageInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
@@ -2196,6 +2524,8 @@ export type EstimateLineUncheckedCreateWithoutTradePackageInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutTradePackageInput = {
@@ -2243,6 +2573,7 @@ export type EstimateLineCreateWithoutScopeAttachmentsInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
@@ -2250,10 +2581,14 @@ export type EstimateLineCreateWithoutScopeAttachmentsInput = {
   scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
   tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
   tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
   quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineUncheckedCreateWithoutScopeAttachmentsInput = {
@@ -2280,12 +2615,17 @@ export type EstimateLineUncheckedCreateWithoutScopeAttachmentsInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
   tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
   optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
 }
 
 export type EstimateLineCreateOrConnectWithoutScopeAttachmentsInput = {
@@ -2323,6 +2663,7 @@ export type EstimateLineUpdateWithoutScopeAttachmentsInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
@@ -2330,10 +2671,14 @@ export type EstimateLineUpdateWithoutScopeAttachmentsInput = {
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutScopeAttachmentsInput = {
@@ -2360,12 +2705,545 @@ export type EstimateLineUncheckedUpdateWithoutScopeAttachmentsInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineCreateWithoutDrawingRefInput = {
+  id?: string
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
+  area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
+  scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
+  tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
+  tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineUncheckedCreateWithoutDrawingRefInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  architectCodeId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineCreateOrConnectWithoutDrawingRefInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput>
+}
+
+export type EstimateLineCreateManyDrawingRefInputEnvelope = {
+  data: Prisma.EstimateLineCreateManyDrawingRefInput | Prisma.EstimateLineCreateManyDrawingRefInput[]
+  skipDuplicates?: boolean
+}
+
+export type EstimateLineUpsertWithWhereUniqueWithoutDrawingRefInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  update: Prisma.XOR<Prisma.EstimateLineUpdateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedUpdateWithoutDrawingRefInput>
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedCreateWithoutDrawingRefInput>
+}
+
+export type EstimateLineUpdateWithWhereUniqueWithoutDrawingRefInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateWithoutDrawingRefInput, Prisma.EstimateLineUncheckedUpdateWithoutDrawingRefInput>
+}
+
+export type EstimateLineUpdateManyWithWhereWithoutDrawingRefInput = {
+  where: Prisma.EstimateLineScalarWhereInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateManyMutationInput, Prisma.EstimateLineUncheckedUpdateManyWithoutDrawingRefInput>
+}
+
+export type EstimateLineCreateWithoutArchitectCodeInput = {
+  id?: string
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
+  area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
+  scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
+  tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
+  tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
+  quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineUncheckedCreateWithoutArchitectCodeInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineCreateOrConnectWithoutArchitectCodeInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput>
+}
+
+export type EstimateLineCreateManyArchitectCodeInputEnvelope = {
+  data: Prisma.EstimateLineCreateManyArchitectCodeInput | Prisma.EstimateLineCreateManyArchitectCodeInput[]
+  skipDuplicates?: boolean
+}
+
+export type EstimateLineUpsertWithWhereUniqueWithoutArchitectCodeInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  update: Prisma.XOR<Prisma.EstimateLineUpdateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedUpdateWithoutArchitectCodeInput>
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedCreateWithoutArchitectCodeInput>
+}
+
+export type EstimateLineUpdateWithWhereUniqueWithoutArchitectCodeInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateWithoutArchitectCodeInput, Prisma.EstimateLineUncheckedUpdateWithoutArchitectCodeInput>
+}
+
+export type EstimateLineUpdateManyWithWhereWithoutArchitectCodeInput = {
+  where: Prisma.EstimateLineScalarWhereInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateManyMutationInput, Prisma.EstimateLineUncheckedUpdateManyWithoutArchitectCodeInput>
+}
+
+export type EstimateLineCreateWithoutTakeoffMeasurementsInput = {
+  id?: string
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
+  area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
+  scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
+  tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
+  tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
+  quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeCreateNestedOneWithoutEstimateLineInput
+}
+
+export type EstimateLineUncheckedCreateWithoutTakeoffMeasurementsInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedCreateNestedOneWithoutEstimateLineInput
+}
+
+export type EstimateLineCreateOrConnectWithoutTakeoffMeasurementsInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedCreateWithoutTakeoffMeasurementsInput>
+}
+
+export type EstimateLineUpsertWithoutTakeoffMeasurementsInput = {
+  update: Prisma.XOR<Prisma.EstimateLineUpdateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedUpdateWithoutTakeoffMeasurementsInput>
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedCreateWithoutTakeoffMeasurementsInput>
+  where?: Prisma.EstimateLineWhereInput
+}
+
+export type EstimateLineUpdateToOneWithWhereWithoutTakeoffMeasurementsInput = {
+  where?: Prisma.EstimateLineWhereInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateWithoutTakeoffMeasurementsInput, Prisma.EstimateLineUncheckedUpdateWithoutTakeoffMeasurementsInput>
+}
+
+export type EstimateLineUpdateWithoutTakeoffMeasurementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
+  area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
+  scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
+  tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
+  tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
+  quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateWithoutTakeoffMeasurementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+}
+
+export type EstimateLineCreateWithoutLineScopeInput = {
+  id?: string
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  order?: number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  estimate: Prisma.EstimateCreateNestedOneWithoutLinesInput
+  area?: Prisma.EstimateAreaCreateNestedOneWithoutLinesInput
+  scenario?: Prisma.EstimateScenarioCreateNestedOneWithoutLinesInput
+  tradeSection?: Prisma.EstimateTradeSectionCreateNestedOneWithoutLinesInput
+  tradePackage?: Prisma.TradePackageCreateNestedOneWithoutAssignedLinesInput
+  architectCode?: Prisma.EstimateElementCodeCreateNestedOneWithoutEstimateLinesInput
+  drawingRef?: Prisma.EstimateDocumentRegisterCreateNestedOneWithoutEstimateLinesInput
+  quantities?: Prisma.EstimateLineQuantityCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentCreateNestedManyWithoutLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineUncheckedCreateWithoutLineScopeInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedCreateNestedManyWithoutLineInput
+  tags?: Prisma.EstimateLineTagUncheckedCreateNestedManyWithoutLineInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedCreateNestedManyWithoutLineInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedCreateNestedManyWithoutLineInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedCreateNestedManyWithoutLineInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedCreateNestedManyWithoutMappedLineInput
+}
+
+export type EstimateLineCreateOrConnectWithoutLineScopeInput = {
+  where: Prisma.EstimateLineWhereUniqueInput
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutLineScopeInput, Prisma.EstimateLineUncheckedCreateWithoutLineScopeInput>
+}
+
+export type EstimateLineUpsertWithoutLineScopeInput = {
+  update: Prisma.XOR<Prisma.EstimateLineUpdateWithoutLineScopeInput, Prisma.EstimateLineUncheckedUpdateWithoutLineScopeInput>
+  create: Prisma.XOR<Prisma.EstimateLineCreateWithoutLineScopeInput, Prisma.EstimateLineUncheckedCreateWithoutLineScopeInput>
+  where?: Prisma.EstimateLineWhereInput
+}
+
+export type EstimateLineUpdateToOneWithWhereWithoutLineScopeInput = {
+  where?: Prisma.EstimateLineWhereInput
+  data: Prisma.XOR<Prisma.EstimateLineUpdateWithoutLineScopeInput, Prisma.EstimateLineUncheckedUpdateWithoutLineScopeInput>
+}
+
+export type EstimateLineUpdateWithoutLineScopeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
+  area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
+  scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
+  tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
+  tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
+  quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateWithoutLineScopeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineCreateManyEstimateInput = {
@@ -2391,6 +3269,9 @@ export type EstimateLineCreateManyEstimateInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2414,17 +3295,22 @@ export type EstimateLineUpdateWithoutEstimateInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutEstimateInput = {
@@ -2450,6 +3336,9 @@ export type EstimateLineUncheckedUpdateWithoutEstimateInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -2457,6 +3346,8 @@ export type EstimateLineUncheckedUpdateWithoutEstimateInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateManyWithoutEstimateInput = {
@@ -2482,6 +3373,9 @@ export type EstimateLineUncheckedUpdateManyWithoutEstimateInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2509,6 +3403,9 @@ export type EstimateLineCreateManyAreaInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2532,17 +3429,22 @@ export type EstimateLineUpdateWithoutAreaInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutAreaInput = {
@@ -2568,6 +3470,9 @@ export type EstimateLineUncheckedUpdateWithoutAreaInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -2575,6 +3480,8 @@ export type EstimateLineUncheckedUpdateWithoutAreaInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateManyWithoutAreaInput = {
@@ -2600,6 +3507,9 @@ export type EstimateLineUncheckedUpdateManyWithoutAreaInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2627,6 +3537,9 @@ export type EstimateLineCreateManyScenarioInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2650,17 +3563,22 @@ export type EstimateLineUpdateWithoutScenarioInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
   area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutScenarioInput = {
@@ -2686,6 +3604,9 @@ export type EstimateLineUncheckedUpdateWithoutScenarioInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -2693,6 +3614,8 @@ export type EstimateLineUncheckedUpdateWithoutScenarioInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateManyWithoutScenarioInput = {
@@ -2718,6 +3641,9 @@ export type EstimateLineUncheckedUpdateManyWithoutScenarioInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2745,6 +3671,9 @@ export type EstimateLineCreateManyTradeSectionInput = {
   tradePackageId?: string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2768,17 +3697,22 @@ export type EstimateLineUpdateWithoutTradeSectionInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
   area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutTradeSectionInput = {
@@ -2804,6 +3738,9 @@ export type EstimateLineUncheckedUpdateWithoutTradeSectionInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -2811,6 +3748,8 @@ export type EstimateLineUncheckedUpdateWithoutTradeSectionInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateManyWithoutTradeSectionInput = {
@@ -2836,6 +3775,9 @@ export type EstimateLineUncheckedUpdateManyWithoutTradeSectionInput = {
   tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2863,6 +3805,9 @@ export type EstimateLineCreateManyTradePackageInput = {
   declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   order?: number
+  architectCodeId?: string | null
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2886,17 +3831,22 @@ export type EstimateLineUpdateWithoutTradePackageInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
   area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
   scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
   tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
   quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
   tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
   optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateWithoutTradePackageInput = {
@@ -2922,6 +3872,9 @@ export type EstimateLineUncheckedUpdateWithoutTradePackageInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
@@ -2929,6 +3882,8 @@ export type EstimateLineUncheckedUpdateWithoutTradePackageInput = {
   optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
   lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
   scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
 }
 
 export type EstimateLineUncheckedUpdateManyWithoutTradePackageInput = {
@@ -2954,6 +3909,277 @@ export type EstimateLineUncheckedUpdateManyWithoutTradePackageInput = {
   declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EstimateLineCreateManyDrawingRefInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  architectCodeId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type EstimateLineUpdateWithoutDrawingRefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
+  area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
+  scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
+  tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
+  tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  architectCode?: Prisma.EstimateElementCodeUpdateOneWithoutEstimateLinesNestedInput
+  quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateWithoutDrawingRefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateManyWithoutDrawingRefInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  architectCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EstimateLineCreateManyArchitectCodeInput = {
+  id?: string
+  estimateId: string
+  areaId?: string | null
+  scenarioId?: string | null
+  tradeSectionId?: string | null
+  description: string
+  lineStructure?: $Enums.EstimateLineStructure
+  lineCode?: string | null
+  type?: $Enums.EstimateLineType
+  quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: string | null
+  rate?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: boolean
+  isOption?: boolean
+  isPcSum?: boolean
+  isLockaway?: boolean
+  isHidden?: boolean
+  declaredMarginPct?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: string | null
+  notes?: string | null
+  order?: number
+  drawingRefId?: string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type EstimateLineUpdateWithoutArchitectCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimate?: Prisma.EstimateUpdateOneRequiredWithoutLinesNestedInput
+  area?: Prisma.EstimateAreaUpdateOneWithoutLinesNestedInput
+  scenario?: Prisma.EstimateScenarioUpdateOneWithoutLinesNestedInput
+  tradeSection?: Prisma.EstimateTradeSectionUpdateOneWithoutLinesNestedInput
+  tradePackage?: Prisma.TradePackageUpdateOneWithoutAssignedLinesNestedInput
+  drawingRef?: Prisma.EstimateDocumentRegisterUpdateOneWithoutEstimateLinesNestedInput
+  quantities?: Prisma.EstimateLineQuantityUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateWithoutArchitectCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  quantities?: Prisma.EstimateLineQuantityUncheckedUpdateManyWithoutLineNestedInput
+  tags?: Prisma.EstimateLineTagUncheckedUpdateManyWithoutLineNestedInput
+  optionLines?: Prisma.EstimateOptionLineUncheckedUpdateManyWithoutLineNestedInput
+  lockawayLines?: Prisma.EstimateLockawayLineUncheckedUpdateManyWithoutLineNestedInput
+  scopeAttachments?: Prisma.EstimateLineScopeAttachmentUncheckedUpdateManyWithoutLineNestedInput
+  lineScope?: Prisma.EstimateLineScopeUncheckedUpdateOneWithoutEstimateLineNestedInput
+  takeoffMeasurements?: Prisma.TakeoffMeasurementUncheckedUpdateManyWithoutMappedLineNestedInput
+}
+
+export type EstimateLineUncheckedUpdateManyWithoutArchitectCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  estimateId?: Prisma.StringFieldUpdateOperationsInput | string
+  areaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scenarioId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tradeSectionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lineStructure?: Prisma.EnumEstimateLineStructureFieldUpdateOperationsInput | $Enums.EstimateLineStructure
+  lineCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumEstimateLineTypeFieldUpdateOperationsInput | $Enums.EstimateLineType
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  markupPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isRisk?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isOption?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPcSum?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLockaway?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isHidden?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  declaredMarginPct?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  tradePackageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  drawingRefId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buildupOverride?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2969,6 +4195,7 @@ export type EstimateLineCountOutputType = {
   optionLines: number
   lockawayLines: number
   scopeAttachments: number
+  takeoffMeasurements: number
 }
 
 export type EstimateLineCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2977,6 +4204,7 @@ export type EstimateLineCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   optionLines?: boolean | EstimateLineCountOutputTypeCountOptionLinesArgs
   lockawayLines?: boolean | EstimateLineCountOutputTypeCountLockawayLinesArgs
   scopeAttachments?: boolean | EstimateLineCountOutputTypeCountScopeAttachmentsArgs
+  takeoffMeasurements?: boolean | EstimateLineCountOutputTypeCountTakeoffMeasurementsArgs
 }
 
 /**
@@ -3024,6 +4252,13 @@ export type EstimateLineCountOutputTypeCountScopeAttachmentsArgs<ExtArgs extends
   where?: Prisma.EstimateLineScopeAttachmentWhereInput
 }
 
+/**
+ * EstimateLineCountOutputType without action
+ */
+export type EstimateLineCountOutputTypeCountTakeoffMeasurementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TakeoffMeasurementWhereInput
+}
+
 
 export type EstimateLineSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3049,6 +4284,9 @@ export type EstimateLineSelect<ExtArgs extends runtime.Types.Extensions.Internal
   tradePackageId?: boolean
   notes?: boolean
   order?: boolean
+  architectCodeId?: boolean
+  drawingRefId?: boolean
+  buildupOverride?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
@@ -3056,11 +4294,15 @@ export type EstimateLineSelect<ExtArgs extends runtime.Types.Extensions.Internal
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
   quantities?: boolean | Prisma.EstimateLine$quantitiesArgs<ExtArgs>
   tags?: boolean | Prisma.EstimateLine$tagsArgs<ExtArgs>
   optionLines?: boolean | Prisma.EstimateLine$optionLinesArgs<ExtArgs>
   lockawayLines?: boolean | Prisma.EstimateLine$lockawayLinesArgs<ExtArgs>
   scopeAttachments?: boolean | Prisma.EstimateLine$scopeAttachmentsArgs<ExtArgs>
+  lineScope?: boolean | Prisma.EstimateLine$lineScopeArgs<ExtArgs>
+  takeoffMeasurements?: boolean | Prisma.EstimateLine$takeoffMeasurementsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateLineCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estimateLine"]>
 
@@ -3088,6 +4330,9 @@ export type EstimateLineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   tradePackageId?: boolean
   notes?: boolean
   order?: boolean
+  architectCodeId?: boolean
+  drawingRefId?: boolean
+  buildupOverride?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
@@ -3095,6 +4340,8 @@ export type EstimateLineSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
 }, ExtArgs["result"]["estimateLine"]>
 
 export type EstimateLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3121,6 +4368,9 @@ export type EstimateLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   tradePackageId?: boolean
   notes?: boolean
   order?: boolean
+  architectCodeId?: boolean
+  drawingRefId?: boolean
+  buildupOverride?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
@@ -3128,6 +4378,8 @@ export type EstimateLineSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
 }, ExtArgs["result"]["estimateLine"]>
 
 export type EstimateLineSelectScalar = {
@@ -3154,22 +4406,29 @@ export type EstimateLineSelectScalar = {
   tradePackageId?: boolean
   notes?: boolean
   order?: boolean
+  architectCodeId?: boolean
+  drawingRefId?: boolean
+  buildupOverride?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EstimateLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "areaId" | "scenarioId" | "tradeSectionId" | "description" | "lineStructure" | "lineCode" | "type" | "quantity" | "unit" | "rate" | "total" | "markupPct" | "isRisk" | "isOption" | "isPcSum" | "isLockaway" | "isHidden" | "declaredMarginPct" | "tradePackageId" | "notes" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["estimateLine"]>
+export type EstimateLineOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estimateId" | "areaId" | "scenarioId" | "tradeSectionId" | "description" | "lineStructure" | "lineCode" | "type" | "quantity" | "unit" | "rate" | "total" | "markupPct" | "isRisk" | "isOption" | "isPcSum" | "isLockaway" | "isHidden" | "declaredMarginPct" | "tradePackageId" | "notes" | "order" | "architectCodeId" | "drawingRefId" | "buildupOverride" | "createdAt" | "updatedAt", ExtArgs["result"]["estimateLine"]>
 export type EstimateLineInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
   area?: boolean | Prisma.EstimateLine$areaArgs<ExtArgs>
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
   quantities?: boolean | Prisma.EstimateLine$quantitiesArgs<ExtArgs>
   tags?: boolean | Prisma.EstimateLine$tagsArgs<ExtArgs>
   optionLines?: boolean | Prisma.EstimateLine$optionLinesArgs<ExtArgs>
   lockawayLines?: boolean | Prisma.EstimateLine$lockawayLinesArgs<ExtArgs>
   scopeAttachments?: boolean | Prisma.EstimateLine$scopeAttachmentsArgs<ExtArgs>
+  lineScope?: boolean | Prisma.EstimateLine$lineScopeArgs<ExtArgs>
+  takeoffMeasurements?: boolean | Prisma.EstimateLine$takeoffMeasurementsArgs<ExtArgs>
   _count?: boolean | Prisma.EstimateLineCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EstimateLineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3178,6 +4437,8 @@ export type EstimateLineIncludeCreateManyAndReturn<ExtArgs extends runtime.Types
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
 }
 export type EstimateLineIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estimate?: boolean | Prisma.EstimateDefaultArgs<ExtArgs>
@@ -3185,6 +4446,8 @@ export type EstimateLineIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
   scenario?: boolean | Prisma.EstimateLine$scenarioArgs<ExtArgs>
   tradeSection?: boolean | Prisma.EstimateLine$tradeSectionArgs<ExtArgs>
   tradePackage?: boolean | Prisma.EstimateLine$tradePackageArgs<ExtArgs>
+  architectCode?: boolean | Prisma.EstimateLine$architectCodeArgs<ExtArgs>
+  drawingRef?: boolean | Prisma.EstimateLine$drawingRefArgs<ExtArgs>
 }
 
 export type $EstimateLinePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3195,11 +4458,15 @@ export type $EstimateLinePayload<ExtArgs extends runtime.Types.Extensions.Intern
     scenario: Prisma.$EstimateScenarioPayload<ExtArgs> | null
     tradeSection: Prisma.$EstimateTradeSectionPayload<ExtArgs> | null
     tradePackage: Prisma.$TradePackagePayload<ExtArgs> | null
+    architectCode: Prisma.$EstimateElementCodePayload<ExtArgs> | null
+    drawingRef: Prisma.$EstimateDocumentRegisterPayload<ExtArgs> | null
     quantities: Prisma.$EstimateLineQuantityPayload<ExtArgs>[]
     tags: Prisma.$EstimateLineTagPayload<ExtArgs>[]
     optionLines: Prisma.$EstimateOptionLinePayload<ExtArgs>[]
     lockawayLines: Prisma.$EstimateLockawayLinePayload<ExtArgs>[]
     scopeAttachments: Prisma.$EstimateLineScopeAttachmentPayload<ExtArgs>[]
+    lineScope: Prisma.$EstimateLineScopePayload<ExtArgs> | null
+    takeoffMeasurements: Prisma.$TakeoffMeasurementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3225,6 +4492,9 @@ export type $EstimateLinePayload<ExtArgs extends runtime.Types.Extensions.Intern
     tradePackageId: string | null
     notes: string | null
     order: number
+    architectCodeId: string | null
+    drawingRefId: string | null
+    buildupOverride: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["estimateLine"]>
@@ -3626,11 +4896,15 @@ export interface Prisma__EstimateLineClient<T, Null = never, ExtArgs extends run
   scenario<T extends Prisma.EstimateLine$scenarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$scenarioArgs<ExtArgs>>): Prisma.Prisma__EstimateScenarioClient<runtime.Types.Result.GetResult<Prisma.$EstimateScenarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tradeSection<T extends Prisma.EstimateLine$tradeSectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$tradeSectionArgs<ExtArgs>>): Prisma.Prisma__EstimateTradeSectionClient<runtime.Types.Result.GetResult<Prisma.$EstimateTradeSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tradePackage<T extends Prisma.EstimateLine$tradePackageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$tradePackageArgs<ExtArgs>>): Prisma.Prisma__TradePackageClient<runtime.Types.Result.GetResult<Prisma.$TradePackagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  architectCode<T extends Prisma.EstimateLine$architectCodeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$architectCodeArgs<ExtArgs>>): Prisma.Prisma__EstimateElementCodeClient<runtime.Types.Result.GetResult<Prisma.$EstimateElementCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  drawingRef<T extends Prisma.EstimateLine$drawingRefArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$drawingRefArgs<ExtArgs>>): Prisma.Prisma__EstimateDocumentRegisterClient<runtime.Types.Result.GetResult<Prisma.$EstimateDocumentRegisterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   quantities<T extends Prisma.EstimateLine$quantitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$quantitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateLineQuantityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tags<T extends Prisma.EstimateLine$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateLineTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   optionLines<T extends Prisma.EstimateLine$optionLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$optionLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateOptionLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lockawayLines<T extends Prisma.EstimateLine$lockawayLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$lockawayLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateLockawayLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   scopeAttachments<T extends Prisma.EstimateLine$scopeAttachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$scopeAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimateLineScopeAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lineScope<T extends Prisma.EstimateLine$lineScopeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$lineScopeArgs<ExtArgs>>): Prisma.Prisma__EstimateLineScopeClient<runtime.Types.Result.GetResult<Prisma.$EstimateLineScopePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  takeoffMeasurements<T extends Prisma.EstimateLine$takeoffMeasurementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EstimateLine$takeoffMeasurementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TakeoffMeasurementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3683,6 +4957,9 @@ export interface EstimateLineFieldRefs {
   readonly tradePackageId: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly notes: Prisma.FieldRef<"EstimateLine", 'String'>
   readonly order: Prisma.FieldRef<"EstimateLine", 'Int'>
+  readonly architectCodeId: Prisma.FieldRef<"EstimateLine", 'String'>
+  readonly drawingRefId: Prisma.FieldRef<"EstimateLine", 'String'>
+  readonly buildupOverride: Prisma.FieldRef<"EstimateLine", 'Json'>
   readonly createdAt: Prisma.FieldRef<"EstimateLine", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"EstimateLine", 'DateTime'>
 }
@@ -4162,6 +5439,44 @@ export type EstimateLine$tradePackageArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
+ * EstimateLine.architectCode
+ */
+export type EstimateLine$architectCodeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateElementCode
+   */
+  select?: Prisma.EstimateElementCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateElementCode
+   */
+  omit?: Prisma.EstimateElementCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateElementCodeInclude<ExtArgs> | null
+  where?: Prisma.EstimateElementCodeWhereInput
+}
+
+/**
+ * EstimateLine.drawingRef
+ */
+export type EstimateLine$drawingRefArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateDocumentRegister
+   */
+  select?: Prisma.EstimateDocumentRegisterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateDocumentRegister
+   */
+  omit?: Prisma.EstimateDocumentRegisterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateDocumentRegisterInclude<ExtArgs> | null
+  where?: Prisma.EstimateDocumentRegisterWhereInput
+}
+
+/**
  * EstimateLine.quantities
  */
 export type EstimateLine$quantitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4279,6 +5594,49 @@ export type EstimateLine$scopeAttachmentsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.EstimateLineScopeAttachmentScalarFieldEnum | Prisma.EstimateLineScopeAttachmentScalarFieldEnum[]
+}
+
+/**
+ * EstimateLine.lineScope
+ */
+export type EstimateLine$lineScopeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EstimateLineScope
+   */
+  select?: Prisma.EstimateLineScopeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EstimateLineScope
+   */
+  omit?: Prisma.EstimateLineScopeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimateLineScopeInclude<ExtArgs> | null
+  where?: Prisma.EstimateLineScopeWhereInput
+}
+
+/**
+ * EstimateLine.takeoffMeasurements
+ */
+export type EstimateLine$takeoffMeasurementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TakeoffMeasurement
+   */
+  select?: Prisma.TakeoffMeasurementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TakeoffMeasurement
+   */
+  omit?: Prisma.TakeoffMeasurementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TakeoffMeasurementInclude<ExtArgs> | null
+  where?: Prisma.TakeoffMeasurementWhereInput
+  orderBy?: Prisma.TakeoffMeasurementOrderByWithRelationInput | Prisma.TakeoffMeasurementOrderByWithRelationInput[]
+  cursor?: Prisma.TakeoffMeasurementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TakeoffMeasurementScalarFieldEnum | Prisma.TakeoffMeasurementScalarFieldEnum[]
 }
 
 /**
