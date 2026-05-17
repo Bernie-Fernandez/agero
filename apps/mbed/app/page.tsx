@@ -111,9 +111,29 @@ function Hero() {
         >
           Embedded. Independent. So the only thing on your mind is your practice.
         </h1>
-        <p className="font-dm text-white/80 text-base lg:text-lg leading-relaxed mb-10 max-w-2xl">
+        <p className="font-dm text-white/80 text-base lg:text-lg leading-relaxed mb-6 max-w-2xl">
           You have built something exceptional. MBED exists to make sure the property and project decisions that surround your practice are worthy of it — from the first strategic conversation through to the day you open the doors.
         </p>
+
+        {/* Proof point stat cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8 max-w-3xl">
+          <div className="flex flex-col justify-center border-l-2 border-[#00897B] pl-4">
+            <span className="font-bold text-white text-2xl md:text-3xl">6 months</span>
+            <span className="text-white/60 text-xs uppercase tracking-widest mt-1">From site selection to opening day</span>
+            <span className="text-white/40 text-xs mt-0.5 hidden md:block">Canterbury Dental — heritage conversion</span>
+          </div>
+          <div className="flex flex-col justify-center border-l-2 border-[#00897B] pl-4">
+            <span className="font-bold text-white text-2xl md:text-3xl">15% under market rate</span>
+            <span className="text-white/60 text-xs uppercase tracking-widest mt-1">Open book construction management</span>
+            <span className="text-white/40 text-xs mt-0.5 hidden md:block">Verified against fixed-price comparable quotes</span>
+          </div>
+          <div className="flex flex-col justify-center border-l-2 border-[#00897B] pl-4">
+            <span className="font-bold text-white text-2xl md:text-3xl">7 surgeries from 2</span>
+            <span className="text-white/60 text-xs uppercase tracking-widest mt-1">Practice capacity more than tripled</span>
+            <span className="text-white/40 text-xs mt-0.5 hidden md:block">Without disruption to the existing practice</span>
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="#guide"
@@ -343,6 +363,8 @@ const CHECKLIST = [
   "Neighbour amenity and hours-of-operation conditions",
 ];
 
+const GUIDE_PDF = "/downloads/specialist-guide-residential-conversion.pdf";
+
 function GuideSection() {
   const [form, setForm] = useState({ first_name: "", last_name: "", email: "", specialty: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -377,6 +399,13 @@ function GuideSection() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
+        // Trigger automatic download after successful CRM post
+        const link = document.createElement("a");
+        link.href = GUIDE_PDF;
+        link.download = "specialist-guide-residential-conversion.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
         setSubmitted(true);
       } else {
         const data = await res.json();
@@ -396,11 +425,14 @@ function GuideSection() {
           {/* Left */}
           <div>
             <p className="section-tag text-stone mb-5">
-              Free resource — specialist practitioners
+              Free download — available now
             </p>
-            <h2 className="heading-display text-charcoal text-3xl lg:text-4xl leading-snug mb-6">
+            <h2 className="heading-display text-charcoal text-3xl lg:text-4xl leading-snug mb-3">
               The Specialist&apos;s Guide to Residential Conversion
             </h2>
+            <p className="font-dm text-charcoal/50 text-[13px] mb-6 tracking-wide">
+              Download instantly. No spam. Unsubscribe at any time.
+            </p>
             <p className="font-dm text-charcoal/70 text-[15px] leading-relaxed">
               Residential conversion is the most overlooked pathway to purpose-built specialist rooms in metropolitan Melbourne. This guide covers the compliance requirements, planning considerations, and deal-breakers to assess before you commit — so you arrive at the transaction knowing exactly what you are buying.
             </p>
@@ -422,9 +454,30 @@ function GuideSection() {
 
             {/* Form */}
             {submitted ? (
-              <div className="bg-charcoal/5 border border-charcoal/15 p-6">
-                <p className="font-dm text-charcoal text-[14px] leading-relaxed">
-                  You will be the first to know. We will send the guide directly to your inbox the moment it is available.
+              <div className="bg-charcoal/5 border border-charcoal/15 p-6 space-y-4">
+                <h3 className="heading-display text-charcoal text-xl">
+                  Your guide is downloading now.
+                </h3>
+                <p className="font-dm text-charcoal/70 text-[14px] leading-relaxed">
+                  The Specialist&apos;s Guide to Residential Conversion is on its way. If the download did not start automatically, use the button below.
+                </p>
+                <a
+                  href={GUIDE_PDF}
+                  download
+                  className="inline-block font-dm text-[13px] tracking-wide bg-charcoal text-white px-5 py-3 hover:bg-stone transition-colors duration-200"
+                >
+                  Download guide (PDF)
+                </a>
+                <p className="font-dm text-charcoal/50 text-[13px] leading-relaxed pt-2 border-t border-charcoal/10">
+                  While you have it open — book a 15-minute practice growth consultation.{" "}
+                  <a
+                    href={HUBSPOT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-charcoal underline underline-offset-2 hover:opacity-70 transition-opacity"
+                  >
+                    Book a time →
+                  </a>
                 </p>
               </div>
             ) : (
@@ -479,7 +532,7 @@ function GuideSection() {
                   disabled={submitting}
                   className="w-full font-dm text-[13px] tracking-wide bg-charcoal text-white py-3.5 hover:bg-stone transition-colors duration-200 disabled:opacity-60"
                 >
-                  {submitting ? "Sending…" : "Notify me when it's ready →"}
+                  {submitting ? "Sending…" : "Download the free guide →"}
                 </button>
                 <p className="font-dm text-charcoal/45 text-[11px] leading-relaxed">
                   Your details are used only to send you the guide and relevant MBED updates. Unsubscribe at any time.
@@ -577,6 +630,7 @@ function PortfolioSection() {
             <div className="caption">
               <p className="font-dm text-white text-[13px] font-medium">Dentistry in Canterbury</p>
               <p className="font-dm text-white/65 text-[11px]">Fitout & Project Management — Canterbury VIC</p>
+              <p className="text-[#00897B] text-xs font-semibold mt-1 tracking-wide">7 surgeries. 6 months. 15% under market rate.</p>
             </div>
           </div>
 
@@ -592,6 +646,7 @@ function PortfolioSection() {
             <div className="caption">
               <p className="font-dm text-white text-[13px] font-medium">North Preston Specialists</p>
               <p className="font-dm text-white/65 text-[11px]">Specialist Centre — Preston VIC</p>
+              <p className="text-[#00897B] text-xs font-semibold mt-1 tracking-wide">4 specialties. SMSF acquisition. Delivered under budget.</p>
             </div>
           </div>
 
@@ -729,6 +784,104 @@ function PhilosophySection() {
   );
 }
 
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+
+const FAQ_ITEMS = [
+  {
+    q: "Do I need a planning permit to convert a residential property to a medical centre in Melbourne?",
+    a: "Almost always yes — but the pathway depends on the zone. In a General Residential Zone a planning permit is required for a change of use to a Medical Centre. In a Residential Growth Zone a permit-free pathway exists if the gross floor area is under 250 square metres, no car parking permit is required, and the site adjoins a Road Zone. In a Mixed Use Zone the requirements vary by council schedule. MBED confirms the planning pathway as part of every site assessment — before you commit to the property, not after.",
+  },
+  {
+    q: "What is the single biggest cost surprise in a residential conversion?",
+    a: "DDA-compliant accessible amenities. Most residential properties have bathrooms that are too small to comply with AS 1428.1 — the standard for accessible toilet design. A compliant accessible toilet requires approximately 2.4 by 2.0 metres minimum. Retrofitting this into an existing residential floor plan often means relocating walls, moving plumbing, and in some cases structural work. MBED assesses this on site inspection — it is the first internal measurement we take on any candidate property, because if it cannot be resolved without major structural intervention the project economics change fundamentally.",
+  },
+  {
+    q: "How long does a residential conversion take from first conversation to opening day?",
+    a: "Six to twelve months is the realistic range. A straightforward conversion in a permissive zone with no heritage overlay and adequate on-site parking can be delivered in six months — site selection, planning, design, permit, construction, and handover. A heritage building, a complex planning permit, or a multi-disciplinary practice with greater clinical complexity adds time. MBED delivered the Canterbury dental conversion — a heritage-listed building with seven surgeries — in six months. The timeline is a product of how thoroughly the risks are resolved before the project begins.",
+  },
+  {
+    q: "What is open book construction management and why does it matter?",
+    a: "Open book construction management means the client sees every cost — every trade quote, every invoice, every variation — without markup or bundled contingency. MBED manages the project on your behalf, but you own the financial transparency. You know what each trade costs, you can introduce your own suppliers where it creates value, and you are not paying a fixed-price builder's margin on work you could have procured yourself. On the Canterbury project this approach delivered a 15% saving against comparable fixed-price quotes for the same scope.",
+  },
+  {
+    q: "Can I buy a medical property through my self-managed superannuation fund?",
+    a: "Yes — and it is one of the most effective structures available to specialist practitioners. A commercial property occupied by your own practice is a permitted investment for an SMSF under certain conditions. The compliance obligations are significant: trustee responsibilities, borrowing restrictions under a limited recourse borrowing arrangement, and ATO compliance requirements that apply throughout the life of the investment. MBED coordinated exactly this structure for a North Preston specialist centre — four specialties, cold shell fitout, acquisition and delivery both achieved under market rate. The key is having the financial, legal, and advisory disciplines coordinated from the outset, not assembled mid-transaction.",
+  },
+  {
+    q: "What is the difference between MBED and a medical fitout contractor?",
+    a: "A fitout contractor arrives after the property decision is made, the lease is signed, and the brief is written. MBED arrives before any of that — when the options are still open, the risks are still manageable, and the decisions that will shape every subsequent cost are still being formed. MBED is independent, which means the advice is directed entirely at your outcome. A contractor's advice is directed at securing the work. That is not a criticism — it is a structural difference. If the site cannot support your clinical model, MBED will tell you before you commit. A contractor will price the remediation after you have.",
+  },
+  {
+    q: "Does MBED work on commercial tenancy fitouts as well as residential conversions?",
+    a: "Yes. The North Preston specialist centre was a cold shell commercial tenancy within a mixed-use development — not a residential conversion. The same principles apply: independent advisory from site selection through to handover, open book cost management where appropriate, and a single coordinated engagement that covers strategy, acquisition, financial structure, compliance, design, and delivery. The residential conversion pathway is one of several ways MBED works with specialist practices — it is the most overlooked, which is why it anchors the free guide.",
+  },
+  {
+    q: "Do heritage overlays make a conversion impossible?",
+    a: "Rarely impossible — but always more complex and potentially more expensive. A heritage overlay requires planning approval for works that affect the heritage fabric, and depending on the statement of significance this can constrain everything from the entrance design to plant and equipment placement. The risk is not that heritage kills the project — it is that heritage costs are discovered after commitment rather than assessed before. MBED conducted a full heritage compliance review on the Canterbury project before exchange, which meant every cost was known and budgeted. The project was delivered without a single heritage-related surprise.",
+  },
+  {
+    q: "How does car parking work for a medical centre in a residential zone?",
+    a: "Car parking is one of the most common triggers for a planning permit and one of the most common reasons a conversion becomes unworkable. Under Victoria's Amendment VC277 (December 2025), the parking requirement is now determined by a PTAL category system — the category assigned to your site on the Car Parking Requirement Maps determines the minimum spaces required. Sites in Category 4 areas have no minimum requirement. Sites within 400 metres of the Principal Public Transport Network attract reduced rates. Where the required number of spaces cannot be met on title, a planning permit and a Car Parking Demand Assessment are required. MBED assesses this as part of every site review.",
+  },
+  {
+    q: "What does MBED cost and how does the engagement work?",
+    a: "The engagement begins with a fifteen-minute practice growth consultation — no cost, no obligation. MBED then proposes a scope and fee structure calibrated to the specific project. For full advisory engagements covering strategy, acquisition, compliance, and delivery, fees are structured as a fixed engagement fee rather than a percentage of project cost — which means MBED's incentive is the quality of your outcome, not the size of your budget. The first conversation costs nothing. Book one at the link below.",
+  },
+];
+
+function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  function toggle(i: number) {
+    setOpenIndex(openIndex === i ? null : i);
+  }
+
+  return (
+    <section id="faq" className="bg-white py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <p className="section-tag text-stone mb-5">COMMON QUESTIONS</p>
+        <h2 className="heading-display text-charcoal text-3xl lg:text-4xl leading-snug mb-12">
+          What specialists ask before they call.
+        </h2>
+        <div className="divide-y divide-charcoal/10 max-w-3xl">
+          {FAQ_ITEMS.map((item, i) => (
+            <div key={i}>
+              <button
+                onClick={() => toggle(i)}
+                className="w-full flex items-center justify-between gap-6 py-5 text-left group"
+                aria-expanded={openIndex === i}
+              >
+                <span className="font-dm text-charcoal text-[14px] leading-snug font-medium group-hover:text-stone transition-colors">
+                  {item.q}
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className={`w-4 h-4 shrink-0 text-[#00897B] transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+              {openIndex === i && (
+                <div className="pb-6">
+                  <p className="font-dm text-charcoal/70 text-[14px] leading-relaxed">
+                    {item.a}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
 const PRACTICE_TYPES = [
@@ -800,6 +953,37 @@ function ContactSection() {
   return (
     <section id="contact" className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
+
+        {/* Two-column intro row above the form */}
+        <div className="grid lg:grid-cols-2 gap-10 mb-14">
+          {/* Left — process steps */}
+          <div className="space-y-3 font-dm text-sm text-gray-700 leading-relaxed">
+            <p>
+              <span className="text-[#00897B] font-medium">01 —</span> You send a message or book directly.
+            </p>
+            <p>
+              <span className="text-[#00897B] font-medium">02 —</span> MBED responds within one business day.
+            </p>
+            <p>
+              <span className="text-[#00897B] font-medium">03 —</span> A fifteen-minute call. No pitch. Just clarity.
+            </p>
+          </div>
+
+          {/* Right — direct booking */}
+          <div className="bg-[#F5F5F0] p-6 rounded-sm flex flex-col items-center text-center">
+            <h3 className="font-dm text-charcoal text-[15px] font-medium mb-2">Prefer to book directly?</h3>
+            <p className="font-dm text-charcoal/60 text-[13px] mb-5">Skip the form. Choose a time that suits you.</p>
+            <a
+              href={HUBSPOT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-dm text-[13px] tracking-wide border border-[#111111] px-5 py-2.5 hover:bg-[#111111] hover:text-white transition-colors duration-200"
+            >
+              Book a 15-minute call →
+            </a>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left */}
           <div>
@@ -947,21 +1131,33 @@ function Footer() {
                   hello@mbed.com.au
                 </a>
               </li>
-              <li>Melbourne, Victoria, Australia</li>
+              <li>
+                <a href="tel:+61425764854" className="hover:text-white transition-colors">
+                  +61 425 764 854
+                </a>
+              </li>
+              <li>Unit 1, 323 Ingles Street, Port Melbourne VIC 3207</li>
               <li>
                 <a href="https://mbed.com.au" className="hover:text-white transition-colors">
                   mbed.com.au
                 </a>
               </li>
+              <li>ABN 89 154 317 736</li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-6">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p className="font-dm text-white/30 text-[11px]">
             &copy; 2026 MBED. All rights reserved.
           </p>
+          <a
+            href="/privacy"
+            className="font-dm text-white/30 text-[11px] hover:text-white/60 transition-colors"
+          >
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>
@@ -985,6 +1181,7 @@ export default function Home() {
         <PortfolioSection />
         <ServeSection />
         <PhilosophySection />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />
