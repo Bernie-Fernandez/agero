@@ -56,6 +56,16 @@ function monthKey(d: Date): string {
   return d.toISOString().slice(0, 7);
 }
 
+// AEDT-tolerant month key: rows stored as midnight AEST/AEDT appear one month
+// behind when read through a non-UTC runtime (local dev on Melbourne time).
+// If UTC and AEDT (UTC+11 max) disagree on the calendar month, use the AEDT key.
+const AEDT_OFFSET_MS = 11 * 3600 * 1000;
+function monthKeyLocal(d: Date): string {
+  const utcKey  = d.toISOString().slice(0, 7);
+  const aedtKey = new Date(d.getTime() + AEDT_OFFSET_MS).toISOString().slice(0, 7);
+  return utcKey !== aedtKey ? aedtKey : utcKey;
+}
+
 // ─── WIP calculation for a single project ────────────────────────────────────
 
 export function calcWIP(p: FinanceProjectRow, targetExitMarginDecimal: number) {
@@ -258,13 +268,14 @@ export async function calcConsolidatedPnL(organisationId: string, reportMonth: D
     prisma.securedForecast.findMany({ where: { organisationId, financialYear: fy } }),
   ]);
 
-  const thisMonthPnl = pnlRecords.find((p) => monthKey(p.reportMonth) === monthKey(reportMonth));
+  const thisMonthPnl = pnlRecords.find((p) => monthKeyLocal(p.reportMonth) === monthKey(reportMonth));
 
-  // YTD actuals from XeroPnL (summed across all YTD months)
+  // YTD actuals from XeroPnL (summed across all YTD months).
+  // monthKeyLocal handles AEDT-shifted timestamps on local dev machines.
   type PnLRow = typeof pnlRecords[number];
   const sumYtd = (field: keyof PnLRow) =>
     ytdMonths.reduce((s, m) => {
-      const rec = pnlRecords.find((p) => monthKey(p.reportMonth) === monthKey(m));
+      const rec = pnlRecords.find((p) => monthKeyLocal(p.reportMonth) === monthKey(m));
       return s + (rec ? n(rec[field]) : 0);
     }, 0);
 
