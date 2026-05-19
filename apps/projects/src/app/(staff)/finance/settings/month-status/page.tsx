@@ -4,10 +4,13 @@ import MonthStatusClient from './MonthStatusClient';
 
 function buildMonthRange() {
   const now = new Date();
+  const year = now.getUTCFullYear();
+  const month = now.getUTCMonth(); // 0-indexed; July = 6
+  // Australian FY: July–June. If before July, FY started the previous calendar year.
+  const fyStartYear = month < 6 ? year - 1 : year;
   const months: Date[] = [];
-  for (let i = -5; i <= 2; i++) {
-    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + i, 1));
-    months.push(d);
+  for (let i = 0; i < 12; i++) {
+    months.push(new Date(Date.UTC(fyStartYear, 6 + i, 1)));
   }
   return months;
 }
