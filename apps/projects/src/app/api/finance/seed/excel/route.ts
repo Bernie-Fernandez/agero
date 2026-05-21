@@ -109,27 +109,23 @@ export async function POST(req: NextRequest) {
       const totalCost = sc + cred + lab;
       const wip = ct - totalCost;
 
-      await prisma.financeProject.upsert({
-        where: { id: `placeholder-${jobNumber}` },
-        update: {
-          projectName, status, forecastContractValue: cv.toFixed(2), forecastFinalCosts: fc.toFixed(2),
-          riskAndOpportunity: ro.toFixed(2), forecastMarginDollars: marginDollars.toFixed(2),
-          forecastMarginPercent: marginPct.toFixed(6), claimTotal: ct.toFixed(2),
-          claimRetention: cr.toFixed(2), subClaims: sc.toFixed(2), subRetention: sr.toFixed(2),
-          creditors: cred.toFixed(2), labour: lab.toFixed(2), totalCost: totalCost.toFixed(2), wip: wip.toFixed(2),
-        },
-        create: {
-          id: `placeholder-${jobNumber}`,
-          organisationId: orgId,
-          reportMonth: MARCH_2026,
-          jobNumber, projectName, status,
-          forecastContractValue: cv.toFixed(2), forecastFinalCosts: fc.toFixed(2),
-          riskAndOpportunity: ro.toFixed(2), forecastMarginDollars: marginDollars.toFixed(2),
-          forecastMarginPercent: marginPct.toFixed(6), claimTotal: ct.toFixed(2),
-          claimRetention: cr.toFixed(2), subClaims: sc.toFixed(2), subRetention: sr.toFixed(2),
-          creditors: cred.toFixed(2), labour: lab.toFixed(2), totalCost: totalCost.toFixed(2), wip: wip.toFixed(2),
-        },
+      const existingProject = await prisma.financeProject.findFirst({
+        where: { organisationId: orgId, reportMonth: MARCH_2026, jobNumber },
       });
+      const projectData = {
+        projectName, status, forecastContractValue: cv.toFixed(2), forecastFinalCosts: fc.toFixed(2),
+        riskAndOpportunity: ro.toFixed(2), forecastMarginDollars: marginDollars.toFixed(2),
+        forecastMarginPercent: marginPct.toFixed(6), claimTotal: ct.toFixed(2),
+        claimRetention: cr.toFixed(2), subClaims: sc.toFixed(2), subRetention: sr.toFixed(2),
+        creditors: cred.toFixed(2), labour: lab.toFixed(2), totalCost: totalCost.toFixed(2), wip: wip.toFixed(2),
+      };
+      if (existingProject) {
+        await prisma.financeProject.update({ where: { id: existingProject.id }, data: projectData });
+      } else {
+        await prisma.financeProject.create({
+          data: { organisationId: orgId, reportMonth: MARCH_2026, jobNumber, ...projectData },
+        });
+      }
       count++;
     }
     results.projects = `${count} seeded`;

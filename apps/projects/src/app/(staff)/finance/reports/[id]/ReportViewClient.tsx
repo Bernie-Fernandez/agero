@@ -646,33 +646,34 @@ export default function ReportViewClient({ report: initialReport, calculations }
 
       {/* Section 6 — Unsecured Forecast */}
       <ReportSection title={`Unsecured Forecast — FY${unsecured.financialYear}/${unsecured.financialYear + 1}`} sectionKey="unsecured_forecast" reportId={report.id} sections={sections} isFinal={isFinal} onSectionUpdate={handleSectionUpdate}>
-        <div className="overflow-auto">
-          <table className="w-full text-sm min-w-[900px]">
-            <thead className="bg-zinc-50 border-b border-zinc-200">
-              <tr>
-                <TH>Row</TH>
-                {MONTH_LABELS.map((m) => <TH key={m} right>{m}</TH>)}
-                <TH right>Next Yr</TH>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-100">
-              {[
-                { label: '100% Revenue', data: unsecured.fullRevenue, nextYear: unsecured.nextYearFull },
-                { label: 'Probability-Weighted Revenue', data: unsecured.weightedRevenue, nextYear: unsecured.nextYearWeighted },
-                { label: 'Probability-Weighted Margin', data: unsecured.weightedMargin, nextYear: unsecured.nextYearMargin },
-              ].map((row, i) => (
-                <tr key={row.label} className={i % 2 === 0 ? '' : 'bg-zinc-50/50'}>
-                  <TD bold>{row.label}</TD>
-                  {MONTHS.map((m) => <TD key={m} right>{fmt(row.data[m] ?? 0)}</TD>)}
-                  <TD right>{fmt(row.nextYear)}</TD>
+        {Object.values(unsecured.fullRevenue).every((v) => (v as number) === 0) ? (
+          <p className="text-sm text-zinc-400 py-4">Planned Work pipeline data will appear here once the Planned Work module is configured.</p>
+        ) : (
+          <div className="overflow-auto">
+            <table className="w-full text-sm min-w-[900px]">
+              <thead className="bg-zinc-50 border-b border-zinc-200">
+                <tr>
+                  <TH>Row</TH>
+                  {MONTH_LABELS.map((m) => <TH key={m} right>{m}</TH>)}
+                  <TH right>Next Yr</TH>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          {Object.values(unsecured.fullRevenue).every((v) => (v as number) === 0) && (
-            <p className="text-xs text-zinc-400 mt-2">No planned deal revenue records found for this financial year. Add deals in the Planned Work section to populate this table.</p>
-          )}
-        </div>
+              </thead>
+              <tbody className="divide-y divide-zinc-100">
+                {[
+                  { label: '100% Revenue', data: unsecured.fullRevenue, nextYear: unsecured.nextYearFull },
+                  { label: 'Probability-Weighted Revenue', data: unsecured.weightedRevenue, nextYear: unsecured.nextYearWeighted },
+                  { label: 'Probability-Weighted Margin', data: unsecured.weightedMargin, nextYear: unsecured.nextYearMargin },
+                ].map((row, i) => (
+                  <tr key={row.label} className={i % 2 === 0 ? '' : 'bg-zinc-50/50'}>
+                    <TD bold>{row.label}</TD>
+                    {MONTHS.map((m) => <TD key={m} right>{fmt(row.data[m] ?? 0)}</TD>)}
+                    <TD right>{fmt(row.nextYear)}</TD>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </ReportSection>
 
       {/* Section 7 — Month Ahead */}
