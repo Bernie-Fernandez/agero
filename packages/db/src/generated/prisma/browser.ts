@@ -622,3 +622,8 @@ export type EstimateLineScope = Prisma.EstimateLineScopeModel
  * 
  */
 export type SubcontractorInvitation = Prisma.SubcontractorInvitationModel
+/**
+ * Model UnsecuredOpportunity
+ * 
+ */
+export type UnsecuredOpportunity = Prisma.UnsecuredOpportunityModel

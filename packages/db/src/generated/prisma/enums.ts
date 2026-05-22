@@ -629,3 +629,13 @@ export const ManagementReportStatus = {
 } as const
 
 export type ManagementReportStatus = (typeof ManagementReportStatus)[keyof typeof ManagementReportStatus]
+
+
+export const UnsecuredOpportunityStatus = {
+  UNSECURED: 'UNSECURED',
+  RESEARCH: 'RESEARCH',
+  VALIDATED: 'VALIDATED',
+  QUALIFIED: 'QUALIFIED'
+} as const
+
+export type UnsecuredOpportunityStatus = (typeof UnsecuredOpportunityStatus)[keyof typeof UnsecuredOpportunityStatus]

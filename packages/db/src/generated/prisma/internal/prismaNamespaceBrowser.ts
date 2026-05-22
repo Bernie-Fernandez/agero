@@ -171,7 +171,8 @@ export const ModelName = {
   TakeoffMeasurement: 'TakeoffMeasurement',
   ScopeTemplate: 'ScopeTemplate',
   EstimateLineScope: 'EstimateLineScope',
-  SubcontractorInvitation: 'SubcontractorInvitation'
+  SubcontractorInvitation: 'SubcontractorInvitation',
+  UnsecuredOpportunity: 'UnsecuredOpportunity'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2409,6 +2410,37 @@ export const SubcontractorInvitationScalarFieldEnum = {
 } as const
 
 export type SubcontractorInvitationScalarFieldEnum = (typeof SubcontractorInvitationScalarFieldEnum)[keyof typeof SubcontractorInvitationScalarFieldEnum]
+
+
+export const UnsecuredOpportunityScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  status: 'status',
+  projectName: 'projectName',
+  contractValue: 'contractValue',
+  forecastMarginPct: 'forecastMarginPct',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYear: 'nextYear',
+  sortOrder: 'sortOrder',
+  notes: 'notes',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnsecuredOpportunityScalarFieldEnum = (typeof UnsecuredOpportunityScalarFieldEnum)[keyof typeof UnsecuredOpportunityScalarFieldEnum]
 
 
 export const SortOrder = {

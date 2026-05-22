@@ -647,7 +647,7 @@ export default function ReportViewClient({ report: initialReport, calculations }
       {/* Section 6 — Unsecured Forecast */}
       <ReportSection title={`Unsecured Forecast — FY${unsecured.financialYear}/${unsecured.financialYear + 1}`} sectionKey="unsecured_forecast" reportId={report.id} sections={sections} isFinal={isFinal} onSectionUpdate={handleSectionUpdate}>
         {Object.values(unsecured.fullRevenue).every((v) => (v as number) === 0) ? (
-          <p className="text-sm text-zinc-400 py-4">Planned Work pipeline data will appear here once the Planned Work module is configured.</p>
+          <p className="text-sm text-zinc-400 py-4">No unsecured opportunities entered for this period. Add opportunities in Finance → Planned Work.</p>
         ) : (
           <div className="overflow-auto">
             <table className="w-full text-sm min-w-[900px]">

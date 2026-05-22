@@ -275,6 +275,7 @@ model Organisation {
   managementReports     ManagementReport[]
   wipSchedules          WIPSchedule[]
   plannedDealRevenues   PlannedDealRevenue[]
+  unsecuredOpportunities UnsecuredOpportunity[]
   referenceLibraryItems ReferenceLibraryItem[]
   scopeTemplates        ScopeTemplate[]
 
@@ -3506,5 +3507,47 @@ model SubcontractorInvitation {
 
   @@index([estimateId])
   @@map("subcontractor_invitations")
+  @@schema("projects")
+}
+
+enum UnsecuredOpportunityStatus {
+  UNSECURED
+  RESEARCH
+  VALIDATED
+  QUALIFIED
+
+  @@schema("projects")
+}
+
+model UnsecuredOpportunity {
+  id                String                     @id @default(uuid()) @db.Uuid
+  organisationId    String                     @map("organisation_id") @db.Uuid
+  organisation      Organisation               @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financialYear     Int                        @map("financial_year")
+  status            UnsecuredOpportunityStatus @default(UNSECURED)
+  projectName       String                     @map("project_name")
+  contractValue     Decimal?                   @map("contract_value") @db.Decimal(15, 2)
+  forecastMarginPct Decimal?                   @map("forecast_margin_pct") @db.Decimal(10, 6)
+  jul               Decimal                    @default(0) @db.Decimal(14, 2)
+  aug               Decimal                    @default(0) @db.Decimal(14, 2)
+  sep               Decimal                    @default(0) @db.Decimal(14, 2)
+  oct               Decimal                    @default(0) @db.Decimal(14, 2)
+  nov               Decimal                    @default(0) @db.Decimal(14, 2)
+  dec               Decimal                    @default(0) @db.Decimal(14, 2)
+  jan               Decimal                    @default(0) @db.Decimal(14, 2)
+  feb               Decimal                    @default(0) @db.Decimal(14, 2)
+  mar               Decimal                    @default(0) @db.Decimal(14, 2)
+  apr               Decimal                    @default(0) @db.Decimal(14, 2)
+  may               Decimal                    @default(0) @db.Decimal(14, 2)
+  jun               Decimal                    @default(0) @db.Decimal(14, 2)
+  nextYear          Decimal                    @default(0) @map("next_year") @db.Decimal(14, 2)
+  sortOrder         Int                        @default(0) @map("sort_order")
+  notes             String?                    @db.Text
+  deletedAt         DateTime?                  @map("deleted_at")
+  createdAt         DateTime                   @default(now()) @map("created_at")
+  updatedAt         DateTime                   @updatedAt @map("updated_at")
+
+  @@index([organisationId, financialYear])
+  @@map("unsecured_opportunities")
   @@schema("projects")
 }

@@ -472,8 +472,8 @@ export async function calcProjectFinancialSummary(
 
 export async function calcUnsecuredForecast(organisationId: string, reportMonth: Date) {
   const fy = getFinancialYear(reportMonth);
-  const deals = await prisma.plannedDealRevenue.findMany({
-    where: { organisationId, financialYear: fy },
+  const opportunities = await prisma.unsecuredOpportunity.findMany({
+    where: { organisationId, financialYear: fy, deletedAt: null },
   });
 
   const MONTHS = ['jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr', 'may', 'jun'] as const;
@@ -491,18 +491,17 @@ export async function calcUnsecuredForecast(organisationId: string, reportMonth:
     weightedMargin[m] = 0;
   }
 
-  for (const d of deals) {
-    const prob = n(d.probability);
-    const marginPct = n(d.marginPercent);
+  for (const opp of opportunities) {
+    const marginPct = n(opp.forecastMarginPct);
     for (const m of MONTHS) {
-      const rev = n(d[m]);
+      const rev = n(opp[m]);
       fullRevenue[m] += rev;
-      weightedRevenue[m] += rev * prob;
-      weightedMargin[m] += rev * prob * marginPct;
+      weightedRevenue[m] += rev;
+      weightedMargin[m] += rev * marginPct;
     }
-    nextYearFull += n(d.nextYear);
-    nextYearWeighted += n(d.nextYear) * prob;
-    nextYearMargin += n(d.nextYear) * prob * marginPct;
+    nextYearFull += n(opp.nextYear);
+    nextYearWeighted += n(opp.nextYear);
+    nextYearMargin += n(opp.nextYear) * marginPct;
   }
 
   return { fullRevenue, weightedRevenue, weightedMargin, nextYearFull, nextYearWeighted, nextYearMargin, financialYear: fy };

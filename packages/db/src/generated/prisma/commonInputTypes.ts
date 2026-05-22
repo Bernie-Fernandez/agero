@@ -1479,6 +1479,23 @@ export type EnumWIPFlagWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumWIPFlagFilter<$PrismaModel>
 }
 
+export type EnumUnsecuredOpportunityStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.UnsecuredOpportunityStatus | Prisma.EnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel> | $Enums.UnsecuredOpportunityStatus
+}
+
+export type EnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UnsecuredOpportunityStatus | Prisma.EnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaModel> | $Enums.UnsecuredOpportunityStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2897,6 +2914,23 @@ export type NestedEnumWIPFlagWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumWIPFlagFilter<$PrismaModel>
   _max?: Prisma.NestedEnumWIPFlagFilter<$PrismaModel>
+}
+
+export type NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.UnsecuredOpportunityStatus | Prisma.EnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel> | $Enums.UnsecuredOpportunityStatus
+}
+
+export type NestedEnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.UnsecuredOpportunityStatus | Prisma.EnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.UnsecuredOpportunityStatus[] | Prisma.ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaModel> | $Enums.UnsecuredOpportunityStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
 }
 
 

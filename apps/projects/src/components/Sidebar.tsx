@@ -229,7 +229,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <StubbedItem label="Dashboard" depth={1} />
       <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
-      <StubbedItem label="Planned Work" depth={1} />
+      <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/reports" label="Reports" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />

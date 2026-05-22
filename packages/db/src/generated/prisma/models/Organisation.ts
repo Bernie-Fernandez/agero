@@ -275,6 +275,7 @@ export type OrganisationWhereInput = {
   managementReports?: Prisma.ManagementReportListRelationFilter
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
   plannedDealRevenues?: Prisma.PlannedDealRevenueListRelationFilter
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityListRelationFilter
   referenceLibraryItems?: Prisma.ReferenceLibraryItemListRelationFilter
   scopeTemplates?: Prisma.ScopeTemplateListRelationFilter
 }
@@ -329,6 +330,7 @@ export type OrganisationOrderByWithRelationInput = {
   managementReports?: Prisma.ManagementReportOrderByRelationAggregateInput
   wipSchedules?: Prisma.WIPScheduleOrderByRelationAggregateInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueOrderByRelationAggregateInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityOrderByRelationAggregateInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemOrderByRelationAggregateInput
   scopeTemplates?: Prisma.ScopeTemplateOrderByRelationAggregateInput
 }
@@ -386,6 +388,7 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   managementReports?: Prisma.ManagementReportListRelationFilter
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
   plannedDealRevenues?: Prisma.PlannedDealRevenueListRelationFilter
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityListRelationFilter
   referenceLibraryItems?: Prisma.ReferenceLibraryItemListRelationFilter
   scopeTemplates?: Prisma.ScopeTemplateListRelationFilter
 }, "id">
@@ -476,6 +479,7 @@ export type OrganisationCreateInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -530,6 +534,7 @@ export type OrganisationUncheckedCreateInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -584,6 +589,7 @@ export type OrganisationUpdateInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -638,6 +644,7 @@ export type OrganisationUncheckedUpdateInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -1295,6 +1302,20 @@ export type OrganisationUpdateOneRequiredWithoutScopeTemplatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutScopeTemplatesInput, Prisma.OrganisationUpdateWithoutScopeTemplatesInput>, Prisma.OrganisationUncheckedUpdateWithoutScopeTemplatesInput>
 }
 
+export type OrganisationCreateNestedOneWithoutUnsecuredOpportunitiesInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutUnsecuredOpportunitiesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutUnsecuredOpportunitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutUnsecuredOpportunitiesInput
+  upsert?: Prisma.OrganisationUpsertWithoutUnsecuredOpportunitiesInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUpdateWithoutUnsecuredOpportunitiesInput>, Prisma.OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput>
+}
+
 export type OrganisationCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -1344,6 +1365,7 @@ export type OrganisationCreateWithoutUsersInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -1397,6 +1419,7 @@ export type OrganisationUncheckedCreateWithoutUsersInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -1466,6 +1489,7 @@ export type OrganisationUpdateWithoutUsersInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -1519,6 +1543,7 @@ export type OrganisationUncheckedUpdateWithoutUsersInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -1572,6 +1597,7 @@ export type OrganisationCreateWithoutProjectsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -1625,6 +1651,7 @@ export type OrganisationUncheckedCreateWithoutProjectsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -1694,6 +1721,7 @@ export type OrganisationUpdateWithoutProjectsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -1747,6 +1775,7 @@ export type OrganisationUncheckedUpdateWithoutProjectsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -1800,6 +1829,7 @@ export type OrganisationCreateWithoutCompaniesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -1853,6 +1883,7 @@ export type OrganisationUncheckedCreateWithoutCompaniesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -1922,6 +1953,7 @@ export type OrganisationUpdateWithoutCompaniesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -1975,6 +2007,7 @@ export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -2028,6 +2061,7 @@ export type OrganisationCreateWithoutContactsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -2081,6 +2115,7 @@ export type OrganisationUncheckedCreateWithoutContactsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -2150,6 +2185,7 @@ export type OrganisationUpdateWithoutContactsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -2203,6 +2239,7 @@ export type OrganisationUncheckedUpdateWithoutContactsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -2256,6 +2293,7 @@ export type OrganisationCreateWithoutCostCodesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -2309,6 +2347,7 @@ export type OrganisationUncheckedCreateWithoutCostCodesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -2378,6 +2417,7 @@ export type OrganisationUpdateWithoutCostCodesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -2431,6 +2471,7 @@ export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -2484,6 +2525,7 @@ export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -2537,6 +2579,7 @@ export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -2606,6 +2649,7 @@ export type OrganisationUpdateWithoutInsurancePolicyTypesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -2659,6 +2703,7 @@ export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -2712,6 +2757,7 @@ export type OrganisationCreateWithoutCommunicationsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -2765,6 +2811,7 @@ export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -2834,6 +2881,7 @@ export type OrganisationUpdateWithoutCommunicationsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -2887,6 +2935,7 @@ export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -2940,6 +2989,7 @@ export type OrganisationCreateWithoutNotificationsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -2993,6 +3043,7 @@ export type OrganisationUncheckedCreateWithoutNotificationsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -3062,6 +3113,7 @@ export type OrganisationUpdateWithoutNotificationsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -3115,6 +3167,7 @@ export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -3168,6 +3221,7 @@ export type OrganisationCreateWithoutAlertThresholdsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -3221,6 +3275,7 @@ export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -3290,6 +3345,7 @@ export type OrganisationUpdateWithoutAlertThresholdsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -3343,6 +3399,7 @@ export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -3396,6 +3453,7 @@ export type OrganisationCreateWithoutContactTypesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -3449,6 +3507,7 @@ export type OrganisationUncheckedCreateWithoutContactTypesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -3518,6 +3577,7 @@ export type OrganisationUpdateWithoutContactTypesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -3571,6 +3631,7 @@ export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -3624,6 +3685,7 @@ export type OrganisationCreateWithoutAssociationLabelsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -3677,6 +3739,7 @@ export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -3746,6 +3809,7 @@ export type OrganisationUpdateWithoutAssociationLabelsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -3799,6 +3863,7 @@ export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -3852,6 +3917,7 @@ export type OrganisationCreateWithoutPaymentTermsListInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -3905,6 +3971,7 @@ export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -3974,6 +4041,7 @@ export type OrganisationUpdateWithoutPaymentTermsListInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -4027,6 +4095,7 @@ export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -4080,6 +4149,7 @@ export type OrganisationCreateWithoutIncidentsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -4133,6 +4203,7 @@ export type OrganisationUncheckedCreateWithoutIncidentsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -4202,6 +4273,7 @@ export type OrganisationUpdateWithoutIncidentsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -4255,6 +4327,7 @@ export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -4308,6 +4381,7 @@ export type OrganisationCreateWithoutHazardsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -4361,6 +4435,7 @@ export type OrganisationUncheckedCreateWithoutHazardsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -4430,6 +4505,7 @@ export type OrganisationUpdateWithoutHazardsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -4483,6 +4559,7 @@ export type OrganisationUncheckedUpdateWithoutHazardsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -4536,6 +4613,7 @@ export type OrganisationCreateWithoutPermitsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -4589,6 +4667,7 @@ export type OrganisationUncheckedCreateWithoutPermitsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -4658,6 +4737,7 @@ export type OrganisationUpdateWithoutPermitsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -4711,6 +4791,7 @@ export type OrganisationUncheckedUpdateWithoutPermitsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -4764,6 +4845,7 @@ export type OrganisationCreateWithoutEmergencyContactsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -4817,6 +4899,7 @@ export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -4886,6 +4969,7 @@ export type OrganisationUpdateWithoutEmergencyContactsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -4939,6 +5023,7 @@ export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -4992,6 +5077,7 @@ export type OrganisationCreateWithoutSafetyInspectionsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -5045,6 +5131,7 @@ export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -5114,6 +5201,7 @@ export type OrganisationUpdateWithoutSafetyInspectionsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -5167,6 +5255,7 @@ export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -5220,6 +5309,7 @@ export type OrganisationCreateWithoutDesignSourcesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -5273,6 +5363,7 @@ export type OrganisationUncheckedCreateWithoutDesignSourcesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -5342,6 +5433,7 @@ export type OrganisationUpdateWithoutDesignSourcesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -5395,6 +5487,7 @@ export type OrganisationUncheckedUpdateWithoutDesignSourcesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -5448,6 +5541,7 @@ export type OrganisationCreateWithoutDesignGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -5501,6 +5595,7 @@ export type OrganisationUncheckedCreateWithoutDesignGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -5570,6 +5665,7 @@ export type OrganisationUpdateWithoutDesignGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -5623,6 +5719,7 @@ export type OrganisationUncheckedUpdateWithoutDesignGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -5676,6 +5773,7 @@ export type OrganisationCreateWithoutDesignNonGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -5729,6 +5827,7 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -5798,6 +5897,7 @@ export type OrganisationUpdateWithoutDesignNonGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -5851,6 +5951,7 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalSettingsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -5904,6 +6005,7 @@ export type OrganisationCreateWithoutDesignNonGlobalProposalsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -5957,6 +6059,7 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalProposalsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -6026,6 +6129,7 @@ export type OrganisationUpdateWithoutDesignNonGlobalProposalsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -6079,6 +6183,7 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalProposalsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -6132,6 +6237,7 @@ export type OrganisationCreateWithoutDesignExpiryConfigInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -6185,6 +6291,7 @@ export type OrganisationUncheckedCreateWithoutDesignExpiryConfigInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -6254,6 +6361,7 @@ export type OrganisationUpdateWithoutDesignExpiryConfigInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -6307,6 +6415,7 @@ export type OrganisationUncheckedUpdateWithoutDesignExpiryConfigInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -6360,6 +6469,7 @@ export type OrganisationCreateWithoutDesignRssFeedsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -6413,6 +6523,7 @@ export type OrganisationUncheckedCreateWithoutDesignRssFeedsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -6482,6 +6593,7 @@ export type OrganisationUpdateWithoutDesignRssFeedsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -6535,6 +6647,7 @@ export type OrganisationUncheckedUpdateWithoutDesignRssFeedsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -6588,6 +6701,7 @@ export type OrganisationCreateWithoutDesignMonitoredUrlsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -6641,6 +6755,7 @@ export type OrganisationUncheckedCreateWithoutDesignMonitoredUrlsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -6710,6 +6825,7 @@ export type OrganisationUpdateWithoutDesignMonitoredUrlsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -6763,6 +6879,7 @@ export type OrganisationUncheckedUpdateWithoutDesignMonitoredUrlsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -6816,6 +6933,7 @@ export type OrganisationCreateWithoutDesignTrendItemsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -6869,6 +6987,7 @@ export type OrganisationUncheckedCreateWithoutDesignTrendItemsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -6938,6 +7057,7 @@ export type OrganisationUpdateWithoutDesignTrendItemsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -6991,6 +7111,7 @@ export type OrganisationUncheckedUpdateWithoutDesignTrendItemsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -7044,6 +7165,7 @@ export type OrganisationCreateWithoutDesignChatbotSessionsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -7097,6 +7219,7 @@ export type OrganisationUncheckedCreateWithoutDesignChatbotSessionsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -7166,6 +7289,7 @@ export type OrganisationUpdateWithoutDesignChatbotSessionsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -7219,6 +7343,7 @@ export type OrganisationUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -7272,6 +7397,7 @@ export type OrganisationCreateWithoutEstimatesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -7325,6 +7451,7 @@ export type OrganisationUncheckedCreateWithoutEstimatesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -7394,6 +7521,7 @@ export type OrganisationUpdateWithoutEstimatesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -7447,6 +7575,7 @@ export type OrganisationUncheckedUpdateWithoutEstimatesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -7500,6 +7629,7 @@ export type OrganisationCreateWithoutMonthEndStatusesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -7553,6 +7683,7 @@ export type OrganisationUncheckedCreateWithoutMonthEndStatusesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -7622,6 +7753,7 @@ export type OrganisationUpdateWithoutMonthEndStatusesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -7675,6 +7807,7 @@ export type OrganisationUncheckedUpdateWithoutMonthEndStatusesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -7728,6 +7861,7 @@ export type OrganisationCreateWithoutXeroConnectionInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -7781,6 +7915,7 @@ export type OrganisationUncheckedCreateWithoutXeroConnectionInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -7850,6 +7985,7 @@ export type OrganisationUpdateWithoutXeroConnectionInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -7903,6 +8039,7 @@ export type OrganisationUncheckedUpdateWithoutXeroConnectionInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -7956,6 +8093,7 @@ export type OrganisationCreateWithoutFinanceProjectsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -8009,6 +8147,7 @@ export type OrganisationUncheckedCreateWithoutFinanceProjectsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -8078,6 +8217,7 @@ export type OrganisationUpdateWithoutFinanceProjectsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -8131,6 +8271,7 @@ export type OrganisationUncheckedUpdateWithoutFinanceProjectsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -8184,6 +8325,7 @@ export type OrganisationCreateWithoutXeroPnlInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -8237,6 +8379,7 @@ export type OrganisationUncheckedCreateWithoutXeroPnlInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -8306,6 +8449,7 @@ export type OrganisationUpdateWithoutXeroPnlInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -8359,6 +8503,7 @@ export type OrganisationUncheckedUpdateWithoutXeroPnlInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -8412,6 +8557,7 @@ export type OrganisationCreateWithoutXeroBankBalancesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -8465,6 +8611,7 @@ export type OrganisationUncheckedCreateWithoutXeroBankBalancesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -8534,6 +8681,7 @@ export type OrganisationUpdateWithoutXeroBankBalancesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -8587,6 +8735,7 @@ export type OrganisationUncheckedUpdateWithoutXeroBankBalancesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -8640,6 +8789,7 @@ export type OrganisationCreateWithoutAnnualBudgetsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -8693,6 +8843,7 @@ export type OrganisationUncheckedCreateWithoutAnnualBudgetsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -8762,6 +8913,7 @@ export type OrganisationUpdateWithoutAnnualBudgetsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -8815,6 +8967,7 @@ export type OrganisationUncheckedUpdateWithoutAnnualBudgetsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -8868,6 +9021,7 @@ export type OrganisationCreateWithoutSecuredForecastsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -8921,6 +9075,7 @@ export type OrganisationUncheckedCreateWithoutSecuredForecastsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -8990,6 +9145,7 @@ export type OrganisationUpdateWithoutSecuredForecastsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -9043,6 +9199,7 @@ export type OrganisationUncheckedUpdateWithoutSecuredForecastsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -9096,6 +9253,7 @@ export type OrganisationCreateWithoutPlannedDealRevenuesInput = {
   xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -9149,6 +9307,7 @@ export type OrganisationUncheckedCreateWithoutPlannedDealRevenuesInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -9218,6 +9377,7 @@ export type OrganisationUpdateWithoutPlannedDealRevenuesInput = {
   xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -9271,6 +9431,7 @@ export type OrganisationUncheckedUpdateWithoutPlannedDealRevenuesInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -9324,6 +9485,7 @@ export type OrganisationCreateWithoutManagementReportsInput = {
   xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -9377,6 +9539,7 @@ export type OrganisationUncheckedCreateWithoutManagementReportsInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -9446,6 +9609,7 @@ export type OrganisationUpdateWithoutManagementReportsInput = {
   xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -9499,6 +9663,7 @@ export type OrganisationUncheckedUpdateWithoutManagementReportsInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -9552,6 +9717,7 @@ export type OrganisationCreateWithoutWipSchedulesInput = {
   xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
@@ -9605,6 +9771,7 @@ export type OrganisationUncheckedCreateWithoutWipSchedulesInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
@@ -9674,6 +9841,7 @@ export type OrganisationUpdateWithoutWipSchedulesInput = {
   xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
@@ -9727,6 +9895,7 @@ export type OrganisationUncheckedUpdateWithoutWipSchedulesInput = {
   xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
@@ -9781,6 +9950,7 @@ export type OrganisationCreateWithoutReferenceLibraryItemsInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
 }
 
@@ -9834,6 +10004,7 @@ export type OrganisationUncheckedCreateWithoutReferenceLibraryItemsInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
@@ -9903,6 +10074,7 @@ export type OrganisationUpdateWithoutReferenceLibraryItemsInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
 }
 
@@ -9956,6 +10128,7 @@ export type OrganisationUncheckedUpdateWithoutReferenceLibraryItemsInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
@@ -10009,6 +10182,7 @@ export type OrganisationCreateWithoutScopeTemplatesInput = {
   managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
 }
 
@@ -10062,6 +10236,7 @@ export type OrganisationUncheckedCreateWithoutScopeTemplatesInput = {
   managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
 }
 
@@ -10131,6 +10306,7 @@ export type OrganisationUpdateWithoutScopeTemplatesInput = {
   managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
 }
 
@@ -10184,7 +10360,240 @@ export type OrganisationUncheckedUpdateWithoutScopeTemplatesInput = {
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
   plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
   referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutUnsecuredOpportunitiesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+  managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
+  wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
+  scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+  managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
+  scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutUnsecuredOpportunitiesInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput>
+}
+
+export type OrganisationUpsertWithoutUnsecuredOpportunitiesInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutUnsecuredOpportunitiesInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutUnsecuredOpportunitiesInput, Prisma.OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput>
+}
+
+export type OrganisationUpdateWithoutUnsecuredOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+  managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
+  wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
+  scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+  managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
 }
 
 
@@ -10228,6 +10637,7 @@ export type OrganisationCountOutputType = {
   managementReports: number
   wipSchedules: number
   plannedDealRevenues: number
+  unsecuredOpportunities: number
   referenceLibraryItems: number
   scopeTemplates: number
 }
@@ -10268,6 +10678,7 @@ export type OrganisationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   managementReports?: boolean | OrganisationCountOutputTypeCountManagementReportsArgs
   wipSchedules?: boolean | OrganisationCountOutputTypeCountWipSchedulesArgs
   plannedDealRevenues?: boolean | OrganisationCountOutputTypeCountPlannedDealRevenuesArgs
+  unsecuredOpportunities?: boolean | OrganisationCountOutputTypeCountUnsecuredOpportunitiesArgs
   referenceLibraryItems?: boolean | OrganisationCountOutputTypeCountReferenceLibraryItemsArgs
   scopeTemplates?: boolean | OrganisationCountOutputTypeCountScopeTemplatesArgs
 }
@@ -10530,6 +10941,13 @@ export type OrganisationCountOutputTypeCountPlannedDealRevenuesArgs<ExtArgs exte
 /**
  * OrganisationCountOutputType without action
  */
+export type OrganisationCountOutputTypeCountUnsecuredOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UnsecuredOpportunityWhereInput
+}
+
+/**
+ * OrganisationCountOutputType without action
+ */
 export type OrganisationCountOutputTypeCountReferenceLibraryItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReferenceLibraryItemWhereInput
 }
@@ -10592,6 +11010,7 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   managementReports?: boolean | Prisma.Organisation$managementReportsArgs<ExtArgs>
   wipSchedules?: boolean | Prisma.Organisation$wipSchedulesArgs<ExtArgs>
   plannedDealRevenues?: boolean | Prisma.Organisation$plannedDealRevenuesArgs<ExtArgs>
+  unsecuredOpportunities?: boolean | Prisma.Organisation$unsecuredOpportunitiesArgs<ExtArgs>
   referenceLibraryItems?: boolean | Prisma.Organisation$referenceLibraryItemsArgs<ExtArgs>
   scopeTemplates?: boolean | Prisma.Organisation$scopeTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
@@ -10681,6 +11100,7 @@ export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   managementReports?: boolean | Prisma.Organisation$managementReportsArgs<ExtArgs>
   wipSchedules?: boolean | Prisma.Organisation$wipSchedulesArgs<ExtArgs>
   plannedDealRevenues?: boolean | Prisma.Organisation$plannedDealRevenuesArgs<ExtArgs>
+  unsecuredOpportunities?: boolean | Prisma.Organisation$unsecuredOpportunitiesArgs<ExtArgs>
   referenceLibraryItems?: boolean | Prisma.Organisation$referenceLibraryItemsArgs<ExtArgs>
   scopeTemplates?: boolean | Prisma.Organisation$scopeTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
@@ -10728,6 +11148,7 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     managementReports: Prisma.$ManagementReportPayload<ExtArgs>[]
     wipSchedules: Prisma.$WIPSchedulePayload<ExtArgs>[]
     plannedDealRevenues: Prisma.$PlannedDealRevenuePayload<ExtArgs>[]
+    unsecuredOpportunities: Prisma.$UnsecuredOpportunityPayload<ExtArgs>[]
     referenceLibraryItems: Prisma.$ReferenceLibraryItemPayload<ExtArgs>[]
     scopeTemplates: Prisma.$ScopeTemplatePayload<ExtArgs>[]
   }
@@ -11175,6 +11596,7 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   managementReports<T extends Prisma.Organisation$managementReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$managementReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ManagementReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wipSchedules<T extends Prisma.Organisation$wipSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$wipSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WIPSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   plannedDealRevenues<T extends Prisma.Organisation$plannedDealRevenuesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$plannedDealRevenuesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlannedDealRevenuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  unsecuredOpportunities<T extends Prisma.Organisation$unsecuredOpportunitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$unsecuredOpportunitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnsecuredOpportunityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   referenceLibraryItems<T extends Prisma.Organisation$referenceLibraryItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$referenceLibraryItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReferenceLibraryItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   scopeTemplates<T extends Prisma.Organisation$scopeTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$scopeTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScopeTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -12486,6 +12908,30 @@ export type Organisation$plannedDealRevenuesArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.PlannedDealRevenueScalarFieldEnum | Prisma.PlannedDealRevenueScalarFieldEnum[]
+}
+
+/**
+ * Organisation.unsecuredOpportunities
+ */
+export type Organisation$unsecuredOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UnsecuredOpportunity
+   */
+  select?: Prisma.UnsecuredOpportunitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UnsecuredOpportunity
+   */
+  omit?: Prisma.UnsecuredOpportunityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UnsecuredOpportunityInclude<ExtArgs> | null
+  where?: Prisma.UnsecuredOpportunityWhereInput
+  orderBy?: Prisma.UnsecuredOpportunityOrderByWithRelationInput | Prisma.UnsecuredOpportunityOrderByWithRelationInput[]
+  cursor?: Prisma.UnsecuredOpportunityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UnsecuredOpportunityScalarFieldEnum | Prisma.UnsecuredOpportunityScalarFieldEnum[]
 }
 
 /**

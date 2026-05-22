@@ -504,7 +504,8 @@ export const ModelName = {
   TakeoffMeasurement: 'TakeoffMeasurement',
   ScopeTemplate: 'ScopeTemplate',
   EstimateLineScope: 'EstimateLineScope',
-  SubcontractorInvitation: 'SubcontractorInvitation'
+  SubcontractorInvitation: 'SubcontractorInvitation',
+  UnsecuredOpportunity: 'UnsecuredOpportunity'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -520,7 +521,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation"
+    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -9478,6 +9479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UnsecuredOpportunity: {
+      payload: Prisma.$UnsecuredOpportunityPayload<ExtArgs>
+      fields: Prisma.UnsecuredOpportunityFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UnsecuredOpportunityFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UnsecuredOpportunityFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        findFirst: {
+          args: Prisma.UnsecuredOpportunityFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UnsecuredOpportunityFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        findMany: {
+          args: Prisma.UnsecuredOpportunityFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>[]
+        }
+        create: {
+          args: Prisma.UnsecuredOpportunityCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        createMany: {
+          args: Prisma.UnsecuredOpportunityCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UnsecuredOpportunityCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>[]
+        }
+        delete: {
+          args: Prisma.UnsecuredOpportunityDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        update: {
+          args: Prisma.UnsecuredOpportunityUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        deleteMany: {
+          args: Prisma.UnsecuredOpportunityDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UnsecuredOpportunityUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UnsecuredOpportunityUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>[]
+        }
+        upsert: {
+          args: Prisma.UnsecuredOpportunityUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredOpportunityPayload>
+        }
+        aggregate: {
+          args: Prisma.UnsecuredOpportunityAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUnsecuredOpportunity>
+        }
+        groupBy: {
+          args: Prisma.UnsecuredOpportunityGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UnsecuredOpportunityGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UnsecuredOpportunityCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UnsecuredOpportunityCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -11738,6 +11813,37 @@ export const SubcontractorInvitationScalarFieldEnum = {
 export type SubcontractorInvitationScalarFieldEnum = (typeof SubcontractorInvitationScalarFieldEnum)[keyof typeof SubcontractorInvitationScalarFieldEnum]
 
 
+export const UnsecuredOpportunityScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  status: 'status',
+  projectName: 'projectName',
+  contractValue: 'contractValue',
+  forecastMarginPct: 'forecastMarginPct',
+  jul: 'jul',
+  aug: 'aug',
+  sep: 'sep',
+  oct: 'oct',
+  nov: 'nov',
+  dec: 'dec',
+  jan: 'jan',
+  feb: 'feb',
+  mar: 'mar',
+  apr: 'apr',
+  may: 'may',
+  jun: 'jun',
+  nextYear: 'nextYear',
+  sortOrder: 'sortOrder',
+  notes: 'notes',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnsecuredOpportunityScalarFieldEnum = (typeof UnsecuredOpportunityScalarFieldEnum)[keyof typeof UnsecuredOpportunityScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -12724,6 +12830,20 @@ export type ListEnumWIPFlagFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 
 
 /**
+ * Reference to a field of type 'UnsecuredOpportunityStatus'
+ */
+export type EnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UnsecuredOpportunityStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UnsecuredOpportunityStatus[]'
+ */
+export type ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UnsecuredOpportunityStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12952,6 +13072,7 @@ export type GlobalOmitConfig = {
   scopeTemplate?: Prisma.ScopeTemplateOmit
   estimateLineScope?: Prisma.EstimateLineScopeOmit
   subcontractorInvitation?: Prisma.SubcontractorInvitationOmit
+  unsecuredOpportunity?: Prisma.UnsecuredOpportunityOmit
 }
 
 /* Types for Logging */
