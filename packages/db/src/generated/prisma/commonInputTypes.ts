@@ -1496,6 +1496,108 @@ export type EnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaModel = ne
   _max?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
 }
 
+export type EnumLeadStageFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStage | Prisma.EnumLeadStageFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStageFilter<$PrismaModel> | $Enums.LeadStage
+}
+
+export type EnumConfidenceRatingNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConfidenceRating | Prisma.EnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel> | $Enums.ConfidenceRating | null
+}
+
+export type EnumLeadSyncStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSyncStatus | Prisma.EnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel> | $Enums.LeadSyncStatus
+}
+
+export type EnumLeadStageWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStage | Prisma.EnumLeadStageFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStageWithAggregatesFilter<$PrismaModel> | $Enums.LeadStage
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStageFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStageFilter<$PrismaModel>
+}
+
+export type EnumConfidenceRatingNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConfidenceRating | Prisma.EnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumConfidenceRatingNullableWithAggregatesFilter<$PrismaModel> | $Enums.ConfidenceRating | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel>
+}
+
+export type EnumLeadSyncStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSyncStatus | Prisma.EnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadSyncStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadSyncStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel>
+}
+
+export type EnumSyncDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncDirection | Prisma.EnumSyncDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel> | $Enums.SyncDirection
+}
+
+export type EnumSyncOperationFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncOperation | Prisma.EnumSyncOperationFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel> | $Enums.SyncOperation
+}
+
+export type EnumSyncDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncDirection | Prisma.EnumSyncDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncDirectionWithAggregatesFilter<$PrismaModel> | $Enums.SyncDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel>
+}
+
+export type EnumSyncOperationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncOperation | Prisma.EnumSyncOperationFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncOperationWithAggregatesFilter<$PrismaModel> | $Enums.SyncOperation
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel>
+}
+
+export type EnumHubSpotConnectionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.HubSpotConnectionStatus | Prisma.EnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel> | $Enums.HubSpotConnectionStatus
+}
+
+export type EnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.HubSpotConnectionStatus | Prisma.EnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel> | $Enums.HubSpotConnectionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -2931,6 +3033,108 @@ export type NestedEnumUnsecuredOpportunityStatusWithAggregatesFilter<$PrismaMode
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumUnsecuredOpportunityStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadStageFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStage | Prisma.EnumLeadStageFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStageFilter<$PrismaModel> | $Enums.LeadStage
+}
+
+export type NestedEnumConfidenceRatingNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConfidenceRating | Prisma.EnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel> | $Enums.ConfidenceRating | null
+}
+
+export type NestedEnumLeadSyncStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSyncStatus | Prisma.EnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel> | $Enums.LeadSyncStatus
+}
+
+export type NestedEnumLeadStageWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadStage | Prisma.EnumLeadStageFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadStage[] | Prisma.ListEnumLeadStageFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadStageWithAggregatesFilter<$PrismaModel> | $Enums.LeadStage
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadStageFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadStageFilter<$PrismaModel>
+}
+
+export type NestedEnumConfidenceRatingNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConfidenceRating | Prisma.EnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ConfidenceRating[] | Prisma.ListEnumConfidenceRatingFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumConfidenceRatingNullableWithAggregatesFilter<$PrismaModel> | $Enums.ConfidenceRating | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConfidenceRatingNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumLeadSyncStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.LeadSyncStatus | Prisma.EnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.LeadSyncStatus[] | Prisma.ListEnumLeadSyncStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumLeadSyncStatusWithAggregatesFilter<$PrismaModel> | $Enums.LeadSyncStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumLeadSyncStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumSyncDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncDirection | Prisma.EnumSyncDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel> | $Enums.SyncDirection
+}
+
+export type NestedEnumSyncOperationFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncOperation | Prisma.EnumSyncOperationFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel> | $Enums.SyncOperation
+}
+
+export type NestedEnumSyncDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncDirection | Prisma.EnumSyncDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncDirection[] | Prisma.ListEnumSyncDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncDirectionWithAggregatesFilter<$PrismaModel> | $Enums.SyncDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSyncDirectionFilter<$PrismaModel>
+}
+
+export type NestedEnumSyncOperationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SyncOperation | Prisma.EnumSyncOperationFieldRefInput<$PrismaModel>
+  in?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SyncOperation[] | Prisma.ListEnumSyncOperationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSyncOperationWithAggregatesFilter<$PrismaModel> | $Enums.SyncOperation
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSyncOperationFilter<$PrismaModel>
+}
+
+export type NestedEnumHubSpotConnectionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.HubSpotConnectionStatus | Prisma.EnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel> | $Enums.HubSpotConnectionStatus
+}
+
+export type NestedEnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.HubSpotConnectionStatus | Prisma.EnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HubSpotConnectionStatus[] | Prisma.ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel> | $Enums.HubSpotConnectionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
 }
 
 

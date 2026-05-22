@@ -378,6 +378,8 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
         <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
         <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
         <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
+        <NavLink href="/crm/leads" label="CRM Leads" depth={1} onItemClick={onItemClick} />
+        <NavLink href="/crm/settings/hubspot" label="HubSpot" depth={1} onItemClick={onItemClick} />
       </Section>
 
       <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>

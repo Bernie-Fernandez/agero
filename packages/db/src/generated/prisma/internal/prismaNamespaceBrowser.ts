@@ -172,7 +172,10 @@ export const ModelName = {
   ScopeTemplate: 'ScopeTemplate',
   EstimateLineScope: 'EstimateLineScope',
   SubcontractorInvitation: 'SubcontractorInvitation',
-  UnsecuredOpportunity: 'UnsecuredOpportunity'
+  UnsecuredOpportunity: 'UnsecuredOpportunity',
+  Lead: 'Lead',
+  LeadSyncLog: 'LeadSyncLog',
+  HubSpotSyncSettings: 'HubSpotSyncSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2441,6 +2444,83 @@ export const UnsecuredOpportunityScalarFieldEnum = {
 } as const
 
 export type UnsecuredOpportunityScalarFieldEnum = (typeof UnsecuredOpportunityScalarFieldEnum)[keyof typeof UnsecuredOpportunityScalarFieldEnum]
+
+
+export const LeadScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  hubspotDealId: 'hubspotDealId',
+  leadName: 'leadName',
+  stage: 'stage',
+  contractValue: 'contractValue',
+  entryGpPct: 'entryGpPct',
+  confidenceRating: 'confidenceRating',
+  probabilityPct: 'probabilityPct',
+  goNoGoDate: 'goNoGoDate',
+  decisionDate: 'decisionDate',
+  contractDate: 'contractDate',
+  startDate: 'startDate',
+  completionDate: 'completionDate',
+  leaseExpiryDate: 'leaseExpiryDate',
+  durationMonths: 'durationMonths',
+  projectLocation: 'projectLocation',
+  serviceType: 'serviceType',
+  dealClassification: 'dealClassification',
+  clientType: 'clientType',
+  floorAreaM2: 'floorAreaM2',
+  currentAddress: 'currentAddress',
+  futureAddress: 'futureAddress',
+  ownerUserId: 'ownerUserId',
+  hubspotLastModified: 'hubspotLastModified',
+  lastSyncedAt: 'lastSyncedAt',
+  syncStatus: 'syncStatus',
+  notes: 'notes',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const LeadSyncLogScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  hubspotDealId: 'hubspotDealId',
+  direction: 'direction',
+  operation: 'operation',
+  fieldsChanged: 'fieldsChanged',
+  beforeValues: 'beforeValues',
+  afterValues: 'afterValues',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  syncedAt: 'syncedAt'
+} as const
+
+export type LeadSyncLogScalarFieldEnum = (typeof LeadSyncLogScalarFieldEnum)[keyof typeof LeadSyncLogScalarFieldEnum]
+
+
+export const HubSpotSyncSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  accessToken: 'accessToken',
+  portalId: 'portalId',
+  syncIntervalHours: 'syncIntervalHours',
+  lastFullSyncAt: 'lastFullSyncAt',
+  lastIncrementalSyncAt: 'lastIncrementalSyncAt',
+  confidenceGreenPct: 'confidenceGreenPct',
+  confidenceYellowPct: 'confidenceYellowPct',
+  confidenceRedPct: 'confidenceRedPct',
+  confidenceNonePct: 'confidenceNonePct',
+  contractToStartOffsetDays: 'contractToStartOffsetDays',
+  connectedAt: 'connectedAt',
+  connectedById: 'connectedById',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HubSpotSyncSettingsScalarFieldEnum = (typeof HubSpotSyncSettingsScalarFieldEnum)[keyof typeof HubSpotSyncSettingsScalarFieldEnum]
 
 
 export const SortOrder = {

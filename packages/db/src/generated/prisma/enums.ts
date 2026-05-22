@@ -639,3 +639,65 @@ export const UnsecuredOpportunityStatus = {
 } as const
 
 export type UnsecuredOpportunityStatus = (typeof UnsecuredOpportunityStatus)[keyof typeof UnsecuredOpportunityStatus]
+
+
+export const LeadStage = {
+  RESEARCH: 'RESEARCH',
+  VALIDATED: 'VALIDATED',
+  DEVELOPING: 'DEVELOPING',
+  QUALIFIED: 'QUALIFIED',
+  SUBMISSION_IN_PROGRESS: 'SUBMISSION_IN_PROGRESS',
+  SUBMISSION_AWAITING: 'SUBMISSION_AWAITING',
+  INTENT_TO_NEGOTIATE: 'INTENT_TO_NEGOTIATE',
+  CLOSED_WON: 'CLOSED_WON',
+  CLOSED_LOST: 'CLOSED_LOST',
+  DEAD: 'DEAD',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type LeadStage = (typeof LeadStage)[keyof typeof LeadStage]
+
+
+export const ConfidenceRating = {
+  RED: 'RED',
+  YELLOW: 'YELLOW',
+  GREEN: 'GREEN'
+} as const
+
+export type ConfidenceRating = (typeof ConfidenceRating)[keyof typeof ConfidenceRating]
+
+
+export const LeadSyncStatus = {
+  SYNCED: 'SYNCED',
+  PENDING: 'PENDING',
+  ERROR: 'ERROR',
+  CONFLICT: 'CONFLICT'
+} as const
+
+export type LeadSyncStatus = (typeof LeadSyncStatus)[keyof typeof LeadSyncStatus]
+
+
+export const SyncDirection = {
+  ERP_TO_HUBSPOT: 'ERP_TO_HUBSPOT',
+  HUBSPOT_TO_ERP: 'HUBSPOT_TO_ERP'
+} as const
+
+export type SyncDirection = (typeof SyncDirection)[keyof typeof SyncDirection]
+
+
+export const SyncOperation = {
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE'
+} as const
+
+export type SyncOperation = (typeof SyncOperation)[keyof typeof SyncOperation]
+
+
+export const HubSpotConnectionStatus = {
+  CONNECTED: 'CONNECTED',
+  DISCONNECTED: 'DISCONNECTED',
+  ERROR: 'ERROR'
+} as const
+
+export type HubSpotConnectionStatus = (typeof HubSpotConnectionStatus)[keyof typeof HubSpotConnectionStatus]

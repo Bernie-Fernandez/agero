@@ -11,6 +11,10 @@
     {
       "path": "/api/design/cron/expiry",
       "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/hubspot-sync",
+      "schedule": "0 */4 * * *"
     }
   ]
 }

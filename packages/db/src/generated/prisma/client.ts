@@ -651,3 +651,18 @@ export type SubcontractorInvitation = Prisma.SubcontractorInvitationModel
  * 
  */
 export type UnsecuredOpportunity = Prisma.UnsecuredOpportunityModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel
+/**
+ * Model LeadSyncLog
+ * 
+ */
+export type LeadSyncLog = Prisma.LeadSyncLogModel
+/**
+ * Model HubSpotSyncSettings
+ * 
+ */
+export type HubSpotSyncSettings = Prisma.HubSpotSyncSettingsModel

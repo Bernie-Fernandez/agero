@@ -276,7 +276,9 @@ model Organisation {
   wipSchedules          WIPSchedule[]
   plannedDealRevenues   PlannedDealRevenue[]
   unsecuredOpportunities UnsecuredOpportunity[]
-  referenceLibraryItems ReferenceLibraryItem[]
+  leads                  Lead[]
+  hubSpotSyncSettings    HubSpotSyncSettings?
+  referenceLibraryItems  ReferenceLibraryItem[]
   scopeTemplates        ScopeTemplate[]
 
   @@map("organisations")
@@ -380,6 +382,8 @@ model User {
   scopeTemplateUpdates    ScopeTemplate[]        @relation("ScopeTemplateUpdatedBy")
   lineScopeUpdates        EstimateLineScope[]    @relation("LineScopeUpdatedBy")
   invitationsCreated      SubcontractorInvitation[] @relation("InvitationCreatedBy")
+  ownedLeads              Lead[]                    @relation("LeadOwner")
+  hubSpotConnections      HubSpotSyncSettings[]     @relation("HubSpotConnectedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -3549,5 +3553,151 @@ model UnsecuredOpportunity {
 
   @@index([organisationId, financialYear])
   @@map("unsecured_opportunities")
+  @@schema("projects")
+}
+
+// ─── CRM Leads + HubSpot Sync ─────────────────────────────────────────────────
+
+enum LeadStage {
+  RESEARCH
+  VALIDATED
+  DEVELOPING
+  QUALIFIED
+  SUBMISSION_IN_PROGRESS
+  SUBMISSION_AWAITING
+  INTENT_TO_NEGOTIATE
+  CLOSED_WON
+  CLOSED_LOST
+  DEAD
+  WITHDRAWN
+
+  @@schema("projects")
+}
+
+enum ConfidenceRating {
+  RED
+  YELLOW
+  GREEN
+
+  @@schema("projects")
+}
+
+enum LeadSyncStatus {
+  SYNCED
+  PENDING
+  ERROR
+  CONFLICT
+
+  @@schema("projects")
+}
+
+enum SyncDirection {
+  ERP_TO_HUBSPOT
+  HUBSPOT_TO_ERP
+
+  @@schema("projects")
+}
+
+enum SyncOperation {
+  CREATE
+  UPDATE
+  DELETE
+
+  @@schema("projects")
+}
+
+enum HubSpotConnectionStatus {
+  CONNECTED
+  DISCONNECTED
+  ERROR
+
+  @@schema("projects")
+}
+
+model Lead {
+  id                  String            @id @default(uuid()) @db.Uuid
+  organisationId      String            @map("organisation_id") @db.Uuid
+  organisation        Organisation      @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  hubspotDealId       String            @unique @map("hubspot_deal_id")
+  leadName            String            @map("lead_name")
+  stage               LeadStage         @default(RESEARCH)
+  contractValue       Decimal?          @map("contract_value") @db.Decimal(15, 2)
+  entryGpPct          Decimal?          @map("entry_gp_pct") @db.Decimal(10, 6)
+  confidenceRating    ConfidenceRating? @map("confidence_rating")
+  probabilityPct      Decimal?          @map("probability_pct") @db.Decimal(6, 4)
+  goNoGoDate          DateTime?         @map("go_no_go_date") @db.Date
+  decisionDate        DateTime?         @map("decision_date") @db.Date
+  contractDate        DateTime?         @map("contract_date") @db.Date
+  startDate           DateTime?         @map("start_date") @db.Date
+  completionDate      DateTime?         @map("completion_date") @db.Date
+  leaseExpiryDate     DateTime?         @map("lease_expiry_date") @db.Date
+  durationMonths      Int?              @map("duration_months")
+  projectLocation     String?           @map("project_location")
+  serviceType         String?           @map("service_type")
+  dealClassification  String?           @map("deal_classification")
+  clientType          String?           @map("client_type")
+  floorAreaM2         Decimal?          @map("floor_area_m2") @db.Decimal(10, 2)
+  currentAddress      String?           @map("current_address")
+  futureAddress       String?           @map("future_address")
+  ownerUserId         String?           @map("owner_user_id") @db.Uuid
+  ownerUser           User?             @relation("LeadOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  hubspotLastModified DateTime?         @map("hubspot_last_modified")
+  lastSyncedAt        DateTime?         @map("last_synced_at")
+  syncStatus          LeadSyncStatus    @default(SYNCED) @map("sync_status")
+  notes               String?           @db.Text
+  deletedAt           DateTime?         @map("deleted_at")
+  createdAt           DateTime          @default(now()) @map("created_at")
+  updatedAt           DateTime          @updatedAt @map("updated_at")
+
+  syncLogs            LeadSyncLog[]
+
+  @@index([organisationId, stage])
+  @@index([organisationId, syncStatus])
+  @@map("leads")
+  @@schema("projects")
+}
+
+model LeadSyncLog {
+  id              String         @id @default(uuid()) @db.Uuid
+  leadId          String?        @map("lead_id") @db.Uuid
+  lead            Lead?          @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  hubspotDealId   String?        @map("hubspot_deal_id")
+  direction       SyncDirection
+  operation       SyncOperation
+  fieldsChanged   Json           @default("[]") @map("fields_changed")
+  beforeValues    Json           @default("{}") @map("before_values")
+  afterValues     Json           @default("{}") @map("after_values")
+  status          String         @default("SUCCESS")
+  errorMessage    String?        @map("error_message") @db.Text
+  syncedAt        DateTime       @default(now()) @map("synced_at")
+
+  @@index([leadId])
+  @@index([syncedAt])
+  @@map("lead_sync_logs")
+  @@schema("projects")
+}
+
+model HubSpotSyncSettings {
+  id                       String                  @id @default(uuid()) @db.Uuid
+  organisationId           String                  @unique @map("organisation_id") @db.Uuid
+  organisation             Organisation            @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  accessToken              String?                 @map("access_token") @db.Text
+  portalId                 String?                 @map("portal_id")
+  syncIntervalHours        Int                     @default(4) @map("sync_interval_hours")
+  lastFullSyncAt           DateTime?               @map("last_full_sync_at")
+  lastIncrementalSyncAt    DateTime?               @map("last_incremental_sync_at")
+  confidenceGreenPct       Decimal                 @default(0.75) @map("confidence_green_pct") @db.Decimal(5, 4)
+  confidenceYellowPct      Decimal                 @default(0.40) @map("confidence_yellow_pct") @db.Decimal(5, 4)
+  confidenceRedPct         Decimal                 @default(0.15) @map("confidence_red_pct") @db.Decimal(5, 4)
+  confidenceNonePct        Decimal                 @default(0.25) @map("confidence_none_pct") @db.Decimal(5, 4)
+  contractToStartOffsetDays Int                    @default(14) @map("contract_to_start_offset_days")
+  connectedAt              DateTime?               @map("connected_at")
+  connectedById            String?                 @map("connected_by_id") @db.Uuid
+  connectedBy              User?                   @relation("HubSpotConnectedBy", fields: [connectedById], references: [id], onDelete: SetNull)
+  status                   HubSpotConnectionStatus @default(DISCONNECTED)
+  createdAt                DateTime                @default(now()) @map("created_at")
+  updatedAt                DateTime                @updatedAt @map("updated_at")
+
+  @@map("hubspot_sync_settings")
   @@schema("projects")
 }

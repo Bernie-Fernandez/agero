@@ -505,7 +505,10 @@ export const ModelName = {
   ScopeTemplate: 'ScopeTemplate',
   EstimateLineScope: 'EstimateLineScope',
   SubcontractorInvitation: 'SubcontractorInvitation',
-  UnsecuredOpportunity: 'UnsecuredOpportunity'
+  UnsecuredOpportunity: 'UnsecuredOpportunity',
+  Lead: 'Lead',
+  LeadSyncLog: 'LeadSyncLog',
+  HubSpotSyncSettings: 'HubSpotSyncSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -521,7 +524,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity"
+    modelProps: "organisation" | "user" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -9553,6 +9556,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Lead: {
+      payload: Prisma.$LeadPayload<ExtArgs>
+      fields: Prisma.LeadFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LeadFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LeadFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        findFirst: {
+          args: Prisma.LeadFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LeadFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        findMany: {
+          args: Prisma.LeadFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>[]
+        }
+        create: {
+          args: Prisma.LeadCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        createMany: {
+          args: Prisma.LeadCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LeadCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>[]
+        }
+        delete: {
+          args: Prisma.LeadDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        update: {
+          args: Prisma.LeadUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        deleteMany: {
+          args: Prisma.LeadDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LeadUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LeadUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>[]
+        }
+        upsert: {
+          args: Prisma.LeadUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadPayload>
+        }
+        aggregate: {
+          args: Prisma.LeadAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLead>
+        }
+        groupBy: {
+          args: Prisma.LeadGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LeadCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadCountAggregateOutputType> | number
+        }
+      }
+    }
+    LeadSyncLog: {
+      payload: Prisma.$LeadSyncLogPayload<ExtArgs>
+      fields: Prisma.LeadSyncLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LeadSyncLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LeadSyncLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        findFirst: {
+          args: Prisma.LeadSyncLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LeadSyncLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        findMany: {
+          args: Prisma.LeadSyncLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>[]
+        }
+        create: {
+          args: Prisma.LeadSyncLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        createMany: {
+          args: Prisma.LeadSyncLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LeadSyncLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>[]
+        }
+        delete: {
+          args: Prisma.LeadSyncLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        update: {
+          args: Prisma.LeadSyncLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.LeadSyncLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LeadSyncLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LeadSyncLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.LeadSyncLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadSyncLogPayload>
+        }
+        aggregate: {
+          args: Prisma.LeadSyncLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLeadSyncLog>
+        }
+        groupBy: {
+          args: Prisma.LeadSyncLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadSyncLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LeadSyncLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadSyncLogCountAggregateOutputType> | number
+        }
+      }
+    }
+    HubSpotSyncSettings: {
+      payload: Prisma.$HubSpotSyncSettingsPayload<ExtArgs>
+      fields: Prisma.HubSpotSyncSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HubSpotSyncSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HubSpotSyncSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.HubSpotSyncSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HubSpotSyncSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.HubSpotSyncSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.HubSpotSyncSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.HubSpotSyncSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HubSpotSyncSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.HubSpotSyncSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        update: {
+          args: Prisma.HubSpotSyncSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.HubSpotSyncSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HubSpotSyncSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HubSpotSyncSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.HubSpotSyncSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HubSpotSyncSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.HubSpotSyncSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHubSpotSyncSettings>
+        }
+        groupBy: {
+          args: Prisma.HubSpotSyncSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HubSpotSyncSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HubSpotSyncSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HubSpotSyncSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -11844,6 +12069,83 @@ export const UnsecuredOpportunityScalarFieldEnum = {
 export type UnsecuredOpportunityScalarFieldEnum = (typeof UnsecuredOpportunityScalarFieldEnum)[keyof typeof UnsecuredOpportunityScalarFieldEnum]
 
 
+export const LeadScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  hubspotDealId: 'hubspotDealId',
+  leadName: 'leadName',
+  stage: 'stage',
+  contractValue: 'contractValue',
+  entryGpPct: 'entryGpPct',
+  confidenceRating: 'confidenceRating',
+  probabilityPct: 'probabilityPct',
+  goNoGoDate: 'goNoGoDate',
+  decisionDate: 'decisionDate',
+  contractDate: 'contractDate',
+  startDate: 'startDate',
+  completionDate: 'completionDate',
+  leaseExpiryDate: 'leaseExpiryDate',
+  durationMonths: 'durationMonths',
+  projectLocation: 'projectLocation',
+  serviceType: 'serviceType',
+  dealClassification: 'dealClassification',
+  clientType: 'clientType',
+  floorAreaM2: 'floorAreaM2',
+  currentAddress: 'currentAddress',
+  futureAddress: 'futureAddress',
+  ownerUserId: 'ownerUserId',
+  hubspotLastModified: 'hubspotLastModified',
+  lastSyncedAt: 'lastSyncedAt',
+  syncStatus: 'syncStatus',
+  notes: 'notes',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const LeadSyncLogScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  hubspotDealId: 'hubspotDealId',
+  direction: 'direction',
+  operation: 'operation',
+  fieldsChanged: 'fieldsChanged',
+  beforeValues: 'beforeValues',
+  afterValues: 'afterValues',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  syncedAt: 'syncedAt'
+} as const
+
+export type LeadSyncLogScalarFieldEnum = (typeof LeadSyncLogScalarFieldEnum)[keyof typeof LeadSyncLogScalarFieldEnum]
+
+
+export const HubSpotSyncSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  accessToken: 'accessToken',
+  portalId: 'portalId',
+  syncIntervalHours: 'syncIntervalHours',
+  lastFullSyncAt: 'lastFullSyncAt',
+  lastIncrementalSyncAt: 'lastIncrementalSyncAt',
+  confidenceGreenPct: 'confidenceGreenPct',
+  confidenceYellowPct: 'confidenceYellowPct',
+  confidenceRedPct: 'confidenceRedPct',
+  confidenceNonePct: 'confidenceNonePct',
+  contractToStartOffsetDays: 'contractToStartOffsetDays',
+  connectedAt: 'connectedAt',
+  connectedById: 'connectedById',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HubSpotSyncSettingsScalarFieldEnum = (typeof HubSpotSyncSettingsScalarFieldEnum)[keyof typeof HubSpotSyncSettingsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -12844,6 +13146,90 @@ export type ListEnumUnsecuredOpportunityStatusFieldRefInput<$PrismaModel> = Fiel
 
 
 /**
+ * Reference to a field of type 'LeadStage'
+ */
+export type EnumLeadStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadStage'>
+    
+
+
+/**
+ * Reference to a field of type 'LeadStage[]'
+ */
+export type ListEnumLeadStageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadStage[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ConfidenceRating'
+ */
+export type EnumConfidenceRatingFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConfidenceRating'>
+    
+
+
+/**
+ * Reference to a field of type 'ConfidenceRating[]'
+ */
+export type ListEnumConfidenceRatingFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConfidenceRating[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LeadSyncStatus'
+ */
+export type EnumLeadSyncStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadSyncStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'LeadSyncStatus[]'
+ */
+export type ListEnumLeadSyncStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadSyncStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncDirection'
+ */
+export type EnumSyncDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncDirection'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncDirection[]'
+ */
+export type ListEnumSyncDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncDirection[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncOperation'
+ */
+export type EnumSyncOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncOperation'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncOperation[]'
+ */
+export type ListEnumSyncOperationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncOperation[]'>
+    
+
+
+/**
+ * Reference to a field of type 'HubSpotConnectionStatus'
+ */
+export type EnumHubSpotConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HubSpotConnectionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'HubSpotConnectionStatus[]'
+ */
+export type ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HubSpotConnectionStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -13073,6 +13459,9 @@ export type GlobalOmitConfig = {
   estimateLineScope?: Prisma.EstimateLineScopeOmit
   subcontractorInvitation?: Prisma.SubcontractorInvitationOmit
   unsecuredOpportunity?: Prisma.UnsecuredOpportunityOmit
+  lead?: Prisma.LeadOmit
+  leadSyncLog?: Prisma.LeadSyncLogOmit
+  hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsOmit
 }
 
 /* Types for Logging */
