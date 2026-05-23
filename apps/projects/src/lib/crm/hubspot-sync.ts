@@ -3,6 +3,20 @@ import { prisma } from '@/lib/prisma';
 import { decryptToken } from './crypto';
 import type { LeadStage, ConfidenceRating } from '@agero/db';
 
+// ─── Active-stage allow list ──────────────────────────────────────────────────
+// Only these stages are imported/maintained in ERP. Closed deals stay in HubSpot
+// until the Marketing module migration.
+
+const ACTIVE_STAGES: LeadStage[] = [
+  'RESEARCH',
+  'VALIDATED',
+  'DEVELOPING',
+  'QUALIFIED',
+  'SUBMISSION_IN_PROGRESS',
+  'SUBMISSION_AWAITING',
+  'INTENT_TO_NEGOTIATE',
+];
+
 // ─── Field mapping ────────────────────────────────────────────────────────────
 
 const HS_PROPERTIES = [
@@ -29,8 +43,6 @@ const HS_PROPERTIES = [
 ];
 
 // HubSpot dealstage IDs are pipeline-specific. Map the numeric stages from the doc.
-// These are the default HubSpot pipeline internal names — Bernie should verify via
-// GET /crm/v3/properties/deals. We store the raw HS stage value and map to enum here.
 function mapStage(hsStage: string | null | undefined): LeadStage {
   if (!hsStage) return 'RESEARCH';
   const s = hsStage.toLowerCase();
@@ -172,7 +184,7 @@ async function log(params: {
   leadId?: string;
   hubspotDealId?: string;
   direction: 'ERP_TO_HUBSPOT' | 'HUBSPOT_TO_ERP';
-  operation: 'CREATE' | 'UPDATE' | 'DELETE';
+  operation: 'CREATE' | 'UPDATE' | 'DELETE' | 'SKIPPED_INACTIVE_STAGE' | 'ARCHIVE' | 'REACTIVATE';
   fieldsChanged?: string[];
   beforeValues?: Record<string, unknown>;
   afterValues?: Record<string, unknown>;
@@ -184,7 +196,7 @@ async function log(params: {
       leadId: params.leadId ?? null,
       hubspotDealId: params.hubspotDealId ?? null,
       direction: params.direction,
-      operation: params.operation,
+      operation: params.operation as never,
       fieldsChanged: (params.fieldsChanged ?? []) as never,
       beforeValues: (params.beforeValues ?? {}) as never,
       afterValues: (params.afterValues ?? {}) as never,
@@ -196,10 +208,11 @@ async function log(params: {
 
 // ─── Full sync ────────────────────────────────────────────────────────────────
 
-export async function runFullSync(organisationId: string): Promise<{ imported: number; updated: number; errors: number }> {
+export async function runFullSync(organisationId: string): Promise<{ imported: number; updated: number; skipped: number; errors: number }> {
   const { client, settings } = await getHsClient(organisationId);
   let imported = 0;
   let updated = 0;
+  let skipped = 0;
   let errors = 0;
   let after: string | undefined;
 
@@ -216,6 +229,26 @@ export async function runFullSync(organisationId: string): Promise<{ imported: n
     for (const deal of response.results) {
       const props = deal.properties as Record<string, string | null | undefined>;
       const hubspotDealId = String(deal.id);
+      const hsStageRaw = props.dealstage;
+      const mappedStage = mapStage(hsStageRaw);
+
+      // Skip inactive stages — closed deals stay in HubSpot until Marketing module migration
+      if (!ACTIVE_STAGES.includes(mappedStage)) {
+        skipped++;
+        const reason = !hsStageRaw
+          ? 'No stage assigned in HubSpot'
+          : mappedStage === 'RESEARCH'
+            ? `Unmapped HubSpot stage ID: ${hsStageRaw}`
+            : `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
+        await log({
+          hubspotDealId,
+          direction: 'HUBSPOT_TO_ERP',
+          operation: 'SKIPPED_INACTIVE_STAGE',
+          errorMessage: reason,
+        }).catch(() => {});
+        continue;
+      }
+
       try {
         const leadData = dealToLeadData(props, settings);
         const existing = await prisma.lead.findUnique({ where: { hubspotDealId } });
@@ -260,7 +293,7 @@ export async function runFullSync(organisationId: string): Promise<{ imported: n
     data: { lastFullSyncAt: new Date(), lastIncrementalSyncAt: new Date(), status: 'CONNECTED' },
   });
 
-  return { imported, updated, errors };
+  return { imported, updated, skipped, errors };
 }
 
 // ─── Incremental sync ─────────────────────────────────────────────────────────
@@ -291,11 +324,16 @@ export async function runIncrementalSync(organisationId: string): Promise<{ sync
     for (const deal of response.results) {
       const props = deal.properties as Record<string, string | null | undefined>;
       const hubspotDealId = String(deal.id);
+      const hsStageRaw = props.dealstage;
+      const mappedStage = mapStage(hsStageRaw);
+      const isActive = ACTIVE_STAGES.includes(mappedStage);
+
       try {
         const leadData = dealToLeadData(props, settings);
         const existing = await prisma.lead.findUnique({ where: { hubspotDealId } });
 
-        if (!existing) {
+        // Case 1 — new active deal: create it
+        if (!existing && isActive) {
           const created = await prisma.lead.create({
             data: { organisationId, hubspotDealId, ...leadData, lastSyncedAt: new Date(), syncStatus: 'SYNCED' },
           });
@@ -304,6 +342,60 @@ export async function runIncrementalSync(organisationId: string): Promise<{ sync
           continue;
         }
 
+        // Case 2 — new inactive deal: skip it
+        if (!existing && !isActive) {
+          const reason = !hsStageRaw
+            ? 'No stage assigned in HubSpot'
+            : mappedStage === 'RESEARCH'
+              ? `Unmapped HubSpot stage ID: ${hsStageRaw}`
+              : `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
+          await log({ hubspotDealId, direction: 'HUBSPOT_TO_ERP', operation: 'SKIPPED_INACTIVE_STAGE', errorMessage: reason });
+          continue;
+        }
+
+        if (!existing) continue;
+
+        // Case 3d — already-archived, still inactive: do nothing (no log, avoids noise)
+        if (existing.syncStatus === 'ARCHIVED' && !isActive) {
+          continue;
+        }
+
+        // Case 3b — existing Lead, now inactive, not yet archived: soft-archive it
+        if (isActive === false && existing.syncStatus !== 'ARCHIVED') {
+          await prisma.lead.update({
+            where: { hubspotDealId },
+            data: { stage: mappedStage, syncStatus: 'ARCHIVED', lastSyncedAt: new Date() },
+          });
+          await log({
+            leadId: existing.id,
+            hubspotDealId,
+            direction: 'HUBSPOT_TO_ERP',
+            operation: 'ARCHIVE',
+            beforeValues: { stage: existing.stage, syncStatus: existing.syncStatus },
+            afterValues: { stage: mappedStage, syncStatus: 'ARCHIVED' },
+          });
+          continue;
+        }
+
+        // Case 3c — archived Lead returning to active: reactivate it
+        if (isActive && existing.syncStatus === 'ARCHIVED') {
+          await prisma.lead.update({
+            where: { hubspotDealId },
+            data: { ...leadData, lastSyncedAt: new Date(), syncStatus: 'SYNCED' },
+          });
+          await log({
+            leadId: existing.id,
+            hubspotDealId,
+            direction: 'HUBSPOT_TO_ERP',
+            operation: 'REACTIVATE',
+            beforeValues: { stage: existing.stage, syncStatus: 'ARCHIVED' },
+            afterValues: leadData as Record<string, unknown>,
+          });
+          synced++;
+          continue;
+        }
+
+        // Case 3a — existing active Lead: standard conflict-check update
         const hsModified = leadData.hubspotLastModified ?? new Date(0);
         const erpLastSync = existing.lastSyncedAt ?? new Date(0);
         const erpModified = existing.updatedAt;
@@ -312,7 +404,6 @@ export async function runIncrementalSync(organisationId: string): Promise<{ sync
         const erpDirty = erpModified > erpLastSync;
 
         if (hsNewer && erpDirty) {
-          // Conflict — both sides changed since last sync
           await prisma.lead.update({
             where: { hubspotDealId },
             data: { syncStatus: 'CONFLICT' },

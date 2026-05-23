@@ -10,7 +10,7 @@ export default async function LeadsPage() {
       where: { organisationId: user.organisationId, deletedAt: null },
       include: { ownerUser: { select: { id: true, firstName: true, lastName: true } } },
       orderBy: [{ syncStatus: 'desc' }, { updatedAt: 'desc' }],
-      take: 200,
+      take: 500,
     }),
     prisma.user.findMany({
       where: { organisationId: user.organisationId, isActive: true },

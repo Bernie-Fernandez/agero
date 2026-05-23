@@ -3587,6 +3587,7 @@ enum LeadSyncStatus {
   PENDING
   ERROR
   CONFLICT
+  ARCHIVED
 
   @@schema("projects")
 }
@@ -3602,6 +3603,9 @@ enum SyncOperation {
   CREATE
   UPDATE
   DELETE
+  SKIPPED_INACTIVE_STAGE
+  ARCHIVE
+  REACTIVATE
 
   @@schema("projects")
 }

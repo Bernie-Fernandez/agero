@@ -671,7 +671,8 @@ export const LeadSyncStatus = {
   SYNCED: 'SYNCED',
   PENDING: 'PENDING',
   ERROR: 'ERROR',
-  CONFLICT: 'CONFLICT'
+  CONFLICT: 'CONFLICT',
+  ARCHIVED: 'ARCHIVED'
 } as const
 
 export type LeadSyncStatus = (typeof LeadSyncStatus)[keyof typeof LeadSyncStatus]
@@ -688,7 +689,10 @@ export type SyncDirection = (typeof SyncDirection)[keyof typeof SyncDirection]
 export const SyncOperation = {
   CREATE: 'CREATE',
   UPDATE: 'UPDATE',
-  DELETE: 'DELETE'
+  DELETE: 'DELETE',
+  SKIPPED_INACTIVE_STAGE: 'SKIPPED_INACTIVE_STAGE',
+  ARCHIVE: 'ARCHIVE',
+  REACTIVATE: 'REACTIVATE'
 } as const
 
 export type SyncOperation = (typeof SyncOperation)[keyof typeof SyncOperation]

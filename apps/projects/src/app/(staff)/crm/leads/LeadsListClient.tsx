@@ -49,6 +49,7 @@ function SyncIcon({ status }: { status: string }) {
   if (status === 'PENDING') return <span title="Pending sync" className="text-amber-500">⏳</span>;
   if (status === 'ERROR') return <span title="Sync error" className="text-red-500">✕</span>;
   if (status === 'CONFLICT') return <span title="Conflict — review needed" className="text-yellow-500">⚑</span>;
+  if (status === 'ARCHIVED') return <span title="Archived — deal closed in HubSpot" className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-zinc-100 text-zinc-500">archived</span>;
   return null;
 }
 
@@ -64,17 +65,15 @@ function fmtDate(v: string | null | undefined): string {
 }
 
 const FILTER_TABS = [
-  { key: 'ALL', label: 'All' },
+  { key: 'ALL', label: 'All active' },
   { key: 'ACTIVE', label: 'Active' },
-  { key: 'CLOSED', label: 'Closed' },
   { key: 'RESEARCH', label: 'Research' },
   { key: 'QUALIFIED', label: 'Qualified' },
-  { key: 'CLOSED_WON', label: 'Won' },
   { key: 'CONFLICT', label: 'Conflicts' },
+  { key: 'ARCHIVED', label: 'Archived' },
 ];
 
 const ACTIVE_STAGES = ['RESEARCH','VALIDATED','DEVELOPING','QUALIFIED','SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING','INTENT_TO_NEGOTIATE'];
-const CLOSED_STAGES = ['CLOSED_WON','CLOSED_LOST','DEAD','WITHDRAWN'];
 
 export default function LeadsListClient({
   initialLeads,
@@ -112,10 +111,14 @@ export default function LeadsListClient({
   }
 
   const filtered = leads.filter((l) => {
-    if (filter === 'ACTIVE' && !ACTIVE_STAGES.includes(l.stage)) return false;
-    if (filter === 'CLOSED' && !CLOSED_STAGES.includes(l.stage)) return false;
+    // Default 'All active' tab excludes archived leads
+    if (filter === 'ALL' && l.syncStatus === 'ARCHIVED') return false;
+    if (filter === 'ACTIVE' && (!ACTIVE_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED')) return false;
+    if (filter === 'ARCHIVED' && l.syncStatus !== 'ARCHIVED') return false;
     if (filter === 'CONFLICT' && l.syncStatus !== 'CONFLICT') return false;
-    if (!['ALL','ACTIVE','CLOSED','CONFLICT'].includes(filter) && l.stage !== filter) return false;
+    if (!['ALL','ACTIVE','ARCHIVED','CONFLICT'].includes(filter) && l.stage !== filter) return false;
+    // Stage-specific tabs also exclude archived
+    if (!['ALL','ACTIVE','ARCHIVED','CONFLICT'].includes(filter) && l.syncStatus === 'ARCHIVED') return false;
     if (ownerFilter && l.ownerUser?.id !== ownerFilter) return false;
     if (search) {
       const q = search.toLowerCase();
@@ -215,6 +218,11 @@ export default function LeadsListClient({
               {t.key === 'CONFLICT' && leads.filter((l) => l.syncStatus === 'CONFLICT').length > 0 && (
                 <span className="ml-1 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 rounded-full">
                   {leads.filter((l) => l.syncStatus === 'CONFLICT').length}
+                </span>
+              )}
+              {t.key === 'ARCHIVED' && leads.filter((l) => l.syncStatus === 'ARCHIVED').length > 0 && (
+                <span className="ml-1 bg-zinc-300 text-zinc-600 text-[10px] font-bold px-1 rounded-full">
+                  {leads.filter((l) => l.syncStatus === 'ARCHIVED').length}
                 </span>
               )}
             </button>

@@ -54,6 +54,7 @@ export default function HubSpotSettingsClient({
   const [disconnecting, setDisconnecting] = useState(false);
   const [syncing, setSyncing] = useState<'full' | 'incremental' | null>(null);
   const [logFilter, setLogFilter] = useState('');
+  const [showSkipped, setShowSkipped] = useState(false);
   const [msg, setMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const connected = settings?.status === 'CONNECTED';
@@ -88,11 +89,21 @@ export default function HubSpotSettingsClient({
     const res = await fetch(url, { method: 'POST' });
     const data = await res.json();
     if (!res.ok) { setMsg({ type: 'error', text: data.error ?? 'Sync failed' }); }
-    else { setMsg({ type: 'success', text: type === 'full' ? `Full sync complete: ${data.imported} imported, ${data.updated} updated` : `Incremental sync: ${data.synced} synced, ${data.conflicts} conflicts` }); router.refresh(); }
+    else {
+      const text = type === 'full'
+        ? `Full sync complete. ${(data.imported ?? 0) + (data.updated ?? 0)} active deals synced. ${data.skipped ?? 0} closed/dead deals skipped.`
+        : `Incremental sync: ${data.synced} synced, ${data.conflicts} conflicts`;
+      setMsg({ type: 'success', text });
+      router.refresh();
+    }
     setSyncing(null);
   }
 
-  const filteredLogs = recentLogs.filter((l) => !logFilter || l.status === logFilter);
+  const filteredLogs = recentLogs.filter((l) => {
+    if (!showSkipped && l.operation === 'SKIPPED_INACTIVE_STAGE') return false;
+    if (logFilter && l.status !== logFilter) return false;
+    return true;
+  });
 
   return (
     <div className="p-6 max-w-4xl">
@@ -121,6 +132,9 @@ export default function HubSpotSettingsClient({
               {settings?.lastFullSyncAt && <p>Last full sync: {fmtDate(settings.lastFullSyncAt)}</p>}
               {settings?.lastIncrementalSyncAt && <p>Last incremental sync: {fmtDate(settings.lastIncrementalSyncAt)}</p>}
             </div>
+            <p className="text-xs text-zinc-400 mb-3">
+              Full sync imports only active-pipeline deals (stages 0–6). Closed and dead deals stay in HubSpot.
+            </p>
             <div className="flex gap-2 flex-wrap">
               <button onClick={() => handleSync('full')} disabled={syncing !== null} className="px-3 py-1.5 text-sm bg-brand text-white rounded hover:bg-brand/90 disabled:opacity-50">
                 {syncing === 'full' ? 'Syncing…' : 'Run Full Sync'}
@@ -178,14 +192,22 @@ export default function HubSpotSettingsClient({
 
       {/* Sync log */}
       <div className="bg-white border border-zinc-200 rounded-lg p-5">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
           <h2 className="font-semibold text-zinc-800">Sync Log (last 100)</h2>
-          <select value={logFilter} onChange={(e) => setLogFilter(e.target.value)} className="text-xs border border-zinc-200 rounded px-2 py-1">
-            <option value="">All statuses</option>
-            <option value="SUCCESS">Success</option>
-            <option value="ERROR">Error</option>
-            <option value="CONFLICT">Conflict</option>
-          </select>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowSkipped((v) => !v)}
+              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${showSkipped ? 'bg-zinc-200 border-zinc-300 text-zinc-700' : 'bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50'}`}
+            >
+              {showSkipped ? '✓ Show skipped' : 'Show skipped'}
+            </button>
+            <select value={logFilter} onChange={(e) => setLogFilter(e.target.value)} className="text-xs border border-zinc-200 rounded px-2 py-1">
+              <option value="">All statuses</option>
+              <option value="SUCCESS">Success</option>
+              <option value="ERROR">Error</option>
+              <option value="CONFLICT">Conflict</option>
+            </select>
+          </div>
         </div>
         <div className="overflow-auto max-h-80">
           <table className="w-full text-xs">
@@ -194,19 +216,28 @@ export default function HubSpotSettingsClient({
               <th className="text-left py-1.5 font-medium text-zinc-500">Direction</th>
               <th className="text-left py-1.5 font-medium text-zinc-500">Op</th>
               <th className="text-left py-1.5 font-medium text-zinc-500">Status</th>
+              {showSkipped && <th className="text-left py-1.5 font-medium text-zinc-500">Reason</th>}
               <th className="text-left py-1.5 font-medium text-zinc-500">Time</th>
             </tr></thead>
             <tbody className="divide-y divide-zinc-50">
-              {filteredLogs.length === 0 && <tr><td colSpan={5} className="py-4 text-center text-zinc-400">No log entries.</td></tr>}
-              {filteredLogs.map((log) => (
-                <tr key={log.id}>
-                  <td className="py-1 text-zinc-700 max-w-[160px] truncate">{log.lead?.leadName ?? '—'}</td>
-                  <td className="py-1 text-zinc-500">{log.direction === 'ERP_TO_HUBSPOT' ? '→ HS' : '← HS'}</td>
-                  <td className="py-1 text-zinc-500">{log.operation}</td>
-                  <td className={`py-1 font-medium ${log.status === 'SUCCESS' ? 'text-green-600' : log.status === 'ERROR' ? 'text-red-500' : 'text-yellow-500'}`}>{log.status}</td>
-                  <td className="py-1 text-zinc-400 whitespace-nowrap">{new Date(log.syncedAt).toLocaleString('en-AU')}</td>
-                </tr>
-              ))}
+              {filteredLogs.length === 0 && <tr><td colSpan={showSkipped ? 6 : 5} className="py-4 text-center text-zinc-400">No log entries.</td></tr>}
+              {filteredLogs.map((log) => {
+                const isSkipped = log.operation === 'SKIPPED_INACTIVE_STAGE';
+                return (
+                  <tr key={log.id} className={isSkipped ? 'opacity-60' : ''}>
+                    <td className="py-1 text-zinc-700 max-w-[140px] truncate">{log.lead?.leadName ?? '—'}</td>
+                    <td className="py-1 text-zinc-500">{log.direction === 'ERP_TO_HUBSPOT' ? '→ HS' : '← HS'}</td>
+                    <td className="py-1">
+                      {isSkipped
+                        ? <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-zinc-100 text-zinc-500">skipped</span>
+                        : <span className="text-zinc-500">{log.operation}</span>}
+                    </td>
+                    <td className={`py-1 font-medium ${log.status === 'SUCCESS' ? 'text-green-600' : log.status === 'ERROR' ? 'text-red-500' : 'text-yellow-500'}`}>{log.status}</td>
+                    {showSkipped && <td className="py-1 text-zinc-400 max-w-[200px] truncate">{log.errorMessage ?? ''}</td>}
+                    <td className="py-1 text-zinc-400 whitespace-nowrap">{new Date(log.syncedAt).toLocaleString('en-AU')}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
