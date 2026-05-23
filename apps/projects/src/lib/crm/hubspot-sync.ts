@@ -3,10 +3,14 @@ import { prisma } from '@/lib/prisma';
 import { decryptToken } from './crypto';
 import type { LeadStage, ConfidenceRating } from '@agero/db';
 
+// ─── Pipeline filter ──────────────────────────────────────────────────────────
+// Only deals from the Sales Pipeline are imported. The Outreach Campaign 2026
+// pipeline (Marketing module) is excluded.
+const ALLOWED_PIPELINE_ID = 'default';
+
 // ─── Active-stage allow list ──────────────────────────────────────────────────
 // Only these stages are imported/maintained in ERP. Closed deals stay in HubSpot
 // until the Marketing module migration.
-
 const ACTIVE_STAGES: LeadStage[] = [
   'RESEARCH',
   'VALIDATED',
@@ -17,12 +21,37 @@ const ACTIVE_STAGES: LeadStage[] = [
   'INTENT_TO_NEGOTIATE',
 ];
 
+// ─── Stage ID mapping — portal 442132500, Sales Pipeline ("default") ──────────
+// Source of truth: HubSpot portal stage IDs from Sprint A.2 document.
+const HUBSPOT_STAGE_TO_ERP_STAGE: Record<string, LeadStage> = {
+  '1753942459': 'RESEARCH',
+  '1753942460': 'VALIDATED',
+  '1753942461': 'DEVELOPING',
+  '1753942462': 'QUALIFIED',
+  '1753942463': 'SUBMISSION_IN_PROGRESS',
+  '1753942464': 'SUBMISSION_AWAITING',
+  '1753942465': 'INTENT_TO_NEGOTIATE',
+  '1753942466': 'CLOSED_WON',
+  '1753942467': 'CLOSED_LOST',
+  '1753942468': 'WITHDRAWN',
+  '1753942469': 'PURSUIT_UNSUCCESSFUL',
+  '1753942470': 'DEAD',
+  '1753942471': 'SUBMISSION_DECLINED',
+  '1753942472': 'SUBMISSION_WITHDRAWN',
+};
+
+// Reverse map for ERP→HubSpot PATCH
+const ERP_STAGE_TO_HUBSPOT_STAGE: Record<string, string> = Object.fromEntries(
+  Object.entries(HUBSPOT_STAGE_TO_ERP_STAGE).map(([hs, erp]) => [erp, hs])
+);
+
 // ─── Field mapping ────────────────────────────────────────────────────────────
 
 const HS_PROPERTIES = [
   'dealname',
   'amount',
   'dealstage',
+  'pipeline',
   'hubspot_owner_id',
   'closedate',
   'go_no_go_date',
@@ -42,22 +71,9 @@ const HS_PROPERTIES = [
   'hs_lastmodifieddate',
 ];
 
-// HubSpot dealstage IDs are pipeline-specific. Map the numeric stages from the doc.
-function mapStage(hsStage: string | null | undefined): LeadStage {
-  if (!hsStage) return 'RESEARCH';
-  const s = hsStage.toLowerCase();
-  if (s.includes('research') || s === '0') return 'RESEARCH';
-  if (s.includes('validated') || s === '1') return 'VALIDATED';
-  if (s.includes('developing') || s === '2') return 'DEVELOPING';
-  if (s.includes('qualified') || s === '3') return 'QUALIFIED';
-  if (s.includes('submission_in') || s.includes('in progress') || s === '4') return 'SUBMISSION_IN_PROGRESS';
-  if (s.includes('submission_await') || s.includes('awaiting') || s === '5') return 'SUBMISSION_AWAITING';
-  if (s.includes('intent') || s === '6') return 'INTENT_TO_NEGOTIATE';
-  if (s.includes('closedwon') || s.includes('won') || s === '7') return 'CLOSED_WON';
-  if (s.includes('closedlost') || s.includes('lost') || s === '8') return 'CLOSED_LOST';
-  if (s.includes('dead') || s === '9' || s === '10') return 'DEAD';
-  if (s.includes('withdrawn') || s === '11' || s === '12' || s === '13') return 'WITHDRAWN';
-  return 'RESEARCH';
+function mapStage(hsStage: string | null | undefined): LeadStage | null {
+  if (!hsStage) return null;
+  return HUBSPOT_STAGE_TO_ERP_STAGE[hsStage] ?? null;
 }
 
 function mapConfidence(hsValue: string | null | undefined): ConfidenceRating | null {
@@ -99,13 +115,14 @@ function parseDecimal(v: string | null | undefined): string | null {
 
 function dealToLeadData(
   props: Record<string, string | null | undefined>,
-  settings: { confidenceGreenPct: unknown; confidenceYellowPct: unknown; confidenceRedPct: unknown; confidenceNonePct: unknown }
+  settings: { confidenceGreenPct: unknown; confidenceYellowPct: unknown; confidenceRedPct: unknown; confidenceNonePct: unknown },
+  resolvedStage: LeadStage
 ) {
   const confidence = mapConfidence(props.confidence_rating);
   const prob = probFromConfidence(confidence, settings);
   return {
     leadName: props.dealname ?? 'Untitled',
-    stage: mapStage(props.dealstage),
+    stage: resolvedStage,
     contractValue: parseDecimal(props.amount),
     entryGpPct: parseDecimal(props['entry_gp__c']),
     confidenceRating: confidence,
@@ -157,6 +174,9 @@ function leadToHsProperties(lead: Record<string, unknown>, changedFields: string
     const val = lead[field];
     if (val == null) {
       props[hsProp] = '';
+    } else if (field === 'stage') {
+      // Translate ERP stage enum to HubSpot stage ID
+      props[hsProp] = ERP_STAGE_TO_HUBSPOT_STAGE[String(val)] ?? String(val);
     } else if (val instanceof Date) {
       props[hsProp] = val.toISOString().split('T')[0];
     } else {
@@ -229,17 +249,39 @@ export async function runFullSync(organisationId: string): Promise<{ imported: n
     for (const deal of response.results) {
       const props = deal.properties as Record<string, string | null | undefined>;
       const hubspotDealId = String(deal.id);
+      const pipelineId = props.pipeline ?? '';
       const hsStageRaw = props.dealstage;
+
+      // Skip deals from non-Sales pipelines (e.g. Outreach Campaign 2026)
+      if (pipelineId !== ALLOWED_PIPELINE_ID) {
+        skipped++;
+        await log({
+          hubspotDealId,
+          direction: 'HUBSPOT_TO_ERP',
+          operation: 'SKIPPED_INACTIVE_STAGE',
+          errorMessage: `Pipeline ${pipelineId} excluded — only Sales Pipeline ("default") is synced`,
+        }).catch(() => {});
+        continue;
+      }
+
       const mappedStage = mapStage(hsStageRaw);
+
+      // Skip deals with unknown stage IDs
+      if (mappedStage === null) {
+        skipped++;
+        await log({
+          hubspotDealId,
+          direction: 'HUBSPOT_TO_ERP',
+          operation: 'SKIPPED_INACTIVE_STAGE',
+          errorMessage: `Unknown HubSpot stage ID: ${hsStageRaw ?? '(empty)'}`,
+        }).catch(() => {});
+        continue;
+      }
 
       // Skip inactive stages — closed deals stay in HubSpot until Marketing module migration
       if (!ACTIVE_STAGES.includes(mappedStage)) {
         skipped++;
-        const reason = !hsStageRaw
-          ? 'No stage assigned in HubSpot'
-          : mappedStage === 'RESEARCH'
-            ? `Unmapped HubSpot stage ID: ${hsStageRaw}`
-            : `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
+        const reason = `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
         await log({
           hubspotDealId,
           direction: 'HUBSPOT_TO_ERP',
@@ -250,7 +292,7 @@ export async function runFullSync(organisationId: string): Promise<{ imported: n
       }
 
       try {
-        const leadData = dealToLeadData(props, settings);
+        const leadData = dealToLeadData(props, settings, mappedStage);
         const existing = await prisma.lead.findUnique({ where: { hubspotDealId } });
 
         if (existing) {
@@ -324,12 +366,29 @@ export async function runIncrementalSync(organisationId: string): Promise<{ sync
     for (const deal of response.results) {
       const props = deal.properties as Record<string, string | null | undefined>;
       const hubspotDealId = String(deal.id);
+      const pipelineId = props.pipeline ?? '';
       const hsStageRaw = props.dealstage;
+
+      // Skip non-Sales pipeline deals silently
+      if (pipelineId !== ALLOWED_PIPELINE_ID) continue;
+
       const mappedStage = mapStage(hsStageRaw);
+
+      // Skip unknown stage IDs
+      if (mappedStage === null) {
+        await log({
+          hubspotDealId,
+          direction: 'HUBSPOT_TO_ERP',
+          operation: 'SKIPPED_INACTIVE_STAGE',
+          errorMessage: `Unknown HubSpot stage ID: ${hsStageRaw ?? '(empty)'}`,
+        }).catch(() => {});
+        continue;
+      }
+
       const isActive = ACTIVE_STAGES.includes(mappedStage);
 
       try {
-        const leadData = dealToLeadData(props, settings);
+        const leadData = dealToLeadData(props, settings, mappedStage);
         const existing = await prisma.lead.findUnique({ where: { hubspotDealId } });
 
         // Case 1 — new active deal: create it
@@ -344,11 +403,7 @@ export async function runIncrementalSync(organisationId: string): Promise<{ sync
 
         // Case 2 — new inactive deal: skip it
         if (!existing && !isActive) {
-          const reason = !hsStageRaw
-            ? 'No stage assigned in HubSpot'
-            : mappedStage === 'RESEARCH'
-              ? `Unmapped HubSpot stage ID: ${hsStageRaw}`
-              : `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
+          const reason = `Stage ${mappedStage} excluded — closed deals stay in HubSpot until Marketing module migration`;
           await log({ hubspotDealId, direction: 'HUBSPOT_TO_ERP', operation: 'SKIPPED_INACTIVE_STAGE', errorMessage: reason });
           continue;
         }

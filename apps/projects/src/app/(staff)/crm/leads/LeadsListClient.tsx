@@ -2,6 +2,7 @@
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import LeadDetailPanel from './LeadDetailPanel';
+import { stageLabel } from '@/lib/crm/stage-labels';
 
 type User = { id: string; firstName: string; lastName: string };
 type Lead = {
@@ -23,13 +24,6 @@ type Lead = {
   [key: string]: unknown;
 };
 
-const STAGE_LABELS: Record<string, string> = {
-  RESEARCH: 'Research', VALIDATED: 'Validated', DEVELOPING: 'Developing',
-  QUALIFIED: 'Qualified', SUBMISSION_IN_PROGRESS: 'Submission (In Progress)',
-  SUBMISSION_AWAITING: 'Submission (Awaiting)', INTENT_TO_NEGOTIATE: 'Intent to Negotiate',
-  CLOSED_WON: 'Closed Won', CLOSED_LOST: 'Closed Lost', DEAD: 'Dead', WITHDRAWN: 'Withdrawn',
-};
-
 const STAGE_COLORS: Record<string, string> = {
   RESEARCH: 'bg-zinc-100 text-zinc-600',
   VALIDATED: 'bg-blue-100 text-blue-700',
@@ -42,6 +36,9 @@ const STAGE_COLORS: Record<string, string> = {
   CLOSED_LOST: 'bg-red-100 text-red-700',
   DEAD: 'bg-zinc-200 text-zinc-500',
   WITHDRAWN: 'bg-zinc-100 text-zinc-400',
+  PURSUIT_UNSUCCESSFUL: 'bg-zinc-200 text-zinc-500',
+  SUBMISSION_DECLINED: 'bg-red-100 text-red-600',
+  SUBMISSION_WITHDRAWN: 'bg-zinc-100 text-zinc-400',
 };
 
 function SyncIcon({ status }: { status: string }) {
@@ -261,7 +258,7 @@ export default function LeadsListClient({
                   <td className="px-4 py-2.5 font-medium text-zinc-900 max-w-[240px] truncate">{lead.leadName}</td>
                   <td className="px-3 py-2.5">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${STAGE_COLORS[lead.stage] ?? 'bg-zinc-100 text-zinc-500'}`}>
-                      {STAGE_LABELS[lead.stage] ?? lead.stage}
+                      {stageLabel(lead.stage)}
                     </span>
                   </td>
                   <td className="px-3 py-2.5">

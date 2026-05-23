@@ -1,22 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { previewCascade } from '@/lib/crm/cascade';
+import { stageLabel, ALL_STAGES } from '@/lib/crm/stage-labels';
 
 type User = { id: string; firstName: string; lastName: string };
 type Lead = Record<string, unknown>;
-
-const STAGES = [
-  'RESEARCH','VALIDATED','DEVELOPING','QUALIFIED',
-  'SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING','INTENT_TO_NEGOTIATE',
-  'CLOSED_WON','CLOSED_LOST','DEAD','WITHDRAWN',
-];
-
-const STAGE_LABELS: Record<string, string> = {
-  RESEARCH: 'Research', VALIDATED: 'Validated', DEVELOPING: 'Developing', QUALIFIED: 'Qualified',
-  SUBMISSION_IN_PROGRESS: 'Submission (In Progress)', SUBMISSION_AWAITING: 'Submission (Awaiting)',
-  INTENT_TO_NEGOTIATE: 'Intent to Negotiate', CLOSED_WON: 'Closed Won', CLOSED_LOST: 'Closed Lost',
-  DEAD: 'Dead', WITHDRAWN: 'Withdrawn',
-};
 
 function fmtDate(v: unknown): string {
   if (!v) return '';
@@ -154,7 +142,7 @@ export default function LeadDetailPanel({
         </Field>
         <Field label="Stage">
           <select className={inputClass} value={(form.stage as string) ?? 'RESEARCH'} onChange={(e) => handleChange('stage', e.target.value)}>
-            {STAGES.map((s) => <option key={s} value={s}>{STAGE_LABELS[s]}</option>)}
+            {ALL_STAGES.map((s) => <option key={s} value={s}>{stageLabel(s)}</option>)}
           </select>
         </Field>
         <Field label="Owner">
