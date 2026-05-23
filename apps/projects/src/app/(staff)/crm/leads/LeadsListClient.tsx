@@ -63,14 +63,18 @@ function fmtDate(v: string | null | undefined): string {
 
 const FILTER_TABS = [
   { key: 'ALL', label: 'All active' },
-  { key: 'ACTIVE', label: 'Active' },
   { key: 'RESEARCH', label: 'Research' },
+  { key: 'VALIDATED', label: 'Validated' },
+  { key: 'DEVELOPING', label: 'Developing' },
   { key: 'QUALIFIED', label: 'Qualified' },
-  { key: 'CONFLICT', label: 'Conflicts' },
+  { key: 'SUBMISSION', label: 'Submission' },
+  { key: 'NEGOTIATION', label: 'Negotiation' },
   { key: 'ARCHIVED', label: 'Archived' },
+  { key: 'CONFLICT', label: 'Conflicts' },
 ];
 
 const ACTIVE_STAGES = ['RESEARCH','VALIDATED','DEVELOPING','QUALIFIED','SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING','INTENT_TO_NEGOTIATE'];
+const SUBMISSION_STAGES = ['SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING'];
 
 export default function LeadsListClient({
   initialLeads,
@@ -108,14 +112,20 @@ export default function LeadsListClient({
   }
 
   const filtered = leads.filter((l) => {
-    // Default 'All active' tab excludes archived leads
-    if (filter === 'ALL' && l.syncStatus === 'ARCHIVED') return false;
-    if (filter === 'ACTIVE' && (!ACTIVE_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED')) return false;
-    if (filter === 'ARCHIVED' && l.syncStatus !== 'ARCHIVED') return false;
-    if (filter === 'CONFLICT' && l.syncStatus !== 'CONFLICT') return false;
-    if (!['ALL','ACTIVE','ARCHIVED','CONFLICT'].includes(filter) && l.stage !== filter) return false;
-    // Stage-specific tabs also exclude archived
-    if (!['ALL','ACTIVE','ARCHIVED','CONFLICT'].includes(filter) && l.syncStatus === 'ARCHIVED') return false;
+    if (filter === 'ALL') {
+      if (!ACTIVE_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED') return false;
+    } else if (filter === 'SUBMISSION') {
+      if (!SUBMISSION_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED') return false;
+    } else if (filter === 'NEGOTIATION') {
+      if (l.stage !== 'INTENT_TO_NEGOTIATE' || l.syncStatus === 'ARCHIVED') return false;
+    } else if (filter === 'ARCHIVED') {
+      if (l.syncStatus !== 'ARCHIVED') return false;
+    } else if (filter === 'CONFLICT') {
+      if (l.syncStatus !== 'CONFLICT') return false;
+    } else {
+      // Single-stage tab (RESEARCH, VALIDATED, DEVELOPING, QUALIFIED)
+      if (l.stage !== filter || l.syncStatus === 'ARCHIVED') return false;
+    }
     if (ownerFilter && l.ownerUser?.id !== ownerFilter) return false;
     if (search) {
       const q = search.toLowerCase();

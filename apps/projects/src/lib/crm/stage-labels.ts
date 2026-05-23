@@ -1,20 +1,20 @@
 import type { LeadStage } from '@agero/db';
 
 const STAGE_LABEL_MAP: Record<LeadStage, string> = {
-  RESEARCH: 'Research',
-  VALIDATED: 'Validated',
-  DEVELOPING: 'Developing',
-  QUALIFIED: 'Qualified',
-  SUBMISSION_IN_PROGRESS: 'Submission (In Progress)',
-  SUBMISSION_AWAITING: 'Submission (Awaiting)',
-  INTENT_TO_NEGOTIATE: 'Intent to Negotiate',
-  CLOSED_WON: 'Closed Won',
-  CLOSED_LOST: 'Closed Lost',
-  DEAD: 'Dead',
-  WITHDRAWN: 'Withdrawn',
-  PURSUIT_UNSUCCESSFUL: 'Pursuit Unsuccessful',
-  SUBMISSION_DECLINED: 'Submission Declined',
-  SUBMISSION_WITHDRAWN: 'Submission Withdrawn',
+  RESEARCH: '0 Research Lead',
+  VALIDATED: '1 Validated Deal',
+  DEVELOPING: '2 Developing Deal',
+  QUALIFIED: '3 Qualified Deal',
+  SUBMISSION_IN_PROGRESS: '4 Submission in Progress',
+  SUBMISSION_AWAITING: '5 Submission Awaiting Decision',
+  INTENT_TO_NEGOTIATE: '6 Intent to Negotiate',
+  CLOSED_WON: '7 Closed Won',
+  CLOSED_LOST: '8 Closed Lost',
+  WITHDRAWN: '9 Pursuit Withdrawn',
+  PURSUIT_UNSUCCESSFUL: '10 Pursuit Unsuccessful',
+  DEAD: '11 Dead',
+  SUBMISSION_DECLINED: '12 Submission Declined',
+  SUBMISSION_WITHDRAWN: '13 Submission Withdrawn',
 };
 
 export function stageLabel(stage: string): string {
