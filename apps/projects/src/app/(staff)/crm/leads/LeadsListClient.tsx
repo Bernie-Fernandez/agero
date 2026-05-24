@@ -63,18 +63,18 @@ function fmtDate(v: string | null | undefined): string {
 
 const FILTER_TABS = [
   { key: 'ALL', label: 'All active' },
-  { key: 'RESEARCH', label: 'Research' },
-  { key: 'VALIDATED', label: 'Validated' },
-  { key: 'DEVELOPING', label: 'Developing' },
-  { key: 'QUALIFIED', label: 'Qualified' },
-  { key: 'SUBMISSION', label: 'Submission' },
-  { key: 'NEGOTIATION', label: 'Negotiation' },
+  { key: 'RESEARCH', label: '0 Research' },
+  { key: 'VALIDATED', label: '1 Validated' },
+  { key: 'DEVELOPING', label: '2 Developing' },
+  { key: 'QUALIFIED', label: '3 Qualified' },
+  { key: 'SUBMISSION_IN_PROGRESS', label: '4 Sub. In Progress' },
+  { key: 'SUBMISSION_AWAITING', label: '5 Sub. Awaiting' },
+  { key: 'INTENT_TO_NEGOTIATE', label: '6 Negotiation' },
   { key: 'ARCHIVED', label: 'Archived' },
   { key: 'CONFLICT', label: 'Conflicts' },
 ];
 
 const ACTIVE_STAGES = ['RESEARCH','VALIDATED','DEVELOPING','QUALIFIED','SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING','INTENT_TO_NEGOTIATE'];
-const SUBMISSION_STAGES = ['SUBMISSION_IN_PROGRESS','SUBMISSION_AWAITING'];
 
 export default function LeadsListClient({
   initialLeads,
@@ -114,16 +114,12 @@ export default function LeadsListClient({
   const filtered = leads.filter((l) => {
     if (filter === 'ALL') {
       if (!ACTIVE_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED') return false;
-    } else if (filter === 'SUBMISSION') {
-      if (!SUBMISSION_STAGES.includes(l.stage) || l.syncStatus === 'ARCHIVED') return false;
-    } else if (filter === 'NEGOTIATION') {
-      if (l.stage !== 'INTENT_TO_NEGOTIATE' || l.syncStatus === 'ARCHIVED') return false;
     } else if (filter === 'ARCHIVED') {
       if (l.syncStatus !== 'ARCHIVED') return false;
     } else if (filter === 'CONFLICT') {
       if (l.syncStatus !== 'CONFLICT') return false;
     } else {
-      // Single-stage tab (RESEARCH, VALIDATED, DEVELOPING, QUALIFIED)
+      // Single-stage tabs
       if (l.stage !== filter || l.syncStatus === 'ARCHIVED') return false;
     }
     if (ownerFilter && l.ownerUser?.id !== ownerFilter) return false;
