@@ -14,6 +14,8 @@ export default function NavShellLayout({
   isDirector,
   projects,
   leads,
+  moduleFlags,
+  userModuleAccess,
   children,
 }: {
   userInitials: string;
@@ -23,6 +25,8 @@ export default function NavShellLayout({
   isDirector: boolean;
   projects: Project[];
   leads: Lead[];
+  moduleFlags: Record<string, boolean>;
+  userModuleAccess: Record<string, string>;
   children: ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -39,7 +43,12 @@ export default function NavShellLayout({
         leads={leads}
         onMenuToggle={() => setSidebarOpen(true)}
       />
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        moduleFlags={moduleFlags}
+        userModuleAccess={userModuleAccess}
+      />
       <main className="pt-12 md:ml-[200px] min-h-[calc(100vh-48px)]">
         {children}
       </main>

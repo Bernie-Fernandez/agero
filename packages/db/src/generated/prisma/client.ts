@@ -52,6 +52,11 @@ export type Organisation = Prisma.OrganisationModel
  */
 export type User = Prisma.UserModel
 /**
+ * Model ModuleFlag
+ * 
+ */
+export type ModuleFlag = Prisma.ModuleFlagModel
+/**
  * Model AuditLog
  * 
  */

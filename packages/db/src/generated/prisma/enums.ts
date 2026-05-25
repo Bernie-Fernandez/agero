@@ -228,6 +228,20 @@ export const PortalInvitationStatus = {
 export type PortalInvitationStatus = (typeof PortalInvitationStatus)[keyof typeof PortalInvitationStatus]
 
 
+export const ModuleKey = {
+  admin: 'admin',
+  finance: 'finance',
+  estimating: 'estimating',
+  crm: 'crm',
+  project_delivery: 'project_delivery',
+  safety: 'safety',
+  marketing: 'marketing',
+  design_studio: 'design_studio'
+} as const
+
+export type ModuleKey = (typeof ModuleKey)[keyof typeof ModuleKey]
+
+
 export const ImsUsergroup = {
   ADMIN: 'ADMIN',
   EMPLOYEE: 'EMPLOYEE',

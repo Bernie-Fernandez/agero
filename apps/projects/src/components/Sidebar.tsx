@@ -328,7 +328,54 @@ function ProjectSubItems({ onItemClick }: { onItemClick?: () => void }) {
 
 // ── SidebarNav ───────────────────────────────────────────────────────────────
 
-function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
+const ACCESS_RANK: Record<string, number> = { none: 0, read: 1, own: 2, full: 3 };
+
+// Map sidebar section to module key. delivery uses 'project_delivery' flag.
+const SECTION_MODULE: Record<string, string> = {
+  projects:   'project_delivery',
+  estimating: 'estimating',
+  design:     'design_studio',
+  crm:        'crm',
+  finance:    'finance',
+  marketing:  'marketing',
+  admin:      'admin',
+};
+
+// Map module flag key to PermissionSet key (for user access check)
+const MODULE_TO_PERM: Record<string, string> = {
+  project_delivery: 'delivery',
+  design_studio:    'design_studio', // no perm entry — allow any user
+  admin:            'admin',
+  finance:          'finance',
+  estimating:       'estimating',
+  crm:              'crm',
+  marketing:        'marketing',
+  safety:           'safety',
+};
+
+function useSectionVisible(
+  sectionKey: string,
+  moduleFlags: Record<string, boolean>,
+  userModuleAccess: Record<string, string>
+): boolean {
+  const moduleKey = SECTION_MODULE[sectionKey];
+  if (!moduleKey) return true; // no module mapping — always show (e.g. bookmarks)
+  if (!moduleFlags[moduleKey]) return false; // globally disabled
+  const permKey = MODULE_TO_PERM[moduleKey];
+  if (!permKey || permKey === 'design_studio') return true; // no perm entry — show to all staff
+  const userLevel = userModuleAccess[permKey] ?? 'none';
+  return ACCESS_RANK[userLevel] >= ACCESS_RANK['read'];
+}
+
+function SidebarNav({
+  onItemClick,
+  moduleFlags,
+  userModuleAccess,
+}: {
+  onItemClick?: () => void;
+  moduleFlags: Record<string, boolean>;
+  userModuleAccess: Record<string, string>;
+}) {
   const pathname = usePathname();
   const [bookmarksOpen, setBookmarksOpen] = useState(false);
   const [pendingApprovals, setPendingApprovals] = useState(0);
@@ -337,6 +384,8 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
   useEffect(() => {
     getDesignPendingApprovalCount().then(setPendingApprovals).catch(() => {});
   }, []);
+
+  const show = (key: string) => useSectionVisible(key, moduleFlags, userModuleAccess);
 
   return (
     <nav className="py-3 px-2 space-y-0.5 relative">
@@ -357,42 +406,62 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
       </div>
 
       {/* ── Project (Direct) ─────────────────────────────────────────────── */}
-      <GroupLabel label="Project" />
+      {(show('projects') || show('estimating') || show('design')) && (
+        <GroupLabel label="Project" />
+      )}
 
-      <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
-        <ProjectSubItems onItemClick={onItemClick} />
-      </Section>
+      {show('projects') && (
+        <Section sectionKey="projects" label="Projects" defaultOpen={true} onItemClick={onItemClick}>
+          <ProjectSubItems onItemClick={onItemClick} />
+        </Section>
+      )}
 
-      <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
-        <EstimatingSubItems onItemClick={onItemClick} />
-      </Section>
+      {show('estimating') && (
+        <Section sectionKey="estimating" label="Estimating" defaultOpen={false} forceOpen={onLeadsRoute} onItemClick={onItemClick}>
+          <EstimatingSubItems onItemClick={onItemClick} />
+        </Section>
+      )}
 
-      <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
-        <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
-      </Section>
+      {show('design') && (
+        <Section sectionKey="design" label="Design Studio" defaultOpen={false} onItemClick={onItemClick}>
+          <DesignSubItems onItemClick={onItemClick} pendingApprovals={pendingApprovals} />
+        </Section>
+      )}
 
       {/* ── Business (Indirect) ──────────────────────────────────────────── */}
-      <GroupLabel label="Business" />
+      {(show('crm') || show('finance') || show('marketing')) && (
+        <GroupLabel label="Business" />
+      )}
 
-      <Section sectionKey="crm" label="CRM" defaultOpen={true} onItemClick={onItemClick}>
-        <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
-        <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
-        <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
-        <NavLink href="/crm/leads" label="CRM Leads" depth={1} onItemClick={onItemClick} />
-        <NavLink href="/crm/settings/hubspot" label="HubSpot" depth={1} onItemClick={onItemClick} />
-      </Section>
+      {show('crm') && (
+        <Section sectionKey="crm" label="CRM" defaultOpen={true} onItemClick={onItemClick}>
+          <NavLink href="/crm/companies" label="Companies" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/crm/contacts" label="Contacts" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/leads" label="Leads" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/crm/leads" label="CRM Leads" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/crm/settings/hubspot" label="HubSpot" depth={1} onItemClick={onItemClick} />
+        </Section>
+      )}
 
-      <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>
-        <FinanceSubItems onItemClick={onItemClick} />
-      </Section>
+      {show('finance') && (
+        <Section sectionKey="finance" label="Finance" defaultOpen={false} onItemClick={onItemClick}>
+          <FinanceSubItems onItemClick={onItemClick} />
+        </Section>
+      )}
 
-      <Section sectionKey="reporting" label="Reporting" defaultOpen={false} stubbed />
+      {show('marketing') && (
+        <Section sectionKey="marketing" label="Marketing" defaultOpen={false} stubbed />
+      )}
 
-      <Section sectionKey="marketing" label="Marketing" defaultOpen={false} stubbed />
-
-      <Section sectionKey="admin" label="Admin" defaultOpen={false} onItemClick={onItemClick}>
-        <NavLink href="/admin" label="Settings" depth={1} onItemClick={onItemClick} />
-      </Section>
+      {show('admin') && (
+        <Section sectionKey="admin" label="Admin" defaultOpen={false} onItemClick={onItemClick}>
+          <NavLink href="/admin/users" label="Users" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/admin/modules" label="Module Visibility" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/admin/audit" label="Audit Trail" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/admin/reference-library" label="Reference Library" depth={1} onItemClick={onItemClick} />
+          <NavLink href="/admin" label="Settings" depth={1} onItemClick={onItemClick} />
+        </Section>
+      )}
     </nav>
   );
 }
@@ -402,15 +471,19 @@ function SidebarNav({ onItemClick }: { onItemClick?: () => void }) {
 export default function Sidebar({
   isOpen,
   onClose,
+  moduleFlags,
+  userModuleAccess,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  moduleFlags: Record<string, boolean>;
+  userModuleAccess: Record<string, string>;
 }) {
   return (
     <>
       {/* Desktop fixed sidebar */}
       <aside className="hidden md:block fixed left-0 top-12 w-[200px] h-[calc(100vh-48px)] bg-white border-r border-zinc-100 overflow-y-auto z-20">
-        <SidebarNav />
+        <SidebarNav moduleFlags={moduleFlags} userModuleAccess={userModuleAccess} />
       </aside>
 
       {/* Mobile backdrop */}
@@ -438,7 +511,7 @@ export default function Sidebar({
             </svg>
           </button>
         </div>
-        <SidebarNav onItemClick={onClose} />
+        <SidebarNav onItemClick={onClose} moduleFlags={moduleFlags} userModuleAccess={userModuleAccess} />
       </aside>
     </>
   );

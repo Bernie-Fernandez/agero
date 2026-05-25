@@ -3,6 +3,8 @@
  * Role presets + runtime resolver for the 25-role system defined in Sprint 13.
  */
 
+import { prismaErp } from "./client";
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type ModuleAccess = 'none' | 'read' | 'own' | 'full';
@@ -173,9 +175,53 @@ export function resolvePermissions(user: UserLike): PermissionSet {
 
 const ACCESS_RANK: Record<ModuleAccess, number> = { none: 0, read: 1, own: 2, full: 3 };
 
-export function canAccess(user: UserLike, module: keyof PermissionSet['modules'], level: ModuleAccess): boolean {
+// ─── Module flag cache (60-second TTL, per-invocation) ────────────────────────
+
+type FlagCacheEntry = { enabled: boolean; expiresAt: number };
+const _flagCache = new Map<string, FlagCacheEntry>();
+const FLAG_TTL = 60_000;
+
+// Map from PermissionSet module keys to ModuleKey enum values
+const PERM_TO_MODULE: Record<string, string> = {
+  admin: 'admin',
+  finance: 'finance',
+  estimating: 'estimating',
+  crm: 'crm',
+  delivery: 'project_delivery',
+  safety: 'safety',
+  marketing: 'marketing',
+};
+
+async function getModuleEnabled(module: string): Promise<boolean> {
+  const cached = _flagCache.get(module);
+  if (cached && cached.expiresAt > Date.now()) return cached.enabled;
+
+  const flag = await prismaErp.moduleFlag.findUnique({ where: { module: module as never } });
+  const enabled = flag?.enabled ?? false;
+  _flagCache.set(module, { enabled, expiresAt: Date.now() + FLAG_TTL });
+  return enabled;
+}
+
+export function invalidateModuleCache(module: string): void {
+  _flagCache.delete(module);
+}
+
+export async function canAccess(
+  user: UserLike,
+  module: keyof PermissionSet['modules'] | 'design_studio',
+  level: ModuleAccess
+): Promise<boolean> {
+  // 1. Check global module flag first
+  const moduleKey = PERM_TO_MODULE[module] ?? module;
+  const enabled = await getModuleEnabled(moduleKey);
+  if (!enabled) return false;
+
+  // 2. design_studio has no user permission entry — allow any authenticated user
+  if (module === 'design_studio') return true;
+
+  // 3. Check user permission
   const perms = resolvePermissions(user);
-  const userLevel = perms.modules[module] ?? 'none';
+  const userLevel = (perms.modules as Record<string, ModuleAccess>)[module] ?? 'none';
   return ACCESS_RANK[userLevel] >= ACCESS_RANK[level];
 }
 

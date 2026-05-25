@@ -218,6 +218,19 @@ enum PortalInvitationStatus {
   @@schema("projects")
 }
 
+enum ModuleKey {
+  admin
+  finance
+  estimating
+  crm
+  project_delivery
+  safety
+  marketing
+  design_studio
+
+  @@schema("projects")
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // MODELS — projects schema (18 tables)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -384,9 +397,25 @@ model User {
   invitationsCreated      SubcontractorInvitation[] @relation("InvitationCreatedBy")
   ownedLeads              Lead[]                    @relation("LeadOwner")
   hubSpotConnections      HubSpotSyncSettings[]     @relation("HubSpotConnectedBy")
+  enabledModuleFlags      ModuleFlag[]              @relation("ModuleFlagEnabledBy")
 
   @@index([organisationId])
   @@map("users")
+  @@schema("projects")
+}
+
+model ModuleFlag {
+  id          String     @id @default(uuid()) @db.Uuid
+  module      ModuleKey  @unique
+  enabled     Boolean    @default(false)
+  description String
+  enabledAt   DateTime?  @map("enabled_at")
+  enabledById String?    @map("enabled_by_id") @db.Uuid
+  enabledBy   User?      @relation("ModuleFlagEnabledBy", fields: [enabledById], references: [id], onDelete: SetNull)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  @@map("module_flags")
   @@schema("projects")
 }
 

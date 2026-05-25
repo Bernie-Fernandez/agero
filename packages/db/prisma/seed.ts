@@ -120,6 +120,37 @@ const ALERT_THRESHOLDS = [
   { alertType: "DOCUMENT_EXPIRY",  daysBefore: 30 },
 ];
 
+// ─── Sprint A.3 — Module Flags ────────────────────────────────────────────────
+// Canonical place for module flag setup. Idempotent: existing rows are NEVER
+// overwritten (update clause is empty), protecting Bernie's manual toggles.
+
+const MODULE_FLAGS = [
+  { module: 'admin',            description: 'User management, audit trail, module visibility, reference library' },
+  { module: 'crm',              description: 'Leads, Companies, Contacts, HubSpot Sync' },
+  { module: 'finance',          description: 'P&L, Budget, Secured Forecast, Xero, Reports' },
+  { module: 'estimating',       description: 'Cost Plans, Scope, Trade Letting, Takeoff' },
+  { module: 'safety',           description: 'Worker portal, inductions, sign-ins (separate app at safety.agero.com.au)' },
+  { module: 'design_studio',    description: 'Sources, Trends, Chatbot' },
+  { module: 'project_delivery', description: 'Project execution, ITPs, RFIs (not built yet)' },
+  { module: 'marketing',        description: 'Bid management, campaigns (not built yet)' },
+];
+
+async function seedModuleFlags(client: import('pg').PoolClient) {
+  const isProduction = process.env.VERCEL_ENV === 'production';
+
+  for (const flag of MODULE_FLAGS) {
+    const enabled = isProduction ? flag.module === 'admin' : true;
+    await client.query(
+      `INSERT INTO projects.module_flags (id, module, enabled, description, created_at, updated_at)
+       VALUES (gen_random_uuid(), $1::projects."ModuleKey", $2, $3, NOW(), NOW())
+       ON CONFLICT (module) DO NOTHING`,
+      [flag.module, enabled, flag.description]
+    );
+  }
+
+  console.log(`  Module flags : seeded 8 rows (${isProduction ? 'production — admin only' : 'staging — all enabled'})`);
+}
+
 async function seed() {
   const client = await pool.connect();
   try {
@@ -259,6 +290,10 @@ async function seed() {
          updated_at = NOW()`,
       [SEED_USER2_ID, SEED_ORGANISATION_ID, 'seed_michelle_placeholder', 'Michelle', 'Vieira', 'mvieira@agero.com.au', 'SALES_EXEC_ADMIN', salesPreset]
     );
+
+    // ── Sprint A.3 ─────────────────────────────────────────────────────────────
+
+    await seedModuleFlags(client);
 
     await client.query("COMMIT");
 

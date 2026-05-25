@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Organisation: 'Organisation',
   User: 'User',
+  ModuleFlag: 'ModuleFlag',
   AuditLog: 'AuditLog',
   UserTraining: 'UserTraining',
   Project: 'Project',
@@ -257,6 +258,20 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const ModuleFlagScalarFieldEnum = {
+  id: 'id',
+  module: 'module',
+  enabled: 'enabled',
+  description: 'description',
+  enabledAt: 'enabledAt',
+  enabledById: 'enabledById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ModuleFlagScalarFieldEnum = (typeof ModuleFlagScalarFieldEnum)[keyof typeof ModuleFlagScalarFieldEnum]
 
 
 export const AuditLogScalarFieldEnum = {
