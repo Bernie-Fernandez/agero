@@ -542,6 +542,16 @@ export type XeroConnection = Prisma.XeroConnectionModel
  */
 export type FinanceProject = Prisma.FinanceProjectModel
 /**
+ * Model FinanceProjectSnapshot
+ * 
+ */
+export type FinanceProjectSnapshot = Prisma.FinanceProjectSnapshotModel
+/**
+ * Model CatImport
+ * 
+ */
+export type CatImport = Prisma.CatImportModel
+/**
  * Model XeroPnL
  * 
  */

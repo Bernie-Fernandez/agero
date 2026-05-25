@@ -559,6 +559,8 @@ export type UserWhereInput = {
   ownedLeads?: Prisma.LeadListRelationFilter
   hubSpotConnections?: Prisma.HubSpotSyncSettingsListRelationFilter
   enabledModuleFlags?: Prisma.ModuleFlagListRelationFilter
+  catImportsUploaded?: Prisma.CatImportListRelationFilter
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -658,6 +660,8 @@ export type UserOrderByWithRelationInput = {
   ownedLeads?: Prisma.LeadOrderByRelationAggregateInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsOrderByRelationAggregateInput
   enabledModuleFlags?: Prisma.ModuleFlagOrderByRelationAggregateInput
+  catImportsUploaded?: Prisma.CatImportOrderByRelationAggregateInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -760,6 +764,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   ownedLeads?: Prisma.LeadListRelationFilter
   hubSpotConnections?: Prisma.HubSpotSyncSettingsListRelationFilter
   enabledModuleFlags?: Prisma.ModuleFlagListRelationFilter
+  catImportsUploaded?: Prisma.CatImportListRelationFilter
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotListRelationFilter
 }, "id" | "clerkId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -954,6 +960,8 @@ export type UserCreateInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -1052,6 +1060,8 @@ export type UserUncheckedCreateInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUpdateInput = {
@@ -1150,6 +1160,8 @@ export type UserUpdateInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -1248,6 +1260,8 @@ export type UserUncheckedUpdateInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -2213,6 +2227,34 @@ export type UserUpdateOneRequiredWithoutXeroConnectionsMadeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutXeroConnectionsMadeInput, Prisma.UserUpdateWithoutXeroConnectionsMadeInput>, Prisma.UserUncheckedUpdateWithoutXeroConnectionsMadeInput>
 }
 
+export type UserCreateNestedOneWithoutFinanceSnapshotsImportedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedCreateWithoutFinanceSnapshotsImportedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFinanceSnapshotsImportedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFinanceSnapshotsImportedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedCreateWithoutFinanceSnapshotsImportedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFinanceSnapshotsImportedInput
+  upsert?: Prisma.UserUpsertWithoutFinanceSnapshotsImportedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFinanceSnapshotsImportedInput, Prisma.UserUpdateWithoutFinanceSnapshotsImportedInput>, Prisma.UserUncheckedUpdateWithoutFinanceSnapshotsImportedInput>
+}
+
+export type UserCreateNestedOneWithoutCatImportsUploadedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCatImportsUploadedInput, Prisma.UserUncheckedCreateWithoutCatImportsUploadedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCatImportsUploadedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCatImportsUploadedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCatImportsUploadedInput, Prisma.UserUncheckedCreateWithoutCatImportsUploadedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCatImportsUploadedInput
+  upsert?: Prisma.UserUpsertWithoutCatImportsUploadedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCatImportsUploadedInput, Prisma.UserUpdateWithoutCatImportsUploadedInput>, Prisma.UserUncheckedUpdateWithoutCatImportsUploadedInput>
+}
+
 export type UserCreateNestedOneWithoutManagementReportsPreparedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutManagementReportsPreparedInput, Prisma.UserUncheckedCreateWithoutManagementReportsPreparedInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutManagementReportsPreparedInput
@@ -2506,6 +2548,8 @@ export type UserCreateWithoutOrganisationInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutOrganisationInput = {
@@ -2603,6 +2647,8 @@ export type UserUncheckedCreateWithoutOrganisationInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutOrganisationInput = {
@@ -2773,6 +2819,8 @@ export type UserCreateWithoutEnabledModuleFlagsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutEnabledModuleFlagsInput = {
@@ -2870,6 +2918,8 @@ export type UserUncheckedCreateWithoutEnabledModuleFlagsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutEnabledModuleFlagsInput = {
@@ -2983,6 +3033,8 @@ export type UserUpdateWithoutEnabledModuleFlagsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEnabledModuleFlagsInput = {
@@ -3080,6 +3132,8 @@ export type UserUncheckedUpdateWithoutEnabledModuleFlagsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -3177,6 +3231,8 @@ export type UserCreateWithoutAuditLogsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -3274,6 +3330,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -3387,6 +3445,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -3484,6 +3544,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutTrainingRecordsInput = {
@@ -3581,6 +3643,8 @@ export type UserCreateWithoutTrainingRecordsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutTrainingRecordsInput = {
@@ -3678,6 +3742,8 @@ export type UserUncheckedCreateWithoutTrainingRecordsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutTrainingRecordsInput = {
@@ -3791,6 +3857,8 @@ export type UserUpdateWithoutTrainingRecordsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
@@ -3888,6 +3956,8 @@ export type UserUncheckedUpdateWithoutTrainingRecordsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutManagedProjectsInput = {
@@ -3985,6 +4055,8 @@ export type UserCreateWithoutManagedProjectsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutManagedProjectsInput = {
@@ -4082,6 +4154,8 @@ export type UserUncheckedCreateWithoutManagedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutManagedProjectsInput = {
@@ -4184,6 +4258,8 @@ export type UserCreateWithoutSiteProjectsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutSiteProjectsInput = {
@@ -4281,6 +4357,8 @@ export type UserUncheckedCreateWithoutSiteProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutSiteProjectsInput = {
@@ -4383,6 +4461,8 @@ export type UserCreateWithoutEstimatedProjectsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
@@ -4480,6 +4560,8 @@ export type UserUncheckedCreateWithoutEstimatedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatedProjectsInput = {
@@ -4582,6 +4664,8 @@ export type UserCreateWithoutCreatedProjectsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedProjectsInput = {
@@ -4679,6 +4763,8 @@ export type UserUncheckedCreateWithoutCreatedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedProjectsInput = {
@@ -4792,6 +4878,8 @@ export type UserUpdateWithoutManagedProjectsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagedProjectsInput = {
@@ -4889,6 +4977,8 @@ export type UserUncheckedUpdateWithoutManagedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutSiteProjectsInput = {
@@ -4997,6 +5087,8 @@ export type UserUpdateWithoutSiteProjectsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSiteProjectsInput = {
@@ -5094,6 +5186,8 @@ export type UserUncheckedUpdateWithoutSiteProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutEstimatedProjectsInput = {
@@ -5202,6 +5296,8 @@ export type UserUpdateWithoutEstimatedProjectsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
@@ -5299,6 +5395,8 @@ export type UserUncheckedUpdateWithoutEstimatedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedProjectsInput = {
@@ -5407,6 +5505,8 @@ export type UserUpdateWithoutCreatedProjectsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
@@ -5504,6 +5604,8 @@ export type UserUncheckedUpdateWithoutCreatedProjectsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutProjectSubAssignmentsInput = {
@@ -5601,6 +5703,8 @@ export type UserCreateWithoutProjectSubAssignmentsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
@@ -5698,6 +5802,8 @@ export type UserUncheckedCreateWithoutProjectSubAssignmentsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutProjectSubAssignmentsInput = {
@@ -5811,6 +5917,8 @@ export type UserUpdateWithoutProjectSubAssignmentsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
@@ -5908,6 +6016,8 @@ export type UserUncheckedUpdateWithoutProjectSubAssignmentsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutCreatedCompaniesInput = {
@@ -6005,6 +6115,8 @@ export type UserCreateWithoutCreatedCompaniesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
@@ -6102,6 +6214,8 @@ export type UserUncheckedCreateWithoutCreatedCompaniesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedCompaniesInput = {
@@ -6215,6 +6329,8 @@ export type UserUpdateWithoutCreatedCompaniesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
@@ -6312,6 +6428,8 @@ export type UserUncheckedUpdateWithoutCreatedCompaniesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutOwnedContactsInput = {
@@ -6409,6 +6527,8 @@ export type UserCreateWithoutOwnedContactsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutOwnedContactsInput = {
@@ -6506,6 +6626,8 @@ export type UserUncheckedCreateWithoutOwnedContactsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutOwnedContactsInput = {
@@ -6608,6 +6730,8 @@ export type UserCreateWithoutCreatedContactsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedContactsInput = {
@@ -6705,6 +6829,8 @@ export type UserUncheckedCreateWithoutCreatedContactsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedContactsInput = {
@@ -6818,6 +6944,8 @@ export type UserUpdateWithoutOwnedContactsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedContactsInput = {
@@ -6915,6 +7043,8 @@ export type UserUncheckedUpdateWithoutOwnedContactsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedContactsInput = {
@@ -7023,6 +7153,8 @@ export type UserUpdateWithoutCreatedContactsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedContactsInput = {
@@ -7120,6 +7252,8 @@ export type UserUncheckedUpdateWithoutCreatedContactsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPoliciesInput = {
@@ -7217,6 +7351,8 @@ export type UserCreateWithoutCreatedPoliciesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
@@ -7314,6 +7450,8 @@ export type UserUncheckedCreateWithoutCreatedPoliciesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPoliciesInput = {
@@ -7427,6 +7565,8 @@ export type UserUpdateWithoutCreatedPoliciesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
@@ -7524,6 +7664,8 @@ export type UserUncheckedUpdateWithoutCreatedPoliciesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutUploadedDocsInput = {
@@ -7621,6 +7763,8 @@ export type UserCreateWithoutUploadedDocsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutUploadedDocsInput = {
@@ -7718,6 +7862,8 @@ export type UserUncheckedCreateWithoutUploadedDocsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutUploadedDocsInput = {
@@ -7831,6 +7977,8 @@ export type UserUpdateWithoutUploadedDocsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUploadedDocsInput = {
@@ -7928,6 +8076,8 @@ export type UserUncheckedUpdateWithoutUploadedDocsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutCompanyNotesInput = {
@@ -8025,6 +8175,8 @@ export type UserCreateWithoutCompanyNotesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCompanyNotesInput = {
@@ -8122,6 +8274,8 @@ export type UserUncheckedCreateWithoutCompanyNotesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCompanyNotesInput = {
@@ -8235,6 +8389,8 @@ export type UserUpdateWithoutCompanyNotesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyNotesInput = {
@@ -8332,6 +8488,8 @@ export type UserUncheckedUpdateWithoutCompanyNotesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutContactNotesInput = {
@@ -8429,6 +8587,8 @@ export type UserCreateWithoutContactNotesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutContactNotesInput = {
@@ -8526,6 +8686,8 @@ export type UserUncheckedCreateWithoutContactNotesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutContactNotesInput = {
@@ -8639,6 +8801,8 @@ export type UserUpdateWithoutContactNotesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutContactNotesInput = {
@@ -8736,6 +8900,8 @@ export type UserUncheckedUpdateWithoutContactNotesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutApprovedProfilesInput = {
@@ -8833,6 +8999,8 @@ export type UserCreateWithoutApprovedProfilesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedProfilesInput = {
@@ -8930,6 +9098,8 @@ export type UserUncheckedCreateWithoutApprovedProfilesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedProfilesInput = {
@@ -9043,6 +9213,8 @@ export type UserUpdateWithoutApprovedProfilesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
@@ -9140,6 +9312,8 @@ export type UserUncheckedUpdateWithoutApprovedProfilesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutSentInvitationsInput = {
@@ -9237,6 +9411,8 @@ export type UserCreateWithoutSentInvitationsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutSentInvitationsInput = {
@@ -9334,6 +9510,8 @@ export type UserUncheckedCreateWithoutSentInvitationsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutSentInvitationsInput = {
@@ -9447,6 +9625,8 @@ export type UserUpdateWithoutSentInvitationsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentInvitationsInput = {
@@ -9544,6 +9724,8 @@ export type UserUncheckedUpdateWithoutSentInvitationsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutSentCommunicationsInput = {
@@ -9641,6 +9823,8 @@ export type UserCreateWithoutSentCommunicationsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutSentCommunicationsInput = {
@@ -9738,6 +9922,8 @@ export type UserUncheckedCreateWithoutSentCommunicationsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutSentCommunicationsInput = {
@@ -9851,6 +10037,8 @@ export type UserUpdateWithoutSentCommunicationsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
@@ -9948,6 +10136,8 @@ export type UserUncheckedUpdateWithoutSentCommunicationsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -10045,6 +10235,8 @@ export type UserCreateWithoutNotificationsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -10142,6 +10334,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -10255,6 +10449,8 @@ export type UserUpdateWithoutNotificationsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -10352,6 +10548,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutReportedIncidentsInput = {
@@ -10449,6 +10647,8 @@ export type UserCreateWithoutReportedIncidentsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutReportedIncidentsInput = {
@@ -10546,6 +10746,8 @@ export type UserUncheckedCreateWithoutReportedIncidentsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutReportedIncidentsInput = {
@@ -10659,6 +10861,8 @@ export type UserUpdateWithoutReportedIncidentsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
@@ -10756,6 +10960,8 @@ export type UserUncheckedUpdateWithoutReportedIncidentsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutRaisedHazardsInput = {
@@ -10853,6 +11059,8 @@ export type UserCreateWithoutRaisedHazardsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutRaisedHazardsInput = {
@@ -10950,6 +11158,8 @@ export type UserUncheckedCreateWithoutRaisedHazardsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutRaisedHazardsInput = {
@@ -11063,6 +11273,8 @@ export type UserUpdateWithoutRaisedHazardsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
@@ -11160,6 +11372,8 @@ export type UserUncheckedUpdateWithoutRaisedHazardsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutIssuedPermitsInput = {
@@ -11257,6 +11471,8 @@ export type UserCreateWithoutIssuedPermitsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutIssuedPermitsInput = {
@@ -11354,6 +11570,8 @@ export type UserUncheckedCreateWithoutIssuedPermitsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutIssuedPermitsInput = {
@@ -11467,6 +11685,8 @@ export type UserUpdateWithoutIssuedPermitsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
@@ -11564,6 +11784,8 @@ export type UserUncheckedUpdateWithoutIssuedPermitsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutConductedInspectionsInput = {
@@ -11661,6 +11883,8 @@ export type UserCreateWithoutConductedInspectionsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutConductedInspectionsInput = {
@@ -11758,6 +11982,8 @@ export type UserUncheckedCreateWithoutConductedInspectionsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutConductedInspectionsInput = {
@@ -11871,6 +12097,8 @@ export type UserUpdateWithoutConductedInspectionsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
@@ -11968,6 +12196,8 @@ export type UserUncheckedUpdateWithoutConductedInspectionsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourcesSubmittedInput = {
@@ -12065,6 +12295,8 @@ export type UserCreateWithoutDesignSourcesSubmittedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
@@ -12162,6 +12394,8 @@ export type UserUncheckedCreateWithoutDesignSourcesSubmittedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesSubmittedInput = {
@@ -12264,6 +12498,8 @@ export type UserCreateWithoutDesignSourcesApprovedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
@@ -12361,6 +12597,8 @@ export type UserUncheckedCreateWithoutDesignSourcesApprovedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourcesApprovedInput = {
@@ -12474,6 +12712,8 @@ export type UserUpdateWithoutDesignSourcesSubmittedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
@@ -12571,6 +12811,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesSubmittedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutDesignSourcesApprovedInput = {
@@ -12679,6 +12921,8 @@ export type UserUpdateWithoutDesignSourcesApprovedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
@@ -12776,6 +13020,8 @@ export type UserUncheckedUpdateWithoutDesignSourcesApprovedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignSourceVersionsInput = {
@@ -12873,6 +13119,8 @@ export type UserCreateWithoutDesignSourceVersionsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
@@ -12970,6 +13218,8 @@ export type UserUncheckedCreateWithoutDesignSourceVersionsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignSourceVersionsInput = {
@@ -13083,6 +13333,8 @@ export type UserUpdateWithoutDesignSourceVersionsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
@@ -13180,6 +13432,8 @@ export type UserUncheckedUpdateWithoutDesignSourceVersionsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -13277,6 +13531,8 @@ export type UserCreateWithoutDesignGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
@@ -13374,6 +13630,8 @@ export type UserUncheckedCreateWithoutDesignGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalSettingsCreatedInput = {
@@ -13487,6 +13745,8 @@ export type UserUpdateWithoutDesignGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
@@ -13584,6 +13844,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignGlobalAuditsInput = {
@@ -13681,6 +13943,8 @@ export type UserCreateWithoutDesignGlobalAuditsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
@@ -13778,6 +14042,8 @@ export type UserUncheckedCreateWithoutDesignGlobalAuditsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignGlobalAuditsInput = {
@@ -13891,6 +14157,8 @@ export type UserUpdateWithoutDesignGlobalAuditsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
@@ -13988,6 +14256,8 @@ export type UserUncheckedUpdateWithoutDesignGlobalAuditsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -14085,6 +14355,8 @@ export type UserCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -14182,6 +14454,8 @@ export type UserUncheckedCreateWithoutDesignNonGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -14295,6 +14569,8 @@ export type UserUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
@@ -14392,6 +14668,8 @@ export type UserUncheckedUpdateWithoutDesignNonGlobalSettingsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignProposalsProposedInput = {
@@ -14489,6 +14767,8 @@ export type UserCreateWithoutDesignProposalsProposedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
@@ -14586,6 +14866,8 @@ export type UserUncheckedCreateWithoutDesignProposalsProposedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsProposedInput = {
@@ -14688,6 +14970,8 @@ export type UserCreateWithoutDesignProposalsReviewedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
@@ -14785,6 +15069,8 @@ export type UserUncheckedCreateWithoutDesignProposalsReviewedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignProposalsReviewedInput = {
@@ -14898,6 +15184,8 @@ export type UserUpdateWithoutDesignProposalsProposedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
@@ -14995,6 +15283,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsProposedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutDesignProposalsReviewedInput = {
@@ -15103,6 +15393,8 @@ export type UserUpdateWithoutDesignProposalsReviewedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
@@ -15200,6 +15492,8 @@ export type UserUncheckedUpdateWithoutDesignProposalsReviewedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -15297,6 +15591,8 @@ export type UserCreateWithoutDesignExpiryConfigUpdatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
@@ -15394,6 +15690,8 @@ export type UserUncheckedCreateWithoutDesignExpiryConfigUpdatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignExpiryConfigUpdatedInput = {
@@ -15507,6 +15805,8 @@ export type UserUpdateWithoutDesignExpiryConfigUpdatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
@@ -15604,6 +15904,8 @@ export type UserUncheckedUpdateWithoutDesignExpiryConfigUpdatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignRssFeedsCreatedInput = {
@@ -15701,6 +16003,8 @@ export type UserCreateWithoutDesignRssFeedsCreatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
@@ -15798,6 +16102,8 @@ export type UserUncheckedCreateWithoutDesignRssFeedsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignRssFeedsCreatedInput = {
@@ -15911,6 +16217,8 @@ export type UserUpdateWithoutDesignRssFeedsCreatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
@@ -16008,6 +16316,8 @@ export type UserUncheckedUpdateWithoutDesignRssFeedsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -16105,6 +16415,8 @@ export type UserCreateWithoutDesignMonitoredUrlsCreatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -16202,6 +16514,8 @@ export type UserUncheckedCreateWithoutDesignMonitoredUrlsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignMonitoredUrlsCreatedInput = {
@@ -16315,6 +16629,8 @@ export type UserUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
@@ -16412,6 +16728,8 @@ export type UserUncheckedUpdateWithoutDesignMonitoredUrlsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -16509,6 +16827,8 @@ export type UserCreateWithoutDesignTrendItemsSubmittedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
@@ -16606,6 +16926,8 @@ export type UserUncheckedCreateWithoutDesignTrendItemsSubmittedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignTrendItemsSubmittedInput = {
@@ -16719,6 +17041,8 @@ export type UserUpdateWithoutDesignTrendItemsSubmittedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
@@ -16816,6 +17140,8 @@ export type UserUncheckedUpdateWithoutDesignTrendItemsSubmittedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDesignChatbotSessionsInput = {
@@ -16913,6 +17239,8 @@ export type UserCreateWithoutDesignChatbotSessionsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -17010,6 +17338,8 @@ export type UserUncheckedCreateWithoutDesignChatbotSessionsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -17123,6 +17453,8 @@ export type UserUpdateWithoutDesignChatbotSessionsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -17220,6 +17552,8 @@ export type UserUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutEstimatesAsEstimatorInput = {
@@ -17317,6 +17651,8 @@ export type UserCreateWithoutEstimatesAsEstimatorInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
@@ -17414,6 +17750,8 @@ export type UserUncheckedCreateWithoutEstimatesAsEstimatorInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimatesAsEstimatorInput = {
@@ -17516,6 +17854,8 @@ export type UserCreateWithoutCreatedEstimatesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
@@ -17613,6 +17953,8 @@ export type UserUncheckedCreateWithoutCreatedEstimatesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedEstimatesInput = {
@@ -17726,6 +18068,8 @@ export type UserUpdateWithoutEstimatesAsEstimatorInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
@@ -17823,6 +18167,8 @@ export type UserUncheckedUpdateWithoutEstimatesAsEstimatorInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedEstimatesInput = {
@@ -17931,6 +18277,8 @@ export type UserUpdateWithoutCreatedEstimatesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
@@ -18028,6 +18376,8 @@ export type UserUncheckedUpdateWithoutCreatedEstimatesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutEstimateSnapshotsInput = {
@@ -18125,6 +18475,8 @@ export type UserCreateWithoutEstimateSnapshotsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
@@ -18222,6 +18574,8 @@ export type UserUncheckedCreateWithoutEstimateSnapshotsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutEstimateSnapshotsInput = {
@@ -18335,6 +18689,8 @@ export type UserUpdateWithoutEstimateSnapshotsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
@@ -18432,6 +18788,8 @@ export type UserUncheckedUpdateWithoutEstimateSnapshotsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutMonthEndStatusesMarkedInput = {
@@ -18529,6 +18887,8 @@ export type UserCreateWithoutMonthEndStatusesMarkedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutMonthEndStatusesMarkedInput = {
@@ -18626,6 +18986,8 @@ export type UserUncheckedCreateWithoutMonthEndStatusesMarkedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutMonthEndStatusesMarkedInput = {
@@ -18739,6 +19101,8 @@ export type UserUpdateWithoutMonthEndStatusesMarkedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput = {
@@ -18836,6 +19200,8 @@ export type UserUncheckedUpdateWithoutMonthEndStatusesMarkedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutXeroConnectionsMadeInput = {
@@ -18933,6 +19299,8 @@ export type UserCreateWithoutXeroConnectionsMadeInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutXeroConnectionsMadeInput = {
@@ -19030,6 +19398,8 @@ export type UserUncheckedCreateWithoutXeroConnectionsMadeInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutXeroConnectionsMadeInput = {
@@ -19143,6 +19513,8 @@ export type UserUpdateWithoutXeroConnectionsMadeInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutXeroConnectionsMadeInput = {
@@ -19240,6 +19612,832 @@ export type UserUncheckedUpdateWithoutXeroConnectionsMadeInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
+}
+
+export type UserCreateWithoutFinanceSnapshotsImportedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+  ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
+  enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+}
+
+export type UserUncheckedCreateWithoutFinanceSnapshotsImportedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
+  enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+}
+
+export type UserCreateOrConnectWithoutFinanceSnapshotsImportedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedCreateWithoutFinanceSnapshotsImportedInput>
+}
+
+export type UserUpsertWithoutFinanceSnapshotsImportedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedUpdateWithoutFinanceSnapshotsImportedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedCreateWithoutFinanceSnapshotsImportedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFinanceSnapshotsImportedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFinanceSnapshotsImportedInput, Prisma.UserUncheckedUpdateWithoutFinanceSnapshotsImportedInput>
+}
+
+export type UserUpdateWithoutFinanceSnapshotsImportedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+  ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
+  enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFinanceSnapshotsImportedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
+  enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+}
+
+export type UserCreateWithoutCatImportsUploadedInput = {
+  id?: string
+  clerkId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutUsersInput
+  createdProjects?: Prisma.ProjectCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
+  ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
+  enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
+}
+
+export type UserUncheckedCreateWithoutCatImportsUploadedInput = {
+  id?: string
+  clerkId: string
+  organisationId: string
+  firstName: string
+  lastName: string
+  email: string
+  mobile?: string | null
+  role: $Enums.UserRole
+  isActive?: boolean
+  avatarUrl?: string | null
+  initials?: string | null
+  signatureUrl?: string | null
+  phone?: string | null
+  employmentType?: $Enums.EmploymentType | null
+  startDate?: Date | string | null
+  normalRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: string | null
+  contractReviewDate?: Date | string | null
+  probationEndDate?: Date | string | null
+  hrNotes?: string | null
+  safetyInductionNo?: string | null
+  safetyLevel?: string | null
+  safetyExpiry?: Date | string | null
+  licenceNo?: string | null
+  licenceType?: string | null
+  licenceExpiry?: Date | string | null
+  whiteCardNo?: string | null
+  whiteCardExpiry?: Date | string | null
+  nokName?: string | null
+  nokRelationship?: string | null
+  nokPhone?: string | null
+  nok2Name?: string | null
+  nok2Relationship?: string | null
+  nok2Phone?: string | null
+  medicalNotes?: string | null
+  gmailConnected?: boolean
+  gmailEmail?: string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutCreatedByInput
+  managedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectManagerInput
+  siteProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutSiteManagerInput
+  estimatedProjects?: Prisma.ProjectUncheckedCreateNestedManyWithoutProjectEstimatorInput
+  createdCompanies?: Prisma.CompanyUncheckedCreateNestedManyWithoutCreatedByInput
+  createdContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedContacts?: Prisma.ContactUncheckedCreateNestedManyWithoutContactOwnerInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  companyNotes?: Prisma.CompanyNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  contactNotes?: Prisma.ContactNoteUncheckedCreateNestedManyWithoutCreatedByInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedCreateNestedManyWithoutApprovedByInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedCreateNestedManyWithoutInvitedByInput
+  sentCommunications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutSentByInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutUserInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedCreateNestedManyWithoutCreatedByInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedCreateNestedManyWithoutAssignedByInput
+  reportedIncidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutReportedByInput
+  raisedHazards?: Prisma.HazardUncheckedCreateNestedManyWithoutRaisedByInput
+  issuedPermits?: Prisma.PermitUncheckedCreateNestedManyWithoutIssuedByInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutConductedByInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutSubmittedByInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutApprovedByInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedCreateNestedManyWithoutChangedByInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedCreateNestedManyWithoutChangedByInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutCreatedByInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutProposedByInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutReviewedByInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedCreateNestedManyWithoutUpdatedByInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutCreatedByInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutCreatedByInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutSubmittedByInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutUserInput
+  createdEstimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutCreatedByInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedCreateNestedManyWithoutEstimatorInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedCreateNestedManyWithoutCreatedByInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  trainingRecords?: Prisma.UserTrainingUncheckedCreateNestedManyWithoutUserInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutMarkedReadyByInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedCreateNestedManyWithoutConnectedByInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutPreparedByInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutFinalisedByInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedCreateNestedManyWithoutLastEditedByInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedCreateNestedManyWithoutUpdatedByInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedCreateNestedManyWithoutUploadedByInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedCreateNestedManyWithoutAnsweredByInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutConfirmedByInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedCreateNestedManyWithoutImportedByInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutUpdatedByInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedCreateNestedManyWithoutUpdatedByInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
+  ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
+  enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
+}
+
+export type UserCreateOrConnectWithoutCatImportsUploadedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCatImportsUploadedInput, Prisma.UserUncheckedCreateWithoutCatImportsUploadedInput>
+}
+
+export type UserUpsertWithoutCatImportsUploadedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCatImportsUploadedInput, Prisma.UserUncheckedUpdateWithoutCatImportsUploadedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCatImportsUploadedInput, Prisma.UserUncheckedCreateWithoutCatImportsUploadedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCatImportsUploadedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCatImportsUploadedInput, Prisma.UserUncheckedUpdateWithoutCatImportsUploadedInput>
+}
+
+export type UserUpdateWithoutCatImportsUploadedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutUsersNestedInput
+  createdProjects?: Prisma.ProjectUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
+  ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
+  enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCatImportsUploadedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  initials?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  signatureUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentType?: Prisma.NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  normalRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overtimeRate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  contractUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractReviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  probationEndDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hrNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyInductionNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyLevel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safetyExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  licenceNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenceExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  whiteCardNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whiteCardExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  nokName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokRelationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nokPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Relationship?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nok2Phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gmailConnected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gmailEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  permissions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdProjects?: Prisma.ProjectUncheckedUpdateManyWithoutCreatedByNestedInput
+  managedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectManagerNestedInput
+  siteProjects?: Prisma.ProjectUncheckedUpdateManyWithoutSiteManagerNestedInput
+  estimatedProjects?: Prisma.ProjectUncheckedUpdateManyWithoutProjectEstimatorNestedInput
+  createdCompanies?: Prisma.CompanyUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdContacts?: Prisma.ContactUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedContacts?: Prisma.ContactUncheckedUpdateManyWithoutContactOwnerNestedInput
+  uploadedDocs?: Prisma.CompanyDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  companyNotes?: Prisma.CompanyNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  contactNotes?: Prisma.ContactNoteUncheckedUpdateManyWithoutCreatedByNestedInput
+  approvedProfiles?: Prisma.SubcontractorProfileUncheckedUpdateManyWithoutApprovedByNestedInput
+  sentInvitations?: Prisma.PortalInvitationUncheckedUpdateManyWithoutInvitedByNestedInput
+  sentCommunications?: Prisma.CommunicationUncheckedUpdateManyWithoutSentByNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutUserNestedInput
+  createdPolicies?: Prisma.InsurancePolicyUncheckedUpdateManyWithoutCreatedByNestedInput
+  projectSubAssignments?: Prisma.ProjectSubcontractorUncheckedUpdateManyWithoutAssignedByNestedInput
+  reportedIncidents?: Prisma.IncidentUncheckedUpdateManyWithoutReportedByNestedInput
+  raisedHazards?: Prisma.HazardUncheckedUpdateManyWithoutRaisedByNestedInput
+  issuedPermits?: Prisma.PermitUncheckedUpdateManyWithoutIssuedByNestedInput
+  conductedInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutConductedByNestedInput
+  designSourcesSubmitted?: Prisma.DesignSourceUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designSourcesApproved?: Prisma.DesignSourceUncheckedUpdateManyWithoutApprovedByNestedInput
+  designSourceVersions?: Prisma.DesignSourceVersionUncheckedUpdateManyWithoutChangedByNestedInput
+  designGlobalSettingsCreated?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designGlobalAudits?: Prisma.DesignSettingGlobalAuditUncheckedUpdateManyWithoutChangedByNestedInput
+  designNonGlobalSettingsCreated?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutCreatedByNestedInput
+  designProposalsProposed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutProposedByNestedInput
+  designProposalsReviewed?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutReviewedByNestedInput
+  designExpiryConfigUpdated?: Prisma.DesignExpiryConfigUncheckedUpdateManyWithoutUpdatedByNestedInput
+  designRssFeedsCreated?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutCreatedByNestedInput
+  designMonitoredUrlsCreated?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutCreatedByNestedInput
+  designTrendItemsSubmitted?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutSubmittedByNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutUserNestedInput
+  createdEstimates?: Prisma.EstimateUncheckedUpdateManyWithoutCreatedByNestedInput
+  estimatesAsEstimator?: Prisma.EstimateUncheckedUpdateManyWithoutEstimatorNestedInput
+  estimateSnapshots?: Prisma.EstimateSnapshotUncheckedUpdateManyWithoutCreatedByNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  trainingRecords?: Prisma.UserTrainingUncheckedUpdateManyWithoutUserNestedInput
+  monthEndStatusesMarked?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByNestedInput
+  xeroConnectionsMade?: Prisma.XeroConnectionUncheckedUpdateManyWithoutConnectedByNestedInput
+  managementReportsPrepared?: Prisma.ManagementReportUncheckedUpdateManyWithoutPreparedByNestedInput
+  managementReportsFinalised?: Prisma.ManagementReportUncheckedUpdateManyWithoutFinalisedByNestedInput
+  managementReportSectionsEdited?: Prisma.ManagementReportSectionUncheckedUpdateManyWithoutLastEditedByNestedInput
+  rateLibraryUpdates?: Prisma.ReferenceLibraryRateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  documentUploads?: Prisma.EstimateDocumentRegisterUncheckedUpdateManyWithoutUploadedByNestedInput
+  drawingAnswers?: Prisma.DrawingIntelligenceAnswerUncheckedUpdateManyWithoutAnsweredByNestedInput
+  takeoffImportsConfirmed?: Prisma.TakeoffImportUncheckedUpdateManyWithoutConfirmedByNestedInput
+  takeoffImportsImported?: Prisma.TakeoffImportUncheckedUpdateManyWithoutImportedByNestedInput
+  scopeTemplateUpdates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutUpdatedByNestedInput
+  lineScopeUpdates?: Prisma.EstimateLineScopeUncheckedUpdateManyWithoutUpdatedByNestedInput
+  invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
+  ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
+  hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
+  enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutManagementReportsPreparedInput = {
@@ -19337,6 +20535,8 @@ export type UserCreateWithoutManagementReportsPreparedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportsPreparedInput = {
@@ -19434,6 +20634,8 @@ export type UserUncheckedCreateWithoutManagementReportsPreparedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportsPreparedInput = {
@@ -19536,6 +20738,8 @@ export type UserCreateWithoutManagementReportsFinalisedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportsFinalisedInput = {
@@ -19633,6 +20837,8 @@ export type UserUncheckedCreateWithoutManagementReportsFinalisedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportsFinalisedInput = {
@@ -19746,6 +20952,8 @@ export type UserUpdateWithoutManagementReportsPreparedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportsPreparedInput = {
@@ -19843,6 +21051,8 @@ export type UserUncheckedUpdateWithoutManagementReportsPreparedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutManagementReportsFinalisedInput = {
@@ -19951,6 +21161,8 @@ export type UserUpdateWithoutManagementReportsFinalisedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportsFinalisedInput = {
@@ -20048,6 +21260,8 @@ export type UserUncheckedUpdateWithoutManagementReportsFinalisedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutManagementReportSectionsEditedInput = {
@@ -20145,6 +21359,8 @@ export type UserCreateWithoutManagementReportSectionsEditedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutManagementReportSectionsEditedInput = {
@@ -20242,6 +21458,8 @@ export type UserUncheckedCreateWithoutManagementReportSectionsEditedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutManagementReportSectionsEditedInput = {
@@ -20355,6 +21573,8 @@ export type UserUpdateWithoutManagementReportSectionsEditedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutManagementReportSectionsEditedInput = {
@@ -20452,6 +21672,8 @@ export type UserUncheckedUpdateWithoutManagementReportSectionsEditedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutRateLibraryUpdatesInput = {
@@ -20549,6 +21771,8 @@ export type UserCreateWithoutRateLibraryUpdatesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutRateLibraryUpdatesInput = {
@@ -20646,6 +21870,8 @@ export type UserUncheckedCreateWithoutRateLibraryUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutRateLibraryUpdatesInput = {
@@ -20759,6 +21985,8 @@ export type UserUpdateWithoutRateLibraryUpdatesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRateLibraryUpdatesInput = {
@@ -20856,6 +22084,8 @@ export type UserUncheckedUpdateWithoutRateLibraryUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDocumentUploadsInput = {
@@ -20953,6 +22183,8 @@ export type UserCreateWithoutDocumentUploadsInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDocumentUploadsInput = {
@@ -21050,6 +22282,8 @@ export type UserUncheckedCreateWithoutDocumentUploadsInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDocumentUploadsInput = {
@@ -21163,6 +22397,8 @@ export type UserUpdateWithoutDocumentUploadsInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDocumentUploadsInput = {
@@ -21260,6 +22496,8 @@ export type UserUncheckedUpdateWithoutDocumentUploadsInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutDrawingAnswersInput = {
@@ -21357,6 +22595,8 @@ export type UserCreateWithoutDrawingAnswersInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutDrawingAnswersInput = {
@@ -21454,6 +22694,8 @@ export type UserUncheckedCreateWithoutDrawingAnswersInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutDrawingAnswersInput = {
@@ -21567,6 +22809,8 @@ export type UserUpdateWithoutDrawingAnswersInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDrawingAnswersInput = {
@@ -21664,6 +22908,8 @@ export type UserUncheckedUpdateWithoutDrawingAnswersInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutTakeoffImportsConfirmedInput = {
@@ -21761,6 +23007,8 @@ export type UserCreateWithoutTakeoffImportsConfirmedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutTakeoffImportsConfirmedInput = {
@@ -21858,6 +23106,8 @@ export type UserUncheckedCreateWithoutTakeoffImportsConfirmedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutTakeoffImportsConfirmedInput = {
@@ -21960,6 +23210,8 @@ export type UserCreateWithoutTakeoffImportsImportedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutTakeoffImportsImportedInput = {
@@ -22057,6 +23309,8 @@ export type UserUncheckedCreateWithoutTakeoffImportsImportedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutTakeoffImportsImportedInput = {
@@ -22170,6 +23424,8 @@ export type UserUpdateWithoutTakeoffImportsConfirmedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput = {
@@ -22267,6 +23523,8 @@ export type UserUncheckedUpdateWithoutTakeoffImportsConfirmedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUpsertWithoutTakeoffImportsImportedInput = {
@@ -22375,6 +23633,8 @@ export type UserUpdateWithoutTakeoffImportsImportedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTakeoffImportsImportedInput = {
@@ -22472,6 +23732,8 @@ export type UserUncheckedUpdateWithoutTakeoffImportsImportedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutScopeTemplateUpdatesInput = {
@@ -22569,6 +23831,8 @@ export type UserCreateWithoutScopeTemplateUpdatesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutScopeTemplateUpdatesInput = {
@@ -22666,6 +23930,8 @@ export type UserUncheckedCreateWithoutScopeTemplateUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutScopeTemplateUpdatesInput = {
@@ -22779,6 +24045,8 @@ export type UserUpdateWithoutScopeTemplateUpdatesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutScopeTemplateUpdatesInput = {
@@ -22876,6 +24144,8 @@ export type UserUncheckedUpdateWithoutScopeTemplateUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutLineScopeUpdatesInput = {
@@ -22973,6 +24243,8 @@ export type UserCreateWithoutLineScopeUpdatesInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutLineScopeUpdatesInput = {
@@ -23070,6 +24342,8 @@ export type UserUncheckedCreateWithoutLineScopeUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutLineScopeUpdatesInput = {
@@ -23183,6 +24457,8 @@ export type UserUpdateWithoutLineScopeUpdatesInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLineScopeUpdatesInput = {
@@ -23280,6 +24556,8 @@ export type UserUncheckedUpdateWithoutLineScopeUpdatesInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutInvitationsCreatedInput = {
@@ -23377,6 +24655,8 @@ export type UserCreateWithoutInvitationsCreatedInput = {
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutInvitationsCreatedInput = {
@@ -23474,6 +24754,8 @@ export type UserUncheckedCreateWithoutInvitationsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutInvitationsCreatedInput = {
@@ -23587,6 +24869,8 @@ export type UserUpdateWithoutInvitationsCreatedInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvitationsCreatedInput = {
@@ -23684,6 +24968,8 @@ export type UserUncheckedUpdateWithoutInvitationsCreatedInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutOwnedLeadsInput = {
@@ -23781,6 +25067,8 @@ export type UserCreateWithoutOwnedLeadsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutOwnedLeadsInput = {
@@ -23878,6 +25166,8 @@ export type UserUncheckedCreateWithoutOwnedLeadsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedManyWithoutConnectedByInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutOwnedLeadsInput = {
@@ -23991,6 +25281,8 @@ export type UserUpdateWithoutOwnedLeadsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOwnedLeadsInput = {
@@ -24088,6 +25380,8 @@ export type UserUncheckedUpdateWithoutOwnedLeadsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateWithoutHubSpotConnectionsInput = {
@@ -24185,6 +25479,8 @@ export type UserCreateWithoutHubSpotConnectionsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationCreateNestedManyWithoutCreatedByInput
   ownedLeads?: Prisma.LeadCreateNestedManyWithoutOwnerUserInput
   enabledModuleFlags?: Prisma.ModuleFlagCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutImportedByInput
 }
 
 export type UserUncheckedCreateWithoutHubSpotConnectionsInput = {
@@ -24282,6 +25578,8 @@ export type UserUncheckedCreateWithoutHubSpotConnectionsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedCreateNestedManyWithoutCreatedByInput
   ownedLeads?: Prisma.LeadUncheckedCreateNestedManyWithoutOwnerUserInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedCreateNestedManyWithoutEnabledByInput
+  catImportsUploaded?: Prisma.CatImportUncheckedCreateNestedManyWithoutUploadedByInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutImportedByInput
 }
 
 export type UserCreateOrConnectWithoutHubSpotConnectionsInput = {
@@ -24395,6 +25693,8 @@ export type UserUpdateWithoutHubSpotConnectionsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUpdateManyWithoutCreatedByNestedInput
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHubSpotConnectionsInput = {
@@ -24492,6 +25792,8 @@ export type UserUncheckedUpdateWithoutHubSpotConnectionsInput = {
   invitationsCreated?: Prisma.SubcontractorInvitationUncheckedUpdateManyWithoutCreatedByNestedInput
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserCreateManyOrganisationInput = {
@@ -24632,6 +25934,8 @@ export type UserUpdateWithoutOrganisationInput = {
   ownedLeads?: Prisma.LeadUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrganisationInput = {
@@ -24729,6 +26033,8 @@ export type UserUncheckedUpdateWithoutOrganisationInput = {
   ownedLeads?: Prisma.LeadUncheckedUpdateManyWithoutOwnerUserNestedInput
   hubSpotConnections?: Prisma.HubSpotSyncSettingsUncheckedUpdateManyWithoutConnectedByNestedInput
   enabledModuleFlags?: Prisma.ModuleFlagUncheckedUpdateManyWithoutEnabledByNestedInput
+  catImportsUploaded?: Prisma.CatImportUncheckedUpdateManyWithoutUploadedByNestedInput
+  financeSnapshotsImported?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutImportedByNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutOrganisationInput = {
@@ -24834,6 +26140,8 @@ export type UserCountOutputType = {
   ownedLeads: number
   hubSpotConnections: number
   enabledModuleFlags: number
+  catImportsUploaded: number
+  financeSnapshotsImported: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -24891,6 +26199,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   ownedLeads?: boolean | UserCountOutputTypeCountOwnedLeadsArgs
   hubSpotConnections?: boolean | UserCountOutputTypeCountHubSpotConnectionsArgs
   enabledModuleFlags?: boolean | UserCountOutputTypeCountEnabledModuleFlagsArgs
+  catImportsUploaded?: boolean | UserCountOutputTypeCountCatImportsUploadedArgs
+  financeSnapshotsImported?: boolean | UserCountOutputTypeCountFinanceSnapshotsImportedArgs
 }
 
 /**
@@ -25281,6 +26591,20 @@ export type UserCountOutputTypeCountEnabledModuleFlagsArgs<ExtArgs extends runti
   where?: Prisma.ModuleFlagWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCatImportsUploadedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CatImportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFinanceSnapshotsImportedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FinanceProjectSnapshotWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -25379,6 +26703,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   ownedLeads?: boolean | Prisma.User$ownedLeadsArgs<ExtArgs>
   hubSpotConnections?: boolean | Prisma.User$hubSpotConnectionsArgs<ExtArgs>
   enabledModuleFlags?: boolean | Prisma.User$enabledModuleFlagsArgs<ExtArgs>
+  catImportsUploaded?: boolean | Prisma.User$catImportsUploadedArgs<ExtArgs>
+  financeSnapshotsImported?: boolean | Prisma.User$financeSnapshotsImportedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -25573,6 +26899,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   ownedLeads?: boolean | Prisma.User$ownedLeadsArgs<ExtArgs>
   hubSpotConnections?: boolean | Prisma.User$hubSpotConnectionsArgs<ExtArgs>
   enabledModuleFlags?: boolean | Prisma.User$enabledModuleFlagsArgs<ExtArgs>
+  catImportsUploaded?: boolean | Prisma.User$catImportsUploadedArgs<ExtArgs>
+  financeSnapshotsImported?: boolean | Prisma.User$financeSnapshotsImportedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -25640,6 +26968,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     ownedLeads: Prisma.$LeadPayload<ExtArgs>[]
     hubSpotConnections: Prisma.$HubSpotSyncSettingsPayload<ExtArgs>[]
     enabledModuleFlags: Prisma.$ModuleFlagPayload<ExtArgs>[]
+    catImportsUploaded: Prisma.$CatImportPayload<ExtArgs>[]
+    financeSnapshotsImported: Prisma.$FinanceProjectSnapshotPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -26132,6 +27462,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   ownedLeads<T extends Prisma.User$ownedLeadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedLeadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   hubSpotConnections<T extends Prisma.User$hubSpotConnectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$hubSpotConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HubSpotSyncSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enabledModuleFlags<T extends Prisma.User$enabledModuleFlagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$enabledModuleFlagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModuleFlagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  catImportsUploaded<T extends Prisma.User$catImportsUploadedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$catImportsUploadedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CatImportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  financeSnapshotsImported<T extends Prisma.User$financeSnapshotsImportedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$financeSnapshotsImportedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinanceProjectSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27896,6 +29228,54 @@ export type User$enabledModuleFlagsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.ModuleFlagScalarFieldEnum | Prisma.ModuleFlagScalarFieldEnum[]
+}
+
+/**
+ * User.catImportsUploaded
+ */
+export type User$catImportsUploadedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CatImport
+   */
+  select?: Prisma.CatImportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CatImport
+   */
+  omit?: Prisma.CatImportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CatImportInclude<ExtArgs> | null
+  where?: Prisma.CatImportWhereInput
+  orderBy?: Prisma.CatImportOrderByWithRelationInput | Prisma.CatImportOrderByWithRelationInput[]
+  cursor?: Prisma.CatImportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CatImportScalarFieldEnum | Prisma.CatImportScalarFieldEnum[]
+}
+
+/**
+ * User.financeSnapshotsImported
+ */
+export type User$financeSnapshotsImportedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FinanceProjectSnapshot
+   */
+  select?: Prisma.FinanceProjectSnapshotSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FinanceProjectSnapshot
+   */
+  omit?: Prisma.FinanceProjectSnapshotOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FinanceProjectSnapshotInclude<ExtArgs> | null
+  where?: Prisma.FinanceProjectSnapshotWhereInput
+  orderBy?: Prisma.FinanceProjectSnapshotOrderByWithRelationInput | Prisma.FinanceProjectSnapshotOrderByWithRelationInput[]
+  cursor?: Prisma.FinanceProjectSnapshotWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FinanceProjectSnapshotScalarFieldEnum | Prisma.FinanceProjectSnapshotScalarFieldEnum[]
 }
 
 /**

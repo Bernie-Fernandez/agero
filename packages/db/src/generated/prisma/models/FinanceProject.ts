@@ -39,8 +39,16 @@ export type FinanceProjectAvgAggregateOutputType = {
   subRetention: runtime.Decimal | null
   creditors: runtime.Decimal | null
   labour: runtime.Decimal | null
+  plant: runtime.Decimal | null
+  stock: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   wip: runtime.Decimal | null
+  billingLessCost: runtime.Decimal | null
+  marginToEarn: runtime.Decimal | null
+  marginRealised: runtime.Decimal | null
+  overClaim: runtime.Decimal | null
+  nettRetention: runtime.Decimal | null
+  nettCashFlow: runtime.Decimal | null
   costToComplete: runtime.Decimal | null
 }
 
@@ -57,8 +65,16 @@ export type FinanceProjectSumAggregateOutputType = {
   subRetention: runtime.Decimal | null
   creditors: runtime.Decimal | null
   labour: runtime.Decimal | null
+  plant: runtime.Decimal | null
+  stock: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   wip: runtime.Decimal | null
+  billingLessCost: runtime.Decimal | null
+  marginToEarn: runtime.Decimal | null
+  marginRealised: runtime.Decimal | null
+  overClaim: runtime.Decimal | null
+  nettRetention: runtime.Decimal | null
+  nettCashFlow: runtime.Decimal | null
   costToComplete: runtime.Decimal | null
 }
 
@@ -82,8 +98,16 @@ export type FinanceProjectMinAggregateOutputType = {
   subRetention: runtime.Decimal | null
   creditors: runtime.Decimal | null
   labour: runtime.Decimal | null
+  plant: runtime.Decimal | null
+  stock: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   wip: runtime.Decimal | null
+  billingLessCost: runtime.Decimal | null
+  marginToEarn: runtime.Decimal | null
+  marginRealised: runtime.Decimal | null
+  overClaim: runtime.Decimal | null
+  nettRetention: runtime.Decimal | null
+  nettCashFlow: runtime.Decimal | null
   costToComplete: runtime.Decimal | null
   notes: string | null
   dataVerified: boolean | null
@@ -112,8 +136,16 @@ export type FinanceProjectMaxAggregateOutputType = {
   subRetention: runtime.Decimal | null
   creditors: runtime.Decimal | null
   labour: runtime.Decimal | null
+  plant: runtime.Decimal | null
+  stock: runtime.Decimal | null
   totalCost: runtime.Decimal | null
   wip: runtime.Decimal | null
+  billingLessCost: runtime.Decimal | null
+  marginToEarn: runtime.Decimal | null
+  marginRealised: runtime.Decimal | null
+  overClaim: runtime.Decimal | null
+  nettRetention: runtime.Decimal | null
+  nettCashFlow: runtime.Decimal | null
   costToComplete: runtime.Decimal | null
   notes: string | null
   dataVerified: boolean | null
@@ -142,8 +174,16 @@ export type FinanceProjectCountAggregateOutputType = {
   subRetention: number
   creditors: number
   labour: number
+  plant: number
+  stock: number
   totalCost: number
   wip: number
+  billingLessCost: number
+  marginToEarn: number
+  marginRealised: number
+  overClaim: number
+  nettRetention: number
+  nettCashFlow: number
   costToComplete: number
   notes: number
   dataVerified: number
@@ -167,8 +207,16 @@ export type FinanceProjectAvgAggregateInputType = {
   subRetention?: true
   creditors?: true
   labour?: true
+  plant?: true
+  stock?: true
   totalCost?: true
   wip?: true
+  billingLessCost?: true
+  marginToEarn?: true
+  marginRealised?: true
+  overClaim?: true
+  nettRetention?: true
+  nettCashFlow?: true
   costToComplete?: true
 }
 
@@ -185,8 +233,16 @@ export type FinanceProjectSumAggregateInputType = {
   subRetention?: true
   creditors?: true
   labour?: true
+  plant?: true
+  stock?: true
   totalCost?: true
   wip?: true
+  billingLessCost?: true
+  marginToEarn?: true
+  marginRealised?: true
+  overClaim?: true
+  nettRetention?: true
+  nettCashFlow?: true
   costToComplete?: true
 }
 
@@ -210,8 +266,16 @@ export type FinanceProjectMinAggregateInputType = {
   subRetention?: true
   creditors?: true
   labour?: true
+  plant?: true
+  stock?: true
   totalCost?: true
   wip?: true
+  billingLessCost?: true
+  marginToEarn?: true
+  marginRealised?: true
+  overClaim?: true
+  nettRetention?: true
+  nettCashFlow?: true
   costToComplete?: true
   notes?: true
   dataVerified?: true
@@ -240,8 +304,16 @@ export type FinanceProjectMaxAggregateInputType = {
   subRetention?: true
   creditors?: true
   labour?: true
+  plant?: true
+  stock?: true
   totalCost?: true
   wip?: true
+  billingLessCost?: true
+  marginToEarn?: true
+  marginRealised?: true
+  overClaim?: true
+  nettRetention?: true
+  nettCashFlow?: true
   costToComplete?: true
   notes?: true
   dataVerified?: true
@@ -270,8 +342,16 @@ export type FinanceProjectCountAggregateInputType = {
   subRetention?: true
   creditors?: true
   labour?: true
+  plant?: true
+  stock?: true
   totalCost?: true
   wip?: true
+  billingLessCost?: true
+  marginToEarn?: true
+  marginRealised?: true
+  overClaim?: true
+  nettRetention?: true
+  nettCashFlow?: true
   costToComplete?: true
   notes?: true
   dataVerified?: true
@@ -387,8 +467,16 @@ export type FinanceProjectGroupByOutputType = {
   subRetention: runtime.Decimal
   creditors: runtime.Decimal
   labour: runtime.Decimal
+  plant: runtime.Decimal | null
+  stock: runtime.Decimal | null
   totalCost: runtime.Decimal
   wip: runtime.Decimal
+  billingLessCost: runtime.Decimal | null
+  marginToEarn: runtime.Decimal | null
+  marginRealised: runtime.Decimal | null
+  overClaim: runtime.Decimal | null
+  nettRetention: runtime.Decimal | null
+  nettCashFlow: runtime.Decimal | null
   costToComplete: runtime.Decimal | null
   notes: string | null
   dataVerified: boolean
@@ -440,8 +528,16 @@ export type FinanceProjectWhereInput = {
   subRetention?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.StringNullableFilter<"FinanceProject"> | string | null
   dataVerified?: Prisma.BoolFilter<"FinanceProject"> | boolean
@@ -451,6 +547,7 @@ export type FinanceProjectWhereInput = {
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   securedForecasts?: Prisma.SecuredForecastListRelationFilter
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
+  snapshots?: Prisma.FinanceProjectSnapshotListRelationFilter
 }
 
 export type FinanceProjectOrderByWithRelationInput = {
@@ -473,8 +570,16 @@ export type FinanceProjectOrderByWithRelationInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrderInput | Prisma.SortOrder
+  stock?: Prisma.SortOrderInput | Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrderInput | Prisma.SortOrder
+  marginRealised?: Prisma.SortOrderInput | Prisma.SortOrder
+  overClaim?: Prisma.SortOrderInput | Prisma.SortOrder
+  nettRetention?: Prisma.SortOrderInput | Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrderInput | Prisma.SortOrder
   costToComplete?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   dataVerified?: Prisma.SortOrder
@@ -484,6 +589,7 @@ export type FinanceProjectOrderByWithRelationInput = {
   organisation?: Prisma.OrganisationOrderByWithRelationInput
   securedForecasts?: Prisma.SecuredForecastOrderByRelationAggregateInput
   wipSchedules?: Prisma.WIPScheduleOrderByRelationAggregateInput
+  snapshots?: Prisma.FinanceProjectSnapshotOrderByRelationAggregateInput
 }
 
 export type FinanceProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -509,8 +615,16 @@ export type FinanceProjectWhereUniqueInput = Prisma.AtLeast<{
   subRetention?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.StringNullableFilter<"FinanceProject"> | string | null
   dataVerified?: Prisma.BoolFilter<"FinanceProject"> | boolean
@@ -520,6 +634,7 @@ export type FinanceProjectWhereUniqueInput = Prisma.AtLeast<{
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   securedForecasts?: Prisma.SecuredForecastListRelationFilter
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
+  snapshots?: Prisma.FinanceProjectSnapshotListRelationFilter
 }, "id">
 
 export type FinanceProjectOrderByWithAggregationInput = {
@@ -542,8 +657,16 @@ export type FinanceProjectOrderByWithAggregationInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrderInput | Prisma.SortOrder
+  stock?: Prisma.SortOrderInput | Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrderInput | Prisma.SortOrder
+  marginRealised?: Prisma.SortOrderInput | Prisma.SortOrder
+  overClaim?: Prisma.SortOrderInput | Prisma.SortOrder
+  nettRetention?: Prisma.SortOrderInput | Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrderInput | Prisma.SortOrder
   costToComplete?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   dataVerified?: Prisma.SortOrder
@@ -580,8 +703,16 @@ export type FinanceProjectScalarWhereWithAggregatesInput = {
   subRetention?: Prisma.DecimalWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.DecimalNullableWithAggregatesFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"FinanceProject"> | string | null
   dataVerified?: Prisma.BoolWithAggregatesFilter<"FinanceProject"> | boolean
@@ -609,8 +740,16 @@ export type FinanceProjectCreateInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -620,6 +759,7 @@ export type FinanceProjectCreateInput = {
   organisation: Prisma.OrganisationCreateNestedOneWithoutFinanceProjectsInput
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateInput = {
@@ -642,8 +782,16 @@ export type FinanceProjectUncheckedCreateInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -652,6 +800,7 @@ export type FinanceProjectUncheckedCreateInput = {
   updatedAt?: Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUpdateInput = {
@@ -673,8 +822,16 @@ export type FinanceProjectUpdateInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -684,6 +841,7 @@ export type FinanceProjectUpdateInput = {
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateInput = {
@@ -706,8 +864,16 @@ export type FinanceProjectUncheckedUpdateInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -716,6 +882,7 @@ export type FinanceProjectUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateManyInput = {
@@ -738,8 +905,16 @@ export type FinanceProjectCreateManyInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -767,8 +942,16 @@ export type FinanceProjectUpdateManyMutationInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -797,8 +980,16 @@ export type FinanceProjectUncheckedUpdateManyInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -837,8 +1028,16 @@ export type FinanceProjectCountOrderByAggregateInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrder
+  stock?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrder
+  marginRealised?: Prisma.SortOrder
+  overClaim?: Prisma.SortOrder
+  nettRetention?: Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrder
   costToComplete?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerified?: Prisma.SortOrder
@@ -860,8 +1059,16 @@ export type FinanceProjectAvgOrderByAggregateInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrder
+  stock?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrder
+  marginRealised?: Prisma.SortOrder
+  overClaim?: Prisma.SortOrder
+  nettRetention?: Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrder
   costToComplete?: Prisma.SortOrder
 }
 
@@ -885,8 +1092,16 @@ export type FinanceProjectMaxOrderByAggregateInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrder
+  stock?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrder
+  marginRealised?: Prisma.SortOrder
+  overClaim?: Prisma.SortOrder
+  nettRetention?: Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrder
   costToComplete?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerified?: Prisma.SortOrder
@@ -915,8 +1130,16 @@ export type FinanceProjectMinOrderByAggregateInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrder
+  stock?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrder
+  marginRealised?: Prisma.SortOrder
+  overClaim?: Prisma.SortOrder
+  nettRetention?: Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrder
   costToComplete?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerified?: Prisma.SortOrder
@@ -938,19 +1161,27 @@ export type FinanceProjectSumOrderByAggregateInput = {
   subRetention?: Prisma.SortOrder
   creditors?: Prisma.SortOrder
   labour?: Prisma.SortOrder
+  plant?: Prisma.SortOrder
+  stock?: Prisma.SortOrder
   totalCost?: Prisma.SortOrder
   wip?: Prisma.SortOrder
+  billingLessCost?: Prisma.SortOrder
+  marginToEarn?: Prisma.SortOrder
+  marginRealised?: Prisma.SortOrder
+  overClaim?: Prisma.SortOrder
+  nettRetention?: Prisma.SortOrder
+  nettCashFlow?: Prisma.SortOrder
   costToComplete?: Prisma.SortOrder
-}
-
-export type FinanceProjectNullableScalarRelationFilter = {
-  is?: Prisma.FinanceProjectWhereInput | null
-  isNot?: Prisma.FinanceProjectWhereInput | null
 }
 
 export type FinanceProjectScalarRelationFilter = {
   is?: Prisma.FinanceProjectWhereInput
   isNot?: Prisma.FinanceProjectWhereInput
+}
+
+export type FinanceProjectNullableScalarRelationFilter = {
+  is?: Prisma.FinanceProjectWhereInput | null
+  isNot?: Prisma.FinanceProjectWhereInput | null
 }
 
 export type FinanceProjectCreateNestedManyWithoutOrganisationInput = {
@@ -997,6 +1228,20 @@ export type FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput = {
 
 export type EnumFinanceProjectStatusFieldUpdateOperationsInput = {
   set?: $Enums.FinanceProjectStatus
+}
+
+export type FinanceProjectCreateNestedOneWithoutSnapshotsInput = {
+  create?: Prisma.XOR<Prisma.FinanceProjectCreateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedCreateWithoutSnapshotsInput>
+  connectOrCreate?: Prisma.FinanceProjectCreateOrConnectWithoutSnapshotsInput
+  connect?: Prisma.FinanceProjectWhereUniqueInput
+}
+
+export type FinanceProjectUpdateOneRequiredWithoutSnapshotsNestedInput = {
+  create?: Prisma.XOR<Prisma.FinanceProjectCreateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedCreateWithoutSnapshotsInput>
+  connectOrCreate?: Prisma.FinanceProjectCreateOrConnectWithoutSnapshotsInput
+  upsert?: Prisma.FinanceProjectUpsertWithoutSnapshotsInput
+  connect?: Prisma.FinanceProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FinanceProjectUpdateToOneWithWhereWithoutSnapshotsInput, Prisma.FinanceProjectUpdateWithoutSnapshotsInput>, Prisma.FinanceProjectUncheckedUpdateWithoutSnapshotsInput>
 }
 
 export type FinanceProjectCreateNestedOneWithoutSecuredForecastsInput = {
@@ -1048,8 +1293,16 @@ export type FinanceProjectCreateWithoutOrganisationInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1058,6 +1311,7 @@ export type FinanceProjectCreateWithoutOrganisationInput = {
   updatedAt?: Date | string
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutOrganisationInput = {
@@ -1079,8 +1333,16 @@ export type FinanceProjectUncheckedCreateWithoutOrganisationInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1089,6 +1351,7 @@ export type FinanceProjectUncheckedCreateWithoutOrganisationInput = {
   updatedAt?: Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutOrganisationInput = {
@@ -1140,14 +1403,198 @@ export type FinanceProjectScalarWhereInput = {
   subRetention?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.DecimalNullableFilter<"FinanceProject"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.StringNullableFilter<"FinanceProject"> | string | null
   dataVerified?: Prisma.BoolFilter<"FinanceProject"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"FinanceProject"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"FinanceProject"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"FinanceProject"> | Date | string
+}
+
+export type FinanceProjectCreateWithoutSnapshotsInput = {
+  id?: string
+  reportMonth: Date | string
+  jobNumber: string
+  projectName: string
+  status?: $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Date | string | null
+  forecastContractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  dataVerified?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutFinanceProjectsInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
+  wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
+}
+
+export type FinanceProjectUncheckedCreateWithoutSnapshotsInput = {
+  id?: string
+  organisationId: string
+  reportMonth: Date | string
+  jobNumber: string
+  projectName: string
+  status?: $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Date | string | null
+  forecastContractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  dataVerified?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
+}
+
+export type FinanceProjectCreateOrConnectWithoutSnapshotsInput = {
+  where: Prisma.FinanceProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.FinanceProjectCreateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedCreateWithoutSnapshotsInput>
+}
+
+export type FinanceProjectUpsertWithoutSnapshotsInput = {
+  update: Prisma.XOR<Prisma.FinanceProjectUpdateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedUpdateWithoutSnapshotsInput>
+  create: Prisma.XOR<Prisma.FinanceProjectCreateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedCreateWithoutSnapshotsInput>
+  where?: Prisma.FinanceProjectWhereInput
+}
+
+export type FinanceProjectUpdateToOneWithWhereWithoutSnapshotsInput = {
+  where?: Prisma.FinanceProjectWhereInput
+  data: Prisma.XOR<Prisma.FinanceProjectUpdateWithoutSnapshotsInput, Prisma.FinanceProjectUncheckedUpdateWithoutSnapshotsInput>
+}
+
+export type FinanceProjectUpdateWithoutSnapshotsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  projectName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFinanceProjectStatusFieldUpdateOperationsInput | $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forecastContractValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
+  wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
+}
+
+export type FinanceProjectUncheckedUpdateWithoutSnapshotsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  projectName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFinanceProjectStatusFieldUpdateOperationsInput | $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forecastContractValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateWithoutSecuredForecastsInput = {
@@ -1169,8 +1616,16 @@ export type FinanceProjectCreateWithoutSecuredForecastsInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1179,6 +1634,7 @@ export type FinanceProjectCreateWithoutSecuredForecastsInput = {
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutFinanceProjectsInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutSecuredForecastsInput = {
@@ -1201,8 +1657,16 @@ export type FinanceProjectUncheckedCreateWithoutSecuredForecastsInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1210,6 +1674,7 @@ export type FinanceProjectUncheckedCreateWithoutSecuredForecastsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutSecuredForecastsInput = {
@@ -1247,8 +1712,16 @@ export type FinanceProjectUpdateWithoutSecuredForecastsInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1257,6 +1730,7 @@ export type FinanceProjectUpdateWithoutSecuredForecastsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutSecuredForecastsInput = {
@@ -1279,8 +1753,16 @@ export type FinanceProjectUncheckedUpdateWithoutSecuredForecastsInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1288,6 +1770,7 @@ export type FinanceProjectUncheckedUpdateWithoutSecuredForecastsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateWithoutWipSchedulesInput = {
@@ -1309,8 +1792,16 @@ export type FinanceProjectCreateWithoutWipSchedulesInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1319,6 +1810,7 @@ export type FinanceProjectCreateWithoutWipSchedulesInput = {
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutFinanceProjectsInput
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutWipSchedulesInput = {
@@ -1341,8 +1833,16 @@ export type FinanceProjectUncheckedCreateWithoutWipSchedulesInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1350,6 +1850,7 @@ export type FinanceProjectUncheckedCreateWithoutWipSchedulesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutWipSchedulesInput = {
@@ -1387,8 +1888,16 @@ export type FinanceProjectUpdateWithoutWipSchedulesInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1397,6 +1906,7 @@ export type FinanceProjectUpdateWithoutWipSchedulesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutWipSchedulesInput = {
@@ -1419,8 +1929,16 @@ export type FinanceProjectUncheckedUpdateWithoutWipSchedulesInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1428,6 +1946,7 @@ export type FinanceProjectUncheckedUpdateWithoutWipSchedulesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateManyOrganisationInput = {
@@ -1449,8 +1968,16 @@ export type FinanceProjectCreateManyOrganisationInput = {
   subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: string | null
   dataVerified?: boolean
@@ -1478,8 +2005,16 @@ export type FinanceProjectUpdateWithoutOrganisationInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1488,6 +2023,7 @@ export type FinanceProjectUpdateWithoutOrganisationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutOrganisationInput = {
@@ -1509,8 +2045,16 @@ export type FinanceProjectUncheckedUpdateWithoutOrganisationInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1519,6 +2063,7 @@ export type FinanceProjectUncheckedUpdateWithoutOrganisationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateManyWithoutOrganisationInput = {
@@ -1540,8 +2085,16 @@ export type FinanceProjectUncheckedUpdateManyWithoutOrganisationInput = {
   subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1558,11 +2111,13 @@ export type FinanceProjectUncheckedUpdateManyWithoutOrganisationInput = {
 export type FinanceProjectCountOutputType = {
   securedForecasts: number
   wipSchedules: number
+  snapshots: number
 }
 
 export type FinanceProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   securedForecasts?: boolean | FinanceProjectCountOutputTypeCountSecuredForecastsArgs
   wipSchedules?: boolean | FinanceProjectCountOutputTypeCountWipSchedulesArgs
+  snapshots?: boolean | FinanceProjectCountOutputTypeCountSnapshotsArgs
 }
 
 /**
@@ -1589,6 +2144,13 @@ export type FinanceProjectCountOutputTypeCountWipSchedulesArgs<ExtArgs extends r
   where?: Prisma.WIPScheduleWhereInput
 }
 
+/**
+ * FinanceProjectCountOutputType without action
+ */
+export type FinanceProjectCountOutputTypeCountSnapshotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FinanceProjectSnapshotWhereInput
+}
+
 
 export type FinanceProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1610,8 +2172,16 @@ export type FinanceProjectSelect<ExtArgs extends runtime.Types.Extensions.Intern
   subRetention?: boolean
   creditors?: boolean
   labour?: boolean
+  plant?: boolean
+  stock?: boolean
   totalCost?: boolean
   wip?: boolean
+  billingLessCost?: boolean
+  marginToEarn?: boolean
+  marginRealised?: boolean
+  overClaim?: boolean
+  nettRetention?: boolean
+  nettCashFlow?: boolean
   costToComplete?: boolean
   notes?: boolean
   dataVerified?: boolean
@@ -1621,6 +2191,7 @@ export type FinanceProjectSelect<ExtArgs extends runtime.Types.Extensions.Intern
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   securedForecasts?: boolean | Prisma.FinanceProject$securedForecastsArgs<ExtArgs>
   wipSchedules?: boolean | Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>
+  snapshots?: boolean | Prisma.FinanceProject$snapshotsArgs<ExtArgs>
   _count?: boolean | Prisma.FinanceProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["financeProject"]>
 
@@ -1644,8 +2215,16 @@ export type FinanceProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   subRetention?: boolean
   creditors?: boolean
   labour?: boolean
+  plant?: boolean
+  stock?: boolean
   totalCost?: boolean
   wip?: boolean
+  billingLessCost?: boolean
+  marginToEarn?: boolean
+  marginRealised?: boolean
+  overClaim?: boolean
+  nettRetention?: boolean
+  nettCashFlow?: boolean
   costToComplete?: boolean
   notes?: boolean
   dataVerified?: boolean
@@ -1675,8 +2254,16 @@ export type FinanceProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   subRetention?: boolean
   creditors?: boolean
   labour?: boolean
+  plant?: boolean
+  stock?: boolean
   totalCost?: boolean
   wip?: boolean
+  billingLessCost?: boolean
+  marginToEarn?: boolean
+  marginRealised?: boolean
+  overClaim?: boolean
+  nettRetention?: boolean
+  nettCashFlow?: boolean
   costToComplete?: boolean
   notes?: boolean
   dataVerified?: boolean
@@ -1706,8 +2293,16 @@ export type FinanceProjectSelectScalar = {
   subRetention?: boolean
   creditors?: boolean
   labour?: boolean
+  plant?: boolean
+  stock?: boolean
   totalCost?: boolean
   wip?: boolean
+  billingLessCost?: boolean
+  marginToEarn?: boolean
+  marginRealised?: boolean
+  overClaim?: boolean
+  nettRetention?: boolean
+  nettCashFlow?: boolean
   costToComplete?: boolean
   notes?: boolean
   dataVerified?: boolean
@@ -1716,11 +2311,12 @@ export type FinanceProjectSelectScalar = {
   updatedAt?: boolean
 }
 
-export type FinanceProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "jobNumber" | "projectName" | "status" | "practicalCompletionDate" | "forecastContractValue" | "forecastFinalCosts" | "riskAndOpportunity" | "forecastMarginDollars" | "forecastMarginPercent" | "targetExitMarginPercent" | "claimTotal" | "claimRetention" | "subClaims" | "subRetention" | "creditors" | "labour" | "totalCost" | "wip" | "costToComplete" | "notes" | "dataVerified" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["financeProject"]>
+export type FinanceProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "jobNumber" | "projectName" | "status" | "practicalCompletionDate" | "forecastContractValue" | "forecastFinalCosts" | "riskAndOpportunity" | "forecastMarginDollars" | "forecastMarginPercent" | "targetExitMarginPercent" | "claimTotal" | "claimRetention" | "subClaims" | "subRetention" | "creditors" | "labour" | "plant" | "stock" | "totalCost" | "wip" | "billingLessCost" | "marginToEarn" | "marginRealised" | "overClaim" | "nettRetention" | "nettCashFlow" | "costToComplete" | "notes" | "dataVerified" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["financeProject"]>
 export type FinanceProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   securedForecasts?: boolean | Prisma.FinanceProject$securedForecastsArgs<ExtArgs>
   wipSchedules?: boolean | Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>
+  snapshots?: boolean | Prisma.FinanceProject$snapshotsArgs<ExtArgs>
   _count?: boolean | Prisma.FinanceProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FinanceProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1736,6 +2332,7 @@ export type $FinanceProjectPayload<ExtArgs extends runtime.Types.Extensions.Inte
     organisation: Prisma.$OrganisationPayload<ExtArgs>
     securedForecasts: Prisma.$SecuredForecastPayload<ExtArgs>[]
     wipSchedules: Prisma.$WIPSchedulePayload<ExtArgs>[]
+    snapshots: Prisma.$FinanceProjectSnapshotPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1757,8 +2354,16 @@ export type $FinanceProjectPayload<ExtArgs extends runtime.Types.Extensions.Inte
     subRetention: runtime.Decimal
     creditors: runtime.Decimal
     labour: runtime.Decimal
+    plant: runtime.Decimal | null
+    stock: runtime.Decimal | null
     totalCost: runtime.Decimal
     wip: runtime.Decimal
+    billingLessCost: runtime.Decimal | null
+    marginToEarn: runtime.Decimal | null
+    marginRealised: runtime.Decimal | null
+    overClaim: runtime.Decimal | null
+    nettRetention: runtime.Decimal | null
+    nettCashFlow: runtime.Decimal | null
     costToComplete: runtime.Decimal | null
     notes: string | null
     dataVerified: boolean
@@ -2162,6 +2767,7 @@ export interface Prisma__FinanceProjectClient<T, Null = never, ExtArgs extends r
   organisation<T extends Prisma.OrganisationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganisationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganisationClient<runtime.Types.Result.GetResult<Prisma.$OrganisationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   securedForecasts<T extends Prisma.FinanceProject$securedForecastsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$securedForecastsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SecuredForecastPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wipSchedules<T extends Prisma.FinanceProject$wipSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WIPSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  snapshots<T extends Prisma.FinanceProject$snapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinanceProjectSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2210,8 +2816,16 @@ export interface FinanceProjectFieldRefs {
   readonly subRetention: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly creditors: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly labour: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly plant: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly stock: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly totalCost: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly wip: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly billingLessCost: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly marginToEarn: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly marginRealised: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly overClaim: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly nettRetention: Prisma.FieldRef<"FinanceProject", 'Decimal'>
+  readonly nettCashFlow: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly costToComplete: Prisma.FieldRef<"FinanceProject", 'Decimal'>
   readonly notes: Prisma.FieldRef<"FinanceProject", 'String'>
   readonly dataVerified: Prisma.FieldRef<"FinanceProject", 'Boolean'>
@@ -2664,6 +3278,30 @@ export type FinanceProject$wipSchedulesArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.WIPScheduleScalarFieldEnum | Prisma.WIPScheduleScalarFieldEnum[]
+}
+
+/**
+ * FinanceProject.snapshots
+ */
+export type FinanceProject$snapshotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FinanceProjectSnapshot
+   */
+  select?: Prisma.FinanceProjectSnapshotSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FinanceProjectSnapshot
+   */
+  omit?: Prisma.FinanceProjectSnapshotOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FinanceProjectSnapshotInclude<ExtArgs> | null
+  where?: Prisma.FinanceProjectSnapshotWhereInput
+  orderBy?: Prisma.FinanceProjectSnapshotOrderByWithRelationInput | Prisma.FinanceProjectSnapshotOrderByWithRelationInput[]
+  cursor?: Prisma.FinanceProjectSnapshotWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FinanceProjectSnapshotScalarFieldEnum | Prisma.FinanceProjectSnapshotScalarFieldEnum[]
 }
 
 /**

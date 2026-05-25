@@ -293,6 +293,8 @@ model Organisation {
   hubSpotSyncSettings    HubSpotSyncSettings?
   referenceLibraryItems  ReferenceLibraryItem[]
   scopeTemplates        ScopeTemplate[]
+  catImports            CatImport[]
+  financeProjectSnapshots FinanceProjectSnapshot[]
 
   @@map("organisations")
   @@schema("projects")
@@ -398,6 +400,8 @@ model User {
   ownedLeads              Lead[]                    @relation("LeadOwner")
   hubSpotConnections      HubSpotSyncSettings[]     @relation("HubSpotConnectedBy")
   enabledModuleFlags      ModuleFlag[]              @relation("ModuleFlagEnabledBy")
+  catImportsUploaded      CatImport[]               @relation("CatImportUploadedBy")
+  financeSnapshotsImported FinanceProjectSnapshot[] @relation("SnapshotImportedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -2986,8 +2990,16 @@ model FinanceProject {
   subRetention          Decimal              @default(0) @map("sub_retention") @db.Decimal(14, 2)
   creditors             Decimal              @default(0) @map("creditors") @db.Decimal(14, 2)
   labour                Decimal              @default(0) @map("labour") @db.Decimal(14, 2)
+  plant                 Decimal?             @default(0) @map("plant") @db.Decimal(15, 2)
+  stock                 Decimal?             @default(0) @map("stock") @db.Decimal(15, 2)
   totalCost             Decimal              @default(0) @map("total_cost") @db.Decimal(14, 2)
   wip                   Decimal              @default(0) @map("wip") @db.Decimal(14, 2)
+  billingLessCost       Decimal?             @map("billing_less_cost") @db.Decimal(15, 2)
+  marginToEarn          Decimal?             @map("margin_to_earn") @db.Decimal(15, 2)
+  marginRealised        Decimal?             @map("margin_realised") @db.Decimal(15, 2)
+  overClaim             Decimal?             @map("over_claim") @db.Decimal(15, 2)
+  nettRetention         Decimal?             @map("nett_retention") @db.Decimal(15, 2)
+  nettCashFlow          Decimal?             @map("nett_cash_flow") @db.Decimal(15, 2)
   costToComplete        Decimal?             @map("cost_to_complete") @db.Decimal(14, 2)
   notes                 String?              @db.Text
   dataVerified          Boolean              @default(false) @map("data_verified")
@@ -2995,11 +3007,97 @@ model FinanceProject {
   createdAt             DateTime             @default(now()) @map("created_at")
   updatedAt             DateTime             @updatedAt @map("updated_at")
 
-  securedForecasts SecuredForecast[]
-  wipSchedules     WIPSchedule[]
+  securedForecasts     SecuredForecast[]
+  wipSchedules         WIPSchedule[]
+  snapshots            FinanceProjectSnapshot[]
 
   @@index([organisationId, reportMonth])
   @@map("finance_projects")
+  @@schema("projects")
+}
+
+model FinanceProjectSnapshot {
+  id                  String         @id @default(uuid()) @db.Uuid
+  financeProjectId    String         @map("finance_project_id") @db.Uuid
+  financeProject      FinanceProject @relation(fields: [financeProjectId], references: [id], onDelete: Cascade)
+  organisationId      String         @map("organisation_id") @db.Uuid
+  organisation        Organisation   @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+
+  asAtDate            DateTime       @map("as_at_date") @db.Date
+  importedAt          DateTime       @default(now()) @map("imported_at")
+  importedById        String         @map("imported_by_id") @db.Uuid
+  importedBy          User           @relation("SnapshotImportedBy", fields: [importedById], references: [id])
+  sourceFilename      String?        @map("source_filename")
+
+  status              String
+  jobNo               String         @map("job_no")
+  projectName         String         @map("project_name")
+  practicalCompletion DateTime?      @map("practical_completion") @db.Date
+
+  forecastContract    Decimal        @default(0) @map("forecast_contract") @db.Decimal(15, 2)
+  forecastFinalCosts  Decimal        @default(0) @map("forecast_final_costs") @db.Decimal(15, 2)
+  forecastMargin      Decimal        @default(0) @map("forecast_margin") @db.Decimal(15, 2)
+  roAdjust            Decimal        @default(0) @map("ro_adjust") @db.Decimal(15, 2)
+  marginInclRo        Decimal        @default(0) @map("margin_incl_ro") @db.Decimal(15, 2)
+  forecastMarginPct   Decimal        @default(0) @map("forecast_margin_pct") @db.Decimal(5, 4)
+
+  claimTotal          Decimal        @default(0) @map("claim_total") @db.Decimal(15, 2)
+  claimRetention      Decimal        @default(0) @map("claim_retention") @db.Decimal(15, 2)
+  subClaims           Decimal        @default(0) @map("sub_claims") @db.Decimal(15, 2)
+  subRetention        Decimal        @default(0) @map("sub_retention") @db.Decimal(15, 2)
+
+  creditors           Decimal        @default(0) @map("creditors") @db.Decimal(15, 2)
+  labour              Decimal        @default(0) @map("labour") @db.Decimal(15, 2)
+  plant               Decimal        @default(0) @map("plant") @db.Decimal(15, 2)
+  stock               Decimal        @default(0) @map("stock") @db.Decimal(15, 2)
+  totalCost           Decimal        @default(0) @map("total_cost") @db.Decimal(15, 2)
+
+  billingLessCost     Decimal        @default(0) @map("billing_less_cost") @db.Decimal(15, 2)
+  marginToEarn        Decimal        @default(0) @map("margin_to_earn") @db.Decimal(15, 2)
+  marginRealised      Decimal        @default(0) @map("margin_realised") @db.Decimal(15, 2)
+  wip                 Decimal        @default(0) @map("wip") @db.Decimal(15, 2)
+  overClaim           Decimal        @default(0) @map("over_claim") @db.Decimal(15, 2)
+  nettRetention       Decimal        @default(0) @map("nett_retention") @db.Decimal(15, 2)
+  nettCashFlow        Decimal        @default(0) @map("nett_cash_flow") @db.Decimal(15, 2)
+
+  createdAt           DateTime       @default(now()) @map("created_at")
+  updatedAt           DateTime       @updatedAt @map("updated_at")
+
+  @@unique([financeProjectId, asAtDate], name: "snapshot_per_project_per_date")
+  @@index([asAtDate])
+  @@index([organisationId, asAtDate])
+  @@map("finance_project_snapshots")
+  @@schema("projects")
+}
+
+model CatImport {
+  id              String       @id @default(uuid()) @db.Uuid
+  organisationId  String       @map("organisation_id") @db.Uuid
+  organisation    Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  asAtDate        DateTime     @map("as_at_date") @db.Date
+  uploadedAt      DateTime     @default(now()) @map("uploaded_at")
+  uploadedById    String       @map("uploaded_by_id") @db.Uuid
+  uploadedBy      User         @relation("CatImportUploadedBy", fields: [uploadedById], references: [id])
+
+  sourceFilename  String       @map("source_filename")
+  fileSizeBytes   Int          @map("file_size_bytes")
+
+  rowsTotal       Int          @default(0) @map("rows_total")
+  rowsInserted    Int          @default(0) @map("rows_inserted")
+  rowsUpdated     Int          @default(0) @map("rows_updated")
+  rowsSkipped     Int          @default(0) @map("rows_skipped")
+
+  status              String
+  validationWarnings  Json?    @map("validation_warnings")
+  isOverwrite         Boolean  @default(false) @map("is_overwrite")
+  supersededById      String?  @map("superseded_by_id") @db.Uuid
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  @@index([asAtDate])
+  @@index([organisationId, uploadedAt])
+  @@map("cat_imports")
   @@schema("projects")
 }
 

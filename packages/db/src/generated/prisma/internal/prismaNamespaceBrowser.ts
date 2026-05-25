@@ -151,6 +151,8 @@ export const ModelName = {
   MonthEndStatus: 'MonthEndStatus',
   XeroConnection: 'XeroConnection',
   FinanceProject: 'FinanceProject',
+  FinanceProjectSnapshot: 'FinanceProjectSnapshot',
+  CatImport: 'CatImport',
   XeroPnL: 'XeroPnL',
   XeroBankBalance: 'XeroBankBalance',
   AnnualBudget: 'AnnualBudget',
@@ -1991,8 +1993,16 @@ export const FinanceProjectScalarFieldEnum = {
   subRetention: 'subRetention',
   creditors: 'creditors',
   labour: 'labour',
+  plant: 'plant',
+  stock: 'stock',
   totalCost: 'totalCost',
   wip: 'wip',
+  billingLessCost: 'billingLessCost',
+  marginToEarn: 'marginToEarn',
+  marginRealised: 'marginRealised',
+  overClaim: 'overClaim',
+  nettRetention: 'nettRetention',
+  nettCashFlow: 'nettCashFlow',
   costToComplete: 'costToComplete',
   notes: 'notes',
   dataVerified: 'dataVerified',
@@ -2002,6 +2012,70 @@ export const FinanceProjectScalarFieldEnum = {
 } as const
 
 export type FinanceProjectScalarFieldEnum = (typeof FinanceProjectScalarFieldEnum)[keyof typeof FinanceProjectScalarFieldEnum]
+
+
+export const FinanceProjectSnapshotScalarFieldEnum = {
+  id: 'id',
+  financeProjectId: 'financeProjectId',
+  organisationId: 'organisationId',
+  asAtDate: 'asAtDate',
+  importedAt: 'importedAt',
+  importedById: 'importedById',
+  sourceFilename: 'sourceFilename',
+  status: 'status',
+  jobNo: 'jobNo',
+  projectName: 'projectName',
+  practicalCompletion: 'practicalCompletion',
+  forecastContract: 'forecastContract',
+  forecastFinalCosts: 'forecastFinalCosts',
+  forecastMargin: 'forecastMargin',
+  roAdjust: 'roAdjust',
+  marginInclRo: 'marginInclRo',
+  forecastMarginPct: 'forecastMarginPct',
+  claimTotal: 'claimTotal',
+  claimRetention: 'claimRetention',
+  subClaims: 'subClaims',
+  subRetention: 'subRetention',
+  creditors: 'creditors',
+  labour: 'labour',
+  plant: 'plant',
+  stock: 'stock',
+  totalCost: 'totalCost',
+  billingLessCost: 'billingLessCost',
+  marginToEarn: 'marginToEarn',
+  marginRealised: 'marginRealised',
+  wip: 'wip',
+  overClaim: 'overClaim',
+  nettRetention: 'nettRetention',
+  nettCashFlow: 'nettCashFlow',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinanceProjectSnapshotScalarFieldEnum = (typeof FinanceProjectSnapshotScalarFieldEnum)[keyof typeof FinanceProjectSnapshotScalarFieldEnum]
+
+
+export const CatImportScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  asAtDate: 'asAtDate',
+  uploadedAt: 'uploadedAt',
+  uploadedById: 'uploadedById',
+  sourceFilename: 'sourceFilename',
+  fileSizeBytes: 'fileSizeBytes',
+  rowsTotal: 'rowsTotal',
+  rowsInserted: 'rowsInserted',
+  rowsUpdated: 'rowsUpdated',
+  rowsSkipped: 'rowsSkipped',
+  status: 'status',
+  validationWarnings: 'validationWarnings',
+  isOverwrite: 'isOverwrite',
+  supersededById: 'supersededById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CatImportScalarFieldEnum = (typeof CatImportScalarFieldEnum)[keyof typeof CatImportScalarFieldEnum]
 
 
 export const XeroPnLScalarFieldEnum = {
