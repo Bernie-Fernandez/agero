@@ -5,10 +5,13 @@ import { prisma } from '@/lib/prisma';
 import { createAuditLog } from '@/lib/audit';
 import { parseCatExport, CatRow } from '@/lib/cat-import/parser';
 import { validateCatRows, ValidatedRow, ValidationResult } from '@/lib/cat-import/validator';
-// ── In-memory session store (per-process; serverless-safe since we commit before redirect) ──
+
+// ── In-memory session store ───────────────────────────────────────────────────
+// Serverless-safe: the pending import is committed (or cancelled) before the
+// user navigates away, so the same process always handles it.
 
 type PendingImport = {
-  asAtDate: string;
+  asAtDate: string; // Set during parseCatImport (detected) or overridden via prepareCommit
   filename: string;
   fileSizeBytes: number;
   validatedRows: ValidatedRow[];
@@ -18,21 +21,7 @@ type PendingImport = {
 
 const pendingImports = new Map<string, PendingImport>();
 
-// ── Types returned to the client ─────────────────────────────────────────────
-
-export type ParseResult = {
-  ok: boolean;
-  previewId?: string;
-  rowCount?: number;
-  skippedRows?: number;
-  unmatchedHeaders?: string[];
-  validatedRows?: SerializableValidatedRow[];
-  errors?: SerializableValidation[];
-  warnings?: SerializableValidation[];
-  hasBlockingErrors?: boolean;
-  existingImport?: ExistingImportMeta | null;
-  error?: string;
-};
+// ── Serialisable types returned to the client ─────────────────────────────────
 
 export type SerializableValidation = {
   rowIndex: number;
@@ -56,6 +45,27 @@ export type ExistingImportMeta = {
   sourceFilename: string;
 };
 
+export type ParseResult = {
+  ok: boolean;
+  previewId?: string;
+  rowCount?: number;
+  skippedRows?: number;
+  unmatchedHeaders?: string[];
+  detectedAsAtDate?: string;
+  validatedRows?: SerializableValidatedRow[];
+  errors?: SerializableValidation[];
+  warnings?: SerializableValidation[];
+  hasBlockingErrors?: boolean;
+  existingImport?: ExistingImportMeta | null;
+  error?: string;
+};
+
+export type PrepareResult = {
+  ok: boolean;
+  existingImport?: ExistingImportMeta | null;
+  error?: string;
+};
+
 export type CommitResult = {
   ok: boolean;
   importId?: string;
@@ -67,35 +77,26 @@ export type CommitResult = {
 };
 
 // ── 1. Parse ─────────────────────────────────────────────────────────────────
+// Parses the uploaded file, validates rows, stores a pending import in memory.
+// Does NOT require an as-at date upfront — uses the date detected from the
+// file's banner row. The user confirms/overrides the date in the wizard
+// before calling prepareCommit.
 
-export async function parseCatImport(
-  formData: FormData,
-): Promise<ParseResult> {
+export async function parseCatImport(formData: FormData): Promise<ParseResult> {
   await requireDirector();
 
   const file = formData.get('file') as File | null;
-  const asAtDate = formData.get('asAtDate') as string | null;
-
   if (!file) return { ok: false, error: 'No file provided.' };
-  if (!asAtDate) return { ok: false, error: 'No as-at date provided.' };
 
-  // File type check
   const ext = file.name.split('.').pop()?.toLowerCase() ?? '';
   if (!['csv', 'xlsx', 'xls'].includes(ext)) {
-    return { ok: false, error: 'Only CSV and XLSX files are supported. PDFs are not supported.' };
+    return { ok: false, error: 'Only CSV, XLS, and XLSX files are supported. PDFs are not supported.' };
   }
 
-  // File size check (10 MB)
   if (file.size > 10 * 1024 * 1024) {
     return { ok: false, error: 'File is too large. CAT exports are typically under 100 KB.' };
   }
 
-  // Date validation
-  const asAt = new Date(asAtDate);
-  if (isNaN(asAt.getTime())) return { ok: false, error: 'Invalid as-at date.' };
-  if (asAt > new Date()) return { ok: false, error: 'As-at date cannot be in the future.' };
-
-  // Parse
   const buffer = Buffer.from(await file.arrayBuffer());
   const parsed = parseCatExport(buffer, file.name);
 
@@ -107,8 +108,8 @@ export async function parseCatImport(
     return { ok: false, error: 'No project rows found in the file.' };
   }
 
-  // Load known job numbers and prior snapshots for validation
   const user = await requireDirector();
+
   const [financeProjects, priorSnapshots] = await Promise.all([
     prisma.financeProject.findMany({
       where: { organisationId: user.organisationId, deletedAt: null },
@@ -117,13 +118,15 @@ export async function parseCatImport(
     prisma.financeProjectSnapshot.findMany({
       where: { organisationId: user.organisationId },
       orderBy: { asAtDate: 'desc' },
-      select: { jobNo: true, forecastContract: true, asAtDate: true },
+      select: { jobNo: true, forecastContract: true },
     }),
   ]);
 
-  const knownJobNos = new Set(financeProjects.map((p) => p.jobNumber?.trim() ?? '').filter(Boolean));
+  const knownJobNos = new Set(
+    financeProjects.map((p) => p.jobNumber?.trim() ?? '').filter(Boolean),
+  );
 
-  // Build prior snapshot map: most recent snapshot per job
+  // Most recent snapshot per job for delta check
   const priorMap = new Map<string, { forecastContract: number }>();
   for (const snap of priorSnapshots) {
     const key = snap.jobNo.trim();
@@ -134,27 +137,9 @@ export async function parseCatImport(
 
   const validation = validateCatRows(parsed.rows, knownJobNos, priorMap);
 
-  // Check for existing import on same date
-  const existingSnap = await prisma.financeProjectSnapshot.findFirst({
-    where: { organisationId: user.organisationId, asAtDate: asAt },
-    include: { importedBy: { select: { firstName: true, lastName: true } } },
-    orderBy: { importedAt: 'desc' },
-  });
-
-  let existingImport: ExistingImportMeta | null = null;
-  if (existingSnap) {
-    existingImport = {
-      id: existingSnap.id,
-      uploadedAt: existingSnap.importedAt.toISOString(),
-      uploadedBy: `${existingSnap.importedBy.firstName} ${existingSnap.importedBy.lastName}`,
-      sourceFilename: existingSnap.sourceFilename ?? '',
-    };
-  }
-
-  // Store pending import
   const previewId = crypto.randomUUID();
   pendingImports.set(previewId, {
-    asAtDate,
+    asAtDate: parsed.detectedAsAtDate ?? '',
     filename: file.name,
     fileSizeBytes: file.size,
     validatedRows: validation.validatedRows,
@@ -168,15 +153,57 @@ export async function parseCatImport(
     rowCount: parsed.rows.length,
     skippedRows: parsed.skippedRows,
     unmatchedHeaders: parsed.unmatchedHeaders,
+    detectedAsAtDate: parsed.detectedAsAtDate,
     validatedRows: validation.validatedRows as SerializableValidatedRow[],
     errors: validation.errors,
     warnings: validation.warnings,
     hasBlockingErrors: validation.hasBlockingErrors,
-    existingImport,
   };
 }
 
-// ── 2. Commit ─────────────────────────────────────────────────────────────────
+// ── 2. Prepare commit ────────────────────────────────────────────────────────
+// Called after the user confirms the as-at date in Step 2.
+// Updates the pending import with the chosen date, checks for existing
+// snapshots on that date, and returns overwrite metadata to the wizard.
+
+export async function prepareCommit(
+  previewId: string,
+  asAtDate: string,
+): Promise<PrepareResult> {
+  const user = await requireDirector();
+
+  const pending = pendingImports.get(previewId);
+  if (!pending) {
+    return { ok: false, error: 'Import session expired. Please upload the file again.' };
+  }
+
+  const asAt = new Date(asAtDate);
+  if (isNaN(asAt.getTime())) return { ok: false, error: 'Invalid as-at date.' };
+  if (asAt > new Date()) return { ok: false, error: 'As-at date cannot be in the future.' };
+
+  // Update stored date
+  pending.asAtDate = asAtDate;
+
+  // Check for existing snapshots on this date
+  const existingSnap = await prisma.financeProjectSnapshot.findFirst({
+    where: { organisationId: user.organisationId, asAtDate: asAt },
+    include: { importedBy: { select: { firstName: true, lastName: true } } },
+    orderBy: { importedAt: 'desc' },
+  });
+
+  const existingImport: ExistingImportMeta | null = existingSnap
+    ? {
+        id: existingSnap.id,
+        uploadedAt: existingSnap.importedAt.toISOString(),
+        uploadedBy: `${existingSnap.importedBy.firstName} ${existingSnap.importedBy.lastName}`,
+        sourceFilename: existingSnap.sourceFilename ?? '',
+      }
+    : null;
+
+  return { ok: true, existingImport };
+}
+
+// ── 3. Commit ─────────────────────────────────────────────────────────────────
 
 export async function commitCatImport(
   previewId: string,
@@ -189,18 +216,20 @@ export async function commitCatImport(
     return { ok: false, error: 'Import session expired. Please upload the file again.' };
   }
 
+  if (!pending.asAtDate) {
+    return { ok: false, error: 'As-at date not set. Please go back and confirm the date.' };
+  }
+
   if (pending.errors.length > 0) {
     return { ok: false, error: 'Cannot commit an import with blocking errors.' };
   }
 
   const asAt = new Date(pending.asAtDate);
 
-  // Rows that pass validation (no errors)
   const goodRows = pending.validatedRows
     .filter((vr) => vr.status !== 'error')
     .map((vr) => vr.row);
 
-  // Check for existing snapshots
   const existingSnapshots = await prisma.financeProjectSnapshot.findMany({
     where: { organisationId: user.organisationId, asAtDate: asAt },
     select: { id: true },
@@ -211,7 +240,6 @@ export async function commitCatImport(
     return { ok: false, error: 'Overwrite confirmation required.' };
   }
 
-  // Resolve financeProjectId for each row
   const financeProjects = await prisma.financeProject.findMany({
     where: { organisationId: user.organisationId, deletedAt: null },
     select: { id: true, jobNumber: true },
@@ -233,7 +261,6 @@ export async function commitCatImport(
         });
       }
 
-      // Create CatImport record
       const catImport = await tx.catImport.create({
         data: {
           organisationId: user.organisationId,
@@ -248,11 +275,9 @@ export async function commitCatImport(
         },
       });
 
-      // Insert snapshots
       for (const row of goodRows) {
         const financeProjectId = fpMap.get(row.jobNo.trim());
         if (!financeProjectId) {
-          // Project not in Finance table — skip snapshot (unknown project, already warned)
           rowsSkipped++;
           continue;
         }
@@ -263,49 +288,44 @@ export async function commitCatImport(
           importedById: user.id,
           asAtDate: asAt,
           sourceFilename: pending.filename,
-          status: row.status,
+          // Awarded/Backlog classification is manual (Sprint X.2). Stored blank for now.
+          status: '',
           jobNo: row.jobNo,
           projectName: row.projectName,
           practicalCompletion: row.practicalCompletion ? new Date(row.practicalCompletion) : null,
-          forecastContract: row.forecastContract,
+          forecastContract:  row.forecastContract,
           forecastFinalCosts: row.forecastFinalCosts,
-          forecastMargin: row.forecastMargin,
-          roAdjust: row.roAdjust,
-          marginInclRo: row.marginInclRo,
+          forecastMargin:    row.forecastMargin,
+          roAdjust:          row.roAdjust,
+          marginInclRo:      row.marginInclRo,
           forecastMarginPct: row.forecastMarginPct,
-          claimTotal: row.claimTotal,
-          claimRetention: row.claimRetention,
-          subClaims: row.subClaims,
-          subRetention: row.subRetention,
-          creditors: row.creditors,
-          labour: row.labour,
-          plant: row.plant,
-          stock: row.stock,
-          totalCost: row.totalCost,
-          billingLessCost: row.billingLessCost,
-          marginToEarn: row.marginToEarn,
-          marginRealised: row.marginRealised,
-          wip: row.wip,
-          overClaim: row.overClaim,
-          nettRetention: row.nettRetention,
-          nettCashFlow: row.nettCashFlow,
+          claimTotal:        row.claimTotal,
+          claimRetention:    row.claimRetention,
+          subClaims:         row.subClaims,
+          subRetention:      row.subRetention,
+          creditors:         row.creditors,
+          labour:            row.labour,
+          plant:             row.plant,
+          stock:             row.stock,
+          totalCost:         row.totalCost,
+          billingLessCost:   row.billingLessCost,
+          marginToEarn:      row.marginToEarn,
+          marginRealised:    row.marginRealised,
+          wip:               row.wip,
+          overClaim:         row.overClaim,
+          nettRetention:     row.nettRetention,
+          nettCashFlow:      row.nettCashFlow,
         };
 
-        if (isOverwrite) {
-          await tx.financeProjectSnapshot.create({ data: snapData });
-          rowsUpdated++;
-        } else {
-          await tx.financeProjectSnapshot.create({ data: snapData });
-          rowsInserted++;
-        }
+        await tx.financeProjectSnapshot.create({ data: snapData });
+        if (isOverwrite) rowsUpdated++; else rowsInserted++;
       }
 
-      // Update row counts on catImport
       await tx.catImport.update({
         where: { id: catImport.id },
         data: {
           rowsInserted: isOverwrite ? 0 : rowsInserted,
-          rowsUpdated: isOverwrite ? rowsUpdated : 0,
+          rowsUpdated:  isOverwrite ? rowsUpdated : 0,
           rowsSkipped,
         },
       });
@@ -315,7 +335,6 @@ export async function commitCatImport(
 
     pendingImports.delete(previewId);
 
-    // Audit log
     await createAuditLog({
       userId: user.id,
       action: isOverwrite ? 'CAT_IMPORT_OVERWRITTEN' : 'CAT_IMPORT_COMMITTED',
@@ -332,21 +351,14 @@ export async function commitCatImport(
       },
     });
 
-    return {
-      ok: true,
-      importId: result.id,
-      isOverwrite,
-      rowsInserted,
-      rowsUpdated,
-      rowsSkipped,
-    };
+    return { ok: true, importId: result.id, isOverwrite, rowsInserted, rowsUpdated, rowsSkipped };
   } catch (err) {
     console.error('[cat-import] commit failed:', err);
     return { ok: false, error: 'Import failed. No changes saved. Please try again.' };
   }
 }
 
-// ── 3. Cancel ────────────────────────────────────────────────────────────────
+// ── 4. Cancel ─────────────────────────────────────────────────────────────────
 
 export async function cancelCatImport(previewId: string): Promise<void> {
   await requireDirector();

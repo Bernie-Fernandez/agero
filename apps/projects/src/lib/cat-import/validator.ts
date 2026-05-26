@@ -26,8 +26,7 @@ export type ValidationSummary = {
   hasBlockingErrors: boolean;
 };
 
-const VALID_STATUSES = ['Awarded', 'Backlog'];
-const DELTA_THRESHOLD = 0.20; // 20%
+const DELTA_THRESHOLD = 0.20;
 
 export function validateCatRows(
   rows: CatRow[],
@@ -58,22 +57,6 @@ export function validateCatRows(
       continue;
     }
 
-    // Error: Status is valid
-    if (!VALID_STATUSES.includes(row.status)) {
-      const issue: ValidationResult = {
-        rowIndex: i + 1,
-        jobNo: row.jobNo,
-        projectName: row.projectName,
-        severity: 'error',
-        type: 'INVALID_STATUS',
-        message: `Status "${row.status}" is not recognised (expected Awarded or Backlog) — row will be skipped.`,
-      };
-      rowIssues.push(issue);
-      errors.push(issue);
-      validatedRows.push({ row, status: 'error', issues: rowIssues });
-      continue;
-    }
-
     // Error: Forecast Contract not negative
     if (row.forecastContract < 0) {
       const issue: ValidationResult = {
@@ -90,7 +73,7 @@ export function validateCatRows(
       continue;
     }
 
-    // Warning: Job No exists in Project table
+    // Warning: Job No exists in Finance Project table
     if (!knownJobNos.has(row.jobNo.trim())) {
       const issue: ValidationResult = {
         rowIndex: i + 1,
@@ -98,13 +81,13 @@ export function validateCatRows(
         projectName: row.projectName,
         severity: 'warning',
         type: 'UNKNOWN_JOB_NO',
-        message: `Job No "${row.jobNo}" not found in the Project table — will be imported but flagged for review.`,
+        message: `Job No "${row.jobNo}" not found in the Finance Project table — will be imported but flagged for review.`,
       };
       rowIssues.push(issue);
       warnings.push(issue);
     }
 
-    // Warning: Margin math check
+    // Warning: Margin math check (±$1 tolerance for CAT rounding)
     const expectedMargin = row.forecastContract - row.forecastFinalCosts;
     if (Math.abs(expectedMargin - row.forecastMargin) > 1) {
       const issue: ValidationResult = {
@@ -119,7 +102,7 @@ export function validateCatRows(
       warnings.push(issue);
     }
 
-    // Warning: Total Cost math check
+    // Warning: Total Cost math check (±$1 tolerance)
     const expectedTotal = row.subClaims + row.creditors + row.labour + row.plant + row.stock;
     if (Math.abs(expectedTotal - row.totalCost) > 1) {
       const issue: ValidationResult = {
