@@ -23,9 +23,7 @@ function getClient(): PrismaClient {
   const adapter = new PrismaPg(globalForPrisma.erpPool);
   const client = new PrismaClient({ adapter, log: ["error"] });
 
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.erpPrisma = client;
-  }
+  globalForPrisma.erpPrisma = client;
 
   return client;
 }
