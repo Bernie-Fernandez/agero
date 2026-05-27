@@ -10,7 +10,9 @@ import {
   ParseResult,
   PrepareResult,
   SerializableValidatedRow,
+  SkippedProject,
 } from './actions';
+import { createFinanceProjectMaster } from '../projects-master/actions';
 
 // ── Step indicator ────────────────────────────────────────────────────────────
 
@@ -421,14 +423,117 @@ function Step3Confirm({
   );
 }
 
+// ── Quick-create Finance Project form (used in Step 4) ────────────────────────
+
+const FP_STATUSES = ['AWARDED', 'BACKLOG', 'DLP', 'CLOSED'] as const;
+
+function QuickCreateProjectForm({
+  jobNo,
+  projectName,
+  onCreated,
+  onCancel,
+}: {
+  jobNo: string;
+  projectName: string;
+  onCreated: () => void;
+  onCancel: () => void;
+}) {
+  const [name, setName] = useState(projectName);
+  const [status, setStatus] = useState('AWARDED');
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSave() {
+    setSaving(true);
+    setError(null);
+    const result = await createFinanceProjectMaster({ jobNumber: jobNo, projectName: name, status });
+    setSaving(false);
+    if (!result.ok) { setError(result.error ?? 'Save failed.'); return; }
+    onCreated();
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-zinc-900">Create Finance Project</h3>
+          <button onClick={onCancel} className="text-zinc-400 hover:text-zinc-600">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-zinc-600 mb-1">Job No</label>
+          <input
+            type="text"
+            value={jobNo}
+            disabled
+            className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm bg-zinc-50 text-zinc-400"
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-zinc-600 mb-1">Project Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => { setName(e.target.value); setError(null); }}
+            className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand/30"
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-zinc-600 mb-1">Status</label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm focus:outline-none"
+          >
+            {FP_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+        {error && (
+          <p className="text-sm text-red-600">{error}</p>
+        )}
+        <div className="flex justify-end gap-2 pt-1">
+          <button onClick={onCancel} className="px-4 py-2 text-sm text-zinc-600">Cancel</button>
+          <button
+            onClick={handleSave}
+            disabled={saving || !name.trim()}
+            className="px-4 py-2 bg-brand hover:bg-brand/90 text-white text-sm font-medium rounded-lg disabled:opacity-50"
+          >
+            {saving ? 'Saving…' : 'Create'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Step 4: Success ───────────────────────────────────────────────────────────
 
 function Step4Success({
-  importId, isOverwrite, rowsInserted, rowsUpdated, rowsSkipped, asAtDate, onStartOver,
+  importId, isOverwrite, rowsInserted, rowsUpdated, rowsSkipped, asAtDate,
+  skippedProjects, reRunPreviewId, onStartOver, onRerun,
 }: {
   importId: string; isOverwrite: boolean; rowsInserted: number; rowsUpdated: number;
   rowsSkipped: number; asAtDate: string; onStartOver: () => void;
+  skippedProjects?: SkippedProject[];
+  reRunPreviewId?: string;
+  onRerun?: () => Promise<void>;
 }) {
+  const [createdJobs, setCreatedJobs] = useState<Set<string>>(new Set());
+  const [formFor, setFormFor] = useState<SkippedProject | null>(null);
+  const [rerunning, setRerunning] = useState(false);
+
+  const canRerun = createdJobs.size > 0 && !!reRunPreviewId && !!onRerun;
+
+  async function handleRerun() {
+    if (!onRerun) return;
+    setRerunning(true);
+    await onRerun();
+    setRerunning(false);
+  }
+
   return (
     <div className="space-y-5">
       <div className="rounded-xl border border-green-200 bg-green-50 p-6 space-y-3">
@@ -437,10 +542,60 @@ function Step4Success({
           {isOverwrite
             ? `Snapshots for ${formatDate(asAtDate)} were overwritten.`
             : `${rowsInserted} snapshots saved for ${formatDate(asAtDate)}.`}
-          {rowsSkipped > 0 && ` ${rowsSkipped} rows skipped (projects not in Finance table).`}
+          {rowsSkipped > 0 && ` ${rowsSkipped} rows skipped (job numbers not in Finance Project table).`}
         </p>
         <p className="text-xs text-green-600">Import ID: {importId}</p>
       </div>
+
+      {/* Skipped projects panel */}
+      {skippedProjects && skippedProjects.length > 0 && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 space-y-4">
+          <div>
+            <p className="text-sm font-semibold text-amber-900">
+              {skippedProjects.length} project{skippedProjects.length !== 1 ? 's' : ''} skipped — not in Finance Project table
+            </p>
+            <p className="text-xs text-amber-700 mt-1">
+              Add them now, then re-run the import to include their snapshots.
+            </p>
+          </div>
+          <div className="space-y-2">
+            {skippedProjects.map((sp) => (
+              <div key={sp.jobNo} className="flex items-center justify-between gap-4 bg-white rounded-lg border border-amber-200 px-3 py-2">
+                <div className="min-w-0">
+                  <span className="font-mono text-xs text-zinc-600">{sp.jobNo}</span>
+                  <span className="text-sm text-zinc-700 ml-2 truncate">{sp.projectName}</span>
+                </div>
+                {createdJobs.has(sp.jobNo) ? (
+                  <span className="flex items-center gap-1 text-xs text-green-700 font-medium shrink-0">
+                    <span className="text-green-500">✓</span> Created
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => setFormFor(sp)}
+                    className="shrink-0 text-xs px-3 py-1.5 bg-brand text-white rounded-lg hover:bg-brand/90"
+                  >
+                    + Create
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleRerun}
+              disabled={!canRerun || rerunning}
+              className="px-4 py-2 text-sm font-medium rounded-lg bg-amber-600 hover:bg-amber-700 text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {rerunning && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
+              Re-run last import
+            </button>
+            {!canRerun && createdJobs.size === 0 && (
+              <span className="text-xs text-amber-700">Create at least one project above to enable re-run.</span>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="flex gap-3">
         <Link
           href={`/finance/cat-data?asAt=${asAtDate}`}
@@ -455,6 +610,18 @@ function Step4Success({
           Import another
         </button>
       </div>
+
+      {formFor && (
+        <QuickCreateProjectForm
+          jobNo={formFor.jobNo}
+          projectName={formFor.projectName}
+          onCreated={() => {
+            setCreatedJobs((s) => new Set(s).add(formFor.jobNo));
+            setFormFor(null);
+          }}
+          onCancel={() => setFormFor(null)}
+        />
+      )}
     </div>
   );
 }
@@ -465,14 +632,22 @@ type ParseResultWithExisting = ParseResult & {
   existingImport?: { id: string; uploadedAt: string; uploadedBy: string; sourceFilename: string } | null;
 };
 
+type CommitState = {
+  importId: string;
+  isOverwrite: boolean;
+  rowsInserted: number;
+  rowsUpdated: number;
+  rowsSkipped: number;
+  skippedProjects?: SkippedProject[];
+  reRunPreviewId?: string;
+};
+
 export default function CatImportWizard() {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [file, setFile] = useState<File | null>(null);
   const [asAtDate, setAsAtDate] = useState('');
   const [parseResult, setParseResult] = useState<ParseResultWithExisting | null>(null);
-  const [commitResult, setCommitResult] = useState<{
-    importId: string; isOverwrite: boolean; rowsInserted: number; rowsUpdated: number; rowsSkipped: number;
-  } | null>(null);
+  const [commitResult, setCommitResult] = useState<CommitState | null>(null);
   const [commitError, setCommitError] = useState<string | null>(null);
 
   function reset() {
@@ -490,11 +665,28 @@ export default function CatImportWizard() {
         rowsInserted: result.rowsInserted ?? 0,
         rowsUpdated: result.rowsUpdated ?? 0,
         rowsSkipped: result.rowsSkipped ?? 0,
+        skippedProjects: result.skippedProjects,
+        reRunPreviewId: result.reRunPreviewId,
       });
       setStep(4);
     } else {
       setCommitError(result.error ?? 'Unknown error');
     }
+  }
+
+  async function handleRerun() {
+    if (!commitResult?.reRunPreviewId) return;
+    const prep = await prepareCommit(commitResult.reRunPreviewId, asAtDate);
+    if (!prep.ok) {
+      setCommitError(prep.error ?? 'Re-run failed. The import session may have expired.');
+      return;
+    }
+    setParseResult((prev) =>
+      prev ? { ...prev, previewId: commitResult.reRunPreviewId, existingImport: prep.existingImport } : prev
+    );
+    setCommitResult(null);
+    setCommitError(null);
+    setStep(3);
   }
 
   async function handleCancel() {
@@ -547,8 +739,11 @@ export default function CatImportWizard() {
           rowsInserted={commitResult.rowsInserted}
           rowsUpdated={commitResult.rowsUpdated}
           rowsSkipped={commitResult.rowsSkipped}
+          skippedProjects={commitResult.skippedProjects}
+          reRunPreviewId={commitResult.reRunPreviewId}
           asAtDate={asAtDate}
           onStartOver={reset}
+          onRerun={handleRerun}
         />
       )}
     </div>

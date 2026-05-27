@@ -66,6 +66,8 @@ export type PrepareResult = {
   error?: string;
 };
 
+export type SkippedProject = { jobNo: string; projectName: string };
+
 export type CommitResult = {
   ok: boolean;
   importId?: string;
@@ -73,6 +75,8 @@ export type CommitResult = {
   rowsInserted?: number;
   rowsUpdated?: number;
   rowsSkipped?: number;
+  skippedProjects?: SkippedProject[];
+  reRunPreviewId?: string;
   error?: string;
   debug?: string;
 };
@@ -253,6 +257,7 @@ export async function commitCatImport(
   let rowsInserted = 0;
   let rowsUpdated = 0;
   let rowsSkipped = 0;
+  const skippedProjectsList: SkippedProject[] = [];
 
   try {
     const result = await prisma.$transaction(async (tx) => {
@@ -280,6 +285,7 @@ export async function commitCatImport(
         const financeProjectId = fpMap.get(row.jobNo.trim());
         if (!financeProjectId) {
           rowsSkipped++;
+          skippedProjectsList.push({ jobNo: row.jobNo, projectName: row.projectName });
           continue;
         }
 
@@ -334,7 +340,11 @@ export async function commitCatImport(
       return catImport;
     }, { maxWait: 10000, timeout: 30000 });
 
-    pendingImports.delete(previewId);
+    // Keep pending import alive when rows were skipped so the user can re-run
+    // after adding the missing Finance Project records.
+    if (rowsSkipped === 0) {
+      pendingImports.delete(previewId);
+    }
 
     await createAuditLog({
       userId: user.id,
@@ -352,7 +362,16 @@ export async function commitCatImport(
       },
     });
 
-    return { ok: true, importId: result.id, isOverwrite, rowsInserted, rowsUpdated, rowsSkipped };
+    return {
+      ok: true,
+      importId: result.id,
+      isOverwrite,
+      rowsInserted,
+      rowsUpdated,
+      rowsSkipped,
+      skippedProjects: skippedProjectsList.length > 0 ? skippedProjectsList : undefined,
+      reRunPreviewId: rowsSkipped > 0 ? previewId : undefined,
+    };
   } catch (err) {
     console.error('[cat-import] commit failed:', err);
     return {

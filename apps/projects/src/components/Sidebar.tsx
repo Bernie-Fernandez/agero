@@ -233,6 +233,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/reports" label="Reports" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/projects-master" label="Project Master" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/cat-data" label="CAT Data" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/cat-import" label="CAT Import" depth={1} onItemClick={onItemClick} />
       <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
