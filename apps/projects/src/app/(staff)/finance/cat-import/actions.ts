@@ -74,6 +74,7 @@ export type CommitResult = {
   rowsUpdated?: number;
   rowsSkipped?: number;
   error?: string;
+  debug?: string;
 };
 
 // ── 1. Parse ─────────────────────────────────────────────────────────────────
@@ -331,7 +332,7 @@ export async function commitCatImport(
       });
 
       return catImport;
-    });
+    }, { maxWait: 10000, timeout: 30000 });
 
     pendingImports.delete(previewId);
 
@@ -354,7 +355,11 @@ export async function commitCatImport(
     return { ok: true, importId: result.id, isOverwrite, rowsInserted, rowsUpdated, rowsSkipped };
   } catch (err) {
     console.error('[cat-import] commit failed:', err);
-    return { ok: false, error: 'Import failed. No changes saved. Please try again.' };
+    return {
+      ok: false,
+      error: 'Import failed. No changes saved. Please try again.',
+      debug: process.env.NODE_ENV !== 'production' ? String(err) : undefined,
+    };
   }
 }
 
