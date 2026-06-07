@@ -22,11 +22,20 @@ export default async function PreStartPage({
   });
   if (!safetyProject) notFound();
 
-  // Load the most recent signed assessment, if any
   const existing = await prisma.preStartAssessment.findFirst({
     where: { projectId: id },
     orderBy: { createdAt: "desc" },
     include: { completedBy: { select: { name: true, email: true } } },
+  });
+
+  // Users available for sign-off dropdown
+  const projectUsers = await prisma.user.findMany({
+    where: {
+      organisationId: user.organisationId,
+      role: { in: ["admin", "safety_manager", "project_manager", "site_manager"] },
+    },
+    select: { id: true, name: true, email: true, role: true },
+    orderBy: { name: "asc" },
   });
 
   const submitAction = submitPreStartAssessment.bind(null, id);
@@ -36,7 +45,6 @@ export default async function PreStartPage({
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
       <AppNav currentPath="/projects" userRole={user.role} />
       <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-        {/* Breadcrumb */}
         <Link
           href={`/projects/${id}/readiness`}
           className="text-sm text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
@@ -52,8 +60,6 @@ export default async function PreStartPage({
             {safetyProject.name}
             {safetyProject.address && ` · ${safetyProject.address}`}
           </p>
-
-          {/* Legal / ISO badges */}
           <div className="mt-3 flex flex-wrap gap-2">
             <span className="rounded-full border border-zinc-200 bg-white px-2.5 py-0.5 text-xs text-zinc-500 dark:border-zinc-700 dark:bg-zinc-900">
               ISO 45001 Clause 6.1 &amp; 8.1.4.2
@@ -67,22 +73,31 @@ export default async function PreStartPage({
           </div>
         </div>
 
-        {/* ── Done banner ─────────────────────────────────────────────────── */}
+        {/* ── Done screen ─────────────────────────────────────────────────── */}
         {done === "1" && (
-          <div className="mt-6 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950/30 dark:text-green-300">
-            Assessment submitted and signed. A PDF has been generated and emailed to the Director
-            and Safety Manager. The Site Preparation Checklist is now unlocked.
+          <div className="mt-8 rounded-xl border border-green-200 bg-green-50 p-6 text-center dark:border-green-800 dark:bg-green-950/30">
+            <p className="text-base font-semibold text-green-800 dark:text-green-300">
+              Assessment submitted and signed.
+            </p>
+            <p className="mt-1 text-sm text-green-700 dark:text-green-400">
+              A PDF has been generated and emailed to the Director and Safety Manager.
+              The Site Preparation Checklist is now unlocked.
+            </p>
+            <Link
+              href={`/projects/${id}/readiness`}
+              className="mt-5 inline-flex items-center gap-2 rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-500"
+            >
+              Return to Readiness Dashboard →
+            </Link>
           </div>
         )}
 
         {/* ── Existing assessment summary ─────────────────────────────────── */}
-        {isSigned && (
+        {isSigned && done !== "1" && (
           <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
-                  Assessment signed
-                </p>
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">Assessment signed</p>
                 <p className="mt-0.5 text-xs text-zinc-500">
                   {existing.signOffName} ·{" "}
                   {new Date(existing.signOffAt).toLocaleString("en-AU", {
@@ -98,31 +113,20 @@ export default async function PreStartPage({
                 Complete
               </span>
             </div>
-
-            {/* Flag summary */}
             {(() => {
-              const hrw = (existing.highRiskFlags as Array<{ flagged: boolean }>).filter(
-                (f) => f.flagged,
-              ).length;
-              const psych = (existing.psychosocialFlags as Array<{ flagged: boolean }>).filter(
-                (f) => f.flagged,
-              ).length;
+              const hrw = (existing.highRiskFlags as Array<{ flagged: boolean }>).filter((f) => f.flagged).length;
+              const psych = (existing.psychosocialFlags as Array<{ flagged: boolean }>).filter((f) => f.flagged).length;
               return (
                 <div className="mt-3 flex flex-wrap gap-3 text-xs">
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 font-medium ${hrw > 0 ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300" : "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"}`}
-                  >
+                  <span className={`rounded-full px-2.5 py-0.5 font-medium ${hrw > 0 ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300" : "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"}`}>
                     {hrw > 0 ? `${hrw} HRW flag${hrw !== 1 ? "s" : ""}` : "No HRW flags"}
                   </span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 font-medium ${psych > 0 ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300" : "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"}`}
-                  >
+                  <span className={`rounded-full px-2.5 py-0.5 font-medium ${psych > 0 ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300" : "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"}`}>
                     {psych > 0 ? `${psych} psychosocial hazard${psych !== 1 ? "s" : ""}` : "No psychosocial hazards"}
                   </span>
                 </div>
               );
             })()}
-
             {existing.pdfUrl && (
               <a
                 href={existing.pdfUrl}
@@ -136,27 +140,28 @@ export default async function PreStartPage({
           </div>
         )}
 
-        {/* ── Form or re-assess prompt ─────────────────────────────────────── */}
-        <div className="mt-8">
-          {isSigned && done !== "1" ? (
-            <div>
-              <p className="text-sm text-zinc-500">
-                A signed assessment already exists for this project. Complete a new assessment
-                below if site conditions have changed.
-              </p>
-              <details className="mt-4">
-                <summary className="cursor-pointer text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                  New assessment ↓
-                </summary>
-                <div className="mt-6">
-                  <PreStartForm safetyProjectId={id} submitAction={submitAction} />
-                </div>
-              </details>
-            </div>
-          ) : (
-            !isSigned && <PreStartForm safetyProjectId={id} submitAction={submitAction} />
-          )}
-        </div>
+        {/* ── Form ─────────────────────────────────────────────────────────── */}
+        {done !== "1" && (
+          <div className="mt-8">
+            {isSigned ? (
+              <div>
+                <p className="text-sm text-zinc-500">
+                  A signed assessment already exists for this project. Complete a new assessment below if site conditions have changed.
+                </p>
+                <details className="mt-4">
+                  <summary className="cursor-pointer text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                    New assessment ↓
+                  </summary>
+                  <div className="mt-6">
+                    <PreStartForm submitAction={submitAction} projectUsers={projectUsers} />
+                  </div>
+                </details>
+              </div>
+            ) : (
+              <PreStartForm submitAction={submitAction} projectUsers={projectUsers} />
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

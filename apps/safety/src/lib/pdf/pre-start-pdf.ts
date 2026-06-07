@@ -5,17 +5,40 @@ type DocDef = Record<string, any>;
 
 export interface HRWFlag {
   id: string;
-  label: string;
+  label?: string;
+  question?: string;
   flagged: boolean;
   systemActions: string;
+  controlMeasures?: string;
+  responsiblePerson?: string;
+  pretickReason?: string;
+  untickJustification?: string;
 }
 
 export interface PsychFlag {
   id: string;
   label: string;
+  question?: string;
   flagged: boolean;
   controls: string;
   isMoreThanTraining: boolean;
+}
+
+export interface ConsultationPerson {
+  nameAndCompany: string;
+  role: string;
+  method: string;
+  datePerson: string;
+  raised: string;
+  decision: string;
+}
+
+export interface ProjectComplexity {
+  description: string;
+  riskLevel: "Low" | "Medium" | "High" | "Critical";
+  safetyPlanning: string;
+  triggersHrw: boolean;
+  hrwClassificationId?: string;
 }
 
 export interface PreStartPdfData {
@@ -24,10 +47,13 @@ export interface PreStartPdfData {
   assessmentDate: string;
   highRiskFlags: HRWFlag[];
   psychosocialFlags: PsychFlag[];
-  consultees: string;
-  raised: string;
-  decision: string;
+  projectComplexities?: ProjectComplexity[];
+  consultationPersons?: ConsultationPerson[];
+  consultees?: string;
+  raised?: string;
+  decision?: string;
   signOffName: string;
+  signatureUrl?: string;
   signOffAt: Date;
 }
 
@@ -38,8 +64,19 @@ const GREEN = "#16a34a";
 const AMBER = "#d97706";
 
 function flagRow(item: HRWFlag): DocDef[] {
+  const displayLabel = item.question ?? item.label ?? item.id;
+  const actionsText = item.flagged
+    ? [
+        item.systemActions,
+        item.controlMeasures ? `\nControls: ${item.controlMeasures}` : "",
+        item.responsiblePerson ? `\nResponsible: ${item.responsiblePerson}` : "",
+        item.pretickReason ? `\nLinked complexity: ${item.pretickReason}` : "",
+      ]
+        .filter(Boolean)
+        .join("")
+    : "—";
   return [
-    { text: item.label, style: "tableCell" },
+    { text: displayLabel, style: "tableCell", fontSize: 7.5 },
     {
       text: item.flagged ? "YES" : "No",
       style: "tableCell",
@@ -47,7 +84,7 @@ function flagRow(item: HRWFlag): DocDef[] {
       color: item.flagged ? RED : DARK,
     },
     {
-      text: item.flagged ? item.systemActions : "—",
+      text: actionsText,
       style: "tableCell",
       color: item.flagged ? AMBER : "#71717a",
       fontSize: 7.5,
@@ -114,6 +151,7 @@ export async function generatePreStartPdf(data: PreStartPdfData): Promise<Buffer
         },
       ],
     }),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     footer: (_page: number) => ({
       text: "Agero Safety Platform  ·  ISO 45001:2018  ·  Victorian OHS Regulations 2017  ·  Victorian OHS (Psychological Health) Regulations 2025",
       style: "legal",
@@ -162,6 +200,40 @@ export async function generatePreStartPdf(data: PreStartPdfData): Promise<Buffer
         layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
         margin: [0, 0, 0, 16],
       },
+
+      // ── Section 0: Project Complexities (if any) ────────────────────────────
+      ...(data.projectComplexities && data.projectComplexities.length > 0
+        ? [
+            { text: "Project Complexities", style: "h2" } as DocDef,
+            {
+              text: "Identified project-specific hazards and complexities. Items linked to HRW classifications pre-populate Part 1.",
+              style: "legal",
+              margin: [0, 0, 0, 6],
+            } as DocDef,
+            {
+              table: {
+                headerRows: 1,
+                widths: ["*", 50, "*", 60],
+                body: [
+                  [
+                    { text: "Description", style: "tableHeader", margin: [4, 4, 4, 4] },
+                    { text: "Risk level", style: "tableHeader", margin: [4, 4, 4, 4] },
+                    { text: "Safety planning", style: "tableHeader", margin: [4, 4, 4, 4] },
+                    { text: "HRW linked", style: "tableHeader", margin: [4, 4, 4, 4] },
+                  ],
+                  ...data.projectComplexities.map((c) => [
+                    { text: c.description, style: "tableCell", margin: [4, 3, 4, 3] },
+                    { text: c.riskLevel, style: "tableCell", margin: [4, 3, 4, 3], color: c.riskLevel === "Critical" || c.riskLevel === "High" ? RED : DARK },
+                    { text: c.safetyPlanning, style: "tableCell", fontSize: 7.5, margin: [4, 3, 4, 3] },
+                    { text: c.triggersHrw && c.hrwClassificationId ? c.hrwClassificationId.replace(/_/g, " ") : "—", style: "tableCell", fontSize: 7.5, margin: [4, 3, 4, 3] },
+                  ]),
+                ],
+              },
+              layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7", fillColor: (ri: number) => (ri === 0 ? GREY : ri % 2 === 0 ? "#fafafa" : null) },
+              margin: [0, 0, 0, 16],
+            } as DocDef,
+          ]
+        : []),
 
       // ── Section 1: HRW Classifications ──────────────────────────────────────
       { text: "Part 1 — High-Risk Work Classifications", style: "h2" },
@@ -242,27 +314,60 @@ export async function generatePreStartPdf(data: PreStartPdfData): Promise<Buffer
         style: "legal",
         margin: [0, 0, 0, 6],
       },
-      {
-        table: {
-          widths: [120, "*"],
-          body: [
-            [
-              { text: "Persons consulted", style: "h3", margin: [4, 4, 4, 4] },
-              { text: data.consultees || "—", style: "tableCell", margin: [4, 4, 4, 4] },
-            ],
-            [
-              { text: "What was raised", style: "h3", margin: [4, 4, 4, 4] },
-              { text: data.raised || "—", style: "tableCell", margin: [4, 4, 4, 4] },
-            ],
-            [
-              { text: "Decision made", style: "h3", margin: [4, 4, 4, 4] },
-              { text: data.decision || "—", style: "tableCell", margin: [4, 4, 4, 4] },
-            ],
-          ],
-        },
-        layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
-        margin: [0, 0, 0, 16],
-      },
+      ...(data.consultationPersons && data.consultationPersons.length > 0
+        ? data.consultationPersons.map((p, i) => ({
+            table: {
+              widths: [120, "*"],
+              body: [
+                [
+                  { text: `Person ${i + 1}: ${p.nameAndCompany}`, style: "h3", colSpan: 2, margin: [4, 4, 4, 4] },
+                  {},
+                ],
+                [
+                  { text: "Role", style: "tableCell", margin: [4, 3, 4, 3] },
+                  { text: p.role || "—", style: "tableCell", margin: [4, 3, 4, 3] },
+                ],
+                [
+                  { text: "Method / Date", style: "tableCell", margin: [4, 3, 4, 3] },
+                  { text: `${p.method} — ${p.datePerson ? new Date(p.datePerson).toLocaleDateString("en-AU") : "—"}`, style: "tableCell", margin: [4, 3, 4, 3] },
+                ],
+                [
+                  { text: "What was raised", style: "tableCell", margin: [4, 3, 4, 3] },
+                  { text: p.raised || "—", style: "tableCell", fontSize: 7.5, margin: [4, 3, 4, 3] },
+                ],
+                [
+                  { text: "Decision", style: "tableCell", margin: [4, 3, 4, 3] },
+                  { text: p.decision || "—", style: "tableCell", fontSize: 7.5, margin: [4, 3, 4, 3] },
+                ],
+              ],
+            },
+            layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
+            margin: [0, 0, 0, 6],
+          }))
+        : [
+            {
+              table: {
+                widths: [120, "*"],
+                body: [
+                  [
+                    { text: "Persons consulted", style: "h3", margin: [4, 4, 4, 4] },
+                    { text: data.consultees || "—", style: "tableCell", margin: [4, 4, 4, 4] },
+                  ],
+                  [
+                    { text: "What was raised", style: "h3", margin: [4, 4, 4, 4] },
+                    { text: data.raised || "—", style: "tableCell", margin: [4, 4, 4, 4] },
+                  ],
+                  [
+                    { text: "Decision made", style: "h3", margin: [4, 4, 4, 4] },
+                    { text: data.decision || "—", style: "tableCell", margin: [4, 4, 4, 4] },
+                  ],
+                ],
+              },
+              layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
+              margin: [0, 0, 0, 6],
+            },
+          ]),
+      { text: "", margin: [0, 0, 0, 10] },
 
       // ── Sign-off ───────────────────────────────────────────────────────────
       { text: "Sign-off", style: "h2" },

@@ -41,6 +41,35 @@ enum InviteStatus {
   expired
 }
 
+enum WorkerInviteStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+}
+
+enum CredentialType {
+  WHITE_CARD
+  HRWL_SCAFFOLD
+  HRWL_CRANE
+  HRWL_FORKLIFT
+  HRWL_EWP
+  HRWL_DOGGING
+  HRWL_RIGGING
+  HRWL_CONFINED_SPACE
+  HRWL_EXPLOSIVE
+  HRWL_OTHER
+  TRADE_CERTIFICATE
+  FIRST_AID
+  ASBESTOS_AWARENESS
+  DRIVER_LICENCE
+  OTHER
+}
+
+enum SitePreparationPlanStatus {
+  DRAFT
+  COMPLETE
+}
+
 enum SwmsStatus {
   pending_review
   approved
@@ -79,6 +108,9 @@ model Organisation {
   invitations             Invitation[]
   swmsSubmissions         SwmsSubmission[]
   swmsInductionQuestions  SwmsInductionQuestion[]
+  workerCredentials       WorkerCredential[]      @relation("WorkerCredentialOrg")
+  swmsDocuments           SwmsDocument[]          @relation("SwmsDocumentOrg")
+  workerInvitations       WorkerInvitation[]      @relation("WorkerInvitationOrg")
 
   @@map("organisations")
 }
@@ -180,6 +212,7 @@ model Worker {
   nokName                 String?       @map("nok_name")
   nokPhone                String?       @map("nok_phone")
   nokRelationship         String?       @map("nok_relationship")
+  credentialPhotoUrls     Json?         @map("credential_photo_urls")
   createdAt               DateTime      @default(now()) @map("created_at")
   updatedAt               DateTime      @updatedAt @map("updated_at")
 
@@ -187,6 +220,8 @@ model Worker {
   inductionCompletions InductionCompletion[]
   siteVisits           SiteVisit[]
   supervisorRoles      SiteSupervisor[]
+  credentials          WorkerCredential[]
+  swmsSignatures       WorkerSwmsSignature[]
 
   @@index([projectId])
   @@index([employingOrganisationId])
@@ -438,12 +473,17 @@ model SafetyProject {
   status                       SafetyProjectStatus @default(SETUP)
   qrToken                      String              @unique @default(uuid()) @map("qr_token") @db.Uuid
   buildingMgmtInductionRequired Boolean            @default(false) @map("building_mgmt_induction_required")
+  mobilisationDate             DateTime?           @map("mobilisation_date")
   createdAt                    DateTime            @default(now()) @map("created_at")
   updatedAt                    DateTime            @updatedAt @map("updated_at")
 
   preStartAssessments       PreStartAssessment[]
   sitePreparationChecklists SitePreparationChecklist[]
   buildingMgmtInductions    BuildingMgmtInduction[]
+  swmsDocuments             SwmsDocument[]
+  workerSwmsSignatures      WorkerSwmsSignature[]
+  workerInvitations         WorkerInvitation[]
+  sitePreparationPlan       SitePreparationPlan?
 
   @@index([organisationId])
   @@map("safety_projects")
@@ -461,11 +501,14 @@ model PreStartAssessment {
   assessmentDate     DateTime      @map("assessment_date") @db.Date
   highRiskFlags      Json          @map("high_risk_flags")
   psychosocialFlags  Json          @map("psychosocial_flags")
-  consultationRecord String?       @map("consultation_record") @db.Text
-  signOffName        String        @map("sign_off_name")
-  signOffAt          DateTime      @map("sign_off_at")
-  pdfUrl             String?       @map("pdf_url")
-  createdAt          DateTime      @default(now()) @map("created_at")
+  consultationRecord       String?  @map("consultation_record") @db.Text
+  projectComplexities      Json?    @map("project_complexities")
+  signOffName              String   @map("sign_off_name")
+  signOffDropdownUserId    String?  @map("sign_off_dropdown_user_id")
+  signatureUrl             String?  @map("signature_url")
+  signOffAt                DateTime @map("sign_off_at")
+  pdfUrl                   String?  @map("pdf_url")
+  createdAt                DateTime @default(now()) @map("created_at")
 
   @@index([projectId])
   @@map("pre_start_assessments")
@@ -479,12 +522,16 @@ model SitePreparationChecklist {
   project            SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
   completedById      String        @map("completed_by_id") @db.Uuid
   completedBy        User          @relation("SiteChecklistCompletedBy", fields: [completedById], references: [id], onDelete: Cascade)
-  completionDate     DateTime      @map("completion_date") @db.Date
+  completionDate     DateTime             @map("completion_date") @db.Date
   items              Json
-  managerSignOffName String        @map("manager_sign_off_name")
-  managerSignOffAt   DateTime      @map("manager_sign_off_at")
-  pdfUrl             String?       @map("pdf_url")
-  createdAt          DateTime      @default(now()) @map("created_at")
+  planId             String?              @map("plan_id") @db.Uuid
+  plan               SitePreparationPlan? @relation(fields: [planId], references: [id])
+  sectionsComplete   Json?                @map("sections_complete")
+  managerSignOffName String               @map("manager_sign_off_name")
+  managerSignOffAt   DateTime             @map("manager_sign_off_at")
+  signatureUrl       String?              @map("signature_url")
+  pdfUrl             String?              @map("pdf_url")
+  createdAt          DateTime             @default(now()) @map("created_at")
 
   @@index([projectId])
   @@map("site_preparation_checklists")
@@ -505,4 +552,116 @@ model BuildingMgmtInduction {
   @@unique([projectId, workerAccountId])
   @@index([workerAccountId])
   @@map("building_mgmt_inductions")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT S1.1 — Safety Workflow Fixes and Enhancements
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Credential register per worker — photo evidence, AI-extracted data, expiry tracking.
+model WorkerCredential {
+  id               String         @id @default(uuid()) @db.Uuid
+  workerId         String         @map("worker_id") @db.Uuid
+  worker           Worker         @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  organisationId   String?        @map("organisation_id") @db.Uuid
+  organisation     Organisation?  @relation("WorkerCredentialOrg", fields: [organisationId], references: [id], onDelete: SetNull)
+  credentialType   CredentialType @map("credential_type")
+  credentialNumber String?        @map("credential_number")
+  issuingBody      String?        @map("issuing_body")
+  issueDate        DateTime?      @map("issue_date")
+  expiryDate       DateTime?      @map("expiry_date")
+  isVerified       Boolean        @default(false) @map("is_verified")
+  photoUrl         String?        @map("photo_url")
+  notes            String?
+  createdAt        DateTime       @default(now()) @map("created_at")
+
+  @@index([workerId])
+  @@index([organisationId])
+  @@map("worker_credentials")
+}
+
+// SWMS registry — multiple documents per project per subcontractor, Agero approval.
+model SwmsDocument {
+  id              String        @id @default(uuid()) @db.Uuid
+  projectId       String        @map("project_id") @db.Uuid
+  project         SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId  String        @map("organisation_id") @db.Uuid
+  organisation    Organisation  @relation("SwmsDocumentOrg", fields: [organisationId], references: [id], onDelete: Cascade)
+  tradeCategory   String        @map("trade_category")
+  documentUrl     String        @map("document_url")
+  aiReviewResult  Json?         @map("ai_review_result")
+  aiReviewPassed  Boolean?      @map("ai_review_passed")
+  ageroApproved   Boolean?      @map("agero_approved")
+  ageroApprovedBy String?       @map("agero_approved_by")
+  ageroApprovedAt DateTime?     @map("agero_approved_at")
+  version         Int           @default(1)
+  isCurrent       Boolean       @default(true) @map("is_current")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  workerSignatures WorkerSwmsSignature[]
+
+  @@index([projectId])
+  @@index([organisationId])
+  @@map("swms_documents")
+}
+
+// Records a worker's digital acknowledgement of a specific SWMS version.
+model WorkerSwmsSignature {
+  id             String        @id @default(uuid()) @db.Uuid
+  workerId       String        @map("worker_id") @db.Uuid
+  worker         Worker        @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  swmsDocumentId String        @map("swms_document_id") @db.Uuid
+  swmsDocument   SwmsDocument  @relation(fields: [swmsDocumentId], references: [id], onDelete: Cascade)
+  projectId      String        @map("project_id") @db.Uuid
+  project        SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  signedAt       DateTime      @map("signed_at")
+  signatureUrl   String?       @map("signature_url")
+  createdAt      DateTime      @default(now()) @map("created_at")
+
+  @@index([workerId])
+  @@index([swmsDocumentId])
+  @@index([projectId])
+  @@map("worker_swms_signatures")
+}
+
+// Subcontractor admin invites a worker to a project via Twilio SMS.
+model WorkerInvitation {
+  id             String             @id @default(uuid()) @db.Uuid
+  projectId      String             @map("project_id") @db.Uuid
+  project        SafetyProject      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  organisationId String             @map("organisation_id") @db.Uuid
+  organisation   Organisation       @relation("WorkerInvitationOrg", fields: [organisationId], references: [id], onDelete: Cascade)
+  mobile         String
+  invitedBy      String             @map("invited_by")
+  invitedAt      DateTime           @default(now()) @map("invited_at")
+  status         WorkerInviteStatus @default(PENDING)
+  acceptedAt     DateTime?          @map("accepted_at")
+  token          String             @unique
+  expiresAt      DateTime           @map("expires_at")
+  createdAt      DateTime           @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@index([organisationId])
+  @@index([mobile])
+  @@map("worker_invitations")
+}
+
+// Phase 1 of site preparation — planning form, completed before site establishment.
+model SitePreparationPlan {
+  id           String                    @id @default(uuid()) @db.Uuid
+  projectId    String                    @unique @map("project_id") @db.Uuid
+  project      SafetyProject             @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy    String                    @map("created_by")
+  sections     Json
+  status       SitePreparationPlanStatus @default(DRAFT)
+  completedAt  DateTime?                 @map("completed_at")
+  signatureUrl String?                   @map("signature_url")
+  signOffName  String?                   @map("sign_off_name")
+  signOffAt    DateTime?                 @map("sign_off_at")
+  createdAt    DateTime                  @default(now()) @map("created_at")
+  updatedAt    DateTime                  @updatedAt @map("updated_at")
+
+  checklists SitePreparationChecklist[]
+
+  @@map("site_preparation_plans")
 }

@@ -6,16 +6,19 @@ import { requireRole, AGERO_ROLES } from "@/lib/auth";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { sendPreStartAssessmentEmail } from "@/lib/email";
 import { generatePreStartPdf } from "@/lib/pdf/pre-start-pdf";
-import type { HRWFlag, PsychFlag } from "@/lib/pdf/pre-start-pdf";
+import type { HRWFlag, PsychFlag, ConsultationPerson, ProjectComplexity } from "@/lib/pdf/pre-start-pdf";
 
 export interface PreStartFormPayload {
   assessmentDate: string;
+  projectComplexities: ProjectComplexity[];
   hrwFlags: HRWFlag[];
   psychFlags: PsychFlag[];
-  consultees: string;
-  raised: string;
-  decision: string;
+  psychHierarchyDeclaration: boolean;
+  consultationPersons: ConsultationPerson[];
+  consultationDeclaration: boolean;
+  signOffDropdownUserId: string;
   signOffName: string;
+  signatureDataUrl?: string;
 }
 
 export interface SubmitState {
@@ -29,7 +32,6 @@ export async function submitPreStartAssessment(
 ): Promise<SubmitState> {
   const user = await requireRole(AGERO_ROLES);
 
-  // Parse JSON payload from hidden input
   const raw = formData.get("payload")?.toString();
   if (!raw) return { error: "Form data missing." };
 
@@ -40,13 +42,32 @@ export async function submitPreStartAssessment(
     return { error: "Invalid form data." };
   }
 
-  const { assessmentDate, hrwFlags, psychFlags, consultees, raised, decision, signOffName } = payload;
+  const {
+    assessmentDate,
+    projectComplexities,
+    hrwFlags,
+    psychFlags,
+    psychHierarchyDeclaration,
+    consultationPersons,
+    consultationDeclaration,
+    signOffDropdownUserId,
+    signOffName,
+    signatureDataUrl,
+  } = payload;
 
   // ── Validation ─────────────────────────────────────────────────────────────
   if (!assessmentDate) return { error: "Assessment date is required." };
-  if (!signOffName.trim()) return { error: "Assessor name is required for sign-off." };
-  if (!consultees.trim() || !raised.trim() || !decision.trim())
-    return { error: "Consultation record must be fully completed before sign-off." };
+  if (!signOffName.trim()) return { error: "Please select the person signing off." };
+  if (consultationPersons.length === 0)
+    return { error: "At least one consultation record is required before sign-off." };
+  for (const p of consultationPersons) {
+    if (!p.nameAndCompany.trim() || !p.role.trim())
+      return { error: "Each consultation record must have a name/company and role." };
+    if (!p.raised.trim() || !p.decision.trim())
+      return { error: "Each consultation record must have 'what was raised' and 'what was decided'." };
+  }
+  if (!consultationDeclaration)
+    return { error: "You must confirm the consultation declaration before sign-off." };
 
   const incompletePsych = psychFlags.filter((f) => f.flagged && !f.controls.trim());
   if (incompletePsych.length > 0) {
@@ -54,10 +75,18 @@ export async function submitPreStartAssessment(
       error: `Control measures required for: ${incompletePsych.map((f) => f.label).join(", ")}.`,
     };
   }
-  const trainingOnlyPsych = psychFlags.filter((f) => f.flagged && !f.isMoreThanTraining);
-  if (trainingOnlyPsych.length > 0) {
+  const anyPsychFlagged = psychFlags.some((f) => f.flagged);
+  if (anyPsychFlagged && !psychHierarchyDeclaration) {
     return {
-      error: `Information/training cannot be the only control for: ${trainingOnlyPsych.map((f) => f.label).join(", ")}. Apply a higher-order control first.`,
+      error:
+        "You must confirm that controls go beyond information and training alone (VIC OHS Psychological Health Regs 2025).",
+    };
+  }
+
+  const incompleteHRW = hrwFlags.filter((f) => f.flagged && !f.controlMeasures?.trim());
+  if (incompleteHRW.length > 0) {
+    return {
+      error: `Control measures required for flagged HRW items: ${incompleteHRW.map((f) => f.question?.slice(0, 40) ?? f.id).join("; ")}.`,
     };
   }
 
@@ -65,11 +94,29 @@ export async function submitPreStartAssessment(
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id: safetyProjectId },
   });
-  if (!safetyProject) {
-    return { error: "Project not found." };
-  }
+  if (!safetyProject) return { error: "Project not found." };
 
   const signOffAt = new Date();
+
+  // ── Upload signature image ─────────────────────────────────────────────────
+  let signatureUrl: string | null = null;
+  if (signatureDataUrl) {
+    try {
+      const base64Data = signatureDataUrl.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+      const storage = createStorageAdminClient();
+      const sigPath = `pre-start/signatures/${safetyProjectId}-${Date.now()}.png`;
+      const { error: uploadError } = await storage
+        .from("documents")
+        .upload(sigPath, buffer, { contentType: "image/png", upsert: false });
+      if (!uploadError) {
+        const { data } = storage.from("documents").getPublicUrl(sigPath);
+        signatureUrl = data.publicUrl;
+      }
+    } catch (e) {
+      console.error("[preStart] Signature upload error:", e);
+    }
+  }
 
   // ── Generate PDF ───────────────────────────────────────────────────────────
   let pdfUrl: string | null = null;
@@ -78,12 +125,12 @@ export async function submitPreStartAssessment(
       projectName: safetyProject.name,
       projectAddress: safetyProject.address,
       assessmentDate,
+      projectComplexities,
       highRiskFlags: hrwFlags,
       psychosocialFlags: psychFlags,
-      consultees,
-      raised,
-      decision,
+      consultationPersons,
       signOffName: signOffName.trim(),
+      signatureUrl: signatureUrl ?? undefined,
       signOffAt,
     });
 
@@ -97,10 +144,10 @@ export async function submitPreStartAssessment(
       const { data } = storage.from("documents").getPublicUrl(path);
       pdfUrl = data.publicUrl;
     } else {
-      console.error("[preStartAssessment] PDF upload error:", uploadError.message);
+      console.error("[preStart] PDF upload error:", uploadError.message);
     }
   } catch (e) {
-    console.error("[preStartAssessment] PDF generation error:", e);
+    console.error("[preStart] PDF generation error:", e);
   }
 
   // ── Save record ────────────────────────────────────────────────────────────
@@ -109,10 +156,13 @@ export async function submitPreStartAssessment(
       projectId: safetyProjectId,
       completedById: user.id,
       assessmentDate: new Date(assessmentDate),
+      projectComplexities: projectComplexities as object[],
       highRiskFlags: hrwFlags as object[],
       psychosocialFlags: psychFlags as object[],
-      consultationRecord: JSON.stringify({ consultees, raised, decision }),
+      consultationRecord: JSON.stringify({ consultationPersons, consultationDeclaration }),
       signOffName: signOffName.trim(),
+      signOffDropdownUserId: signOffDropdownUserId || null,
+      signatureUrl,
       signOffAt,
       pdfUrl,
     },
@@ -137,7 +187,7 @@ export async function submitPreStartAssessment(
       pdfUrl,
     });
   } catch (e) {
-    console.error("[preStartAssessment] Email error:", e);
+    console.error("[preStart] Email error:", e);
   }
 
   redirect(`/projects/${safetyProjectId}/pre-start?done=1`);
