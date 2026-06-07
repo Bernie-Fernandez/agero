@@ -2,10 +2,6 @@
 
 import { createServerClient } from './supabase-server';
 
-// Agero Group org UUID in the Safety public schema — seeded in Sprint S1.
-// Maps all ERP projects to the single Safety tenant org.
-const AGERO_SAFETY_ORG_ID = 'f0e1d2c3-b4a5-4967-8c0d-1e2f3a4b5c6d';
-
 /**
  * Upserts a SafetyProject row in the public schema to keep it in sync with the
  * ERP Project record.  Called from createProject and updateProject server actions.
@@ -21,10 +17,12 @@ export async function syncSafetyProject({
   erpProjectId,
   name,
   address,
+  organisationId,
 }: {
   erpProjectId: string;
   name: string;
   address: string | null;
+  organisationId: string;
 }): Promise<void> {
   try {
     const supabase = createServerClient();
@@ -46,7 +44,7 @@ export async function syncSafetyProject({
 
       const row: Record<string, unknown> = {
         erp_project_id: erpProjectId,
-        organisation_id: AGERO_SAFETY_ORG_ID,
+        organisation_id: organisationId,
         name,
         address,
         status: 'SETUP',

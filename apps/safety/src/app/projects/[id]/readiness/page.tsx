@@ -66,7 +66,7 @@ export default async function ReadinessPage({
       },
     },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) notFound();
+  if (!safetyProject) notFound();
 
   // ── ERP Project ──────────────────────────────────────────────────────────
   const erpProject = await prisma.project.findUnique({

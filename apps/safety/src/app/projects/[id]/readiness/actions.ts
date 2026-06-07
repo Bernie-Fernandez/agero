@@ -13,7 +13,7 @@ export async function toggleBuildingMgmtRequired(
     where: { id: safetyProjectId },
     select: { organisationId: true },
   });
-  if (!project || project.organisationId !== user.organisationId) return;
+  if (!project) return;
   await prisma.safetyProject.update({
     where: { id: safetyProjectId },
     data: { buildingMgmtInductionRequired: required },

@@ -20,7 +20,7 @@ export async function updateWorkerMobReadiness(
     where: { id: safetyProjectId },
     select: { organisationId: true, erpProjectId: true },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) {
+  if (!safetyProject) {
     return { error: "Not found." };
   }
 
@@ -60,7 +60,7 @@ async function resolveContext(safetyProjectId: string, workerId: string) {
     where: { id: safetyProjectId },
     select: { organisationId: true, erpProjectId: true },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) return null;
+  if (!safetyProject) return null;
   const worker = await prisma.worker.findUnique({
     where: { id: workerId },
     select: { projectId: true, mobile: true },

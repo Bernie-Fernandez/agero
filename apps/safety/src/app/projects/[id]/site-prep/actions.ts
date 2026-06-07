@@ -33,9 +33,9 @@ export async function uploadChecklistPhoto(
 
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id: safetyProjectId },
-    select: { organisationId: true },
+    select: { id: true },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) {
+  if (!safetyProject) {
     return { error: "Project not found." };
   }
 
@@ -110,7 +110,7 @@ export async function submitSitePrepChecklist(
       },
     },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) {
+  if (!safetyProject) {
     return { error: "Project not found." };
   }
   if (safetyProject.preStartAssessments.length === 0) {

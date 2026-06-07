@@ -65,7 +65,7 @@ export async function submitPreStartAssessment(
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id: safetyProjectId },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) {
+  if (!safetyProject) {
     return { error: "Project not found." };
   }
 

@@ -37,10 +37,27 @@ export default async function ProjectPage({
 
   if (!project || project.organisationId !== appUser.organisationId) notFound();
 
-  const safetyProject = await prisma.safetyProject.findFirst({
+  // Lazy-sync: create SafetyProject for projects that predate Sprint S1
+  let safetyProject = await prisma.safetyProject.findFirst({
     where: { erpProjectId: id },
     select: { id: true, preStartAssessments: { take: 1, select: { id: true } }, sitePreparationChecklists: { take: 1, select: { id: true } } },
   });
+  if (!safetyProject) {
+    try {
+      safetyProject = await prisma.safetyProject.create({
+        data: {
+          erpProjectId: id,
+          organisationId: project.organisationId,
+          name: project.name,
+          address: project.address ?? null,
+          status: "SETUP",
+        },
+        select: { id: true, preStartAssessments: { take: 1, select: { id: true } }, sitePreparationChecklists: { take: 1, select: { id: true } } },
+      });
+    } catch {
+      // Non-fatal — project page still works without safety project
+    }
+  }
 
   const qrUrl = `${getAppUrl()}/site/${project.token}`;
   const qrDataUrl = await QRCode.toDataURL(qrUrl, { width: 200, margin: 2 });

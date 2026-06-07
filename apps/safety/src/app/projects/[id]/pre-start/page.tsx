@@ -20,7 +20,7 @@ export default async function PreStartPage({
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) notFound();
+  if (!safetyProject) notFound();
 
   // Load the most recent signed assessment, if any
   const existing = await prisma.preStartAssessment.findFirst({

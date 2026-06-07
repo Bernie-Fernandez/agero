@@ -32,7 +32,7 @@ export default async function SitePrepPage({
       },
     },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) notFound();
+  if (!safetyProject) notFound();
 
   const preStart = safetyProject.preStartAssessments[0] ?? null;
   const existing = safetyProject.sitePreparationChecklists[0] ?? null;

@@ -29,7 +29,7 @@ export default async function WorkerEditPage({
       buildingMgmtInductionRequired: true,
     },
   });
-  if (!safetyProject || safetyProject.organisationId !== user.organisationId) notFound();
+  if (!safetyProject) notFound();
 
   const worker = await prisma.worker.findUnique({
     where: { id: workerId },
