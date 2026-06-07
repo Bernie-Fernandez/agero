@@ -14,27 +14,18 @@ type PnLRow = {
 
 export type AccountLine = { name: string; amount: number };
 
-// ─── Date-offset workaround ───────────────────────────────────────────────────
-// CRITICAL: Xero MCP has a one-month label offset. To retrieve data for month M,
-// the server must query for month M+1. This workaround is applied server-side;
-// data is always stored under the correct (actual) month label.
+// ─── Query date helper ────────────────────────────────────────────────────────
+// NOTE: The Xero MCP tool (Claude.ai) has a one-month label offset. The
+// xero-node REST API does NOT — it returns data for the dates you supply.
+// Always query the actual month directly; store under the actual month.
 
 export function getXeroQueryDates(
   actualMonth: number,
   actualYear: number,
 ): { queryStart: string; queryEnd: string } {
-  let queryMonth = actualMonth + 1;
-  let queryYear = actualYear;
-
-  if (queryMonth > 12) {
-    queryMonth = 1;
-    queryYear = actualYear + 1;
-  }
-
-  const queryStart = `${queryYear}-${String(queryMonth).padStart(2, '0')}-01`;
-  const lastDay = new Date(queryYear, queryMonth, 0).getDate();
-  const queryEnd = `${queryYear}-${String(queryMonth).padStart(2, '0')}-${lastDay}`;
-
+  const queryStart = `${actualYear}-${String(actualMonth).padStart(2, '0')}-01`;
+  const lastDay = new Date(actualYear, actualMonth, 0).getDate();
+  const queryEnd = `${actualYear}-${String(actualMonth).padStart(2, '0')}-${lastDay}`;
   return { queryStart, queryEnd };
 }
 
@@ -44,29 +35,40 @@ function parseAmt(value: string | undefined): Decimal {
   return new Decimal((value ?? '0').replace(/[^0-9.-]/g, '') || '0');
 }
 
+// Finds the section whose SummaryRow title or cell label matches summaryLabel
+// (or altLabel as a fallback). This mirrors the approach used by extractReportValue
+// in the existing /api/xero/sync route which works correctly in production.
+// Agero's Xero uses "Overhead" for expenses (not "Expenses"), so callers pass both.
 function extractSectionData(
   topRows: PnLRow[],
-  sectionTitle: string,
+  summaryLabel: string,
+  altLabel?: string,
 ): { total: Decimal; accounts: AccountLine[] } {
   for (const row of topRows) {
-    if ((row.rowType ?? '').toLowerCase() === 'section') {
-      const title = (row.title ?? '').toLowerCase();
-      if (title.includes(sectionTitle.toLowerCase())) {
-        const accounts: AccountLine[] = [];
-        let total = new Decimal(0);
-        for (const child of row.rows ?? []) {
-          const ct = (child.rowType ?? '').toLowerCase();
-          if (ct === 'row') {
-            const name = (child.cells?.[0]?.value ?? '').trim();
-            const amount = parseAmt(child.cells?.[1]?.value);
-            if (name) accounts.push({ name, amount: amount.toNumber() });
-          } else if (ct === 'summaryrow') {
-            total = parseAmt(child.cells?.[1]?.value ?? child.cells?.[0]?.value);
-          }
-        }
-        return { total, accounts };
+    if ((row.rowType ?? '').toLowerCase() !== 'section') continue;
+    const childRows = row.rows ?? [];
+
+    const summaryRow = childRows.find((child) => {
+      if ((child.rowType ?? '').toLowerCase() !== 'summaryrow') return false;
+      const title = (child.title ?? '').toLowerCase();
+      const cellLabel = (child.cells?.[0]?.value ?? '').toLowerCase();
+      const match = (lbl: string) => title.includes(lbl) || cellLabel.includes(lbl);
+      return match(summaryLabel) || (altLabel ? match(altLabel) : false);
+    });
+
+    if (!summaryRow) continue;
+
+    // cells[1] is the numeric amount; cells[0] is the label text.
+    const total = parseAmt(summaryRow.cells?.[1]?.value ?? summaryRow.cells?.[0]?.value);
+    const accounts: AccountLine[] = [];
+    for (const child of childRows) {
+      if ((child.rowType ?? '').toLowerCase() === 'row') {
+        const name = (child.cells?.[0]?.value ?? '').trim();
+        const amount = parseAmt(child.cells?.[1]?.value);
+        if (name) accounts.push({ name, amount: amount.toNumber() });
       }
     }
+    return { total, accounts };
   }
   return { total: new Decimal(0), accounts: [] };
 }
@@ -111,7 +113,6 @@ export async function pullXeroPnLMonth(
     return { ok: false, error: 'No Xero tenant found. Please reconnect Xero in Settings.' };
   }
 
-  // Apply the +1 month date-offset workaround
   const { queryStart, queryEnd } = getXeroQueryDates(actualMonth, actualYear);
 
   let pnlRows: PnLRow[];
@@ -141,18 +142,17 @@ export async function pullXeroPnLMonth(
     };
   }
 
-  // Parse sections
-  const income = extractSectionData(pnlRows, 'income');
-  const cos = extractSectionData(pnlRows, 'cost of sales');
+  // Parse sections — find each section by its SummaryRow label.
+  // Agero's Xero uses "Total Overhead" for the expenses SummaryRow (not "Total Expenses").
+  const income = extractSectionData(pnlRows, 'total income');
+  const cos = extractSectionData(pnlRows, 'total cost of sales');
   const otherIncome = extractSectionData(pnlRows, 'other income');
-  const expenses = extractSectionData(pnlRows, 'expenses');
+  const expenses = extractSectionData(pnlRows, 'total overhead', 'total expenses');
 
-  // Gross profit and net profit are standalone rows at the top level
+  // Gross profit and net profit are standalone top-level rows (not inside sections)
   const grossProfit = extractRowValue(pnlRows, 'gross profit');
   const netProfit = extractRowValue(pnlRows, 'net profit');
 
-  // If the API returned Income data but gross profit row wasn't found as a
-  // standalone row, calculate it
   const effectiveGrossProfit = grossProfit.isZero()
     ? income.total.minus(cos.total)
     : grossProfit;

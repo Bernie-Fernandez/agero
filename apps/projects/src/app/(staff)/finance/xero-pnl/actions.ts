@@ -48,6 +48,8 @@ export async function backfillXeroPnL(): Promise<{
   errors: string[];
 }> {
   const user = await requireDirector();
+  // Delete all existing snapshots first — re-pull gives clean, correct data.
+  await prisma.xeroPnLSnapshot.deleteMany({ where: { organisationId: user.organisationId } });
   // FY26: Jul 2025 → current month
   const now = new Date();
   const toMonth = now.getMonth() + 1;
