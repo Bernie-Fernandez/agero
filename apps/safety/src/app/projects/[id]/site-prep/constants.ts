@@ -127,3 +127,27 @@ export const CHECKLIST_CATEGORIES: ChecklistCategory[] = [
 ];
 
 export const ALL_ITEMS: ChecklistItem[] = CHECKLIST_CATEGORIES.flatMap((c) => c.items);
+
+// Phase 1 planning hints — one per category, shown in the planning form
+export const PHASE_1_DESCRIPTIONS: Record<string, string> = {
+  sanitary:
+    "Portable toilets, handwashing stations, welfare area. Consider number of workers and WorkSafe VIC ratio requirements (1:15).",
+  dining:
+    "Lunch shelter, seating, drinking water supply. Must be weatherproof and separated from the work area.",
+  site_office:
+    "Site manager workstation, communication devices, emergency contacts, OHS documents. Must be accessible at all times during work.",
+  first_aid:
+    "First aid kit (AS 2675), qualified first aider details, eye wash, incident register, directions to nearest hospital.",
+  signin:
+    "Worker QR sign-in point, visitor register, induction records, subcontractor contact list. Central entry point.",
+  white_folder:
+    "OHS White Folder with WHS Management Plan, SWMS, insurance certificates, evacuation plan, incident forms.",
+  perimeter:
+    "Temporary hoarding/boarding (min 1.8 m), controlled entry gate, pedestrian/vehicle separation, site signage.",
+  building:
+    "Floor and wall protection in lobby and lift, goods lift booking and protection, lift interior pads.",
+  housekeeping:
+    "Emergency exits and egress routes clear, assembly point nominated, waste/debris containment zone.",
+  signage_floor:
+    "PPE-mandatory signage at entrances, hazard signage, floor protection film/Masonite in work areas and corridors.",
+};
