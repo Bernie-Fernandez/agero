@@ -178,7 +178,8 @@ export const ModelName = {
   UnsecuredOpportunity: 'UnsecuredOpportunity',
   Lead: 'Lead',
   LeadSyncLog: 'LeadSyncLog',
-  HubSpotSyncSettings: 'HubSpotSyncSettings'
+  HubSpotSyncSettings: 'HubSpotSyncSettings',
+  XeroPnLSnapshot: 'XeroPnLSnapshot'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2610,6 +2611,33 @@ export const HubSpotSyncSettingsScalarFieldEnum = {
 } as const
 
 export type HubSpotSyncSettingsScalarFieldEnum = (typeof HubSpotSyncSettingsScalarFieldEnum)[keyof typeof HubSpotSyncSettingsScalarFieldEnum]
+
+
+export const XeroPnLSnapshotScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  month: 'month',
+  year: 'year',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  totalIncome: 'totalIncome',
+  totalCostOfSales: 'totalCostOfSales',
+  grossProfit: 'grossProfit',
+  totalOtherIncome: 'totalOtherIncome',
+  totalExpenses: 'totalExpenses',
+  netProfit: 'netProfit',
+  incomeAccountsJson: 'incomeAccountsJson',
+  cosAccountsJson: 'cosAccountsJson',
+  expenseAccountsJson: 'expenseAccountsJson',
+  otherIncomeJson: 'otherIncomeJson',
+  xeroReportLink: 'xeroReportLink',
+  pulledAt: 'pulledAt',
+  pulledBy: 'pulledBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroPnLSnapshotScalarFieldEnum = (typeof XeroPnLSnapshotScalarFieldEnum)[keyof typeof XeroPnLSnapshotScalarFieldEnum]
 
 
 export const SortOrder = {

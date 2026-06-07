@@ -681,3 +681,8 @@ export type LeadSyncLog = Prisma.LeadSyncLogModel
  * 
  */
 export type HubSpotSyncSettings = Prisma.HubSpotSyncSettingsModel
+/**
+ * Model XeroPnLSnapshot
+ * 
+ */
+export type XeroPnLSnapshot = Prisma.XeroPnLSnapshotModel

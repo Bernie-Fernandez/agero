@@ -295,6 +295,7 @@ model Organisation {
   scopeTemplates        ScopeTemplate[]
   catImports            CatImport[]
   financeProjectSnapshots FinanceProjectSnapshot[]
+  xeroPnlSnapshots      XeroPnLSnapshot[]
 
   @@map("organisations")
   @@schema("projects")
@@ -3833,5 +3834,39 @@ model HubSpotSyncSettings {
   updatedAt                DateTime                @updatedAt @map("updated_at")
 
   @@map("hubspot_sync_settings")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FINANCE MODULE — Sprint X.2 — Xero P&L Snapshots
+// ─────────────────────────────────────────────────────────────────────────────
+
+model XeroPnLSnapshot {
+  id                  String       @id @default(uuid()) @db.Uuid
+  organisationId      String       @map("organisation_id") @db.Uuid
+  organisation        Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  month               Int
+  year                Int
+  periodStart         DateTime     @map("period_start") @db.Date
+  periodEnd           DateTime     @map("period_end") @db.Date
+  totalIncome         Decimal      @map("total_income") @db.Decimal(14, 2)
+  totalCostOfSales    Decimal      @default(0) @map("total_cost_of_sales") @db.Decimal(14, 2)
+  grossProfit         Decimal      @map("gross_profit") @db.Decimal(14, 2)
+  totalOtherIncome    Decimal      @default(0) @map("total_other_income") @db.Decimal(14, 2)
+  totalExpenses       Decimal      @map("total_expenses") @db.Decimal(14, 2)
+  netProfit           Decimal      @map("net_profit") @db.Decimal(14, 2)
+  incomeAccountsJson  Json         @map("income_accounts_json")
+  cosAccountsJson     Json         @map("cos_accounts_json")
+  expenseAccountsJson Json         @map("expense_accounts_json")
+  otherIncomeJson     Json         @map("other_income_json")
+  xeroReportLink      String?      @map("xero_report_link")
+  pulledAt            DateTime     @default(now()) @map("pulled_at")
+  pulledBy            String       @map("pulled_by")
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, year, month])
+  @@index([organisationId])
+  @@map("xero_pnl_snapshots")
   @@schema("projects")
 }

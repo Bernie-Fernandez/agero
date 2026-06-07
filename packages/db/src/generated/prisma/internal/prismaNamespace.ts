@@ -511,7 +511,8 @@ export const ModelName = {
   UnsecuredOpportunity: 'UnsecuredOpportunity',
   Lead: 'Lead',
   LeadSyncLog: 'LeadSyncLog',
-  HubSpotSyncSettings: 'HubSpotSyncSettings'
+  HubSpotSyncSettings: 'HubSpotSyncSettings',
+  XeroPnLSnapshot: 'XeroPnLSnapshot'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -527,7 +528,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10003,6 +10004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    XeroPnLSnapshot: {
+      payload: Prisma.$XeroPnLSnapshotPayload<ExtArgs>
+      fields: Prisma.XeroPnLSnapshotFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XeroPnLSnapshotFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XeroPnLSnapshotFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        findFirst: {
+          args: Prisma.XeroPnLSnapshotFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XeroPnLSnapshotFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        findMany: {
+          args: Prisma.XeroPnLSnapshotFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>[]
+        }
+        create: {
+          args: Prisma.XeroPnLSnapshotCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        createMany: {
+          args: Prisma.XeroPnLSnapshotCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XeroPnLSnapshotCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>[]
+        }
+        delete: {
+          args: Prisma.XeroPnLSnapshotDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        update: {
+          args: Prisma.XeroPnLSnapshotUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        deleteMany: {
+          args: Prisma.XeroPnLSnapshotDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XeroPnLSnapshotUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XeroPnLSnapshotUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>[]
+        }
+        upsert: {
+          args: Prisma.XeroPnLSnapshotUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroPnLSnapshotPayload>
+        }
+        aggregate: {
+          args: Prisma.XeroPnLSnapshotAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXeroPnLSnapshot>
+        }
+        groupBy: {
+          args: Prisma.XeroPnLSnapshotGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroPnLSnapshotGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XeroPnLSnapshotCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroPnLSnapshotCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -12457,6 +12532,33 @@ export const HubSpotSyncSettingsScalarFieldEnum = {
 export type HubSpotSyncSettingsScalarFieldEnum = (typeof HubSpotSyncSettingsScalarFieldEnum)[keyof typeof HubSpotSyncSettingsScalarFieldEnum]
 
 
+export const XeroPnLSnapshotScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  month: 'month',
+  year: 'year',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  totalIncome: 'totalIncome',
+  totalCostOfSales: 'totalCostOfSales',
+  grossProfit: 'grossProfit',
+  totalOtherIncome: 'totalOtherIncome',
+  totalExpenses: 'totalExpenses',
+  netProfit: 'netProfit',
+  incomeAccountsJson: 'incomeAccountsJson',
+  cosAccountsJson: 'cosAccountsJson',
+  expenseAccountsJson: 'expenseAccountsJson',
+  otherIncomeJson: 'otherIncomeJson',
+  xeroReportLink: 'xeroReportLink',
+  pulledAt: 'pulledAt',
+  pulledBy: 'pulledBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroPnLSnapshotScalarFieldEnum = (typeof XeroPnLSnapshotScalarFieldEnum)[keyof typeof XeroPnLSnapshotScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -13790,6 +13892,7 @@ export type GlobalOmitConfig = {
   lead?: Prisma.LeadOmit
   leadSyncLog?: Prisma.LeadSyncLogOmit
   hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsOmit
+  xeroPnLSnapshot?: Prisma.XeroPnLSnapshotOmit
 }
 
 /* Types for Logging */
