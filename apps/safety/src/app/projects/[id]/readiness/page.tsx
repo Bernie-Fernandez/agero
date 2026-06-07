@@ -42,30 +42,39 @@ export default async function ReadinessPage({
   const user = await requireRole(AGERO_ROLES);
 
   // ── SafetyProject ────────────────────────────────────────────────────────
-  const safetyProject = await prisma.safetyProject.findUnique({
-    where: { id },
-    include: {
-      preStartAssessments: {
-        orderBy: { createdAt: "desc" },
-        take: 1,
-        select: { id: true, signOffName: true, signOffAt: true, pdfUrl: true },
-      },
-      sitePreparationChecklists: {
-        orderBy: { createdAt: "desc" },
-        take: 1,
-        select: {
-          id: true,
-          managerSignOffName: true,
-          managerSignOffAt: true,
-          pdfUrl: true,
-          items: true,
+  const [safetyProject, safetySwmsDocs] = await Promise.all([
+    prisma.safetyProject.findUnique({
+      where: { id },
+      include: {
+        preStartAssessments: {
+          orderBy: { createdAt: "desc" },
+          take: 1,
+          select: { id: true, signOffName: true, signOffAt: true, pdfUrl: true },
+        },
+        sitePreparationPlan: {
+          select: { status: true, signOffName: true, signOffAt: true },
+        },
+        sitePreparationChecklists: {
+          orderBy: { createdAt: "desc" },
+          take: 1,
+          select: {
+            id: true,
+            managerSignOffName: true,
+            managerSignOffAt: true,
+            pdfUrl: true,
+            items: true,
+          },
+        },
+        buildingMgmtInductions: {
+          include: { workerAccount: { select: { mobile: true } } },
         },
       },
-      buildingMgmtInductions: {
-        include: { workerAccount: { select: { mobile: true } } },
-      },
-    },
-  });
+    }),
+    prisma.swmsDocument.findMany({
+      where: { projectId: id, isCurrent: true },
+      select: { organisationId: true, ageroApproved: true },
+    }),
+  ]);
   if (!safetyProject) notFound();
 
   // ── ERP Project ──────────────────────────────────────────────────────────
@@ -78,9 +87,6 @@ export default async function ReadinessPage({
             include: { documents: { select: { type: true, expiryDate: true } } },
           },
         },
-      },
-      swmsSubmissions: {
-        select: { organisationId: true, status: true },
       },
       workers: {
         include: {
@@ -101,29 +107,27 @@ export default async function ReadinessPage({
 
   // ── Layer 1 ──────────────────────────────────────────────────────────────
   const preStart = safetyProject.preStartAssessments[0] ?? null;
+  const sitePrepPlan = safetyProject.sitePreparationPlan;
   const sitePrep = safetyProject.sitePreparationChecklists[0] ?? null;
   const layer1Ready = !!preStart && !!sitePrep;
 
   // ── Layer 2 ──────────────────────────────────────────────────────────────
-  // Best SWMS status per org (approved > pending_review > rejected)
-  const SWMS_RANK: Record<string, number> = { approved: 3, pending_review: 2, rejected: 1 };
-  const swmsPerOrg = new Map<string, string>();
-  for (const s of erpProject?.swmsSubmissions ?? []) {
-    const current = swmsPerOrg.get(s.organisationId);
-    if (!current || (SWMS_RANK[s.status] ?? 0) > (SWMS_RANK[current] ?? 0)) {
-      swmsPerOrg.set(s.organisationId, s.status);
-    }
+  // Safety platform SWMS: approved if at least one current doc is ageroApproved=true
+  const swmsApprovedOrgs = new Set<string>();
+  const swmsPendingOrgs = new Set<string>();
+  for (const doc of safetySwmsDocs) {
+    if (doc.ageroApproved === true) swmsApprovedOrgs.add(doc.organisationId);
+    else if (doc.ageroApproved === null) swmsPendingOrgs.add(doc.organisationId);
   }
 
   const layer2Data = (erpProject?.subcontractors ?? []).map(({ subcontractorOrg }) => {
     const compliance = calcOrgCompliance({
       documents: subcontractorOrg.documents,
-      swmsSubmissions: erpProject?.swmsSubmissions.filter(
-        (s) => s.organisationId === subcontractorOrg.id,
-      ),
     });
-    const swmsStatus = swmsPerOrg.get(subcontractorOrg.id) ?? "none";
-    const isReady = compliance.status !== "red" && swmsStatus === "approved";
+    const swmsApproved = swmsApprovedOrgs.has(subcontractorOrg.id);
+    const swmsPending = !swmsApproved && swmsPendingOrgs.has(subcontractorOrg.id);
+    const swmsStatus = swmsApproved ? "approved" : swmsPending ? "pending" : "none";
+    const isReady = compliance.status !== "red" && swmsApproved;
     return { subcontractorOrg, compliance, swmsStatus, isReady };
   });
   const layer2Ready = layer2Data.length === 0 || layer2Data.every((s) => s.isReady);
@@ -273,10 +277,56 @@ export default async function ReadinessPage({
               </div>
 
               {/* Site Prep */}
+              {/* Site Prep Phase 1 */}
+              <div className="flex items-center justify-between border-b border-zinc-100 px-5 py-3 dark:border-zinc-800">
+                <div>
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
+                    Site Preparation Plan
+                    <span className="ml-1.5 rounded px-1.5 py-0.5 text-xs font-normal text-zinc-500 dark:text-zinc-400">
+                      Phase 1
+                    </span>
+                  </p>
+                  {sitePrepPlan?.status === "COMPLETE" ? (
+                    <p className="mt-0.5 text-xs text-zinc-500">
+                      Signed by {sitePrepPlan.signOffName} ·{" "}
+                      {sitePrepPlan.signOffAt &&
+                        new Date(sitePrepPlan.signOffAt).toLocaleDateString("en-AU")}
+                    </p>
+                  ) : (
+                    <p className="mt-0.5 text-xs text-zinc-500">
+                      10 categories · plan before mobilisation
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      sitePrepPlan?.status === "COMPLETE"
+                        ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                        : preStart
+                          ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                          : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
+                    }`}
+                  >
+                    {sitePrepPlan?.status === "COMPLETE" ? "Complete" : preStart ? "Required" : "Locked"}
+                  </span>
+                  <Link
+                    href={`/projects/${id}/site-prep`}
+                    className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  >
+                    {sitePrepPlan?.status === "COMPLETE" ? "View →" : "Start →"}
+                  </Link>
+                </div>
+              </div>
+
+              {/* Site Prep Phase 2 */}
               <div className="flex items-center justify-between border-b border-zinc-100 px-5 py-3 dark:border-zinc-800">
                 <div>
                   <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">
                     Site Preparation Checklist
+                    <span className="ml-1.5 rounded px-1.5 py-0.5 text-xs font-normal text-zinc-500 dark:text-zinc-400">
+                      Phase 2
+                    </span>
                   </p>
                   {sitePrep ? (
                     <p className="mt-0.5 text-xs text-zinc-500">
@@ -285,12 +335,12 @@ export default async function ReadinessPage({
                       {(() => {
                         const arr = sitePrep.items as Array<{ answer: string }>;
                         const no = arr.filter((i) => i.answer === "NO").length;
-                        return no > 0 ? ` · ${no} non-compliant item${no !== 1 ? "s" : ""}` : "";
+                        return no > 0 ? ` · ${no} non-compliant section${no !== 1 ? "s" : ""}` : "";
                       })()}
                     </p>
                   ) : (
                     <p className="mt-0.5 text-xs text-zinc-500">
-                      52 items · VIC OHS Regs 2017 · Locked until pre-start signed
+                      10 categories · VIC OHS Regs 2017 · locked until Phase 1 signed
                     </p>
                   )}
                 </div>
@@ -309,12 +359,16 @@ export default async function ReadinessPage({
                     className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       sitePrep
                         ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
-                        : preStart
+                        : sitePrepPlan?.status === "COMPLETE"
                           ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
                           : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
                     }`}
                   >
-                    {sitePrep ? "Complete" : preStart ? "Required" : "Locked"}
+                    {sitePrep
+                      ? "Complete"
+                      : sitePrepPlan?.status === "COMPLETE"
+                        ? "Required"
+                        : "Locked"}
                   </span>
                   <Link
                     href={`/projects/${id}/site-prep`}
@@ -384,6 +438,12 @@ export default async function ReadinessPage({
                   ({layer2Data.length} {layer2Data.length === 1 ? "company" : "companies"})
                 </span>
               </h2>
+              <Link
+                href={`/projects/${id}/swms`}
+                className="ml-auto text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+              >
+                SWMS Registry →
+              </Link>
             </div>
 
             {layer2Data.length === 0 ? (
@@ -453,25 +513,29 @@ export default async function ReadinessPage({
                           </span>
                         </td>
                         <td className="px-4 py-3">
-                          <span
-                            className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                              swmsStatus === "approved"
-                                ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
-                                : swmsStatus === "pending_review"
-                                  ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
-                                  : swmsStatus === "rejected"
-                                    ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                          <div className="flex items-center gap-1.5">
+                            <span
+                              className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                                swmsStatus === "approved"
+                                  ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                                  : swmsStatus === "pending"
+                                    ? "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
                                     : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
-                            }`}
-                          >
-                            {swmsStatus === "approved"
-                              ? "Approved"
-                              : swmsStatus === "pending_review"
-                                ? "Pending"
-                                : swmsStatus === "rejected"
-                                  ? "Rejected"
+                              }`}
+                            >
+                              {swmsStatus === "approved"
+                                ? "Approved"
+                                : swmsStatus === "pending"
+                                  ? "Pending"
                                   : "None"}
-                          </span>
+                            </span>
+                            <Link
+                              href={`/projects/${id}/swms`}
+                              className="text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                            >
+                              →
+                            </Link>
+                          </div>
                         </td>
                         <td className="px-4 py-3 text-right">
                           <span
