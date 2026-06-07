@@ -662,3 +662,13 @@ export type HubSpotSyncSettings = Prisma.HubSpotSyncSettingsModel
  * 
  */
 export type XeroPnLSnapshot = Prisma.XeroPnLSnapshotModel
+/**
+ * Model FYSettings
+ * 
+ */
+export type FYSettings = Prisma.FYSettingsModel
+/**
+ * Model BacklogBudget
+ * 
+ */
+export type BacklogBudget = Prisma.BacklogBudgetModel

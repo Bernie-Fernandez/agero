@@ -22,6 +22,18 @@ export async function requireDirector() {
   return user;
 }
 
+// Director + Financial Controller (Senior Finance User)
+export async function requireFinanceAccess() {
+  const user = await getAppUser();
+  if (!user) redirect("/sign-in");
+  if (user.role !== "DIRECTOR" && user.role !== "FINANCIAL_CONTROLLER") redirect("/unauthorized");
+  return user;
+}
+
+export function canFinanceAccess(role: string): boolean {
+  return role === "DIRECTOR" || role === "FINANCIAL_CONTROLLER";
+}
+
 // ─── Role helpers ─────────────────────────────────────────────────────────────
 
 const EDIT_ROLES = [

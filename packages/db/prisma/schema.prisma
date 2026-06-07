@@ -296,6 +296,8 @@ model Organisation {
   catImports            CatImport[]
   financeProjectSnapshots FinanceProjectSnapshot[]
   xeroPnlSnapshots      XeroPnLSnapshot[]
+  fySettings            FYSettings?
+  backlogBudgets        BacklogBudget[]
 
   @@map("organisations")
   @@schema("projects")
@@ -2929,6 +2931,21 @@ enum FinanceProjectStatus {
   @@schema("projects")
 }
 
+enum BacklogClassification {
+  AWARDED
+  BACKLOG
+
+  @@schema("projects")
+}
+
+enum BacklogBudgetStatus {
+  DRAFT
+  LOCKED
+  ADJUSTED
+
+  @@schema("projects")
+}
+
 model MonthEndStatus {
   id               String             @id @default(uuid()) @db.Uuid
   organisationId   String             @map("organisation_id") @db.Uuid
@@ -3011,6 +3028,7 @@ model FinanceProject {
   securedForecasts     SecuredForecast[]
   wipSchedules         WIPSchedule[]
   snapshots            FinanceProjectSnapshot[]
+  backlogBudgets       BacklogBudget[]
 
   @@index([organisationId, reportMonth])
   @@map("finance_projects")
@@ -3868,5 +3886,50 @@ model XeroPnLSnapshot {
   @@unique([organisationId, year, month])
   @@index([organisationId])
   @@map("xero_pnl_snapshots")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.2B — EOFY Backlog Budget
+// ─────────────────────────────────────────────────────────────────────────────
+
+model FYSettings {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @unique @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  currentFY      String       @map("current_fy")
+  draftOpenMonth Int          @default(4) @map("draft_open_month")
+  draftOpenDay   Int          @default(1) @map("draft_open_day")
+  lockOpenMonth  Int          @default(7) @map("lock_open_month")
+  lockOpenDay    Int          @default(1) @map("lock_open_day")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@map("fy_settings")
+  @@schema("projects")
+}
+
+model BacklogBudget {
+  id               String                @id @default(uuid()) @db.Uuid
+  organisationId   String                @map("organisation_id") @db.Uuid
+  organisation     Organisation          @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financeProjectId String                @map("finance_project_id") @db.Uuid
+  financeProject   FinanceProject        @relation(fields: [financeProjectId], references: [id], onDelete: Cascade)
+  fyYear           String                @map("fy_year")
+  classification   BacklogClassification @default(AWARDED)
+  budgetRevenue    Decimal               @default(0) @map("budget_revenue") @db.Decimal(14, 2)
+  notes            String?               @db.Text
+  status           BacklogBudgetStatus   @default(DRAFT)
+  lockedAt         DateTime?             @map("locked_at")
+  lockedBy         String?               @map("locked_by") @db.Uuid
+  lastAdjustedAt   DateTime?             @map("last_adjusted_at")
+  lastAdjustedBy   String?               @map("last_adjusted_by") @db.Uuid
+  adjustmentReason String?               @map("adjustment_reason") @db.Text
+  createdAt        DateTime              @default(now()) @map("created_at")
+  updatedAt        DateTime              @updatedAt @map("updated_at")
+
+  @@unique([financeProjectId, fyYear])
+  @@index([organisationId, fyYear])
+  @@map("backlog_budgets")
   @@schema("projects")
 }

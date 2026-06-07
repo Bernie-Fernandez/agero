@@ -626,6 +626,23 @@ export const FinanceProjectStatus = {
 export type FinanceProjectStatus = (typeof FinanceProjectStatus)[keyof typeof FinanceProjectStatus]
 
 
+export const BacklogClassification = {
+  AWARDED: 'AWARDED',
+  BACKLOG: 'BACKLOG'
+} as const
+
+export type BacklogClassification = (typeof BacklogClassification)[keyof typeof BacklogClassification]
+
+
+export const BacklogBudgetStatus = {
+  DRAFT: 'DRAFT',
+  LOCKED: 'LOCKED',
+  ADJUSTED: 'ADJUSTED'
+} as const
+
+export type BacklogBudgetStatus = (typeof BacklogBudgetStatus)[keyof typeof BacklogBudgetStatus]
+
+
 export const WIPFlag = {
   GREEN: 'GREEN',
   AMBER: 'AMBER',

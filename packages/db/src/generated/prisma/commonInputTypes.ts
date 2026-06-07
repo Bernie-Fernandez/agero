@@ -1615,6 +1615,40 @@ export type EnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
 }
 
+export type EnumBacklogClassificationFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogClassification | Prisma.EnumBacklogClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel> | $Enums.BacklogClassification
+}
+
+export type EnumBacklogBudgetStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogBudgetStatus | Prisma.EnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel> | $Enums.BacklogBudgetStatus
+}
+
+export type EnumBacklogClassificationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogClassification | Prisma.EnumBacklogClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogClassificationWithAggregatesFilter<$PrismaModel> | $Enums.BacklogClassification
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel>
+}
+
+export type EnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogBudgetStatus | Prisma.EnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel> | $Enums.BacklogBudgetStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -3169,6 +3203,40 @@ export type NestedEnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumBacklogClassificationFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogClassification | Prisma.EnumBacklogClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel> | $Enums.BacklogClassification
+}
+
+export type NestedEnumBacklogBudgetStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogBudgetStatus | Prisma.EnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel> | $Enums.BacklogBudgetStatus
+}
+
+export type NestedEnumBacklogClassificationWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogClassification | Prisma.EnumBacklogClassificationFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogClassificationWithAggregatesFilter<$PrismaModel> | $Enums.BacklogClassification
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBacklogClassificationFilter<$PrismaModel>
+}
+
+export type NestedEnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BacklogBudgetStatus | Prisma.EnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BacklogBudgetStatus[] | Prisma.ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel> | $Enums.BacklogBudgetStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
 }
 
 

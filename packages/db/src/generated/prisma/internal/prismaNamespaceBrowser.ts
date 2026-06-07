@@ -179,7 +179,9 @@ export const ModelName = {
   Lead: 'Lead',
   LeadSyncLog: 'LeadSyncLog',
   HubSpotSyncSettings: 'HubSpotSyncSettings',
-  XeroPnLSnapshot: 'XeroPnLSnapshot'
+  XeroPnLSnapshot: 'XeroPnLSnapshot',
+  FYSettings: 'FYSettings',
+  BacklogBudget: 'BacklogBudget'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2638,6 +2640,42 @@ export const XeroPnLSnapshotScalarFieldEnum = {
 } as const
 
 export type XeroPnLSnapshotScalarFieldEnum = (typeof XeroPnLSnapshotScalarFieldEnum)[keyof typeof XeroPnLSnapshotScalarFieldEnum]
+
+
+export const FYSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  currentFY: 'currentFY',
+  draftOpenMonth: 'draftOpenMonth',
+  draftOpenDay: 'draftOpenDay',
+  lockOpenMonth: 'lockOpenMonth',
+  lockOpenDay: 'lockOpenDay',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FYSettingsScalarFieldEnum = (typeof FYSettingsScalarFieldEnum)[keyof typeof FYSettingsScalarFieldEnum]
+
+
+export const BacklogBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  fyYear: 'fyYear',
+  classification: 'classification',
+  budgetRevenue: 'budgetRevenue',
+  notes: 'notes',
+  status: 'status',
+  lockedAt: 'lockedAt',
+  lockedBy: 'lockedBy',
+  lastAdjustedAt: 'lastAdjustedAt',
+  lastAdjustedBy: 'lastAdjustedBy',
+  adjustmentReason: 'adjustmentReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BacklogBudgetScalarFieldEnum = (typeof BacklogBudgetScalarFieldEnum)[keyof typeof BacklogBudgetScalarFieldEnum]
 
 
 export const SortOrder = {

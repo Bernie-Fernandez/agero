@@ -47,6 +47,11 @@ const SECTIONS = [
     href: "/admin/audit",
     description: "View all system events — creates, updates, deletes, permission changes.",
   },
+  {
+    title: "Financial Year Settings",
+    href: "/admin/fy-settings",
+    description: "Configure EOFY window dates and the current financial year for the Backlog Budget module.",
+  },
 ];
 
 export default async function AdminPage() {

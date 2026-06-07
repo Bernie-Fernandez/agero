@@ -512,7 +512,9 @@ export const ModelName = {
   Lead: 'Lead',
   LeadSyncLog: 'LeadSyncLog',
   HubSpotSyncSettings: 'HubSpotSyncSettings',
-  XeroPnLSnapshot: 'XeroPnLSnapshot'
+  XeroPnLSnapshot: 'XeroPnLSnapshot',
+  FYSettings: 'FYSettings',
+  BacklogBudget: 'BacklogBudget'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -528,7 +530,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "fYSettings" | "backlogBudget"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10078,6 +10080,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    FYSettings: {
+      payload: Prisma.$FYSettingsPayload<ExtArgs>
+      fields: Prisma.FYSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FYSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FYSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.FYSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FYSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.FYSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.FYSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.FYSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FYSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.FYSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        update: {
+          args: Prisma.FYSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.FYSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FYSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FYSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.FYSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FYSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.FYSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFYSettings>
+        }
+        groupBy: {
+          args: Prisma.FYSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FYSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FYSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FYSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    BacklogBudget: {
+      payload: Prisma.$BacklogBudgetPayload<ExtArgs>
+      fields: Prisma.BacklogBudgetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BacklogBudgetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BacklogBudgetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        findFirst: {
+          args: Prisma.BacklogBudgetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BacklogBudgetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        findMany: {
+          args: Prisma.BacklogBudgetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>[]
+        }
+        create: {
+          args: Prisma.BacklogBudgetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        createMany: {
+          args: Prisma.BacklogBudgetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BacklogBudgetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>[]
+        }
+        delete: {
+          args: Prisma.BacklogBudgetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        update: {
+          args: Prisma.BacklogBudgetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        deleteMany: {
+          args: Prisma.BacklogBudgetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BacklogBudgetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BacklogBudgetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>[]
+        }
+        upsert: {
+          args: Prisma.BacklogBudgetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BacklogBudgetPayload>
+        }
+        aggregate: {
+          args: Prisma.BacklogBudgetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBacklogBudget>
+        }
+        groupBy: {
+          args: Prisma.BacklogBudgetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BacklogBudgetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BacklogBudgetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BacklogBudgetCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -12559,6 +12709,42 @@ export const XeroPnLSnapshotScalarFieldEnum = {
 export type XeroPnLSnapshotScalarFieldEnum = (typeof XeroPnLSnapshotScalarFieldEnum)[keyof typeof XeroPnLSnapshotScalarFieldEnum]
 
 
+export const FYSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  currentFY: 'currentFY',
+  draftOpenMonth: 'draftOpenMonth',
+  draftOpenDay: 'draftOpenDay',
+  lockOpenMonth: 'lockOpenMonth',
+  lockOpenDay: 'lockOpenDay',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FYSettingsScalarFieldEnum = (typeof FYSettingsScalarFieldEnum)[keyof typeof FYSettingsScalarFieldEnum]
+
+
+export const BacklogBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  fyYear: 'fyYear',
+  classification: 'classification',
+  budgetRevenue: 'budgetRevenue',
+  notes: 'notes',
+  status: 'status',
+  lockedAt: 'lockedAt',
+  lockedBy: 'lockedBy',
+  lastAdjustedAt: 'lastAdjustedAt',
+  lastAdjustedBy: 'lastAdjustedBy',
+  adjustmentReason: 'adjustmentReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BacklogBudgetScalarFieldEnum = (typeof BacklogBudgetScalarFieldEnum)[keyof typeof BacklogBudgetScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -13657,6 +13843,34 @@ export type ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel> = FieldRe
 
 
 /**
+ * Reference to a field of type 'BacklogClassification'
+ */
+export type EnumBacklogClassificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BacklogClassification'>
+    
+
+
+/**
+ * Reference to a field of type 'BacklogClassification[]'
+ */
+export type ListEnumBacklogClassificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BacklogClassification[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BacklogBudgetStatus'
+ */
+export type EnumBacklogBudgetStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BacklogBudgetStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BacklogBudgetStatus[]'
+ */
+export type ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BacklogBudgetStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -13893,6 +14107,8 @@ export type GlobalOmitConfig = {
   leadSyncLog?: Prisma.LeadSyncLogOmit
   hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsOmit
   xeroPnLSnapshot?: Prisma.XeroPnLSnapshotOmit
+  fYSettings?: Prisma.FYSettingsOmit
+  backlogBudget?: Prisma.BacklogBudgetOmit
 }
 
 /* Types for Logging */
