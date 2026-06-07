@@ -226,7 +226,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
 
   return (
     <div className="ml-1 mt-0.5 space-y-0.5">
-      <StubbedItem label="Dashboard" depth={1} />
+      <NavLink href="/finance/dashboard" label="Dashboard" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />
