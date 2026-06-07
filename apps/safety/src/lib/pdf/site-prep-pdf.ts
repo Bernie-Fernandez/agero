@@ -3,22 +3,30 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DocDef = Record<string, any>;
 
-export interface ChecklistItemResult {
-  id: string;
-  category: string;
-  label: string;
+export interface SectionResult {
+  sectionId: string;
+  sectionName: string;
   answer: "YES" | "NO" | "NA";
   note?: string;
   photoUrl?: string;
+}
+
+export interface PlanSection {
+  sectionId: string;
+  sectionName: string;
+  planNote: string;
+  plannedCompletionDate: string;
 }
 
 export interface SitePrepPdfData {
   projectName: string;
   projectAddress: string | null;
   completionDate: string;
-  items: ChecklistItemResult[];
+  sections: SectionResult[];
+  planSections?: PlanSection[];
   managerSignOffName: string;
   managerSignOffAt: Date;
+  signatureUrl?: string;
 }
 
 const GREY = "#f4f4f5";
@@ -58,66 +66,58 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
     },
   };
 
-  const noItems = data.items.filter((i) => i.answer === "NO");
-  const yesCount = data.items.filter((i) => i.answer === "YES").length;
-  const noCount = noItems.length;
-  const naCount = data.items.filter((i) => i.answer === "NA").length;
+  const noSections = data.sections.filter((s) => s.answer === "NO");
+  const yesCount = data.sections.filter((s) => s.answer === "YES").length;
+  const noCount = noSections.length;
+  const naCount = data.sections.filter((s) => s.answer === "NA").length;
 
-  // Pre-fetch all non-compliant photos
+  // Pre-fetch non-compliant section photos
   const photoDataMap = new Map<string, string | null>();
   await Promise.all(
-    noItems
-      .filter((i) => i.photoUrl)
-      .map(async (i) => {
-        const dataUrl = await fetchImageAsDataUrl(i.photoUrl!);
-        photoDataMap.set(i.id, dataUrl);
+    noSections
+      .filter((s) => s.photoUrl)
+      .map(async (s) => {
+        const dataUrl = await fetchImageAsDataUrl(s.photoUrl!);
+        photoDataMap.set(s.sectionId, dataUrl);
       }),
   );
 
-  // Group items by category
-  const categoryMap = new Map<string, ChecklistItemResult[]>();
-  for (const item of data.items) {
-    const list = categoryMap.get(item.category) ?? [];
-    list.push(item);
-    categoryMap.set(item.category, list);
+  // Optionally fetch signature
+  let signatureDataUrl: string | null = null;
+  if (data.signatureUrl) {
+    signatureDataUrl = await fetchImageAsDataUrl(data.signatureUrl);
   }
 
-  // Build category section blocks
-  const categorySections: DocDef[] = [];
-  for (const [category, items] of categoryMap.entries()) {
-    // Capitalise and format category label
-    const label = items[0]?.category
-      ? category
-          .split("_")
-          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-          .join(" ")
-      : category;
+  // Build a planNote lookup map
+  const planNoteMap = new Map<string, string>();
+  for (const ps of data.planSections ?? []) {
+    planNoteMap.set(ps.sectionId, ps.planNote);
+  }
 
-    categorySections.push({ text: label, style: "h2" });
-    categorySections.push({
+  // ── Phase 1 planning notes section ──────────────────────────────────────────
+  const phase1Section: DocDef[] = [];
+  if (data.planSections && data.planSections.length > 0) {
+    phase1Section.push({ text: "Phase 1 — Site Preparation Plan", style: "h2" });
+    phase1Section.push({
       table: {
         headerRows: 1,
-        widths: [200, 30, "*"],
+        widths: [130, "*", 70],
         body: [
           [
-            { text: "Item", style: "tableHeader", margin: [4, 3, 4, 3] },
-            { text: "Result", style: "tableHeader", margin: [4, 3, 4, 3] },
-            { text: "Note (if NO)", style: "tableHeader", margin: [4, 3, 4, 3] },
+            { text: "Category", style: "tableHeader", margin: [4, 3, 4, 3] },
+            { text: "Planned setup", style: "tableHeader", margin: [4, 3, 4, 3] },
+            { text: "Target date", style: "tableHeader", margin: [4, 3, 4, 3] },
           ],
-          ...items.map((item) => [
-            { text: item.label, style: "tableCell", margin: [4, 2, 4, 2] },
+          ...data.planSections.map((ps) => [
+            { text: ps.sectionName, style: "tableCell", bold: true, margin: [4, 2, 4, 2] },
+            { text: ps.planNote, style: "tableCell", margin: [4, 2, 4, 2] },
             {
-              text: item.answer,
+              text: new Date(ps.plannedCompletionDate).toLocaleDateString("en-AU", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              }),
               style: "tableCell",
-              bold: item.answer === "NO",
-              color: answerColor(item.answer),
-              margin: [4, 2, 4, 2],
-            },
-            {
-              text: item.answer === "NO" ? item.note || "—" : "—",
-              style: "tableCell",
-              color: item.answer === "NO" ? DARK : "#71717a",
-              fontSize: 7.5,
               margin: [4, 2, 4, 2],
             },
           ]),
@@ -128,24 +128,71 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
         vLineColor: () => "#e4e4e7",
         fillColor: (ri: number) => (ri === 0 ? GREY : ri % 2 === 0 ? "#fafafa" : null),
       },
-      margin: [0, 0, 0, 12],
+      margin: [0, 0, 0, 16],
     });
   }
 
-  // Non-compliant items with embedded photos
+  // ── Phase 2 inspection results section ──────────────────────────────────────
+  const inspectionTable: DocDef = {
+    table: {
+      headerRows: 1,
+      widths: [130, 30, "*", 100],
+      body: [
+        [
+          { text: "Category", style: "tableHeader", margin: [4, 3, 4, 3] },
+          { text: "Result", style: "tableHeader", margin: [4, 3, 4, 3] },
+          { text: "Note (if NO)", style: "tableHeader", margin: [4, 3, 4, 3] },
+          { text: "Planned setup", style: "tableHeader", margin: [4, 3, 4, 3] },
+        ],
+        ...data.sections.map((s) => [
+          { text: s.sectionName, style: "tableCell", bold: true, margin: [4, 2, 4, 2] },
+          {
+            text: s.answer,
+            style: "tableCell",
+            bold: s.answer === "NO",
+            color: answerColor(s.answer),
+            margin: [4, 2, 4, 2],
+          },
+          {
+            text: s.answer === "NO" ? s.note || "—" : "—",
+            style: "tableCell",
+            color: s.answer === "NO" ? DARK : "#71717a",
+            fontSize: 7.5,
+            margin: [4, 2, 4, 2],
+          },
+          {
+            text: planNoteMap.get(s.sectionId) ?? "—",
+            style: "tableCell",
+            fontSize: 7.5,
+            color: "#71717a",
+            italics: true,
+            margin: [4, 2, 4, 2],
+          },
+        ]),
+      ],
+    },
+    layout: {
+      hLineColor: () => "#e4e4e7",
+      vLineColor: () => "#e4e4e7",
+      fillColor: (ri: number) => (ri === 0 ? GREY : ri % 2 === 0 ? "#fafafa" : null),
+    },
+    margin: [0, 0, 0, 12],
+  };
+
+  // ── Non-compliant sections detail ────────────────────────────────────────────
   const nonCompliantSection: DocDef[] = [];
-  if (noItems.length > 0) {
-    nonCompliantSection.push({ text: "Non-Compliant Items — Detail & Evidence", style: "h2" });
+  if (noSections.length > 0) {
+    nonCompliantSection.push({ text: "Non-Compliant Sections — Detail & Evidence", style: "h2" });
     nonCompliantSection.push({
-      text: "The following items were marked NO. Corrective action required before site mobilisation.",
+      text: "The following sections were marked NO. Corrective action required before site mobilisation.",
       style: "legal",
       margin: [0, 0, 0, 8],
     });
-    for (const item of noItems) {
-      const photoData = item.photoUrl ? photoDataMap.get(item.id) : undefined;
+    for (const s of noSections) {
+      const photoData = s.photoUrl ? photoDataMap.get(s.sectionId) : undefined;
       const photoCell: DocDef = photoData
         ? { image: photoData, width: 150, height: 110, margin: [0, 6, 0, 0] }
-        : item.photoUrl
+        : s.photoUrl
           ? { text: "Photo unavailable", style: "legal", margin: [0, 6, 0, 0] }
           : {};
       nonCompliantSection.push({
@@ -155,9 +202,8 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
             [
               {
                 stack: [
-                  { text: item.label, style: "h3", color: RED },
-                  { text: `Note: ${item.note || "—"}`, style: "tableCell", margin: [0, 4, 0, 0] },
-                  { text: `Category: ${item.category}`, style: "legal", margin: [0, 2, 0, 0] },
+                  { text: s.sectionName, style: "h3", color: RED },
+                  { text: `Note: ${s.note || "—"}`, style: "tableCell", margin: [0, 4, 0, 0] },
                   ...(Object.keys(photoCell).length > 0 ? [photoCell] : []),
                 ],
                 margin: [6, 6, 6, 6],
@@ -170,6 +216,58 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
       });
     }
   }
+
+  // ── Sign-off ─────────────────────────────────────────────────────────────────
+  const signOffContent: DocDef[] = [
+    { text: "Sign-off", style: "h2" },
+    {
+      table: {
+        widths: ["*", "*"],
+        body: [
+          [
+            {
+              stack: [
+                { text: "Site manager", style: "h3" },
+                { text: data.managerSignOffName, fontSize: 13, bold: true, margin: [0, 4, 0, 0] },
+                ...(signatureDataUrl
+                  ? [{ image: signatureDataUrl, width: 120, height: 36, margin: [0, 6, 0, 0] }]
+                  : []),
+              ],
+              margin: [6, 8, 6, 8],
+            },
+            {
+              stack: [
+                { text: "Signed off at", style: "h3" },
+                {
+                  text: data.managerSignOffAt.toLocaleString("en-AU", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }),
+                  fontSize: 11,
+                  bold: true,
+                  margin: [0, 4, 0, 0],
+                },
+              ],
+              margin: [6, 8, 6, 8],
+            },
+          ],
+        ],
+      },
+      layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
+    },
+    {
+      text:
+        noCount > 0
+          ? `\n${noCount} non-compliant section${noCount !== 1 ? "s" : ""} identified. Corrective actions must be addressed and re-inspected before site mobilisation.`
+          : "\nAll sections passed. Site preparation is compliant with Victorian OHS Regulations 2017.",
+      style: "legal",
+      color: noCount > 0 ? AMBER : GREEN,
+      margin: [0, 8, 0, 0],
+    },
+  ];
 
   const docDefinition: DocDef = {
     defaultStyle: { font: "Helvetica", fontSize: 9, color: DARK },
@@ -195,6 +293,7 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
         },
       ],
     }),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     footer: (_page: number) => ({
       text: "Agero Safety Platform  ·  VIC OHS Regulations 2017  ·  Building Regulations 2018  ·  AS 2675",
       style: "legal",
@@ -215,7 +314,7 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
           {
             stack: [
               {
-                text: `Completion date: ${new Date(data.completionDate).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}`,
+                text: `Inspection date: ${new Date(data.completionDate).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" })}`,
                 style: "sub",
                 alignment: "right",
               },
@@ -236,13 +335,13 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
           widths: ["*", "*", "*", "*"],
           body: [
             [
-              { text: "Total items", style: "tableHeader", margin: [6, 4, 6, 4] },
+              { text: "Total sections", style: "tableHeader", margin: [6, 4, 6, 4] },
               { text: "YES", style: "tableHeader", margin: [6, 4, 6, 4], color: GREEN },
               { text: "NO", style: "tableHeader", margin: [6, 4, 6, 4], color: RED },
               { text: "N/A", style: "tableHeader", margin: [6, 4, 6, 4] },
             ],
             [
-              { text: String(data.items.length), style: "tableCell", bold: true, margin: [6, 4, 6, 4] },
+              { text: String(data.sections.length), style: "tableCell", bold: true, margin: [6, 4, 6, 4] },
               { text: String(yesCount), style: "tableCell", bold: true, color: GREEN, margin: [6, 4, 6, 4] },
               { text: String(noCount), style: "tableCell", bold: true, color: noCount > 0 ? RED : DARK, margin: [6, 4, 6, 4] },
               { text: String(naCount), style: "tableCell", margin: [6, 4, 6, 4] },
@@ -253,57 +352,18 @@ export async function generateSitePrepPdf(data: SitePrepPdfData): Promise<Buffer
         margin: [0, 0, 0, 16],
       },
 
-      // Category tables
-      ...categorySections,
+      // Phase 1 planning notes
+      ...phase1Section,
+
+      // Phase 2 inspection table
+      { text: "Phase 2 — Inspection Results", style: "h2" },
+      inspectionTable,
 
       // Non-compliant detail
       ...nonCompliantSection,
 
       // Sign-off
-      { text: "Sign-off", style: "h2" },
-      {
-        table: {
-          widths: ["*", "*"],
-          body: [
-            [
-              {
-                stack: [
-                  { text: "Site manager name", style: "h3" },
-                  { text: data.managerSignOffName, fontSize: 13, bold: true, margin: [0, 4, 0, 0] },
-                ],
-                margin: [6, 8, 6, 8],
-              },
-              {
-                stack: [
-                  { text: "Signed off at", style: "h3" },
-                  {
-                    text: data.managerSignOffAt.toLocaleString("en-AU", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }),
-                    fontSize: 11,
-                    bold: true,
-                    margin: [0, 4, 0, 0],
-                  },
-                ],
-                margin: [6, 8, 6, 8],
-              },
-            ],
-          ],
-        },
-        layout: { hLineColor: () => "#e4e4e7", vLineColor: () => "#e4e4e7" },
-      },
-      {
-        text: noCount > 0
-          ? `\n${noCount} non-compliant item${noCount !== 1 ? "s" : ""} identified. Corrective actions must be addressed and re-inspected before site mobilisation.`
-          : "\nAll items passed. Site preparation is compliant with Victorian OHS Regulations 2017.",
-        style: "legal",
-        color: noCount > 0 ? AMBER : GREEN,
-        margin: [0, 8, 0, 0],
-      },
+      ...signOffContent,
     ],
   };
 

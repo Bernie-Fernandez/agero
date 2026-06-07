@@ -297,12 +297,22 @@ export default async function SitePrepPage({
                         New inspection ↓
                       </summary>
                       <div className="mt-6">
-                        <SitePrepForm safetyProjectId={id} submitAction={checklistSubmitAction} />
+                        <SitePrepForm
+                          safetyProjectId={id}
+                          submitAction={checklistSubmitAction}
+                          projectUsers={projectUsers}
+                          planSections={plan?.sections as Array<{ sectionId: string; sectionName: string; planNote: string; plannedCompletionDate: string }> | undefined}
+                        />
                       </div>
                     </details>
                   </div>
                 ) : (
-                  <SitePrepForm safetyProjectId={id} submitAction={checklistSubmitAction} />
+                  <SitePrepForm
+                    safetyProjectId={id}
+                    submitAction={checklistSubmitAction}
+                    projectUsers={projectUsers}
+                    planSections={plan?.sections as Array<{ sectionId: string; sectionName: string; planNote: string; plannedCompletionDate: string }> | undefined}
+                  />
                 )}
               </>
             )}
