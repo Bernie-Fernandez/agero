@@ -221,6 +221,12 @@ export async function pullXeroPnLMonth(
     ? income.total.minus(cos.total)
     : grossProfit;
 
+  // Net profit: prefer the Xero-reported value; fall back to formula when Xero
+  // doesn't emit a standalone "Net Profit" row (Agero's chart of accounts omits it).
+  const effectiveNetProfit = netProfit.isZero()
+    ? effectiveGrossProfit.plus(otherIncome.total).minus(expenses.total)
+    : netProfit;
+
   // Period dates (the ACTUAL month, not the query month)
   const periodStart = new Date(Date.UTC(actualYear, actualMonth - 1, 1));
   const periodEnd = new Date(Date.UTC(actualYear, actualMonth, 0)); // last day of month
@@ -245,7 +251,7 @@ export async function pullXeroPnLMonth(
         grossProfit: effectiveGrossProfit.toFixed(2),
         totalOtherIncome: otherIncome.total.toFixed(2),
         totalExpenses: expenses.total.toFixed(2),
-        netProfit: netProfit.toFixed(2),
+        netProfit: effectiveNetProfit.toFixed(2),
         incomeAccountsJson: income.accounts,
         cosAccountsJson: cos.accounts,
         expenseAccountsJson: expenses.accounts,
@@ -265,7 +271,7 @@ export async function pullXeroPnLMonth(
         grossProfit: effectiveGrossProfit.toFixed(2),
         totalOtherIncome: otherIncome.total.toFixed(2),
         totalExpenses: expenses.total.toFixed(2),
-        netProfit: netProfit.toFixed(2),
+        netProfit: effectiveNetProfit.toFixed(2),
         incomeAccountsJson: income.accounts,
         cosAccountsJson: cos.accounts,
         expenseAccountsJson: expenses.accounts,
@@ -288,7 +294,7 @@ export async function pullXeroPnLMonth(
       month: actualMonth,
       year: actualYear,
       totalIncome: income.total.toFixed(2),
-      netProfit: netProfit.toFixed(2),
+      netProfit: effectiveNetProfit.toFixed(2),
       queryStart,
       queryEnd,
     },
