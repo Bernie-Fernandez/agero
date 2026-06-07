@@ -37,6 +37,11 @@ export default async function ProjectPage({
 
   if (!project || project.organisationId !== appUser.organisationId) notFound();
 
+  const safetyProject = await prisma.safetyProject.findFirst({
+    where: { erpProjectId: id },
+    select: { id: true, preStartAssessments: { take: 1, select: { id: true } }, sitePreparationChecklists: { take: 1, select: { id: true } } },
+  });
+
   const qrUrl = `${getAppUrl()}/site/${project.token}`;
   const qrDataUrl = await QRCode.toDataURL(qrUrl, { width: 200, margin: 2 });
 
@@ -162,6 +167,34 @@ export default async function ProjectPage({
             </dl>
           </div>
         </div>
+
+        {/* Safety Readiness — Sprint S1 */}
+        {safetyProject && (
+          <div className="mt-6 rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Safety Readiness
+                </h2>
+                <p className="mt-1 text-xs text-zinc-500">ISO 45001 · 3-layer mobilisation gate</p>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-zinc-500">
+                <span className={safetyProject.preStartAssessments.length > 0 ? "text-green-600 dark:text-green-400" : "text-amber-500"}>
+                  {safetyProject.preStartAssessments.length > 0 ? "✓ Pre-start" : "· Pre-start"}
+                </span>
+                <span className={safetyProject.sitePreparationChecklists.length > 0 ? "text-green-600 dark:text-green-400" : "text-amber-500"}>
+                  {safetyProject.sitePreparationChecklists.length > 0 ? "✓ Site prep" : "· Site prep"}
+                </span>
+              </div>
+            </div>
+            <Link
+              href={`/projects/${safetyProject.id}/readiness`}
+              className="mt-3 inline-block rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+            >
+              Open readiness dashboard →
+            </Link>
+          </div>
+        )}
 
         {/* Subcontractors on this project */}
         <div className="mt-8">

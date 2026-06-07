@@ -174,3 +174,77 @@ export async function sendSwmsApprovedEmail(opts: {
     `),
   });
 }
+
+export async function sendSitePrepChecklistEmail(opts: {
+  to: string[];
+  projectName: string;
+  completionDate: string;
+  managerName: string;
+  yesCount: number;
+  noCount: number;
+  naCount: number;
+  pdfUrl: string | null;
+}) {
+  const subject = `Site Preparation Checklist completed — ${opts.projectName}`;
+  const statusColor = opts.noCount > 0 ? "#d97706" : "#16a34a";
+  const statusText =
+    opts.noCount > 0
+      ? `${opts.noCount} non-compliant item${opts.noCount !== 1 ? "s" : ""} — corrective action required`
+      : "All items compliant";
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0">Site Preparation Checklist — ${opts.projectName}</h2>
+      <p>The site preparation checklist has been completed and signed off.</p>
+      <table style="font-size:14px;width:100%;border-collapse:collapse">
+        <tr><td style="padding:4px 0;color:#71717a;width:160px">Project</td><td style="padding:4px 0"><strong>${opts.projectName}</strong></td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Completion date</td><td style="padding:4px 0">${opts.completionDate}</td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Site manager</td><td style="padding:4px 0">${opts.managerName}</td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Items passed</td><td style="padding:4px 0"><strong style="color:#16a34a">${opts.yesCount}</strong></td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Items failed (NO)</td><td style="padding:4px 0"><strong style="color:${opts.noCount > 0 ? "#dc2626" : "#16a34a"}">${opts.noCount}</strong></td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Not applicable</td><td style="padding:4px 0">${opts.naCount}</td></tr>
+      </table>
+      <p style="margin:16px 0;padding:12px 16px;background:#fafafa;border-left:4px solid ${statusColor};border-radius:4px;color:${statusColor};font-weight:600">${statusText}</p>
+      ${opts.pdfUrl ? `<p style="margin:32px 0"><a href="${opts.pdfUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">View PDF →</a></p>` : ""}
+      <p style="font-size:13px;color:#71717a">Non-compliant items require corrective action and re-inspection before site mobilisation can proceed.</p>
+    `),
+  });
+}
+
+export async function sendPreStartAssessmentEmail(opts: {
+  to: string[];
+  projectName: string;
+  assessmentDate: string;
+  assessorName: string;
+  hrwCount: number;
+  psychCount: number;
+  pdfUrl: string | null;
+}) {
+  const subject = `Pre-Start Risk Assessment completed — ${opts.projectName}`;
+  const flagSummary =
+    opts.hrwCount === 0 && opts.psychCount === 0
+      ? '<p style="color:#16a34a">No high-risk classifications or psychosocial hazards were identified.</p>'
+      : `<ul style="font-size:14px">
+          ${opts.hrwCount > 0 ? `<li><strong>${opts.hrwCount} high-risk work classification${opts.hrwCount !== 1 ? "s" : ""}</strong> identified — sub-forms required</li>` : ""}
+          ${opts.psychCount > 0 ? `<li><strong>${opts.psychCount} psychosocial hazard${opts.psychCount !== 1 ? "s" : ""}</strong> identified — prevention plans required (VIC Dec 2025 Regs)</li>` : ""}
+        </ul>`;
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0">Pre-Start Risk Assessment — ${opts.projectName}</h2>
+      <p>A Pre-Start Risk Assessment has been completed and signed off.</p>
+      <table style="font-size:14px;width:100%;border-collapse:collapse">
+        <tr><td style="padding:4px 0;color:#71717a;width:160px">Project</td><td style="padding:4px 0"><strong>${opts.projectName}</strong></td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Assessment date</td><td style="padding:4px 0">${opts.assessmentDate}</td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Assessed by</td><td style="padding:4px 0">${opts.assessorName}</td></tr>
+      </table>
+      <div style="margin:16px 0">${flagSummary}</div>
+      ${opts.pdfUrl ? `<p style="margin:32px 0"><a href="${opts.pdfUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">View PDF →</a></p>` : ""}
+      <p style="font-size:13px;color:#71717a">This assessment satisfies ISO 45001:2018 Clause 6.1 and Clause 8.1.4.2. The Site Preparation Checklist can now be started.</p>
+    `),
+  });
+}

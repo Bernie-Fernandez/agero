@@ -59,6 +59,22 @@ export default async function WorkerDashboard() {
 
   const genericYear = hasCurrentGeneric ? new Date().getFullYear() : null;
 
+  // Building mgmt inductions pending for this worker
+  const erpProjectIds = workers.map((w) => w.projectId);
+  const bldgMgmtPending =
+    erpProjectIds.length > 0
+      ? await prisma.safetyProject.findMany({
+          where: {
+            erpProjectId: { in: erpProjectIds },
+            buildingMgmtInductionRequired: true,
+            buildingMgmtInductions: {
+              none: { workerAccountId: session.workerAccountId },
+            },
+          },
+          select: { name: true },
+        })
+      : [];
+
   const recentVisits = await prisma.siteVisit.findMany({
     where: { workerId: { in: workers.map((w) => w.id) } },
     include: { project: { select: { name: true } } },
@@ -121,6 +137,27 @@ export default async function WorkerDashboard() {
           )}
         </div>
       </div>
+
+      {/* Building mgmt induction pending banner */}
+      {bldgMgmtPending.length > 0 && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950/30">
+          <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+            Building management induction required
+          </p>
+          <p className="mt-1 text-xs text-amber-700 dark:text-amber-400">
+            The following project{bldgMgmtPending.length !== 1 ? "s require" : " requires"} a
+            building management induction before you can sign in to site. Contact the site manager
+            to arrange this with the building manager.
+          </p>
+          <ul className="mt-2 space-y-0.5">
+            {bldgMgmtPending.map((sp) => (
+              <li key={sp.name} className="text-xs font-medium text-amber-800 dark:text-amber-300">
+                · {sp.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* Sign in to a site */}
       <div className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-700 dark:bg-zinc-900">

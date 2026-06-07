@@ -84,6 +84,70 @@ function extractRowValue(topRows: PnLRow[], label: string): Decimal {
   return new Decimal(0);
 }
 
+// Agero's expenses live across multiple top-level sections (e.g. Wages, Administration).
+// The "Total Overhead" label may be a top-level Row, not a SummaryRow inside a single
+// parent Section. extractSectionData misses this. This function handles it by:
+//   1. Searching the entire tree recursively for the total label (mirrors extractReportValue).
+//   2. Collecting account lines from every Section that sits between Gross Profit and Net Profit
+//      in the top-level row list.
+function extractExpensesData(topRows: PnLRow[]): { total: Decimal; accounts: AccountLine[] } {
+  // Recursive total search — same logic as extractReportValue in /api/xero/sync
+  function findTotal(rows: PnLRow[], ...labels: string[]): Decimal {
+    for (const row of rows) {
+      const title = (row.title ?? '').toLowerCase();
+      const cellLabel = (row.cells?.[0]?.value ?? '').toLowerCase();
+      for (const lbl of labels) {
+        if (title.includes(lbl) || cellLabel.includes(lbl)) {
+          return parseAmt(row.cells?.[1]?.value ?? row.cells?.[0]?.value);
+        }
+      }
+      if ((row.rowType ?? '').toLowerCase() === 'section') {
+        const found = findTotal(row.rows ?? [], ...labels);
+        if (!found.isZero()) return found;
+      }
+    }
+    return new Decimal(0);
+  }
+
+  const total = findTotal(topRows, 'total overhead', 'total expenses', 'total operating expenses');
+
+  // Collect Row entries recursively from within a section tree
+  function collectRows(rows: PnLRow[], accounts: AccountLine[]) {
+    for (const row of rows) {
+      if ((row.rowType ?? '').toLowerCase() === 'row') {
+        const name = (row.cells?.[0]?.value ?? '').trim();
+        const amount = parseAmt(row.cells?.[1]?.value);
+        if (name) accounts.push({ name, amount: amount.toNumber() });
+      } else if ((row.rowType ?? '').toLowerCase() === 'section') {
+        collectRows(row.rows ?? [], accounts);
+      }
+    }
+  }
+
+  const accounts: AccountLine[] = [];
+  let afterGrossProfit = false;
+
+  for (const row of topRows) {
+    const rt = (row.rowType ?? '').toLowerCase();
+    const title = (row.title ?? '').toLowerCase();
+    const cellLabel = (row.cells?.[0]?.value ?? '').toLowerCase();
+
+    if (!afterGrossProfit) {
+      if (title.includes('gross profit') || cellLabel.includes('gross profit')) {
+        afterGrossProfit = true;
+      }
+      continue;
+    }
+    if (title.includes('net profit') || cellLabel.includes('net profit')) break;
+
+    if (rt === 'section') {
+      collectRows(row.rows ?? [], accounts);
+    }
+  }
+
+  return { total, accounts };
+}
+
 // ─── Main sync action ─────────────────────────────────────────────────────────
 
 type PnLSnapshot = Awaited<ReturnType<typeof prisma.xeroPnLSnapshot.upsert>>;
@@ -147,7 +211,7 @@ export async function pullXeroPnLMonth(
   const income = extractSectionData(pnlRows, 'total income');
   const cos = extractSectionData(pnlRows, 'total cost of sales');
   const otherIncome = extractSectionData(pnlRows, 'other income');
-  const expenses = extractSectionData(pnlRows, 'total overhead', 'total expenses');
+  const expenses = extractExpensesData(pnlRows);
 
   // Gross profit and net profit are standalone top-level rows (not inside sections)
   const grossProfit = extractRowValue(pnlRows, 'gross profit');

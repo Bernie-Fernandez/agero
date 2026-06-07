@@ -22,6 +22,28 @@ export function ConfirmSignInForm({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
 
+  if (state.mobGateBlocked) {
+    return (
+      <div className="rounded-xl border border-red-200 bg-red-50 p-6 dark:border-red-800 dark:bg-red-950/30">
+        <p className="text-lg font-semibold text-red-700 dark:text-red-300">
+          Sign-in blocked — pre-mobilisation incomplete
+        </p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+          Your pre-mobilisation requirements have not been met. Please speak to the site manager.
+        </p>
+        {state.mobGateIssues && state.mobGateIssues.length > 0 && (
+          <ul className="mt-2 space-y-1">
+            {state.mobGateIssues.map((issue) => (
+              <li key={issue} className="text-sm text-red-600 dark:text-red-400">
+                · {issue}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  }
+
   if (state.blockedUntilVerified) {
     return (
       <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center dark:border-red-800 dark:bg-red-950/30">

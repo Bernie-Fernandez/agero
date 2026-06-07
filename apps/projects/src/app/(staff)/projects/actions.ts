@@ -4,6 +4,7 @@ import { requireAppUser } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createAuditLog } from '@/lib/audit';
+import { syncSafetyProject } from '@/lib/safety/safety-project-sync';
 
 const VALID_STATUSES = Object.values(ProjectStatus);
 
@@ -43,6 +44,7 @@ export async function createProject(formData: FormData) {
   });
 
   await createAuditLog({ userId: user.id, action: 'CREATE', entity: 'Project', entityId: project.id });
+  await syncSafetyProject({ erpProjectId: project.id, name, address: siteAddress });
   revalidatePath('/projects');
   redirect('/projects');
 }
@@ -77,6 +79,7 @@ export async function updateProject(id: string, formData: FormData) {
   });
 
   await createAuditLog({ userId: user.id, action: 'UPDATE', entity: 'Project', entityId: id });
+  await syncSafetyProject({ erpProjectId: id, name, address: siteAddress });
   revalidatePath(`/projects/${id}`);
   revalidatePath('/projects');
   redirect(`/projects/${id}`);

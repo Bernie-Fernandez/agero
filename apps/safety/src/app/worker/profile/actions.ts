@@ -74,6 +74,18 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
     },
   });
 
+  // Propagate Sprint S1 fields to all project Worker records for this mobile
+  await prisma.worker.updateMany({
+    where: { mobile: session.workerAccount.mobile },
+    data: {
+      whiteCardNo: whiteCardNumber,
+      whiteCardExpiry: whiteCardExpiry ? new Date(whiteCardExpiry) : null,
+      nokName,
+      nokPhone: nokMobile,
+      nokRelationship,
+    },
+  });
+
   revalidatePath("/worker/profile");
   revalidatePath("/worker/dashboard");
   return { success: "Profile updated." };

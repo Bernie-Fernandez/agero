@@ -57,6 +57,8 @@ model Organisation {
   id               String      @id @default(uuid()) @db.Uuid
   name             String
   abn              String?
+  logoUrl          String?     @map("logo_url")
+  isActive         Boolean     @default(true) @map("is_active")
   tradeCategory    String?     @map("trade_category")
   tradeCategories  String[]    @map("trade_categories")
   primaryContact   String?     @map("primary_contact")
@@ -69,7 +71,9 @@ model Organisation {
   users                   User[]
   projects                Project[]
   subcontractorOnProjects ProjectSubcontractor[] @relation("ProjectSubcontractorOrg")
-  employedWorkers         Worker[]
+  employedWorkers         Worker[]               @relation("WorkerEmployer")
+  tenantWorkers           Worker[]               @relation("WorkerTenant")
+  safetyProjects          SafetyProject[]
   documents               DocumentUpload[]
   supervisorRoles         SiteSupervisor[]
   invitations             Invitation[]
@@ -109,6 +113,9 @@ model User {
   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now()) @map("created_at")
   updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  preStartAssessments       PreStartAssessment[]       @relation("PreStartCompletedBy")
+  sitePreparationChecklists SitePreparationChecklist[] @relation("SiteChecklistCompletedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -160,12 +167,19 @@ model Worker {
   projectId               String        @map("project_id") @db.Uuid
   project                 Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
   employingOrganisationId String?       @map("employing_organisation_id") @db.Uuid
-  employingOrganisation   Organisation? @relation(fields: [employingOrganisationId], references: [id], onDelete: SetNull)
+  employingOrganisation   Organisation? @relation("WorkerEmployer", fields: [employingOrganisationId], references: [id], onDelete: SetNull)
+  organisationId          String?       @map("organisation_id") @db.Uuid
+  organisation            Organisation? @relation("WorkerTenant", fields: [organisationId], references: [id], onDelete: SetNull)
   firstName               String        @map("first_name")
   lastName                String        @map("last_name")
   mobile                  String?
   email                   String?
   trade                   String?
+  whiteCardNo             String?       @map("white_card_no")
+  whiteCardExpiry         DateTime?     @map("white_card_expiry")
+  nokName                 String?       @map("nok_name")
+  nokPhone                String?       @map("nok_phone")
+  nokRelationship         String?       @map("nok_relationship")
   createdAt               DateTime      @default(now()) @map("created_at")
   updatedAt               DateTime      @updatedAt @map("updated_at")
 
@@ -176,6 +190,7 @@ model Worker {
 
   @@index([projectId])
   @@index([employingOrganisationId])
+  @@index([organisationId])
   @@map("workers")
 }
 
@@ -336,8 +351,9 @@ model WorkerAccount {
   createdAt          DateTime  @default(now()) @map("created_at")
   updatedAt          DateTime  @updatedAt @map("updated_at")
 
-  sessions      WorkerSession[]
-  certDocuments WorkerCertDocument[]
+  sessions               WorkerSession[]
+  certDocuments          WorkerCertDocument[]
+  buildingMgmtInductions BuildingMgmtInduction[]
 
   @@map("worker_accounts")
 }
@@ -397,4 +413,96 @@ model SwmsInductionQuestion {
   @@index([projectId])
   @@index([organisationId])
   @@map("swms_induction_questions")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT S1 — Project Safety Readiness Framework
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum SafetyProjectStatus {
+  SETUP
+  ACTIVE
+  COMPLETE
+}
+
+// Bridge table synced from ERP Project records.
+// erp_project_id stores the UUID from the projects.projects table (cross-schema,
+// so stored as String rather than a typed FK).
+model SafetyProject {
+  id                           String              @id @default(uuid()) @db.Uuid
+  erpProjectId                 String              @unique @map("erp_project_id")
+  organisationId               String              @map("organisation_id") @db.Uuid
+  organisation                 Organisation        @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name                         String
+  address                      String?
+  status                       SafetyProjectStatus @default(SETUP)
+  qrToken                      String              @unique @default(uuid()) @map("qr_token") @db.Uuid
+  buildingMgmtInductionRequired Boolean            @default(false) @map("building_mgmt_induction_required")
+  createdAt                    DateTime            @default(now()) @map("created_at")
+  updatedAt                    DateTime            @updatedAt @map("updated_at")
+
+  preStartAssessments       PreStartAssessment[]
+  sitePreparationChecklists SitePreparationChecklist[]
+  buildingMgmtInductions    BuildingMgmtInduction[]
+
+  @@index([organisationId])
+  @@map("safety_projects")
+}
+
+// Completed by the Site Manager one week before site establishment.
+// Covers VIC OHS Regs 2017 Schedule 1 (17 HRW classifications) and
+// VIC OHS (Psychological Health) Regulations 2025 (5 psychosocial categories).
+model PreStartAssessment {
+  id                 String        @id @default(uuid()) @db.Uuid
+  projectId          String        @map("project_id") @db.Uuid
+  project            SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  completedById      String        @map("completed_by_id") @db.Uuid
+  completedBy        User          @relation("PreStartCompletedBy", fields: [completedById], references: [id], onDelete: Cascade)
+  assessmentDate     DateTime      @map("assessment_date") @db.Date
+  highRiskFlags      Json          @map("high_risk_flags")
+  psychosocialFlags  Json          @map("psychosocial_flags")
+  consultationRecord String?       @map("consultation_record") @db.Text
+  signOffName        String        @map("sign_off_name")
+  signOffAt          DateTime      @map("sign_off_at")
+  pdfUrl             String?       @map("pdf_url")
+  createdAt          DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("pre_start_assessments")
+}
+
+// Completed on day 1 of site establishment by the Site Manager on-site.
+// Locked until PreStartAssessment is signed. 52 items across 10 categories.
+model SitePreparationChecklist {
+  id                 String        @id @default(uuid()) @db.Uuid
+  projectId          String        @map("project_id") @db.Uuid
+  project            SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  completedById      String        @map("completed_by_id") @db.Uuid
+  completedBy        User          @relation("SiteChecklistCompletedBy", fields: [completedById], references: [id], onDelete: Cascade)
+  completionDate     DateTime      @map("completion_date") @db.Date
+  items              Json
+  managerSignOffName String        @map("manager_sign_off_name")
+  managerSignOffAt   DateTime      @map("manager_sign_off_at")
+  pdfUrl             String?       @map("pdf_url")
+  createdAt          DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("site_preparation_checklists")
+}
+
+// Tracks per-worker completion of building-management induction,
+// required when SafetyProject.buildingMgmtInductionRequired = true.
+model BuildingMgmtInduction {
+  id              String        @id @default(uuid()) @db.Uuid
+  projectId       String        @map("project_id") @db.Uuid
+  project         SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  workerAccountId String        @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  completedAt     DateTime      @map("completed_at")
+  completedByName String        @map("completed_by_name")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@unique([projectId, workerAccountId])
+  @@index([workerAccountId])
+  @@map("building_mgmt_inductions")
 }

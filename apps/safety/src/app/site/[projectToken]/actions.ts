@@ -12,6 +12,8 @@ export type SignInState = {
   inductionUrl?: string;
   inductionTitle?: string;
   blockedUntilVerified?: boolean;
+  mobGateBlocked?: boolean;
+  mobGateIssues?: string[];
 };
 
 const workerInclude = {
@@ -101,9 +103,33 @@ async function doSignIn(
           mobile: workerAccount.mobile,
           trade: workerAccount.trades[0] ?? null,
           projectId: project.id,
+          // Sprint S1: seed credentials from WorkerAccount on first visit
+          whiteCardNo: workerAccount.whiteCardNumber ?? null,
+          whiteCardExpiry: workerAccount.whiteCardExpiry ?? null,
+          nokName: workerAccount.nokName ?? null,
+          nokPhone: workerAccount.nokMobile ?? null,
+          nokRelationship: workerAccount.nokRelationship ?? null,
         },
         include: workerInclude,
       });
+    } else {
+      // Sprint S1: back-fill missing fields from WorkerAccount on every visit
+      const patch: {
+        whiteCardNo?: string; whiteCardExpiry?: Date;
+        nokName?: string; nokPhone?: string; nokRelationship?: string;
+      } = {};
+      if (!worker.whiteCardNo && workerAccount.whiteCardNumber) patch.whiteCardNo = workerAccount.whiteCardNumber;
+      if (!worker.whiteCardExpiry && workerAccount.whiteCardExpiry) patch.whiteCardExpiry = workerAccount.whiteCardExpiry;
+      if (!worker.nokName && workerAccount.nokName) patch.nokName = workerAccount.nokName;
+      if (!worker.nokPhone && workerAccount.nokMobile) patch.nokPhone = workerAccount.nokMobile;
+      if (!worker.nokRelationship && workerAccount.nokRelationship) patch.nokRelationship = workerAccount.nokRelationship;
+      if (Object.keys(patch).length > 0) {
+        worker = await prisma.worker.update({
+          where: { id: worker.id },
+          data: patch,
+          include: workerInclude,
+        });
+      }
     }
 
     // Check if blocked (pending alert)
@@ -185,6 +211,9 @@ async function continueSignIn(
     lastName: string;
     mobile: string | null;
     projectId: string;
+    whiteCardNo: string | null;
+    nokName: string | null;
+    nokPhone: string | null;
     inductionCompletions: { templateId: string; passed: boolean; signedAt: Date; template: { type: string } }[];
     employingOrganisationId?: string | null;
   },
@@ -210,6 +239,40 @@ async function continueSignIn(
         error:
           "Your company's SWMS has not been approved yet. Contact your supervisor.",
       };
+    }
+  }
+
+  // ── Mobilisation gate (Sprint S1) ────────────────────────────────────────
+  // Applies to known workers only once the project has a signed Pre-Start Assessment.
+  if (!isUnknown) {
+    const safetyProject = await prisma.safetyProject.findFirst({
+      where: { erpProjectId: project!.id },
+      select: {
+        buildingMgmtInductionRequired: true,
+        preStartAssessments: { take: 1, select: { id: true } },
+      },
+    });
+
+    if (safetyProject && safetyProject.preStartAssessments.length > 0) {
+      const mobIssues: string[] = [];
+
+      if (!worker.whiteCardNo) mobIssues.push("white card number not on file");
+      if (!worker.nokName || !worker.nokPhone) mobIssues.push("next-of-kin details not recorded");
+
+      if (safetyProject.buildingMgmtInductionRequired && worker.mobile) {
+        const bldgDone = await prisma.buildingMgmtInduction.findFirst({
+          where: {
+            project: { erpProjectId: project!.id },
+            workerAccount: { mobile: worker.mobile },
+          },
+          select: { id: true },
+        });
+        if (!bldgDone) mobIssues.push("building management induction not completed");
+      }
+
+      if (mobIssues.length > 0) {
+        return { mobGateBlocked: true, mobGateIssues: mobIssues };
+      }
     }
   }
 
