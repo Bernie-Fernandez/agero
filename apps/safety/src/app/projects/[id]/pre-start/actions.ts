@@ -17,7 +17,6 @@ export interface PreStartFormPayload {
   consultationPersons: ConsultationPerson[];
   consultationDeclaration: boolean;
   signOffDropdownUserId: string;
-  signOffName: string;
   signatureDataUrl?: string;
 }
 
@@ -51,13 +50,20 @@ export async function submitPreStartAssessment(
     consultationPersons,
     consultationDeclaration,
     signOffDropdownUserId,
-    signOffName,
     signatureDataUrl,
   } = payload;
 
   // ── Validation ─────────────────────────────────────────────────────────────
   if (!assessmentDate) return { error: "Assessment date is required." };
-  if (!signOffName.trim()) return { error: "Please select the person signing off." };
+  if (!signOffDropdownUserId) return { error: "Please select the person signing off." };
+
+  // Resolve sign-off name server-side from the dropdown user ID
+  const signOffUserRecord = await prisma.user.findUnique({
+    where: { id: signOffDropdownUserId },
+    select: { name: true, email: true },
+  });
+  if (!signOffUserRecord) return { error: "Selected sign-off user not found." };
+  const signOffName = signOffUserRecord.name ?? signOffUserRecord.email;
   if (consultationPersons.length === 0)
     return { error: "At least one consultation record is required before sign-off." };
   for (const p of consultationPersons) {

@@ -327,7 +327,6 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
       consultationPersons,
       consultationDeclaration,
       signOffDropdownUserId: signOffUserId,
-      signOffName,
       signatureDataUrl,
     };
     const hidden = (e.currentTarget as HTMLFormElement).elements.namedItem("payload") as HTMLInputElement | null;

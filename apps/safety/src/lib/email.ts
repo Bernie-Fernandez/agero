@@ -248,3 +248,75 @@ export async function sendPreStartAssessmentEmail(opts: {
     `),
   });
 }
+
+export async function sendMobReminderEmail(opts: {
+  to: string;
+  adminName: string | null;
+  orgName: string;
+  projectName: string;
+  mobilisationDate: Date;
+  pendingWorkers: { mobile: string; checklistUrl: string }[];
+}) {
+  const subject = `Reminder: ${opts.pendingWorkers.length} worker${opts.pendingWorkers.length !== 1 ? "s" : ""} haven't completed their pre-mobilisation checklist — ${opts.projectName}`;
+  const rows = opts.pendingWorkers
+    .map(
+      (w) =>
+        `<tr><td style="padding:6px 8px;font-family:monospace;font-size:13px">${w.mobile}</td><td style="padding:6px 8px"><a href="${w.checklistUrl}" style="color:#2563eb;font-size:13px">Complete checklist →</a></td></tr>`,
+    )
+    .join("");
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0;color:#d97706">Pre-mobilisation checklist reminder</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p>The following workers from <strong>${opts.orgName}</strong> haven't completed their
+        pre-mobilisation safety checklist for <strong>${opts.projectName}</strong>.
+        Mobilisation is scheduled for <strong>${opts.mobilisationDate.toLocaleDateString("en-AU")}</strong>.</p>
+      <p>An SMS reminder has been sent to each worker. You can also forward the links below directly:</p>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0;border:1px solid #e4e4e7;border-radius:6px">
+        <thead>
+          <tr style="background:#f4f4f5">
+            <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Mobile</th>
+            <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Checklist link</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p style="font-size:13px;color:#71717a">Workers who haven't submitted their checklist before mobilisation may be blocked from site access.</p>
+    `),
+  });
+}
+
+export async function sendMobGateBlockedEmail(opts: {
+  to: string;
+  adminName: string | null;
+  workerName: string;
+  companyName: string;
+  projectName: string;
+  issues: string[];
+  checklistUrl: string;
+}) {
+  const subject = `Worker blocked from site — pre-mobilisation incomplete · ${opts.workerName}`;
+  const issueList = opts.issues.map((i) => `<li style="font-size:14px;color:#7f1d1d">${i}</li>`).join("");
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0;color:#dc2626">Worker blocked from site sign-in</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p><strong>${opts.workerName}</strong> from <strong>${opts.companyName}</strong> attempted to sign in to
+        <strong>${opts.projectName}</strong> but was blocked because the following pre-mobilisation
+        requirements have not been met:</p>
+      <ul style="margin:12px 0">${issueList}</ul>
+      <p>Please ask ${opts.workerName} to complete their pre-mobilisation checklist before their next visit:</p>
+      <p style="margin:32px 0">
+        <a href="${opts.checklistUrl}" style="background:#dc2626;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Complete checklist →</a>
+      </p>
+      <p style="color:#71717a;font-size:13px">Or copy this link: ${opts.checklistUrl}</p>
+      <p style="font-size:13px;color:#71717a">An SMS has also been sent to the worker. This notification will not repeat for 24 hours.</p>
+    `),
+  });
+}

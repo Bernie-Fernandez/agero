@@ -158,7 +158,6 @@ export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
     const signatureDataUrl = canvasRef.current?.toDataURL("image/png");
     const payload: SitePrepPlanPayload = {
       sections,
-      signOffName,
       signOffDropdownUserId: signOffUserId,
       signatureDataUrl,
     };

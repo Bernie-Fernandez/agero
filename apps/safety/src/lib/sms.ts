@@ -9,19 +9,13 @@ function toE164(mobile: string): string {
   return `+61${digits}`;
 }
 
-export async function sendSmsCode(mobile: string, code: string): Promise<void> {
-  const message = `Your Agero Safety code is: ${code}. Valid for 10 minutes.`;
-  if (process.env.NODE_ENV !== "production") {
-    console.log(`[SMS DEV] To: ${mobile} | Code: ${code}`);
-    return;
-  }
+async function sendRawSms(mobile: string, message: string): Promise<void> {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const from = process.env.TWILIO_PHONE_NUMBER;
   if (!accountSid || !authToken || !from) {
     throw new Error("Twilio credentials not configured.");
   }
-  const to = toE164(mobile);
   const response = await fetch(
     `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
     {
@@ -30,7 +24,7 @@ export async function sendSmsCode(mobile: string, code: string): Promise<void> {
         Authorization: `Basic ${Buffer.from(`${accountSid}:${authToken}`).toString("base64")}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: new URLSearchParams({ To: to, From: from, Body: message }).toString(),
+      body: new URLSearchParams({ To: toE164(mobile), From: from, Body: message }).toString(),
     },
   );
   if (!response.ok) {
@@ -38,4 +32,53 @@ export async function sendSmsCode(mobile: string, code: string): Promise<void> {
     console.error("[SMS] Twilio error:", text);
     throw new Error("Failed to send SMS. Please try again.");
   }
+}
+
+export async function sendSmsCode(mobile: string, code: string): Promise<void> {
+  const message = `Your Agero Safety code is: ${code}. Valid for 10 minutes.`;
+  if (process.env.NODE_ENV !== "production") {
+    console.log(`[SMS DEV] To: ${mobile} | Code: ${code}`);
+    return;
+  }
+  await sendRawSms(mobile, message);
+}
+
+export async function sendWorkerInviteSms(
+  mobile: string,
+  projectName: string,
+  checklistUrl: string,
+): Promise<void> {
+  const message = `You've been invited to work on ${projectName}. Complete your pre-mobilisation safety checklist before your start date: ${checklistUrl}`;
+  if (process.env.NODE_ENV !== "production") {
+    console.log(`[SMS DEV] To: ${mobile} | ${message}`);
+    return;
+  }
+  await sendRawSms(mobile, message);
+}
+
+export async function sendMobReminderSms(
+  mobile: string,
+  projectName: string,
+  checklistUrl: string,
+): Promise<void> {
+  const message = `Reminder: Your pre-mobilisation checklist for ${projectName} is due tomorrow. Complete it now: ${checklistUrl}`;
+  if (process.env.NODE_ENV !== "production") {
+    console.log(`[SMS DEV] Reminder to: ${mobile} | ${message}`);
+    return;
+  }
+  await sendRawSms(mobile, message);
+}
+
+export async function sendMobGateBlockedSms(
+  mobile: string,
+  workerName: string,
+  projectName: string,
+  checklistUrl: string,
+): Promise<void> {
+  const message = `Hi ${workerName}, your sign-in to ${projectName} was blocked because your pre-mobilisation requirements are incomplete. Update your details here: ${checklistUrl}`;
+  if (process.env.NODE_ENV !== "production") {
+    console.log(`[SMS DEV] MobBlock to: ${mobile} | ${message}`);
+    return;
+  }
+  await sendRawSms(mobile, message);
 }

@@ -14,7 +14,6 @@ export interface PlanSection {
 
 export interface SitePrepPlanPayload {
   sections: PlanSection[];
-  signOffName: string;
   signOffDropdownUserId: string;
   signatureDataUrl?: string;
 }
@@ -40,10 +39,18 @@ export async function submitSitePrepPlan(
     return { error: "Invalid form data." };
   }
 
-  const { sections, signOffName, signatureDataUrl } = payload;
+  const { sections, signOffDropdownUserId, signatureDataUrl } = payload;
 
   // ── Validation ─────────────────────────────────────────────────────────────
-  if (!signOffName.trim()) return { error: "Please select a sign-off person." };
+  if (!signOffDropdownUserId) return { error: "Please select a sign-off person." };
+
+  // Resolve sign-off name server-side from the dropdown user ID
+  const signOffUser = await prisma.user.findUnique({
+    where: { id: signOffDropdownUserId },
+    select: { name: true, email: true },
+  });
+  if (!signOffUser) return { error: "Selected sign-off user not found." };
+  const signOffName = signOffUser.name ?? signOffUser.email;
 
   const incomplete = sections.filter((s) => !s.planNote.trim());
   if (incomplete.length > 0) {

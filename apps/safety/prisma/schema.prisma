@@ -148,6 +148,7 @@ model User {
 
   preStartAssessments       PreStartAssessment[]       @relation("PreStartCompletedBy")
   sitePreparationChecklists SitePreparationChecklist[] @relation("SiteChecklistCompletedBy")
+  hrwWarningAcks            HrwWarningAck[]            @relation("HrwWarningAckBy")
 
   @@index([organisationId])
   @@map("users")
@@ -216,12 +217,13 @@ model Worker {
   createdAt               DateTime      @default(now()) @map("created_at")
   updatedAt               DateTime      @updatedAt @map("updated_at")
 
-  documents            DocumentUpload[]
-  inductionCompletions InductionCompletion[]
-  siteVisits           SiteVisit[]
-  supervisorRoles      SiteSupervisor[]
-  credentials          WorkerCredential[]
-  swmsSignatures       WorkerSwmsSignature[]
+  documents             DocumentUpload[]
+  inductionCompletions  InductionCompletion[]
+  siteVisits            SiteVisit[]
+  supervisorRoles       SiteSupervisor[]
+  credentials           WorkerCredential[]
+  swmsSignatures        WorkerSwmsSignature[]
+  mobBlockNotifications MobBlockNotification[]
 
   @@index([projectId])
   @@index([employingOrganisationId])
@@ -484,6 +486,8 @@ model SafetyProject {
   workerSwmsSignatures      WorkerSwmsSignature[]
   workerInvitations         WorkerInvitation[]
   sitePreparationPlan       SitePreparationPlan?
+  hrwWarningAcks            HrwWarningAck[]
+  mobBlockNotifications     MobBlockNotification[]
 
   @@index([organisationId])
   @@map("safety_projects")
@@ -664,4 +668,35 @@ model SitePreparationPlan {
   checklists SitePreparationChecklist[]
 
   @@map("site_preparation_plans")
+}
+
+// One acknowledgement per HRW classification per project.
+// Cleared automatically when a licensed worker is added; acknowledgement provides an audit trail.
+model HrwWarningAck {
+  id                  String        @id @default(uuid()) @db.Uuid
+  safetyProjectId     String        @map("safety_project_id") @db.Uuid
+  safetyProject       SafetyProject @relation(fields: [safetyProjectId], references: [id], onDelete: Cascade)
+  hrwClassificationId String        @map("hrw_classification_id")
+  acknowledgedById    String        @map("acknowledged_by_id") @db.Uuid
+  acknowledgedBy      User          @relation("HrwWarningAckBy", fields: [acknowledgedById], references: [id], onDelete: Cascade)
+  acknowledgedAt      DateTime      @default(now()) @map("acknowledged_at")
+  note                String?
+
+  @@unique([safetyProjectId, hrwClassificationId])
+  @@index([safetyProjectId])
+  @@map("hrw_warning_acks")
+}
+
+// One row per (worker, safetyProject) block event — used to deduplicate
+// SMS + email notifications to 24 hours.
+model MobBlockNotification {
+  id              String        @id @default(uuid()) @db.Uuid
+  workerId        String        @map("worker_id") @db.Uuid
+  worker          Worker        @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  safetyProjectId String        @map("safety_project_id") @db.Uuid
+  safetyProject   SafetyProject @relation(fields: [safetyProjectId], references: [id], onDelete: Cascade)
+  sentAt          DateTime      @default(now()) @map("sent_at")
+
+  @@index([workerId, safetyProjectId])
+  @@map("mob_block_notifications")
 }

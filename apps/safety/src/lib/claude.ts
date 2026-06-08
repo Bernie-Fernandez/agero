@@ -238,6 +238,62 @@ Return ONLY valid JSON in this exact format (no other text):
   }
 }
 
+export type CredentialExtraction = {
+  credentialNumber: string | null;
+  issuingBody: string | null;
+  issueDate: string | null;
+  expiryDate: string | null;
+  holderName: string | null;
+};
+
+/**
+ * Extract key fields from a photo of a licence or certificate.
+ * credentialTypeLabel hints the model about what credential is being photographed.
+ */
+export async function extractCredentialData(
+  imageBase64: string,
+  mediaType: "image/jpeg" | "image/png" | "image/webp",
+  credentialTypeLabel: string,
+): Promise<CredentialExtraction> {
+  const fallback: CredentialExtraction = {
+    credentialNumber: null,
+    issuingBody: null,
+    issueDate: null,
+    expiryDate: null,
+    holderName: null,
+  };
+
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 256,
+    messages: [
+      {
+        role: "user",
+        content: [
+          {
+            type: "image",
+            source: { type: "base64", media_type: mediaType, data: imageBase64 },
+          },
+          {
+            type: "text",
+            text: `This is a photo of a ${credentialTypeLabel} certificate or licence. Extract the following fields and return ONLY valid JSON (no other text):
+{"credentialNumber": "string or null", "issuingBody": "string or null", "issueDate": "DD/MM/YYYY or null", "expiryDate": "DD/MM/YYYY or null", "holderName": "string or null"}`,
+          },
+        ],
+      },
+    ],
+  });
+
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
+  try {
+    const match = text.match(/\{[\s\S]*?\}/);
+    if (!match) return fallback;
+    return { ...fallback, ...(JSON.parse(match[0]) as Partial<CredentialExtraction>) };
+  } catch {
+    return fallback;
+  }
+}
+
 /**
  * Review a SWMS PDF against the Agero 14-criteria checklist.
  * pdfBase64 should be the raw base64 string of the PDF.
