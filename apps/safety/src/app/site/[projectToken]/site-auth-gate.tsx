@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useRef, useState } from "react";
+import Link from "next/link";
 import type { SiteAuthState } from "./site-auth-actions";
 import type { SignInState } from "./actions";
 
@@ -16,6 +17,8 @@ export function SiteAuthGate({
   siteAuthAction: (prev: SiteAuthState, fd: FormData) => Promise<SiteAuthState>;
   signInAction: (prev: SignInState, fd: FormData) => Promise<SignInState>;
 }) {
+  const [privacyAcknowledged, setPrivacyAcknowledged] = useState(false);
+
   const [authState, authFormAction, authPending] = useActionState<SiteAuthState, FormData>(
     siteAuthAction,
     { step: "mobile" },
@@ -33,6 +36,88 @@ export function SiteAuthGate({
     const file = e.target.files?.[0];
     if (!file) return;
     setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  // Privacy notice — shown before any data collection on first visit
+  if (!privacyAcknowledged) {
+    return (
+      <div className="space-y-5">
+        <div className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
+          <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+            Privacy notice
+          </h2>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            Before you sign in, Agero Group Pty Ltd collects the following personal information to
+            manage site access and comply with Victorian occupational health and safety laws:
+          </p>
+          <ul className="mt-3 space-y-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-zinc-400">·</span>
+              <span>
+                <strong className="text-zinc-800 dark:text-zinc-200">Identity:</strong> name, mobile
+                number, date of birth, address
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-zinc-400">·</span>
+              <span>
+                <strong className="text-zinc-800 dark:text-zinc-200">Credentials:</strong> licences,
+                certifications, and identity document details
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-zinc-400">·</span>
+              <span>
+                <strong className="text-zinc-800 dark:text-zinc-200">Emergency contact:</strong>{" "}
+                next-of-kin name and mobile
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-zinc-400">·</span>
+              <span>
+                <strong className="text-zinc-800 dark:text-zinc-200">Site attendance:</strong>{" "}
+                sign-in/out times, project, and optional photo
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-zinc-400">·</span>
+              <span>
+                <strong className="text-zinc-800 dark:text-zinc-200">Health information:</strong>{" "}
+                medical conditions you voluntarily disclose
+              </span>
+            </li>
+          </ul>
+          <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
+            This information is used solely for OHS compliance, site access management, and emergency
+            response. Credential document photos are processed by an AI system to extract details such
+            as expiry dates. Your data is stored in Australia (AWS Sydney).
+          </p>
+          <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            You can access, correct, or request deletion of your data by contacting{" "}
+            <a
+              href="mailto:privacy@agero.com.au"
+              className="text-blue-600 hover:underline dark:text-blue-400"
+            >
+              privacy@agero.com.au
+            </a>
+            . Providing this information is a condition of site access under the{" "}
+            <em>OHS Regs 2017</em> (Vic).
+          </p>
+          <p className="mt-3 text-sm text-zinc-500">
+            <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">
+              Read our full Privacy Policy →
+            </Link>
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setPrivacyAcknowledged(true)}
+          className={btnCls}
+        >
+          I understand — continue to sign in
+        </button>
+      </div>
+    );
   }
 
   // After sign-in action returns induction requirements

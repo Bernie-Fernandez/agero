@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState, useTransition } from "react";
+import Link from "next/link";
 import type { RegisterState } from "./actions";
 import { TRADE_CATEGORIES } from "@/lib/trade-categories";
 
@@ -143,6 +144,15 @@ export function RegistrationForm({
         <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Pre-filled from invitation</p>
         <p className="text-sm text-zinc-500">Contact: {invitation.contactName} · {invitation.email}</p>
       </div>
+
+      <p className="text-xs text-zinc-400 dark:text-zinc-500">
+        By completing registration, you confirm that you have authority to submit this company&apos;s
+        information and that you have read Agero&apos;s{" "}
+        <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">
+          Privacy Policy
+        </Link>
+        . Company information is used for OHS compliance purposes on Agero project sites.
+      </p>
 
       <button
         type="submit"
