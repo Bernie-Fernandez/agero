@@ -5,13 +5,13 @@ import { prisma } from "@/lib/prisma";
 import { ProfileForm } from "./profile-form";
 import { CredentialCapture } from "./credential-capture";
 import type { CredDoc } from "./credential-capture";
-
-const IDENTITY_TYPES = ["driver_licence", "passport", "government_id"];
-const WARN_MS = 30 * 24 * 60 * 60 * 1000;
+import { DEFAULT_CREDENTIAL_CONFIG } from "@/lib/credential-config";
+import type { CredentialConfigData } from "@/lib/credential-config";
 
 function mobReadiness(
   account: { nokName: string | null; nokMobile: string | null },
   certs: { docType: string; expiryDate: Date | null }[],
+  config: CredentialConfigData,
 ): { issues: string[]; warnings: string[] } {
   const issues: string[] = [];
   const warnings: string[] = [];
@@ -20,9 +20,12 @@ function mobReadiness(
     issues.push("Emergency contact details incomplete");
   }
 
-  const hasIdentity = certs.some((c) => IDENTITY_TYPES.includes(c.docType));
+  const hasIdentity = certs.some((c) => config.acceptableIdentityTypes.includes(c.docType));
   if (!hasIdentity) {
-    issues.push("Identity document required (driver licence, passport, or government ID)");
+    const types = config.acceptableIdentityTypes
+      .map((v) => v.replace(/_/g, " "))
+      .join(", ");
+    issues.push(`Identity document required (${types})`);
   }
 
   const hasWhiteCard = certs.some((c) => c.docType === "white_card");
@@ -31,9 +34,9 @@ function mobReadiness(
   } else {
     const wc = certs.find((c) => c.docType === "white_card");
     if (wc?.expiryDate) {
-      const ms = wc.expiryDate.getTime() - Date.now();
-      if (ms < 0) issues.push("White card expired");
-      else if (ms < WARN_MS) warnings.push("White card expiring soon");
+      const days = (wc.expiryDate.getTime() - Date.now()) / 86400000;
+      if (days < 0) issues.push("White card expired");
+      else if (days < config.expiryWarnDays) warnings.push("White card expiring soon");
     }
   }
 
@@ -79,9 +82,21 @@ export default async function WorkerProfilePage() {
 
   if (!account) redirect("/worker/login");
 
+  // Load org credential config (global, first record); fall back to defaults
+  const configRow = await prisma.credentialConfig.findFirst();
+  const config: CredentialConfigData = configRow
+    ? {
+        acceptableIdentityTypes: configRow.acceptableIdentityTypes,
+        expiryRequiredTypes: configRow.expiryRequiredTypes,
+        expiryWarnDays: configRow.expiryWarnDays,
+        expiryUrgentDays: configRow.expiryUrgentDays,
+      }
+    : DEFAULT_CREDENTIAL_CONFIG;
+
   const { issues: mobIssues, warnings: mobWarnings } = mobReadiness(
     account,
     account.certDocuments,
+    config,
   );
 
   const credDocs: CredDoc[] = account.certDocuments.map((d) => ({
@@ -160,7 +175,7 @@ export default async function WorkerProfilePage() {
             access. Certificate numbers are used for compliance auditing only.
           </p>
         </div>
-        <CredentialCapture docs={credDocs} />
+        <CredentialCapture docs={credDocs} config={config} />
       </section>
     </div>
   );

@@ -24,6 +24,11 @@ const navLinks = [
     roles: ["admin", "safety_manager"] as UserRole[],
   },
   {
+    href: "/admin/credential-config",
+    label: "Settings",
+    roles: ["admin"] as UserRole[],
+  },
+  {
     href: "/supervisor",
     label: "Supervisor",
     roles: ["site_manager"] as UserRole[],

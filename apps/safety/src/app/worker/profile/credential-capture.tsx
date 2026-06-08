@@ -3,6 +3,11 @@
 import React, { useRef, useState, useTransition, useActionState } from "react";
 import { addWorkerCredential, deleteWorkerCredential } from "./actions";
 import type { AddCredentialState } from "./actions";
+import {
+  CREDENTIAL_TYPE_GROUPS,
+  DEFAULT_CREDENTIAL_CONFIG,
+} from "@/lib/credential-config";
+import type { CredentialConfigData } from "@/lib/credential-config";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -18,67 +23,44 @@ export type CredDoc = {
   createdAt: Date;
 };
 
-type CredTypeConfig = {
-  value: string;
-  label: string;
-  requiresExpiry?: boolean;
-};
-
-// ── Credential type definitions ────────────────────────────────────────────────
-
-const IDENTITY_TYPES: CredTypeConfig[] = [
-  { value: "driver_licence", label: "Driver Licence", requiresExpiry: true },
-  { value: "passport", label: "Passport", requiresExpiry: true },
-  { value: "government_id", label: "Government ID", requiresExpiry: false },
-];
-
-const WORK_CRED_TYPES: CredTypeConfig[] = [
-  { value: "white_card", label: "White Card", requiresExpiry: false },
-  { value: "hrwl_scaffold", label: "HRWL — Scaffolding", requiresExpiry: true },
-  { value: "hrwl_crane", label: "HRWL — Crane", requiresExpiry: true },
-  { value: "hrwl_forklift", label: "HRWL — Forklift", requiresExpiry: true },
-  { value: "hrwl_ewp", label: "HRWL — EWP", requiresExpiry: true },
-  { value: "hrwl_dogging", label: "HRWL — Dogging", requiresExpiry: true },
-  { value: "hrwl_rigging", label: "HRWL — Rigging", requiresExpiry: true },
-  { value: "hrwl_confined_space", label: "HRWL — Confined Space", requiresExpiry: true },
-  { value: "hrwl_explosive", label: "HRWL — Explosive Powered Tools", requiresExpiry: true },
-  { value: "hrwl_other", label: "HRWL — Other", requiresExpiry: true },
-  { value: "trade_licence", label: "Trade Licence", requiresExpiry: true },
-  { value: "trade_certificate", label: "Trade Certificate", requiresExpiry: true },
-  { value: "first_aid", label: "First Aid Certificate", requiresExpiry: true },
-  { value: "asbestos_awareness", label: "Asbestos Awareness", requiresExpiry: true },
-];
-
-const TRAINING_TYPES: CredTypeConfig[] = [
-  { value: "training_certificate", label: "Training Certificate", requiresExpiry: true },
-  { value: "other", label: "Other Certificate", requiresExpiry: false },
-];
-
-const ALL_TYPES = [...IDENTITY_TYPES, ...WORK_CRED_TYPES, ...TRAINING_TYPES];
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function labelFor(docType: string): string {
-  return ALL_TYPES.find((t) => t.value === docType)?.label ?? docType.replace(/_/g, " ");
+  for (const group of CREDENTIAL_TYPE_GROUPS) {
+    const found = group.types.find((t) => t.value === docType);
+    if (found) return found.label;
+  }
+  return docType.replace(/_/g, " ");
 }
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmtDate(d: Date | null): string {
   if (!d) return "—";
   return new Date(d).toLocaleDateString("en-AU");
 }
 
-function expiryColour(d: Date | null): string {
+function expiryColour(d: Date | null, config: CredentialConfigData): string {
   if (!d) return "text-zinc-400";
   const days = (d.getTime() - Date.now()) / 86400000;
   if (days < 0) return "text-red-600 dark:text-red-400";
-  if (days < 30) return "text-amber-600 dark:text-amber-400";
+  if (days < config.expiryUrgentDays) return "text-red-600 dark:text-red-400";
+  if (days < config.expiryWarnDays) return "text-amber-600 dark:text-amber-400";
   return "text-green-600 dark:text-green-400";
+}
+
+// Convert DD/MM/YYYY → YYYY-MM-DD for date inputs
+function toInputDate(dd: string | null): string {
+  if (!dd) return "";
+  const parts = dd.split("/");
+  if (parts.length === 3)
+    return `${parts[2]}-${parts[1].padStart(2, "0")}-${parts[0].padStart(2, "0")}`;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dd)) return dd;
+  return "";
 }
 
 const inputCls =
   "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 outline-none ring-zinc-400 focus:ring-2 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100";
 
-// ── Extracted data from AI ─────────────────────────────────────────────────────
+// ── AI extraction result ──────────────────────────────────────────────────────
 
 type Extracted = {
   credentialNumber: string | null;
@@ -88,22 +70,15 @@ type Extracted = {
   holderName: string | null;
 };
 
-// Convert DD/MM/YYYY → YYYY-MM-DD for date inputs
-function toInputDate(dd: string | null): string {
-  if (!dd) return "";
-  const parts = dd.split("/");
-  if (parts.length === 3) return `${parts[2]}-${parts[1].padStart(2, "0")}-${parts[0].padStart(2, "0")}`;
-  if (/^\d{4}-\d{2}-\d{2}$/.test(dd)) return dd;
-  return "";
-}
-
 // ── Single credential add panel ───────────────────────────────────────────────
 
 function AddCredentialPanel({
   docType,
+  expiryRequired,
   onClose,
 }: {
   docType: string;
+  expiryRequired: boolean;
   onClose: () => void;
 }) {
   type Phase = "photo" | "extracting" | "form" | "error";
@@ -121,7 +96,6 @@ function AddCredentialPanel({
   );
 
   if (saveState.id) {
-    // Saved — parent will reload via revalidation; just close
     onClose();
     return null;
   }
@@ -186,9 +160,23 @@ function AddCredentialPanel({
             onClick={() => fileRef.current?.click()}
             className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-zinc-300 px-4 py-6 text-sm text-zinc-500 hover:border-zinc-400 hover:text-zinc-700 dark:border-zinc-600 dark:hover:border-zinc-500"
           >
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.04l-.821 1.316z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.04l-.821 1.316z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+              />
             </svg>
             Take photo or upload image
           </button>
@@ -211,7 +199,11 @@ function AddCredentialPanel({
       {phase === "error" && (
         <div>
           <p className="text-sm text-red-600 dark:text-red-400">{uploadErr}</p>
-          <button type="button" onClick={() => setPhase("photo")} className="mt-2 text-xs text-zinc-500 underline">
+          <button
+            type="button"
+            onClick={() => setPhase("photo")}
+            className="mt-2 text-xs text-zinc-500 underline"
+          >
             Try again
           </button>
         </div>
@@ -267,10 +259,16 @@ function AddCredentialPanel({
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-zinc-500 mb-1">Expiry date</label>
+              <label className="block text-xs font-medium text-zinc-500 mb-1">
+                Expiry date
+                {expiryRequired && (
+                  <span className="ml-1 text-red-500">*</span>
+                )}
+              </label>
               <input
                 type="date"
                 name="expiryDate"
+                required={expiryRequired}
                 defaultValue={toInputDate(extracted?.expiryDate ?? null)}
                 className={inputCls}
               />
@@ -310,11 +308,13 @@ function CredentialGroup({
   types,
   docs,
   note,
+  config,
 }: {
   title: string;
-  types: CredTypeConfig[];
+  types: ReadonlyArray<{ value: string; label: string }>;
   docs: CredDoc[];
   note?: React.ReactNode;
+  config: CredentialConfigData;
 }) {
   const [addingType, setAddingType] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -340,11 +340,19 @@ function CredentialGroup({
       {types.map((t) => {
         const typeDocs = grouped[t.value] ?? [];
         const isAdding = addingType === t.value;
+        const expiryRequired = config.expiryRequiredTypes.includes(t.value);
 
         return (
           <div key={t.value}>
             <div className="flex items-center justify-between mb-1">
-              <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{t.label}</p>
+              <div className="flex items-center gap-1.5">
+                <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{t.label}</p>
+                {expiryRequired && (
+                  <span className="rounded-full bg-zinc-100 px-1.5 py-px text-[10px] text-zinc-400 dark:bg-zinc-800">
+                    expiry required
+                  </span>
+                )}
+              </div>
               {!isAdding && (
                 <button
                   type="button"
@@ -362,61 +370,76 @@ function CredentialGroup({
 
             {typeDocs.length > 0 && (
               <div className="space-y-2">
-                {typeDocs.map((doc) => (
-                  <div
-                    key={doc.id}
-                    className="flex items-start justify-between rounded-lg border border-zinc-200 bg-white px-3 py-2.5 dark:border-zinc-700 dark:bg-zinc-900"
-                  >
-                    <div className="space-y-0.5">
-                      {doc.credentialNumber && (
-                        <p className="text-xs font-medium text-zinc-800 dark:text-zinc-200">
-                          {doc.credentialNumber}
-                        </p>
-                      )}
-                      {doc.issuingBody && (
-                        <p className="text-xs text-zinc-500">{doc.issuingBody}</p>
-                      )}
-                      <div className="flex gap-3 text-xs">
-                        {doc.issueDate && (
-                          <span className="text-zinc-400">
-                            Issued {fmtDate(doc.issueDate)}
-                          </span>
+                {typeDocs.map((doc) => {
+                  const missingRequiredExpiry =
+                    expiryRequired && !doc.expiryDate;
+                  return (
+                    <div
+                      key={doc.id}
+                      className={`flex items-start justify-between rounded-lg border px-3 py-2.5 ${
+                        missingRequiredExpiry
+                          ? "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/20"
+                          : "border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900"
+                      }`}
+                    >
+                      <div className="space-y-0.5">
+                        {doc.credentialNumber && (
+                          <p className="text-xs font-medium text-zinc-800 dark:text-zinc-200">
+                            {doc.credentialNumber}
+                          </p>
                         )}
-                        {doc.expiryDate && (
-                          <span className={expiryColour(doc.expiryDate)}>
-                            {doc.aiExtractedExpiry ? "AI · " : ""}
-                            Expires {fmtDate(doc.expiryDate)}
-                          </span>
+                        {doc.issuingBody && (
+                          <p className="text-xs text-zinc-500">{doc.issuingBody}</p>
                         )}
+                        <div className="flex gap-3 text-xs">
+                          {doc.issueDate && (
+                            <span className="text-zinc-400">
+                              Issued {fmtDate(doc.issueDate)}
+                            </span>
+                          )}
+                          {doc.expiryDate ? (
+                            <span className={expiryColour(doc.expiryDate, config)}>
+                              {doc.aiExtractedExpiry ? "AI · " : ""}
+                              Expires {fmtDate(doc.expiryDate)}
+                            </span>
+                          ) : missingRequiredExpiry ? (
+                            <span className="text-amber-600 dark:text-amber-400">
+                              Expiry date required
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0 ml-2">
+                        {doc.url && (
+                          <a
+                            href={doc.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-xs text-zinc-400 hover:text-zinc-600"
+                          >
+                            View
+                          </a>
+                        )}
+                        <button
+                          type="button"
+                          disabled={deletingId === doc.id}
+                          onClick={() => handleDelete(doc.id)}
+                          className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
+                          aria-label="Delete"
+                        >
+                          ✕
+                        </button>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 ml-2">
-                      <a
-                        href={doc.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs text-zinc-400 hover:text-zinc-600"
-                      >
-                        View
-                      </a>
-                      <button
-                        type="button"
-                        disabled={deletingId === doc.id}
-                        onClick={() => handleDelete(doc.id)}
-                        className="text-xs text-red-400 hover:text-red-600 disabled:opacity-50"
-                        aria-label="Delete"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 
             {isAdding && (
               <AddCredentialPanel
                 docType={t.value}
+                expiryRequired={expiryRequired}
                 onClose={() => setAddingType(null)}
               />
             )}
@@ -429,10 +452,31 @@ function CredentialGroup({
 
 // ── Public component ──────────────────────────────────────────────────────────
 
-export function CredentialCapture({ docs }: { docs: CredDoc[] }) {
-  const identityDocs = docs.filter((d) => IDENTITY_TYPES.some((t) => t.value === d.docType));
-  const workDocs = docs.filter((d) => WORK_CRED_TYPES.some((t) => t.value === d.docType));
-  const trainingDocs = docs.filter((d) => TRAINING_TYPES.some((t) => t.value === d.docType));
+export function CredentialCapture({
+  docs,
+  config = DEFAULT_CREDENTIAL_CONFIG,
+}: {
+  docs: CredDoc[];
+  config?: CredentialConfigData;
+}) {
+  const identityGroup = CREDENTIAL_TYPE_GROUPS[0];
+  const workGroup = CREDENTIAL_TYPE_GROUPS[1];
+  const trainingGroup = CREDENTIAL_TYPE_GROUPS[2];
+
+  // Filter identity types to only show admin-configured acceptable ones
+  const acceptableIdentityTypes = identityGroup.types.filter((t) =>
+    config.acceptableIdentityTypes.includes(t.value),
+  );
+
+  const identityDocs = docs.filter((d) =>
+    config.acceptableIdentityTypes.includes(d.docType),
+  );
+  const workDocs = docs.filter((d) =>
+    workGroup.types.some((t) => t.value === d.docType),
+  );
+  const trainingDocs = docs.filter((d) =>
+    trainingGroup.types.some((t) => t.value === d.docType),
+  );
 
   const hasIdentity = identityDocs.length > 0;
 
@@ -440,8 +484,9 @@ export function CredentialCapture({ docs }: { docs: CredDoc[] }) {
     <div className="space-y-6">
       <CredentialGroup
         title="Identity Document"
-        types={IDENTITY_TYPES}
+        types={acceptableIdentityTypes}
         docs={identityDocs}
+        config={config}
         note={
           !hasIdentity ? (
             <p className="text-xs text-red-600 dark:text-red-400">
@@ -457,19 +502,22 @@ export function CredentialCapture({ docs }: { docs: CredDoc[] }) {
 
       <CredentialGroup
         title="Work Credentials"
-        types={WORK_CRED_TYPES}
+        types={workGroup.types}
         docs={workDocs}
+        config={config}
         note={
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
-            White card required. Add all HRW licences, trade licences, and certificates that apply to your work.
+            White card required. Add all HRW licences, trade licences, and certificates that
+            apply to your work.
           </p>
         }
       />
 
       <CredentialGroup
         title="Training Certificates"
-        types={TRAINING_TYPES}
+        types={trainingGroup.types}
         docs={trainingDocs}
+        config={config}
         note={
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Any other training certificates relevant to your role on site.

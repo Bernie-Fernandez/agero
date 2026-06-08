@@ -123,8 +123,22 @@ model Organisation {
   swmsDocuments           SwmsDocument[]          @relation("SwmsDocumentOrg")
   workerInvitations       WorkerInvitation[]      @relation("WorkerInvitationOrg")
   complexityTemplates     ComplexityTemplate[]
+  credentialConfig        CredentialConfig?
 
   @@map("organisations")
+}
+
+model CredentialConfig {
+  id                      String       @id @default(uuid()) @db.Uuid
+  organisationId          String       @unique @map("organisation_id") @db.Uuid
+  organisation            Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  acceptableIdentityTypes String[]     @default(["driver_licence", "passport", "government_id"]) @map("acceptable_identity_types")
+  expiryRequiredTypes     String[]     @default([]) @map("expiry_required_types")
+  expiryWarnDays          Int          @default(30) @map("expiry_warn_days")
+  expiryUrgentDays        Int          @default(7) @map("expiry_urgent_days")
+  updatedAt               DateTime     @updatedAt @map("updated_at")
+
+  @@map("credential_configs")
 }
 
 model Invitation {
