@@ -26,11 +26,19 @@ interface SectionState {
   uploading: boolean;
 }
 
+interface PlanPin {
+  categoryIndex: number;
+  x: number;
+  y: number;
+}
+
 interface Props {
   safetyProjectId: string;
   submitAction: (prev: SubmitState, fd: FormData) => Promise<SubmitState>;
   projectUsers: ProjectUser[];
   planSections?: PlanSectionHint[];
+  planPins?: PlanPin[];
+  floorPlanUrl?: string | null;
 }
 
 // ── Signature canvas ──────────────────────────────────────────────────────────
@@ -129,7 +137,12 @@ function initSections(): Record<string, SectionState> {
   return record;
 }
 
-export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, planSections }: Props) {
+const PIN_COLOURS = [
+  "#ef4444","#f97316","#eab308","#22c55e","#06b6d4",
+  "#3b82f6","#8b5cf6","#ec4899","#14b8a6","#78716c",
+];
+
+export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, planSections, planPins, floorPlanUrl }: Props) {
   const [state, formAction, pending] = useActionState(submitAction, {});
 
   const today = new Date().toISOString().split("T")[0];
@@ -146,6 +159,11 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
   for (const ps of planSections ?? []) {
     planNoteMap.set(ps.sectionId, ps);
   }
+  const pinByCatIndex = new Map<number, PlanPin>();
+  for (const pin of planPins ?? []) {
+    pinByCatIndex.set(pin.categoryIndex, pin);
+  }
+  const isImageFloorPlan = floorPlanUrl && !floorPlanUrl.toLowerCase().endsWith(".pdf");
 
   function setSection(id: string, patch: Partial<SectionState>) {
     setSections((prev) => ({ ...prev, [id]: { ...prev[id], ...patch } }));
@@ -272,6 +290,26 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
         />
       </section>
 
+      {/* Floor plan reference */}
+      {isImageFloorPlan && (
+        <section>
+          <h2 className="mb-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300">Floor Plan Reference</h2>
+          <div className="relative overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={floorPlanUrl!} alt="Floor plan" className="w-full object-contain" style={{ maxHeight: 320 }} />
+            {Array.from(pinByCatIndex.entries()).map(([idx, pin]) => (
+              <div
+                key={idx}
+                className="pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-xs font-bold text-white shadow-lg"
+                style={{ left: `${pin.x * 100}%`, top: `${pin.y * 100}%`, background: PIN_COLOURS[idx % PIN_COLOURS.length] }}
+              >
+                {idx + 1}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Section cards */}
       {CHECKLIST_CATEGORIES.map((cat, i) => {
         const s = sections[cat.id];
@@ -303,6 +341,15 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
               <h3 className="flex-1 text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                 {cat.label}
               </h3>
+              {pinByCatIndex.has(i) && (
+                <span
+                  className="shrink-0 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style={{ background: PIN_COLOURS[i % PIN_COLOURS.length] }}
+                  title="Floor plan pin"
+                >
+                  {i + 1}
+                </span>
+              )}
               <span className="text-xs text-zinc-400">{cat.items.length} items</span>
             </div>
 

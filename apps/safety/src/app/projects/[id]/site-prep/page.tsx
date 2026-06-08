@@ -36,6 +36,7 @@ export default async function SitePrepPage({
           signOffName: true,
           signOffAt: true,
           sections: true,
+          pins: { select: { categoryId: true, pinX: true, pinY: true } },
         },
       },
       sitePreparationChecklists: {
@@ -332,6 +333,8 @@ export default async function SitePrepPage({
                           submitAction={checklistSubmitAction}
                           projectUsers={projectUsers}
                           planSections={plan?.sections as Array<{ sectionId: string; sectionName: string; planNote: string; plannedCompletionDate: string }> | undefined}
+                          planPins={plan?.pins?.map((p) => ({ categoryIndex: p.categoryId, x: p.pinX, y: p.pinY }))}
+                          floorPlanUrl={floorPlan?.fileUrl}
                         />
                       </div>
                     </details>
@@ -342,6 +345,8 @@ export default async function SitePrepPage({
                     submitAction={checklistSubmitAction}
                     projectUsers={projectUsers}
                     planSections={plan?.sections as Array<{ sectionId: string; sectionName: string; planNote: string; plannedCompletionDate: string }> | undefined}
+                    planPins={plan?.pins?.map((p) => ({ categoryIndex: p.categoryId, x: p.pinX, y: p.pinY }))}
+                    floorPlanUrl={floorPlan?.fileUrl}
                   />
                 )}
               </>
