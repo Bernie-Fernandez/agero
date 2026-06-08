@@ -6,6 +6,8 @@ import { prisma } from "@/lib/prisma";
 import { AppNav } from "@/components/app-nav";
 import { requireRole, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 import { ComplianceBadge } from "@/components/compliance-badge";
+import { ProjectAssignForm } from "./project-assign-form";
+import { assignToProject, removeFromProject } from "./actions";
 import {
   calcOrgCompliance,
   formatDocType,
@@ -39,29 +41,39 @@ export default async function SubcontractorDashboardPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const appUser = await requireRole(ADMIN_MANAGER_ROLES);
+  const appUser = await requireRole([...ADMIN_MANAGER_ROLES, "site_manager"]);
 
-  const org = await prisma.organisation.findUnique({
-    where: { id },
-    include: {
-      documents: true,
-      _count: { select: { employedWorkers: true } },
-      subcontractorOnProjects: {
-        include: {
-          project: {
-            include: {
-              supervisors: true,
+  const [org, allProjects] = await Promise.all([
+    prisma.organisation.findUnique({
+      where: { id },
+      include: {
+        documents: true,
+        _count: { select: { employedWorkers: true } },
+        subcontractorOnProjects: {
+          include: {
+            project: {
+              include: {
+                supervisors: true,
+              },
             },
           },
         },
+        swmsSubmissions: {
+          orderBy: { versionNumber: "desc" },
+        },
       },
-      swmsSubmissions: {
-        orderBy: { versionNumber: "desc" },
-      },
-    },
-  });
+    }),
+    prisma.project.findMany({
+      where: { organisationId: appUser.organisationId, status: "active" },
+      select: { id: true, name: true },
+      orderBy: { name: "asc" },
+    }),
+  ]);
 
   if (!org) notFound();
+
+  const assignedProjectIds = new Set(org.subcontractorOnProjects.map((p) => p.projectId));
+  const availableProjects = allProjects.filter((p) => !assignedProjectIds.has(p.id));
 
   // Per-project SWMS (latest version per project)
   const swmsByProject = new Map<string, typeof org.swmsSubmissions[0]>();
@@ -192,13 +204,15 @@ export default async function SubcontractorDashboardPage({
         </div>
 
         {/* Projects */}
-        {org.subcontractorOnProjects.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-50 mb-4">Projects</h2>
-            <div className="space-y-3">
+        <div className="mt-8">
+          <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-50 mb-4">Projects</h2>
+
+          {org.subcontractorOnProjects.length > 0 ? (
+            <div className="space-y-3 mb-6">
               {org.subcontractorOnProjects.map(({ project }) => {
                 const swms = swmsByProject.get(project.id);
                 const hasSupervisor = project.supervisors.some((s) => s.organisationId === id);
+                const removeAction = removeFromProject.bind(null, id, project.id);
 
                 return (
                   <div key={project.id} className="flex items-center justify-between rounded-xl border border-zinc-200 bg-white px-5 py-4 dark:border-zinc-800 dark:bg-zinc-900">
@@ -228,13 +242,29 @@ export default async function SubcontractorDashboardPage({
                           SWMS: None →
                         </Link>
                       )}
+                      <form action={removeAction}>
+                        <button
+                          type="submit"
+                          className="rounded-md px-2.5 py-1 text-xs text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30"
+                        >
+                          Remove
+                        </button>
+                      </form>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
-        )}
+          ) : (
+            <p className="mb-4 text-sm text-zinc-400">Not assigned to any projects yet.</p>
+          )}
+
+          <ProjectAssignForm
+            subOrgId={id}
+            availableProjects={availableProjects}
+            assignAction={assignToProject.bind(null, id)}
+          />
+        </div>
       </main>
     </div>
   );
