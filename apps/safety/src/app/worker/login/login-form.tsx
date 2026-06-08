@@ -106,6 +106,36 @@ export function LoginForm() {
               />
             </div>
           </div>
+          <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-xs text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800/50 dark:text-zinc-400 space-y-2">
+            <p className="font-semibold text-zinc-800 dark:text-zinc-200">Privacy Notice — Agero Group</p>
+            <p>
+              Agero Group collects your name, mobile number, and safety credentials (licences, inductions, SWMS signatures) to
+              manage site access and comply with Victorian OHS legislation (OHS Act 2004 and OHS Regs 2017).
+            </p>
+            <p>
+              Your information is stored securely in Australia and used solely for site safety management. We do not sell or
+              share your data with third parties except as required by law or for emergency response.
+            </p>
+            <p>
+              You may request access to or correction of your data by emailing <span className="font-medium">safety@agero.com.au</span>.
+              Data is retained for 7 years in line with OHS regulatory requirements and then securely deleted.
+            </p>
+            <p>
+              By creating an account you consent to this collection and use. See our full{" "}
+              <a href="/privacy" target="_blank" className="underline hover:text-zinc-800 dark:hover:text-zinc-200">Privacy Policy</a>.
+            </p>
+          </div>
+          <label className="flex cursor-pointer items-start gap-2">
+            <input
+              type="checkbox"
+              name="privacyConsent"
+              required
+              className="mt-0.5 h-4 w-4 accent-zinc-800"
+            />
+            <span className="text-sm text-zinc-700 dark:text-zinc-300">
+              I have read and accept the Privacy Notice above and consent to my personal information being collected and used as described.
+            </span>
+          </label>
         </>
       )}
 

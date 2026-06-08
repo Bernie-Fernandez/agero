@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { generateSmsCode, sendSmsCode } from "@/lib/sms";
 import { createWorkerSession, getWorkerSession, setWorkerSessionCookie } from "@/lib/worker-auth";
@@ -87,11 +88,26 @@ export async function workerLoginAction(_prev: LoginState, fd: FormData): Promis
       return { step: "mobile", error: "Session expired. Please start again." };
     }
 
+    const isNew = !(await prisma.workerAccount.findUnique({ where: { mobile }, select: { id: true } }));
+
     const account = await prisma.workerAccount.upsert({
       where: { mobile },
       create: { mobile, firstName, lastName },
       update: {},
     });
+
+    if (isNew) {
+      const hdrs = await headers();
+      const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? hdrs.get("x-real-ip") ?? null;
+      prisma.workerPrivacyConsent.create({
+        data: {
+          workerAccountId: account.id,
+          acceptedAt: new Date(),
+          ipAddress: ip,
+          version: "1.0",
+        },
+      }).catch(() => {});
+    }
 
     const token = await createWorkerSession(account.id);
     await setWorkerSessionCookie(token);
