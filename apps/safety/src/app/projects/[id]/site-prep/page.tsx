@@ -7,6 +7,8 @@ import { SitePrepForm } from "./site-prep-form";
 import { submitSitePrepChecklist } from "./actions";
 import { SitePrepPlanForm } from "./site-prep-plan-form";
 import { submitSitePrepPlan } from "./site-prep-plan-actions";
+import { FloorPlanForm } from "./floor-plan-form";
+import { uploadFloorPlan } from "./floor-plan-actions";
 
 export default async function SitePrepPage({
   params,
@@ -22,6 +24,7 @@ export default async function SitePrepPage({
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id },
     include: {
+      floorPlan: true,
       preStartAssessments: {
         orderBy: { createdAt: "desc" },
         take: 1,
@@ -53,6 +56,8 @@ export default async function SitePrepPage({
   const preStart = safetyProject.preStartAssessments[0] ?? null;
   const plan = safetyProject.sitePreparationPlan;
   const existing = safetyProject.sitePreparationChecklists[0] ?? null;
+  const floorPlan = safetyProject.floorPlan;
+  const floorPlanUploadAction = uploadFloorPlan.bind(null, id);
 
   const isLocked = !preStart;
   const phase1Complete = plan?.status === "COMPLETE";
@@ -122,6 +127,25 @@ export default async function SitePrepPage({
             </Link>
           </div>
         )}
+
+        {/* ── Floor plan ────────────────────────────────────────────────────── */}
+        <section className="mt-6">
+          <h2 className="mb-3 text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            Floor Plan
+          </h2>
+          <div className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <p className="mb-3 text-xs text-zinc-500">
+              Upload a site floor plan (PDF, image). Shared across Site Preparation, Dilapidation, and Defects.
+            </p>
+            <FloorPlanForm
+              uploadAction={floorPlanUploadAction}
+              existingFileUrl={floorPlan?.fileUrl}
+              existingFileName={floorPlan?.fileName}
+              uploadedBy={floorPlan?.uploadedBy}
+              uploadedAt={floorPlan?.uploadedAt}
+            />
+          </div>
+        </section>
 
         {/* Locked: no pre-start */}
         {isLocked && (
