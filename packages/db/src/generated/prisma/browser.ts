@@ -678,6 +678,11 @@ export type XeroPnLSnapshot = Prisma.XeroPnLSnapshotModel
  */
 export type XeroBalanceSheetSnapshot = Prisma.XeroBalanceSheetSnapshotModel
 /**
+ * Model RevenueCurve
+ * 
+ */
+export type RevenueCurve = Prisma.RevenueCurveModel
+/**
  * Model FYSettings
  * 
  */

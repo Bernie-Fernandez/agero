@@ -183,6 +183,7 @@ export const ModelName = {
   HubSpotSyncSettings: 'HubSpotSyncSettings',
   XeroPnLSnapshot: 'XeroPnLSnapshot',
   XeroBalanceSheetSnapshot: 'XeroBalanceSheetSnapshot',
+  RevenueCurve: 'RevenueCurve',
   FYSettings: 'FYSettings',
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
@@ -2718,6 +2719,22 @@ export const XeroBalanceSheetSnapshotScalarFieldEnum = {
 } as const
 
 export type XeroBalanceSheetSnapshotScalarFieldEnum = (typeof XeroBalanceSheetSnapshotScalarFieldEnum)[keyof typeof XeroBalanceSheetSnapshotScalarFieldEnum]
+
+
+export const RevenueCurveScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  name: 'name',
+  description: 'description',
+  isSystem: 'isSystem',
+  isArchived: 'isArchived',
+  periodCount: 'periodCount',
+  weights: 'weights',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RevenueCurveScalarFieldEnum = (typeof RevenueCurveScalarFieldEnum)[keyof typeof RevenueCurveScalarFieldEnum]
 
 
 export const FYSettingsScalarFieldEnum = {

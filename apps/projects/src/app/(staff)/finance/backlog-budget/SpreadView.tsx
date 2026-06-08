@@ -21,6 +21,7 @@ import {
   type MonthKey,
   type MonthlyData,
 } from '@/lib/revenue-budget/constants';
+import { listActiveCurves, type RevenueCurveRow } from '@/lib/revenue-curves/actions';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -64,6 +65,7 @@ function DistributePopover({
   visibleMonths,
   lockedKeys,
   currentMonthly,
+  curves,
   onApply,
   onClose,
 }: {
@@ -71,18 +73,46 @@ function DistributePopover({
   visibleMonths: readonly MonthKey[];
   lockedKeys: Record<MonthKey, boolean>;
   currentMonthly: Record<MonthKey, string>;
+  curves: RevenueCurveRow[];
   onApply: (data: MonthlyData) => void;
   onClose: () => void;
 }) {
   const [total, setTotal] = useState(defaultTotal.toFixed(2));
   const [fromMonth, setFromMonth] = useState<MonthKey>(visibleMonths[0]);
   const [toMonth, setToMonth] = useState<MonthKey>(visibleMonths[visibleMonths.length - 1]);
+  const [curveId, setCurveId] = useState<string>('even');
 
   const hasLocked = Object.values(lockedKeys).some(Boolean);
 
+  const fromIdx = visibleMonths.indexOf(fromMonth);
+  const toIdx = visibleMonths.indexOf(toMonth);
+  const rangeLen = fromIdx >= 0 && toIdx >= fromIdx ? toIdx - fromIdx + 1 : 0;
+
+  const selectedCurve = curves.find((c) => c.id === curveId) ?? null;
+  const mismatchWarning =
+    selectedCurve && rangeLen > 0 && selectedCurve.periodCount < rangeLen
+      ? `This curve is designed for ${selectedCurve.periodCount} periods but you selected ${rangeLen} months. Even distribution will be used for the extra months.`
+      : null;
+
+  function buildWeights(n: number): number[] {
+    if (!selectedCurve || curveId === 'even') {
+      return Array(n).fill(1 / n);
+    }
+    const raw = selectedCurve.weights;
+    if (raw.length >= n) {
+      // Use first N weights, renormalize
+      const slice = raw.slice(0, n);
+      const sum = slice.reduce((a, b) => a + b, 0);
+      return sum === 0 ? Array(n).fill(1 / n) : slice.map((w) => w / sum);
+    }
+    // Fewer periods than range: use all curve weights, then even for remainder
+    const normalizedCurve = raw.map((w) => (w / 100) * (raw.length / n));
+    const extraCount = n - raw.length;
+    const extraWeight = (1 - raw.reduce((a, b) => a + b, 0) / 100) / extraCount;
+    return [...normalizedCurve, ...Array(extraCount).fill(Math.max(extraWeight, 0))];
+  }
+
   function handleApply() {
-    const fromIdx = visibleMonths.indexOf(fromMonth);
-    const toIdx = visibleMonths.indexOf(toMonth);
     if (fromIdx < 0 || toIdx < fromIdx) return;
     const range = visibleMonths.slice(fromIdx, toIdx + 1);
 
@@ -98,22 +128,29 @@ function DistributePopover({
       return;
     }
 
-    const perCell = round2dp(distributeAmount / unlockedInRange.length);
-    const lastKey = unlockedInRange[unlockedInRange.length - 1];
-    const lastCell = round2dp(distributeAmount - (unlockedInRange.length - 1) * perCell);
+    // Build fractional weights for unlocked cells only
+    const allWeights = buildWeights(range.length);
+    const unlockedWeights: number[] = [];
+    for (let i = 0; i < range.length; i++) {
+      if (!lockedKeys[range[i]]) unlockedWeights.push(allWeights[i]);
+    }
+    const wSum = unlockedWeights.reduce((a, b) => a + b, 0);
+    const normalised = wSum === 0 ? unlockedWeights.map(() => 1 / unlockedInRange.length) : unlockedWeights.map((w) => w / wSum);
+
+    let distributed = 0;
+    for (let i = 0; i < unlockedInRange.length - 1; i++) {
+      const amt = round2dp(distributeAmount * normalised[i]);
+      data[unlockedInRange[i]] = amt;
+      distributed += amt;
+    }
+    // Last unlocked cell absorbs rounding remainder
+    data[unlockedInRange[unlockedInRange.length - 1]] = round2dp(distributeAmount - distributed);
 
     for (const key of visibleMonths) {
       if (lockedKeys[key]) {
-        // Locked cells always keep their current value
         data[key] = Number(currentMonthly[key] ?? 0);
       } else if (!range.includes(key)) {
-        // Unlocked, outside distribute range → zero
         data[key] = 0;
-      } else if (key === lastKey) {
-        // Last unlocked cell gets remainder to ensure exact sum
-        data[key] = lastCell;
-      } else {
-        data[key] = perCell;
       }
     }
 
@@ -121,11 +158,14 @@ function DistributePopover({
     onClose();
   }
 
+  const systemCurves = curves.filter((c) => c.isSystem);
+  const customCurves = curves.filter((c) => !c.isSystem);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/20" onClick={onClose} />
-      <div className="relative bg-white rounded-lg shadow-xl border border-zinc-200 p-4 w-72">
-        <h3 className="text-sm font-semibold text-zinc-800 mb-3">Distribute revenue evenly</h3>
+      <div className="relative bg-white rounded-lg shadow-xl border border-zinc-200 p-4 w-80">
+        <h3 className="text-sm font-semibold text-zinc-800 mb-3">Distribute revenue</h3>
         <div className="space-y-3">
           <div>
             <label className="text-xs text-zinc-500 block mb-1">Total amount ($)</label>
@@ -161,6 +201,43 @@ function DistributePopover({
               ))}
             </select>
           </div>
+          <div>
+            <label className="text-xs text-zinc-500 block mb-1">Distribution</label>
+            <select
+              value={curveId}
+              onChange={(e) => setCurveId(e.target.value)}
+              className="w-full text-sm border border-zinc-300 rounded px-2 py-1.5 bg-white"
+            >
+              <option value="even">Even Distribution</option>
+              {systemCurves.filter((c) => c.name !== 'Even Distribution').length > 0 && (
+                <optgroup label="SYSTEM CURVES">
+                  {systemCurves.filter((c) => c.name !== 'Even Distribution').map((c) => (
+                    <option key={c.id} value={c.id}>{c.name}</option>
+                  ))}
+                </optgroup>
+              )}
+              {customCurves.length > 0 && (
+                <optgroup label="CUSTOM CURVES">
+                  {customCurves.map((c) => (
+                    <option key={c.id} value={c.id}>{c.name}</option>
+                  ))}
+                </optgroup>
+              )}
+            </select>
+            <a
+              href="/admin/curves"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[10px] text-blue-500 hover:underline block mt-1 text-right"
+            >
+              Manage curves →
+            </a>
+          </div>
+          {mismatchWarning && (
+            <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+              {mismatchWarning}
+            </p>
+          )}
           {hasLocked && (
             <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded px-2 py-1">
               Locked cells are excluded from distribution.
@@ -405,6 +482,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
   const [error, setError] = useState<string | null>(null);
   const [showFY28, setShowFY28] = useState(false);
   const [distributingFor, setDistributingFor] = useState<{ id: string; type: 'project' | 'unsecured' } | null>(null);
+  const [curves, setCurves] = useState<RevenueCurveRow[]>([]);
   const [showAddLead, setShowAddLead] = useState(false);
   const [addingLeadId, setAddingLeadId] = useState<string | null>(null);
   const [lockedCells, setLockedCells] = useState<Record<string, Record<MonthKey, boolean>>>({});
@@ -416,10 +494,11 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
   async function loadData(fy: string) {
     setLoading(true);
     setError(null);
-    const [projRes, unsecRes, leadsRes] = await Promise.all([
+    const [projRes, unsecRes, leadsRes, curvesRes] = await Promise.all([
       getProjectRevenueBudgets(fy),
       getUnsecuredRevenueBudgets(fy),
       getQualifyingLeads(fy),
+      listActiveCurves(),
     ]);
     if (projRes.ok) {
       const budgets = projRes.rows ?? [];
@@ -438,6 +517,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
       setUnsecuredMonthly(monthly);
     }
     if (leadsRes.ok) setQualLeads(leadsRes.leads ?? []);
+    setCurves(Array.isArray(curvesRes) ? curvesRes : []);
     setLoading(false);
   }
 
@@ -851,6 +931,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
           visibleMonths={ALL_MONTH_KEYS}
           lockedKeys={getDistributeLocked()}
           currentMonthly={getDistributeMonthly()}
+          curves={curves}
           onApply={handleDistributeApply}
           onClose={() => setDistributingFor(null)}
         />

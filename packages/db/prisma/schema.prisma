@@ -302,6 +302,7 @@ model Organisation {
   unsecuredRevenueBudgets UnsecuredRevenueBudget[]
   xeroWipSettings             XeroWipSettings?
   xeroBalanceSheetSnapshots   XeroBalanceSheetSnapshot[]
+  revenueCurves               RevenueCurve[]
 
   @@map("organisations")
   @@schema("projects")
@@ -4001,6 +4002,28 @@ model XeroBalanceSheetSnapshot {
 
   @@unique([organisationId, reportMonth])
   @@map("xero_balance_sheet_snapshots")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.3.1 — Revenue Curve Library
+// ─────────────────────────────────────────────────────────────────────────────
+
+model RevenueCurve {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?      @db.Text
+  isSystem       Boolean      @default(false) @map("is_system")
+  isArchived     Boolean      @default(false) @map("is_archived")
+  periodCount    Int          @map("period_count")
+  weights        Json
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, name])
+  @@map("revenue_curves")
   @@schema("projects")
 }
 
