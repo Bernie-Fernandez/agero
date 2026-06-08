@@ -8,6 +8,12 @@ import { sendPreStartAssessmentEmail } from "@/lib/email";
 import { generatePreStartPdf } from "@/lib/pdf/pre-start-pdf";
 import type { HRWFlag, PsychFlag, ConsultationPerson, ProjectComplexity } from "@/lib/pdf/pre-start-pdf";
 
+export interface InternalSignOffEntry {
+  role: string;
+  name: string;
+  signatureDataUrl: string;
+}
+
 export interface PreStartFormPayload {
   assessmentDate: string;
   projectComplexities: ProjectComplexity[];
@@ -16,6 +22,7 @@ export interface PreStartFormPayload {
   psychHierarchyDeclaration: boolean;
   consultationPersons: ConsultationPerson[];
   consultationDeclaration: boolean;
+  internalSignoffs: InternalSignOffEntry[];
   signOffDropdownUserId: string;
   signatureDataUrl?: string;
 }
@@ -49,6 +56,7 @@ export async function submitPreStartAssessment(
     psychHierarchyDeclaration,
     consultationPersons,
     consultationDeclaration,
+    internalSignoffs,
     signOffDropdownUserId,
     signatureDataUrl,
   } = payload;
@@ -74,6 +82,10 @@ export async function submitPreStartAssessment(
   }
   if (!consultationDeclaration)
     return { error: "You must confirm the consultation declaration before sign-off." };
+
+  const missingInternalSig = internalSignoffs?.find((s) => !s.name.trim() || !s.signatureDataUrl);
+  if (missingInternalSig || !internalSignoffs || internalSignoffs.length < 4)
+    return { error: "All four Panel A internal signatories must provide their name and signature." };
 
   const incompletePsych = psychFlags.filter((f) => f.flagged && !f.controls.trim());
   if (incompletePsych.length > 0) {
@@ -157,7 +169,7 @@ export async function submitPreStartAssessment(
   }
 
   // ── Save record ────────────────────────────────────────────────────────────
-  await prisma.preStartAssessment.create({
+  const assessment = await prisma.preStartAssessment.create({
     data: {
       projectId: safetyProjectId,
       completedById: user.id,
@@ -171,8 +183,40 @@ export async function submitPreStartAssessment(
       signatureUrl,
       signOffAt,
       pdfUrl,
+      internalSignoffsRequired: internalSignoffs.map((s) => s.role),
+      allInternalSigned: true,
     },
   });
+
+  // ── Upload and save internal sign-off signatures ───────────────────────────
+  await Promise.all(internalSignoffs.map(async (entry, idx) => {
+    let sigUrl = "";
+    try {
+      const base64Data = entry.signatureDataUrl.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+      const storage = createStorageAdminClient();
+      const sigPath = `pre-start/internal-signoffs/${assessment.id}-${idx}-${Date.now()}.png`;
+      const { error: uploadError } = await storage
+        .from("documents")
+        .upload(sigPath, buffer, { contentType: "image/png", upsert: false });
+      if (!uploadError) {
+        const { data } = storage.from("documents").getPublicUrl(sigPath);
+        sigUrl = data.publicUrl;
+      }
+    } catch (e) {
+      console.error("[preStart] Internal sig upload error:", e);
+    }
+    await prisma.internalSignOff.create({
+      data: {
+        preStartId: assessment.id,
+        signatoryClerkId: user.clerkUserId ?? user.id,
+        signatoryName: entry.name.trim(),
+        signatoryRole: entry.role,
+        signatureUrl: sigUrl,
+        signedAt: signOffAt,
+      },
+    });
+  }));
 
   // ── Email Director + Safety Managers ─────────────────────────────────────
   try {

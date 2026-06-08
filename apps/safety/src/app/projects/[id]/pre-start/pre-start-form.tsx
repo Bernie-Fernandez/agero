@@ -3,7 +3,7 @@
 import { useActionState, useState, useRef, useEffect, useCallback } from "react";
 import { HRW_CLASSIFICATIONS, PSYCH_HAZARDS } from "./constants";
 import type { HRWFlag, PsychFlag, ConsultationPerson, ProjectComplexity } from "@/lib/pdf/pre-start-pdf";
-import type { SubmitState, PreStartFormPayload } from "./actions";
+import type { SubmitState, PreStartFormPayload, InternalSignOffEntry } from "./actions";
 
 interface ProjectUser {
   id: string;
@@ -18,6 +18,7 @@ interface Props {
   projectId: string;
 }
 
+const INTERNAL_ROLES = ["Project Manager", "Construction Manager", "Site Manager", "Director"] as const;
 const RISK_LEVELS = ["Low", "Medium", "High", "Critical"] as const;
 const CONSULT_METHODS = ["Site meeting", "Phone call", "Email", "Video call"] as const;
 const RISK_COLOURS: Record<string, string> = {
@@ -179,6 +180,14 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
   const [signOffUserId, setSignOffUserId] = useState(projectUsers[0]?.id ?? "");
   const signOffName = projectUsers.find((u) => u.id === signOffUserId)?.name ?? projectUsers.find((u) => u.id === signOffUserId)?.email ?? "";
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Panel A — internal sign-off
+  const [internalNames, setInternalNames] = useState<string[]>(INTERNAL_ROLES.map(() => ""));
+  const internalCanvasRef0 = useRef<HTMLCanvasElement>(null);
+  const internalCanvasRef1 = useRef<HTMLCanvasElement>(null);
+  const internalCanvasRef2 = useRef<HTMLCanvasElement>(null);
+  const internalCanvasRef3 = useRef<HTMLCanvasElement>(null);
+  const internalCanvasRefs = [internalCanvasRef0, internalCanvasRef1, internalCanvasRef2, internalCanvasRef3];
 
   const [clientError, setClientError] = useState<string | null>(null);
 
@@ -374,6 +383,20 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
     }
     if (!consultationDeclaration) return "You must confirm the consultation declaration before sign-off.";
 
+    // Check Panel A internal signatures
+    for (let i = 0; i < INTERNAL_ROLES.length; i++) {
+      if (!internalNames[i]?.trim()) return `Name required for Panel A signatory: ${INTERNAL_ROLES[i]}`;
+      const ic = internalCanvasRefs[i].current;
+      if (ic) {
+        const ctx = ic.getContext("2d");
+        if (ctx) {
+          const data = ctx.getImageData(0, 0, ic.width, ic.height).data;
+          const hasSig = Array.from(data).some((v, j) => j % 4 !== 3 && v < 200);
+          if (!hasSig) return `Signature required for Panel A: ${INTERNAL_ROLES[i]}`;
+        }
+      }
+    }
+
     // Check signature has been drawn
     const canvas = canvasRef.current;
     if (canvas) {
@@ -399,6 +422,11 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
     setClientError(null);
 
     const signatureDataUrl = canvasRef.current?.toDataURL("image/png") ?? undefined;
+    const internalSignoffs: InternalSignOffEntry[] = INTERNAL_ROLES.map((role, i) => ({
+      role,
+      name: internalNames[i] ?? "",
+      signatureDataUrl: internalCanvasRefs[i].current?.toDataURL("image/png") ?? "",
+    }));
     const payload: PreStartFormPayload = {
       assessmentDate,
       projectComplexities: complexities,
@@ -407,6 +435,7 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
       psychHierarchyDeclaration,
       consultationPersons,
       consultationDeclaration,
+      internalSignoffs,
       signOffDropdownUserId: signOffUserId,
       signatureDataUrl,
     };
@@ -973,6 +1002,34 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
             This consultation was genuine and not a formality.
           </span>
         </label>
+      </section>
+
+      {/* ── Panel A: Internal Sign-Off ──────────────────────────────────────── */}
+      <section>
+        <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">Panel A — Internal Sign-Off</h2>
+        <p className="mt-1 text-sm text-zinc-500">
+          All four Agero Group personnel must sign to confirm they have reviewed and approved this assessment before submission.
+        </p>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {INTERNAL_ROLES.map((role, i) => (
+            <div key={role} className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+              <p className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-2">{role} <span className="text-red-500">*</span></p>
+              <label className="block mb-3">
+                <span className="text-xs text-zinc-500">Full name</span>
+                <input
+                  type="text"
+                  value={internalNames[i] ?? ""}
+                  onChange={(e) => setInternalNames((prev) => { const n = [...prev]; n[i] = e.target.value; return n; })}
+                  placeholder={`Name of ${role}`}
+                  className="mt-1 w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                />
+              </label>
+              <p className="text-xs text-zinc-500 mb-1">Signature</p>
+              <SignatureCanvas canvasRef={internalCanvasRefs[i]} onClear={() => {}} />
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ── Sign-off ─────────────────────────────────────────────────────────── */}
