@@ -1,6 +1,7 @@
 'use server';
 
 import { createServerClient } from './supabase-server';
+import { prisma as safetyPrisma } from './prisma';
 
 /**
  * Upserts a SafetyProject row in the public schema to keep it in sync with the
@@ -60,6 +61,18 @@ export async function syncSafetyProject({
         .update({ name, address, updated_at: new Date().toISOString() })
         .eq('erp_project_id', erpProjectId);
       if (error) console.error('[syncSafetyProject] update error:', error.message);
+    }
+    // Also upsert public.projects so the readiness dashboard can resolve
+    // prisma.project.findUnique({ where: { id: erpProjectId } }) and display
+    // Layer 2 (subcontractor compliance) and Layer 3 (worker readiness).
+    try {
+      await safetyPrisma.project.upsert({
+        where: { id: erpProjectId },
+        create: { id: erpProjectId, name, address, organisationId },
+        update: { name, address },
+      });
+    } catch (pe) {
+      console.error('[syncSafetyProject] public.projects upsert error:', pe);
     }
   } catch (e) {
     console.error('[syncSafetyProject] unexpected error:', e);
