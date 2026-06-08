@@ -6,6 +6,14 @@ import { requireRole, AGERO_ROLES } from "@/lib/auth";
 import { PreStartForm } from "./pre-start-form";
 import { submitPreStartAssessment } from "./actions";
 
+const EVENT_LABELS: Record<string, string> = {
+  SWMS_APPROVAL: "SWMS Approval",
+  INDUCTION: "Induction",
+  TOOLBOX_MEETING: "Toolbox Meeting",
+  NCR: "NCR",
+  PRE_START_INTERNAL: "Pre-Start Internal",
+};
+
 export default async function PreStartPage({
   params,
   searchParams,
@@ -36,6 +44,11 @@ export default async function PreStartPage({
     },
     select: { id: true, name: true, email: true, role: true },
     orderBy: { name: "asc" },
+  });
+
+  const consultationEvents = await prisma.consultationEvent.findMany({
+    where: { projectId: id },
+    orderBy: { eventDate: "desc" },
   });
 
   const submitAction = submitPreStartAssessment.bind(null, id);
@@ -143,6 +156,43 @@ export default async function PreStartPage({
               </a>
             )}
           </div>
+        )}
+
+        {/* ── Panel B: Consultation Event Log ────────────────────────────────── */}
+        {consultationEvents.length > 0 && (
+          <section className="mt-6">
+            <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-3">
+              Panel B — Consultation Event Log ({consultationEvents.length})
+            </h2>
+            <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-zinc-100 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/80">
+                    <th className="px-4 py-3 text-left text-xs font-medium text-zinc-500">Type</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-zinc-500">Date</th>
+                    <th className="hidden px-4 py-3 text-left text-xs font-medium text-zinc-500 sm:table-cell">Notes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+                  {consultationEvents.map((ev) => (
+                    <tr key={ev.id}>
+                      <td className="px-4 py-3">
+                        <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                          {EVENT_LABELS[ev.eventType] ?? ev.eventType}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-xs text-zinc-500">
+                        {new Date(ev.eventDate).toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" })}
+                      </td>
+                      <td className="hidden px-4 py-3 text-xs text-zinc-500 sm:table-cell">
+                        {ev.notes ?? "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
         )}
 
         {/* ── Form ─────────────────────────────────────────────────────────── */}

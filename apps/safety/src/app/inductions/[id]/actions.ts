@@ -358,6 +358,25 @@ async function handleSign(
     },
   });
 
+  // Tag as ConsultationEvent (fire-and-forget)
+  if (template.projectId) {
+    prisma.safetyProject.findUnique({ where: { erpProjectId: template.projectId } })
+      .then((sp) => {
+        if (!sp) return;
+        return prisma.consultationEvent.create({
+          data: {
+            projectId: sp.id,
+            eventType: "INDUCTION",
+            referenceId: templateId,
+            consultedPersons: [{ name: workerName, mobile }],
+            notes: `${template.title} completed by ${workerName}`,
+            eventDate: now,
+          },
+        });
+      })
+      .catch(() => {});
+  }
+
   if (nextUrl) redirect(nextUrl);
   return {
     passed: true,

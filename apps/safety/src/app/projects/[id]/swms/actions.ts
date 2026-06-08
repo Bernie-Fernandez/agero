@@ -77,15 +77,28 @@ export async function approveSwmsDocument(
   _formData: FormData,
 ): Promise<void> {
   const user = await requireRole(ADMIN_MANAGER_ROLES);
+  const now = new Date();
 
-  await prisma.swmsDocument.update({
+  const doc = await prisma.swmsDocument.update({
     where: { id: docId },
     data: {
       ageroApproved: true,
       ageroApprovedBy: user.name ?? user.email,
-      ageroApprovedAt: new Date(),
+      ageroApprovedAt: now,
     },
+    select: { tradeCategory: true, organisationId: true },
   });
+
+  prisma.consultationEvent.create({
+    data: {
+      projectId: safetyProjectId,
+      eventType: "SWMS_APPROVAL",
+      referenceId: docId,
+      consultedPersons: [{ name: user.name ?? user.email, role: "Safety Manager" }],
+      notes: `SWMS approved — ${doc.tradeCategory ?? "General"}`,
+      eventDate: now,
+    },
+  }).catch(() => {});
 
   redirect(`/projects/${safetyProjectId}/swms`);
 }
