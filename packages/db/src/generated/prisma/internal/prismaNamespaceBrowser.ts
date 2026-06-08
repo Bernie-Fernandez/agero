@@ -189,7 +189,8 @@ export const ModelName = {
   FYSettings: 'FYSettings',
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
-  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget'
+  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget',
+  ManagementReportSnapshot: 'ManagementReportSnapshot'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2886,6 +2887,24 @@ export const UnsecuredRevenueBudgetScalarFieldEnum = {
 } as const
 
 export type UnsecuredRevenueBudgetScalarFieldEnum = (typeof UnsecuredRevenueBudgetScalarFieldEnum)[keyof typeof UnsecuredRevenueBudgetScalarFieldEnum]
+
+
+export const ManagementReportSnapshotScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  lockedAt: 'lockedAt',
+  lockedBy: 'lockedBy',
+  snapshotData: 'snapshotData',
+  pdfGeneratedAt: 'pdfGeneratedAt',
+  pdfUrl: 'pdfUrl',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportSnapshotScalarFieldEnum = (typeof ManagementReportSnapshotScalarFieldEnum)[keyof typeof ManagementReportSnapshotScalarFieldEnum]
 
 
 export const SortOrder = {

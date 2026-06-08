@@ -304,6 +304,7 @@ model Organisation {
   xeroBalanceSheetSnapshots   XeroBalanceSheetSnapshot[]
   revenueCurves               RevenueCurve[]
   cashFlowForecasts           CashFlowForecast[]
+  managementReportSnapshots   ManagementReportSnapshot[]
 
   @@map("organisations")
   @@schema("projects")
@@ -4234,5 +4235,37 @@ model UnsecuredRevenueBudget {
   @@unique([leadId, fyYear])
   @@index([organisationId, fyYear])
   @@map("unsecured_revenue_budgets")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.7 — Management Report Snapshot
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum MgmtSnapshotStatus {
+  DRAFT
+  LOCKED
+
+  @@schema("projects")
+}
+
+model ManagementReportSnapshot {
+  id             String             @id @default(uuid()) @db.Uuid
+  organisationId String             @map("organisation_id") @db.Uuid
+  organisation   Organisation       @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  reportMonth    DateTime           @map("report_month") @db.Date
+  status         MgmtSnapshotStatus @default(DRAFT)
+  lockedAt       DateTime?          @map("locked_at")
+  lockedBy       String?            @map("locked_by") @db.Uuid
+  snapshotData   Json?              @map("snapshot_data")
+  pdfGeneratedAt DateTime?          @map("pdf_generated_at")
+  pdfUrl         String?            @map("pdf_url")
+  notes          String?            @db.Text
+  createdAt      DateTime           @default(now()) @map("created_at")
+  updatedAt      DateTime           @updatedAt @map("updated_at")
+
+  @@unique([organisationId, reportMonth])
+  @@index([organisationId])
+  @@map("management_report_snapshots")
   @@schema("projects")
 }

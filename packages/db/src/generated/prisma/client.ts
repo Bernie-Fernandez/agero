@@ -736,3 +736,8 @@ export type ProjectRevenueBudget = Prisma.ProjectRevenueBudgetModel
  * 
  */
 export type UnsecuredRevenueBudget = Prisma.UnsecuredRevenueBudgetModel
+/**
+ * Model ManagementReportSnapshot
+ * 
+ */
+export type ManagementReportSnapshot = Prisma.ManagementReportSnapshotModel

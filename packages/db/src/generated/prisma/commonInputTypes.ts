@@ -1683,6 +1683,23 @@ export type EnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel = never> = 
   _max?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
 }
 
+export type EnumMgmtSnapshotStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MgmtSnapshotStatus | Prisma.EnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel> | $Enums.MgmtSnapshotStatus
+}
+
+export type EnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MgmtSnapshotStatus | Prisma.EnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel> | $Enums.MgmtSnapshotStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -3305,6 +3322,23 @@ export type NestedEnumBacklogBudgetStatusWithAggregatesFilter<$PrismaModel = nev
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumBacklogBudgetStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumMgmtSnapshotStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MgmtSnapshotStatus | Prisma.EnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel> | $Enums.MgmtSnapshotStatus
+}
+
+export type NestedEnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MgmtSnapshotStatus | Prisma.EnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MgmtSnapshotStatus[] | Prisma.ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel> | $Enums.MgmtSnapshotStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
 }
 
 

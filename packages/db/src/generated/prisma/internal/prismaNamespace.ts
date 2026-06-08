@@ -522,7 +522,8 @@ export const ModelName = {
   FYSettings: 'FYSettings',
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
-  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget'
+  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget',
+  ManagementReportSnapshot: 'ManagementReportSnapshot'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -538,7 +539,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "cashFlowForecast" | "cashFlowLineItem" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "cashFlowForecast" | "cashFlowLineItem" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget" | "managementReportSnapshot"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10828,6 +10829,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ManagementReportSnapshot: {
+      payload: Prisma.$ManagementReportSnapshotPayload<ExtArgs>
+      fields: Prisma.ManagementReportSnapshotFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ManagementReportSnapshotFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ManagementReportSnapshotFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        findFirst: {
+          args: Prisma.ManagementReportSnapshotFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ManagementReportSnapshotFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        findMany: {
+          args: Prisma.ManagementReportSnapshotFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>[]
+        }
+        create: {
+          args: Prisma.ManagementReportSnapshotCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        createMany: {
+          args: Prisma.ManagementReportSnapshotCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ManagementReportSnapshotCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>[]
+        }
+        delete: {
+          args: Prisma.ManagementReportSnapshotDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        update: {
+          args: Prisma.ManagementReportSnapshotUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        deleteMany: {
+          args: Prisma.ManagementReportSnapshotDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ManagementReportSnapshotUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ManagementReportSnapshotUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>[]
+        }
+        upsert: {
+          args: Prisma.ManagementReportSnapshotUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ManagementReportSnapshotPayload>
+        }
+        aggregate: {
+          args: Prisma.ManagementReportSnapshotAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateManagementReportSnapshot>
+        }
+        groupBy: {
+          args: Prisma.ManagementReportSnapshotGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportSnapshotGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ManagementReportSnapshotCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ManagementReportSnapshotCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -13547,6 +13622,24 @@ export const UnsecuredRevenueBudgetScalarFieldEnum = {
 export type UnsecuredRevenueBudgetScalarFieldEnum = (typeof UnsecuredRevenueBudgetScalarFieldEnum)[keyof typeof UnsecuredRevenueBudgetScalarFieldEnum]
 
 
+export const ManagementReportSnapshotScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  reportMonth: 'reportMonth',
+  status: 'status',
+  lockedAt: 'lockedAt',
+  lockedBy: 'lockedBy',
+  snapshotData: 'snapshotData',
+  pdfGeneratedAt: 'pdfGeneratedAt',
+  pdfUrl: 'pdfUrl',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ManagementReportSnapshotScalarFieldEnum = (typeof ManagementReportSnapshotScalarFieldEnum)[keyof typeof ManagementReportSnapshotScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -14701,6 +14794,20 @@ export type ListEnumBacklogBudgetStatusFieldRefInput<$PrismaModel> = FieldRefInp
 
 
 /**
+ * Reference to a field of type 'MgmtSnapshotStatus'
+ */
+export type EnumMgmtSnapshotStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MgmtSnapshotStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MgmtSnapshotStatus[]'
+ */
+export type ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MgmtSnapshotStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -14947,6 +15054,7 @@ export type GlobalOmitConfig = {
   backlogBudget?: Prisma.BacklogBudgetOmit
   projectRevenueBudget?: Prisma.ProjectRevenueBudgetOmit
   unsecuredRevenueBudget?: Prisma.UnsecuredRevenueBudgetOmit
+  managementReportSnapshot?: Prisma.ManagementReportSnapshotOmit
 }
 
 /* Types for Logging */

@@ -768,3 +768,11 @@ export const HubSpotConnectionStatus = {
 } as const
 
 export type HubSpotConnectionStatus = (typeof HubSpotConnectionStatus)[keyof typeof HubSpotConnectionStatus]
+
+
+export const MgmtSnapshotStatus = {
+  DRAFT: 'DRAFT',
+  LOCKED: 'LOCKED'
+} as const
+
+export type MgmtSnapshotStatus = (typeof MgmtSnapshotStatus)[keyof typeof MgmtSnapshotStatus]
