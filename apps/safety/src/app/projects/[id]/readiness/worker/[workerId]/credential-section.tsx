@@ -19,6 +19,9 @@ const CRED_TYPES = [
   { value: "FIRST_AID", label: "First Aid" },
   { value: "ASBESTOS_AWARENESS", label: "Asbestos Awareness" },
   { value: "DRIVER_LICENCE", label: "Driver Licence" },
+  { value: "PASSPORT", label: "Passport" },
+  { value: "GOVERNMENT_ID", label: "Government ID" },
+  { value: "TRAINING_CERTIFICATE", label: "Training Certificate" },
   { value: "OTHER", label: "Other" },
 ] as const;
 

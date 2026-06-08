@@ -11,8 +11,8 @@ const PORTAL_LABEL: Record<UserRole, string> = {
 };
 
 const navLinks = [
-  { href: "/dashboard", label: "Dashboard", roles: null },
-  { href: "/projects", label: "Projects", roles: null },
+  { href: "/dashboard", label: "Dashboard", roles: ["admin", "safety_manager", "project_manager", "site_manager"] as UserRole[] },
+  { href: "/projects", label: "Projects", roles: ["admin", "safety_manager", "project_manager", "site_manager"] as UserRole[] },
   {
     href: "/subcontractors",
     label: "Subcontractors",
@@ -28,7 +28,12 @@ const navLinks = [
     label: "Supervisor",
     roles: ["site_manager"] as UserRole[],
   },
-] satisfies { href: string; label: string; roles: UserRole[] | null }[];
+  {
+    href: "/portal",
+    label: "My Workers",
+    roles: ["subcontractor_admin"] as UserRole[],
+  },
+] satisfies { href: string; label: string; roles: UserRole[] }[];
 
 export function AppNav({
   currentPath,
@@ -38,7 +43,7 @@ export function AppNav({
   userRole?: UserRole;
 }) {
   const visible = navLinks.filter(
-    (link) => link.roles === null || (userRole && link.roles.includes(userRole)),
+    (link) => userRole && link.roles.includes(userRole),
   );
 
   // Derive a prefix to match for active highlighting
@@ -52,7 +57,7 @@ export function AppNav({
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-6">
-          <Link href="/dashboard" className="flex flex-col leading-tight">
+          <Link href={userRole === "subcontractor_admin" ? "/portal" : "/dashboard"} className="flex flex-col leading-tight">
             <span className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
               Agero Safety
             </span>

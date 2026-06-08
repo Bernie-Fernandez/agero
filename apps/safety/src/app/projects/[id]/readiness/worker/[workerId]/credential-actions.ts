@@ -126,11 +126,17 @@ export async function saveCredential(
     },
   });
 
-  const safetyProject = await prisma.safetyProject.findUnique({
-    where: { id: safetyProjectId },
-    select: { erpProjectId: true },
-  });
+  const safetyProject = safetyProjectId
+    ? await prisma.safetyProject.findUnique({
+        where: { id: safetyProjectId },
+        select: { id: true },
+      })
+    : null;
 
-  revalidatePath(`/projects/${safetyProject?.erpProjectId}/readiness/worker/${workerId}`);
+  if (safetyProject) {
+    revalidatePath(`/projects/${safetyProject.id}/readiness/worker/${workerId}`);
+  }
+  revalidatePath(`/portal/workers/${workerId}`);
+  revalidatePath("/portal");
   return {};
 }
