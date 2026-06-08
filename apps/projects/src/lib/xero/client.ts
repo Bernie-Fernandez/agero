@@ -14,6 +14,8 @@ export function getXeroClient() {
       'accounting.reports.banksummary.read',
       'accounting.reports.aged.read',
       'accounting.settings.read',
+      'accounting.transactions',   // required for manual journal write
+      'accounting.attachments',    // required for journal PDF attachments
     ],
   });
 }

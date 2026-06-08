@@ -229,6 +229,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <NavLink href="/finance/dashboard" label="Dashboard" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/backlog-budget" label="Backlog Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/month-end" label="Month-end" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
@@ -240,6 +241,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
         <NavLink href="/finance/settings/xero" label="Xero Connection" depth={2} onItemClick={onItemClick} />
         <NavLink href="/finance/settings/month-status" label="Month Status" depth={2} onItemClick={onItemClick} />
+        <NavLink href="/finance/settings/xero-wip" label="WIP Accounts" depth={2} onItemClick={onItemClick} />
         <StubbedItem label="S-Curves" depth={2} />
         <StubbedItem label="HubSpot Sync" depth={2} />
         <StubbedItem label="Deal Defaults" depth={2} />

@@ -300,6 +300,7 @@ model Organisation {
   backlogBudgets          BacklogBudget[]
   projectRevenueBudgets   ProjectRevenueBudget[]
   unsecuredRevenueBudgets UnsecuredRevenueBudget[]
+  xeroWipSettings         XeroWipSettings?
 
   @@map("organisations")
   @@schema("projects")
@@ -2911,6 +2912,10 @@ enum MonthEndStatusEnum {
   OPEN
   READY
   SYNCED
+  WIP_CALCULATED
+  WIP_REVIEWED
+  JOURNAL_POSTED
+  XERO_RESYNCED
   LOCKED
 
   @@schema("projects")
@@ -2962,12 +2967,80 @@ model MonthEndStatus {
   lockedAt         DateTime?          @map("locked_at")
   notes            String?            @db.Text
   dataVerifiedAt   DateTime?          @map("data_verified_at")
+
+  // WIP workflow
+  catImportId          String?   @map("cat_import_id") @db.Uuid
+  wipCalculatedAt      DateTime? @map("wip_calculated_at")
+  wipNetMovement       Decimal?  @db.Decimal(14, 2) @map("wip_net_movement")
+  wipReviewedById      String?   @map("wip_reviewed_by_id") @db.Uuid
+  wipReviewedAt        DateTime? @map("wip_reviewed_at")
+  wipOverrideReason    String?   @db.Text @map("wip_override_reason")
+
+  // Xero journal
+  xeroJournalId         String?   @map("xero_journal_id")
+  xeroJournalPostedAt   DateTime? @map("xero_journal_posted_at")
+  xeroJournalPostedById String?   @map("xero_journal_posted_by_id") @db.Uuid
+  xeroResyncedAt        DateTime? @map("xero_resynced_at")
+
+  // Lock (extended)
+  lockedById  String?   @map("locked_by_id") @db.Uuid
+  lockNotes   String?   @db.Text @map("lock_notes")
+
   createdAt        DateTime           @default(now()) @map("created_at")
   updatedAt        DateTime           @updatedAt @map("updated_at")
+
+  wipProjectLines  WipProjectLine[]
 
   @@unique([organisationId, reportMonth])
   @@index([organisationId])
   @@map("month_end_statuses")
+  @@schema("projects")
+}
+
+model WipProjectLine {
+  id                 String         @id @default(uuid()) @db.Uuid
+  monthEndStatusId   String         @map("month_end_status_id") @db.Uuid
+  monthEndStatus     MonthEndStatus @relation(fields: [monthEndStatusId], references: [id], onDelete: Cascade)
+  financeProjectId   String         @map("finance_project_id") @db.Uuid
+  financeProject     FinanceProject @relation(fields: [financeProjectId], references: [id], onDelete: Cascade)
+
+  jobNo              String  @map("job_no")
+  projectName        String  @map("project_name")
+
+  catWip             Decimal @db.Decimal(14, 2) @map("cat_wip")
+  catBillingLessCost Decimal @db.Decimal(14, 2) @map("cat_billing_less_cost")
+  catMarginRealised  Decimal @db.Decimal(14, 2) @map("cat_margin_realised")
+  catClaimTotal      Decimal @db.Decimal(14, 2) @map("cat_claim_total")
+  catTotalCost       Decimal @db.Decimal(14, 2) @map("cat_total_cost")
+
+  priorMonthWip      Decimal @db.Decimal(14, 2) @map("prior_month_wip")
+  wipMovement        Decimal @db.Decimal(14, 2) @map("wip_movement")
+
+  overrideWip        Decimal? @db.Decimal(14, 2) @map("override_wip")
+  overrideReason     String?  @db.Text @map("override_reason")
+
+  effectiveWip       Decimal @db.Decimal(14, 2) @map("effective_wip")
+  effectiveMovement  Decimal @db.Decimal(14, 2) @map("effective_movement")
+
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  @@unique([monthEndStatusId, financeProjectId])
+  @@index([monthEndStatusId])
+  @@map("wip_project_lines")
+  @@schema("projects")
+}
+
+model XeroWipSettings {
+  id                    String       @id @default(uuid()) @db.Uuid
+  organisationId        String       @unique @map("organisation_id") @db.Uuid
+  organisation          Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  openingWipAccountCode String       @default("330") @map("opening_wip_account_code")
+  closingWipAccountCode String       @default("370") @map("closing_wip_account_code")
+  createdAt             DateTime     @default(now()) @map("created_at")
+  updatedAt             DateTime     @updatedAt @map("updated_at")
+
+  @@map("xero_wip_settings")
   @@schema("projects")
 }
 
@@ -3033,6 +3106,7 @@ model FinanceProject {
   snapshots              FinanceProjectSnapshot[]
   backlogBudgets         BacklogBudget[]
   projectRevenueBudgets  ProjectRevenueBudget[]
+  wipProjectLines        WipProjectLine[]
 
   @@index([organisationId, reportMonth])
   @@map("finance_projects")
