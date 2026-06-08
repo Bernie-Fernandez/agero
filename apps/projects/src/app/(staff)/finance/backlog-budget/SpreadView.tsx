@@ -9,26 +9,20 @@ import {
   upsertUnsecuredRevenueBudget,
   addUnsecuredLead,
   removeUnsecuredRevenueBudget,
-  MONTH_KEYS_FY27,
-  MONTH_KEYS_FY28,
-  ALL_MONTH_KEYS,
   type ProjectRevenueBudgetRow,
   type UnsecuredRevenueBudgetRow,
   type QualifyingLead,
+} from '@/lib/revenue-budget/actions';
+import {
+  MONTH_KEYS_FY27,
+  MONTH_KEYS_FY28,
+  ALL_MONTH_KEYS,
+  MONTH_LABELS,
   type MonthKey,
   type MonthlyData,
-} from '@/lib/revenue-budget/actions';
+} from '@/lib/revenue-budget/constants';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-
-const MONTH_LABELS: Record<MonthKey, string> = {
-  jul26: 'Jul 26', aug26: 'Aug 26', sep26: 'Sep 26', oct26: 'Oct 26',
-  nov26: 'Nov 26', dec26: 'Dec 26', jan27: 'Jan 27', feb27: 'Feb 27',
-  mar27: 'Mar 27', apr27: 'Apr 27', may27: 'May 27', jun27: 'Jun 27',
-  jul27b: 'Jul 27', aug27b: 'Aug 27', sep27b: 'Sep 27', oct27b: 'Oct 27',
-  nov27b: 'Nov 27', dec27b: 'Dec 27', jan28: 'Jan 28', feb28: 'Feb 28',
-  mar28: 'Mar 28', apr28: 'Apr 28', may28: 'May 28', jun28: 'Jun 28',
-};
 
 const STAGE_LABELS: Record<string, string> = {
   DEVELOPING: 'Stage 2',

@@ -4,23 +4,9 @@ import { requireFinanceAccess } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { createAuditLog } from '@/lib/audit';
 import type { BacklogClassification } from '@agero/db';
-
-// ─── Month keys ──────────────────────────────────────────────────────────────
-
-export const MONTH_KEYS_FY27 = [
-  'jul26', 'aug26', 'sep26', 'oct26', 'nov26', 'dec26',
-  'jan27', 'feb27', 'mar27', 'apr27', 'may27', 'jun27',
-] as const;
-
-export const MONTH_KEYS_FY28 = [
-  'jul27b', 'aug27b', 'sep27b', 'oct27b', 'nov27b', 'dec27b',
-  'jan28', 'feb28', 'mar28', 'apr28', 'may28', 'jun28',
-] as const;
-
-export const ALL_MONTH_KEYS = [...MONTH_KEYS_FY27, ...MONTH_KEYS_FY28] as const;
-export type MonthKey = typeof ALL_MONTH_KEYS[number];
-
-export type MonthlyData = Partial<Record<MonthKey, number>>;
+import { ALL_MONTH_KEYS } from './constants';
+import type { MonthKey, MonthlyData } from './constants';
+export type { MonthKey, MonthlyData } from './constants';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
