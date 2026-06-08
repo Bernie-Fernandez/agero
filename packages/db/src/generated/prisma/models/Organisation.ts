@@ -287,6 +287,7 @@ export type OrganisationWhereInput = {
   backlogBudgets?: Prisma.BacklogBudgetListRelationFilter
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetListRelationFilter
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetListRelationFilter
+  xeroWipSettings?: Prisma.XOR<Prisma.XeroWipSettingsNullableScalarRelationFilter, Prisma.XeroWipSettingsWhereInput> | null
 }
 
 export type OrganisationOrderByWithRelationInput = {
@@ -351,6 +352,7 @@ export type OrganisationOrderByWithRelationInput = {
   backlogBudgets?: Prisma.BacklogBudgetOrderByRelationAggregateInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetOrderByRelationAggregateInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetOrderByRelationAggregateInput
+  xeroWipSettings?: Prisma.XeroWipSettingsOrderByWithRelationInput
 }
 
 export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
@@ -418,6 +420,7 @@ export type OrganisationWhereUniqueInput = Prisma.AtLeast<{
   backlogBudgets?: Prisma.BacklogBudgetListRelationFilter
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetListRelationFilter
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetListRelationFilter
+  xeroWipSettings?: Prisma.XOR<Prisma.XeroWipSettingsNullableScalarRelationFilter, Prisma.XeroWipSettingsWhereInput> | null
 }, "id">
 
 export type OrganisationOrderByWithAggregationInput = {
@@ -518,6 +521,7 @@ export type OrganisationCreateInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateInput = {
@@ -582,6 +586,7 @@ export type OrganisationUncheckedCreateInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUpdateInput = {
@@ -646,6 +651,7 @@ export type OrganisationUpdateInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateInput = {
@@ -710,6 +716,7 @@ export type OrganisationUncheckedUpdateInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateManyInput = {
@@ -1211,6 +1218,20 @@ export type OrganisationUpdateOneRequiredWithoutMonthEndStatusesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutMonthEndStatusesInput, Prisma.OrganisationUpdateWithoutMonthEndStatusesInput>, Prisma.OrganisationUncheckedUpdateWithoutMonthEndStatusesInput>
 }
 
+export type OrganisationCreateNestedOneWithoutXeroWipSettingsInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedCreateWithoutXeroWipSettingsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroWipSettingsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+}
+
+export type OrganisationUpdateOneRequiredWithoutXeroWipSettingsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedCreateWithoutXeroWipSettingsInput>
+  connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroWipSettingsInput
+  upsert?: Prisma.OrganisationUpsertWithoutXeroWipSettingsInput
+  connect?: Prisma.OrganisationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganisationUpdateToOneWithWhereWithoutXeroWipSettingsInput, Prisma.OrganisationUpdateWithoutXeroWipSettingsInput>, Prisma.OrganisationUncheckedUpdateWithoutXeroWipSettingsInput>
+}
+
 export type OrganisationCreateNestedOneWithoutXeroConnectionInput = {
   create?: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroConnectionInput, Prisma.OrganisationUncheckedCreateWithoutXeroConnectionInput>
   connectOrCreate?: Prisma.OrganisationCreateOrConnectWithoutXeroConnectionInput
@@ -1566,6 +1587,7 @@ export type OrganisationCreateWithoutUsersInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUsersInput = {
@@ -1629,6 +1651,7 @@ export type OrganisationUncheckedCreateWithoutUsersInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUsersInput = {
@@ -1708,6 +1731,7 @@ export type OrganisationUpdateWithoutUsersInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUsersInput = {
@@ -1771,6 +1795,7 @@ export type OrganisationUncheckedUpdateWithoutUsersInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutProjectsInput = {
@@ -1834,6 +1859,7 @@ export type OrganisationCreateWithoutProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutProjectsInput = {
@@ -1897,6 +1923,7 @@ export type OrganisationUncheckedCreateWithoutProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutProjectsInput = {
@@ -1976,6 +2003,7 @@ export type OrganisationUpdateWithoutProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutProjectsInput = {
@@ -2039,6 +2067,7 @@ export type OrganisationUncheckedUpdateWithoutProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCompaniesInput = {
@@ -2102,6 +2131,7 @@ export type OrganisationCreateWithoutCompaniesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCompaniesInput = {
@@ -2165,6 +2195,7 @@ export type OrganisationUncheckedCreateWithoutCompaniesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCompaniesInput = {
@@ -2244,6 +2275,7 @@ export type OrganisationUpdateWithoutCompaniesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
@@ -2307,6 +2339,7 @@ export type OrganisationUncheckedUpdateWithoutCompaniesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactsInput = {
@@ -2370,6 +2403,7 @@ export type OrganisationCreateWithoutContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactsInput = {
@@ -2433,6 +2467,7 @@ export type OrganisationUncheckedCreateWithoutContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactsInput = {
@@ -2512,6 +2547,7 @@ export type OrganisationUpdateWithoutContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactsInput = {
@@ -2575,6 +2611,7 @@ export type OrganisationUncheckedUpdateWithoutContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCostCodesInput = {
@@ -2638,6 +2675,7 @@ export type OrganisationCreateWithoutCostCodesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCostCodesInput = {
@@ -2701,6 +2739,7 @@ export type OrganisationUncheckedCreateWithoutCostCodesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCostCodesInput = {
@@ -2780,6 +2819,7 @@ export type OrganisationUpdateWithoutCostCodesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
@@ -2843,6 +2883,7 @@ export type OrganisationUncheckedUpdateWithoutCostCodesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
@@ -2906,6 +2947,7 @@ export type OrganisationCreateWithoutInsurancePolicyTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
@@ -2969,6 +3011,7 @@ export type OrganisationUncheckedCreateWithoutInsurancePolicyTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutInsurancePolicyTypesInput = {
@@ -3048,6 +3091,7 @@ export type OrganisationUpdateWithoutInsurancePolicyTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
@@ -3111,6 +3155,7 @@ export type OrganisationUncheckedUpdateWithoutInsurancePolicyTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCommunicationsInput = {
@@ -3174,6 +3219,7 @@ export type OrganisationCreateWithoutCommunicationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
@@ -3237,6 +3283,7 @@ export type OrganisationUncheckedCreateWithoutCommunicationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCommunicationsInput = {
@@ -3316,6 +3363,7 @@ export type OrganisationUpdateWithoutCommunicationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
@@ -3379,6 +3427,7 @@ export type OrganisationUncheckedUpdateWithoutCommunicationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutNotificationsInput = {
@@ -3442,6 +3491,7 @@ export type OrganisationCreateWithoutNotificationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutNotificationsInput = {
@@ -3505,6 +3555,7 @@ export type OrganisationUncheckedCreateWithoutNotificationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutNotificationsInput = {
@@ -3584,6 +3635,7 @@ export type OrganisationUpdateWithoutNotificationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
@@ -3647,6 +3699,7 @@ export type OrganisationUncheckedUpdateWithoutNotificationsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAlertThresholdsInput = {
@@ -3710,6 +3763,7 @@ export type OrganisationCreateWithoutAlertThresholdsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
@@ -3773,6 +3827,7 @@ export type OrganisationUncheckedCreateWithoutAlertThresholdsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAlertThresholdsInput = {
@@ -3852,6 +3907,7 @@ export type OrganisationUpdateWithoutAlertThresholdsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
@@ -3915,6 +3971,7 @@ export type OrganisationUncheckedUpdateWithoutAlertThresholdsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutContactTypesInput = {
@@ -3978,6 +4035,7 @@ export type OrganisationCreateWithoutContactTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutContactTypesInput = {
@@ -4041,6 +4099,7 @@ export type OrganisationUncheckedCreateWithoutContactTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutContactTypesInput = {
@@ -4120,6 +4179,7 @@ export type OrganisationUpdateWithoutContactTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
@@ -4183,6 +4243,7 @@ export type OrganisationUncheckedUpdateWithoutContactTypesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAssociationLabelsInput = {
@@ -4246,6 +4307,7 @@ export type OrganisationCreateWithoutAssociationLabelsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
@@ -4309,6 +4371,7 @@ export type OrganisationUncheckedCreateWithoutAssociationLabelsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAssociationLabelsInput = {
@@ -4388,6 +4451,7 @@ export type OrganisationUpdateWithoutAssociationLabelsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
@@ -4451,6 +4515,7 @@ export type OrganisationUncheckedUpdateWithoutAssociationLabelsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPaymentTermsListInput = {
@@ -4514,6 +4579,7 @@ export type OrganisationCreateWithoutPaymentTermsListInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
@@ -4577,6 +4643,7 @@ export type OrganisationUncheckedCreateWithoutPaymentTermsListInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPaymentTermsListInput = {
@@ -4656,6 +4723,7 @@ export type OrganisationUpdateWithoutPaymentTermsListInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
@@ -4719,6 +4787,7 @@ export type OrganisationUncheckedUpdateWithoutPaymentTermsListInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutIncidentsInput = {
@@ -4782,6 +4851,7 @@ export type OrganisationCreateWithoutIncidentsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutIncidentsInput = {
@@ -4845,6 +4915,7 @@ export type OrganisationUncheckedCreateWithoutIncidentsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutIncidentsInput = {
@@ -4924,6 +4995,7 @@ export type OrganisationUpdateWithoutIncidentsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
@@ -4987,6 +5059,7 @@ export type OrganisationUncheckedUpdateWithoutIncidentsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutHazardsInput = {
@@ -5050,6 +5123,7 @@ export type OrganisationCreateWithoutHazardsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutHazardsInput = {
@@ -5113,6 +5187,7 @@ export type OrganisationUncheckedCreateWithoutHazardsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutHazardsInput = {
@@ -5192,6 +5267,7 @@ export type OrganisationUpdateWithoutHazardsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutHazardsInput = {
@@ -5255,6 +5331,7 @@ export type OrganisationUncheckedUpdateWithoutHazardsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPermitsInput = {
@@ -5318,6 +5395,7 @@ export type OrganisationCreateWithoutPermitsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPermitsInput = {
@@ -5381,6 +5459,7 @@ export type OrganisationUncheckedCreateWithoutPermitsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPermitsInput = {
@@ -5460,6 +5539,7 @@ export type OrganisationUpdateWithoutPermitsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPermitsInput = {
@@ -5523,6 +5603,7 @@ export type OrganisationUncheckedUpdateWithoutPermitsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutEmergencyContactsInput = {
@@ -5586,6 +5667,7 @@ export type OrganisationCreateWithoutEmergencyContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
@@ -5649,6 +5731,7 @@ export type OrganisationUncheckedCreateWithoutEmergencyContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutEmergencyContactsInput = {
@@ -5728,6 +5811,7 @@ export type OrganisationUpdateWithoutEmergencyContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
@@ -5791,6 +5875,7 @@ export type OrganisationUncheckedUpdateWithoutEmergencyContactsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutSafetyInspectionsInput = {
@@ -5854,6 +5939,7 @@ export type OrganisationCreateWithoutSafetyInspectionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
@@ -5917,6 +6003,7 @@ export type OrganisationUncheckedCreateWithoutSafetyInspectionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutSafetyInspectionsInput = {
@@ -5996,6 +6083,7 @@ export type OrganisationUpdateWithoutSafetyInspectionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
@@ -6059,6 +6147,7 @@ export type OrganisationUncheckedUpdateWithoutSafetyInspectionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignSourcesInput = {
@@ -6122,6 +6211,7 @@ export type OrganisationCreateWithoutDesignSourcesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignSourcesInput = {
@@ -6185,6 +6275,7 @@ export type OrganisationUncheckedCreateWithoutDesignSourcesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignSourcesInput = {
@@ -6264,6 +6355,7 @@ export type OrganisationUpdateWithoutDesignSourcesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignSourcesInput = {
@@ -6327,6 +6419,7 @@ export type OrganisationUncheckedUpdateWithoutDesignSourcesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignGlobalSettingsInput = {
@@ -6390,6 +6483,7 @@ export type OrganisationCreateWithoutDesignGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignGlobalSettingsInput = {
@@ -6453,6 +6547,7 @@ export type OrganisationUncheckedCreateWithoutDesignGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignGlobalSettingsInput = {
@@ -6532,6 +6627,7 @@ export type OrganisationUpdateWithoutDesignGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignGlobalSettingsInput = {
@@ -6595,6 +6691,7 @@ export type OrganisationUncheckedUpdateWithoutDesignGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignNonGlobalSettingsInput = {
@@ -6658,6 +6755,7 @@ export type OrganisationCreateWithoutDesignNonGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignNonGlobalSettingsInput = {
@@ -6721,6 +6819,7 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignNonGlobalSettingsInput = {
@@ -6800,6 +6899,7 @@ export type OrganisationUpdateWithoutDesignNonGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignNonGlobalSettingsInput = {
@@ -6863,6 +6963,7 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignNonGlobalProposalsInput = {
@@ -6926,6 +7027,7 @@ export type OrganisationCreateWithoutDesignNonGlobalProposalsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignNonGlobalProposalsInput = {
@@ -6989,6 +7091,7 @@ export type OrganisationUncheckedCreateWithoutDesignNonGlobalProposalsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignNonGlobalProposalsInput = {
@@ -7068,6 +7171,7 @@ export type OrganisationUpdateWithoutDesignNonGlobalProposalsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignNonGlobalProposalsInput = {
@@ -7131,6 +7235,7 @@ export type OrganisationUncheckedUpdateWithoutDesignNonGlobalProposalsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignExpiryConfigInput = {
@@ -7194,6 +7299,7 @@ export type OrganisationCreateWithoutDesignExpiryConfigInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignExpiryConfigInput = {
@@ -7257,6 +7363,7 @@ export type OrganisationUncheckedCreateWithoutDesignExpiryConfigInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignExpiryConfigInput = {
@@ -7336,6 +7443,7 @@ export type OrganisationUpdateWithoutDesignExpiryConfigInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignExpiryConfigInput = {
@@ -7399,6 +7507,7 @@ export type OrganisationUncheckedUpdateWithoutDesignExpiryConfigInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignRssFeedsInput = {
@@ -7462,6 +7571,7 @@ export type OrganisationCreateWithoutDesignRssFeedsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignRssFeedsInput = {
@@ -7525,6 +7635,7 @@ export type OrganisationUncheckedCreateWithoutDesignRssFeedsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignRssFeedsInput = {
@@ -7604,6 +7715,7 @@ export type OrganisationUpdateWithoutDesignRssFeedsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignRssFeedsInput = {
@@ -7667,6 +7779,7 @@ export type OrganisationUncheckedUpdateWithoutDesignRssFeedsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignMonitoredUrlsInput = {
@@ -7730,6 +7843,7 @@ export type OrganisationCreateWithoutDesignMonitoredUrlsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignMonitoredUrlsInput = {
@@ -7793,6 +7907,7 @@ export type OrganisationUncheckedCreateWithoutDesignMonitoredUrlsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignMonitoredUrlsInput = {
@@ -7872,6 +7987,7 @@ export type OrganisationUpdateWithoutDesignMonitoredUrlsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignMonitoredUrlsInput = {
@@ -7935,6 +8051,7 @@ export type OrganisationUncheckedUpdateWithoutDesignMonitoredUrlsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignTrendItemsInput = {
@@ -7998,6 +8115,7 @@ export type OrganisationCreateWithoutDesignTrendItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignTrendItemsInput = {
@@ -8061,6 +8179,7 @@ export type OrganisationUncheckedCreateWithoutDesignTrendItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignTrendItemsInput = {
@@ -8140,6 +8259,7 @@ export type OrganisationUpdateWithoutDesignTrendItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignTrendItemsInput = {
@@ -8203,6 +8323,7 @@ export type OrganisationUncheckedUpdateWithoutDesignTrendItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutDesignChatbotSessionsInput = {
@@ -8266,6 +8387,7 @@ export type OrganisationCreateWithoutDesignChatbotSessionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutDesignChatbotSessionsInput = {
@@ -8329,6 +8451,7 @@ export type OrganisationUncheckedCreateWithoutDesignChatbotSessionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutDesignChatbotSessionsInput = {
@@ -8408,6 +8531,7 @@ export type OrganisationUpdateWithoutDesignChatbotSessionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutDesignChatbotSessionsInput = {
@@ -8471,6 +8595,7 @@ export type OrganisationUncheckedUpdateWithoutDesignChatbotSessionsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutEstimatesInput = {
@@ -8534,6 +8659,7 @@ export type OrganisationCreateWithoutEstimatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutEstimatesInput = {
@@ -8597,6 +8723,7 @@ export type OrganisationUncheckedCreateWithoutEstimatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutEstimatesInput = {
@@ -8676,6 +8803,7 @@ export type OrganisationUpdateWithoutEstimatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutEstimatesInput = {
@@ -8739,6 +8867,7 @@ export type OrganisationUncheckedUpdateWithoutEstimatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutMonthEndStatusesInput = {
@@ -8802,6 +8931,7 @@ export type OrganisationCreateWithoutMonthEndStatusesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutMonthEndStatusesInput = {
@@ -8865,6 +8995,7 @@ export type OrganisationUncheckedCreateWithoutMonthEndStatusesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutMonthEndStatusesInput = {
@@ -8944,6 +9075,7 @@ export type OrganisationUpdateWithoutMonthEndStatusesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutMonthEndStatusesInput = {
@@ -8991,6 +9123,279 @@ export type OrganisationUncheckedUpdateWithoutMonthEndStatusesInput = {
   xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
   annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
+  managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedUpdateManyWithoutOrganisationNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutOrganisationNestedInput
+  hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  scopeTemplates?: Prisma.ScopeTemplateUncheckedUpdateManyWithoutOrganisationNestedInput
+  catImports?: Prisma.CatImportUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjectSnapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnlSnapshots?: Prisma.XeroPnLSnapshotUncheckedUpdateManyWithoutOrganisationNestedInput
+  fySettings?: Prisma.FYSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
+  backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
+}
+
+export type OrganisationCreateWithoutXeroWipSettingsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionCreateNestedOneWithoutOrganisationInput
+  managementReports?: Prisma.ManagementReportCreateNestedManyWithoutOrganisationInput
+  wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutOrganisationInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityCreateNestedManyWithoutOrganisationInput
+  leads?: Prisma.LeadCreateNestedManyWithoutOrganisationInput
+  hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsCreateNestedOneWithoutOrganisationInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemCreateNestedManyWithoutOrganisationInput
+  scopeTemplates?: Prisma.ScopeTemplateCreateNestedManyWithoutOrganisationInput
+  catImports?: Prisma.CatImportCreateNestedManyWithoutOrganisationInput
+  financeProjectSnapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutOrganisationInput
+  xeroPnlSnapshots?: Prisma.XeroPnLSnapshotCreateNestedManyWithoutOrganisationInput
+  fySettings?: Prisma.FYSettingsCreateNestedOneWithoutOrganisationInput
+  backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationUncheckedCreateWithoutXeroWipSettingsInput = {
+  id?: string
+  name: string
+  abn?: string | null
+  logoUrl?: string | null
+  primaryEmail?: string | null
+  primaryPhone?: string | null
+  addressStreet?: string | null
+  addressSuburb?: string | null
+  addressState?: string | null
+  addressPostcode?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganisationInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  companies?: Prisma.CompanyUncheckedCreateNestedManyWithoutOrganisationInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutOrganisationInput
+  costCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutOrganisationInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedCreateNestedManyWithoutOrganisationInput
+  notifications?: Prisma.NotificationAlertUncheckedCreateNestedManyWithoutOrganisationInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedCreateNestedManyWithoutOrganisationInput
+  communications?: Prisma.CommunicationUncheckedCreateNestedManyWithoutOrganisationInput
+  contactTypes?: Prisma.ContactTypeUncheckedCreateNestedManyWithoutOrganisationInput
+  associationLabels?: Prisma.AssociationLabelUncheckedCreateNestedManyWithoutOrganisationInput
+  incidents?: Prisma.IncidentUncheckedCreateNestedManyWithoutOrganisationInput
+  hazards?: Prisma.HazardUncheckedCreateNestedManyWithoutOrganisationInput
+  permits?: Prisma.PermitUncheckedCreateNestedManyWithoutOrganisationInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedCreateNestedManyWithoutOrganisationInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedCreateNestedManyWithoutOrganisationInput
+  designSources?: Prisma.DesignSourceUncheckedCreateNestedManyWithoutOrganisationInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedCreateNestedManyWithoutOrganisationInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedCreateNestedManyWithoutOrganisationInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedCreateNestedOneWithoutOrganisationInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedCreateNestedManyWithoutOrganisationInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedCreateNestedManyWithoutOrganisationInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedCreateNestedManyWithoutOrganisationInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedCreateNestedManyWithoutOrganisationInput
+  estimates?: Prisma.EstimateUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjects?: Prisma.FinanceProjectUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnl?: Prisma.XeroPnLUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedCreateNestedManyWithoutOrganisationInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutOrganisationInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroConnection?: Prisma.XeroConnectionUncheckedCreateNestedOneWithoutOrganisationInput
+  managementReports?: Prisma.ManagementReportUncheckedCreateNestedManyWithoutOrganisationInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutOrganisationInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUncheckedCreateNestedManyWithoutOrganisationInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutOrganisationInput
+  hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsUncheckedCreateNestedOneWithoutOrganisationInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUncheckedCreateNestedManyWithoutOrganisationInput
+  scopeTemplates?: Prisma.ScopeTemplateUncheckedCreateNestedManyWithoutOrganisationInput
+  catImports?: Prisma.CatImportUncheckedCreateNestedManyWithoutOrganisationInput
+  financeProjectSnapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroPnlSnapshots?: Prisma.XeroPnLSnapshotUncheckedCreateNestedManyWithoutOrganisationInput
+  fySettings?: Prisma.FYSettingsUncheckedCreateNestedOneWithoutOrganisationInput
+  backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+}
+
+export type OrganisationCreateOrConnectWithoutXeroWipSettingsInput = {
+  where: Prisma.OrganisationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedCreateWithoutXeroWipSettingsInput>
+}
+
+export type OrganisationUpsertWithoutXeroWipSettingsInput = {
+  update: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedUpdateWithoutXeroWipSettingsInput>
+  create: Prisma.XOR<Prisma.OrganisationCreateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedCreateWithoutXeroWipSettingsInput>
+  where?: Prisma.OrganisationWhereInput
+}
+
+export type OrganisationUpdateToOneWithWhereWithoutXeroWipSettingsInput = {
+  where?: Prisma.OrganisationWhereInput
+  data: Prisma.XOR<Prisma.OrganisationUpdateWithoutXeroWipSettingsInput, Prisma.OrganisationUncheckedUpdateWithoutXeroWipSettingsInput>
+}
+
+export type OrganisationUpdateWithoutXeroWipSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUpdateManyWithoutOrganisationNestedInput
+  xeroConnection?: Prisma.XeroConnectionUpdateOneWithoutOrganisationNestedInput
+  managementReports?: Prisma.ManagementReportUpdateManyWithoutOrganisationNestedInput
+  wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutOrganisationNestedInput
+  plannedDealRevenues?: Prisma.PlannedDealRevenueUpdateManyWithoutOrganisationNestedInput
+  unsecuredOpportunities?: Prisma.UnsecuredOpportunityUpdateManyWithoutOrganisationNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutOrganisationNestedInput
+  hubSpotSyncSettings?: Prisma.HubSpotSyncSettingsUpdateOneWithoutOrganisationNestedInput
+  referenceLibraryItems?: Prisma.ReferenceLibraryItemUpdateManyWithoutOrganisationNestedInput
+  scopeTemplates?: Prisma.ScopeTemplateUpdateManyWithoutOrganisationNestedInput
+  catImports?: Prisma.CatImportUpdateManyWithoutOrganisationNestedInput
+  financeProjectSnapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutOrganisationNestedInput
+  xeroPnlSnapshots?: Prisma.XeroPnLSnapshotUpdateManyWithoutOrganisationNestedInput
+  fySettings?: Prisma.FYSettingsUpdateOneWithoutOrganisationNestedInput
+  backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+}
+
+export type OrganisationUncheckedUpdateWithoutXeroWipSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  abn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  primaryPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressSuburb?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  addressPostcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganisationNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  companies?: Prisma.CompanyUncheckedUpdateManyWithoutOrganisationNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  costCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutOrganisationNestedInput
+  insurancePolicyTypes?: Prisma.InsurancePolicyTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  paymentTermsList?: Prisma.PaymentTermUncheckedUpdateManyWithoutOrganisationNestedInput
+  notifications?: Prisma.NotificationAlertUncheckedUpdateManyWithoutOrganisationNestedInput
+  alertThresholds?: Prisma.AlertThresholdUncheckedUpdateManyWithoutOrganisationNestedInput
+  communications?: Prisma.CommunicationUncheckedUpdateManyWithoutOrganisationNestedInput
+  contactTypes?: Prisma.ContactTypeUncheckedUpdateManyWithoutOrganisationNestedInput
+  associationLabels?: Prisma.AssociationLabelUncheckedUpdateManyWithoutOrganisationNestedInput
+  incidents?: Prisma.IncidentUncheckedUpdateManyWithoutOrganisationNestedInput
+  hazards?: Prisma.HazardUncheckedUpdateManyWithoutOrganisationNestedInput
+  permits?: Prisma.PermitUncheckedUpdateManyWithoutOrganisationNestedInput
+  emergencyContacts?: Prisma.EmergencyContactUncheckedUpdateManyWithoutOrganisationNestedInput
+  safetyInspections?: Prisma.SafetyInspectionUncheckedUpdateManyWithoutOrganisationNestedInput
+  designSources?: Prisma.DesignSourceUncheckedUpdateManyWithoutOrganisationNestedInput
+  designGlobalSettings?: Prisma.DesignSettingGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalSettings?: Prisma.DesignSettingNonGlobalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designNonGlobalProposals?: Prisma.DesignSettingNonGlobalProposalUncheckedUpdateManyWithoutOrganisationNestedInput
+  designExpiryConfig?: Prisma.DesignExpiryConfigUncheckedUpdateOneWithoutOrganisationNestedInput
+  designRssFeeds?: Prisma.DesignRssFeedUncheckedUpdateManyWithoutOrganisationNestedInput
+  designMonitoredUrls?: Prisma.DesignMonitoredUrlUncheckedUpdateManyWithoutOrganisationNestedInput
+  designTrendItems?: Prisma.DesignTrendItemUncheckedUpdateManyWithoutOrganisationNestedInput
+  designChatbotSessions?: Prisma.DesignChatbotSessionUncheckedUpdateManyWithoutOrganisationNestedInput
+  estimates?: Prisma.EstimateUncheckedUpdateManyWithoutOrganisationNestedInput
+  financeProjects?: Prisma.FinanceProjectUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroPnl?: Prisma.XeroPnLUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroBankBalances?: Prisma.XeroBankBalanceUncheckedUpdateManyWithoutOrganisationNestedInput
+  annualBudgets?: Prisma.AnnualBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutOrganisationNestedInput
+  monthEndStatuses?: Prisma.MonthEndStatusUncheckedUpdateManyWithoutOrganisationNestedInput
   xeroConnection?: Prisma.XeroConnectionUncheckedUpdateOneWithoutOrganisationNestedInput
   managementReports?: Prisma.ManagementReportUncheckedUpdateManyWithoutOrganisationNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutOrganisationNestedInput
@@ -9070,6 +9475,7 @@ export type OrganisationCreateWithoutXeroConnectionInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutXeroConnectionInput = {
@@ -9133,6 +9539,7 @@ export type OrganisationUncheckedCreateWithoutXeroConnectionInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutXeroConnectionInput = {
@@ -9212,6 +9619,7 @@ export type OrganisationUpdateWithoutXeroConnectionInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutXeroConnectionInput = {
@@ -9275,6 +9683,7 @@ export type OrganisationUncheckedUpdateWithoutXeroConnectionInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutFinanceProjectsInput = {
@@ -9338,6 +9747,7 @@ export type OrganisationCreateWithoutFinanceProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutFinanceProjectsInput = {
@@ -9401,6 +9811,7 @@ export type OrganisationUncheckedCreateWithoutFinanceProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutFinanceProjectsInput = {
@@ -9480,6 +9891,7 @@ export type OrganisationUpdateWithoutFinanceProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutFinanceProjectsInput = {
@@ -9543,6 +9955,7 @@ export type OrganisationUncheckedUpdateWithoutFinanceProjectsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutFinanceProjectSnapshotsInput = {
@@ -9606,6 +10019,7 @@ export type OrganisationCreateWithoutFinanceProjectSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutFinanceProjectSnapshotsInput = {
@@ -9669,6 +10083,7 @@ export type OrganisationUncheckedCreateWithoutFinanceProjectSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutFinanceProjectSnapshotsInput = {
@@ -9748,6 +10163,7 @@ export type OrganisationUpdateWithoutFinanceProjectSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutFinanceProjectSnapshotsInput = {
@@ -9811,6 +10227,7 @@ export type OrganisationUncheckedUpdateWithoutFinanceProjectSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutCatImportsInput = {
@@ -9874,6 +10291,7 @@ export type OrganisationCreateWithoutCatImportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutCatImportsInput = {
@@ -9937,6 +10355,7 @@ export type OrganisationUncheckedCreateWithoutCatImportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutCatImportsInput = {
@@ -10016,6 +10435,7 @@ export type OrganisationUpdateWithoutCatImportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutCatImportsInput = {
@@ -10079,6 +10499,7 @@ export type OrganisationUncheckedUpdateWithoutCatImportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutXeroPnlInput = {
@@ -10142,6 +10563,7 @@ export type OrganisationCreateWithoutXeroPnlInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutXeroPnlInput = {
@@ -10205,6 +10627,7 @@ export type OrganisationUncheckedCreateWithoutXeroPnlInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutXeroPnlInput = {
@@ -10284,6 +10707,7 @@ export type OrganisationUpdateWithoutXeroPnlInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutXeroPnlInput = {
@@ -10347,6 +10771,7 @@ export type OrganisationUncheckedUpdateWithoutXeroPnlInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutXeroBankBalancesInput = {
@@ -10410,6 +10835,7 @@ export type OrganisationCreateWithoutXeroBankBalancesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutXeroBankBalancesInput = {
@@ -10473,6 +10899,7 @@ export type OrganisationUncheckedCreateWithoutXeroBankBalancesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutXeroBankBalancesInput = {
@@ -10552,6 +10979,7 @@ export type OrganisationUpdateWithoutXeroBankBalancesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutXeroBankBalancesInput = {
@@ -10615,6 +11043,7 @@ export type OrganisationUncheckedUpdateWithoutXeroBankBalancesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutAnnualBudgetsInput = {
@@ -10678,6 +11107,7 @@ export type OrganisationCreateWithoutAnnualBudgetsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutAnnualBudgetsInput = {
@@ -10741,6 +11171,7 @@ export type OrganisationUncheckedCreateWithoutAnnualBudgetsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutAnnualBudgetsInput = {
@@ -10820,6 +11251,7 @@ export type OrganisationUpdateWithoutAnnualBudgetsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutAnnualBudgetsInput = {
@@ -10883,6 +11315,7 @@ export type OrganisationUncheckedUpdateWithoutAnnualBudgetsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutSecuredForecastsInput = {
@@ -10946,6 +11379,7 @@ export type OrganisationCreateWithoutSecuredForecastsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutSecuredForecastsInput = {
@@ -11009,6 +11443,7 @@ export type OrganisationUncheckedCreateWithoutSecuredForecastsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutSecuredForecastsInput = {
@@ -11088,6 +11523,7 @@ export type OrganisationUpdateWithoutSecuredForecastsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutSecuredForecastsInput = {
@@ -11151,6 +11587,7 @@ export type OrganisationUncheckedUpdateWithoutSecuredForecastsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutPlannedDealRevenuesInput = {
@@ -11214,6 +11651,7 @@ export type OrganisationCreateWithoutPlannedDealRevenuesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutPlannedDealRevenuesInput = {
@@ -11277,6 +11715,7 @@ export type OrganisationUncheckedCreateWithoutPlannedDealRevenuesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutPlannedDealRevenuesInput = {
@@ -11356,6 +11795,7 @@ export type OrganisationUpdateWithoutPlannedDealRevenuesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutPlannedDealRevenuesInput = {
@@ -11419,6 +11859,7 @@ export type OrganisationUncheckedUpdateWithoutPlannedDealRevenuesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutManagementReportsInput = {
@@ -11482,6 +11923,7 @@ export type OrganisationCreateWithoutManagementReportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutManagementReportsInput = {
@@ -11545,6 +11987,7 @@ export type OrganisationUncheckedCreateWithoutManagementReportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutManagementReportsInput = {
@@ -11624,6 +12067,7 @@ export type OrganisationUpdateWithoutManagementReportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutManagementReportsInput = {
@@ -11687,6 +12131,7 @@ export type OrganisationUncheckedUpdateWithoutManagementReportsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutWipSchedulesInput = {
@@ -11750,6 +12195,7 @@ export type OrganisationCreateWithoutWipSchedulesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutWipSchedulesInput = {
@@ -11813,6 +12259,7 @@ export type OrganisationUncheckedCreateWithoutWipSchedulesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutWipSchedulesInput = {
@@ -11892,6 +12339,7 @@ export type OrganisationUpdateWithoutWipSchedulesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutWipSchedulesInput = {
@@ -11955,6 +12403,7 @@ export type OrganisationUncheckedUpdateWithoutWipSchedulesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutReferenceLibraryItemsInput = {
@@ -12018,6 +12467,7 @@ export type OrganisationCreateWithoutReferenceLibraryItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutReferenceLibraryItemsInput = {
@@ -12081,6 +12531,7 @@ export type OrganisationUncheckedCreateWithoutReferenceLibraryItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutReferenceLibraryItemsInput = {
@@ -12160,6 +12611,7 @@ export type OrganisationUpdateWithoutReferenceLibraryItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutReferenceLibraryItemsInput = {
@@ -12223,6 +12675,7 @@ export type OrganisationUncheckedUpdateWithoutReferenceLibraryItemsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutScopeTemplatesInput = {
@@ -12286,6 +12739,7 @@ export type OrganisationCreateWithoutScopeTemplatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutScopeTemplatesInput = {
@@ -12349,6 +12803,7 @@ export type OrganisationUncheckedCreateWithoutScopeTemplatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutScopeTemplatesInput = {
@@ -12428,6 +12883,7 @@ export type OrganisationUpdateWithoutScopeTemplatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutScopeTemplatesInput = {
@@ -12491,6 +12947,7 @@ export type OrganisationUncheckedUpdateWithoutScopeTemplatesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutUnsecuredOpportunitiesInput = {
@@ -12554,6 +13011,7 @@ export type OrganisationCreateWithoutUnsecuredOpportunitiesInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput = {
@@ -12617,6 +13075,7 @@ export type OrganisationUncheckedCreateWithoutUnsecuredOpportunitiesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUnsecuredOpportunitiesInput = {
@@ -12696,6 +13155,7 @@ export type OrganisationUpdateWithoutUnsecuredOpportunitiesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput = {
@@ -12759,6 +13219,7 @@ export type OrganisationUncheckedUpdateWithoutUnsecuredOpportunitiesInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutLeadsInput = {
@@ -12822,6 +13283,7 @@ export type OrganisationCreateWithoutLeadsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutLeadsInput = {
@@ -12885,6 +13347,7 @@ export type OrganisationUncheckedCreateWithoutLeadsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutLeadsInput = {
@@ -12964,6 +13427,7 @@ export type OrganisationUpdateWithoutLeadsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutLeadsInput = {
@@ -13027,6 +13491,7 @@ export type OrganisationUncheckedUpdateWithoutLeadsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutHubSpotSyncSettingsInput = {
@@ -13090,6 +13555,7 @@ export type OrganisationCreateWithoutHubSpotSyncSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutHubSpotSyncSettingsInput = {
@@ -13153,6 +13619,7 @@ export type OrganisationUncheckedCreateWithoutHubSpotSyncSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutHubSpotSyncSettingsInput = {
@@ -13232,6 +13699,7 @@ export type OrganisationUpdateWithoutHubSpotSyncSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutHubSpotSyncSettingsInput = {
@@ -13295,6 +13763,7 @@ export type OrganisationUncheckedUpdateWithoutHubSpotSyncSettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutXeroPnlSnapshotsInput = {
@@ -13358,6 +13827,7 @@ export type OrganisationCreateWithoutXeroPnlSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutXeroPnlSnapshotsInput = {
@@ -13421,6 +13891,7 @@ export type OrganisationUncheckedCreateWithoutXeroPnlSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutXeroPnlSnapshotsInput = {
@@ -13500,6 +13971,7 @@ export type OrganisationUpdateWithoutXeroPnlSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutXeroPnlSnapshotsInput = {
@@ -13563,6 +14035,7 @@ export type OrganisationUncheckedUpdateWithoutXeroPnlSnapshotsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutFySettingsInput = {
@@ -13626,6 +14099,7 @@ export type OrganisationCreateWithoutFySettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutFySettingsInput = {
@@ -13689,6 +14163,7 @@ export type OrganisationUncheckedCreateWithoutFySettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutFySettingsInput = {
@@ -13768,6 +14243,7 @@ export type OrganisationUpdateWithoutFySettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutFySettingsInput = {
@@ -13831,6 +14307,7 @@ export type OrganisationUncheckedUpdateWithoutFySettingsInput = {
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutBacklogBudgetsInput = {
@@ -13894,6 +14371,7 @@ export type OrganisationCreateWithoutBacklogBudgetsInput = {
   fySettings?: Prisma.FYSettingsCreateNestedOneWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutBacklogBudgetsInput = {
@@ -13957,6 +14435,7 @@ export type OrganisationUncheckedCreateWithoutBacklogBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedCreateNestedOneWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutBacklogBudgetsInput = {
@@ -14036,6 +14515,7 @@ export type OrganisationUpdateWithoutBacklogBudgetsInput = {
   fySettings?: Prisma.FYSettingsUpdateOneWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutBacklogBudgetsInput = {
@@ -14099,6 +14579,7 @@ export type OrganisationUncheckedUpdateWithoutBacklogBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutProjectRevenueBudgetsInput = {
@@ -14162,6 +14643,7 @@ export type OrganisationCreateWithoutProjectRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsCreateNestedOneWithoutOrganisationInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutProjectRevenueBudgetsInput = {
@@ -14225,6 +14707,7 @@ export type OrganisationUncheckedCreateWithoutProjectRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedCreateNestedOneWithoutOrganisationInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutProjectRevenueBudgetsInput = {
@@ -14304,6 +14787,7 @@ export type OrganisationUpdateWithoutProjectRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUpdateOneWithoutOrganisationNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutProjectRevenueBudgetsInput = {
@@ -14367,6 +14851,7 @@ export type OrganisationUncheckedUpdateWithoutProjectRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   unsecuredRevenueBudgets?: Prisma.UnsecuredRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationCreateWithoutUnsecuredRevenueBudgetsInput = {
@@ -14430,6 +14915,7 @@ export type OrganisationCreateWithoutUnsecuredRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsCreateNestedOneWithoutOrganisationInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationUncheckedCreateWithoutUnsecuredRevenueBudgetsInput = {
@@ -14493,6 +14979,7 @@ export type OrganisationUncheckedCreateWithoutUnsecuredRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedCreateNestedOneWithoutOrganisationInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutOrganisationInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutOrganisationInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedCreateNestedOneWithoutOrganisationInput
 }
 
 export type OrganisationCreateOrConnectWithoutUnsecuredRevenueBudgetsInput = {
@@ -14572,6 +15059,7 @@ export type OrganisationUpdateWithoutUnsecuredRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUpdateOneWithoutOrganisationNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUpdateOneWithoutOrganisationNestedInput
 }
 
 export type OrganisationUncheckedUpdateWithoutUnsecuredRevenueBudgetsInput = {
@@ -14635,6 +15123,7 @@ export type OrganisationUncheckedUpdateWithoutUnsecuredRevenueBudgetsInput = {
   fySettings?: Prisma.FYSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
   projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutOrganisationNestedInput
+  xeroWipSettings?: Prisma.XeroWipSettingsUncheckedUpdateOneWithoutOrganisationNestedInput
 }
 
 
@@ -15126,6 +15615,7 @@ export type OrganisationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   backlogBudgets?: boolean | Prisma.Organisation$backlogBudgetsArgs<ExtArgs>
   projectRevenueBudgets?: boolean | Prisma.Organisation$projectRevenueBudgetsArgs<ExtArgs>
   unsecuredRevenueBudgets?: boolean | Prisma.Organisation$unsecuredRevenueBudgetsArgs<ExtArgs>
+  xeroWipSettings?: boolean | Prisma.Organisation$xeroWipSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organisation"]>
 
@@ -15225,6 +15715,7 @@ export type OrganisationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   backlogBudgets?: boolean | Prisma.Organisation$backlogBudgetsArgs<ExtArgs>
   projectRevenueBudgets?: boolean | Prisma.Organisation$projectRevenueBudgetsArgs<ExtArgs>
   unsecuredRevenueBudgets?: boolean | Prisma.Organisation$unsecuredRevenueBudgetsArgs<ExtArgs>
+  xeroWipSettings?: boolean | Prisma.Organisation$xeroWipSettingsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganisationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganisationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -15282,6 +15773,7 @@ export type $OrganisationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     backlogBudgets: Prisma.$BacklogBudgetPayload<ExtArgs>[]
     projectRevenueBudgets: Prisma.$ProjectRevenueBudgetPayload<ExtArgs>[]
     unsecuredRevenueBudgets: Prisma.$UnsecuredRevenueBudgetPayload<ExtArgs>[]
+    xeroWipSettings: Prisma.$XeroWipSettingsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -15739,6 +16231,7 @@ export interface Prisma__OrganisationClient<T, Null = never, ExtArgs extends run
   backlogBudgets<T extends Prisma.Organisation$backlogBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$backlogBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BacklogBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projectRevenueBudgets<T extends Prisma.Organisation$projectRevenueBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$projectRevenueBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectRevenueBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   unsecuredRevenueBudgets<T extends Prisma.Organisation$unsecuredRevenueBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$unsecuredRevenueBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnsecuredRevenueBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  xeroWipSettings<T extends Prisma.Organisation$xeroWipSettingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organisation$xeroWipSettingsArgs<ExtArgs>>): Prisma.Prisma__XeroWipSettingsClient<runtime.Types.Result.GetResult<Prisma.$XeroWipSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17326,6 +17819,25 @@ export type Organisation$unsecuredRevenueBudgetsArgs<ExtArgs extends runtime.Typ
   take?: number
   skip?: number
   distinct?: Prisma.UnsecuredRevenueBudgetScalarFieldEnum | Prisma.UnsecuredRevenueBudgetScalarFieldEnum[]
+}
+
+/**
+ * Organisation.xeroWipSettings
+ */
+export type Organisation$xeroWipSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XeroWipSettings
+   */
+  select?: Prisma.XeroWipSettingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XeroWipSettings
+   */
+  omit?: Prisma.XeroWipSettingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XeroWipSettingsInclude<ExtArgs> | null
+  where?: Prisma.XeroWipSettingsWhereInput
 }
 
 /**

@@ -20,8 +20,18 @@ export type MonthEndStatusModel = runtime.Types.Result.DefaultSelection<Prisma.$
 
 export type AggregateMonthEndStatus = {
   _count: MonthEndStatusCountAggregateOutputType | null
+  _avg: MonthEndStatusAvgAggregateOutputType | null
+  _sum: MonthEndStatusSumAggregateOutputType | null
   _min: MonthEndStatusMinAggregateOutputType | null
   _max: MonthEndStatusMaxAggregateOutputType | null
+}
+
+export type MonthEndStatusAvgAggregateOutputType = {
+  wipNetMovement: runtime.Decimal | null
+}
+
+export type MonthEndStatusSumAggregateOutputType = {
+  wipNetMovement: runtime.Decimal | null
 }
 
 export type MonthEndStatusMinAggregateOutputType = {
@@ -35,6 +45,18 @@ export type MonthEndStatusMinAggregateOutputType = {
   lockedAt: Date | null
   notes: string | null
   dataVerifiedAt: Date | null
+  catImportId: string | null
+  wipCalculatedAt: Date | null
+  wipNetMovement: runtime.Decimal | null
+  wipReviewedById: string | null
+  wipReviewedAt: Date | null
+  wipOverrideReason: string | null
+  xeroJournalId: string | null
+  xeroJournalPostedAt: Date | null
+  xeroJournalPostedById: string | null
+  xeroResyncedAt: Date | null
+  lockedById: string | null
+  lockNotes: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +72,18 @@ export type MonthEndStatusMaxAggregateOutputType = {
   lockedAt: Date | null
   notes: string | null
   dataVerifiedAt: Date | null
+  catImportId: string | null
+  wipCalculatedAt: Date | null
+  wipNetMovement: runtime.Decimal | null
+  wipReviewedById: string | null
+  wipReviewedAt: Date | null
+  wipOverrideReason: string | null
+  xeroJournalId: string | null
+  xeroJournalPostedAt: Date | null
+  xeroJournalPostedById: string | null
+  xeroResyncedAt: Date | null
+  lockedById: string | null
+  lockNotes: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,11 +99,31 @@ export type MonthEndStatusCountAggregateOutputType = {
   lockedAt: number
   notes: number
   dataVerifiedAt: number
+  catImportId: number
+  wipCalculatedAt: number
+  wipNetMovement: number
+  wipReviewedById: number
+  wipReviewedAt: number
+  wipOverrideReason: number
+  xeroJournalId: number
+  xeroJournalPostedAt: number
+  xeroJournalPostedById: number
+  xeroResyncedAt: number
+  lockedById: number
+  lockNotes: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type MonthEndStatusAvgAggregateInputType = {
+  wipNetMovement?: true
+}
+
+export type MonthEndStatusSumAggregateInputType = {
+  wipNetMovement?: true
+}
 
 export type MonthEndStatusMinAggregateInputType = {
   id?: true
@@ -82,6 +136,18 @@ export type MonthEndStatusMinAggregateInputType = {
   lockedAt?: true
   notes?: true
   dataVerifiedAt?: true
+  catImportId?: true
+  wipCalculatedAt?: true
+  wipNetMovement?: true
+  wipReviewedById?: true
+  wipReviewedAt?: true
+  wipOverrideReason?: true
+  xeroJournalId?: true
+  xeroJournalPostedAt?: true
+  xeroJournalPostedById?: true
+  xeroResyncedAt?: true
+  lockedById?: true
+  lockNotes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -97,6 +163,18 @@ export type MonthEndStatusMaxAggregateInputType = {
   lockedAt?: true
   notes?: true
   dataVerifiedAt?: true
+  catImportId?: true
+  wipCalculatedAt?: true
+  wipNetMovement?: true
+  wipReviewedById?: true
+  wipReviewedAt?: true
+  wipOverrideReason?: true
+  xeroJournalId?: true
+  xeroJournalPostedAt?: true
+  xeroJournalPostedById?: true
+  xeroResyncedAt?: true
+  lockedById?: true
+  lockNotes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +190,18 @@ export type MonthEndStatusCountAggregateInputType = {
   lockedAt?: true
   notes?: true
   dataVerifiedAt?: true
+  catImportId?: true
+  wipCalculatedAt?: true
+  wipNetMovement?: true
+  wipReviewedById?: true
+  wipReviewedAt?: true
+  wipOverrideReason?: true
+  xeroJournalId?: true
+  xeroJournalPostedAt?: true
+  xeroJournalPostedById?: true
+  xeroResyncedAt?: true
+  lockedById?: true
+  lockNotes?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -155,6 +245,18 @@ export type MonthEndStatusAggregateArgs<ExtArgs extends runtime.Types.Extensions
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: MonthEndStatusAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: MonthEndStatusSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: MonthEndStatusMinAggregateInputType
@@ -185,6 +287,8 @@ export type MonthEndStatusGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   _count?: MonthEndStatusCountAggregateInputType | true
+  _avg?: MonthEndStatusAvgAggregateInputType
+  _sum?: MonthEndStatusSumAggregateInputType
   _min?: MonthEndStatusMinAggregateInputType
   _max?: MonthEndStatusMaxAggregateInputType
 }
@@ -200,9 +304,23 @@ export type MonthEndStatusGroupByOutputType = {
   lockedAt: Date | null
   notes: string | null
   dataVerifiedAt: Date | null
+  catImportId: string | null
+  wipCalculatedAt: Date | null
+  wipNetMovement: runtime.Decimal | null
+  wipReviewedById: string | null
+  wipReviewedAt: Date | null
+  wipOverrideReason: string | null
+  xeroJournalId: string | null
+  xeroJournalPostedAt: Date | null
+  xeroJournalPostedById: string | null
+  xeroResyncedAt: Date | null
+  lockedById: string | null
+  lockNotes: string | null
   createdAt: Date
   updatedAt: Date
   _count: MonthEndStatusCountAggregateOutputType | null
+  _avg: MonthEndStatusAvgAggregateOutputType | null
+  _sum: MonthEndStatusSumAggregateOutputType | null
   _min: MonthEndStatusMinAggregateOutputType | null
   _max: MonthEndStatusMaxAggregateOutputType | null
 }
@@ -236,10 +354,23 @@ export type MonthEndStatusWhereInput = {
   lockedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
   notes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   dataVerifiedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  catImportId?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipCalculatedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipNetMovement?: Prisma.DecimalNullableFilter<"MonthEndStatus"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipReviewedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipOverrideReason?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalId?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalPostedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  xeroJournalPostedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  xeroResyncedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  lockedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  lockNotes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   markedReadyBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  wipProjectLines?: Prisma.WipProjectLineListRelationFilter
 }
 
 export type MonthEndStatusOrderByWithRelationInput = {
@@ -253,10 +384,23 @@ export type MonthEndStatusOrderByWithRelationInput = {
   lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   dataVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  catImportId?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipCalculatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipNetMovement?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipReviewedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipReviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipOverrideReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalId?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalPostedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalPostedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroResyncedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
   markedReadyBy?: Prisma.UserOrderByWithRelationInput
+  wipProjectLines?: Prisma.WipProjectLineOrderByRelationAggregateInput
 }
 
 export type MonthEndStatusWhereUniqueInput = Prisma.AtLeast<{
@@ -274,10 +418,23 @@ export type MonthEndStatusWhereUniqueInput = Prisma.AtLeast<{
   lockedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
   notes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   dataVerifiedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  catImportId?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipCalculatedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipNetMovement?: Prisma.DecimalNullableFilter<"MonthEndStatus"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipReviewedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipOverrideReason?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalId?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalPostedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  xeroJournalPostedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  xeroResyncedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  lockedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  lockNotes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
   markedReadyBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  wipProjectLines?: Prisma.WipProjectLineListRelationFilter
 }, "id" | "organisationId_reportMonth">
 
 export type MonthEndStatusOrderByWithAggregationInput = {
@@ -291,11 +448,25 @@ export type MonthEndStatusOrderByWithAggregationInput = {
   lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   dataVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  catImportId?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipCalculatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipNetMovement?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipReviewedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipReviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  wipOverrideReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalId?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalPostedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroJournalPostedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  xeroResyncedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.MonthEndStatusCountOrderByAggregateInput
+  _avg?: Prisma.MonthEndStatusAvgOrderByAggregateInput
   _max?: Prisma.MonthEndStatusMaxOrderByAggregateInput
   _min?: Prisma.MonthEndStatusMinOrderByAggregateInput
+  _sum?: Prisma.MonthEndStatusSumOrderByAggregateInput
 }
 
 export type MonthEndStatusScalarWhereWithAggregatesInput = {
@@ -312,6 +483,18 @@ export type MonthEndStatusScalarWhereWithAggregatesInput = {
   lockedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
   dataVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
+  catImportId?: Prisma.UuidNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  wipCalculatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
+  wipNetMovement?: Prisma.DecimalNullableWithAggregatesFilter<"MonthEndStatus"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.UuidNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  wipReviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
+  wipOverrideReason?: Prisma.StringNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  xeroJournalId?: Prisma.StringNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  xeroJournalPostedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
+  xeroJournalPostedById?: Prisma.UuidNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  xeroResyncedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MonthEndStatus"> | Date | string | null
+  lockedById?: Prisma.UuidNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
+  lockNotes?: Prisma.StringNullableWithAggregatesFilter<"MonthEndStatus"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MonthEndStatus"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MonthEndStatus"> | Date | string
 }
@@ -325,10 +508,23 @@ export type MonthEndStatusCreateInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutMonthEndStatusesInput
   markedReadyBy?: Prisma.UserCreateNestedOneWithoutMonthEndStatusesMarkedInput
+  wipProjectLines?: Prisma.WipProjectLineCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusUncheckedCreateInput = {
@@ -342,8 +538,21 @@ export type MonthEndStatusUncheckedCreateInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusUpdateInput = {
@@ -355,10 +564,23 @@ export type MonthEndStatusUpdateInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutMonthEndStatusesNestedInput
   markedReadyBy?: Prisma.UserUpdateOneWithoutMonthEndStatusesMarkedNestedInput
+  wipProjectLines?: Prisma.WipProjectLineUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusUncheckedUpdateInput = {
@@ -372,8 +594,21 @@ export type MonthEndStatusUncheckedUpdateInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusCreateManyInput = {
@@ -387,6 +622,18 @@ export type MonthEndStatusCreateManyInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -400,6 +647,18 @@ export type MonthEndStatusUpdateManyMutationInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -415,6 +674,18 @@ export type MonthEndStatusUncheckedUpdateManyInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -445,8 +716,24 @@ export type MonthEndStatusCountOrderByAggregateInput = {
   lockedAt?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerifiedAt?: Prisma.SortOrder
+  catImportId?: Prisma.SortOrder
+  wipCalculatedAt?: Prisma.SortOrder
+  wipNetMovement?: Prisma.SortOrder
+  wipReviewedById?: Prisma.SortOrder
+  wipReviewedAt?: Prisma.SortOrder
+  wipOverrideReason?: Prisma.SortOrder
+  xeroJournalId?: Prisma.SortOrder
+  xeroJournalPostedAt?: Prisma.SortOrder
+  xeroJournalPostedById?: Prisma.SortOrder
+  xeroResyncedAt?: Prisma.SortOrder
+  lockedById?: Prisma.SortOrder
+  lockNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type MonthEndStatusAvgOrderByAggregateInput = {
+  wipNetMovement?: Prisma.SortOrder
 }
 
 export type MonthEndStatusMaxOrderByAggregateInput = {
@@ -460,6 +747,18 @@ export type MonthEndStatusMaxOrderByAggregateInput = {
   lockedAt?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerifiedAt?: Prisma.SortOrder
+  catImportId?: Prisma.SortOrder
+  wipCalculatedAt?: Prisma.SortOrder
+  wipNetMovement?: Prisma.SortOrder
+  wipReviewedById?: Prisma.SortOrder
+  wipReviewedAt?: Prisma.SortOrder
+  wipOverrideReason?: Prisma.SortOrder
+  xeroJournalId?: Prisma.SortOrder
+  xeroJournalPostedAt?: Prisma.SortOrder
+  xeroJournalPostedById?: Prisma.SortOrder
+  xeroResyncedAt?: Prisma.SortOrder
+  lockedById?: Prisma.SortOrder
+  lockNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -475,8 +774,29 @@ export type MonthEndStatusMinOrderByAggregateInput = {
   lockedAt?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   dataVerifiedAt?: Prisma.SortOrder
+  catImportId?: Prisma.SortOrder
+  wipCalculatedAt?: Prisma.SortOrder
+  wipNetMovement?: Prisma.SortOrder
+  wipReviewedById?: Prisma.SortOrder
+  wipReviewedAt?: Prisma.SortOrder
+  wipOverrideReason?: Prisma.SortOrder
+  xeroJournalId?: Prisma.SortOrder
+  xeroJournalPostedAt?: Prisma.SortOrder
+  xeroJournalPostedById?: Prisma.SortOrder
+  xeroResyncedAt?: Prisma.SortOrder
+  lockedById?: Prisma.SortOrder
+  lockNotes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type MonthEndStatusSumOrderByAggregateInput = {
+  wipNetMovement?: Prisma.SortOrder
+}
+
+export type MonthEndStatusScalarRelationFilter = {
+  is?: Prisma.MonthEndStatusWhereInput
+  isNot?: Prisma.MonthEndStatusWhereInput
 }
 
 export type MonthEndStatusCreateNestedManyWithoutOrganisationInput = {
@@ -567,6 +887,20 @@ export type EnumMonthEndStatusEnumFieldUpdateOperationsInput = {
   set?: $Enums.MonthEndStatusEnum
 }
 
+export type MonthEndStatusCreateNestedOneWithoutWipProjectLinesInput = {
+  create?: Prisma.XOR<Prisma.MonthEndStatusCreateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedCreateWithoutWipProjectLinesInput>
+  connectOrCreate?: Prisma.MonthEndStatusCreateOrConnectWithoutWipProjectLinesInput
+  connect?: Prisma.MonthEndStatusWhereUniqueInput
+}
+
+export type MonthEndStatusUpdateOneRequiredWithoutWipProjectLinesNestedInput = {
+  create?: Prisma.XOR<Prisma.MonthEndStatusCreateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedCreateWithoutWipProjectLinesInput>
+  connectOrCreate?: Prisma.MonthEndStatusCreateOrConnectWithoutWipProjectLinesInput
+  upsert?: Prisma.MonthEndStatusUpsertWithoutWipProjectLinesInput
+  connect?: Prisma.MonthEndStatusWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MonthEndStatusUpdateToOneWithWhereWithoutWipProjectLinesInput, Prisma.MonthEndStatusUpdateWithoutWipProjectLinesInput>, Prisma.MonthEndStatusUncheckedUpdateWithoutWipProjectLinesInput>
+}
+
 export type MonthEndStatusCreateWithoutOrganisationInput = {
   id?: string
   reportMonth: Date | string
@@ -576,9 +910,22 @@ export type MonthEndStatusCreateWithoutOrganisationInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   markedReadyBy?: Prisma.UserCreateNestedOneWithoutMonthEndStatusesMarkedInput
+  wipProjectLines?: Prisma.WipProjectLineCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusUncheckedCreateWithoutOrganisationInput = {
@@ -591,8 +938,21 @@ export type MonthEndStatusUncheckedCreateWithoutOrganisationInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusCreateOrConnectWithoutOrganisationInput = {
@@ -635,6 +995,18 @@ export type MonthEndStatusScalarWhereInput = {
   lockedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
   notes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   dataVerifiedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  catImportId?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipCalculatedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipNetMovement?: Prisma.DecimalNullableFilter<"MonthEndStatus"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  wipReviewedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  wipOverrideReason?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalId?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
+  xeroJournalPostedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  xeroJournalPostedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  xeroResyncedAt?: Prisma.DateTimeNullableFilter<"MonthEndStatus"> | Date | string | null
+  lockedById?: Prisma.UuidNullableFilter<"MonthEndStatus"> | string | null
+  lockNotes?: Prisma.StringNullableFilter<"MonthEndStatus"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MonthEndStatus"> | Date | string
 }
@@ -648,9 +1020,22 @@ export type MonthEndStatusCreateWithoutMarkedReadyByInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutMonthEndStatusesInput
+  wipProjectLines?: Prisma.WipProjectLineCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusUncheckedCreateWithoutMarkedReadyByInput = {
@@ -663,8 +1048,21 @@ export type MonthEndStatusUncheckedCreateWithoutMarkedReadyByInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedCreateNestedManyWithoutMonthEndStatusInput
 }
 
 export type MonthEndStatusCreateOrConnectWithoutMarkedReadyByInput = {
@@ -693,6 +1091,130 @@ export type MonthEndStatusUpdateManyWithWhereWithoutMarkedReadyByInput = {
   data: Prisma.XOR<Prisma.MonthEndStatusUpdateManyMutationInput, Prisma.MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByInput>
 }
 
+export type MonthEndStatusCreateWithoutWipProjectLinesInput = {
+  id?: string
+  reportMonth: Date | string
+  status?: $Enums.MonthEndStatusEnum
+  markedReadyAt?: Date | string | null
+  xeroSyncedAt?: Date | string | null
+  lockedAt?: Date | string | null
+  notes?: string | null
+  dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutMonthEndStatusesInput
+  markedReadyBy?: Prisma.UserCreateNestedOneWithoutMonthEndStatusesMarkedInput
+}
+
+export type MonthEndStatusUncheckedCreateWithoutWipProjectLinesInput = {
+  id?: string
+  organisationId: string
+  reportMonth: Date | string
+  status?: $Enums.MonthEndStatusEnum
+  markedReadyById?: string | null
+  markedReadyAt?: Date | string | null
+  xeroSyncedAt?: Date | string | null
+  lockedAt?: Date | string | null
+  notes?: string | null
+  dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MonthEndStatusCreateOrConnectWithoutWipProjectLinesInput = {
+  where: Prisma.MonthEndStatusWhereUniqueInput
+  create: Prisma.XOR<Prisma.MonthEndStatusCreateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedCreateWithoutWipProjectLinesInput>
+}
+
+export type MonthEndStatusUpsertWithoutWipProjectLinesInput = {
+  update: Prisma.XOR<Prisma.MonthEndStatusUpdateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedUpdateWithoutWipProjectLinesInput>
+  create: Prisma.XOR<Prisma.MonthEndStatusCreateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedCreateWithoutWipProjectLinesInput>
+  where?: Prisma.MonthEndStatusWhereInput
+}
+
+export type MonthEndStatusUpdateToOneWithWhereWithoutWipProjectLinesInput = {
+  where?: Prisma.MonthEndStatusWhereInput
+  data: Prisma.XOR<Prisma.MonthEndStatusUpdateWithoutWipProjectLinesInput, Prisma.MonthEndStatusUncheckedUpdateWithoutWipProjectLinesInput>
+}
+
+export type MonthEndStatusUpdateWithoutWipProjectLinesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumMonthEndStatusEnumFieldUpdateOperationsInput | $Enums.MonthEndStatusEnum
+  markedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroSyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutMonthEndStatusesNestedInput
+  markedReadyBy?: Prisma.UserUpdateOneWithoutMonthEndStatusesMarkedNestedInput
+}
+
+export type MonthEndStatusUncheckedUpdateWithoutWipProjectLinesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumMonthEndStatusEnumFieldUpdateOperationsInput | $Enums.MonthEndStatusEnum
+  markedReadyById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  markedReadyAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroSyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type MonthEndStatusCreateManyOrganisationInput = {
   id?: string
   reportMonth: Date | string
@@ -703,6 +1225,18 @@ export type MonthEndStatusCreateManyOrganisationInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -716,9 +1250,22 @@ export type MonthEndStatusUpdateWithoutOrganisationInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   markedReadyBy?: Prisma.UserUpdateOneWithoutMonthEndStatusesMarkedNestedInput
+  wipProjectLines?: Prisma.WipProjectLineUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusUncheckedUpdateWithoutOrganisationInput = {
@@ -731,8 +1278,21 @@ export type MonthEndStatusUncheckedUpdateWithoutOrganisationInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusUncheckedUpdateManyWithoutOrganisationInput = {
@@ -745,6 +1305,18 @@ export type MonthEndStatusUncheckedUpdateManyWithoutOrganisationInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -759,6 +1331,18 @@ export type MonthEndStatusCreateManyMarkedReadyByInput = {
   lockedAt?: Date | string | null
   notes?: string | null
   dataVerifiedAt?: Date | string | null
+  catImportId?: string | null
+  wipCalculatedAt?: Date | string | null
+  wipNetMovement?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: string | null
+  wipReviewedAt?: Date | string | null
+  wipOverrideReason?: string | null
+  xeroJournalId?: string | null
+  xeroJournalPostedAt?: Date | string | null
+  xeroJournalPostedById?: string | null
+  xeroResyncedAt?: Date | string | null
+  lockedById?: string | null
+  lockNotes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -772,9 +1356,22 @@ export type MonthEndStatusUpdateWithoutMarkedReadyByInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutMonthEndStatusesNestedInput
+  wipProjectLines?: Prisma.WipProjectLineUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusUncheckedUpdateWithoutMarkedReadyByInput = {
@@ -787,8 +1384,21 @@ export type MonthEndStatusUncheckedUpdateWithoutMarkedReadyByInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wipProjectLines?: Prisma.WipProjectLineUncheckedUpdateManyWithoutMonthEndStatusNestedInput
 }
 
 export type MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByInput = {
@@ -801,10 +1411,51 @@ export type MonthEndStatusUncheckedUpdateManyWithoutMarkedReadyByInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dataVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  catImportId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipCalculatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipNetMovement?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  wipReviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wipReviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  wipOverrideReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroJournalPostedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  xeroJournalPostedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  xeroResyncedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lockNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type MonthEndStatusCountOutputType
+ */
+
+export type MonthEndStatusCountOutputType = {
+  wipProjectLines: number
+}
+
+export type MonthEndStatusCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  wipProjectLines?: boolean | MonthEndStatusCountOutputTypeCountWipProjectLinesArgs
+}
+
+/**
+ * MonthEndStatusCountOutputType without action
+ */
+export type MonthEndStatusCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MonthEndStatusCountOutputType
+   */
+  select?: Prisma.MonthEndStatusCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MonthEndStatusCountOutputType without action
+ */
+export type MonthEndStatusCountOutputTypeCountWipProjectLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WipProjectLineWhereInput
+}
 
 
 export type MonthEndStatusSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -818,10 +1469,24 @@ export type MonthEndStatusSelect<ExtArgs extends runtime.Types.Extensions.Intern
   lockedAt?: boolean
   notes?: boolean
   dataVerifiedAt?: boolean
+  catImportId?: boolean
+  wipCalculatedAt?: boolean
+  wipNetMovement?: boolean
+  wipReviewedById?: boolean
+  wipReviewedAt?: boolean
+  wipOverrideReason?: boolean
+  xeroJournalId?: boolean
+  xeroJournalPostedAt?: boolean
+  xeroJournalPostedById?: boolean
+  xeroResyncedAt?: boolean
+  lockedById?: boolean
+  lockNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   markedReadyBy?: boolean | Prisma.MonthEndStatus$markedReadyByArgs<ExtArgs>
+  wipProjectLines?: boolean | Prisma.MonthEndStatus$wipProjectLinesArgs<ExtArgs>
+  _count?: boolean | Prisma.MonthEndStatusCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["monthEndStatus"]>
 
 export type MonthEndStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -835,6 +1500,18 @@ export type MonthEndStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   lockedAt?: boolean
   notes?: boolean
   dataVerifiedAt?: boolean
+  catImportId?: boolean
+  wipCalculatedAt?: boolean
+  wipNetMovement?: boolean
+  wipReviewedById?: boolean
+  wipReviewedAt?: boolean
+  wipOverrideReason?: boolean
+  xeroJournalId?: boolean
+  xeroJournalPostedAt?: boolean
+  xeroJournalPostedById?: boolean
+  xeroResyncedAt?: boolean
+  lockedById?: boolean
+  lockNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -852,6 +1529,18 @@ export type MonthEndStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   lockedAt?: boolean
   notes?: boolean
   dataVerifiedAt?: boolean
+  catImportId?: boolean
+  wipCalculatedAt?: boolean
+  wipNetMovement?: boolean
+  wipReviewedById?: boolean
+  wipReviewedAt?: boolean
+  wipOverrideReason?: boolean
+  xeroJournalId?: boolean
+  xeroJournalPostedAt?: boolean
+  xeroJournalPostedById?: boolean
+  xeroResyncedAt?: boolean
+  lockedById?: boolean
+  lockNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -869,14 +1558,28 @@ export type MonthEndStatusSelectScalar = {
   lockedAt?: boolean
   notes?: boolean
   dataVerifiedAt?: boolean
+  catImportId?: boolean
+  wipCalculatedAt?: boolean
+  wipNetMovement?: boolean
+  wipReviewedById?: boolean
+  wipReviewedAt?: boolean
+  wipOverrideReason?: boolean
+  xeroJournalId?: boolean
+  xeroJournalPostedAt?: boolean
+  xeroJournalPostedById?: boolean
+  xeroResyncedAt?: boolean
+  lockedById?: boolean
+  lockNotes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MonthEndStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "status" | "markedReadyById" | "markedReadyAt" | "xeroSyncedAt" | "lockedAt" | "notes" | "dataVerifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["monthEndStatus"]>
+export type MonthEndStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "status" | "markedReadyById" | "markedReadyAt" | "xeroSyncedAt" | "lockedAt" | "notes" | "dataVerifiedAt" | "catImportId" | "wipCalculatedAt" | "wipNetMovement" | "wipReviewedById" | "wipReviewedAt" | "wipOverrideReason" | "xeroJournalId" | "xeroJournalPostedAt" | "xeroJournalPostedById" | "xeroResyncedAt" | "lockedById" | "lockNotes" | "createdAt" | "updatedAt", ExtArgs["result"]["monthEndStatus"]>
 export type MonthEndStatusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   markedReadyBy?: boolean | Prisma.MonthEndStatus$markedReadyByArgs<ExtArgs>
+  wipProjectLines?: boolean | Prisma.MonthEndStatus$wipProjectLinesArgs<ExtArgs>
+  _count?: boolean | Prisma.MonthEndStatusCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MonthEndStatusIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -892,6 +1595,7 @@ export type $MonthEndStatusPayload<ExtArgs extends runtime.Types.Extensions.Inte
   objects: {
     organisation: Prisma.$OrganisationPayload<ExtArgs>
     markedReadyBy: Prisma.$UserPayload<ExtArgs> | null
+    wipProjectLines: Prisma.$WipProjectLinePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -904,6 +1608,18 @@ export type $MonthEndStatusPayload<ExtArgs extends runtime.Types.Extensions.Inte
     lockedAt: Date | null
     notes: string | null
     dataVerifiedAt: Date | null
+    catImportId: string | null
+    wipCalculatedAt: Date | null
+    wipNetMovement: runtime.Decimal | null
+    wipReviewedById: string | null
+    wipReviewedAt: Date | null
+    wipOverrideReason: string | null
+    xeroJournalId: string | null
+    xeroJournalPostedAt: Date | null
+    xeroJournalPostedById: string | null
+    xeroResyncedAt: Date | null
+    lockedById: string | null
+    lockNotes: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["monthEndStatus"]>
@@ -1302,6 +2018,7 @@ export interface Prisma__MonthEndStatusClient<T, Null = never, ExtArgs extends r
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organisation<T extends Prisma.OrganisationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganisationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganisationClient<runtime.Types.Result.GetResult<Prisma.$OrganisationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   markedReadyBy<T extends Prisma.MonthEndStatus$markedReadyByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MonthEndStatus$markedReadyByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  wipProjectLines<T extends Prisma.MonthEndStatus$wipProjectLinesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MonthEndStatus$wipProjectLinesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WipProjectLinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1341,6 +2058,18 @@ export interface MonthEndStatusFieldRefs {
   readonly lockedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
   readonly notes: Prisma.FieldRef<"MonthEndStatus", 'String'>
   readonly dataVerifiedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
+  readonly catImportId: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly wipCalculatedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
+  readonly wipNetMovement: Prisma.FieldRef<"MonthEndStatus", 'Decimal'>
+  readonly wipReviewedById: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly wipReviewedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
+  readonly wipOverrideReason: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly xeroJournalId: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly xeroJournalPostedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
+  readonly xeroJournalPostedById: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly xeroResyncedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
+  readonly lockedById: Prisma.FieldRef<"MonthEndStatus", 'String'>
+  readonly lockNotes: Prisma.FieldRef<"MonthEndStatus", 'String'>
   readonly createdAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MonthEndStatus", 'DateTime'>
 }
@@ -1760,6 +2489,30 @@ export type MonthEndStatus$markedReadyByArgs<ExtArgs extends runtime.Types.Exten
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * MonthEndStatus.wipProjectLines
+ */
+export type MonthEndStatus$wipProjectLinesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WipProjectLine
+   */
+  select?: Prisma.WipProjectLineSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WipProjectLine
+   */
+  omit?: Prisma.WipProjectLineOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WipProjectLineInclude<ExtArgs> | null
+  where?: Prisma.WipProjectLineWhereInput
+  orderBy?: Prisma.WipProjectLineOrderByWithRelationInput | Prisma.WipProjectLineOrderByWithRelationInput[]
+  cursor?: Prisma.WipProjectLineWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WipProjectLineScalarFieldEnum | Prisma.WipProjectLineScalarFieldEnum[]
 }
 
 /**

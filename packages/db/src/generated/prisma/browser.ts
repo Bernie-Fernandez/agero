@@ -508,6 +508,16 @@ export type EstimateLineScopeAttachment = Prisma.EstimateLineScopeAttachmentMode
  */
 export type MonthEndStatus = Prisma.MonthEndStatusModel
 /**
+ * Model WipProjectLine
+ * 
+ */
+export type WipProjectLine = Prisma.WipProjectLineModel
+/**
+ * Model XeroWipSettings
+ * 
+ */
+export type XeroWipSettings = Prisma.XeroWipSettingsModel
+/**
  * Model XeroConnection
  * 
  */

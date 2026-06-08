@@ -482,6 +482,8 @@ export const ModelName = {
   ScopeLibraryItem: 'ScopeLibraryItem',
   EstimateLineScopeAttachment: 'EstimateLineScopeAttachment',
   MonthEndStatus: 'MonthEndStatus',
+  WipProjectLine: 'WipProjectLine',
+  XeroWipSettings: 'XeroWipSettings',
   XeroConnection: 'XeroConnection',
   FinanceProject: 'FinanceProject',
   FinanceProjectSnapshot: 'FinanceProjectSnapshot',
@@ -532,7 +534,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -7788,6 +7790,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    WipProjectLine: {
+      payload: Prisma.$WipProjectLinePayload<ExtArgs>
+      fields: Prisma.WipProjectLineFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WipProjectLineFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WipProjectLineFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        findFirst: {
+          args: Prisma.WipProjectLineFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WipProjectLineFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        findMany: {
+          args: Prisma.WipProjectLineFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>[]
+        }
+        create: {
+          args: Prisma.WipProjectLineCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        createMany: {
+          args: Prisma.WipProjectLineCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WipProjectLineCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>[]
+        }
+        delete: {
+          args: Prisma.WipProjectLineDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        update: {
+          args: Prisma.WipProjectLineUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        deleteMany: {
+          args: Prisma.WipProjectLineDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WipProjectLineUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WipProjectLineUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>[]
+        }
+        upsert: {
+          args: Prisma.WipProjectLineUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WipProjectLinePayload>
+        }
+        aggregate: {
+          args: Prisma.WipProjectLineAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWipProjectLine>
+        }
+        groupBy: {
+          args: Prisma.WipProjectLineGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WipProjectLineGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WipProjectLineCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WipProjectLineCountAggregateOutputType> | number
+        }
+      }
+    }
+    XeroWipSettings: {
+      payload: Prisma.$XeroWipSettingsPayload<ExtArgs>
+      fields: Prisma.XeroWipSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XeroWipSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XeroWipSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.XeroWipSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XeroWipSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.XeroWipSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.XeroWipSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.XeroWipSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XeroWipSettingsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>[]
+        }
+        delete: {
+          args: Prisma.XeroWipSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        update: {
+          args: Prisma.XeroWipSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.XeroWipSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XeroWipSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XeroWipSettingsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>[]
+        }
+        upsert: {
+          args: Prisma.XeroWipSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XeroWipSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.XeroWipSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXeroWipSettings>
+        }
+        groupBy: {
+          args: Prisma.XeroWipSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroWipSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XeroWipSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XeroWipSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
     XeroConnection: {
       payload: Prisma.$XeroConnectionPayload<ExtArgs>
       fields: Prisma.XeroConnectionFieldRefs
@@ -12169,11 +12319,59 @@ export const MonthEndStatusScalarFieldEnum = {
   lockedAt: 'lockedAt',
   notes: 'notes',
   dataVerifiedAt: 'dataVerifiedAt',
+  catImportId: 'catImportId',
+  wipCalculatedAt: 'wipCalculatedAt',
+  wipNetMovement: 'wipNetMovement',
+  wipReviewedById: 'wipReviewedById',
+  wipReviewedAt: 'wipReviewedAt',
+  wipOverrideReason: 'wipOverrideReason',
+  xeroJournalId: 'xeroJournalId',
+  xeroJournalPostedAt: 'xeroJournalPostedAt',
+  xeroJournalPostedById: 'xeroJournalPostedById',
+  xeroResyncedAt: 'xeroResyncedAt',
+  lockedById: 'lockedById',
+  lockNotes: 'lockNotes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type MonthEndStatusScalarFieldEnum = (typeof MonthEndStatusScalarFieldEnum)[keyof typeof MonthEndStatusScalarFieldEnum]
+
+
+export const WipProjectLineScalarFieldEnum = {
+  id: 'id',
+  monthEndStatusId: 'monthEndStatusId',
+  financeProjectId: 'financeProjectId',
+  jobNo: 'jobNo',
+  projectName: 'projectName',
+  catWip: 'catWip',
+  catBillingLessCost: 'catBillingLessCost',
+  catMarginRealised: 'catMarginRealised',
+  catClaimTotal: 'catClaimTotal',
+  catTotalCost: 'catTotalCost',
+  priorMonthWip: 'priorMonthWip',
+  wipMovement: 'wipMovement',
+  overrideWip: 'overrideWip',
+  overrideReason: 'overrideReason',
+  effectiveWip: 'effectiveWip',
+  effectiveMovement: 'effectiveMovement',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WipProjectLineScalarFieldEnum = (typeof WipProjectLineScalarFieldEnum)[keyof typeof WipProjectLineScalarFieldEnum]
+
+
+export const XeroWipSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  openingWipAccountCode: 'openingWipAccountCode',
+  closingWipAccountCode: 'closingWipAccountCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroWipSettingsScalarFieldEnum = (typeof XeroWipSettingsScalarFieldEnum)[keyof typeof XeroWipSettingsScalarFieldEnum]
 
 
 export const XeroConnectionScalarFieldEnum = {
@@ -14305,6 +14503,8 @@ export type GlobalOmitConfig = {
   scopeLibraryItem?: Prisma.ScopeLibraryItemOmit
   estimateLineScopeAttachment?: Prisma.EstimateLineScopeAttachmentOmit
   monthEndStatus?: Prisma.MonthEndStatusOmit
+  wipProjectLine?: Prisma.WipProjectLineOmit
+  xeroWipSettings?: Prisma.XeroWipSettingsOmit
   xeroConnection?: Prisma.XeroConnectionOmit
   financeProject?: Prisma.FinanceProjectOmit
   financeProjectSnapshot?: Prisma.FinanceProjectSnapshotOmit

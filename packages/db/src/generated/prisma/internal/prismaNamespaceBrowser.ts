@@ -149,6 +149,8 @@ export const ModelName = {
   ScopeLibraryItem: 'ScopeLibraryItem',
   EstimateLineScopeAttachment: 'EstimateLineScopeAttachment',
   MonthEndStatus: 'MonthEndStatus',
+  WipProjectLine: 'WipProjectLine',
+  XeroWipSettings: 'XeroWipSettings',
   XeroConnection: 'XeroConnection',
   FinanceProject: 'FinanceProject',
   FinanceProjectSnapshot: 'FinanceProjectSnapshot',
@@ -1954,11 +1956,59 @@ export const MonthEndStatusScalarFieldEnum = {
   lockedAt: 'lockedAt',
   notes: 'notes',
   dataVerifiedAt: 'dataVerifiedAt',
+  catImportId: 'catImportId',
+  wipCalculatedAt: 'wipCalculatedAt',
+  wipNetMovement: 'wipNetMovement',
+  wipReviewedById: 'wipReviewedById',
+  wipReviewedAt: 'wipReviewedAt',
+  wipOverrideReason: 'wipOverrideReason',
+  xeroJournalId: 'xeroJournalId',
+  xeroJournalPostedAt: 'xeroJournalPostedAt',
+  xeroJournalPostedById: 'xeroJournalPostedById',
+  xeroResyncedAt: 'xeroResyncedAt',
+  lockedById: 'lockedById',
+  lockNotes: 'lockNotes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type MonthEndStatusScalarFieldEnum = (typeof MonthEndStatusScalarFieldEnum)[keyof typeof MonthEndStatusScalarFieldEnum]
+
+
+export const WipProjectLineScalarFieldEnum = {
+  id: 'id',
+  monthEndStatusId: 'monthEndStatusId',
+  financeProjectId: 'financeProjectId',
+  jobNo: 'jobNo',
+  projectName: 'projectName',
+  catWip: 'catWip',
+  catBillingLessCost: 'catBillingLessCost',
+  catMarginRealised: 'catMarginRealised',
+  catClaimTotal: 'catClaimTotal',
+  catTotalCost: 'catTotalCost',
+  priorMonthWip: 'priorMonthWip',
+  wipMovement: 'wipMovement',
+  overrideWip: 'overrideWip',
+  overrideReason: 'overrideReason',
+  effectiveWip: 'effectiveWip',
+  effectiveMovement: 'effectiveMovement',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WipProjectLineScalarFieldEnum = (typeof WipProjectLineScalarFieldEnum)[keyof typeof WipProjectLineScalarFieldEnum]
+
+
+export const XeroWipSettingsScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  openingWipAccountCode: 'openingWipAccountCode',
+  closingWipAccountCode: 'closingWipAccountCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type XeroWipSettingsScalarFieldEnum = (typeof XeroWipSettingsScalarFieldEnum)[keyof typeof XeroWipSettingsScalarFieldEnum]
 
 
 export const XeroConnectionScalarFieldEnum = {
