@@ -628,7 +628,8 @@ export type FinanceProjectStatus = (typeof FinanceProjectStatus)[keyof typeof Fi
 
 export const BacklogClassification = {
   AWARDED: 'AWARDED',
-  BACKLOG: 'BACKLOG'
+  BACKLOG: 'BACKLOG',
+  IGNORE: 'IGNORE'
 } as const
 
 export type BacklogClassification = (typeof BacklogClassification)[keyof typeof BacklogClassification]

@@ -2934,6 +2934,7 @@ enum FinanceProjectStatus {
 enum BacklogClassification {
   AWARDED
   BACKLOG
+  IGNORE
 
   @@schema("projects")
 }
@@ -3925,6 +3926,7 @@ model BacklogBudget {
   lastAdjustedAt   DateTime?             @map("last_adjusted_at")
   lastAdjustedBy   String?               @map("last_adjusted_by") @db.Uuid
   adjustmentReason String?               @map("adjustment_reason") @db.Text
+  catSnapshotDate  DateTime?             @map("cat_snapshot_date") @db.Date
   createdAt        DateTime              @default(now()) @map("created_at")
   updatedAt        DateTime              @updatedAt @map("updated_at")
 

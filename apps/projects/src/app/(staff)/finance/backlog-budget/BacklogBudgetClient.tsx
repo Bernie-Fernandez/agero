@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useTransition, useCallback, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 import {
   upsertBacklogBudget,
   lockFYBacklog,
@@ -22,17 +21,16 @@ const AUD2 = new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD'
 function fmtAUD(v: number | string) { return AUD.format(Number(v)); }
 function fmtAUD2(v: number | string) { return AUD2.format(Number(v)); }
 function fmtPct(v: number | string) { return (Number(v) * 100).toFixed(1) + '%'; }
-function fmtDate(iso: string | null): string {
+function fmtDate(iso: string | null | undefined): string {
   if (!iso) return '—';
   return new Date(iso).toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' });
 }
-
-function staleDays(iso: string | null): number {
+function staleDays(iso: string | null | undefined): number {
   if (!iso) return 9999;
   return Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
 }
 
-// ─── Mode Badge ───────────────────────────────────────────────────────────────
+// ─── Badges ───────────────────────────────────────────────────────────────────
 
 function ModeBadge({ mode }: { mode: PageMode }) {
   const map: Record<PageMode, { label: string; cls: string }> = {
@@ -45,10 +43,35 @@ function ModeBadge({ mode }: { mode: PageMode }) {
   return <span className={`px-2 py-0.5 rounded text-xs font-semibold tracking-wide ${cls}`}>{label}</span>;
 }
 
-function StatusBadge({ status }: { status: BacklogBudgetStatus }) {
+function StatusBadge({ status, classification }: { status: BacklogBudgetStatus; classification: BacklogClassification }) {
+  if (classification === 'IGNORE') return <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-zinc-100 text-zinc-400">IGNORED</span>;
   if (status === 'LOCKED') return <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-700">LOCKED</span>;
   if (status === 'ADJUSTED') return <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-orange-100 text-orange-700">ADJUSTED</span>;
   return <span className="px-1.5 py-0.5 rounded text-xs font-semibold bg-zinc-100 text-zinc-500">DRAFT</span>;
+}
+
+function CATFreshnessBadge({ asAtDate }: { asAtDate: string | null | undefined }) {
+  if (!asAtDate) {
+    return (
+      <span
+        className="ml-1 px-1 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700 cursor-default"
+        title="No CAT data available for this project."
+      >
+        No CAT data
+      </span>
+    );
+  }
+  const days = staleDays(asAtDate);
+  if (days < 7) return null;
+  const isOld = days >= 30;
+  return (
+    <span
+      className={`ml-1 px-1 py-0.5 rounded text-xs font-medium cursor-default ${isOld ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}
+      title={`CAT data as at ${fmtDate(asAtDate)}. Import a new CAT snapshot to refresh.`}
+    >
+      {days}d ago
+    </span>
+  );
 }
 
 // ─── CAT Context Panel ────────────────────────────────────────────────────────
@@ -73,12 +96,8 @@ function CATContextPanel({
   useState(() => {
     getProjectCATTrend(row.financeProjectId).then((res) => {
       setLoading(false);
-      if (res.ok) {
-        setTrend(res.trend ?? []);
-        setKeyFigures(res.keyFigures ?? null);
-      } else {
-        setError(res.error ?? 'Failed to load data.');
-      }
+      if (res.ok) { setTrend(res.trend ?? []); setKeyFigures(res.keyFigures ?? null); }
+      else setError(res.error ?? 'Failed to load data.');
     });
   });
 
@@ -106,11 +125,9 @@ function CATContextPanel({
             </svg>
           </button>
         </div>
-
         <div className="flex-1 px-5 py-4 space-y-5">
           {loading && <p className="text-sm text-zinc-500">Loading CAT data…</p>}
           {error && <p className="text-sm text-red-600">{error}</p>}
-
           {!loading && !error && (
             <>
               {isStale && keyFigures && (
@@ -118,7 +135,6 @@ function CATContextPanel({
                   CAT data last updated {fmtDate(keyFigures.asAtDate)} — figures may be stale. Run a CAT import to refresh.
                 </div>
               )}
-
               <div>
                 <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">Last 3 months — margin trend</h4>
                 {trend.length === 0 ? (
@@ -148,7 +164,6 @@ function CATContextPanel({
                   </table>
                 )}
               </div>
-
               {keyFigures && (
                 <div>
                   <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wide mb-2">Key figures (latest)</h4>
@@ -168,7 +183,6 @@ function CATContextPanel({
                   </div>
                 </div>
               )}
-
               {keyFigures && (
                 <button
                   onClick={() => { onPrefill(keyFigures.nettRetention); onClose(); }}
@@ -193,6 +207,8 @@ function LockModal({
   backlogTotal,
   awardedCount,
   backlogCount,
+  ignoreCount,
+  latestCatImportDate,
   onCancel,
   onConfirm,
   locking,
@@ -202,6 +218,8 @@ function LockModal({
   backlogTotal: number;
   awardedCount: number;
   backlogCount: number;
+  ignoreCount: number;
+  latestCatImportDate: string | null;
   onCancel: () => void;
   onConfirm: () => void;
   locking: boolean;
@@ -211,9 +229,7 @@ function LockModal({
       <div className="absolute inset-0 bg-black/30" onClick={onCancel} />
       <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
         <h2 className="text-base font-semibold text-zinc-900 mb-3">Lock {fyYear} Backlog Budget</h2>
-        <p className="text-sm text-zinc-600 mb-4">
-          You are about to lock the {fyYear} Backlog budget. Once locked:
-        </p>
+        <p className="text-sm text-zinc-600 mb-4">You are about to lock the {fyYear} Backlog budget. Once locked:</p>
         <ul className="text-sm text-zinc-600 space-y-1 mb-4 list-disc pl-4">
           <li>All figures are frozen</li>
           <li>Changes require a Director override with a reason</li>
@@ -228,9 +244,19 @@ function LockModal({
             <span className="text-zinc-600">{backlogCount} projects — Backlog</span>
             <span className="font-medium">{fmtAUD(backlogTotal)}</span>
           </div>
+          {ignoreCount > 0 && (
+            <div className="flex justify-between text-zinc-400">
+              <span>{ignoreCount} projects excluded (Ignore)</span>
+              <span>—</span>
+            </div>
+          )}
           <div className="flex justify-between border-t pt-1 mt-1">
             <span className="font-semibold text-zinc-900">Grand total</span>
             <span className="font-semibold">{fmtAUD(awardedTotal + backlogTotal)}</span>
+          </div>
+          <div className="flex justify-between text-zinc-500 text-xs pt-1 border-t mt-1">
+            <span>CAT data used</span>
+            <span>{latestCatImportDate ? `as at ${fmtDate(latestCatImportDate)}` : 'No CAT data on record'}</span>
           </div>
         </div>
         <div className="flex gap-3 justify-end">
@@ -288,17 +314,17 @@ function AdjustForm({
             >
               <option value="AWARDED">Awarded</option>
               <option value="BACKLOG">Backlog</option>
+              <option value="IGNORE">Ignore — exclude from budget</option>
             </select>
           </div>
           <div>
             <label className="text-xs text-zinc-600 block mb-1">New Budget Revenue ($)</label>
             <input
-              type="number"
-              min="0"
-              step="1"
-              value={budgetRevenue}
+              type="number" min="0" step="1"
+              value={classification === 'IGNORE' ? '0' : budgetRevenue}
+              disabled={classification === 'IGNORE'}
               onChange={(e) => setBudgetRevenue(e.target.value)}
-              className="text-sm border border-zinc-300 rounded px-2 py-1 w-36"
+              className="text-sm border border-zinc-300 rounded px-2 py-1 w-36 disabled:bg-zinc-100"
             />
           </div>
           <div className="flex-1 min-w-48">
@@ -330,7 +356,7 @@ function AdjustForm({
 
 // ─── Editable Row ─────────────────────────────────────────────────────────────
 
-function BacklogRow({
+function TableRow({
   row,
   isEditable,
   isDirector,
@@ -344,7 +370,7 @@ function BacklogRow({
   row: BacklogRow;
   isEditable: boolean;
   isDirector: boolean;
-  onSave: (id: string, field: 'classification' | 'budgetRevenue' | 'notes', value: string) => Promise<void>;
+  onSave: (financeProjectId: string, field: 'classification' | 'budgetRevenue' | 'notes', value: string) => Promise<void>;
   onViewCAT: (row: BacklogRow) => void;
   onAdjust: (financeProjectId: string) => void;
   adjustingId: string | null;
@@ -353,8 +379,12 @@ function BacklogRow({
 }) {
   const [localClass, setLocalClass] = useState<BacklogClassification>(row.classification);
   const [localRevenue, setLocalRevenue] = useState(row.budgetRevenue);
-  const [localNotes, setLocalNotes] = useState(row.notes ?? '');
   const [saved, setSaved] = useState(false);
+
+  const isIgnored = localClass === 'IGNORE';
+  const isAdjusting = adjustingId === row.financeProjectId;
+  const isLocked = row.status === 'LOCKED' || row.status === 'ADJUSTED';
+  const canEdit = isEditable && !isLocked;
 
   async function handleBlur(field: 'classification' | 'budgetRevenue' | 'notes', value: string) {
     await onSave(row.financeProjectId, field, value);
@@ -362,50 +392,62 @@ function BacklogRow({
     setTimeout(() => setSaved(false), 2000);
   }
 
-  const isAdjusting = adjustingId === row.financeProjectId;
-  const isLocked = row.status === 'LOCKED' || row.status === 'ADJUSTED';
-  const canEdit = isEditable && !isLocked;
+  async function handleClassChange(val: BacklogClassification) {
+    setLocalClass(val);
+    if (val === 'IGNORE') setLocalRevenue('0');
+    // Save immediately on class change (don't wait for blur)
+    await onSave(row.financeProjectId, 'classification', val);
+    if (val === 'IGNORE') await onSave(row.financeProjectId, 'budgetRevenue', '0');
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
 
   return (
     <>
-      <tr className="border-b hover:bg-zinc-50 text-sm">
+      <tr className={`border-b text-sm transition-opacity ${isIgnored ? 'opacity-50' : 'hover:bg-zinc-50'}`}>
         <td className="px-3 py-2 text-zinc-500 text-xs whitespace-nowrap">{row.jobNumber}</td>
         <td className="px-3 py-2 text-zinc-900">{row.projectName}</td>
         <td className="px-3 py-2">
           {canEdit ? (
             <select
               value={localClass}
-              onChange={(e) => setLocalClass(e.target.value as BacklogClassification)}
-              onBlur={(e) => handleBlur('classification', e.target.value)}
+              onChange={(e) => handleClassChange(e.target.value as BacklogClassification)}
               className="text-sm border border-zinc-300 rounded px-1.5 py-0.5 bg-white"
             >
               <option value="AWARDED">Awarded</option>
               <option value="BACKLOG">Backlog</option>
+              <option value="IGNORE">Ignore — exclude from budget</option>
             </select>
           ) : (
-            <span className={localClass === 'BACKLOG' ? 'text-purple-700 font-medium' : 'text-zinc-700'}>{localClass === 'BACKLOG' ? 'Backlog' : 'Awarded'}</span>
+            <span className={
+              localClass === 'BACKLOG' ? 'text-purple-700 font-medium' :
+              localClass === 'IGNORE' ? 'text-zinc-400' :
+              'text-zinc-700'
+            }>
+              {localClass === 'BACKLOG' ? 'Backlog' : localClass === 'IGNORE' ? 'Ignore' : 'Awarded'}
+            </span>
           )}
         </td>
         <td className="px-3 py-2">
           {canEdit ? (
             <div className="flex items-center gap-1">
               <input
-                type="number"
-                min="0"
-                step="1"
-                value={localRevenue}
+                type="number" min="0" step="1"
+                value={isIgnored ? '0' : localRevenue}
+                disabled={isIgnored}
                 onChange={(e) => setLocalRevenue(e.target.value)}
-                onBlur={(e) => handleBlur('budgetRevenue', e.target.value)}
-                className="text-sm border border-zinc-300 rounded px-1.5 py-0.5 w-28 text-right"
+                onBlur={(e) => !isIgnored && handleBlur('budgetRevenue', e.target.value)}
+                className="text-sm border border-zinc-300 rounded px-1.5 py-0.5 w-28 text-right disabled:bg-zinc-100 disabled:text-zinc-400"
               />
               {saved && <span className="text-xs text-emerald-600">Saved ✓</span>}
             </div>
           ) : (
-            fmtAUD(localRevenue)
+            <span className={isIgnored ? 'text-zinc-400' : ''}>{isIgnored ? '—' : fmtAUD(localRevenue)}</span>
           )}
         </td>
         <td className="px-3 py-2 text-right text-zinc-600 text-xs">
-          {row.latestSnapshot ? fmtAUD(row.latestSnapshot.forecastContract) : '—'}
+          <span>{row.latestSnapshot ? fmtAUD(row.latestSnapshot.forecastContract) : '—'}</span>
+          <CATFreshnessBadge asAtDate={row.latestSnapshot?.asAtDate} />
         </td>
         <td className="px-3 py-2 text-right text-zinc-600 text-xs">
           {row.latestSnapshot ? fmtAUD(row.latestSnapshot.marginToEarn) : '—'}
@@ -414,21 +456,15 @@ function BacklogRow({
           {row.latestSnapshot ? fmtAUD(row.latestSnapshot.nettRetention) : '—'}
         </td>
         <td className="px-3 py-2 text-xs">
-          <StatusBadge status={row.status} />
+          <StatusBadge status={row.status} classification={localClass} />
         </td>
         <td className="px-3 py-2">
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={() => onViewCAT(row)}
-              className="text-xs text-blue-600 hover:underline whitespace-nowrap"
-            >
+            <button onClick={() => onViewCAT(row)} className="text-xs text-blue-600 hover:underline whitespace-nowrap">
               CAT trend
             </button>
             {isLocked && isDirector && (
-              <button
-                onClick={() => onAdjust(row.financeProjectId)}
-                className="text-xs text-orange-600 hover:underline"
-              >
+              <button onClick={() => onAdjust(row.financeProjectId)} className="text-xs text-orange-600 hover:underline">
                 Adjust
               </button>
             )}
@@ -454,14 +490,15 @@ export default function BacklogBudgetClient({
   initialMode,
   currentFY,
   isDirector,
+  latestCatImportDate,
 }: {
   initialRows: BacklogRow[];
   fySettings: FYSettingsRow;
   initialMode: PageMode;
   currentFY: string;
   isDirector: boolean;
+  latestCatImportDate: string | null;
 }) {
-  const router = useRouter();
   const [rows, setRows] = useState<BacklogRow[]>(initialRows);
   const [mode, setMode] = useState<PageMode>(initialMode);
   const [selectedFY, setSelectedFY] = useState(currentFY);
@@ -470,52 +507,59 @@ export default function BacklogBudgetClient({
   const [locking, startLock] = useTransition();
   const [lockError, setLockError] = useState<string | null>(null);
   const [adjustingId, setAdjustingId] = useState<string | null>(null);
-  const [, startTransition] = useTransition();
+  const [lockedCatSnapshotDate, setLockedCatSnapshotDate] = useState<string | null>(
+    initialRows.find((r) => r.catSnapshotDate)?.catSnapshotDate ?? null
+  );
+  const [, startFYTransition] = useTransition();
 
-  const awardedRows = rows.filter((r) => r.classification === 'AWARDED');
-  const backlogRows = rows.filter((r) => r.classification === 'BACKLOG');
+  // Exclude IGNORE from totals
+  const activeRows = rows.filter((r) => r.classification !== 'IGNORE');
+  const awardedRows = activeRows.filter((r) => r.classification === 'AWARDED');
+  const backlogRows = activeRows.filter((r) => r.classification === 'BACKLOG');
+  const ignoreRows = rows.filter((r) => r.classification === 'IGNORE');
   const awardedTotal = awardedRows.reduce((s, r) => s + Number(r.budgetRevenue), 0);
   const backlogTotal = backlogRows.reduce((s, r) => s + Number(r.budgetRevenue), 0);
   const grandTotal = awardedTotal + backlogTotal;
 
   const isEditable = mode === 'DRAFT' || mode === 'READY_TO_LOCK';
   const isLocked = mode === 'LOCKED';
-  const lockedAt = isLocked ? rows.find((r) => r.status === 'LOCKED' || r.status === 'ADJUSTED')?.lockedAt : null;
+  const lockedAt = isLocked ? rows.find((r) => r.lockedAt)?.lockedAt : null;
 
   const FY_OPTIONS = [currentFY, `FY${Number(currentFY.slice(2)) - 1}`];
 
   async function handleFYChange(fy: string) {
     setSelectedFY(fy);
-    startTransition(async () => {
+    startFYTransition(async () => {
       const res = await listBacklogBudget(fy);
-      if (res.ok) setRows(res.rows ?? []);
+      if (res.ok) {
+        setRows(res.rows ?? []);
+        setLockedCatSnapshotDate(res.rows?.find((r) => r.catSnapshotDate)?.catSnapshotDate ?? null);
+      }
     });
   }
 
   async function handleSave(financeProjectId: string, field: 'classification' | 'budgetRevenue' | 'notes', value: string) {
     const row = rows.find((r) => r.financeProjectId === financeProjectId);
     if (!row) return;
-    const updated = {
+    const newClass = field === 'classification' ? (value as BacklogClassification) : row.classification;
+    const newRevenue = field === 'budgetRevenue' ? Number(value) : (newClass === 'IGNORE' ? 0 : Number(row.budgetRevenue));
+    const res = await upsertBacklogBudget({
       financeProjectId,
       fyYear: selectedFY,
-      classification: field === 'classification' ? (value as BacklogClassification) : row.classification,
-      budgetRevenue: field === 'budgetRevenue' ? Number(value) : Number(row.budgetRevenue),
+      classification: newClass,
+      budgetRevenue: newRevenue,
       notes: field === 'notes' ? value : row.notes,
-    };
-    const res = await upsertBacklogBudget(updated);
+    });
     if (res.ok) {
       setRows((prev) => prev.map((r) =>
         r.financeProjectId === financeProjectId
-          ? { ...r, ...updated, budgetRevenue: String(updated.budgetRevenue), id: res.id ?? r.id }
+          ? { ...r, classification: newClass, budgetRevenue: String(newRevenue), id: res.id ?? r.id }
           : r
       ));
     }
   }
 
-  function handleLockClick() {
-    setShowLockModal(true);
-    setLockError(null);
-  }
+  function handleLockClick() { setShowLockModal(true); setLockError(null); }
 
   function handleLockConfirm() {
     startLock(async () => {
@@ -523,7 +567,9 @@ export default function BacklogBudgetClient({
       if (res.ok) {
         setShowLockModal(false);
         setMode('LOCKED');
-        setRows((prev) => prev.map((r) => ({ ...r, status: 'LOCKED', lockedAt: new Date().toISOString() })));
+        const now = new Date().toISOString();
+        setRows((prev) => prev.map((r) => ({ ...r, status: 'LOCKED', lockedAt: now, catSnapshotDate: res.catSnapshotDate ?? null })));
+        setLockedCatSnapshotDate(res.catSnapshotDate ?? null);
       } else {
         setLockError(res.error ?? 'Lock failed.');
       }
@@ -535,30 +581,28 @@ export default function BacklogBudgetClient({
       financeProjectId: row.financeProjectId,
       fyYear: selectedFY,
       classification: cls,
-      budgetRevenue: rev,
+      budgetRevenue: cls === 'IGNORE' ? 0 : rev,
       adjustmentReason: reason,
     });
     if (res.ok) {
       setAdjustingId(null);
       setRows((prev) => prev.map((r) =>
         r.financeProjectId === row.financeProjectId
-          ? { ...r, status: 'ADJUSTED', classification: cls, budgetRevenue: String(rev), lastAdjustedAt: new Date().toISOString(), adjustmentReason: reason }
+          ? { ...r, status: 'ADJUSTED', classification: cls, budgetRevenue: String(cls === 'IGNORE' ? 0 : rev), lastAdjustedAt: new Date().toISOString(), adjustmentReason: reason }
           : r
       ));
     }
   }
 
   function handlePrefill(financeProjectId: string, value: string) {
-    setRows((prev) => prev.map((r) =>
-      r.financeProjectId === financeProjectId ? { ...r, budgetRevenue: value } : r
-    ));
+    setRows((prev) => prev.map((r) => r.financeProjectId === financeProjectId ? { ...r, budgetRevenue: value } : r));
     handleSave(financeProjectId, 'budgetRevenue', value);
   }
 
   return (
     <div className="p-6 max-w-7xl">
       {/* Header */}
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex items-start justify-between mb-3">
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="text-xl font-semibold text-zinc-900">Backlog Budget — {selectedFY}</h1>
@@ -567,7 +611,12 @@ export default function BacklogBudgetClient({
               <span className="text-xs text-zinc-500">Locked {fmtDate(lockedAt)}</span>
             )}
           </div>
-          <p className="text-sm text-zinc-500">Set and lock annual project classifications and budget revenue figures.</p>
+          {isLocked && lockedAt && (
+            <p className="text-xs text-zinc-500">
+              Budget locked on {fmtDate(lockedAt)} against CAT data as at {lockedCatSnapshotDate ? fmtDate(lockedCatSnapshotDate) : 'unknown'}
+            </p>
+          )}
+          {!isLocked && <p className="text-sm text-zinc-500">Set and lock annual project classifications and budget revenue figures.</p>}
         </div>
         <div className="flex items-center gap-3">
           <select
@@ -575,9 +624,7 @@ export default function BacklogBudgetClient({
             onChange={(e) => handleFYChange(e.target.value)}
             className="text-sm border border-zinc-300 rounded px-2 py-1.5 bg-white"
           >
-            {FY_OPTIONS.map((fy) => (
-              <option key={fy} value={fy}>{fy}</option>
-            ))}
+            {FY_OPTIONS.map((fy) => <option key={fy} value={fy}>{fy}</option>)}
           </select>
           {(mode === 'DRAFT' || mode === 'READY_TO_LOCK') && isDirector && (
             <button
@@ -590,6 +637,22 @@ export default function BacklogBudgetClient({
         </div>
       </div>
 
+      {/* CAT freshness banner */}
+      <div className="flex items-center gap-2 mb-4 text-xs text-zinc-500">
+        {latestCatImportDate ? (
+          <>
+            <span>CAT data last imported: <span className="font-medium text-zinc-700">{fmtDate(latestCatImportDate)}</span></span>
+            <span className="text-zinc-300">·</span>
+            <a href="/finance/cat-import" className="text-blue-600 hover:underline">Import fresh data →</a>
+          </>
+        ) : (
+          <>
+            <span className="text-red-600">No CAT data imported yet.</span>
+            <a href="/finance/cat-import" className="text-blue-600 hover:underline">Import now →</a>
+          </>
+        )}
+      </div>
+
       {/* Mode banner for UPCOMING */}
       {mode === 'UPCOMING' && (
         <div className="bg-zinc-50 border border-zinc-200 rounded p-4 mb-5 text-sm text-zinc-600">
@@ -597,13 +660,13 @@ export default function BacklogBudgetClient({
         </div>
       )}
 
-      {/* Summary row */}
+      {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
         {[
           { label: 'Awarded Budget', value: fmtAUD(awardedTotal), sub: `${awardedRows.length} projects` },
           { label: 'Backlog Budget', value: fmtAUD(backlogTotal), sub: `${backlogRows.length} projects` },
-          { label: 'Grand Total', value: fmtAUD(grandTotal), sub: `${rows.length} projects` },
-          { label: 'Status', value: rows.filter((r) => r.status !== 'DRAFT').length > 0 ? `${rows.filter((r) => r.status === 'LOCKED').length} locked, ${rows.filter((r) => r.status === 'ADJUSTED').length} adjusted` : 'All draft', sub: '' },
+          { label: 'Grand Total', value: fmtAUD(grandTotal), sub: `${activeRows.length} projects` },
+          { label: 'Ignored', value: `${ignoreRows.length}`, sub: ignoreRows.length > 0 ? 'excluded from totals' : 'none excluded' },
         ].map((c) => (
           <div key={c.label} className="bg-white border border-zinc-200 rounded p-3">
             <p className="text-xs text-zinc-500 mb-0.5">{c.label}</p>
@@ -632,13 +695,11 @@ export default function BacklogBudgetClient({
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-3 py-6 text-center text-sm text-zinc-400">
-                  No active projects found.
-                </td>
+                <td colSpan={9} className="px-3 py-6 text-center text-sm text-zinc-400">No active projects found.</td>
               </tr>
             ) : (
               rows.map((row) => (
-                <BacklogRow
+                <TableRow
                   key={row.financeProjectId}
                   row={row}
                   isEditable={isEditable}
@@ -656,7 +717,7 @@ export default function BacklogBudgetClient({
           {rows.length > 0 && (
             <tfoot className="border-t bg-zinc-50">
               <tr className="text-sm font-semibold">
-                <td colSpan={3} className="px-3 py-2 text-zinc-700">Totals</td>
+                <td colSpan={3} className="px-3 py-2 text-zinc-700">Totals (excl. Ignored)</td>
                 <td className="px-3 py-2 text-right">{fmtAUD(grandTotal)}</td>
                 <td colSpan={5} />
               </tr>
@@ -665,11 +726,8 @@ export default function BacklogBudgetClient({
         </table>
       </div>
 
-      {lockError && (
-        <p className="mt-3 text-sm text-red-600">{lockError}</p>
-      )}
+      {lockError && <p className="mt-3 text-sm text-red-600">{lockError}</p>}
 
-      {/* Modals & panels */}
       {showLockModal && (
         <LockModal
           fyYear={selectedFY}
@@ -677,6 +735,8 @@ export default function BacklogBudgetClient({
           backlogTotal={backlogTotal}
           awardedCount={awardedRows.length}
           backlogCount={backlogRows.length}
+          ignoreCount={ignoreRows.length}
+          latestCatImportDate={latestCatImportDate}
           onCancel={() => setShowLockModal(false)}
           onConfirm={handleLockConfirm}
           locking={locking}

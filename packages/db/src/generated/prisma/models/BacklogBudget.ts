@@ -48,6 +48,7 @@ export type BacklogBudgetMinAggregateOutputType = {
   lastAdjustedAt: Date | null
   lastAdjustedBy: string | null
   adjustmentReason: string | null
+  catSnapshotDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +67,7 @@ export type BacklogBudgetMaxAggregateOutputType = {
   lastAdjustedAt: Date | null
   lastAdjustedBy: string | null
   adjustmentReason: string | null
+  catSnapshotDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -84,6 +86,7 @@ export type BacklogBudgetCountAggregateOutputType = {
   lastAdjustedAt: number
   lastAdjustedBy: number
   adjustmentReason: number
+  catSnapshotDate: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -112,6 +115,7 @@ export type BacklogBudgetMinAggregateInputType = {
   lastAdjustedAt?: true
   lastAdjustedBy?: true
   adjustmentReason?: true
+  catSnapshotDate?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,6 +134,7 @@ export type BacklogBudgetMaxAggregateInputType = {
   lastAdjustedAt?: true
   lastAdjustedBy?: true
   adjustmentReason?: true
+  catSnapshotDate?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -148,6 +153,7 @@ export type BacklogBudgetCountAggregateInputType = {
   lastAdjustedAt?: true
   lastAdjustedBy?: true
   adjustmentReason?: true
+  catSnapshotDate?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -253,6 +259,7 @@ export type BacklogBudgetGroupByOutputType = {
   lastAdjustedAt: Date | null
   lastAdjustedBy: string | null
   adjustmentReason: string | null
+  catSnapshotDate: Date | null
   createdAt: Date
   updatedAt: Date
   _count: BacklogBudgetCountAggregateOutputType | null
@@ -294,6 +301,7 @@ export type BacklogBudgetWhereInput = {
   lastAdjustedAt?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   lastAdjustedBy?: Prisma.UuidNullableFilter<"BacklogBudget"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BacklogBudget"> | string | null
+  catSnapshotDate?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -314,6 +322,7 @@ export type BacklogBudgetOrderByWithRelationInput = {
   lastAdjustedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lastAdjustedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  catSnapshotDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
@@ -338,6 +347,7 @@ export type BacklogBudgetWhereUniqueInput = Prisma.AtLeast<{
   lastAdjustedAt?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   lastAdjustedBy?: Prisma.UuidNullableFilter<"BacklogBudget"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BacklogBudget"> | string | null
+  catSnapshotDate?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -358,6 +368,7 @@ export type BacklogBudgetOrderByWithAggregationInput = {
   lastAdjustedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lastAdjustedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  catSnapshotDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BacklogBudgetCountOrderByAggregateInput
@@ -384,6 +395,7 @@ export type BacklogBudgetScalarWhereWithAggregatesInput = {
   lastAdjustedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"BacklogBudget"> | Date | string | null
   lastAdjustedBy?: Prisma.UuidNullableWithAggregatesFilter<"BacklogBudget"> | string | null
   adjustmentReason?: Prisma.StringNullableWithAggregatesFilter<"BacklogBudget"> | string | null
+  catSnapshotDate?: Prisma.DateTimeNullableWithAggregatesFilter<"BacklogBudget"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BacklogBudget"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BacklogBudget"> | Date | string
 }
@@ -400,6 +412,7 @@ export type BacklogBudgetCreateInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutBacklogBudgetsInput
@@ -420,6 +433,7 @@ export type BacklogBudgetUncheckedCreateInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -436,6 +450,7 @@ export type BacklogBudgetUpdateInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutBacklogBudgetsNestedInput
@@ -456,6 +471,7 @@ export type BacklogBudgetUncheckedUpdateInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -474,6 +490,7 @@ export type BacklogBudgetCreateManyInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -490,6 +507,7 @@ export type BacklogBudgetUpdateManyMutationInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -508,6 +526,7 @@ export type BacklogBudgetUncheckedUpdateManyInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -541,6 +560,7 @@ export type BacklogBudgetCountOrderByAggregateInput = {
   lastAdjustedAt?: Prisma.SortOrder
   lastAdjustedBy?: Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrder
+  catSnapshotDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -563,6 +583,7 @@ export type BacklogBudgetMaxOrderByAggregateInput = {
   lastAdjustedAt?: Prisma.SortOrder
   lastAdjustedBy?: Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrder
+  catSnapshotDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -581,6 +602,7 @@ export type BacklogBudgetMinOrderByAggregateInput = {
   lastAdjustedAt?: Prisma.SortOrder
   lastAdjustedBy?: Prisma.SortOrder
   adjustmentReason?: Prisma.SortOrder
+  catSnapshotDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -693,6 +715,7 @@ export type BacklogBudgetCreateWithoutOrganisationInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   financeProject: Prisma.FinanceProjectCreateNestedOneWithoutBacklogBudgetsInput
@@ -711,6 +734,7 @@ export type BacklogBudgetUncheckedCreateWithoutOrganisationInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -758,6 +782,7 @@ export type BacklogBudgetScalarWhereInput = {
   lastAdjustedAt?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   lastAdjustedBy?: Prisma.UuidNullableFilter<"BacklogBudget"> | string | null
   adjustmentReason?: Prisma.StringNullableFilter<"BacklogBudget"> | string | null
+  catSnapshotDate?: Prisma.DateTimeNullableFilter<"BacklogBudget"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BacklogBudget"> | Date | string
 }
@@ -774,6 +799,7 @@ export type BacklogBudgetCreateWithoutFinanceProjectInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutBacklogBudgetsInput
@@ -792,6 +818,7 @@ export type BacklogBudgetUncheckedCreateWithoutFinanceProjectInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -835,6 +862,7 @@ export type BacklogBudgetCreateManyOrganisationInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -851,6 +879,7 @@ export type BacklogBudgetUpdateWithoutOrganisationInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   financeProject?: Prisma.FinanceProjectUpdateOneRequiredWithoutBacklogBudgetsNestedInput
@@ -869,6 +898,7 @@ export type BacklogBudgetUncheckedUpdateWithoutOrganisationInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -886,6 +916,7 @@ export type BacklogBudgetUncheckedUpdateManyWithoutOrganisationInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -903,6 +934,7 @@ export type BacklogBudgetCreateManyFinanceProjectInput = {
   lastAdjustedAt?: Date | string | null
   lastAdjustedBy?: string | null
   adjustmentReason?: string | null
+  catSnapshotDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -919,6 +951,7 @@ export type BacklogBudgetUpdateWithoutFinanceProjectInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutBacklogBudgetsNestedInput
@@ -937,6 +970,7 @@ export type BacklogBudgetUncheckedUpdateWithoutFinanceProjectInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -954,6 +988,7 @@ export type BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectInput = {
   lastAdjustedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastAdjustedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjustmentReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  catSnapshotDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -974,6 +1009,7 @@ export type BacklogBudgetSelect<ExtArgs extends runtime.Types.Extensions.Interna
   lastAdjustedAt?: boolean
   lastAdjustedBy?: boolean
   adjustmentReason?: boolean
+  catSnapshotDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -994,6 +1030,7 @@ export type BacklogBudgetSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   lastAdjustedAt?: boolean
   lastAdjustedBy?: boolean
   adjustmentReason?: boolean
+  catSnapshotDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -1014,6 +1051,7 @@ export type BacklogBudgetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   lastAdjustedAt?: boolean
   lastAdjustedBy?: boolean
   adjustmentReason?: boolean
+  catSnapshotDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -1034,11 +1072,12 @@ export type BacklogBudgetSelectScalar = {
   lastAdjustedAt?: boolean
   lastAdjustedBy?: boolean
   adjustmentReason?: boolean
+  catSnapshotDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BacklogBudgetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "financeProjectId" | "fyYear" | "classification" | "budgetRevenue" | "notes" | "status" | "lockedAt" | "lockedBy" | "lastAdjustedAt" | "lastAdjustedBy" | "adjustmentReason" | "createdAt" | "updatedAt", ExtArgs["result"]["backlogBudget"]>
+export type BacklogBudgetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "financeProjectId" | "fyYear" | "classification" | "budgetRevenue" | "notes" | "status" | "lockedAt" | "lockedBy" | "lastAdjustedAt" | "lastAdjustedBy" | "adjustmentReason" | "catSnapshotDate" | "createdAt" | "updatedAt", ExtArgs["result"]["backlogBudget"]>
 export type BacklogBudgetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
   financeProject?: boolean | Prisma.FinanceProjectDefaultArgs<ExtArgs>
@@ -1072,6 +1111,7 @@ export type $BacklogBudgetPayload<ExtArgs extends runtime.Types.Extensions.Inter
     lastAdjustedAt: Date | null
     lastAdjustedBy: string | null
     adjustmentReason: string | null
+    catSnapshotDate: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["backlogBudget"]>
@@ -1512,6 +1552,7 @@ export interface BacklogBudgetFieldRefs {
   readonly lastAdjustedAt: Prisma.FieldRef<"BacklogBudget", 'DateTime'>
   readonly lastAdjustedBy: Prisma.FieldRef<"BacklogBudget", 'String'>
   readonly adjustmentReason: Prisma.FieldRef<"BacklogBudget", 'String'>
+  readonly catSnapshotDate: Prisma.FieldRef<"BacklogBudget", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"BacklogBudget", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BacklogBudget", 'DateTime'>
 }

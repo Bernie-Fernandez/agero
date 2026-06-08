@@ -30,6 +30,7 @@ export type BacklogRow = {
   lockedAt: string | null;
   lastAdjustedAt: string | null;
   adjustmentReason: string | null;
+  catSnapshotDate: string | null;
   // Latest snapshot context
   latestSnapshot: {
     asAtDate: string;
@@ -139,6 +140,7 @@ export async function listBacklogBudget(fyYear: string): Promise<{ ok: boolean; 
             lockedAt: true,
             lastAdjustedAt: true,
             adjustmentReason: true,
+            catSnapshotDate: true,
           },
         },
         snapshots: {
@@ -173,6 +175,7 @@ export async function listBacklogBudget(fyYear: string): Promise<{ ok: boolean; 
         lockedAt: budget?.lockedAt?.toISOString() ?? null,
         lastAdjustedAt: budget?.lastAdjustedAt?.toISOString() ?? null,
         adjustmentReason: budget?.adjustmentReason ?? null,
+        catSnapshotDate: budget?.catSnapshotDate?.toISOString() ?? null,
         latestSnapshot: snap
           ? {
               asAtDate: snap.asAtDate.toISOString(),
@@ -245,19 +248,28 @@ export async function upsertBacklogBudget(input: {
   }
 }
 
-export async function lockFYBacklog(fyYear: string): Promise<{ ok: boolean; lockedCount?: number; error?: string }> {
+export async function lockFYBacklog(fyYear: string): Promise<{ ok: boolean; lockedCount?: number; catSnapshotDate?: string | null; error?: string }> {
   const user = await requireDirector();
   try {
     const now = new Date();
+
+    // Find the latest CAT import date to record which snapshot this budget was locked against
+    const latestImport = await prisma.catImport.findFirst({
+      where: { organisationId: user.organisationId },
+      orderBy: { asAtDate: 'desc' },
+      select: { asAtDate: true },
+    });
+    const catSnapshotDate = latestImport?.asAtDate ?? null;
+
     const result = await prisma.backlogBudget.updateMany({
       where: { organisationId: user.organisationId, fyYear, status: 'DRAFT' },
-      data: { status: 'LOCKED', lockedAt: now, lockedBy: user.id },
+      data: { status: 'LOCKED', lockedAt: now, lockedBy: user.id, catSnapshotDate },
     });
 
-    // Get totals for audit log
+    // Get totals for audit log (exclude IGNORE)
     const totals = await prisma.backlogBudget.groupBy({
       by: ['classification'],
-      where: { organisationId: user.organisationId, fyYear },
+      where: { organisationId: user.organisationId, fyYear, classification: { not: 'IGNORE' } },
       _sum: { budgetRevenue: true },
     });
 
@@ -268,10 +280,16 @@ export async function lockFYBacklog(fyYear: string): Promise<{ ok: boolean; lock
       userId: user.id,
       action: 'BACKLOG_BUDGET_LOCKED',
       entity: 'BacklogBudget',
-      detail: { fy_year: fyYear, locked_count: result.count, awarded_total: awardedTotal, backlog_total: backlogTotal },
+      detail: {
+        fy_year: fyYear,
+        locked_count: result.count,
+        awarded_total: awardedTotal,
+        backlog_total: backlogTotal,
+        cat_snapshot_date: catSnapshotDate?.toISOString() ?? null,
+      },
     });
 
-    return { ok: true, lockedCount: result.count };
+    return { ok: true, lockedCount: result.count, catSnapshotDate: catSnapshotDate?.toISOString() ?? null };
   } catch (e) {
     console.error('[backlog] lockFYBacklog error:', e);
     return { ok: false, error: 'Failed to lock FY backlog.' };
@@ -324,6 +342,21 @@ export async function adjustBacklogBudget(input: {
   } catch (e) {
     console.error('[backlog] adjustBacklogBudget error:', e);
     return { ok: false, error: 'Failed to save adjustment.' };
+  }
+}
+
+export async function getCATBannerData(): Promise<{ ok: boolean; latestImportDate?: string | null; error?: string }> {
+  const user = await requireFinanceAccess();
+  try {
+    const latest = await prisma.catImport.findFirst({
+      where: { organisationId: user.organisationId },
+      orderBy: { asAtDate: 'desc' },
+      select: { asAtDate: true },
+    });
+    return { ok: true, latestImportDate: latest?.asAtDate.toISOString() ?? null };
+  } catch (e) {
+    console.error('[backlog] getCATBannerData error:', e);
+    return { ok: false, error: 'Failed to load CAT banner data.' };
   }
 }
 

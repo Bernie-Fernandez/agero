@@ -2671,6 +2671,7 @@ export const BacklogBudgetScalarFieldEnum = {
   lastAdjustedAt: 'lastAdjustedAt',
   lastAdjustedBy: 'lastAdjustedBy',
   adjustmentReason: 'adjustmentReason',
+  catSnapshotDate: 'catSnapshotDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
