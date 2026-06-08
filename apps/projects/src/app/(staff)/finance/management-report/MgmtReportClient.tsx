@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition, useRef, useId } from 'react';
+import { useState, useTransition, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import type {
   MgmtReportPageData,
@@ -12,6 +12,11 @@ import {
   unlockReport,
   saveNotes,
 } from '@/lib/management-report/actions';
+import type { CommentaryDraft } from '@/lib/management-report/commentary';
+import {
+  generateCommentary,
+  saveCommentaryDraft,
+} from '@/lib/management-report/commentary';
 import type { CVRProjectRow } from '@/lib/cvr/actions';
 import { MONTH_LABELS } from '@/lib/revenue-budget/constants';
 
@@ -28,6 +33,29 @@ function varColor(actual: number, budget: number, higherIsBetter = true): string
   return diff < 0 ? 'text-emerald-600 font-semibold' : 'text-red-600 font-semibold';
 }
 
+const EMPTY_COMMENTARY: CommentaryDraft = { revenue: '', pnl: '', projects: '', cash: '', wip: '', outlook: '' };
+
+function initCommentary(snap: MgmtSnapshotRecord): CommentaryDraft {
+  if (snap.status === 'LOCKED' && snap.snapshotData) {
+    const sd = snap.snapshotData as Record<string, unknown>;
+    if (sd.commentary && typeof sd.commentary === 'object') {
+      return sd.commentary as CommentaryDraft;
+    }
+  }
+  if (snap.commentaryDraft && typeof snap.commentaryDraft === 'object') {
+    const cd = snap.commentaryDraft as Record<string, unknown>;
+    return {
+      revenue: (cd.revenue as string) ?? '',
+      pnl: (cd.pnl as string) ?? '',
+      projects: (cd.projects as string) ?? '',
+      cash: (cd.cash as string) ?? '',
+      wip: (cd.wip as string) ?? '',
+      outlook: (cd.outlook as string) ?? '',
+    };
+  }
+  return EMPTY_COMMENTARY;
+}
+
 // ─── Section wrapper ──────────────────────────────────────────────────────────
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -38,6 +66,39 @@ function Section({ id, title, children }: { id: string; title: string; children:
       </div>
       <div className="p-5">{children}</div>
     </section>
+  );
+}
+
+// ─── Commentary Area ──────────────────────────────────────────────────────────
+
+function CommentaryArea({
+  value,
+  onChange,
+  onBlur,
+  isLocked,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  onBlur: () => void;
+  isLocked: boolean;
+}) {
+  const limit = 500;
+  return (
+    <div className="mt-4 pt-4 border-t border-zinc-100">
+      <p className="text-xs font-medium text-zinc-500 mb-1">Commentary</p>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value.slice(0, limit))}
+        onBlur={onBlur}
+        disabled={isLocked}
+        rows={3}
+        placeholder={isLocked ? '' : "Click 'Generate Commentary' to draft, or type here…"}
+        className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm resize-none disabled:bg-zinc-50 disabled:text-zinc-600 disabled:border-zinc-100"
+      />
+      {!isLocked && (
+        <p className="text-[10px] text-zinc-400 text-right">{value.length}/{limit}</p>
+      )}
+    </div>
   );
 }
 
@@ -55,14 +116,12 @@ function RevenueSection({ data, monthKeys }: { data: PageData['revenue']; monthK
   const totals = rows.map((r) => fy27Keys.reduce((s, k) => s + (r.values[k] ?? 0), 0));
   const maxVal = Math.max(...rows.flatMap((r) => fy27Keys.map((k) => r.values[k] ?? 0)));
 
-  // Simple bar chart: budget vs actual per month
   const chartKeys = fy27Keys;
   const chartMax = maxVal || 1;
   const H = 80;
 
   return (
     <div className="space-y-4">
-      {/* Summary cards */}
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="border border-zinc-100 rounded-lg p-3">
           <p className="text-xs text-zinc-500">Actual Revenue (month)</p>
@@ -73,8 +132,6 @@ function RevenueSection({ data, monthKeys }: { data: PageData['revenue']; monthK
           <p className="text-lg font-bold text-zinc-600">{fmt(data.budget[fy27Keys[fy27Keys.length - 1]] ?? 0)}</p>
         </div>
       </div>
-
-      {/* Bar chart */}
       <div className="overflow-x-auto">
         <svg width={chartKeys.length * 52 + 40} height={H + 30} className="max-w-full">
           {chartKeys.map((k, i) => {
@@ -94,8 +151,6 @@ function RevenueSection({ data, monthKeys }: { data: PageData['revenue']; monthK
         </svg>
         <p className="text-[10px] text-zinc-400 mt-1">Grey = Budget · Blue = Actual</p>
       </div>
-
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="text-sm border-collapse" style={{ minWidth: `${160 + fy27Keys.length * 72}px` }}>
           <thead>
@@ -372,7 +427,6 @@ function RollingForecastSection({ revenue, monthKeys, selectedYear, selectedMont
 }) {
   const fy27Keys = monthKeys.filter((k): k is keyof typeof MONTH_LABELS => k in MONTH_LABELS);
 
-  // Show current month and forward
   const MONTH_KEY_TO_YM: Record<string, { year: number; month: number }> = {
     jul26: { year: 2026, month: 7 }, aug26: { year: 2026, month: 8 }, sep26: { year: 2026, month: 9 },
     oct26: { year: 2026, month: 10 }, nov26: { year: 2026, month: 11 }, dec26: { year: 2026, month: 12 },
@@ -546,6 +600,27 @@ function UnlockModal({ onUnlock, onClose }: { onUnlock: (reason: string) => Prom
   );
 }
 
+function RegenerateModal({ onConfirm, onClose }: { onConfirm: () => void; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="absolute inset-0 bg-black/30" onClick={onClose} />
+      <div className="relative bg-white rounded-xl shadow-2xl border border-zinc-200 p-6 w-full max-w-sm mx-4">
+        <h3 className="text-base font-semibold text-zinc-900 mb-2">Regenerate Commentary?</h3>
+        <p className="text-sm text-zinc-600 mb-5">This will overwrite your existing commentary drafts. Continue?</p>
+        <div className="flex justify-end gap-2">
+          <button onClick={onClose} className="px-4 py-2 text-sm text-zinc-600 border border-zinc-300 rounded-lg hover:bg-zinc-50">Cancel</button>
+          <button
+            onClick={() => { onConfirm(); onClose(); }}
+            className="px-4 py-2 text-sm bg-orange-600 text-white rounded-lg hover:bg-orange-700"
+          >
+            Regenerate
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function MgmtReportClient({ initialData }: { initialData: MgmtReportPageData }) {
@@ -555,6 +630,17 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
   const [showLock, setShowLock] = useState(false);
   const [showUnlock, setShowUnlock] = useState(false);
   const [exportingPDF, setExportingPDF] = useState(false);
+
+  // Commentary state
+  const [commentary, setCommentary] = useState<CommentaryDraft>(() => initCommentary(initialData.snapshot));
+  const commentaryRef = useRef<CommentaryDraft>(commentary);
+  commentaryRef.current = commentary;
+  const [generating, setGenerating] = useState(false);
+  const [hasGenerated, setHasGenerated] = useState(
+    () => Object.values(initCommentary(initialData.snapshot)).some((v) => v.length > 0),
+  );
+  const [showRegenerate, setShowRegenerate] = useState(false);
+  const [toastError, setToastError] = useState('');
 
   const isLocked = snapshot.status === 'LOCKED';
   const data = isLocked && snapshot.snapshotData ? snapshot.snapshotData as MgmtReportPageData : initialData;
@@ -582,12 +668,49 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
     setSnapshot({ ...snapshot, notes });
   }
 
+  async function handleSaveCommentary() {
+    if (isLocked) return;
+    await saveCommentaryDraft(snapshot.id, commentaryRef.current);
+  }
+
+  function updateCommentaryField(field: keyof CommentaryDraft, value: string) {
+    setCommentary((prev) => ({ ...prev, [field]: value }));
+  }
+
+  async function doGenerate() {
+    setGenerating(true);
+    setToastError('');
+    try {
+      const result = await generateCommentary(initialData, monthLabel);
+      if (result.ok && result.commentary) {
+        setCommentary(result.commentary);
+        setHasGenerated(true);
+        await saveCommentaryDraft(snapshot.id, result.commentary);
+      } else {
+        setToastError(result.error ?? 'Failed to generate commentary.');
+        setTimeout(() => setToastError(''), 5000);
+      }
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  function handleGenerateClick() {
+    if (hasGenerated) {
+      setShowRegenerate(true);
+    } else {
+      void doGenerate();
+    }
+  }
+
   async function handleExportPDF() {
     setExportingPDF(true);
     try {
       const { pdf } = await import('@react-pdf/renderer');
       const { MgmtReportPDF } = await import('./MgmtReportPDF');
-      const blob = await pdf(<MgmtReportPDF data={initialData} snapshot={snapshot} monthLabel={monthLabel} />).toBlob();
+      const blob = await pdf(
+        <MgmtReportPDF data={initialData} snapshot={snapshot} monthLabel={monthLabel} commentary={commentary} />
+      ).toBlob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -601,7 +724,7 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
     }
   }
 
-  const navLinks = ['Revenue', 'P&L', 'Projects', 'Cash', 'WIP', 'Forecast', 'Notes'];
+  const navLinks = ['Revenue', 'P&L', 'Projects', 'Cash', 'WIP', 'Forecast', 'Outlook', 'Notes'];
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -615,7 +738,6 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
             </span>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            {/* Month selector */}
             <select
               value={`${initialData.selectedYear}-${initialData.selectedMonth}`}
               onChange={(e) => handleMonthChange(e.target.value)}
@@ -626,6 +748,15 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
               ))}
             </select>
 
+            {!isLocked && (
+              <button
+                onClick={handleGenerateClick}
+                disabled={generating}
+                className="px-3 py-1.5 text-sm border border-orange-300 text-orange-700 rounded-lg hover:bg-orange-50 disabled:opacity-50 whitespace-nowrap"
+              >
+                {generating ? 'Generating…' : hasGenerated ? '↻ Regenerate Commentary' : '✨ Generate Commentary'}
+              </button>
+            )}
             {!isLocked && (
               <button onClick={() => setShowLock(true)}
                 className="px-3 py-1.5 text-sm bg-zinc-900 text-white rounded-lg hover:bg-zinc-700">
@@ -655,26 +786,63 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
         </div>
       </div>
 
+      {/* Toast error */}
+      {toastError && (
+        <div className="fixed top-4 right-4 z-40 bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow-lg">
+          {toastError}
+        </div>
+      )}
+
       {/* Sections */}
       <div className="p-6 space-y-6 max-w-6xl mx-auto">
         <Section id="mgmt-revenue" title="Revenue">
           <RevenueSection data={data.revenue} monthKeys={data.fy27MonthKeys} />
+          <CommentaryArea
+            value={commentary.revenue}
+            onChange={(v) => updateCommentaryField('revenue', v)}
+            onBlur={handleSaveCommentary}
+            isLocked={isLocked}
+          />
         </Section>
 
         <Section id="mgmt-p&l" title="P&L — Actual vs Budget">
           <PnLSection pnl={data.pnl} />
+          <CommentaryArea
+            value={commentary.pnl}
+            onChange={(v) => updateCommentaryField('pnl', v)}
+            onBlur={handleSaveCommentary}
+            isLocked={isLocked}
+          />
         </Section>
 
         <Section id="mgmt-projects" title="Project CVR Summary">
           <CVRSection rows={data.cvrRows} />
+          <CommentaryArea
+            value={commentary.projects}
+            onChange={(v) => updateCommentaryField('projects', v)}
+            onBlur={handleSaveCommentary}
+            isLocked={isLocked}
+          />
         </Section>
 
         <Section id="mgmt-cash" title="Cash Position">
           <CashSection cashPosition={data.cashPosition} />
+          <CommentaryArea
+            value={commentary.cash}
+            onChange={(v) => updateCommentaryField('cash', v)}
+            onBlur={handleSaveCommentary}
+            isLocked={isLocked}
+          />
         </Section>
 
         <Section id="mgmt-wip" title="WIP Summary">
           <WIPSection wip={data.wipSummary} />
+          <CommentaryArea
+            value={commentary.wip}
+            onChange={(v) => updateCommentaryField('wip', v)}
+            onBlur={handleSaveCommentary}
+            isLocked={isLocked}
+          />
         </Section>
 
         <Section id="mgmt-forecast" title="Rolling Forecast (12-Month Forward)">
@@ -684,6 +852,22 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
             selectedYear={initialData.selectedYear}
             selectedMonth={initialData.selectedMonth}
           />
+        </Section>
+
+        <Section id="mgmt-outlook" title="Outlook">
+          <p className="text-xs text-zinc-400 mb-2">Forward-looking assessment for the next quarter.</p>
+          <textarea
+            value={commentary.outlook}
+            onChange={(e) => updateCommentaryField('outlook', e.target.value.slice(0, 500))}
+            onBlur={handleSaveCommentary}
+            disabled={isLocked}
+            rows={4}
+            placeholder={isLocked ? '' : "Click 'Generate Commentary' to draft, or type here…"}
+            className="w-full border border-zinc-200 rounded-lg px-3 py-2 text-sm resize-none disabled:bg-zinc-50 disabled:text-zinc-600 disabled:border-zinc-100"
+          />
+          {!isLocked && (
+            <p className="text-[10px] text-zinc-400 text-right">{commentary.outlook.length}/500</p>
+          )}
         </Section>
 
         <Section id="mgmt-notes" title="Notes &amp; Commentary">
@@ -696,6 +880,12 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
       )}
       {showUnlock && (
         <UnlockModal onUnlock={handleUnlock} onClose={() => setShowUnlock(false)} />
+      )}
+      {showRegenerate && (
+        <RegenerateModal
+          onConfirm={() => void doGenerate()}
+          onClose={() => setShowRegenerate(false)}
+        />
       )}
     </div>
   );

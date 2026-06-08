@@ -90,6 +90,7 @@ export type MgmtSnapshotRecord = {
   notes: string | null;
   snapshotData: unknown;
   pdfUrl: string | null;
+  commentaryDraft: Record<string, string> | null;
 };
 
 export type MgmtLockPreConditions = {
@@ -299,12 +300,12 @@ export async function getReportData(year?: number, month?: number): Promise<{ ok
     const reportMonthDate = new Date(Date.UTC(selYear, selMonth - 1, 1));
     let snapshot = await prisma.managementReportSnapshot.findUnique({
       where: { organisationId_reportMonth: { organisationId: orgId, reportMonth: reportMonthDate } },
-      select: { id: true, status: true, lockedAt: true, lockedBy: true, notes: true, snapshotData: true, pdfUrl: true },
+      select: { id: true, status: true, lockedAt: true, lockedBy: true, notes: true, snapshotData: true, pdfUrl: true, commentaryDraft: true },
     });
     if (!snapshot) {
       snapshot = await prisma.managementReportSnapshot.create({
         data: { organisationId: orgId, reportMonth: reportMonthDate, status: 'DRAFT' },
-        select: { id: true, status: true, lockedAt: true, lockedBy: true, notes: true, snapshotData: true, pdfUrl: true },
+        select: { id: true, status: true, lockedAt: true, lockedBy: true, notes: true, snapshotData: true, pdfUrl: true, commentaryDraft: true },
       });
     }
 
@@ -357,6 +358,7 @@ export async function getReportData(year?: number, month?: number): Promise<{ ok
           notes: snapshot.notes,
           snapshotData: snapshot.snapshotData,
           pdfUrl: snapshot.pdfUrl,
+          commentaryDraft: snapshot.commentaryDraft as Record<string, string> | null,
         },
         lockPreConditions: {
           monthEndLocked: !!lockedMES,
@@ -377,7 +379,10 @@ export async function getReportData(year?: number, month?: number): Promise<{ ok
 export async function lockReport(snapshotId: string, snapshotJson: unknown): Promise<{ ok: boolean; error?: string }> {
   const user = await requireFinanceAccess();
   try {
-    const snap = await prisma.managementReportSnapshot.findUnique({ where: { id: snapshotId }, select: { organisationId: true, status: true } });
+    const snap = await prisma.managementReportSnapshot.findUnique({
+      where: { id: snapshotId },
+      select: { organisationId: true, status: true, commentaryDraft: true },
+    });
     if (!snap || snap.organisationId !== user.organisationId) return { ok: false, error: 'Not found.' };
     if (snap.status === 'LOCKED') return { ok: false, error: 'Already locked.' };
 
@@ -387,7 +392,10 @@ export async function lockReport(snapshotId: string, snapshotJson: unknown): Pro
         status: 'LOCKED',
         lockedAt: new Date(),
         lockedBy: user.id,
-        snapshotData: JSON.parse(JSON.stringify(snapshotJson)),
+        snapshotData: JSON.parse(JSON.stringify({
+          ...(snapshotJson as object),
+          commentary: snap.commentaryDraft ?? null,
+        })),
       },
     });
     return { ok: true };

@@ -4258,9 +4258,10 @@ model ManagementReportSnapshot {
   lockedAt       DateTime?          @map("locked_at")
   lockedBy       String?            @map("locked_by") @db.Uuid
   snapshotData   Json?              @map("snapshot_data")
-  pdfGeneratedAt DateTime?          @map("pdf_generated_at")
-  pdfUrl         String?            @map("pdf_url")
-  notes          String?            @db.Text
+  pdfGeneratedAt   DateTime?          @map("pdf_generated_at")
+  pdfUrl           String?            @map("pdf_url")
+  notes            String?            @db.Text
+  commentaryDraft  Json?              @map("commentary_draft")
   createdAt      DateTime           @default(now()) @map("created_at")
   updatedAt      DateTime           @updatedAt @map("updated_at")
 

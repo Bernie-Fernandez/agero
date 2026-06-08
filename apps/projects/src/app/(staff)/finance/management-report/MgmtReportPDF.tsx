@@ -4,9 +4,9 @@ import {
   Text,
   View,
   StyleSheet,
-  Font,
 } from '@react-pdf/renderer';
 import type { MgmtReportPageData, MgmtSnapshotRecord } from '@/lib/management-report/actions';
+import type { CommentaryDraft } from '@/lib/management-report/commentary';
 import { MONTH_LABELS } from '@/lib/revenue-budget/constants';
 
 // ─── Brand colours ────────────────────────────────────────────────────────────
@@ -24,7 +24,6 @@ const s = StyleSheet.create({
   coverPage: { fontFamily: 'Helvetica', fontSize: 10, color: DARK, padding: 36, backgroundColor: WHITE, justifyContent: 'center', alignItems: 'center', display: 'flex' },
   coverTitle: { fontSize: 24, fontFamily: 'Helvetica-Bold', color: ORANGE, marginBottom: 8 },
   coverSub: { fontSize: 14, color: DARK, marginBottom: 4 },
-  coverMeta: { fontSize: 9, color: GREY, marginTop: 12 },
   sectionTitle: { fontSize: 11, fontFamily: 'Helvetica-Bold', color: ORANGE, marginBottom: 6, paddingBottom: 3, borderBottomWidth: 1, borderBottomColor: ORANGE },
   section: { marginBottom: 16 },
   tableHeader: { flexDirection: 'row', backgroundColor: DARK, color: WHITE, paddingVertical: 3, paddingHorizontal: 4 },
@@ -37,7 +36,9 @@ const s = StyleSheet.create({
   headerCell: { fontSize: 8, color: WHITE, fontFamily: 'Helvetica-Bold' },
   headerCellRight: { fontSize: 8, color: WHITE, fontFamily: 'Helvetica-Bold', textAlign: 'right' },
   note: { fontSize: 8, color: GREY, fontStyle: 'italic', marginTop: 4 },
-  badge: { fontSize: 7, padding: '2 4', borderRadius: 3, backgroundColor: ORANGE, color: WHITE },
+  commentaryBlock: { marginTop: 8, paddingTop: 6, borderTopWidth: 0.5, borderTopColor: '#e4e4e7' },
+  commentaryLabel: { fontSize: 7, color: GREY, fontStyle: 'italic', marginBottom: 2 },
+  commentaryText: { fontSize: 9, color: DARK, lineHeight: 1.5 },
 });
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -46,16 +47,28 @@ const AUD = new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD',
 const fmt = (v: number) => AUD.format(v);
 const pct = (v: number) => (v * 100).toFixed(1) + '%';
 
+function CommentaryBlock({ text }: { text?: string }) {
+  if (!text) return null;
+  return (
+    <View style={s.commentaryBlock}>
+      <Text style={s.commentaryLabel}>Commentary</Text>
+      <Text style={s.commentaryText}>{text}</Text>
+    </View>
+  );
+}
+
 // ─── PDF Document ─────────────────────────────────────────────────────────────
 
 export function MgmtReportPDF({
   data,
   snapshot,
   monthLabel,
+  commentary,
 }: {
   data: MgmtReportPageData;
   snapshot: MgmtSnapshotRecord;
   monthLabel: string;
+  commentary: CommentaryDraft;
 }) {
   const fy27Keys = data.fy27MonthKeys.filter((k) => k in MONTH_LABELS);
   const genDate = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -84,7 +97,6 @@ export function MgmtReportPDF({
       <Page size="A4" style={s.page}>
         <View style={s.section}>
           <Text style={s.sectionTitle}>1. Revenue Overview</Text>
-          {/* Table */}
           <View style={s.tableHeader}>
             <Text style={[s.headerCell, { width: 60 }]}>Row</Text>
             {fy27Keys.map((k) => (
@@ -100,7 +112,7 @@ export function MgmtReportPDF({
             { label: 'Unsecured', values: data.revenue.unsecured },
             { label: 'Actual', values: data.revenue.actual },
           ].map((row, ri) => {
-            const total = fy27Keys.reduce((s, k) => s + (row.values[k] ?? 0), 0);
+            const total = fy27Keys.reduce((sum, k) => sum + (row.values[k] ?? 0), 0);
             return (
               <View key={row.label} style={ri % 2 === 0 ? s.tableRow : s.tableRowAlt}>
                 <Text style={[s.cellBold, { width: 60 }]}>{row.label}</Text>
@@ -112,6 +124,7 @@ export function MgmtReportPDF({
               </View>
             );
           })}
+          <CommentaryBlock text={commentary.revenue} />
         </View>
       </Page>
 
@@ -151,6 +164,7 @@ export function MgmtReportPDF({
               )}
             </View>
           ))}
+          <CommentaryBlock text={commentary.pnl} />
         </View>
 
         {/* CVR Summary */}
@@ -174,10 +188,11 @@ export function MgmtReportPDF({
               <Text style={[s.cellRight, { width: 30 }]}>{r.health === 'GREEN' ? 'OK' : r.health === 'AMBER' ? 'WARN' : r.health === 'RED' ? 'RISK' : '—'}</Text>
             </View>
           ))}
+          <CommentaryBlock text={commentary.projects} />
         </View>
       </Page>
 
-      {/* Cash + WIP + Forecast */}
+      {/* Cash + WIP + Outlook + Notes */}
       <Page size="A4" style={s.page}>
         {/* Cash Position */}
         <View style={s.section}>
@@ -207,36 +222,44 @@ export function MgmtReportPDF({
           ) : (
             <Text style={s.note}>No Balance Sheet data available.</Text>
           )}
+          <CommentaryBlock text={commentary.cash} />
         </View>
 
         {/* WIP Summary */}
         <View style={s.section}>
           <Text style={s.sectionTitle}>5. WIP Summary</Text>
           {data.wipSummary ? (
-            <>
-              <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8 }}>
-                {[
-                  { l: 'Prior WIP', v: fmt(data.wipSummary.priorMonthWip) },
-                  { l: 'Current WIP', v: fmt(data.wipSummary.currentMonthWip) },
-                  { l: 'Movement', v: (data.wipSummary.movement >= 0 ? '+' : '') + fmt(data.wipSummary.movement) },
-                  { l: 'Journal', v: data.wipSummary.journalPosted ? 'Posted' : 'Pending' },
-                ].map((c) => (
-                  <View key={c.l} style={{ flex: 1, backgroundColor: LIGHT, padding: 6, borderRadius: 4 }}>
-                    <Text style={{ fontSize: 7, color: GREY }}>{c.l}</Text>
-                    <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold' }}>{c.v}</Text>
-                  </View>
-                ))}
-              </View>
-            </>
+            <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8 }}>
+              {[
+                { l: 'Prior WIP', v: fmt(data.wipSummary.priorMonthWip) },
+                { l: 'Current WIP', v: fmt(data.wipSummary.currentMonthWip) },
+                { l: 'Movement', v: (data.wipSummary.movement >= 0 ? '+' : '') + fmt(data.wipSummary.movement) },
+                { l: 'Journal', v: data.wipSummary.journalPosted ? 'Posted' : 'Pending' },
+              ].map((c) => (
+                <View key={c.l} style={{ flex: 1, backgroundColor: LIGHT, padding: 6, borderRadius: 4 }}>
+                  <Text style={{ fontSize: 7, color: GREY }}>{c.l}</Text>
+                  <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold' }}>{c.v}</Text>
+                </View>
+              ))}
+            </View>
           ) : (
             <Text style={s.note}>No locked WIP data available.</Text>
           )}
+          <CommentaryBlock text={commentary.wip} />
         </View>
+
+        {/* Outlook */}
+        {commentary.outlook && (
+          <View style={s.section}>
+            <Text style={s.sectionTitle}>6. Outlook</Text>
+            <Text style={s.commentaryText}>{commentary.outlook}</Text>
+          </View>
+        )}
 
         {/* Notes */}
         {snapshot.notes && (
           <View style={s.section}>
-            <Text style={s.sectionTitle}>6. Notes &amp; Commentary</Text>
+            <Text style={s.sectionTitle}>{commentary.outlook ? '7.' : '6.'} Notes &amp; Commentary</Text>
             <Text style={{ fontSize: 9, color: DARK, lineHeight: 1.5 }}>{snapshot.notes}</Text>
           </View>
         )}
