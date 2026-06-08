@@ -5,6 +5,7 @@ import { CHECKLIST_CATEGORIES } from "./constants";
 import { uploadChecklistPhoto } from "./actions";
 import type { SubmitState, SitePrepPayload } from "./actions";
 import type { SectionResult } from "@/lib/pdf/site-prep-pdf";
+import { queueChecklist, getQueuedChecklist, clearQueuedChecklist } from "@/lib/offline-queue";
 
 interface ProjectUser {
   id: string;
@@ -151,6 +152,27 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
   const [signOffUserId, setSignOffUserId] = useState(projectUsers[0]?.id ?? "");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [clientError, setClientError] = useState<string | null>(null);
+  const [offlineSaved, setOfflineSaved] = useState(false);
+  const [pendingQueued, setPendingQueued] = useState<{ savedAt: string; payloadJson: string } | null>(null);
+  const [syncPending, setSyncPending] = useState(false);
+
+  // Check for queued offline submission on mount
+  useEffect(() => {
+    getQueuedChecklist(safetyProjectId).then((q) => {
+      if (q) setPendingQueued({ savedAt: q.savedAt, payloadJson: q.payloadJson });
+    }).catch(() => {});
+  }, [safetyProjectId]);
+
+  // Auto-sync when connectivity is restored
+  useEffect(() => {
+    function handleOnline() {
+      getQueuedChecklist(safetyProjectId).then((q) => {
+        if (q) setPendingQueued({ savedAt: q.savedAt, payloadJson: q.payloadJson });
+      }).catch(() => {});
+    }
+    window.addEventListener("online", handleOnline);
+    return () => window.removeEventListener("online", handleOnline);
+  }, [safetyProjectId]);
 
   const signOffUser = projectUsers.find((u) => u.id === signOffUserId);
   const signOffName = signOffUser?.name ?? signOffUser?.email ?? "";
@@ -210,6 +232,18 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
     return null;
   }
 
+  function buildPayload(): SitePrepPayload {
+    const signatureDataUrl = canvasRef.current?.toDataURL("image/png");
+    const sectionResults: SectionResult[] = CHECKLIST_CATEGORIES.map((cat) => ({
+      sectionId: cat.id,
+      sectionName: cat.label,
+      answer: sections[cat.id].answer,
+      note: sections[cat.id].note || undefined,
+      photoUrl: sections[cat.id].photoUrl || undefined,
+    }));
+    return { completionDate, sections: sectionResults, signOffDropdownUserId: signOffUserId, signatureDataUrl };
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const err = validate();
     if (err) {
@@ -219,22 +253,44 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
       return;
     }
     setClientError(null);
-    const signatureDataUrl = canvasRef.current?.toDataURL("image/png");
-    const sectionResults: SectionResult[] = CHECKLIST_CATEGORIES.map((cat) => ({
-      sectionId: cat.id,
-      sectionName: cat.label,
-      answer: sections[cat.id].answer,
-      note: sections[cat.id].note || undefined,
-      photoUrl: sections[cat.id].photoUrl || undefined,
-    }));
-    const payload: SitePrepPayload = {
-      completionDate,
-      sections: sectionResults,
-      signOffDropdownUserId: signOffUserId,
-      signatureDataUrl,
-    };
+
+    // When offline, queue in IndexedDB and prevent form submission
+    if (!navigator.onLine) {
+      e.preventDefault();
+      const payload = buildPayload();
+      queueChecklist({ projectId: safetyProjectId, payloadJson: JSON.stringify(payload), savedAt: new Date().toISOString() })
+        .then(() => {
+          setOfflineSaved(true);
+          setPendingQueued({ savedAt: new Date().toISOString(), payloadJson: JSON.stringify(payload) });
+        })
+        .catch(() => setClientError("Failed to save checklist offline. Please try again."));
+      return;
+    }
+
+    const payload = buildPayload();
     const hidden = (e.currentTarget as HTMLFormElement).elements.namedItem("payload") as HTMLInputElement | null;
     if (hidden) hidden.value = JSON.stringify(payload);
+  }
+
+  async function submitQueued() {
+    if (!pendingQueued) return;
+    setSyncPending(true);
+    try {
+      const fd = new FormData();
+      fd.set("payload", pendingQueued.payloadJson);
+      const result = await submitAction({}, fd);
+      if (!result.error) {
+        await clearQueuedChecklist(safetyProjectId);
+        setPendingQueued(null);
+        setOfflineSaved(false);
+      } else {
+        setClientError(result.error);
+      }
+    } catch {
+      setClientError("Submission failed. Please try again.");
+    } finally {
+      setSyncPending(false);
+    }
   }
 
   const yesCount = CHECKLIST_CATEGORIES.filter((c) => sections[c.id]?.answer === "YES").length;
@@ -246,6 +302,34 @@ export function SitePrepForm({ safetyProjectId, submitAction, projectUsers, plan
   return (
     <form action={formAction} onSubmit={handleSubmit} className="space-y-6">
       <input type="hidden" name="payload" defaultValue="" />
+
+      {/* Pending offline submission banner */}
+      {pendingQueued && navigator.onLine && !offlineSaved && (
+        <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-950/30">
+          <p className="text-sm font-medium text-blue-800 dark:text-blue-200">Connectivity restored</p>
+          <p className="mt-0.5 text-xs text-blue-700 dark:text-blue-300">
+            You have a checklist saved offline from {new Date(pendingQueued.savedAt).toLocaleString("en-AU", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}. Submit it now?
+          </p>
+          <div className="mt-3 flex gap-2">
+            <button type="button" onClick={submitQueued} disabled={syncPending} className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 disabled:opacity-50">
+              {syncPending ? "Submitting…" : "Submit now"}
+            </button>
+            <button type="button" onClick={() => { clearQueuedChecklist(safetyProjectId).catch(() => {}); setPendingQueued(null); }} className="rounded-lg border border-blue-300 px-3 py-1.5 text-xs font-medium text-blue-700 hover:bg-blue-100 dark:border-blue-700 dark:text-blue-300">
+              Discard
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Offline saved confirmation */}
+      {offlineSaved && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950/30">
+          <p className="text-sm font-medium text-amber-800 dark:text-amber-200">Saved for offline sync</p>
+          <p className="mt-0.5 text-xs text-amber-700 dark:text-amber-300">
+            Your checklist has been saved. It will be submitted automatically when connectivity is restored.
+          </p>
+        </div>
+      )}
 
       {/* Error banner */}
       {error && (

@@ -5,6 +5,7 @@ import { AppNav } from "@/components/app-nav";
 import { requireRole, AGERO_ROLES, ADMIN_MANAGER_ROLES } from "@/lib/auth";
 import { SwmsUploadForm } from "./upload-form";
 import { uploadSwmsDocument, approveSwmsDocument, rejectSwmsDocument } from "./actions";
+import { OfflinePdfNotice } from "./offline-pdf-notice";
 
 export default async function SwmsRegistryPage({
   params,
@@ -105,6 +106,8 @@ export default async function SwmsRegistryPage({
             )}
           </div>
         </div>
+
+        <OfflinePdfNotice />
 
         {allOrgs.length === 0 ? (
           <div className="mt-8 rounded-xl border border-zinc-200 bg-white p-8 text-center dark:border-zinc-800 dark:bg-zinc-900">

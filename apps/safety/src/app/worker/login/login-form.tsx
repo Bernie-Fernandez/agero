@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { workerLoginAction } from "./actions";
 import type { LoginState } from "./actions";
 
@@ -13,15 +13,31 @@ export function LoginForm() {
   const [state, action, pending] = useActionState<LoginState, FormData>(workerLoginAction, {
     step: "mobile",
   });
+  const [offlineError, setOfflineError] = useState(false);
 
   const error = "error" in state ? state.error : undefined;
   const mobile = "mobile" in state ? state.mobile : "";
   const devCode = state.step === "verify" ? state.devCode : undefined;
 
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (!navigator.onLine) {
+      e.preventDefault();
+      setOfflineError(true);
+      return;
+    }
+    setOfflineError(false);
+  }
+
   return (
-    <form action={action} className="space-y-4">
+    <form action={action} onSubmit={handleSubmit} className="space-y-4">
       {/* Hidden step tracker */}
       <input type="hidden" name="_step" value={state.step} />
+
+      {offlineError && (
+        <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+          You&apos;re offline. SMS sign-in requires an internet connection.
+        </p>
+      )}
 
       {error && (
         <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200">

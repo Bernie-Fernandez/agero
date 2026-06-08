@@ -259,6 +259,10 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
   const [consultGuidance, setConsultGuidance] = useState<Record<number, { loading: boolean; text: string }>>({});
 
   async function fetchHrwGuidance(id: string, label: string, question: string) {
+    if (!navigator.onLine) {
+      setHrwGuidance((prev) => ({ ...prev, [id]: { loading: false, text: "AI guidance requires an internet connection." } }));
+      return;
+    }
     setHrwGuidance((prev) => ({ ...prev, [id]: { loading: true, text: "" } }));
     try {
       const res = await fetch("/api/ai-guidance/hrw", {
@@ -282,6 +286,10 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
   }
 
   async function fetchConsultGuidance(index: number, role: string) {
+    if (!navigator.onLine) {
+      setConsultGuidance((prev) => ({ ...prev, [index]: { loading: false, text: "AI guidance requires an internet connection." } }));
+      return;
+    }
     setConsultGuidance((prev) => ({ ...prev, [index]: { loading: true, text: "" } }));
     const hrwItems = hrwFlags.filter((f) => f.flagged).map((f) => {
       const spec = HRW_CLASSIFICATIONS.find((h) => h.id === f.id);
@@ -310,6 +318,10 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
   }
 
   async function fetchPsychGuidance(id: string, label: string, question: string) {
+    if (!navigator.onLine) {
+      setPsychGuidance((prev) => ({ ...prev, [id]: { loading: false, text: "AI guidance requires an internet connection." } }));
+      return;
+    }
     setPsychGuidance((prev) => ({ ...prev, [id]: { loading: true, text: "" } }));
     try {
       const res = await fetch("/api/ai-guidance/psych", {

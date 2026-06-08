@@ -218,6 +218,18 @@ export async function submitPreStartAssessment(
     });
   }));
 
+  // ── ConsultationEvent (fire-and-forget) ───────────────────────────────────
+  prisma.consultationEvent.create({
+    data: {
+      projectId: safetyProjectId,
+      eventType: "PRE_START_INTERNAL",
+      referenceId: assessment.id,
+      consultedPersons: consultationPersons.map((p) => ({ name: p.nameAndCompany, role: p.role })),
+      notes: `Pre-Start Risk Assessment signed — ${internalSignoffs.map((s) => s.role).join(", ")}`,
+      eventDate: signOffAt,
+    },
+  }).catch(() => {});
+
   // ── Email Director + Safety Managers ─────────────────────────────────────
   try {
     const managers = await prisma.user.findMany({

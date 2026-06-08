@@ -1,0 +1,10 @@
+{
+  "name": "Agero Safety",
+  "short_name": "Safety",
+  "description": "Construction safety management platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#18181b",
+  "icons": []
+}
