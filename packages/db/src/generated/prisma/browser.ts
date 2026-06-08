@@ -672,3 +672,13 @@ export type FYSettings = Prisma.FYSettingsModel
  * 
  */
 export type BacklogBudget = Prisma.BacklogBudgetModel
+/**
+ * Model ProjectRevenueBudget
+ * 
+ */
+export type ProjectRevenueBudget = Prisma.ProjectRevenueBudgetModel
+/**
+ * Model UnsecuredRevenueBudget
+ * 
+ */
+export type UnsecuredRevenueBudget = Prisma.UnsecuredRevenueBudgetModel

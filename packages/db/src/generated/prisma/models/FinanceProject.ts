@@ -549,6 +549,7 @@ export type FinanceProjectWhereInput = {
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
   snapshots?: Prisma.FinanceProjectSnapshotListRelationFilter
   backlogBudgets?: Prisma.BacklogBudgetListRelationFilter
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetListRelationFilter
 }
 
 export type FinanceProjectOrderByWithRelationInput = {
@@ -592,6 +593,7 @@ export type FinanceProjectOrderByWithRelationInput = {
   wipSchedules?: Prisma.WIPScheduleOrderByRelationAggregateInput
   snapshots?: Prisma.FinanceProjectSnapshotOrderByRelationAggregateInput
   backlogBudgets?: Prisma.BacklogBudgetOrderByRelationAggregateInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetOrderByRelationAggregateInput
 }
 
 export type FinanceProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -638,6 +640,7 @@ export type FinanceProjectWhereUniqueInput = Prisma.AtLeast<{
   wipSchedules?: Prisma.WIPScheduleListRelationFilter
   snapshots?: Prisma.FinanceProjectSnapshotListRelationFilter
   backlogBudgets?: Prisma.BacklogBudgetListRelationFilter
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetListRelationFilter
 }, "id">
 
 export type FinanceProjectOrderByWithAggregationInput = {
@@ -764,6 +767,7 @@ export type FinanceProjectCreateInput = {
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateInput = {
@@ -806,6 +810,7 @@ export type FinanceProjectUncheckedCreateInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUpdateInput = {
@@ -848,6 +853,7 @@ export type FinanceProjectUpdateInput = {
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateInput = {
@@ -890,6 +896,7 @@ export type FinanceProjectUncheckedUpdateInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateManyInput = {
@@ -1295,6 +1302,20 @@ export type FinanceProjectUpdateOneRequiredWithoutBacklogBudgetsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FinanceProjectUpdateToOneWithWhereWithoutBacklogBudgetsInput, Prisma.FinanceProjectUpdateWithoutBacklogBudgetsInput>, Prisma.FinanceProjectUncheckedUpdateWithoutBacklogBudgetsInput>
 }
 
+export type FinanceProjectCreateNestedOneWithoutProjectRevenueBudgetsInput = {
+  create?: Prisma.XOR<Prisma.FinanceProjectCreateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedCreateWithoutProjectRevenueBudgetsInput>
+  connectOrCreate?: Prisma.FinanceProjectCreateOrConnectWithoutProjectRevenueBudgetsInput
+  connect?: Prisma.FinanceProjectWhereUniqueInput
+}
+
+export type FinanceProjectUpdateOneRequiredWithoutProjectRevenueBudgetsNestedInput = {
+  create?: Prisma.XOR<Prisma.FinanceProjectCreateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedCreateWithoutProjectRevenueBudgetsInput>
+  connectOrCreate?: Prisma.FinanceProjectCreateOrConnectWithoutProjectRevenueBudgetsInput
+  upsert?: Prisma.FinanceProjectUpsertWithoutProjectRevenueBudgetsInput
+  connect?: Prisma.FinanceProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FinanceProjectUpdateToOneWithWhereWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUpdateWithoutProjectRevenueBudgetsInput>, Prisma.FinanceProjectUncheckedUpdateWithoutProjectRevenueBudgetsInput>
+}
+
 export type FinanceProjectCreateWithoutOrganisationInput = {
   id?: string
   reportMonth: Date | string
@@ -1334,6 +1355,7 @@ export type FinanceProjectCreateWithoutOrganisationInput = {
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutOrganisationInput = {
@@ -1375,6 +1397,7 @@ export type FinanceProjectUncheckedCreateWithoutOrganisationInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutOrganisationInput = {
@@ -1483,6 +1506,7 @@ export type FinanceProjectCreateWithoutSnapshotsInput = {
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutSnapshotsInput = {
@@ -1524,6 +1548,7 @@ export type FinanceProjectUncheckedCreateWithoutSnapshotsInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutSnapshotsInput = {
@@ -1581,6 +1606,7 @@ export type FinanceProjectUpdateWithoutSnapshotsInput = {
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutSnapshotsInput = {
@@ -1622,6 +1648,7 @@ export type FinanceProjectUncheckedUpdateWithoutSnapshotsInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateWithoutSecuredForecastsInput = {
@@ -1663,6 +1690,7 @@ export type FinanceProjectCreateWithoutSecuredForecastsInput = {
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutSecuredForecastsInput = {
@@ -1704,6 +1732,7 @@ export type FinanceProjectUncheckedCreateWithoutSecuredForecastsInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutSecuredForecastsInput = {
@@ -1761,6 +1790,7 @@ export type FinanceProjectUpdateWithoutSecuredForecastsInput = {
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutSecuredForecastsInput = {
@@ -1802,6 +1832,7 @@ export type FinanceProjectUncheckedUpdateWithoutSecuredForecastsInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateWithoutWipSchedulesInput = {
@@ -1843,6 +1874,7 @@ export type FinanceProjectCreateWithoutWipSchedulesInput = {
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutWipSchedulesInput = {
@@ -1884,6 +1916,7 @@ export type FinanceProjectUncheckedCreateWithoutWipSchedulesInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutWipSchedulesInput = {
@@ -1941,6 +1974,7 @@ export type FinanceProjectUpdateWithoutWipSchedulesInput = {
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutWipSchedulesInput = {
@@ -1982,6 +2016,7 @@ export type FinanceProjectUncheckedUpdateWithoutWipSchedulesInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateWithoutBacklogBudgetsInput = {
@@ -2023,6 +2058,7 @@ export type FinanceProjectCreateWithoutBacklogBudgetsInput = {
   securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectUncheckedCreateWithoutBacklogBudgetsInput = {
@@ -2064,6 +2100,7 @@ export type FinanceProjectUncheckedCreateWithoutBacklogBudgetsInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
   wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
 }
 
 export type FinanceProjectCreateOrConnectWithoutBacklogBudgetsInput = {
@@ -2121,6 +2158,7 @@ export type FinanceProjectUpdateWithoutBacklogBudgetsInput = {
   securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutBacklogBudgetsInput = {
@@ -2162,6 +2200,191 @@ export type FinanceProjectUncheckedUpdateWithoutBacklogBudgetsInput = {
   securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+}
+
+export type FinanceProjectCreateWithoutProjectRevenueBudgetsInput = {
+  id?: string
+  reportMonth: Date | string
+  jobNumber: string
+  projectName: string
+  status?: $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Date | string | null
+  forecastContractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  dataVerified?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organisation: Prisma.OrganisationCreateNestedOneWithoutFinanceProjectsInput
+  securedForecasts?: Prisma.SecuredForecastCreateNestedManyWithoutFinanceProjectInput
+  wipSchedules?: Prisma.WIPScheduleCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotCreateNestedManyWithoutFinanceProjectInput
+  backlogBudgets?: Prisma.BacklogBudgetCreateNestedManyWithoutFinanceProjectInput
+}
+
+export type FinanceProjectUncheckedCreateWithoutProjectRevenueBudgetsInput = {
+  id?: string
+  organisationId: string
+  reportMonth: Date | string
+  jobNumber: string
+  projectName: string
+  status?: $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Date | string | null
+  forecastContractValue?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: string | null
+  dataVerified?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  securedForecasts?: Prisma.SecuredForecastUncheckedCreateNestedManyWithoutFinanceProjectInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedCreateNestedManyWithoutFinanceProjectInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedCreateNestedManyWithoutFinanceProjectInput
+  backlogBudgets?: Prisma.BacklogBudgetUncheckedCreateNestedManyWithoutFinanceProjectInput
+}
+
+export type FinanceProjectCreateOrConnectWithoutProjectRevenueBudgetsInput = {
+  where: Prisma.FinanceProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.FinanceProjectCreateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedCreateWithoutProjectRevenueBudgetsInput>
+}
+
+export type FinanceProjectUpsertWithoutProjectRevenueBudgetsInput = {
+  update: Prisma.XOR<Prisma.FinanceProjectUpdateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedUpdateWithoutProjectRevenueBudgetsInput>
+  create: Prisma.XOR<Prisma.FinanceProjectCreateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedCreateWithoutProjectRevenueBudgetsInput>
+  where?: Prisma.FinanceProjectWhereInput
+}
+
+export type FinanceProjectUpdateToOneWithWhereWithoutProjectRevenueBudgetsInput = {
+  where?: Prisma.FinanceProjectWhereInput
+  data: Prisma.XOR<Prisma.FinanceProjectUpdateWithoutProjectRevenueBudgetsInput, Prisma.FinanceProjectUncheckedUpdateWithoutProjectRevenueBudgetsInput>
+}
+
+export type FinanceProjectUpdateWithoutProjectRevenueBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  projectName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFinanceProjectStatusFieldUpdateOperationsInput | $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forecastContractValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organisation?: Prisma.OrganisationUpdateOneRequiredWithoutFinanceProjectsNestedInput
+  securedForecasts?: Prisma.SecuredForecastUpdateManyWithoutFinanceProjectNestedInput
+  wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
+  backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+}
+
+export type FinanceProjectUncheckedUpdateWithoutProjectRevenueBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organisationId?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  jobNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  projectName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumFinanceProjectStatusFieldUpdateOperationsInput | $Enums.FinanceProjectStatus
+  practicalCompletionDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  forecastContractValue?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastFinalCosts?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  riskAndOpportunity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginDollars?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  forecastMarginPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  targetExitMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  claimTotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  claimRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subClaims?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  subRetention?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  creditors?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  labour?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  plant?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  totalCost?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wip?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  billingLessCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginToEarn?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  marginRealised?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  overClaim?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettRetention?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  nettCashFlow?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  costToComplete?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  securedForecasts?: Prisma.SecuredForecastUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectCreateManyOrganisationInput = {
@@ -2240,6 +2463,7 @@ export type FinanceProjectUpdateWithoutOrganisationInput = {
   wipSchedules?: Prisma.WIPScheduleUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateWithoutOrganisationInput = {
@@ -2281,6 +2505,7 @@ export type FinanceProjectUncheckedUpdateWithoutOrganisationInput = {
   wipSchedules?: Prisma.WIPScheduleUncheckedUpdateManyWithoutFinanceProjectNestedInput
   snapshots?: Prisma.FinanceProjectSnapshotUncheckedUpdateManyWithoutFinanceProjectNestedInput
   backlogBudgets?: Prisma.BacklogBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
+  projectRevenueBudgets?: Prisma.ProjectRevenueBudgetUncheckedUpdateManyWithoutFinanceProjectNestedInput
 }
 
 export type FinanceProjectUncheckedUpdateManyWithoutOrganisationInput = {
@@ -2330,6 +2555,7 @@ export type FinanceProjectCountOutputType = {
   wipSchedules: number
   snapshots: number
   backlogBudgets: number
+  projectRevenueBudgets: number
 }
 
 export type FinanceProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2337,6 +2563,7 @@ export type FinanceProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Ex
   wipSchedules?: boolean | FinanceProjectCountOutputTypeCountWipSchedulesArgs
   snapshots?: boolean | FinanceProjectCountOutputTypeCountSnapshotsArgs
   backlogBudgets?: boolean | FinanceProjectCountOutputTypeCountBacklogBudgetsArgs
+  projectRevenueBudgets?: boolean | FinanceProjectCountOutputTypeCountProjectRevenueBudgetsArgs
 }
 
 /**
@@ -2375,6 +2602,13 @@ export type FinanceProjectCountOutputTypeCountSnapshotsArgs<ExtArgs extends runt
  */
 export type FinanceProjectCountOutputTypeCountBacklogBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.BacklogBudgetWhereInput
+}
+
+/**
+ * FinanceProjectCountOutputType without action
+ */
+export type FinanceProjectCountOutputTypeCountProjectRevenueBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectRevenueBudgetWhereInput
 }
 
 
@@ -2419,6 +2653,7 @@ export type FinanceProjectSelect<ExtArgs extends runtime.Types.Extensions.Intern
   wipSchedules?: boolean | Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>
   snapshots?: boolean | Prisma.FinanceProject$snapshotsArgs<ExtArgs>
   backlogBudgets?: boolean | Prisma.FinanceProject$backlogBudgetsArgs<ExtArgs>
+  projectRevenueBudgets?: boolean | Prisma.FinanceProject$projectRevenueBudgetsArgs<ExtArgs>
   _count?: boolean | Prisma.FinanceProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["financeProject"]>
 
@@ -2545,6 +2780,7 @@ export type FinanceProjectInclude<ExtArgs extends runtime.Types.Extensions.Inter
   wipSchedules?: boolean | Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>
   snapshots?: boolean | Prisma.FinanceProject$snapshotsArgs<ExtArgs>
   backlogBudgets?: boolean | Prisma.FinanceProject$backlogBudgetsArgs<ExtArgs>
+  projectRevenueBudgets?: boolean | Prisma.FinanceProject$projectRevenueBudgetsArgs<ExtArgs>
   _count?: boolean | Prisma.FinanceProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FinanceProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2562,6 +2798,7 @@ export type $FinanceProjectPayload<ExtArgs extends runtime.Types.Extensions.Inte
     wipSchedules: Prisma.$WIPSchedulePayload<ExtArgs>[]
     snapshots: Prisma.$FinanceProjectSnapshotPayload<ExtArgs>[]
     backlogBudgets: Prisma.$BacklogBudgetPayload<ExtArgs>[]
+    projectRevenueBudgets: Prisma.$ProjectRevenueBudgetPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2998,6 +3235,7 @@ export interface Prisma__FinanceProjectClient<T, Null = never, ExtArgs extends r
   wipSchedules<T extends Prisma.FinanceProject$wipSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$wipSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WIPSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   snapshots<T extends Prisma.FinanceProject$snapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FinanceProjectSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   backlogBudgets<T extends Prisma.FinanceProject$backlogBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$backlogBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BacklogBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projectRevenueBudgets<T extends Prisma.FinanceProject$projectRevenueBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FinanceProject$projectRevenueBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectRevenueBudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3556,6 +3794,30 @@ export type FinanceProject$backlogBudgetsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.BacklogBudgetScalarFieldEnum | Prisma.BacklogBudgetScalarFieldEnum[]
+}
+
+/**
+ * FinanceProject.projectRevenueBudgets
+ */
+export type FinanceProject$projectRevenueBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectRevenueBudget
+   */
+  select?: Prisma.ProjectRevenueBudgetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectRevenueBudget
+   */
+  omit?: Prisma.ProjectRevenueBudgetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectRevenueBudgetInclude<ExtArgs> | null
+  where?: Prisma.ProjectRevenueBudgetWhereInput
+  orderBy?: Prisma.ProjectRevenueBudgetOrderByWithRelationInput | Prisma.ProjectRevenueBudgetOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectRevenueBudgetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectRevenueBudgetScalarFieldEnum | Prisma.ProjectRevenueBudgetScalarFieldEnum[]
 }
 
 /**

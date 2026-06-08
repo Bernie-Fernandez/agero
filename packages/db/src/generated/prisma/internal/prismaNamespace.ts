@@ -514,7 +514,9 @@ export const ModelName = {
   HubSpotSyncSettings: 'HubSpotSyncSettings',
   XeroPnLSnapshot: 'XeroPnLSnapshot',
   FYSettings: 'FYSettings',
-  BacklogBudget: 'BacklogBudget'
+  BacklogBudget: 'BacklogBudget',
+  ProjectRevenueBudget: 'ProjectRevenueBudget',
+  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -530,7 +532,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "fYSettings" | "backlogBudget"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10228,6 +10230,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProjectRevenueBudget: {
+      payload: Prisma.$ProjectRevenueBudgetPayload<ExtArgs>
+      fields: Prisma.ProjectRevenueBudgetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProjectRevenueBudgetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProjectRevenueBudgetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        findFirst: {
+          args: Prisma.ProjectRevenueBudgetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProjectRevenueBudgetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        findMany: {
+          args: Prisma.ProjectRevenueBudgetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>[]
+        }
+        create: {
+          args: Prisma.ProjectRevenueBudgetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        createMany: {
+          args: Prisma.ProjectRevenueBudgetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProjectRevenueBudgetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>[]
+        }
+        delete: {
+          args: Prisma.ProjectRevenueBudgetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        update: {
+          args: Prisma.ProjectRevenueBudgetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProjectRevenueBudgetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProjectRevenueBudgetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProjectRevenueBudgetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProjectRevenueBudgetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectRevenueBudgetPayload>
+        }
+        aggregate: {
+          args: Prisma.ProjectRevenueBudgetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProjectRevenueBudget>
+        }
+        groupBy: {
+          args: Prisma.ProjectRevenueBudgetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectRevenueBudgetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProjectRevenueBudgetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectRevenueBudgetCountAggregateOutputType> | number
+        }
+      }
+    }
+    UnsecuredRevenueBudget: {
+      payload: Prisma.$UnsecuredRevenueBudgetPayload<ExtArgs>
+      fields: Prisma.UnsecuredRevenueBudgetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UnsecuredRevenueBudgetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UnsecuredRevenueBudgetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        findFirst: {
+          args: Prisma.UnsecuredRevenueBudgetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UnsecuredRevenueBudgetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        findMany: {
+          args: Prisma.UnsecuredRevenueBudgetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>[]
+        }
+        create: {
+          args: Prisma.UnsecuredRevenueBudgetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        createMany: {
+          args: Prisma.UnsecuredRevenueBudgetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UnsecuredRevenueBudgetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>[]
+        }
+        delete: {
+          args: Prisma.UnsecuredRevenueBudgetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        update: {
+          args: Prisma.UnsecuredRevenueBudgetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        deleteMany: {
+          args: Prisma.UnsecuredRevenueBudgetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UnsecuredRevenueBudgetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UnsecuredRevenueBudgetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>[]
+        }
+        upsert: {
+          args: Prisma.UnsecuredRevenueBudgetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UnsecuredRevenueBudgetPayload>
+        }
+        aggregate: {
+          args: Prisma.UnsecuredRevenueBudgetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUnsecuredRevenueBudget>
+        }
+        groupBy: {
+          args: Prisma.UnsecuredRevenueBudgetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UnsecuredRevenueBudgetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UnsecuredRevenueBudgetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UnsecuredRevenueBudgetCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -12746,6 +12896,84 @@ export const BacklogBudgetScalarFieldEnum = {
 export type BacklogBudgetScalarFieldEnum = (typeof BacklogBudgetScalarFieldEnum)[keyof typeof BacklogBudgetScalarFieldEnum]
 
 
+export const ProjectRevenueBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  fyYear: 'fyYear',
+  classification: 'classification',
+  jul26: 'jul26',
+  aug26: 'aug26',
+  sep26: 'sep26',
+  oct26: 'oct26',
+  nov26: 'nov26',
+  dec26: 'dec26',
+  jan27: 'jan27',
+  feb27: 'feb27',
+  mar27: 'mar27',
+  apr27: 'apr27',
+  may27: 'may27',
+  jun27: 'jun27',
+  jul27b: 'jul27b',
+  aug27b: 'aug27b',
+  sep27b: 'sep27b',
+  oct27b: 'oct27b',
+  nov27b: 'nov27b',
+  dec27b: 'dec27b',
+  jan28: 'jan28',
+  feb28: 'feb28',
+  mar28: 'mar28',
+  apr28: 'apr28',
+  may28: 'may28',
+  jun28: 'jun28',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectRevenueBudgetScalarFieldEnum = (typeof ProjectRevenueBudgetScalarFieldEnum)[keyof typeof ProjectRevenueBudgetScalarFieldEnum]
+
+
+export const UnsecuredRevenueBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  leadId: 'leadId',
+  leadName: 'leadName',
+  leadValue: 'leadValue',
+  fyYear: 'fyYear',
+  deletedAt: 'deletedAt',
+  jul26: 'jul26',
+  aug26: 'aug26',
+  sep26: 'sep26',
+  oct26: 'oct26',
+  nov26: 'nov26',
+  dec26: 'dec26',
+  jan27: 'jan27',
+  feb27: 'feb27',
+  mar27: 'mar27',
+  apr27: 'apr27',
+  may27: 'may27',
+  jun27: 'jun27',
+  jul27b: 'jul27b',
+  aug27b: 'aug27b',
+  sep27b: 'sep27b',
+  oct27b: 'oct27b',
+  nov27b: 'nov27b',
+  dec27b: 'dec27b',
+  jan28: 'jan28',
+  feb28: 'feb28',
+  mar28: 'mar28',
+  apr28: 'apr28',
+  may28: 'may28',
+  jun28: 'jun28',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnsecuredRevenueBudgetScalarFieldEnum = (typeof UnsecuredRevenueBudgetScalarFieldEnum)[keyof typeof UnsecuredRevenueBudgetScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -14110,6 +14338,8 @@ export type GlobalOmitConfig = {
   xeroPnLSnapshot?: Prisma.XeroPnLSnapshotOmit
   fYSettings?: Prisma.FYSettingsOmit
   backlogBudget?: Prisma.BacklogBudgetOmit
+  projectRevenueBudget?: Prisma.ProjectRevenueBudgetOmit
+  unsecuredRevenueBudget?: Prisma.UnsecuredRevenueBudgetOmit
 }
 
 /* Types for Logging */

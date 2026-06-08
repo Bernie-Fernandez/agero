@@ -181,7 +181,9 @@ export const ModelName = {
   HubSpotSyncSettings: 'HubSpotSyncSettings',
   XeroPnLSnapshot: 'XeroPnLSnapshot',
   FYSettings: 'FYSettings',
-  BacklogBudget: 'BacklogBudget'
+  BacklogBudget: 'BacklogBudget',
+  ProjectRevenueBudget: 'ProjectRevenueBudget',
+  UnsecuredRevenueBudget: 'UnsecuredRevenueBudget'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2677,6 +2679,84 @@ export const BacklogBudgetScalarFieldEnum = {
 } as const
 
 export type BacklogBudgetScalarFieldEnum = (typeof BacklogBudgetScalarFieldEnum)[keyof typeof BacklogBudgetScalarFieldEnum]
+
+
+export const ProjectRevenueBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financeProjectId: 'financeProjectId',
+  fyYear: 'fyYear',
+  classification: 'classification',
+  jul26: 'jul26',
+  aug26: 'aug26',
+  sep26: 'sep26',
+  oct26: 'oct26',
+  nov26: 'nov26',
+  dec26: 'dec26',
+  jan27: 'jan27',
+  feb27: 'feb27',
+  mar27: 'mar27',
+  apr27: 'apr27',
+  may27: 'may27',
+  jun27: 'jun27',
+  jul27b: 'jul27b',
+  aug27b: 'aug27b',
+  sep27b: 'sep27b',
+  oct27b: 'oct27b',
+  nov27b: 'nov27b',
+  dec27b: 'dec27b',
+  jan28: 'jan28',
+  feb28: 'feb28',
+  mar28: 'mar28',
+  apr28: 'apr28',
+  may28: 'may28',
+  jun28: 'jun28',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectRevenueBudgetScalarFieldEnum = (typeof ProjectRevenueBudgetScalarFieldEnum)[keyof typeof ProjectRevenueBudgetScalarFieldEnum]
+
+
+export const UnsecuredRevenueBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  leadId: 'leadId',
+  leadName: 'leadName',
+  leadValue: 'leadValue',
+  fyYear: 'fyYear',
+  deletedAt: 'deletedAt',
+  jul26: 'jul26',
+  aug26: 'aug26',
+  sep26: 'sep26',
+  oct26: 'oct26',
+  nov26: 'nov26',
+  dec26: 'dec26',
+  jan27: 'jan27',
+  feb27: 'feb27',
+  mar27: 'mar27',
+  apr27: 'apr27',
+  may27: 'may27',
+  jun27: 'jun27',
+  jul27b: 'jul27b',
+  aug27b: 'aug27b',
+  sep27b: 'sep27b',
+  oct27b: 'oct27b',
+  nov27b: 'nov27b',
+  dec27b: 'dec27b',
+  jan28: 'jan28',
+  feb28: 'feb28',
+  mar28: 'mar28',
+  apr28: 'apr28',
+  may28: 'may28',
+  jun28: 'jun28',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnsecuredRevenueBudgetScalarFieldEnum = (typeof UnsecuredRevenueBudgetScalarFieldEnum)[keyof typeof UnsecuredRevenueBudgetScalarFieldEnum]
 
 
 export const SortOrder = {
