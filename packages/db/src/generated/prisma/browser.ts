@@ -673,6 +673,11 @@ export type HubSpotSyncSettings = Prisma.HubSpotSyncSettingsModel
  */
 export type XeroPnLSnapshot = Prisma.XeroPnLSnapshotModel
 /**
+ * Model XeroBalanceSheetSnapshot
+ * 
+ */
+export type XeroBalanceSheetSnapshot = Prisma.XeroBalanceSheetSnapshotModel
+/**
  * Model FYSettings
  * 
  */
