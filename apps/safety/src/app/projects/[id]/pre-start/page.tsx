@@ -158,12 +158,12 @@ export default async function PreStartPage({
                     New assessment ↓
                   </summary>
                   <div className="mt-6">
-                    <PreStartForm submitAction={submitAction} projectUsers={projectUsers} />
+                    <PreStartForm submitAction={submitAction} projectUsers={projectUsers} projectId={id} />
                   </div>
                 </details>
               </div>
             ) : (
-              <PreStartForm submitAction={submitAction} projectUsers={projectUsers} />
+              <PreStartForm submitAction={submitAction} projectUsers={projectUsers} projectId={id} />
             )}
           </div>
         )}

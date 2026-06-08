@@ -62,7 +62,18 @@ enum CredentialType {
   FIRST_AID
   ASBESTOS_AWARENESS
   DRIVER_LICENCE
+  PASSPORT
+  GOVERNMENT_ID
+  TRAINING_CERTIFICATE
   OTHER
+}
+
+enum ConsultationEventType {
+  SWMS_APPROVAL
+  INDUCTION
+  TOOLBOX_MEETING
+  NCR
+  PRE_START_INTERNAL
 }
 
 enum SitePreparationPlanStatus {
@@ -111,6 +122,7 @@ model Organisation {
   workerCredentials       WorkerCredential[]      @relation("WorkerCredentialOrg")
   swmsDocuments           SwmsDocument[]          @relation("SwmsDocumentOrg")
   workerInvitations       WorkerInvitation[]      @relation("WorkerInvitationOrg")
+  complexityTemplates     ComplexityTemplate[]
 
   @@map("organisations")
 }
@@ -391,6 +403,7 @@ model WorkerAccount {
   sessions               WorkerSession[]
   certDocuments          WorkerCertDocument[]
   buildingMgmtInductions BuildingMgmtInduction[]
+  privacyConsent         WorkerPrivacyConsent?
 
   @@map("worker_accounts")
 }
@@ -488,6 +501,8 @@ model SafetyProject {
   sitePreparationPlan       SitePreparationPlan?
   hrwWarningAcks            HrwWarningAck[]
   mobBlockNotifications     MobBlockNotification[]
+  consultationEvents        ConsultationEvent[]
+  floorPlan                 ProjectFloorPlan?
 
   @@index([organisationId])
   @@map("safety_projects")
@@ -505,14 +520,18 @@ model PreStartAssessment {
   assessmentDate     DateTime      @map("assessment_date") @db.Date
   highRiskFlags      Json          @map("high_risk_flags")
   psychosocialFlags  Json          @map("psychosocial_flags")
-  consultationRecord       String?  @map("consultation_record") @db.Text
-  projectComplexities      Json?    @map("project_complexities")
-  signOffName              String   @map("sign_off_name")
-  signOffDropdownUserId    String?  @map("sign_off_dropdown_user_id")
-  signatureUrl             String?  @map("signature_url")
-  signOffAt                DateTime @map("sign_off_at")
-  pdfUrl                   String?  @map("pdf_url")
-  createdAt                DateTime @default(now()) @map("created_at")
+  consultationRecord            String?  @map("consultation_record") @db.Text
+  projectComplexities           Json?    @map("project_complexities")
+  signOffName                   String   @map("sign_off_name")
+  signOffDropdownUserId         String?  @map("sign_off_dropdown_user_id")
+  signatureUrl                  String?  @map("signature_url")
+  signOffAt                     DateTime @map("sign_off_at")
+  pdfUrl                        String?  @map("pdf_url")
+  internalSignoffsRequired      Json?    @map("internal_signoffs_required")
+  allInternalSigned             Boolean  @default(false) @map("all_internal_signed")
+  createdAt                     DateTime @default(now()) @map("created_at")
+
+  internalSignOffs InternalSignOff[]
 
   @@index([projectId])
   @@map("pre_start_assessments")
@@ -577,6 +596,9 @@ model WorkerCredential {
   isVerified       Boolean        @default(false) @map("is_verified")
   photoUrl         String?        @map("photo_url")
   notes            String?
+  isWorkerEntered  Boolean        @default(true) @map("is_worker_entered")
+  enteredByRole    String         @default("WORKER") @map("entered_by_role")
+  aiExtracted      Boolean        @default(false) @map("ai_extracted")
   createdAt        DateTime       @default(now()) @map("created_at")
 
   @@index([workerId])
@@ -662,10 +684,13 @@ model SitePreparationPlan {
   signatureUrl String?                   @map("signature_url")
   signOffName  String?                   @map("sign_off_name")
   signOffAt    DateTime?                 @map("sign_off_at")
+  floorPlanId  String?                   @map("floor_plan_id") @db.Uuid
+  floorPlan    ProjectFloorPlan?         @relation(fields: [floorPlanId], references: [id], onDelete: SetNull)
   createdAt    DateTime                  @default(now()) @map("created_at")
   updatedAt    DateTime                  @updatedAt @map("updated_at")
 
   checklists SitePreparationChecklist[]
+  pins       SitePreparationPin[]
 
   @@map("site_preparation_plans")
 }
@@ -699,4 +724,100 @@ model MobBlockNotification {
 
   @@index([workerId, safetyProjectId])
   @@map("mob_block_notifications")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT S1.2 — World-Class Safety Improvements
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Admin-managed complexity templates for common fitout risks.
+// Pre-populated in pre-start form complexity section.
+model ComplexityTemplate {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  name           String
+  riskLevel      String       @map("risk_level")
+  safetyPlanning String       @map("safety_planning") @db.Text
+  hrwFlag        String?      @map("hrw_flag")
+  tradeCategory  String?      @map("trade_category")
+  isActive       Boolean      @default(true) @map("is_active")
+  sortOrder      Int          @default(0) @map("sort_order")
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  @@index([organisationId])
+  @@map("complexity_templates")
+}
+
+// Tags all consultation touchpoints for auto-population of Panel B.
+model ConsultationEvent {
+  id               String                @id @default(uuid()) @db.Uuid
+  projectId        String                @map("project_id") @db.Uuid
+  project          SafetyProject         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  eventType        ConsultationEventType @map("event_type")
+  referenceId      String                @map("reference_id")
+  consultedPersons Json                  @map("consulted_persons")
+  notes            String?               @db.Text
+  eventDate        DateTime              @map("event_date")
+  createdAt        DateTime              @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("consultation_events")
+}
+
+// Digital sign-off by a required internal signatory on a PreStartAssessment.
+model InternalSignOff {
+  id               String             @id @default(uuid()) @db.Uuid
+  preStartId       String             @map("pre_start_id") @db.Uuid
+  preStart         PreStartAssessment @relation(fields: [preStartId], references: [id], onDelete: Cascade)
+  signatoryClerkId String             @map("signatory_clerk_id")
+  signatoryName    String             @map("signatory_name")
+  signatoryRole    String             @map("signatory_role")
+  signatureUrl     String             @map("signature_url")
+  signedAt         DateTime           @map("signed_at")
+
+  @@index([preStartId])
+  @@map("internal_sign_offs")
+}
+
+// One floor plan per project, shared by site prep, dilapidation, defects.
+model ProjectFloorPlan {
+  id              String        @id @default(uuid()) @db.Uuid
+  safetyProjectId String        @unique @map("safety_project_id") @db.Uuid
+  safetyProject   SafetyProject @relation(fields: [safetyProjectId], references: [id], onDelete: Cascade)
+  fileUrl         String        @map("file_url")
+  fileName        String        @map("file_name")
+  uploadedBy      String        @map("uploaded_by")
+  uploadedAt      DateTime      @default(now()) @map("uploaded_at")
+
+  sitePreparationPlans SitePreparationPlan[]
+
+  @@map("project_floor_plans")
+}
+
+// Numbered pin dropped on a floor plan for Phase 1 site prep.
+// Replaces the text description fields in SitePreparationPlan.sections (Task 14).
+model SitePreparationPin {
+  id         String              @id @default(uuid()) @db.Uuid
+  planId     String              @map("plan_id") @db.Uuid
+  plan       SitePreparationPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  categoryId Int                 @map("category_id")
+  pinX       Float               @map("pin_x")
+  pinY       Float               @map("pin_y")
+  label      String
+
+  @@index([planId])
+  @@map("site_preparation_pins")
+}
+
+// Records a worker's acceptance of the privacy notice at registration.
+model WorkerPrivacyConsent {
+  id              String        @id @default(uuid()) @db.Uuid
+  workerAccountId String        @unique @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  acceptedAt      DateTime      @map("accepted_at")
+  ipAddress       String?       @map("ip_address")
+  version         String        @default("1.0")
+
+  @@map("worker_privacy_consents")
 }

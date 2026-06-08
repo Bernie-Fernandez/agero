@@ -15,6 +15,7 @@ interface ProjectUser {
 interface Props {
   submitAction: (prev: SubmitState, fd: FormData) => Promise<SubmitState>;
   projectUsers: ProjectUser[];
+  projectId: string;
 }
 
 const RISK_LEVELS = ["Low", "Medium", "High", "Critical"] as const;
@@ -154,7 +155,7 @@ function SignatureCanvas({ canvasRef, onClear }: { canvasRef: React.RefObject<HT
 
 // ── Main form ─────────────────────────────────────────────────────────────────
 
-export function PreStartForm({ submitAction, projectUsers }: Props) {
+export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
   const [state, formAction, pending] = useActionState(submitAction, {});
 
   const today = new Date().toISOString().split("T")[0];
@@ -442,7 +443,7 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
                     >
                       <option value="">— Select HRW classification —</option>
                       {HRW_CLASSIFICATIONS.map((h) => (
-                        <option key={h.id} value={h.id}>{h.question.slice(0, 80)}…</option>
+                        <option key={h.id} value={h.id}>{h.label}</option>
                       ))}
                     </select>
                   )}
@@ -458,6 +459,23 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
         >
           + Add complexity item
         </button>
+
+        {complexities.length > 0 && (
+          <div className="mt-4 rounded-lg border border-amber-100 bg-amber-50 px-4 py-3 dark:border-amber-800/30 dark:bg-amber-950/10">
+            <p className="text-xs font-medium text-amber-800 dark:text-amber-300">
+              Site-specific induction may need updating
+            </p>
+            <p className="mt-0.5 text-xs text-amber-700 dark:text-amber-400">
+              One or more project complexities may require your site-specific induction to be updated. Review your induction content after completing this assessment.
+            </p>
+            <a
+              href={`/projects/${projectId}/induction/builder`}
+              className="mt-2 inline-block text-xs font-medium text-amber-800 underline hover:text-amber-900 dark:text-amber-300"
+            >
+              Review induction builder →
+            </a>
+          </div>
+        )}
       </section>
 
       {/* ── Part 1: HRW Classifications ─────────────────────────────────────── */}
@@ -478,12 +496,17 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
         </div>
 
         <div className="mt-4 space-y-3">
-          {hrwFlags.map((item, i) => (
+          {hrwFlags.map((item, i) => {
+            const spec = HRW_CLASSIFICATIONS.find((h) => h.id === item.id);
+            return (
             <div key={item.id} className="rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
               <div className="flex items-start gap-4 px-4 py-3">
                 <span className="mt-0.5 w-5 shrink-0 text-xs text-zinc-400">{i + 1}</span>
                 <div className="flex-1">
-                  <p className="text-sm text-zinc-800 dark:text-zinc-200">{item.question}</p>
+                  {spec && (
+                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{spec.label}</p>
+                  )}
+                  <p className="mt-0.5 text-sm text-zinc-600 dark:text-zinc-400">{item.question}</p>
                   {item.pretickReason && (
                     <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">
                       Pre-ticked — linked to complexity: &ldquo;{item.pretickReason.slice(0, 60)}&rdquo;
@@ -557,7 +580,8 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
                 </div>
               )}
             </div>
-          ))}
+          );
+          })}
         </div>
       </section>
 
@@ -585,7 +609,10 @@ export function PreStartForm({ submitAction, projectUsers }: Props) {
               <div key={item.id} className="rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
                 <div className="flex items-start gap-4 px-4 py-3">
                   <span className="mt-0.5 w-5 shrink-0 text-xs text-zinc-400">{i + 1}</span>
-                  <p className="flex-1 text-sm text-zinc-800 dark:text-zinc-200">{item.question ?? spec?.question ?? item.label}</p>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{item.label ?? spec?.label}</p>
+                    <p className="mt-0.5 text-sm text-zinc-600 dark:text-zinc-400">{item.question ?? spec?.question}</p>
+                  </div>
                   <div className="flex shrink-0 gap-3">
                     <label className="flex cursor-pointer items-center gap-1.5 text-sm">
                       <input
