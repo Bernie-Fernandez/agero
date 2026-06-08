@@ -70,6 +70,7 @@ export async function getProjectRevenueBudgets(fyYear: string): Promise<{
 }> {
   const user = await requireFinanceAccess();
   try {
+    // Phase 1: all AWARDED/BACKLOG projects for this FY (BacklogBudget gate)
     const projects = await prisma.financeProject.findMany({
       where: {
         organisationId: user.organisationId,
@@ -86,16 +87,42 @@ export async function getProjectRevenueBudgets(fyYear: string): Promise<{
           take: 1,
           select: { classification: true, budgetRevenue: true },
         },
-        projectRevenueBudgets: {
-          where: { fyYear },
-          take: 1,
-        },
       },
     });
 
+    if (projects.length === 0) return { ok: true, rows: [] };
+
+    const projectIds = projects.map((p) => p.id);
+
+    // Phase 2: fetch existing PRB records
+    const existingPRBs = await prisma.projectRevenueBudget.findMany({
+      where: { organisationId: user.organisationId, fyYear, financeProjectId: { in: projectIds } },
+    });
+    const prbMap = new Map(existingPRBs.map((r) => [r.financeProjectId, r]));
+
+    // Phase 3: auto-create zero-value stubs for projects with no PRB yet (no audit log)
+    const missing = projects.filter((p) => !prbMap.has(p.id));
+    if (missing.length > 0) {
+      await prisma.projectRevenueBudget.createMany({
+        data: missing.map((p) => ({
+          organisationId: user.organisationId,
+          financeProjectId: p.id,
+          fyYear,
+          classification: p.backlogBudgets[0]?.classification ?? 'AWARDED',
+        })),
+        skipDuplicates: true,
+      });
+      // Fetch the new records to capture their generated IDs
+      const newPRBs = await prisma.projectRevenueBudget.findMany({
+        where: { organisationId: user.organisationId, fyYear, financeProjectId: { in: missing.map((p) => p.id) } },
+      });
+      for (const r of newPRBs) prbMap.set(r.financeProjectId, r);
+    }
+
+    // Phase 4: build rows from the merged map
     const rows: ProjectRevenueBudgetRow[] = projects.map((p) => {
       const bb = p.backlogBudgets[0];
-      const prb = p.projectRevenueBudgets[0];
+      const prb = prbMap.get(p.id);
       const serialized: Record<string, unknown> = prb ? JSON.parse(JSON.stringify(prb)) : {};
       return {
         id: prb?.id ?? '',
