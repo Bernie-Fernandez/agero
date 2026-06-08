@@ -16,14 +16,6 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
   const lastName = fd.get("lastName")?.toString().trim() ?? "";
   const mobile = fd.get("mobile")?.toString().trim() ?? "";
   const trades = fd.getAll("trades").map((t) => t.toString());
-  const whiteCardNumber = fd.get("whiteCardNumber")?.toString().trim() || null;
-  const whiteCardExpiry = fd.get("whiteCardExpiry")?.toString() || null;
-  const tradeLicenceNumber = fd.get("tradeLicenceNumber")?.toString().trim() || null;
-  const tradeLicenceExpiry = fd.get("tradeLicenceExpiry")?.toString() || null;
-  const firstAidCertNumber = fd.get("firstAidCertNumber")?.toString().trim() || null;
-  const firstAidExpiry = fd.get("firstAidExpiry")?.toString() || null;
-
-  // New fields
   const dateOfBirth = fd.get("dateOfBirth")?.toString() || null;
   const addressStreet = fd.get("addressStreet")?.toString().trim() || null;
   const addressSuburb = fd.get("addressSuburb")?.toString().trim() || null;
@@ -37,8 +29,8 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
   if (!firstName || !lastName || !mobile) {
     return { error: "Name and mobile are required." };
   }
-  if (!whiteCardNumber) {
-    return { error: "White card number is required." };
+  if (!nokName || !nokRelationship || !nokMobile) {
+    return { error: "Emergency contact details are required." };
   }
 
   // If mobile changed, ensure no other account owns that mobile
@@ -56,12 +48,6 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
       lastName,
       mobile,
       trades,
-      whiteCardNumber,
-      whiteCardExpiry: whiteCardExpiry ? new Date(whiteCardExpiry) : null,
-      tradeLicenceNumber,
-      tradeLicenceExpiry: tradeLicenceExpiry ? new Date(tradeLicenceExpiry) : null,
-      firstAidCertNumber,
-      firstAidExpiry: firstAidExpiry ? new Date(firstAidExpiry) : null,
       dateOfBirth: dateOfBirth ? new Date(dateOfBirth) : null,
       addressStreet,
       addressSuburb,
@@ -74,12 +60,10 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
     },
   });
 
-  // Propagate Sprint S1 fields to all project Worker records for this mobile
+  // Propagate NOK fields to all project Worker records for this mobile
   await prisma.worker.updateMany({
     where: { mobile: session.workerAccount.mobile },
     data: {
-      whiteCardNo: whiteCardNumber,
-      whiteCardExpiry: whiteCardExpiry ? new Date(whiteCardExpiry) : null,
       nokName,
       nokPhone: nokMobile,
       nokRelationship,
@@ -89,6 +73,74 @@ export async function updateProfile(_prev: ProfileState, fd: FormData): Promise<
   revalidatePath("/worker/profile");
   revalidatePath("/worker/dashboard");
   return { success: "Profile updated." };
+}
+
+// ── New credential management actions ─────────────────────────────────────────
+
+export type AddCredentialState = { error?: string; id?: string };
+
+export async function addWorkerCredential(
+  docType: string,
+  photoUrl: string,
+  _prev: AddCredentialState,
+  fd: FormData,
+): Promise<AddCredentialState> {
+  const session = await getWorkerSession();
+  if (!session) redirect("/worker/login");
+
+  const credentialNumber = fd.get("credentialNumber")?.toString().trim() || null;
+  const issuingBody = fd.get("issuingBody")?.toString().trim() || null;
+  const issueDateRaw = fd.get("issueDate")?.toString().trim();
+  const expiryDateRaw = fd.get("expiryDate")?.toString().trim();
+
+  const issueDate = issueDateRaw ? new Date(issueDateRaw) : null;
+  const expiryDate = expiryDateRaw ? new Date(expiryDateRaw) : null;
+
+  if (issueDate && isNaN(issueDate.getTime())) return { error: "Invalid issue date." };
+  if (expiryDate && isNaN(expiryDate.getTime())) return { error: "Invalid expiry date." };
+
+  const doc = await prisma.workerCertDocument.create({
+    data: {
+      workerAccountId: session.workerAccountId,
+      docType,
+      url: photoUrl || "",
+      filename: null,
+      credentialNumber,
+      issuingBody,
+      issueDate,
+      expiryDate,
+      aiExtractedExpiry: false,
+    },
+  });
+
+  // Sync white card fields back to WorkerAccount for ERP propagation
+  if (docType === "white_card" && (credentialNumber || expiryDate)) {
+    await prisma.workerAccount.update({
+      where: { id: session.workerAccountId },
+      data: {
+        ...(credentialNumber ? { whiteCardNumber: credentialNumber } : {}),
+        ...(expiryDate ? { whiteCardExpiry: expiryDate } : {}),
+      },
+    });
+  }
+
+  revalidatePath("/worker/profile");
+  return { id: doc.id };
+}
+
+export async function deleteWorkerCredential(id: string): Promise<void> {
+  const session = await getWorkerSession();
+  if (!session) return;
+
+  // Ownership check — ensure the record belongs to this worker
+  const doc = await prisma.workerCertDocument.findUnique({
+    where: { id },
+    select: { workerAccountId: true },
+  });
+  if (!doc || doc.workerAccountId !== session.workerAccountId) return;
+
+  await prisma.workerCertDocument.delete({ where: { id } });
+  revalidatePath("/worker/profile");
 }
 
 export type CertUploadState = { error?: string; success?: string };

@@ -17,12 +17,6 @@ type Account = {
   firstName: string;
   lastName: string;
   trades: string[];
-  whiteCardNumber: string | null;
-  whiteCardExpiry: Date | null;
-  tradeLicenceNumber: string | null;
-  tradeLicenceExpiry: Date | null;
-  firstAidCertNumber: string | null;
-  firstAidExpiry: Date | null;
   dateOfBirth: Date | null;
   addressStreet: string | null;
   addressSuburb: string | null;
@@ -156,27 +150,40 @@ export function ProfileForm({ account }: { account: Account }) {
         </div>
       </section>
 
-      {/* Next of kin / Emergency contact */}
+      {/* Next of kin / Emergency contact — MANDATORY */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-          Emergency contact
-        </h2>
+        <div>
+          <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            Emergency contact{" "}
+            <span className="text-red-600 dark:text-red-400" aria-label="required">*</span>
+          </h2>
+          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+            <strong className="font-medium">Why we collect this:</strong> Required by WorkSafe Victoria to notify your nominated contact in the event of a serious incident on site.
+            Accessed only by site supervisors or emergency services. Not shared with any third party.
+          </p>
+        </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
-            <label className={labelCls}>Full name</label>
+            <label className={labelCls}>
+              Full name <span className="text-red-600 dark:text-red-400">*</span>
+            </label>
             <input
               name="nokName"
               type="text"
+              required
               defaultValue={account.nokName ?? ""}
               autoCapitalize="words"
               className={inputCls}
             />
           </div>
           <div>
-            <label className={labelCls}>Relationship</label>
+            <label className={labelCls}>
+              Relationship <span className="text-red-600 dark:text-red-400">*</span>
+            </label>
             <input
               name="nokRelationship"
               type="text"
+              required
               placeholder="e.g. Spouse, Parent, Sibling"
               defaultValue={account.nokRelationship ?? ""}
               className={inputCls}
@@ -184,10 +191,13 @@ export function ProfileForm({ account }: { account: Account }) {
           </div>
         </div>
         <div>
-          <label className={labelCls}>Mobile number</label>
+          <label className={labelCls}>
+            Mobile number <span className="text-red-600 dark:text-red-400">*</span>
+          </label>
           <input
             name="nokMobile"
             type="tel"
+            required
             inputMode="tel"
             defaultValue={account.nokMobile ?? ""}
             className={inputCls}
@@ -214,86 +224,17 @@ export function ProfileForm({ account }: { account: Account }) {
         </div>
       </section>
 
-      {/* Certifications */}
-      <section className="space-y-4">
-        <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">Certifications</h2>
-
-        {/* White card — required */}
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div>
-            <label className={labelCls}>
-              White card number{" "}
-              <span className="text-red-600 dark:text-red-400" aria-label="required">*</span>
-            </label>
-            <input
-              name="whiteCardNumber"
-              type="text"
-              required
-              defaultValue={account.whiteCardNumber ?? ""}
-              className={inputCls}
-            />
-          </div>
-          <div>
-            <label className={labelCls}>Expiry date</label>
-            <input
-              name="whiteCardExpiry"
-              type="date"
-              defaultValue={dateToInput(account.whiteCardExpiry)}
-              className={inputCls}
-            />
-          </div>
-        </div>
-
-        {/* Trade licence */}
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div>
-            <label className={labelCls}>Trade licence number</label>
-            <input
-              name="tradeLicenceNumber"
-              type="text"
-              defaultValue={account.tradeLicenceNumber ?? ""}
-              className={inputCls}
-            />
-          </div>
-          <div>
-            <label className={labelCls}>Expiry date</label>
-            <input
-              name="tradeLicenceExpiry"
-              type="date"
-              defaultValue={dateToInput(account.tradeLicenceExpiry)}
-              className={inputCls}
-            />
-          </div>
-        </div>
-
-        {/* First aid */}
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div>
-            <label className={labelCls}>First aid certificate number</label>
-            <input
-              name="firstAidCertNumber"
-              type="text"
-              defaultValue={account.firstAidCertNumber ?? ""}
-              className={inputCls}
-            />
-          </div>
-          <div>
-            <label className={labelCls}>Expiry date</label>
-            <input
-              name="firstAidExpiry"
-              type="date"
-              defaultValue={dateToInput(account.firstAidExpiry)}
-              className={inputCls}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Medical conditions */}
       <section className="space-y-2">
-        <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-          Medical information
-        </h2>
+        <div>
+          <h2 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            Medical information
+          </h2>
+          <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+            <strong className="font-medium">Why we collect this:</strong> Enables site supervisors and first-aid officers to provide appropriate emergency care.
+            Stored securely and accessible only to on-site personnel with a safety role. You may choose not to disclose.
+          </p>
+        </div>
         <div>
           <label className={labelCls}>
             Any medical conditions we should be aware of on site?{" "}

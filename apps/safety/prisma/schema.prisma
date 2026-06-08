@@ -439,6 +439,9 @@ model WorkerCertDocument {
   docType           String        @map("doc_type")
   url               String
   filename          String?
+  credentialNumber  String?       @map("credential_number")
+  issuingBody       String?       @map("issuing_body")
+  issueDate         DateTime?     @map("issue_date")
   expiryDate        DateTime?     @map("expiry_date")
   aiExtractedExpiry Boolean       @default(false) @map("ai_extracted_expiry")
   createdAt         DateTime      @default(now()) @map("created_at")
