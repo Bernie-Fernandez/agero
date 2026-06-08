@@ -683,6 +683,16 @@ export type XeroBalanceSheetSnapshot = Prisma.XeroBalanceSheetSnapshotModel
  */
 export type RevenueCurve = Prisma.RevenueCurveModel
 /**
+ * Model CashFlowForecast
+ * 
+ */
+export type CashFlowForecast = Prisma.CashFlowForecastModel
+/**
+ * Model CashFlowLineItem
+ * 
+ */
+export type CashFlowLineItem = Prisma.CashFlowLineItemModel
+/**
  * Model FYSettings
  * 
  */

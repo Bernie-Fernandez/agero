@@ -517,6 +517,8 @@ export const ModelName = {
   XeroPnLSnapshot: 'XeroPnLSnapshot',
   XeroBalanceSheetSnapshot: 'XeroBalanceSheetSnapshot',
   RevenueCurve: 'RevenueCurve',
+  CashFlowForecast: 'CashFlowForecast',
+  CashFlowLineItem: 'CashFlowLineItem',
   FYSettings: 'FYSettings',
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
@@ -536,7 +538,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "cashFlowForecast" | "cashFlowLineItem" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10382,6 +10384,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CashFlowForecast: {
+      payload: Prisma.$CashFlowForecastPayload<ExtArgs>
+      fields: Prisma.CashFlowForecastFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CashFlowForecastFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CashFlowForecastFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        findFirst: {
+          args: Prisma.CashFlowForecastFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CashFlowForecastFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        findMany: {
+          args: Prisma.CashFlowForecastFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>[]
+        }
+        create: {
+          args: Prisma.CashFlowForecastCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        createMany: {
+          args: Prisma.CashFlowForecastCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CashFlowForecastCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>[]
+        }
+        delete: {
+          args: Prisma.CashFlowForecastDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        update: {
+          args: Prisma.CashFlowForecastUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        deleteMany: {
+          args: Prisma.CashFlowForecastDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CashFlowForecastUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CashFlowForecastUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>[]
+        }
+        upsert: {
+          args: Prisma.CashFlowForecastUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowForecastPayload>
+        }
+        aggregate: {
+          args: Prisma.CashFlowForecastAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCashFlowForecast>
+        }
+        groupBy: {
+          args: Prisma.CashFlowForecastGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CashFlowForecastGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CashFlowForecastCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CashFlowForecastCountAggregateOutputType> | number
+        }
+      }
+    }
+    CashFlowLineItem: {
+      payload: Prisma.$CashFlowLineItemPayload<ExtArgs>
+      fields: Prisma.CashFlowLineItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CashFlowLineItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CashFlowLineItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        findFirst: {
+          args: Prisma.CashFlowLineItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CashFlowLineItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        findMany: {
+          args: Prisma.CashFlowLineItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>[]
+        }
+        create: {
+          args: Prisma.CashFlowLineItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        createMany: {
+          args: Prisma.CashFlowLineItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CashFlowLineItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>[]
+        }
+        delete: {
+          args: Prisma.CashFlowLineItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        update: {
+          args: Prisma.CashFlowLineItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.CashFlowLineItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CashFlowLineItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CashFlowLineItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.CashFlowLineItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CashFlowLineItemPayload>
+        }
+        aggregate: {
+          args: Prisma.CashFlowLineItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCashFlowLineItem>
+        }
+        groupBy: {
+          args: Prisma.CashFlowLineItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CashFlowLineItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CashFlowLineItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CashFlowLineItemCountAggregateOutputType> | number
+        }
+      }
+    }
     FYSettings: {
       payload: Prisma.$FYSettingsPayload<ExtArgs>
       fields: Prisma.FYSettingsFieldRefs
@@ -13248,6 +13398,40 @@ export const RevenueCurveScalarFieldEnum = {
 export type RevenueCurveScalarFieldEnum = (typeof RevenueCurveScalarFieldEnum)[keyof typeof RevenueCurveScalarFieldEnum]
 
 
+export const CashFlowForecastScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  forecastMonth: 'forecastMonth',
+  openingBalance: 'openingBalance',
+  minimumCash: 'minimumCash',
+  arCollectionDays: 'arCollectionDays',
+  apPaymentDays: 'apPaymentDays',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CashFlowForecastScalarFieldEnum = (typeof CashFlowForecastScalarFieldEnum)[keyof typeof CashFlowForecastScalarFieldEnum]
+
+
+export const CashFlowLineItemScalarFieldEnum = {
+  id: 'id',
+  cashFlowForecastId: 'cashFlowForecastId',
+  category: 'category',
+  description: 'description',
+  amount: 'amount',
+  direction: 'direction',
+  periodDate: 'periodDate',
+  isRecurring: 'isRecurring',
+  recurringFrequency: 'recurringFrequency',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CashFlowLineItemScalarFieldEnum = (typeof CashFlowLineItemScalarFieldEnum)[keyof typeof CashFlowLineItemScalarFieldEnum]
+
+
 export const FYSettingsScalarFieldEnum = {
   id: 'id',
   organisationId: 'organisationId',
@@ -14461,6 +14645,34 @@ export type ListEnumHubSpotConnectionStatusFieldRefInput<$PrismaModel> = FieldRe
 
 
 /**
+ * Reference to a field of type 'CashFlowCategory'
+ */
+export type EnumCashFlowCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashFlowCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'CashFlowCategory[]'
+ */
+export type ListEnumCashFlowCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashFlowCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CashFlowDirection'
+ */
+export type EnumCashFlowDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashFlowDirection'>
+    
+
+
+/**
+ * Reference to a field of type 'CashFlowDirection[]'
+ */
+export type ListEnumCashFlowDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CashFlowDirection[]'>
+    
+
+
+/**
  * Reference to a field of type 'BacklogClassification'
  */
 export type EnumBacklogClassificationFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BacklogClassification'>
@@ -14729,6 +14941,8 @@ export type GlobalOmitConfig = {
   xeroPnLSnapshot?: Prisma.XeroPnLSnapshotOmit
   xeroBalanceSheetSnapshot?: Prisma.XeroBalanceSheetSnapshotOmit
   revenueCurve?: Prisma.RevenueCurveOmit
+  cashFlowForecast?: Prisma.CashFlowForecastOmit
+  cashFlowLineItem?: Prisma.CashFlowLineItemOmit
   fYSettings?: Prisma.FYSettingsOmit
   backlogBudget?: Prisma.BacklogBudgetOmit
   projectRevenueBudget?: Prisma.ProjectRevenueBudgetOmit

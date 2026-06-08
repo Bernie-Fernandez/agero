@@ -184,6 +184,8 @@ export const ModelName = {
   XeroPnLSnapshot: 'XeroPnLSnapshot',
   XeroBalanceSheetSnapshot: 'XeroBalanceSheetSnapshot',
   RevenueCurve: 'RevenueCurve',
+  CashFlowForecast: 'CashFlowForecast',
+  CashFlowLineItem: 'CashFlowLineItem',
   FYSettings: 'FYSettings',
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
@@ -2735,6 +2737,40 @@ export const RevenueCurveScalarFieldEnum = {
 } as const
 
 export type RevenueCurveScalarFieldEnum = (typeof RevenueCurveScalarFieldEnum)[keyof typeof RevenueCurveScalarFieldEnum]
+
+
+export const CashFlowForecastScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  forecastMonth: 'forecastMonth',
+  openingBalance: 'openingBalance',
+  minimumCash: 'minimumCash',
+  arCollectionDays: 'arCollectionDays',
+  apPaymentDays: 'apPaymentDays',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CashFlowForecastScalarFieldEnum = (typeof CashFlowForecastScalarFieldEnum)[keyof typeof CashFlowForecastScalarFieldEnum]
+
+
+export const CashFlowLineItemScalarFieldEnum = {
+  id: 'id',
+  cashFlowForecastId: 'cashFlowForecastId',
+  category: 'category',
+  description: 'description',
+  amount: 'amount',
+  direction: 'direction',
+  periodDate: 'periodDate',
+  isRecurring: 'isRecurring',
+  recurringFrequency: 'recurringFrequency',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CashFlowLineItemScalarFieldEnum = (typeof CashFlowLineItemScalarFieldEnum)[keyof typeof CashFlowLineItemScalarFieldEnum]
 
 
 export const FYSettingsScalarFieldEnum = {

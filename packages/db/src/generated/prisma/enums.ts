@@ -648,6 +648,30 @@ export const BacklogBudgetStatus = {
 export type BacklogBudgetStatus = (typeof BacklogBudgetStatus)[keyof typeof BacklogBudgetStatus]
 
 
+export const CashFlowCategory = {
+  PROGRESS_CLAIM_RECEIPT: 'PROGRESS_CLAIM_RECEIPT',
+  RETENTION_RELEASE: 'RETENTION_RELEASE',
+  SUBCONTRACTOR_PAYMENT: 'SUBCONTRACTOR_PAYMENT',
+  WAGES: 'WAGES',
+  ATO_BAS: 'ATO_BAS',
+  ATO_PAYG: 'ATO_PAYG',
+  OVERHEAD: 'OVERHEAD',
+  LOAN_REPAYMENT: 'LOAN_REPAYMENT',
+  OTHER_INFLOW: 'OTHER_INFLOW',
+  OTHER_OUTFLOW: 'OTHER_OUTFLOW'
+} as const
+
+export type CashFlowCategory = (typeof CashFlowCategory)[keyof typeof CashFlowCategory]
+
+
+export const CashFlowDirection = {
+  INFLOW: 'INFLOW',
+  OUTFLOW: 'OUTFLOW'
+} as const
+
+export type CashFlowDirection = (typeof CashFlowDirection)[keyof typeof CashFlowDirection]
+
+
 export const WIPFlag = {
   GREEN: 'GREEN',
   AMBER: 'AMBER',

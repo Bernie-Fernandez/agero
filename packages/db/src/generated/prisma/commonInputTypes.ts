@@ -1615,6 +1615,40 @@ export type EnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
 }
 
+export type EnumCashFlowCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowCategory | Prisma.EnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel> | $Enums.CashFlowCategory
+}
+
+export type EnumCashFlowDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowDirection | Prisma.EnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel> | $Enums.CashFlowDirection
+}
+
+export type EnumCashFlowCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowCategory | Prisma.EnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowCategoryWithAggregatesFilter<$PrismaModel> | $Enums.CashFlowCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel>
+}
+
+export type EnumCashFlowDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowDirection | Prisma.EnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowDirectionWithAggregatesFilter<$PrismaModel> | $Enums.CashFlowDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel>
+}
+
 export type EnumBacklogClassificationFilter<$PrismaModel = never> = {
   equals?: $Enums.BacklogClassification | Prisma.EnumBacklogClassificationFieldRefInput<$PrismaModel>
   in?: $Enums.BacklogClassification[] | Prisma.ListEnumBacklogClassificationFieldRefInput<$PrismaModel>
@@ -3203,6 +3237,40 @@ export type NestedEnumHubSpotConnectionStatusWithAggregatesFilter<$PrismaModel =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumHubSpotConnectionStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumCashFlowCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowCategory | Prisma.EnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel> | $Enums.CashFlowCategory
+}
+
+export type NestedEnumCashFlowDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowDirection | Prisma.EnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel> | $Enums.CashFlowDirection
+}
+
+export type NestedEnumCashFlowCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowCategory | Prisma.EnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowCategory[] | Prisma.ListEnumCashFlowCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowCategoryWithAggregatesFilter<$PrismaModel> | $Enums.CashFlowCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCashFlowCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumCashFlowDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CashFlowDirection | Prisma.EnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CashFlowDirection[] | Prisma.ListEnumCashFlowDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCashFlowDirectionWithAggregatesFilter<$PrismaModel> | $Enums.CashFlowDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCashFlowDirectionFilter<$PrismaModel>
 }
 
 export type NestedEnumBacklogClassificationFilter<$PrismaModel = never> = {

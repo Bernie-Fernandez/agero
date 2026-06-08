@@ -303,6 +303,7 @@ model Organisation {
   xeroWipSettings             XeroWipSettings?
   xeroBalanceSheetSnapshots   XeroBalanceSheetSnapshot[]
   revenueCurves               RevenueCurve[]
+  cashFlowForecasts           CashFlowForecast[]
 
   @@map("organisations")
   @@schema("projects")
@@ -2956,6 +2957,28 @@ enum BacklogBudgetStatus {
   @@schema("projects")
 }
 
+enum CashFlowCategory {
+  PROGRESS_CLAIM_RECEIPT
+  RETENTION_RELEASE
+  SUBCONTRACTOR_PAYMENT
+  WAGES
+  ATO_BAS
+  ATO_PAYG
+  OVERHEAD
+  LOAN_REPAYMENT
+  OTHER_INFLOW
+  OTHER_OUTFLOW
+
+  @@schema("projects")
+}
+
+enum CashFlowDirection {
+  INFLOW
+  OUTFLOW
+
+  @@schema("projects")
+}
+
 model MonthEndStatus {
   id               String             @id @default(uuid()) @db.Uuid
   organisationId   String             @map("organisation_id") @db.Uuid
@@ -4024,6 +4047,48 @@ model RevenueCurve {
 
   @@unique([organisationId, name])
   @@map("revenue_curves")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.5 — Cash Flow Forecast
+// ─────────────────────────────────────────────────────────────────────────────
+
+model CashFlowForecast {
+  id               String       @id @default(uuid()) @db.Uuid
+  organisationId   String       @map("organisation_id") @db.Uuid
+  organisation     Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  forecastMonth    DateTime     @map("forecast_month") @db.Date
+  openingBalance   Decimal      @db.Decimal(14, 2) @map("opening_balance")
+  minimumCash      Decimal      @db.Decimal(14, 2) @default(0) @map("minimum_cash")
+  arCollectionDays Int          @default(21) @map("ar_collection_days")
+  apPaymentDays    Int          @default(30) @map("ap_payment_days")
+  notes            String?      @db.Text
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+  lineItems        CashFlowLineItem[]
+
+  @@unique([organisationId, forecastMonth])
+  @@map("cash_flow_forecasts")
+  @@schema("projects")
+}
+
+model CashFlowLineItem {
+  id                  String           @id @default(uuid()) @db.Uuid
+  cashFlowForecastId  String           @map("cash_flow_forecast_id") @db.Uuid
+  cashFlowForecast    CashFlowForecast @relation(fields: [cashFlowForecastId], references: [id], onDelete: Cascade)
+  category            CashFlowCategory
+  description         String
+  amount              Decimal          @db.Decimal(14, 2)
+  direction           CashFlowDirection
+  periodDate          DateTime         @map("period_date") @db.Date
+  isRecurring         Boolean          @default(false) @map("is_recurring")
+  recurringFrequency  String?          @map("recurring_frequency")
+  notes               String?          @db.Text
+  createdAt           DateTime         @default(now()) @map("created_at")
+  updatedAt           DateTime         @updatedAt @map("updated_at")
+
+  @@map("cash_flow_line_items")
   @@schema("projects")
 }
 

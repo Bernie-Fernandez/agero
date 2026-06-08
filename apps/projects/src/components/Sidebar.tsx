@@ -231,6 +231,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
       <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/month-end" label="Month-end" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/balance-sheet" label="Balance Sheet" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/cash-flow" label="Cash Flow" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
