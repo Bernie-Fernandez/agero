@@ -243,6 +243,86 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
     setPsychFlags((prev) => prev.map((f) => (f.id === id ? { ...f, ...patch } : f)));
   }
 
+  // ── AI guidance state ─────────────────────────────────────────────────────
+
+  const [hrwGuidance, setHrwGuidance] = useState<Record<string, { loading: boolean; text: string }>>({});
+  const [psychGuidance, setPsychGuidance] = useState<Record<string, { loading: boolean; text: string }>>({});
+  const [consultGuidance, setConsultGuidance] = useState<Record<number, { loading: boolean; text: string }>>({});
+
+  async function fetchHrwGuidance(id: string, label: string, question: string) {
+    setHrwGuidance((prev) => ({ ...prev, [id]: { loading: true, text: "" } }));
+    try {
+      const res = await fetch("/api/ai-guidance/hrw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label, question }),
+      });
+      if (!res.ok || !res.body) throw new Error("Request failed");
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        accumulated += decoder.decode(value, { stream: true });
+        setHrwGuidance((prev) => ({ ...prev, [id]: { loading: false, text: accumulated } }));
+      }
+    } catch {
+      setHrwGuidance((prev) => ({ ...prev, [id]: { loading: false, text: "Unable to generate guidance. Please consult your Safety Manager." } }));
+    }
+  }
+
+  async function fetchConsultGuidance(index: number, role: string) {
+    setConsultGuidance((prev) => ({ ...prev, [index]: { loading: true, text: "" } }));
+    const hrwItems = hrwFlags.filter((f) => f.flagged).map((f) => {
+      const spec = HRW_CLASSIFICATIONS.find((h) => h.id === f.id);
+      return spec?.label ?? f.id;
+    });
+    const psychItems = psychFlags.filter((f) => f.flagged).map((f) => f.label ?? f.id);
+    try {
+      const res = await fetch("/api/ai-guidance/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role, hrwItems, psychItems }),
+      });
+      if (!res.ok || !res.body) throw new Error("Request failed");
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        accumulated += decoder.decode(value, { stream: true });
+        setConsultGuidance((prev) => ({ ...prev, [index]: { loading: false, text: accumulated } }));
+      }
+    } catch {
+      setConsultGuidance((prev) => ({ ...prev, [index]: { loading: false, text: "Unable to generate suggestions." } }));
+    }
+  }
+
+  async function fetchPsychGuidance(id: string, label: string, question: string) {
+    setPsychGuidance((prev) => ({ ...prev, [id]: { loading: true, text: "" } }));
+    try {
+      const res = await fetch("/api/ai-guidance/psych", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label, question }),
+      });
+      if (!res.ok || !res.body) throw new Error("Request failed");
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        accumulated += decoder.decode(value, { stream: true });
+        setPsychGuidance((prev) => ({ ...prev, [id]: { loading: false, text: accumulated } }));
+      }
+    } catch {
+      setPsychGuidance((prev) => ({ ...prev, [id]: { loading: false, text: "Unable to generate guidance. Please consult your Safety Manager." } }));
+    }
+  }
+
   // ── Consultation helpers ──────────────────────────────────────────────────
 
   function addConsultee() {
@@ -538,9 +618,43 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
               </div>
               {item.flagged && (
                 <div className="border-t border-zinc-100 bg-red-50/40 px-4 py-3 space-y-3 dark:border-zinc-700/50 dark:bg-red-950/10">
-                  <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    Recommended actions: <span className="font-normal">{item.systemActions}</span>
-                  </p>
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                      Recommended actions: <span className="font-normal">{item.systemActions}</span>
+                    </p>
+                    {!hrwGuidance[item.id] && (
+                      <button
+                        type="button"
+                        onClick={() => fetchHrwGuidance(item.id, spec?.label ?? item.id, item.question ?? "")}
+                        className="shrink-0 rounded-md border border-violet-200 bg-violet-50 px-2.5 py-1 text-xs font-medium text-violet-700 hover:bg-violet-100 dark:border-violet-700/40 dark:bg-violet-950/20 dark:text-violet-300 dark:hover:bg-violet-950/40"
+                      >
+                        ✦ AI guidance
+                      </button>
+                    )}
+                  </div>
+                  {hrwGuidance[item.id] && (
+                    <div className="rounded-lg border border-violet-200 bg-violet-50 px-3 py-3 dark:border-violet-700/40 dark:bg-violet-950/20">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <p className="text-xs font-semibold text-violet-700 dark:text-violet-300">
+                          ✦ AI guidance — VIC OHS Regs 2017 Sch 1
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => setHrwGuidance((prev) => { const n = { ...prev }; delete n[item.id]; return n; })}
+                          className="text-xs text-violet-400 hover:text-violet-600 dark:hover:text-violet-200"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                      {hrwGuidance[item.id].loading && !hrwGuidance[item.id].text ? (
+                        <p className="text-xs text-violet-500 dark:text-violet-400 animate-pulse">Generating guidance…</p>
+                      ) : (
+                        <p className="whitespace-pre-wrap text-xs text-violet-800 dark:text-violet-200 leading-relaxed">
+                          {hrwGuidance[item.id].text}
+                        </p>
+                      )}
+                    </div>
+                  )}
                   <label className="block">
                     <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                       Describe the specific control measures for this project <span className="text-red-500">*</span>
@@ -640,9 +754,43 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
                 {item.flagged && (
                   <div className="border-t border-zinc-100 px-4 pb-4 pt-3 dark:border-zinc-700/50">
                     <label className="block">
-                      <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
-                        Control measures applied <span className="text-red-500">*</span>
-                      </span>
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                          Control measures applied <span className="text-red-500">*</span>
+                        </span>
+                        {!psychGuidance[item.id] && (
+                          <button
+                            type="button"
+                            onClick={() => fetchPsychGuidance(item.id, item.label ?? spec?.label ?? item.id, item.question ?? spec?.question ?? "")}
+                            className="shrink-0 rounded-md border border-violet-200 bg-violet-50 px-2.5 py-1 text-xs font-medium text-violet-700 hover:bg-violet-100 dark:border-violet-700/40 dark:bg-violet-950/20 dark:text-violet-300 dark:hover:bg-violet-950/40"
+                          >
+                            ✦ AI guidance
+                          </button>
+                        )}
+                      </div>
+                      {psychGuidance[item.id] && (
+                        <div className="mt-2 rounded-lg border border-violet-200 bg-violet-50 px-3 py-3 dark:border-violet-700/40 dark:bg-violet-950/20">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <p className="text-xs font-semibold text-violet-700 dark:text-violet-300">
+                              ✦ AI guidance — VIC Psych Safety Regs 2025
+                            </p>
+                            <button
+                              type="button"
+                              onClick={() => setPsychGuidance((prev) => { const n = { ...prev }; delete n[item.id]; return n; })}
+                              className="text-xs text-violet-400 hover:text-violet-600 dark:hover:text-violet-200"
+                            >
+                              Dismiss
+                            </button>
+                          </div>
+                          {psychGuidance[item.id].loading && !psychGuidance[item.id].text ? (
+                            <p className="text-xs text-violet-500 dark:text-violet-400 animate-pulse">Generating guidance…</p>
+                          ) : (
+                            <p className="whitespace-pre-wrap text-xs text-violet-800 dark:text-violet-200 leading-relaxed">
+                              {psychGuidance[item.id].text}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       {spec?.controlPrompt && (
                         <p className="mt-0.5 text-xs text-zinc-500 italic">{spec.controlPrompt}</p>
                       )}
@@ -745,18 +893,48 @@ export function PreStartForm({ submitAction, projectUsers, projectId }: Props) {
                     />
                   </label>
                 </div>
-                <label className="block">
-                  <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
-                    What did they raise? <span className="text-red-500">*</span>
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-1">
+                    <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                      What did they raise? <span className="text-red-500">*</span>
+                    </span>
+                    {!consultGuidance[i] && (
+                      <button
+                        type="button"
+                        onClick={() => fetchConsultGuidance(i, p.role)}
+                        className="shrink-0 rounded-md border border-violet-200 bg-violet-50 px-2.5 py-1 text-xs font-medium text-violet-700 hover:bg-violet-100 dark:border-violet-700/40 dark:bg-violet-950/20 dark:text-violet-300 dark:hover:bg-violet-950/40"
+                      >
+                        ✦ Suggest points
+                      </button>
+                    )}
+                  </div>
+                  {consultGuidance[i] && (
+                    <div className="mb-2 rounded-lg border border-violet-200 bg-violet-50 px-3 py-3 dark:border-violet-700/40 dark:bg-violet-950/20">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <p className="text-xs font-semibold text-violet-700 dark:text-violet-300">✦ Suggested consultation points</p>
+                        <button
+                          type="button"
+                          onClick={() => setConsultGuidance((prev) => { const n = { ...prev }; delete n[i]; return n; })}
+                          className="text-xs text-violet-400 hover:text-violet-600 dark:hover:text-violet-200"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                      {consultGuidance[i].loading && !consultGuidance[i].text ? (
+                        <p className="text-xs text-violet-500 animate-pulse">Generating suggestions…</p>
+                      ) : (
+                        <p className="whitespace-pre-wrap text-xs text-violet-800 dark:text-violet-200 leading-relaxed">{consultGuidance[i].text}</p>
+                      )}
+                    </div>
+                  )}
                   <textarea
                     value={p.raised}
                     onChange={(e) => updateConsultee(i, { raised: e.target.value })}
                     rows={2}
                     placeholder="Issues, concerns, or suggestions raised…"
-                    className="mt-1 w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                    className="w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
                   />
-                </label>
+                </div>
                 <label className="block">
                   <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                     What was decided in response? <span className="text-red-500">*</span>
