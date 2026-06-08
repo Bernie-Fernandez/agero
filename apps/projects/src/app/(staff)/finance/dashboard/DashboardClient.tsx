@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { syncLatestMonth } from '../xero-pnl/actions';
+import type { BSSnapshotRow } from '../balance-sheet/actions';
 
 // ─── Formatting helpers ───────────────────────────────────────────────────────
 
@@ -112,6 +113,7 @@ type Props = {
   chartData: ChartRow[];
   lastSyncAt: string | null;
   topExpenses: { name: string; amount: number }[];
+  latestBS: BSSnapshotRow | null;
 };
 
 export default function DashboardClient({
@@ -122,6 +124,7 @@ export default function DashboardClient({
   chartData,
   lastSyncAt,
   topExpenses,
+  latestBS,
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -173,6 +176,28 @@ export default function DashboardClient({
           value={fmtPct(grossMarginPct)}
           colour={gmColour}
         />
+      </div>
+
+      {/* Balance Sheet KPI cards */}
+      <div className="grid grid-cols-3 gap-4">
+        {latestBS ? (
+          <>
+            <KpiCard label="Total Assets" value={AUD.format(Number(latestBS.totalAssets ?? 0))} colour="blue" />
+            <KpiCard label="Total Liabilities" value={AUD.format(Number(latestBS.totalLiabilities ?? 0))} colour="amber" />
+            <KpiCard
+              label="Net Equity"
+              value={AUD.format(Number(latestBS.totalEquity ?? 0))}
+              colour={Number(latestBS.totalEquity ?? 0) >= 0 ? 'green' : 'red'}
+            />
+          </>
+        ) : (
+          <div className="col-span-3 bg-zinc-50 border border-zinc-200 rounded-xl p-4 text-sm text-zinc-500">
+            Balance Sheet not synced yet.{' '}
+            <Link href="/finance/balance-sheet" className="text-blue-600 hover:underline">
+              Go to Balance Sheet →
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Bar chart */}

@@ -1,6 +1,7 @@
 import { requireDirector } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import DashboardClient from './DashboardClient';
+import { BSSnapshotRow } from '../balance-sheet/actions';
 
 function fyMonths<T extends { year: number; month: number }>(snapshots: T[]): T[] {
   // Agero FY: Jul 1 – Jun 30. FY26 = Jul 2025 – Jun 2026.
@@ -48,6 +49,29 @@ export default async function FinanceDashboardPage() {
 
   const latestSnap = allSnapshots[allSnapshots.length - 1] ?? null;
 
+  const latestBS = await prisma.xeroBalanceSheetSnapshot.findFirst({
+    where: { organisationId: user.organisationId },
+    orderBy: { reportMonth: 'desc' },
+    select: {
+      id: true,
+      reportMonth: true,
+      snapshotDate: true,
+      totalCurrentAssets: true,
+      totalNonCurrentAssets: true,
+      totalAssets: true,
+      totalCurrentLiabilities: true,
+      totalNonCurrentLiabilities: true,
+      totalLiabilities: true,
+      totalEquity: true,
+      cashAndBankBalances: true,
+      accountsReceivable: true,
+      accountsPayable: true,
+      retentionsHeld: true,
+      wipAsset: true,
+      syncedAt: true,
+    },
+  });
+
   return (
     <DashboardClient
       ytdRevenue={ytdRevenue}
@@ -57,6 +81,7 @@ export default async function FinanceDashboardPage() {
       chartData={JSON.parse(JSON.stringify(fySnaps))}
       lastSyncAt={latestSnap ? JSON.parse(JSON.stringify(latestSnap.pulledAt)) : null}
       topExpenses={JSON.parse(JSON.stringify(latestSnap?.expenseAccountsJson ?? []))}
+      latestBS={latestBS ? (JSON.parse(JSON.stringify(latestBS)) as BSSnapshotRow) : null}
     />
   );
 }

@@ -303,6 +303,200 @@ export async function pullXeroPnLMonth(
   return { ok: true, snapshot };
 }
 
+// ─── Balance Sheet row parsing ────────────────────────────────────────────────
+
+type BSRow = {
+  rowType?: string;
+  title?: string;
+  cells?: { value?: string }[];
+  rows?: BSRow[];
+};
+
+function bsParseAmt(value: string | undefined): Decimal {
+  return new Decimal((value ?? '0').replace(/[^0-9.-]/g, '') || '0');
+}
+
+// Recursively search for a SummaryRow or Row whose first cell matches any of the labels
+function bsFindValue(rows: BSRow[], ...labels: string[]): Decimal {
+  for (const row of rows) {
+    const cellLabel = (row.cells?.[0]?.value ?? '').toLowerCase();
+    const title = (row.title ?? '').toLowerCase();
+    for (const lbl of labels) {
+      const l = lbl.toLowerCase();
+      if (cellLabel.includes(l) || title.includes(l)) {
+        return bsParseAmt(row.cells?.[1]?.value ?? row.cells?.[0]?.value);
+      }
+    }
+    if (row.rows?.length) {
+      const found = bsFindValue(row.rows, ...labels);
+      if (!found.isZero()) return found;
+    }
+  }
+  return new Decimal(0);
+}
+
+// Sum all Row amounts within sections whose title matches the label (e.g. "Bank" accounts)
+function bsSumRows(rows: BSRow[], ...nameParts: string[]): Decimal {
+  let sum = new Decimal(0);
+  for (const row of rows) {
+    const rt = (row.rowType ?? '').toLowerCase();
+    const cellLabel = (row.cells?.[0]?.value ?? '').toLowerCase();
+    if (rt === 'row') {
+      for (const part of nameParts) {
+        if (cellLabel.includes(part.toLowerCase())) {
+          sum = sum.plus(bsParseAmt(row.cells?.[1]?.value));
+          break;
+        }
+      }
+    }
+    if (row.rows?.length) {
+      sum = sum.plus(bsSumRows(row.rows, ...nameParts));
+    }
+  }
+  return sum;
+}
+
+export async function pullXeroBalanceSheetMonth(
+  actualMonth: number,
+  actualYear: number,
+  userId: string,
+): Promise<{ ok: boolean; error?: string }> {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (!user) return { ok: false, error: 'User not found.' };
+
+  const orgId = user.organisationId;
+  const xero = await getRefreshedXeroClient(orgId);
+  if (!xero) return { ok: false, error: 'Xero connection expired. Please reconnect Xero in Settings.' };
+
+  const conn = await prisma.xeroConnection.findUnique({ where: { organisationId: orgId } });
+  const tenantId = conn?.xeroTenantId ?? xero.tenants[0]?.tenantId;
+  if (!tenantId) return { ok: false, error: 'No Xero tenant found. Please reconnect Xero in Settings.' };
+
+  const lastDay = new Date(actualYear, actualMonth, 0).getDate();
+  const dateStr = `${actualYear}-${String(actualMonth).padStart(2, '0')}-${lastDay}`;
+
+  let bsRows: BSRow[];
+  try {
+    const resp = await xero.accountingApi.getReportBalanceSheet(tenantId, dateStr);
+    bsRows = (resp.body.reports?.[0]?.rows ?? []) as unknown as BSRow[];
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[xero-bs] API error for', actualMonth, actualYear, err);
+    if (msg.includes('401') || msg.includes('token')) {
+      return { ok: false, error: 'Xero connection expired. Please reconnect Xero in Settings.' };
+    }
+    return { ok: false, error: `Xero API error: ${msg}` };
+  }
+
+  if (!bsRows.length) {
+    return { ok: false, error: 'No Balance Sheet data returned from Xero for this period.' };
+  }
+
+  const totalCurrentAssets         = bsFindValue(bsRows, 'total current assets');
+  const totalNonCurrentAssets      = bsFindValue(bsRows, 'total non-current assets', 'total fixed assets', 'total non current assets');
+  const totalAssets                = bsFindValue(bsRows, 'total assets');
+  const totalCurrentLiabilities    = bsFindValue(bsRows, 'total current liabilities');
+  const totalNonCurrentLiabilities = bsFindValue(bsRows, 'total non-current liabilities', 'total non current liabilities');
+  const totalLiabilities           = bsFindValue(bsRows, 'total liabilities');
+  const totalEquity                = bsFindValue(bsRows, 'total equity');
+
+  // Specific line items — sum all rows whose name contains bank/cash keywords
+  const cashAndBankBalances = bsSumRows(bsRows, 'bank', 'cash');
+  const accountsReceivable  = bsFindValue(bsRows, 'trade and other receivables', 'accounts receivable', 'debtors', 'receivables');
+  const accountsPayable     = bsFindValue(bsRows, 'trade and other payables', 'accounts payable', 'creditors', 'payables');
+  const retentionsHeld      = bsFindValue(bsRows, 'retentions', '9100');
+  const wipAsset            = bsFindValue(bsRows, 'wip asset', '640', 'work in progress');
+
+  const snapshotDate = new Date(Date.UTC(actualYear, actualMonth - 1, lastDay));
+  const reportMonth  = new Date(Date.UTC(actualYear, actualMonth - 1, 1));
+
+  const decOrNull = (d: Decimal) => (d.isZero() ? null : d.toFixed(2));
+
+  try {
+    await prisma.xeroBalanceSheetSnapshot.upsert({
+      where: { organisationId_reportMonth: { organisationId: orgId, reportMonth } },
+      update: {
+        snapshotDate,
+        totalCurrentAssets:         decOrNull(totalCurrentAssets),
+        totalNonCurrentAssets:      decOrNull(totalNonCurrentAssets),
+        totalAssets:                decOrNull(totalAssets),
+        totalCurrentLiabilities:    decOrNull(totalCurrentLiabilities),
+        totalNonCurrentLiabilities: decOrNull(totalNonCurrentLiabilities),
+        totalLiabilities:           decOrNull(totalLiabilities),
+        totalEquity:                decOrNull(totalEquity),
+        cashAndBankBalances:        decOrNull(cashAndBankBalances),
+        accountsReceivable:         decOrNull(accountsReceivable),
+        accountsPayable:            decOrNull(accountsPayable),
+        retentionsHeld:             decOrNull(retentionsHeld),
+        wipAsset:                   decOrNull(wipAsset),
+        rawJson:                    JSON.parse(JSON.stringify(bsRows)),
+        syncedAt:                   new Date(),
+        syncedBy:                   userId,
+      },
+      create: {
+        organisationId: orgId,
+        snapshotDate,
+        reportMonth,
+        totalCurrentAssets:         decOrNull(totalCurrentAssets),
+        totalNonCurrentAssets:      decOrNull(totalNonCurrentAssets),
+        totalAssets:                decOrNull(totalAssets),
+        totalCurrentLiabilities:    decOrNull(totalCurrentLiabilities),
+        totalNonCurrentLiabilities: decOrNull(totalNonCurrentLiabilities),
+        totalLiabilities:           decOrNull(totalLiabilities),
+        totalEquity:                decOrNull(totalEquity),
+        cashAndBankBalances:        decOrNull(cashAndBankBalances),
+        accountsReceivable:         decOrNull(accountsReceivable),
+        accountsPayable:            decOrNull(accountsPayable),
+        retentionsHeld:             decOrNull(retentionsHeld),
+        wipAsset:                   decOrNull(wipAsset),
+        rawJson:                    JSON.parse(JSON.stringify(bsRows)),
+        syncedBy:                   userId,
+      },
+    });
+  } catch (err) {
+    console.error('[xero-bs] DB upsert failed for', actualMonth, actualYear, err);
+    return { ok: false, error: 'Sync failed — no data was saved. Please try again.' };
+  }
+
+  await createAuditLog({
+    userId,
+    action: 'XERO_BS_SYNCED',
+    entity: 'XeroBalanceSheetSnapshot',
+    entityId: `${orgId}:${actualYear}-${actualMonth}`,
+    detail: { month: actualMonth, year: actualYear, totalAssets: decOrNull(totalAssets) },
+  });
+
+  return { ok: true };
+}
+
+export async function pullXeroBalanceSheetRange(
+  fromMonth: number,
+  fromYear: number,
+  toMonth: number,
+  toYear: number,
+  userId: string,
+): Promise<{ ok: boolean; pulled: number; errors: string[] }> {
+  const errors: string[] = [];
+  let pulled = 0;
+  let month = fromMonth;
+  let year = fromYear;
+
+  while (year < toYear || (year === toYear && month <= toMonth)) {
+    const result = await pullXeroBalanceSheetMonth(month, year, userId);
+    if (result.ok) {
+      pulled++;
+    } else {
+      const label = new Date(year, month - 1, 1).toLocaleString('en-AU', { month: 'long', year: 'numeric' });
+      errors.push(`${label}: ${result.error ?? 'Unknown error'}`);
+      console.error('[xero-bs] Range pull failed for', month, year, result.error);
+    }
+    month++;
+    if (month > 12) { month = 1; year++; }
+  }
+
+  return { ok: errors.length === 0, pulled, errors };
+}
+
 // ─── Range backfill action ────────────────────────────────────────────────────
 
 export async function pullXeroPnLRange(

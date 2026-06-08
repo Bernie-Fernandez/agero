@@ -300,7 +300,8 @@ model Organisation {
   backlogBudgets          BacklogBudget[]
   projectRevenueBudgets   ProjectRevenueBudget[]
   unsecuredRevenueBudgets UnsecuredRevenueBudget[]
-  xeroWipSettings         XeroWipSettings?
+  xeroWipSettings             XeroWipSettings?
+  xeroBalanceSheetSnapshots   XeroBalanceSheetSnapshot[]
 
   @@map("organisations")
   @@schema("projects")
@@ -3964,6 +3965,42 @@ model XeroPnLSnapshot {
   @@unique([organisationId, year, month])
   @@index([organisationId])
   @@map("xero_pnl_snapshots")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.2C — Balance Sheet Sync
+// ─────────────────────────────────────────────────────────────────────────────
+
+model XeroBalanceSheetSnapshot {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  snapshotDate   DateTime     @map("snapshot_date") @db.Date
+  reportMonth    DateTime     @map("report_month") @db.Date
+
+  totalCurrentAssets         Decimal? @db.Decimal(14, 2) @map("total_current_assets")
+  totalNonCurrentAssets      Decimal? @db.Decimal(14, 2) @map("total_non_current_assets")
+  totalAssets                Decimal? @db.Decimal(14, 2) @map("total_assets")
+
+  totalCurrentLiabilities    Decimal? @db.Decimal(14, 2) @map("total_current_liabilities")
+  totalNonCurrentLiabilities Decimal? @db.Decimal(14, 2) @map("total_non_current_liabilities")
+  totalLiabilities           Decimal? @db.Decimal(14, 2) @map("total_liabilities")
+
+  totalEquity                Decimal? @db.Decimal(14, 2) @map("total_equity")
+
+  cashAndBankBalances        Decimal? @db.Decimal(14, 2) @map("cash_and_bank_balances")
+  accountsReceivable         Decimal? @db.Decimal(14, 2) @map("accounts_receivable")
+  accountsPayable            Decimal? @db.Decimal(14, 2) @map("accounts_payable")
+  retentionsHeld             Decimal? @db.Decimal(14, 2) @map("retentions_held")
+  wipAsset                   Decimal? @db.Decimal(14, 2) @map("wip_asset")
+
+  rawJson  Json?    @map("raw_json")
+  syncedAt DateTime @default(now()) @map("synced_at")
+  syncedBy String?  @map("synced_by")
+
+  @@unique([organisationId, reportMonth])
+  @@map("xero_balance_sheet_snapshots")
   @@schema("projects")
 }
 
