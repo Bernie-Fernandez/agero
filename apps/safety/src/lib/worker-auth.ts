@@ -40,9 +40,10 @@ export async function getWorkerSession(): Promise<WorkerSessionWithAccount | nul
 
 export async function createWorkerSession(workerAccountId: string): Promise<string> {
   const expiresAt = new Date(Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000);
-  const session = await prisma.workerSession.create({
-    data: { workerAccountId, expiresAt },
-  });
+  const [session] = await prisma.$transaction([
+    prisma.workerSession.create({ data: { workerAccountId, expiresAt } }),
+    prisma.workerAccount.update({ where: { id: workerAccountId }, data: { lastActiveAt: new Date() } }),
+  ]);
   return session.token;
 }
 

@@ -320,3 +320,47 @@ export async function sendMobGateBlockedEmail(opts: {
     `),
   });
 }
+
+export async function sendRetentionReviewEmail(opts: {
+  to: string;
+  adminName: string | null;
+  flaggedWorkers: { name: string; maskedMobile: string; lastActiveLabel: string }[];
+  reviewUrl: string;
+}) {
+  const count = opts.flaggedWorkers.length;
+  const subject = `Action required: ${count} worker${count !== 1 ? "s" : ""} flagged for data retention review`;
+  const rows = opts.flaggedWorkers
+    .map(
+      (w) =>
+        `<tr><td style="padding:6px 8px;font-size:13px">${w.name}</td><td style="padding:6px 8px;font-family:monospace;font-size:13px">${w.maskedMobile}</td><td style="padding:6px 8px;font-size:13px;color:#71717a">${w.lastActiveLabel}</td></tr>`,
+    )
+    .join("");
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0;color:#18181b">Data retention review required</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p>The following ${count} worker${count !== 1 ? "s have" : " has"} been inactive on the Agero Safety platform for 2 or more years.
+        Under APP 11 (Privacy Act 1988) and Agero's data retention policy, personal information that is no longer needed must be
+        de-identified or destroyed.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0;border:1px solid #e4e4e7;border-radius:6px">
+        <thead>
+          <tr style="background:#f4f4f5">
+            <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Name</th>
+            <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Mobile</th>
+            <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Last active</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p>Please review each worker and choose to <strong>Anonymise</strong> (removes all personal information) or
+        <strong>Dismiss</strong> (retain for a documented reason):</p>
+      <p style="margin:32px 0">
+        <a href="${opts.reviewUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Review flagged workers →</a>
+      </p>
+      <p style="font-size:13px;color:#71717a">Site visit history and attendance records are retained separately as they form part of the OHS audit trail.</p>
+    `),
+  });
+}

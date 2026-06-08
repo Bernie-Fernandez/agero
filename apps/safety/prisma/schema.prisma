@@ -93,6 +93,11 @@ enum SwmsQuestionStatus {
   rejected
 }
 
+enum RetentionResolution {
+  anonymised
+  dismissed
+}
+
 model Organisation {
   id               String      @id @default(uuid()) @db.Uuid
   name             String
@@ -175,6 +180,7 @@ model User {
   preStartAssessments       PreStartAssessment[]       @relation("PreStartCompletedBy")
   sitePreparationChecklists SitePreparationChecklist[] @relation("SiteChecklistCompletedBy")
   hrwWarningAcks            HrwWarningAck[]            @relation("HrwWarningAckBy")
+  resolvedRetentionFlags    RetentionFlag[]            @relation("RetentionFlagResolvedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -411,6 +417,7 @@ model WorkerAccount {
   nokRelationship    String?   @map("nok_relationship")
   nokMobile          String?   @map("nok_mobile")
   medicalConditions  String?   @map("medical_conditions")
+  lastActiveAt       DateTime? @map("last_active_at")
   createdAt          DateTime  @default(now()) @map("created_at")
   updatedAt          DateTime  @updatedAt @map("updated_at")
 
@@ -418,6 +425,7 @@ model WorkerAccount {
   certDocuments          WorkerCertDocument[]
   buildingMgmtInductions BuildingMgmtInduction[]
   privacyConsent         WorkerPrivacyConsent?
+  retentionFlags         RetentionFlag[]
 
   @@map("worker_accounts")
 }
@@ -837,4 +845,20 @@ model WorkerPrivacyConsent {
   version         String        @default("1.0")
 
   @@map("worker_privacy_consents")
+}
+
+// Flags workers inactive for 2+ years for Director review and data retention compliance.
+// Created by the nightly retention cron; resolved by a Director via /admin/retention.
+model RetentionFlag {
+  id              String               @id @default(uuid()) @db.Uuid
+  workerAccountId String               @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount        @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  flaggedAt       DateTime             @default(now()) @map("flagged_at")
+  resolution      RetentionResolution?
+  resolvedAt      DateTime?            @map("resolved_at")
+  resolvedById    String?              @map("resolved_by_id") @db.Uuid
+  resolvedBy      User?                @relation("RetentionFlagResolvedBy", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  @@index([workerAccountId])
+  @@map("retention_flags")
 }
