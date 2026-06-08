@@ -194,6 +194,7 @@ function ProjectSpreadRow({
   onCellChange,
   onCellSave,
   onDistribute,
+  onClear,
   onToggleLock,
 }: {
   row: ProjectRevenueBudgetRow;
@@ -203,6 +204,7 @@ function ProjectSpreadRow({
   onCellChange: (fpId: string, key: MonthKey, value: string) => void;
   onCellSave: (fpId: string, key: MonthKey, value: string) => Promise<void>;
   onDistribute: (fpId: string) => void;
+  onClear: (fpId: string) => void;
   onToggleLock: (fpId: string, key: MonthKey) => void;
 }) {
   const [saved, setSaved] = useState(false);
@@ -235,12 +237,20 @@ function ProjectSpreadRow({
           {budgetRevenue != null ? fmtAUD(budgetRevenue) : '—'}
         </td>
         <td className="px-2 py-1.5 text-center">
-          <button
-            onClick={() => onDistribute(row.financeProjectId)}
-            className="text-xs text-blue-600 hover:underline whitespace-nowrap"
-          >
-            Distribute
-          </button>
+          <div className="flex flex-col items-center gap-0.5">
+            <button
+              onClick={() => onDistribute(row.financeProjectId)}
+              className="text-xs text-blue-600 hover:underline whitespace-nowrap"
+            >
+              Distribute
+            </button>
+            <button
+              onClick={() => onClear(row.financeProjectId)}
+              className="text-xs text-zinc-400 hover:text-zinc-600 hover:underline whitespace-nowrap"
+            >
+              Clear
+            </button>
+          </div>
         </td>
         <td className={`px-3 py-1.5 text-right text-xs font-medium whitespace-nowrap ${isBudgetTarget ? 'text-amber-500' : 'text-zinc-700'}`}>
           {fmtAUD(displayTotal)}
@@ -297,6 +307,7 @@ function UnsecuredSpreadRow({
   onCellChange,
   onCellSave,
   onDistribute,
+  onClear,
   onRemove,
   onToggleLock,
 }: {
@@ -307,6 +318,7 @@ function UnsecuredSpreadRow({
   onCellChange: (leadId: string, key: MonthKey, value: string) => void;
   onCellSave: (leadId: string, key: MonthKey, value: string) => Promise<void>;
   onDistribute: (leadId: string) => void;
+  onClear: (leadId: string) => void;
   onRemove: (leadId: string) => void;
   onToggleLock: (leadId: string, key: MonthKey) => void;
 }) {
@@ -330,9 +342,14 @@ function UnsecuredSpreadRow({
       </td>
       <td className="px-3 py-1.5 text-right text-xs text-zinc-500 whitespace-nowrap">{fmtAUD(row.leadValue)}</td>
       <td className="px-2 py-1.5 text-center">
-        <button onClick={() => onDistribute(row.leadId)} className="text-xs text-blue-600 hover:underline whitespace-nowrap">
-          Distribute
-        </button>
+        <div className="flex flex-col items-center gap-0.5">
+          <button onClick={() => onDistribute(row.leadId)} className="text-xs text-blue-600 hover:underline whitespace-nowrap">
+            Distribute
+          </button>
+          <button onClick={() => onClear(row.leadId)} className="text-xs text-zinc-400 hover:text-zinc-600 hover:underline whitespace-nowrap">
+            Clear
+          </button>
+        </div>
       </td>
       <td className="px-3 py-1.5 text-right text-xs font-medium text-zinc-700 whitespace-nowrap">
         {fmtAUD(rowTotal)}
@@ -467,6 +484,45 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
       leadValue: Number(row.leadValue),
       fyYear: currentFY,
       monthlyData: { [key]: Number(value) },
+    });
+  }
+
+  // ─── Clear handlers ────────────────────────────────────────────────────────
+
+  async function handleProjectClear(fpId: string) {
+    const row = projectBudgets.find((r) => r.financeProjectId === fpId);
+    if (!row) return;
+    const locked = (lockedCells[fpId] ?? {}) as Record<MonthKey, boolean>;
+    const monthlyData: MonthlyData = {};
+    const updatedMonthly = { ...(projectMonthly[fpId] ?? {}) } as Record<MonthKey, string>;
+    for (const key of ALL_MONTH_KEYS) {
+      if (!locked[key]) { monthlyData[key] = 0; updatedMonthly[key] = '0'; }
+    }
+    setProjectMonthly((prev) => ({ ...prev, [fpId]: updatedMonthly }));
+    await upsertProjectRevenueBudget({
+      financeProjectId: fpId,
+      fyYear: currentFY,
+      classification: row.classification,
+      monthlyData,
+    });
+  }
+
+  async function handleUnsecuredClear(leadId: string) {
+    const row = unsecuredBudgets.find((r) => r.leadId === leadId);
+    if (!row) return;
+    const locked = (lockedCells[leadId] ?? {}) as Record<MonthKey, boolean>;
+    const monthlyData: MonthlyData = {};
+    const updatedMonthly = { ...(unsecuredMonthly[leadId] ?? {}) } as Record<MonthKey, string>;
+    for (const key of ALL_MONTH_KEYS) {
+      if (!locked[key]) { monthlyData[key] = 0; updatedMonthly[key] = '0'; }
+    }
+    setUnsecuredMonthly((prev) => ({ ...prev, [leadId]: updatedMonthly }));
+    await upsertUnsecuredRevenueBudget({
+      leadId,
+      leadName: row.leadName,
+      leadValue: Number(row.leadValue),
+      fyYear: currentFY,
+      monthlyData,
     });
   }
 
@@ -673,6 +729,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
                   onCellChange={handleProjectCellChange}
                   onCellSave={handleProjectCellSave}
                   onDistribute={(id) => setDistributingFor({ id, type: 'project' })}
+                  onClear={handleProjectClear}
                   onToggleLock={handleToggleLock}
                 />
               ))
@@ -697,6 +754,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
                   onCellChange={handleProjectCellChange}
                   onCellSave={handleProjectCellSave}
                   onDistribute={(id) => setDistributingFor({ id, type: 'project' })}
+                  onClear={handleProjectClear}
                   onToggleLock={handleToggleLock}
                 />
               ))
@@ -730,6 +788,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
                 onCellChange={handleUnsecuredCellChange}
                 onCellSave={handleUnsecuredCellSave}
                 onDistribute={(id) => setDistributingFor({ id, type: 'unsecured' })}
+                onClear={handleUnsecuredClear}
                 onRemove={handleRemoveLead}
                 onToggleLock={handleToggleLock}
               />
@@ -789,7 +848,7 @@ export default function SpreadView({ currentFY }: { currentFY: string }) {
       {distributingFor && (
         <DistributePopover
           defaultTotal={getDistributeDefault()}
-          visibleMonths={visibleMonths}
+          visibleMonths={ALL_MONTH_KEYS}
           lockedKeys={getDistributeLocked()}
           currentMonthly={getDistributeMonthly()}
           onApply={handleDistributeApply}
