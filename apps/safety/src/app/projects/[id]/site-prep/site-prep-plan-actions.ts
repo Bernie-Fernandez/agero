@@ -12,8 +12,16 @@ export interface PlanSection {
   plannedCompletionDate: string;
 }
 
+export interface PlanPin {
+  categoryIndex: number;
+  label: string;
+  x: number;
+  y: number;
+}
+
 export interface SitePrepPlanPayload {
   sections: PlanSection[];
+  pins?: PlanPin[];
   signOffDropdownUserId: string;
   signatureDataUrl?: string;
 }
@@ -39,7 +47,7 @@ export async function submitSitePrepPlan(
     return { error: "Invalid form data." };
   }
 
-  const { sections, signOffDropdownUserId, signatureDataUrl } = payload;
+  const { sections, pins, signOffDropdownUserId, signatureDataUrl } = payload;
 
   // ── Validation ─────────────────────────────────────────────────────────────
   if (!signOffDropdownUserId) return { error: "Please select a sign-off person." };
@@ -62,7 +70,10 @@ export async function submitSitePrepPlan(
   // ── Verify pre-start exists ────────────────────────────────────────────────
   const safetyProject = await prisma.safetyProject.findUnique({
     where: { id: safetyProjectId },
-    include: { preStartAssessments: { take: 1, select: { id: true } } },
+    include: {
+      preStartAssessments: { take: 1, select: { id: true } },
+      floorPlan: { select: { id: true } },
+    },
   });
   if (!safetyProject) return { error: "Project not found." };
   if (safetyProject.preStartAssessments.length === 0) {
@@ -97,6 +108,9 @@ export async function submitSitePrepPlan(
     select: { id: true },
   });
 
+  let planId: string;
+  const floorPlanId = safetyProject.floorPlan?.id ?? null;
+
   if (existing) {
     await prisma.sitePreparationPlan.update({
       where: { id: existing.id },
@@ -108,10 +122,14 @@ export async function submitSitePrepPlan(
         signOffAt,
         signatureUrl,
         createdBy: user.id,
+        ...(floorPlanId ? { floorPlanId } : {}),
       },
     });
+    planId = existing.id;
+    // Delete and recreate pins for clean update
+    await prisma.sitePreparationPin.deleteMany({ where: { planId } });
   } else {
-    await prisma.sitePreparationPlan.create({
+    const plan = await prisma.sitePreparationPlan.create({
       data: {
         projectId: safetyProjectId,
         createdBy: user.id,
@@ -121,7 +139,21 @@ export async function submitSitePrepPlan(
         signOffName: signOffName.trim(),
         signOffAt,
         signatureUrl,
+        ...(floorPlanId ? { floorPlanId } : {}),
       },
+    });
+    planId = plan.id;
+  }
+
+  if (pins && pins.length > 0) {
+    await prisma.sitePreparationPin.createMany({
+      data: pins.map((p) => ({
+        planId,
+        categoryId: p.categoryIndex,
+        pinX: p.x,
+        pinY: p.y,
+        label: p.label,
+      })),
     });
   }
 

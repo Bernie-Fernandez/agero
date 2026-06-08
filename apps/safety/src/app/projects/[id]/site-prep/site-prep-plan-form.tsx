@@ -2,7 +2,7 @@
 
 import { useActionState, useState, useRef, useEffect, useCallback } from "react";
 import { CHECKLIST_CATEGORIES, PHASE_1_DESCRIPTIONS } from "./constants";
-import type { PlanSection, SitePrepPlanPayload, PlanSubmitState } from "./site-prep-plan-actions";
+import type { PlanSection, PlanPin, SitePrepPlanPayload, PlanSubmitState } from "./site-prep-plan-actions";
 
 interface ProjectUser {
   id: string;
@@ -13,6 +13,7 @@ interface ProjectUser {
 interface Props {
   submitAction: (prev: PlanSubmitState, fd: FormData) => Promise<PlanSubmitState>;
   projectUsers: ProjectUser[];
+  floorPlanUrl?: string | null;
 }
 
 // ── Signature canvas ──────────────────────────────────────────────────────────
@@ -103,7 +104,12 @@ function SignatureCanvas({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasE
 
 // ── Main form ─────────────────────────────────────────────────────────────────
 
-export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
+const PIN_COLOURS = [
+  "#ef4444", "#f97316", "#eab308", "#22c55e", "#06b6d4",
+  "#3b82f6", "#8b5cf6", "#ec4899", "#14b8a6", "#78716c",
+];
+
+export function SitePrepPlanForm({ submitAction, projectUsers, floorPlanUrl }: Props) {
   const [state, formAction, pending] = useActionState(submitAction, {});
 
   const today = new Date().toISOString().split("T")[0];
@@ -124,6 +130,20 @@ export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
     "";
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [clientError, setClientError] = useState<string | null>(null);
+
+  // Floor plan pins
+  const [pins, setPins] = useState<Record<number, { x: number; y: number }>>({});
+  const [activeCatIndex, setActiveCatIndex] = useState<number | null>(null);
+  const isImageFloorPlan = floorPlanUrl && !floorPlanUrl.toLowerCase().endsWith(".pdf");
+
+  function handleFloorPlanClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (activeCatIndex === null) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setPins((prev) => ({ ...prev, [activeCatIndex]: { x, y } }));
+    setActiveCatIndex(null);
+  }
 
   function updateSection(id: string, patch: Partial<PlanSection>) {
     setSections((prev) => prev.map((s) => (s.sectionId === id ? { ...s, ...patch } : s)));
@@ -156,8 +176,15 @@ export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
     }
     setClientError(null);
     const signatureDataUrl = canvasRef.current?.toDataURL("image/png");
+    const pinArray: PlanPin[] = Object.entries(pins).map(([idx, pos]) => ({
+      categoryIndex: Number(idx),
+      label: sections[Number(idx)]?.sectionName ?? "",
+      x: pos.x,
+      y: pos.y,
+    }));
     const payload: SitePrepPlanPayload = {
       sections,
+      pins: pinArray,
       signOffDropdownUserId: signOffUserId,
       signatureDataUrl,
     };
@@ -189,6 +216,53 @@ export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
         <span className="shrink-0 text-xs text-zinc-500">{completedSections}/{sections.length} sections planned</span>
       </div>
 
+      {/* ── Floor plan pin interface ─────────────────────────────────────────── */}
+      {floorPlanUrl && (
+        <div>
+          <h3 className="mb-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+            Floor Plan — Pin Locations
+          </h3>
+          {isImageFloorPlan ? (
+            <div>
+              <p className="mb-2 text-xs text-zinc-500">
+                {activeCatIndex !== null
+                  ? `Click on the floor plan to mark the location for: ${sections[activeCatIndex]?.sectionName}`
+                  : `${Object.keys(pins).length} of ${sections.length} categories pinned. Use "Mark on plan" buttons below to place pins.`}
+              </p>
+              <div
+                className={`relative overflow-hidden rounded-lg border-2 select-none ${activeCatIndex !== null ? "cursor-crosshair border-blue-400" : "cursor-default border-zinc-200 dark:border-zinc-700"}`}
+                onClick={handleFloorPlanClick}
+                style={{ maxHeight: 400 }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={floorPlanUrl} alt="Floor plan" className="w-full object-contain" draggable={false} />
+                {Object.entries(pins).map(([idx, pos]) => (
+                  <div
+                    key={idx}
+                    className="pointer-events-none absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-xs font-bold text-white shadow-lg"
+                    style={{ left: `${pos.x * 100}%`, top: `${pos.y * 100}%`, background: PIN_COLOURS[Number(idx) % PIN_COLOURS.length] }}
+                  >
+                    {Number(idx) + 1}
+                  </div>
+                ))}
+                {activeCatIndex !== null && (
+                  <div className="pointer-events-none absolute inset-0 rounded-lg ring-2 ring-inset ring-blue-400 bg-blue-400/5" />
+                )}
+              </div>
+              {activeCatIndex !== null && (
+                <button type="button" onClick={() => setActiveCatIndex(null)} className="mt-2 text-xs text-zinc-500 hover:text-zinc-700">
+                  Cancel pin placement
+                </button>
+              )}
+            </div>
+          ) : (
+            <a href={floorPlanUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-blue-600 hover:underline dark:text-blue-400">
+              View floor plan PDF →
+            </a>
+          )}
+        </div>
+      )}
+
       {/* ── 10 category sections ─────────────────────────────────────────────── */}
       {sections.map((s, i) => {
         const desc = PHASE_1_DESCRIPTIONS[s.sectionId];
@@ -196,10 +270,25 @@ export function SitePrepPlanForm({ submitAction, projectUsers }: Props) {
         return (
           <div key={s.sectionId} className="rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
             <div className="flex items-center gap-3 border-b border-zinc-100 px-5 py-3 dark:border-zinc-800">
-              <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${done ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400" : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800"}`}>
-                {done ? "✓" : i + 1}
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold"
+                style={{ background: done ? undefined : undefined, ...(pins[i] ? { background: PIN_COLOURS[i % PIN_COLOURS.length], color: "white" } : {}) }}
+              >
+                <span className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${!pins[i] && (done ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400" : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800")}`}
+                  style={pins[i] ? { background: PIN_COLOURS[i % PIN_COLOURS.length], color: "white" } : {}}>
+                  {done && !pins[i] ? "✓" : i + 1}
+                </span>
               </span>
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{s.sectionName}</h3>
+              <h3 className="flex-1 text-sm font-semibold text-zinc-900 dark:text-zinc-50">{s.sectionName}</h3>
+              {isImageFloorPlan && (
+                <button
+                  type="button"
+                  onClick={() => setActiveCatIndex(activeCatIndex === i ? null : i)}
+                  className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-medium ${activeCatIndex === i ? "bg-blue-600 text-white" : pins[i] ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300" : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"}`}
+                >
+                  {activeCatIndex === i ? "Placing…" : pins[i] ? "Pinned ✓" : "Mark on plan"}
+                </button>
+              )}
             </div>
             <div className="space-y-4 p-5">
               {desc && (

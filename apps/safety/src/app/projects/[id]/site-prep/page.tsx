@@ -223,6 +223,7 @@ export default async function SitePrepPage({
                   <SitePrepPlanForm
                     submitAction={planSubmitAction}
                     projectUsers={projectUsers}
+                    floorPlanUrl={floorPlan?.fileUrl}
                   />
                 </div>
               </div>
