@@ -102,16 +102,21 @@ export default async function SitePrepPage({
 
         {/* Phase 2 done banner */}
         {done === "1" && (
-          <div className="mt-8 rounded-xl border border-green-200 bg-green-50 p-6 text-center dark:border-green-800 dark:bg-green-950/30">
-            <p className="text-base font-semibold text-green-800 dark:text-green-300">
+          <div className="mt-8 rounded-xl border-2 border-green-300 bg-green-50 p-8 text-center dark:border-green-700 dark:bg-green-950/40">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/60">
+              <svg className="h-7 w-7 text-green-700 dark:text-green-400" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+            </div>
+            <p className="text-xl font-bold text-green-800 dark:text-green-300">
               Site Preparation Checklist submitted and signed.
             </p>
-            <p className="mt-1 text-sm text-green-700 dark:text-green-400">
+            <p className="mt-2 text-sm text-green-700 dark:text-green-400">
               A PDF has been generated and emailed to the Director and Safety Manager.
             </p>
             <Link
               href={`/projects/${id}/readiness`}
-              className="mt-5 inline-flex items-center gap-2 rounded-lg bg-green-700 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-500"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 px-8 py-4 text-base font-bold text-white shadow-md hover:bg-green-800 sm:w-auto dark:bg-green-600 dark:hover:bg-green-500"
             >
               Return to Readiness Dashboard →
             </Link>
