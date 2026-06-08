@@ -13,6 +13,7 @@ import {
   type CATTrendRow,
 } from './actions';
 import type { BacklogClassification, BacklogBudgetStatus } from '@agero/db';
+import SpreadView from './SpreadView';
 
 // ─── Formatting ───────────────────────────────────────────────────────────────
 
@@ -502,6 +503,7 @@ export default function BacklogBudgetClient({
   const [rows, setRows] = useState<BacklogRow[]>(initialRows);
   const [mode, setMode] = useState<PageMode>(initialMode);
   const [selectedFY, setSelectedFY] = useState(currentFY);
+  const [view, setView] = useState<'summary' | 'spread'>('summary');
   const [catPanelRow, setCatPanelRow] = useState<BacklogRow | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
   const [locking, startLock] = useTransition();
@@ -619,6 +621,21 @@ export default function BacklogBudgetClient({
           {!isLocked && <p className="text-sm text-zinc-500">Set and lock annual project classifications and budget revenue figures.</p>}
         </div>
         <div className="flex items-center gap-3">
+          {/* View toggle */}
+          <div className="flex rounded border border-zinc-300 overflow-hidden text-sm">
+            <button
+              onClick={() => setView('summary')}
+              className={`px-3 py-1.5 ${view === 'summary' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-600 hover:bg-zinc-50'}`}
+            >
+              Summary
+            </button>
+            <button
+              onClick={() => setView('spread')}
+              className={`px-3 py-1.5 border-l border-zinc-300 ${view === 'spread' ? 'bg-zinc-800 text-white' : 'bg-white text-zinc-600 hover:bg-zinc-50'}`}
+            >
+              Spread
+            </button>
+          </div>
           <select
             value={selectedFY}
             onChange={(e) => handleFYChange(e.target.value)}
@@ -660,8 +677,8 @@ export default function BacklogBudgetClient({
         </div>
       )}
 
-      {/* Summary cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+      {/* Summary cards (summary view only) */}
+      {view === 'summary' && <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
         {[
           { label: 'Awarded Budget', value: fmtAUD(awardedTotal), sub: `${awardedRows.length} projects` },
           { label: 'Backlog Budget', value: fmtAUD(backlogTotal), sub: `${backlogRows.length} projects` },
@@ -674,10 +691,13 @@ export default function BacklogBudgetClient({
             {c.sub && <p className="text-xs text-zinc-400">{c.sub}</p>}
           </div>
         ))}
-      </div>
+      </div>}
 
-      {/* Main table */}
-      <div className="bg-white border border-zinc-200 rounded overflow-x-auto">
+      {/* Spread view */}
+      {view === 'spread' && <SpreadView currentFY={selectedFY} />}
+
+      {/* Summary table */}
+      {view === 'summary' && <div className="bg-white border border-zinc-200 rounded overflow-x-auto">
         <table className="w-full text-sm min-w-[900px]">
           <thead className="border-b bg-zinc-50">
             <tr className="text-left text-xs text-zinc-500">
@@ -724,7 +744,7 @@ export default function BacklogBudgetClient({
             </tfoot>
           )}
         </table>
-      </div>
+      </div>}
 
       {lockError && <p className="mt-3 text-sm text-red-600">{lockError}</p>}
 

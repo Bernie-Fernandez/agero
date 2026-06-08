@@ -296,8 +296,10 @@ model Organisation {
   catImports            CatImport[]
   financeProjectSnapshots FinanceProjectSnapshot[]
   xeroPnlSnapshots      XeroPnLSnapshot[]
-  fySettings            FYSettings?
-  backlogBudgets        BacklogBudget[]
+  fySettings              FYSettings?
+  backlogBudgets          BacklogBudget[]
+  projectRevenueBudgets   ProjectRevenueBudget[]
+  unsecuredRevenueBudgets UnsecuredRevenueBudget[]
 
   @@map("organisations")
   @@schema("projects")
@@ -3028,8 +3030,9 @@ model FinanceProject {
 
   securedForecasts     SecuredForecast[]
   wipSchedules         WIPSchedule[]
-  snapshots            FinanceProjectSnapshot[]
-  backlogBudgets       BacklogBudget[]
+  snapshots              FinanceProjectSnapshot[]
+  backlogBudgets         BacklogBudget[]
+  projectRevenueBudgets  ProjectRevenueBudget[]
 
   @@index([organisationId, reportMonth])
   @@map("finance_projects")
@@ -3933,5 +3936,104 @@ model BacklogBudget {
   @@unique([financeProjectId, fyYear])
   @@index([organisationId, fyYear])
   @@map("backlog_budgets")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.3 — Monthly Revenue Spread
+// ─────────────────────────────────────────────────────────────────────────────
+
+model ProjectRevenueBudget {
+  id               String                @id @default(uuid()) @db.Uuid
+  organisationId   String                @map("organisation_id") @db.Uuid
+  organisation     Organisation          @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financeProjectId String                @map("finance_project_id") @db.Uuid
+  financeProject   FinanceProject        @relation(fields: [financeProjectId], references: [id], onDelete: Cascade)
+  fyYear           String                @map("fy_year")
+  classification   BacklogClassification
+
+  // FY27 months (Jul 2026 – Jun 2027)
+  jul26  Decimal? @default(0) @map("jul_26") @db.Decimal(14, 2)
+  aug26  Decimal? @default(0) @map("aug_26") @db.Decimal(14, 2)
+  sep26  Decimal? @default(0) @map("sep_26") @db.Decimal(14, 2)
+  oct26  Decimal? @default(0) @map("oct_26") @db.Decimal(14, 2)
+  nov26  Decimal? @default(0) @map("nov_26") @db.Decimal(14, 2)
+  dec26  Decimal? @default(0) @map("dec_26") @db.Decimal(14, 2)
+  jan27  Decimal? @default(0) @map("jan_27") @db.Decimal(14, 2)
+  feb27  Decimal? @default(0) @map("feb_27") @db.Decimal(14, 2)
+  mar27  Decimal? @default(0) @map("mar_27") @db.Decimal(14, 2)
+  apr27  Decimal? @default(0) @map("apr_27") @db.Decimal(14, 2)
+  may27  Decimal? @default(0) @map("may_27") @db.Decimal(14, 2)
+  jun27  Decimal? @default(0) @map("jun_27") @db.Decimal(14, 2)
+
+  // FY28 months (Jul 2027 – Jun 2028)
+  jul27b Decimal? @default(0) @map("jul_27b") @db.Decimal(14, 2)
+  aug27b Decimal? @default(0) @map("aug_27b") @db.Decimal(14, 2)
+  sep27b Decimal? @default(0) @map("sep_27b") @db.Decimal(14, 2)
+  oct27b Decimal? @default(0) @map("oct_27b") @db.Decimal(14, 2)
+  nov27b Decimal? @default(0) @map("nov_27b") @db.Decimal(14, 2)
+  dec27b Decimal? @default(0) @map("dec_27b") @db.Decimal(14, 2)
+  jan28  Decimal? @default(0) @map("jan_28") @db.Decimal(14, 2)
+  feb28  Decimal? @default(0) @map("feb_28") @db.Decimal(14, 2)
+  mar28  Decimal? @default(0) @map("mar_28") @db.Decimal(14, 2)
+  apr28  Decimal? @default(0) @map("apr_28") @db.Decimal(14, 2)
+  may28  Decimal? @default(0) @map("may_28") @db.Decimal(14, 2)
+  jun28  Decimal? @default(0) @map("jun_28") @db.Decimal(14, 2)
+
+  notes     String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([financeProjectId, fyYear])
+  @@index([organisationId, fyYear])
+  @@map("project_revenue_budgets")
+  @@schema("projects")
+}
+
+model UnsecuredRevenueBudget {
+  id             String       @id @default(uuid()) @db.Uuid
+  organisationId String       @map("organisation_id") @db.Uuid
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  leadId         String       @map("lead_id") @db.Uuid
+  leadName       String       @map("lead_name")
+  leadValue      Decimal      @default(0) @map("lead_value") @db.Decimal(14, 2)
+  fyYear         String       @map("fy_year")
+  deletedAt      DateTime?    @map("deleted_at")
+
+  // FY27 months (Jul 2026 – Jun 2027)
+  jul26  Decimal? @default(0) @map("jul_26") @db.Decimal(14, 2)
+  aug26  Decimal? @default(0) @map("aug_26") @db.Decimal(14, 2)
+  sep26  Decimal? @default(0) @map("sep_26") @db.Decimal(14, 2)
+  oct26  Decimal? @default(0) @map("oct_26") @db.Decimal(14, 2)
+  nov26  Decimal? @default(0) @map("nov_26") @db.Decimal(14, 2)
+  dec26  Decimal? @default(0) @map("dec_26") @db.Decimal(14, 2)
+  jan27  Decimal? @default(0) @map("jan_27") @db.Decimal(14, 2)
+  feb27  Decimal? @default(0) @map("feb_27") @db.Decimal(14, 2)
+  mar27  Decimal? @default(0) @map("mar_27") @db.Decimal(14, 2)
+  apr27  Decimal? @default(0) @map("apr_27") @db.Decimal(14, 2)
+  may27  Decimal? @default(0) @map("may_27") @db.Decimal(14, 2)
+  jun27  Decimal? @default(0) @map("jun_27") @db.Decimal(14, 2)
+
+  // FY28 months (Jul 2027 – Jun 2028)
+  jul27b Decimal? @default(0) @map("jul_27b") @db.Decimal(14, 2)
+  aug27b Decimal? @default(0) @map("aug_27b") @db.Decimal(14, 2)
+  sep27b Decimal? @default(0) @map("sep_27b") @db.Decimal(14, 2)
+  oct27b Decimal? @default(0) @map("oct_27b") @db.Decimal(14, 2)
+  nov27b Decimal? @default(0) @map("nov_27b") @db.Decimal(14, 2)
+  dec27b Decimal? @default(0) @map("dec_27b") @db.Decimal(14, 2)
+  jan28  Decimal? @default(0) @map("jan_28") @db.Decimal(14, 2)
+  feb28  Decimal? @default(0) @map("feb_28") @db.Decimal(14, 2)
+  mar28  Decimal? @default(0) @map("mar_28") @db.Decimal(14, 2)
+  apr28  Decimal? @default(0) @map("apr_28") @db.Decimal(14, 2)
+  may28  Decimal? @default(0) @map("may_28") @db.Decimal(14, 2)
+  jun28  Decimal? @default(0) @map("jun_28") @db.Decimal(14, 2)
+
+  notes     String?  @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([leadId, fyYear])
+  @@index([organisationId, fyYear])
+  @@map("unsecured_revenue_budgets")
   @@schema("projects")
 }
