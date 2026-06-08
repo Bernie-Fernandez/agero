@@ -29,7 +29,7 @@ export function ConfirmSignInForm({
           Sign-in blocked — pre-mobilisation incomplete
         </p>
         <p className="mt-2 text-sm text-red-600 dark:text-red-400">
-          Your pre-mobilisation requirements have not been met. Please speak to the site manager.
+          The following requirements have not been met:
         </p>
         {state.mobGateIssues && state.mobGateIssues.length > 0 && (
           <ul className="mt-2 space-y-1">
@@ -39,6 +39,18 @@ export function ConfirmSignInForm({
               </li>
             ))}
           </ul>
+        )}
+        {state.checklistUrl ? (
+          <a
+            href={state.checklistUrl}
+            className="mt-4 inline-block rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-500"
+          >
+            Update your details →
+          </a>
+        ) : (
+          <p className="mt-3 text-sm text-red-600 dark:text-red-400">
+            Please speak to your supervisor to complete your pre-mobilisation checklist.
+          </p>
         )}
       </div>
     );

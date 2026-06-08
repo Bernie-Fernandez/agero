@@ -3,6 +3,8 @@
 import { prisma } from "@/lib/prisma";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { sendUnknownWorkerAlert } from "@/lib/alerts";
+import { sendMobGateBlockedSms } from "@/lib/sms";
+import { sendMobGateBlockedEmail } from "@/lib/email";
 import { getAppUrl } from "@/lib/app-url";
 import { redirect } from "next/navigation";
 
@@ -14,6 +16,7 @@ export type SignInState = {
   blockedUntilVerified?: boolean;
   mobGateBlocked?: boolean;
   mobGateIssues?: string[];
+  checklistUrl?: string;
 };
 
 const workerInclude = {
@@ -248,6 +251,7 @@ async function continueSignIn(
     const safetyProject = await prisma.safetyProject.findFirst({
       where: { erpProjectId: project!.id },
       select: {
+        id: true,
         buildingMgmtInductionRequired: true,
         preStartAssessments: { take: 1, select: { id: true } },
       },
@@ -271,7 +275,71 @@ async function continueSignIn(
       }
 
       if (mobIssues.length > 0) {
-        return { mobGateBlocked: true, mobGateIssues: mobIssues };
+        // Build checklist URL from WorkerInvitation token
+        const invitation = worker.mobile
+          ? await prisma.workerInvitation.findFirst({
+              where: { projectId: safetyProject.id, mobile: worker.mobile },
+              orderBy: { createdAt: "desc" },
+            })
+          : null;
+        const checklistUrl = invitation ? `${host}/mob-checklist/${invitation.token}` : undefined;
+
+        // 24-hour dedup — only notify once per worker per project per day
+        const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        const recentNotif = await prisma.mobBlockNotification.findFirst({
+          where: { workerId: worker.id, safetyProjectId: safetyProject.id, sentAt: { gte: cutoff } },
+        });
+
+        if (!recentNotif && checklistUrl) {
+          await prisma.mobBlockNotification.create({
+            data: { workerId: worker.id, safetyProjectId: safetyProject.id },
+          });
+          // SMS to worker
+          if (worker.mobile) {
+            try {
+              await sendMobGateBlockedSms(
+                worker.mobile,
+                `${worker.firstName} ${worker.lastName}`,
+                project!.name,
+                checklistUrl,
+              );
+            } catch {
+              // Non-fatal
+            }
+          }
+          // Email subcontractor_admin users of employing org
+          if (worker.employingOrganisationId) {
+            try {
+              const [admins, org] = await Promise.all([
+                prisma.user.findMany({
+                  where: { organisationId: worker.employingOrganisationId, role: "subcontractor_admin" },
+                  select: { email: true, name: true },
+                }),
+                prisma.organisation.findUnique({
+                  where: { id: worker.employingOrganisationId },
+                  select: { name: true },
+                }),
+              ]);
+              await Promise.all(
+                admins.map((a) =>
+                  sendMobGateBlockedEmail({
+                    to: a.email,
+                    adminName: a.name,
+                    workerName: `${worker.firstName} ${worker.lastName}`,
+                    companyName: org?.name ?? "",
+                    projectName: project!.name,
+                    issues: mobIssues,
+                    checklistUrl,
+                  }).catch(() => {}),
+                ),
+              );
+            } catch {
+              // Non-fatal
+            }
+          }
+        }
+
+        return { mobGateBlocked: true, mobGateIssues: mobIssues, checklistUrl };
       }
     }
   }
