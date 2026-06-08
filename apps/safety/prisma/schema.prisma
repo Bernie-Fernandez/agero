@@ -74,6 +74,22 @@ enum ConsultationEventType {
   TOOLBOX_MEETING
   NCR
   PRE_START_INTERNAL
+  INCIDENT
+}
+
+enum IncidentType {
+  INJURY
+  NEAR_MISS
+  PROPERTY_DAMAGE
+  ENVIRONMENTAL
+  PSYCHOLOGICAL
+  OTHER
+}
+
+enum DefectStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETE
 }
 
 enum SitePreparationPlanStatus {
@@ -181,6 +197,13 @@ model User {
   sitePreparationChecklists SitePreparationChecklist[] @relation("SiteChecklistCompletedBy")
   hrwWarningAcks            HrwWarningAck[]            @relation("HrwWarningAckBy")
   resolvedRetentionFlags    RetentionFlag[]            @relation("RetentionFlagResolvedBy")
+  siteSafetyWalks           SiteSafetyWalk[]           @relation("SiteSafetyWalkConductedBy")
+  toolboxMeetings           ToolboxMeeting[]           @relation("ToolboxMeetingConductedBy")
+  ncrRecords                NonConformanceReport[]     @relation("NcrRaisedBy")
+  incidentReports           IncidentReport[]           @relation("IncidentReportedBy")
+  firstAidChecklists        FirstAidChecklist[]        @relation("FirstAidChecklistConductedBy")
+  dilapidationReports       DilapidationReport[]       @relation("DilapidationConductedBy")
+  defectsInspections        DefectsInspection[]        @relation("DefectsInspectionConductedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -528,6 +551,14 @@ model SafetyProject {
   mobBlockNotifications     MobBlockNotification[]
   consultationEvents        ConsultationEvent[]
   floorPlan                 ProjectFloorPlan?
+  visitorSignIns            VisitorSignIn[]
+  siteSafetyWalks           SiteSafetyWalk[]
+  toolboxMeetings           ToolboxMeeting[]
+  ncrRecords                NonConformanceReport[]
+  incidentReports           IncidentReport[]
+  firstAidChecklists        FirstAidChecklist[]
+  dilapidationReports       DilapidationReport[]
+  defectsInspections        DefectsInspection[]
 
   @@index([organisationId])
   @@map("safety_projects")
@@ -861,4 +892,186 @@ model RetentionFlag {
 
   @@index([workerAccountId])
   @@map("retention_flags")
+}
+
+// Visitor sign-in with safety acknowledgement. No SMS OTP — name + digital signature only.
+model VisitorSignIn {
+  id              String        @id @default(uuid()) @db.Uuid
+  projectId       String        @map("project_id") @db.Uuid
+  project         SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  visitorName     String        @map("visitor_name")
+  company         String?
+  purpose         String?
+  hostName        String?       @map("host_name")
+  signatureUrl    String        @map("signature_url")
+  acknowledgedAt  DateTime      @map("acknowledged_at")
+  signedOutAt     DateTime?     @map("signed_out_at")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("visitor_sign_ins")
+}
+
+// Monthly site safety walk — 23 checklist items including psychosocial observation.
+model SiteSafetyWalk {
+  id             String        @id @default(uuid()) @db.Uuid
+  projectId      String        @map("project_id") @db.Uuid
+  project        SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById  String        @map("conducted_by_id") @db.Uuid
+  conductedBy    User          @relation("SiteSafetyWalkConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  conductedAt    DateTime      @map("conducted_at")
+  items          Json          // [{id, question, answer: 'YES'|'NO'|'NA', photoUrl?, notes?}]
+  observations   String?       @db.Text
+  reportUrl      String?       @map("report_url")
+  createdAt      DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("site_safety_walks")
+}
+
+// Toolbox meeting record — psychosocial topic mandatory, attendee signatures, ConsultationEvent auto-created.
+model ToolboxMeeting {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById String        @map("conducted_by_id") @db.Uuid
+  conductedBy   User          @relation("ToolboxMeetingConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  conductedAt   DateTime      @map("conducted_at")
+  topics        Json          // string[] — psychosocial topic always included
+  attendees     Json          // [{name, company?, signatureUrl}]
+  actions       Json          // [{description, assignedTo, dueDate}]
+  reportUrl     String?       @map("report_url")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("toolbox_meetings")
+}
+
+// Non-Conformance Report — three parts, dual signatures (Agero manager + worker/contractor), immutable on submit.
+model NonConformanceReport {
+  id                    String        @id @default(uuid()) @db.Uuid
+  projectId             String        @map("project_id") @db.Uuid
+  project               SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  ncrNumber             String        @map("ncr_number")
+  raisedById            String        @map("raised_by_id") @db.Uuid
+  raisedBy              User          @relation("NcrRaisedBy", fields: [raisedById], references: [id], onDelete: Cascade)
+  raisedAt              DateTime      @map("raised_at")
+  description           String        @db.Text
+  correctiveAction      String        @map("corrective_action") @db.Text
+  disposition           String        @db.Text
+  ageroSignatureUrl     String?       @map("agero_signature_url")
+  ageroSignedById       String?       @map("agero_signed_by_id")
+  ageroSignedAt         DateTime?     @map("agero_signed_at")
+  contractorName        String?       @map("contractor_name")
+  contractorSignatureUrl String?      @map("contractor_signature_url")
+  contractorSignedAt    DateTime?     @map("contractor_signed_at")
+  submittedAt           DateTime?     @map("submitted_at")
+  reportUrl             String?       @map("report_url")
+  createdAt             DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("non_conformance_reports")
+}
+
+// Incident investigation — WorkSafe notifiability, 48-hour timer, 5-year retention, psychological pathway.
+model IncidentReport {
+  id                    String        @id @default(uuid()) @db.Uuid
+  projectId             String        @map("project_id") @db.Uuid
+  project               SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  reportedById          String        @map("reported_by_id") @db.Uuid
+  reportedBy            User          @relation("IncidentReportedBy", fields: [reportedById], references: [id], onDelete: Cascade)
+  incidentType          IncidentType  @map("incident_type")
+  incidentAt            DateTime      @map("incident_at")
+  location              String
+  description           String        @db.Text
+  injuredPersonName     String?       @map("injured_person_name")
+  injuredPersonOrg      String?       @map("injured_person_org")
+  workSafeNotifiable    Boolean       @default(false) @map("work_safe_notifiable")
+  workSafeRefNumber     String?       @map("work_safe_ref_number")
+  workSafeNotifiedAt    DateTime?     @map("work_safe_notified_at")
+  psychosocialDetails   String?       @map("psychosocial_details") @db.Text
+  witnesses             Json          @default("[]") // [{name, contact}]
+  immediateActions      String?       @map("immediate_actions") @db.Text
+  photoUrls             Json          @default("[]") @map("photo_urls") // string[]
+  submittedAt           DateTime?     @map("submitted_at")
+  reportUrl             String?       @map("report_url")
+  createdAt             DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("incident_reports")
+}
+
+// First Aid Requirements Checklist and First Aid Box periodic inspection.
+model FirstAidChecklist {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById String        @map("conducted_by_id") @db.Uuid
+  conductedBy   User          @relation("FirstAidChecklistConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  checklistType String        @map("checklist_type") // "REQUIREMENTS" | "BOX_INSPECTION"
+  conductedAt   DateTime      @map("conducted_at")
+  items         Json          // [{id, description, compliant: boolean, notes?}]
+  notes         String?       @db.Text
+  signatureUrl  String?       @map("signature_url")
+  reportUrl     String?       @map("report_url")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("first_aid_checklists")
+}
+
+// Pre-works dilapidation survey — pin-drop on shared floor plan, photos, emailed PDF.
+model DilapidationReport {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById String        @map("conducted_by_id") @db.Uuid
+  conductedBy   User          @relation("DilapidationConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  conductedAt   DateTime      @map("conducted_at")
+  pins          Json          // [{pinNumber, x, y, description, condition, photoUrls[]}]
+  notes         String?       @db.Text
+  submittedAt   DateTime?     @map("submitted_at")
+  reportUrl     String?       @map("report_url")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("dilapidation_reports")
+}
+
+// Defects inspection — pin-drop engine, trade responsible, due date, DLP tracking.
+model DefectsInspection {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById String        @map("conducted_by_id") @db.Uuid
+  conductedBy   User          @relation("DefectsInspectionConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  conductedAt   DateTime      @map("conducted_at")
+  notes         String?       @db.Text
+  reportUrl     String?       @map("report_url")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  defectItems   DefectItem[]
+
+  @@index([projectId])
+  @@map("defects_inspections")
+}
+
+// Individual defect within a DefectsInspection.
+model DefectItem {
+  id             String            @id @default(uuid()) @db.Uuid
+  inspectionId   String            @map("inspection_id") @db.Uuid
+  inspection     DefectsInspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  pinNumber      Int               @map("pin_number")
+  pinX           Float             @map("pin_x")
+  pinY           Float             @map("pin_y")
+  description    String            @db.Text
+  tradeResponsible String?         @map("trade_responsible")
+  dueDate        DateTime?         @map("due_date") @db.Date
+  status         DefectStatus      @default(OPEN)
+  resolvedAt     DateTime?         @map("resolved_at")
+  photoUrls      Json              @default("[]") @map("photo_urls") // string[]
+  notes          String?           @db.Text
+
+  @@index([inspectionId])
+  @@map("defect_items")
 }

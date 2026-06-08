@@ -13,6 +13,7 @@ const isPublicRoute = createRouteMatcher([
   "/site/(.*)",
   "/register/(.*)",
   "/worker(.*)",
+  "/projects/(.*)/visitors/sign-in(.*)",
 ]);
 
 export const proxy: NextProxy = clerkMiddleware(async (auth, request) => {

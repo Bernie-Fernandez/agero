@@ -701,6 +701,81 @@ export default async function ReadinessPage({
               </p>
             )}
           </section>
+
+          {/* ── SITE MANAGEMENT (S2) ─────────────────────────────────────────── */}
+          <section>
+            <div className="flex items-center gap-3">
+              <span className="inline-block h-2.5 w-2.5 rounded-full bg-blue-400" />
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
+                Site Management
+              </h2>
+            </div>
+            <div className="mt-3 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+              {[
+                {
+                  label: "Daily Attendance Dashboard",
+                  desc: "Live worker and visitor count, First Aider check, person-hours",
+                  href: `/projects/${safetyProject.erpProjectId}/attendance/today`,
+                },
+                {
+                  label: "Site Safety Walk",
+                  desc: "23-item checklist, psychosocial observation, 7-day overdue alert",
+                  href: `/projects/${id}/safety-walk`,
+                },
+                {
+                  label: "Toolbox Meetings",
+                  desc: "Attendee signatures, mandatory psychosocial topic, ConsultationEvent",
+                  href: `/projects/${id}/toolbox`,
+                },
+                {
+                  label: "NCR — Non-Conformance Reports",
+                  desc: "Three-part form, dual digital signatures, immutable on submit",
+                  href: `/projects/${id}/ncr`,
+                },
+                {
+                  label: "Incident Reports",
+                  desc: "Classification, WorkSafe notifiability, 48-hr timer, 5-year retention",
+                  href: `/projects/${id}/incident`,
+                },
+                {
+                  label: "First Aid Management",
+                  desc: "Requirements checklist, first aider register (60-day expiry alerts), box inspections",
+                  href: `/projects/${id}/first-aid`,
+                },
+                {
+                  label: "Visitor Management",
+                  desc: "Visitor sign-in kiosk with safety acknowledgement, sign-out tracking",
+                  href: `/projects/${id}/visitors`,
+                },
+                {
+                  label: "Dilapidation Survey",
+                  desc: "Pre-works condition survey, pin-drop on floor plan, PDF emailed to stakeholders",
+                  href: `/projects/${id}/dilapidation`,
+                },
+                {
+                  label: "Defects Register",
+                  desc: "Pin-drop defects, trade responsible, DLP tracking, status management",
+                  href: `/projects/${id}/defects`,
+                },
+              ].map((item, i, arr) => (
+                <div
+                  key={item.href}
+                  className={`flex items-center justify-between px-5 py-3 ${i < arr.length - 1 ? "border-b border-zinc-100 dark:border-zinc-800" : ""}`}
+                >
+                  <div>
+                    <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">{item.label}</p>
+                    <p className="mt-0.5 text-xs text-zinc-500">{item.desc}</p>
+                  </div>
+                  <Link
+                    href={item.href}
+                    className="shrink-0 text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  >
+                    Open →
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
     </div>

@@ -321,6 +321,34 @@ export async function sendMobGateBlockedEmail(opts: {
   });
 }
 
+export async function sendDilapidationEmail(opts: {
+  to: string[];
+  projectName: string;
+  conductedAt: Date;
+  conductedBy: string;
+  pinCount: number;
+  pdfUrl: string;
+}) {
+  const subject = `Dilapidation Report — ${opts.projectName}`;
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0">Dilapidation Report — ${opts.projectName}</h2>
+      <p>A pre-works dilapidation survey has been completed and is attached below.</p>
+      <table style="font-size:14px;width:100%;border-collapse:collapse">
+        <tr><td style="padding:4px 0;color:#71717a;width:160px">Project</td><td><strong>${opts.projectName}</strong></td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Date</td><td>${opts.conductedAt.toLocaleDateString("en-AU")}</td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Conducted by</td><td>${opts.conductedBy}</td></tr>
+        <tr><td style="padding:4px 0;color:#71717a">Items recorded</td><td>${opts.pinCount}</td></tr>
+      </table>
+      <p style="margin:32px 0"><a href="${opts.pdfUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">View Dilapidation Report →</a></p>
+      <p style="font-size:13px;color:#71717a">This report documents the pre-works condition of the site and surrounding areas. Retain for the duration of the project.</p>
+    `),
+  });
+}
+
 export async function sendRetentionReviewEmail(opts: {
   to: string;
   adminName: string | null;
