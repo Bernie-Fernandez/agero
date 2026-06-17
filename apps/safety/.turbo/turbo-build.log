@@ -1,3 +1,4 @@
+npm warn config ignoring workspace config at C:\Dev\agero\apps\safety/.npmrc
 
 > @agero/safety@0.1.0 build
 > next build
@@ -9,42 +10,75 @@
   · staleTimes
 
   Creating an optimized production build ...
-✓ Compiled successfully in 18.0s
+✓ Compiled successfully in 11.2s
   Running TypeScript ...
-  Finished TypeScript in 27.8s ...
+  Finished TypeScript in 17.2s ...
   Collecting page data using 11 workers ...
-  Generating static pages using 11 workers (0/19) ...
-  Generating static pages using 11 workers (4/19) 
-  Generating static pages using 11 workers (9/19) 
-  Generating static pages using 11 workers (14/19) 
-✓ Generating static pages using 11 workers (19/19) in 981ms
+  Generating static pages using 11 workers (0/29) ...
+  Generating static pages using 11 workers (7/29) 
+  Generating static pages using 11 workers (14/29) 
+  Generating static pages using 11 workers (21/29) 
+✓ Generating static pages using 11 workers (29/29) in 445ms
   Finalizing page optimization ...
 
 Route (app)
 ┌ ƒ /
 ├ ○ /_not-found
+├ ƒ /admin/complexity-templates
+├ ƒ /admin/credential-config
 ├ ƒ /admin/inductions/generic/builder
+├ ƒ /admin/retention
+├ ƒ /api/ai-guidance/consultation
+├ ƒ /api/ai-guidance/hrw
+├ ƒ /api/ai-guidance/psych
+├ ƒ /api/cron/mob-reminder
+├ ƒ /api/cron/retention
 ├ ƒ /api/induction-chat
+├ ƒ /api/worker/extract-credential
 ├ ƒ /dashboard
 ├ ƒ /inductions/[id]
 ├ ○ /inductions/new
+├ ƒ /mob-checklist/[token]
+├ ƒ /mob-checklist/[token]/done
+├ ○ /offline
 ├ ƒ /onboarding
 ├ ƒ /organisations
 ├ ƒ /organisations/[id]
 ├ ƒ /organisations/[id]/workers
+├ ƒ /portal
+├ ƒ /portal/workers/[workerId]
+├ ○ /privacy
 ├ ƒ /projects
 ├ ƒ /projects/[id]
 ├ ƒ /projects/[id]/attendance
+├ ƒ /projects/[id]/attendance/today
+├ ƒ /projects/[id]/attendance/today/export.csv
+├ ƒ /projects/[id]/defects
+├ ƒ /projects/[id]/dilapidation
+├ ƒ /projects/[id]/first-aid
+├ ƒ /projects/[id]/incident
 ├ ƒ /projects/[id]/induction
 ├ ƒ /projects/[id]/induction/builder
 ├ ƒ /projects/[id]/induction/swms-questions
+├ ƒ /projects/[id]/ncr
+├ ƒ /projects/[id]/pre-start
+├ ƒ /projects/[id]/readiness
+├ ƒ /projects/[id]/readiness/invite
+├ ƒ /projects/[id]/readiness/worker/[workerId]
+├ ƒ /projects/[id]/safety-walk
+├ ƒ /projects/[id]/site-prep
 ├ ƒ /projects/[id]/subcontractors/[orgId]/swms
+├ ƒ /projects/[id]/swms
+├ ƒ /projects/[id]/toolbox
+├ ƒ /projects/[id]/visitors
+├ ƒ /projects/[id]/visitors/sign-in
 ├ ƒ /register/[inviteToken]
 ├ ƒ /register/[inviteToken]/confirmed
 ├ ƒ /sign-in/[[...sign-in]]
 ├ ƒ /sign-up/[[...sign-up]]
 ├ ƒ /site/[projectToken]
 ├ ƒ /site/[projectToken]/confirmed
+├ ƒ /site/[projectToken]/swms-sign
 ├ ƒ /subcontractors
 ├ ƒ /subcontractors/[id]
 ├ ƒ /subcontractors/[id]/documents
@@ -62,3 +96,8 @@ Route (app)
 ○  (Static)   prerendered as static content
 ƒ  (Dynamic)  server-rendered on demand
 
+npm notice
+npm notice New minor version of npm available! 11.11.0 -> 11.17.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.17.0
+npm notice To update run: npm install -g npm@11.17.0
+npm notice

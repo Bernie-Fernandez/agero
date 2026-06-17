@@ -13633,6 +13633,7 @@ export const ManagementReportSnapshotScalarFieldEnum = {
   pdfGeneratedAt: 'pdfGeneratedAt',
   pdfUrl: 'pdfUrl',
   notes: 'notes',
+  commentaryDraft: 'commentaryDraft',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

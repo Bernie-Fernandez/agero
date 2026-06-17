@@ -63,6 +63,7 @@ export type ManagementReportSnapshotCountAggregateOutputType = {
   pdfGeneratedAt: number
   pdfUrl: number
   notes: number
+  commentaryDraft: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -108,6 +109,7 @@ export type ManagementReportSnapshotCountAggregateInputType = {
   pdfGeneratedAt?: true
   pdfUrl?: true
   notes?: true
+  commentaryDraft?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -196,6 +198,7 @@ export type ManagementReportSnapshotGroupByOutputType = {
   pdfGeneratedAt: Date | null
   pdfUrl: string | null
   notes: string | null
+  commentaryDraft: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: ManagementReportSnapshotCountAggregateOutputType | null
@@ -232,6 +235,7 @@ export type ManagementReportSnapshotWhereInput = {
   pdfGeneratedAt?: Prisma.DateTimeNullableFilter<"ManagementReportSnapshot"> | Date | string | null
   pdfUrl?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
   notes?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
+  commentaryDraft?: Prisma.JsonNullableFilter<"ManagementReportSnapshot">
   createdAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -248,6 +252,7 @@ export type ManagementReportSnapshotOrderByWithRelationInput = {
   pdfGeneratedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   pdfUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  commentaryDraft?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organisation?: Prisma.OrganisationOrderByWithRelationInput
@@ -268,6 +273,7 @@ export type ManagementReportSnapshotWhereUniqueInput = Prisma.AtLeast<{
   pdfGeneratedAt?: Prisma.DateTimeNullableFilter<"ManagementReportSnapshot"> | Date | string | null
   pdfUrl?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
   notes?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
+  commentaryDraft?: Prisma.JsonNullableFilter<"ManagementReportSnapshot">
   createdAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
   organisation?: Prisma.XOR<Prisma.OrganisationScalarRelationFilter, Prisma.OrganisationWhereInput>
@@ -284,6 +290,7 @@ export type ManagementReportSnapshotOrderByWithAggregationInput = {
   pdfGeneratedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   pdfUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  commentaryDraft?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ManagementReportSnapshotCountOrderByAggregateInput
@@ -305,6 +312,7 @@ export type ManagementReportSnapshotScalarWhereWithAggregatesInput = {
   pdfGeneratedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ManagementReportSnapshot"> | Date | string | null
   pdfUrl?: Prisma.StringNullableWithAggregatesFilter<"ManagementReportSnapshot"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"ManagementReportSnapshot"> | string | null
+  commentaryDraft?: Prisma.JsonNullableWithAggregatesFilter<"ManagementReportSnapshot">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ManagementReportSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ManagementReportSnapshot"> | Date | string
 }
@@ -319,6 +327,7 @@ export type ManagementReportSnapshotCreateInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   organisation: Prisma.OrganisationCreateNestedOneWithoutManagementReportSnapshotsInput
@@ -335,6 +344,7 @@ export type ManagementReportSnapshotUncheckedCreateInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -349,6 +359,7 @@ export type ManagementReportSnapshotUpdateInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organisation?: Prisma.OrganisationUpdateOneRequiredWithoutManagementReportSnapshotsNestedInput
@@ -365,6 +376,7 @@ export type ManagementReportSnapshotUncheckedUpdateInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -380,6 +392,7 @@ export type ManagementReportSnapshotCreateManyInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -394,6 +407,7 @@ export type ManagementReportSnapshotUpdateManyMutationInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -409,6 +423,7 @@ export type ManagementReportSnapshotUncheckedUpdateManyInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -439,6 +454,7 @@ export type ManagementReportSnapshotCountOrderByAggregateInput = {
   pdfGeneratedAt?: Prisma.SortOrder
   pdfUrl?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  commentaryDraft?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -527,6 +543,7 @@ export type ManagementReportSnapshotCreateWithoutOrganisationInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -541,6 +558,7 @@ export type ManagementReportSnapshotUncheckedCreateWithoutOrganisationInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -585,6 +603,7 @@ export type ManagementReportSnapshotScalarWhereInput = {
   pdfGeneratedAt?: Prisma.DateTimeNullableFilter<"ManagementReportSnapshot"> | Date | string | null
   pdfUrl?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
   notes?: Prisma.StringNullableFilter<"ManagementReportSnapshot"> | string | null
+  commentaryDraft?: Prisma.JsonNullableFilter<"ManagementReportSnapshot">
   createdAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ManagementReportSnapshot"> | Date | string
 }
@@ -599,6 +618,7 @@ export type ManagementReportSnapshotCreateManyOrganisationInput = {
   pdfGeneratedAt?: Date | string | null
   pdfUrl?: string | null
   notes?: string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -613,6 +633,7 @@ export type ManagementReportSnapshotUpdateWithoutOrganisationInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -627,6 +648,7 @@ export type ManagementReportSnapshotUncheckedUpdateWithoutOrganisationInput = {
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -641,6 +663,7 @@ export type ManagementReportSnapshotUncheckedUpdateManyWithoutOrganisationInput 
   pdfGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commentaryDraft?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -658,6 +681,7 @@ export type ManagementReportSnapshotSelect<ExtArgs extends runtime.Types.Extensi
   pdfGeneratedAt?: boolean
   pdfUrl?: boolean
   notes?: boolean
+  commentaryDraft?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -674,6 +698,7 @@ export type ManagementReportSnapshotSelectCreateManyAndReturn<ExtArgs extends ru
   pdfGeneratedAt?: boolean
   pdfUrl?: boolean
   notes?: boolean
+  commentaryDraft?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -690,6 +715,7 @@ export type ManagementReportSnapshotSelectUpdateManyAndReturn<ExtArgs extends ru
   pdfGeneratedAt?: boolean
   pdfUrl?: boolean
   notes?: boolean
+  commentaryDraft?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
@@ -706,11 +732,12 @@ export type ManagementReportSnapshotSelectScalar = {
   pdfGeneratedAt?: boolean
   pdfUrl?: boolean
   notes?: boolean
+  commentaryDraft?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ManagementReportSnapshotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "status" | "lockedAt" | "lockedBy" | "snapshotData" | "pdfGeneratedAt" | "pdfUrl" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["managementReportSnapshot"]>
+export type ManagementReportSnapshotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organisationId" | "reportMonth" | "status" | "lockedAt" | "lockedBy" | "snapshotData" | "pdfGeneratedAt" | "pdfUrl" | "notes" | "commentaryDraft" | "createdAt" | "updatedAt", ExtArgs["result"]["managementReportSnapshot"]>
 export type ManagementReportSnapshotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organisation?: boolean | Prisma.OrganisationDefaultArgs<ExtArgs>
 }
@@ -737,6 +764,7 @@ export type $ManagementReportSnapshotPayload<ExtArgs extends runtime.Types.Exten
     pdfGeneratedAt: Date | null
     pdfUrl: string | null
     notes: string | null
+    commentaryDraft: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["managementReportSnapshot"]>
@@ -1173,6 +1201,7 @@ export interface ManagementReportSnapshotFieldRefs {
   readonly pdfGeneratedAt: Prisma.FieldRef<"ManagementReportSnapshot", 'DateTime'>
   readonly pdfUrl: Prisma.FieldRef<"ManagementReportSnapshot", 'String'>
   readonly notes: Prisma.FieldRef<"ManagementReportSnapshot", 'String'>
+  readonly commentaryDraft: Prisma.FieldRef<"ManagementReportSnapshot", 'Json'>
   readonly createdAt: Prisma.FieldRef<"ManagementReportSnapshot", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ManagementReportSnapshot", 'DateTime'>
 }

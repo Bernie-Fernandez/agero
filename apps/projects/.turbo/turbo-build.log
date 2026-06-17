@@ -9,17 +9,15 @@
   · staleTimes
 
   Creating an optimized production build ...
-✓ Compiled successfully in 29.6s
+✓ Compiled successfully in 26.6s
   Running TypeScript ...
-  Finished TypeScript in 36.3s ...
+  Finished TypeScript in 19.7s ...
   Collecting page data using 11 workers ...
-  Generating static pages using 11 workers (0/64) ...
-  Generating static pages using 11 workers (16/64) 
-  Generating static pages using 11 workers (32/64) 
-  Generating static pages using 11 workers (48/64) 
-(node:38432) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 error listeners added to [BoundPool]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
-(Use `node --trace-warnings ...` to show where the warning was created)
-✓ Generating static pages using 11 workers (64/64) in 2.2s
+  Generating static pages using 11 workers (0/113) ...
+  Generating static pages using 11 workers (28/113) 
+  Generating static pages using 11 workers (56/113) 
+  Generating static pages using 11 workers (84/113) 
+✓ Generating static pages using 11 workers (113/113) in 889ms
   Finalizing page optimization ...
 
 Route (app)
@@ -29,37 +27,78 @@ Route (app)
 ├ ƒ /admin/association-labels
 ├ ƒ /admin/association-labels/[id]/edit
 ├ ƒ /admin/association-labels/new
+├ ƒ /admin/audit
 ├ ƒ /admin/contact-types
 ├ ƒ /admin/contact-types/[id]/edit
 ├ ƒ /admin/contact-types/new
 ├ ƒ /admin/cost-codes
 ├ ƒ /admin/cost-codes/[id]/edit
 ├ ƒ /admin/cost-codes/new
+├ ƒ /admin/curves
 ├ ƒ /admin/expertise-tags
 ├ ƒ /admin/expertise-tags/[id]/edit
 ├ ƒ /admin/expertise-tags/new
+├ ƒ /admin/fy-settings
 ├ ƒ /admin/inductions/generic/builder
 ├ ƒ /admin/insurance-types
 ├ ƒ /admin/insurance-types/[id]/edit
 ├ ƒ /admin/insurance-types/new
+├ ƒ /admin/modules
 ├ ƒ /admin/payment-terms
 ├ ƒ /admin/payment-terms/[id]/edit
 ├ ƒ /admin/payment-terms/new
+├ ƒ /admin/reference-library
 ├ ƒ /admin/thresholds
 ├ ƒ /admin/thresholds/new
 ├ ƒ /admin/users
+├ ƒ /admin/users/[id]
 ├ ƒ /admin/users/[id]/edit
+├ ƒ /api/crm/hubspot/connect
+├ ƒ /api/crm/hubspot/disconnect
+├ ƒ /api/crm/hubspot/sync
+├ ƒ /api/crm/hubspot/sync/conflicts
+├ ƒ /api/crm/hubspot/sync/conflicts/[id]/resolve
+├ ƒ /api/crm/hubspot/sync/incremental
+├ ƒ /api/crm/hubspot/sync/log
+├ ƒ /api/crm/leads
+├ ƒ /api/crm/leads/[id]
+├ ƒ /api/cron/hubspot-sync
 ├ ƒ /api/design/cron/expiry
 ├ ƒ /api/design/cron/rss-poller
 ├ ƒ /api/design/cron/url-fetcher
 ├ ƒ /api/design/seed-rss
 ├ ƒ /api/estimating/seed-trades
+├ ƒ /api/finance/budget/bulk-save
+├ ƒ /api/finance/generate-commentary
+├ ƒ /api/finance/month-status/lock
+├ ƒ /api/finance/month-status/mark-ready
+├ ƒ /api/finance/pnl
+├ ƒ /api/finance/projects
+├ ƒ /api/finance/projects/[id]
+├ ƒ /api/finance/projects/upload
+├ ƒ /api/finance/reports
+├ ƒ /api/finance/reports/[id]
+├ ƒ /api/finance/reports/[id]/export
+├ ƒ /api/finance/reports/[id]/sections/[sectionKey]
+├ ƒ /api/finance/secured-forecast/bulk-save
+├ ƒ /api/finance/seed
+├ ƒ /api/finance/seed/excel
+├ ƒ /api/finance/unsecured-opportunities
+├ ƒ /api/finance/unsecured-opportunities/[id]
+├ ƒ /api/finance/unsecured-opportunities/bulk
+├ ƒ /api/finance/verify/confirm
+├ ƒ /api/help
 ├ ƒ /api/induction-chat
+├ ƒ /api/leads/[id]/buildup
 ├ ƒ /api/leads/[id]/cost-plan
 ├ ƒ /api/leads/[id]/cost-plan/lines
 ├ ƒ /api/leads/[id]/cost-plan/lines/[lineId]
 ├ ƒ /api/leads/[id]/cost-plan/lines/[lineId]/quantities
 ├ ƒ /api/leads/[id]/cost-plan/summary
+├ ƒ /api/xero/callback
+├ ƒ /api/xero/connect
+├ ƒ /api/xero/disconnect
+├ ƒ /api/xero/sync
 ├ ƒ /crm/companies
 ├ ƒ /crm/companies/[id]
 ├ ƒ /crm/companies/[id]/contacts/[ccId]/edit
@@ -69,6 +108,9 @@ Route (app)
 ├ ƒ /crm/contacts/[id]
 ├ ƒ /crm/contacts/[id]/edit
 ├ ƒ /crm/contacts/new
+├ ƒ /crm/leads
+├ ƒ /crm/settings/hubspot
+├ ƒ /crm/settings/hubspot/conflicts
 ├ ƒ /dashboard
 ├ ƒ /design
 ├ ƒ /design/chatbot
@@ -81,6 +123,30 @@ Route (app)
 ├ ƒ /design/sources/new
 ├ ƒ /design/trends
 ├ ƒ /design/trends/submit
+├ ƒ /finance/backlog-budget
+├ ƒ /finance/balance-sheet
+├ ƒ /finance/budget
+├ ƒ /finance/cash-flow
+├ ƒ /finance/cat-data
+├ ƒ /finance/cat-import
+├ ƒ /finance/cvr
+├ ƒ /finance/cvr/[projectId]
+├ ƒ /finance/dashboard
+├ ƒ /finance/management-report
+├ ƒ /finance/month-end
+├ ƒ /finance/month-end/[month]
+├ ƒ /finance/month-end/[month]/wip-review
+├ ƒ /finance/planned-work
+├ ƒ /finance/projects
+├ ƒ /finance/projects-master
+├ ƒ /finance/reports
+├ ƒ /finance/reports/[id]
+├ ƒ /finance/secured-forecast
+├ ƒ /finance/settings/month-status
+├ ƒ /finance/settings/xero
+├ ƒ /finance/settings/xero-wip
+├ ƒ /finance/verify
+├ ƒ /finance/xero-pnl
 ├ ƒ /hazards
 ├ ƒ /incidents
 ├ ƒ /inductions
@@ -92,12 +158,15 @@ Route (app)
 ├ ƒ /leads/[id]/analysis
 ├ ƒ /leads/[id]/cost-plan
 ├ ƒ /leads/[id]/dashboard
+├ ƒ /leads/[id]/documents
 ├ ƒ /leads/[id]/insights
 ├ ƒ /leads/[id]/lockaway
 ├ ƒ /leads/[id]/options
 ├ ƒ /leads/[id]/reports
+├ ƒ /leads/[id]/scope
 ├ ƒ /leads/[id]/scope-library
 ├ ƒ /leads/[id]/settings
+├ ƒ /leads/[id]/takeoff
 ├ ƒ /leads/[id]/trade-letting
 ├ ƒ /onboarding
 ├ ƒ /organisations
@@ -111,6 +180,7 @@ Route (app)
 ├ ƒ /portal/register/[token]
 ├ ƒ /portal/sign-out
 ├ ƒ /portal/workers
+├ ƒ /profile
 ├ ƒ /projects
 ├ ƒ /projects/[id]
 ├ ƒ /projects/[id]/attendance
@@ -130,7 +200,7 @@ Route (app)
 ├ ƒ /subcontractors/[id]/documents
 ├ ƒ /subcontractors/new
 ├ ƒ /supervisor
-├ ○ /unauthorized
+├ ƒ /unauthorized
 ├ ƒ /worker/dashboard
 ├ ƒ /worker/inductions
 ├ ƒ /worker/login
