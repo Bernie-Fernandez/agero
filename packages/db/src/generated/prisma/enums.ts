@@ -776,3 +776,19 @@ export const MgmtSnapshotStatus = {
 } as const
 
 export type MgmtSnapshotStatus = (typeof MgmtSnapshotStatus)[keyof typeof MgmtSnapshotStatus]
+
+
+export const PlannedWorkBudgetStatus = {
+  DRAFT: 'DRAFT',
+  LOCKED: 'LOCKED'
+} as const
+
+export type PlannedWorkBudgetStatus = (typeof PlannedWorkBudgetStatus)[keyof typeof PlannedWorkBudgetStatus]
+
+
+export const BudgetLineSource = {
+  CRM: 'CRM',
+  PLACEHOLDER: 'PLACEHOLDER'
+} as const
+
+export type BudgetLineSource = (typeof BudgetLineSource)[keyof typeof BudgetLineSource]

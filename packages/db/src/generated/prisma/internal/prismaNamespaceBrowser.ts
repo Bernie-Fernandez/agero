@@ -190,7 +190,12 @@ export const ModelName = {
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
   UnsecuredRevenueBudget: 'UnsecuredRevenueBudget',
-  ManagementReportSnapshot: 'ManagementReportSnapshot'
+  ManagementReportSnapshot: 'ManagementReportSnapshot',
+  PlannedWorkBudget: 'PlannedWorkBudget',
+  BudgetBacklogLine: 'BudgetBacklogLine',
+  BudgetPlannedWorkLine: 'BudgetPlannedWorkLine',
+  BudgetMonthlySpread: 'BudgetMonthlySpread',
+  BudgetOverrideLog: 'BudgetOverrideLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2906,6 +2911,84 @@ export const ManagementReportSnapshotScalarFieldEnum = {
 } as const
 
 export type ManagementReportSnapshotScalarFieldEnum = (typeof ManagementReportSnapshotScalarFieldEnum)[keyof typeof ManagementReportSnapshotScalarFieldEnum]
+
+
+export const PlannedWorkBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  status: 'status',
+  lockedById: 'lockedById',
+  lockedAccountant: 'lockedAccountant',
+  lockedAccountantId: 'lockedAccountantId',
+  wipSignedOff: 'wipSignedOff',
+  lockedAt: 'lockedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlannedWorkBudgetScalarFieldEnum = (typeof PlannedWorkBudgetScalarFieldEnum)[keyof typeof PlannedWorkBudgetScalarFieldEnum]
+
+
+export const BudgetBacklogLineScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  sourceCatJobNo: 'sourceCatJobNo',
+  projectName: 'projectName',
+  carriedRevenue: 'carriedRevenue',
+  carriedProfit: 'carriedProfit',
+  wipCarryIn: 'wipCarryIn',
+  isManualAdjustment: 'isManualAdjustment',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetBacklogLineScalarFieldEnum = (typeof BudgetBacklogLineScalarFieldEnum)[keyof typeof BudgetBacklogLineScalarFieldEnum]
+
+
+export const BudgetPlannedWorkLineScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  source: 'source',
+  crmOpportunityId: 'crmOpportunityId',
+  opportunityName: 'opportunityName',
+  contractValue: 'contractValue',
+  forecastMarginPct: 'forecastMarginPct',
+  revenueCurveId: 'revenueCurveId',
+  backlogNextRevenue: 'backlogNextRevenue',
+  backlogNextProfit: 'backlogNextProfit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetPlannedWorkLineScalarFieldEnum = (typeof BudgetPlannedWorkLineScalarFieldEnum)[keyof typeof BudgetPlannedWorkLineScalarFieldEnum]
+
+
+export const BudgetMonthlySpreadScalarFieldEnum = {
+  id: 'id',
+  plannedWorkLineId: 'plannedWorkLineId',
+  month: 'month',
+  revenueAmount: 'revenueAmount',
+  isLockedCell: 'isLockedCell'
+} as const
+
+export type BudgetMonthlySpreadScalarFieldEnum = (typeof BudgetMonthlySpreadScalarFieldEnum)[keyof typeof BudgetMonthlySpreadScalarFieldEnum]
+
+
+export const BudgetOverrideLogScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  overriddenById: 'overriddenById',
+  accountantId: 'accountantId',
+  accountantName: 'accountantName',
+  reason: 'reason',
+  beforeJson: 'beforeJson',
+  afterJson: 'afterJson',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetOverrideLogScalarFieldEnum = (typeof BudgetOverrideLogScalarFieldEnum)[keyof typeof BudgetOverrideLogScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -305,6 +305,7 @@ model Organisation {
   revenueCurves               RevenueCurve[]
   cashFlowForecasts           CashFlowForecast[]
   managementReportSnapshots   ManagementReportSnapshot[]
+  plannedWorkBudgets          PlannedWorkBudget[]
 
   @@map("organisations")
   @@schema("projects")
@@ -4268,5 +4269,123 @@ model ManagementReportSnapshot {
   @@unique([organisationId, reportMonth])
   @@index([organisationId])
   @@map("management_report_snapshots")
+  @@schema("projects")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT X.10 — Unsecured Planned Work Budget (ADR-0003)
+// New annual-budget module built ALONGSIDE the existing Backlog Budget.
+// NOTE: the spec calls the parent table "AnnualBudget" but that name is already
+// taken by an unrelated line-item budget model, so it is named
+// PlannedWorkBudget here. Child tables keep the spec names.
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum PlannedWorkBudgetStatus {
+  DRAFT
+  LOCKED
+
+  @@schema("projects")
+}
+
+enum BudgetLineSource {
+  CRM
+  PLACEHOLDER
+
+  @@schema("projects")
+}
+
+model PlannedWorkBudget {
+  id                  String                  @id @default(uuid()) @db.Uuid
+  organisationId      String                  @map("organisation_id") @db.Uuid
+  organisation        Organisation            @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  financialYear       Int                     @map("financial_year") // FY being budgeted, e.g. 2027 for FY27
+  status              PlannedWorkBudgetStatus  @default(DRAFT)
+  lockedById          String?                 @map("locked_by_id") @db.Uuid
+  lockedAccountant    String?                 @map("locked_accountant") // captured name, not a role
+  lockedAccountantId  String?                 @map("locked_accountant_id") @db.Uuid
+  wipSignedOff        Boolean                 @default(false) @map("wip_signed_off")
+  lockedAt            DateTime?               @map("locked_at")
+  createdAt           DateTime                @default(now()) @map("created_at")
+  updatedAt           DateTime                @updatedAt @map("updated_at")
+
+  backlogLines        BudgetBacklogLine[]
+  plannedWorkLines    BudgetPlannedWorkLine[]
+  overrideLogs        BudgetOverrideLog[]
+
+  @@unique([organisationId, financialYear])
+  @@index([organisationId])
+  @@map("planned_work_budgets")
+  @@schema("projects")
+}
+
+model BudgetBacklogLine {
+  id                  String            @id @default(uuid()) @db.Uuid
+  plannedWorkBudgetId String            @map("planned_work_budget_id") @db.Uuid
+  plannedWorkBudget   PlannedWorkBudget @relation(fields: [plannedWorkBudgetId], references: [id], onDelete: Cascade)
+  sourceCatJobNo      String?           @map("source_cat_job_no")
+  projectName         String            @map("project_name")
+  carriedRevenue      Decimal           @default(0) @map("carried_revenue") @db.Decimal(15, 2)
+  carriedProfit       Decimal           @default(0) @map("carried_profit") @db.Decimal(15, 2)
+  wipCarryIn          Decimal           @default(0) @map("wip_carry_in") @db.Decimal(15, 2)
+  isManualAdjustment  Boolean           @default(false) @map("is_manual_adjustment")
+  notes               String?           @db.Text
+  createdAt           DateTime          @default(now()) @map("created_at")
+  updatedAt           DateTime          @updatedAt @map("updated_at")
+
+  @@index([plannedWorkBudgetId])
+  @@map("budget_backlog_lines")
+  @@schema("projects")
+}
+
+model BudgetPlannedWorkLine {
+  id                  String                @id @default(uuid()) @db.Uuid
+  plannedWorkBudgetId String                @map("planned_work_budget_id") @db.Uuid
+  plannedWorkBudget   PlannedWorkBudget     @relation(fields: [plannedWorkBudgetId], references: [id], onDelete: Cascade)
+  source              BudgetLineSource      @default(PLACEHOLDER)
+  crmOpportunityId    String?               @map("crm_opportunity_id") // HubSpot deal id when linked
+  opportunityName     String                @map("opportunity_name")
+  contractValue       Decimal               @default(0) @map("contract_value") @db.Decimal(15, 2)
+  forecastMarginPct   Decimal               @default(0) @map("forecast_margin_pct") @db.Decimal(8, 4) // stored as percentage, not fraction
+  revenueCurveId      String?               @map("revenue_curve_id") @db.Uuid
+  backlogNextRevenue  Decimal               @default(0) @map("backlog_next_revenue") @db.Decimal(15, 2)
+  backlogNextProfit   Decimal               @default(0) @map("backlog_next_profit") @db.Decimal(15, 2)
+  createdAt           DateTime              @default(now()) @map("created_at")
+  updatedAt           DateTime              @updatedAt @map("updated_at")
+
+  monthlySpread       BudgetMonthlySpread[]
+
+  @@index([plannedWorkBudgetId])
+  @@map("budget_planned_work_lines")
+  @@schema("projects")
+}
+
+model BudgetMonthlySpread {
+  id                 String                @id @default(uuid()) @db.Uuid
+  plannedWorkLineId  String                @map("planned_work_line_id") @db.Uuid
+  plannedWorkLine    BudgetPlannedWorkLine @relation(fields: [plannedWorkLineId], references: [id], onDelete: Cascade)
+  month              DateTime              @db.Date // first of month
+  revenueAmount      Decimal               @default(0) @map("revenue_amount") @db.Decimal(15, 2)
+  isLockedCell       Boolean               @default(false) @map("is_locked_cell")
+
+  @@unique([plannedWorkLineId, month])
+  @@index([plannedWorkLineId])
+  @@map("budget_monthly_spreads")
+  @@schema("projects")
+}
+
+model BudgetOverrideLog {
+  id                  String            @id @default(uuid()) @db.Uuid
+  plannedWorkBudgetId String            @map("planned_work_budget_id") @db.Uuid
+  plannedWorkBudget   PlannedWorkBudget @relation(fields: [plannedWorkBudgetId], references: [id], onDelete: Cascade)
+  overriddenById      String            @map("overridden_by_id") @db.Uuid
+  accountantId        String?           @map("accountant_id") @db.Uuid
+  accountantName      String?           @map("accountant_name")
+  reason              String            @db.Text
+  beforeJson          String?           @map("before_json") @db.Text
+  afterJson           String?           @map("after_json") @db.Text
+  createdAt           DateTime          @default(now()) @map("created_at")
+
+  @@index([plannedWorkBudgetId])
+  @@map("budget_override_logs")
   @@schema("projects")
 }

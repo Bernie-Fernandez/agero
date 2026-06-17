@@ -1700,6 +1700,40 @@ export type EnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
 }
 
+export type EnumPlannedWorkBudgetStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlannedWorkBudgetStatus | Prisma.EnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel> | $Enums.PlannedWorkBudgetStatus
+}
+
+export type EnumPlannedWorkBudgetStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlannedWorkBudgetStatus | Prisma.EnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlannedWorkBudgetStatusWithAggregatesFilter<$PrismaModel> | $Enums.PlannedWorkBudgetStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel>
+}
+
+export type EnumBudgetLineSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.BudgetLineSource | Prisma.EnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel> | $Enums.BudgetLineSource
+}
+
+export type EnumBudgetLineSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BudgetLineSource | Prisma.EnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBudgetLineSourceWithAggregatesFilter<$PrismaModel> | $Enums.BudgetLineSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -3339,6 +3373,40 @@ export type NestedEnumMgmtSnapshotStatusWithAggregatesFilter<$PrismaModel = neve
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumMgmtSnapshotStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlannedWorkBudgetStatus | Prisma.EnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel> | $Enums.PlannedWorkBudgetStatus
+}
+
+export type NestedEnumPlannedWorkBudgetStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PlannedWorkBudgetStatus | Prisma.EnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PlannedWorkBudgetStatus[] | Prisma.ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPlannedWorkBudgetStatusWithAggregatesFilter<$PrismaModel> | $Enums.PlannedWorkBudgetStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPlannedWorkBudgetStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumBudgetLineSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.BudgetLineSource | Prisma.EnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel> | $Enums.BudgetLineSource
+}
+
+export type NestedEnumBudgetLineSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.BudgetLineSource | Prisma.EnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.BudgetLineSource[] | Prisma.ListEnumBudgetLineSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumBudgetLineSourceWithAggregatesFilter<$PrismaModel> | $Enums.BudgetLineSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumBudgetLineSourceFilter<$PrismaModel>
 }
 
 

@@ -241,6 +241,7 @@ function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
 
       <GroupLabel label="Budget & Forecast" />
       <NavLink href="/finance/backlog-budget" label="Backlog Budget" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/planned-work-budget" label="Planned Work Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />

@@ -717,3 +717,28 @@ export type UnsecuredRevenueBudget = Prisma.UnsecuredRevenueBudgetModel
  * 
  */
 export type ManagementReportSnapshot = Prisma.ManagementReportSnapshotModel
+/**
+ * Model PlannedWorkBudget
+ * 
+ */
+export type PlannedWorkBudget = Prisma.PlannedWorkBudgetModel
+/**
+ * Model BudgetBacklogLine
+ * 
+ */
+export type BudgetBacklogLine = Prisma.BudgetBacklogLineModel
+/**
+ * Model BudgetPlannedWorkLine
+ * 
+ */
+export type BudgetPlannedWorkLine = Prisma.BudgetPlannedWorkLineModel
+/**
+ * Model BudgetMonthlySpread
+ * 
+ */
+export type BudgetMonthlySpread = Prisma.BudgetMonthlySpreadModel
+/**
+ * Model BudgetOverrideLog
+ * 
+ */
+export type BudgetOverrideLog = Prisma.BudgetOverrideLogModel

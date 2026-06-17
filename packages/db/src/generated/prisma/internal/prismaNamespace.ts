@@ -523,7 +523,12 @@ export const ModelName = {
   BacklogBudget: 'BacklogBudget',
   ProjectRevenueBudget: 'ProjectRevenueBudget',
   UnsecuredRevenueBudget: 'UnsecuredRevenueBudget',
-  ManagementReportSnapshot: 'ManagementReportSnapshot'
+  ManagementReportSnapshot: 'ManagementReportSnapshot',
+  PlannedWorkBudget: 'PlannedWorkBudget',
+  BudgetBacklogLine: 'BudgetBacklogLine',
+  BudgetPlannedWorkLine: 'BudgetPlannedWorkLine',
+  BudgetMonthlySpread: 'BudgetMonthlySpread',
+  BudgetOverrideLog: 'BudgetOverrideLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -539,7 +544,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "cashFlowForecast" | "cashFlowLineItem" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget" | "managementReportSnapshot"
+    modelProps: "organisation" | "user" | "moduleFlag" | "auditLog" | "userTraining" | "project" | "projectSubcontractor" | "company" | "contact" | "companyContact" | "costCode" | "companyTrade" | "insurancePolicyType" | "insurancePolicy" | "companyDocument" | "companyNote" | "contactNote" | "subcontractorProfile" | "portalInvitation" | "portalUser" | "portalSession" | "userBookmark" | "communication" | "notificationAlert" | "alertThreshold" | "contactType" | "associationLabel" | "expertiseTag" | "companyExpertiseTag" | "paymentTerm" | "systemEvent" | "incident" | "hazard" | "permit" | "emergencyContact" | "safetyInspection" | "imsEmployee" | "imsTrainingProvider" | "imsTrainingCourse" | "imsTrainingRecord" | "imsDocument" | "imsProcedureSignoff" | "imsPpeItem" | "imsPpeIssuance" | "imsAsset" | "imsAssetMaintenance" | "imsLegalCompliance" | "imsSdsRegister" | "imsChemApplication" | "imsChangeRegister" | "imsVisitorRegister" | "imsHazard" | "imsEmergencyPlan" | "imsBcpEntry" | "imsIncident" | "imsIncidentAction" | "imsAudit" | "imsAuditItem" | "imsOhsPerformance" | "imsContext" | "imsPerformanceObjective" | "imsPerformanceResult" | "imsMeeting" | "imsMeetingItem" | "imsMeetingAttendee" | "imsAction" | "imsClientSurvey" | "imsSupplierPurchase" | "designSource" | "designSourceVersion" | "designSettingGlobal" | "designSettingGlobalAudit" | "designSettingNonGlobal" | "designSettingNonGlobalProposal" | "designExpiryConfig" | "designRssFeed" | "designMonitoredUrl" | "designTrendItem" | "designChatbotSession" | "designChatbotMessage" | "estimate" | "estimateArea" | "estimateScenario" | "estimateTradeSection" | "estimateLine" | "estimateLineQuantity" | "estimateOption" | "estimateOptionLine" | "estimateLockaway" | "estimateLockawayLine" | "estimateInsightTag" | "estimateLineTag" | "tradePackage" | "tradeQuote" | "estimateSnapshot" | "scopeLibraryItem" | "estimateLineScopeAttachment" | "monthEndStatus" | "wipProjectLine" | "xeroWipSettings" | "xeroConnection" | "financeProject" | "financeProjectSnapshot" | "catImport" | "xeroPnL" | "xeroBankBalance" | "annualBudget" | "securedForecast" | "plannedDealRevenue" | "managementReport" | "wIPSchedule" | "managementReportSection" | "referenceLibraryItem" | "referenceLibraryRate" | "referenceLibraryBuildUp" | "estimateDocumentRegister" | "estimateDrawingConvention" | "estimateElementCode" | "drawingIntelligenceReport" | "drawingIntelligenceQuestion" | "drawingIntelligenceAnswer" | "takeoffImport" | "takeoffMeasurement" | "scopeTemplate" | "estimateLineScope" | "subcontractorInvitation" | "unsecuredOpportunity" | "lead" | "leadSyncLog" | "hubSpotSyncSettings" | "xeroPnLSnapshot" | "xeroBalanceSheetSnapshot" | "revenueCurve" | "cashFlowForecast" | "cashFlowLineItem" | "fYSettings" | "backlogBudget" | "projectRevenueBudget" | "unsecuredRevenueBudget" | "managementReportSnapshot" | "plannedWorkBudget" | "budgetBacklogLine" | "budgetPlannedWorkLine" | "budgetMonthlySpread" | "budgetOverrideLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -10903,6 +10908,376 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PlannedWorkBudget: {
+      payload: Prisma.$PlannedWorkBudgetPayload<ExtArgs>
+      fields: Prisma.PlannedWorkBudgetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlannedWorkBudgetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlannedWorkBudgetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        findFirst: {
+          args: Prisma.PlannedWorkBudgetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlannedWorkBudgetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        findMany: {
+          args: Prisma.PlannedWorkBudgetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>[]
+        }
+        create: {
+          args: Prisma.PlannedWorkBudgetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        createMany: {
+          args: Prisma.PlannedWorkBudgetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlannedWorkBudgetCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>[]
+        }
+        delete: {
+          args: Prisma.PlannedWorkBudgetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        update: {
+          args: Prisma.PlannedWorkBudgetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlannedWorkBudgetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlannedWorkBudgetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlannedWorkBudgetUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlannedWorkBudgetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlannedWorkBudgetPayload>
+        }
+        aggregate: {
+          args: Prisma.PlannedWorkBudgetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlannedWorkBudget>
+        }
+        groupBy: {
+          args: Prisma.PlannedWorkBudgetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlannedWorkBudgetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlannedWorkBudgetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlannedWorkBudgetCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetBacklogLine: {
+      payload: Prisma.$BudgetBacklogLinePayload<ExtArgs>
+      fields: Prisma.BudgetBacklogLineFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetBacklogLineFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetBacklogLineFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetBacklogLineFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetBacklogLineFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        findMany: {
+          args: Prisma.BudgetBacklogLineFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>[]
+        }
+        create: {
+          args: Prisma.BudgetBacklogLineCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        createMany: {
+          args: Prisma.BudgetBacklogLineCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetBacklogLineCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetBacklogLineDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        update: {
+          args: Prisma.BudgetBacklogLineUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetBacklogLineDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetBacklogLineUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetBacklogLineUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetBacklogLineUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetBacklogLinePayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetBacklogLineAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetBacklogLine>
+        }
+        groupBy: {
+          args: Prisma.BudgetBacklogLineGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetBacklogLineGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetBacklogLineCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetBacklogLineCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetPlannedWorkLine: {
+      payload: Prisma.$BudgetPlannedWorkLinePayload<ExtArgs>
+      fields: Prisma.BudgetPlannedWorkLineFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetPlannedWorkLineFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetPlannedWorkLineFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetPlannedWorkLineFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetPlannedWorkLineFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        findMany: {
+          args: Prisma.BudgetPlannedWorkLineFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>[]
+        }
+        create: {
+          args: Prisma.BudgetPlannedWorkLineCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        createMany: {
+          args: Prisma.BudgetPlannedWorkLineCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetPlannedWorkLineCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetPlannedWorkLineDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        update: {
+          args: Prisma.BudgetPlannedWorkLineUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetPlannedWorkLineDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetPlannedWorkLineUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetPlannedWorkLineUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetPlannedWorkLineUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetPlannedWorkLinePayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetPlannedWorkLineAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetPlannedWorkLine>
+        }
+        groupBy: {
+          args: Prisma.BudgetPlannedWorkLineGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetPlannedWorkLineGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetPlannedWorkLineCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetPlannedWorkLineCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetMonthlySpread: {
+      payload: Prisma.$BudgetMonthlySpreadPayload<ExtArgs>
+      fields: Prisma.BudgetMonthlySpreadFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetMonthlySpreadFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetMonthlySpreadFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetMonthlySpreadFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetMonthlySpreadFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        findMany: {
+          args: Prisma.BudgetMonthlySpreadFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>[]
+        }
+        create: {
+          args: Prisma.BudgetMonthlySpreadCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        createMany: {
+          args: Prisma.BudgetMonthlySpreadCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetMonthlySpreadCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetMonthlySpreadDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        update: {
+          args: Prisma.BudgetMonthlySpreadUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetMonthlySpreadDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetMonthlySpreadUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetMonthlySpreadUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetMonthlySpreadUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetMonthlySpreadPayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetMonthlySpreadAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetMonthlySpread>
+        }
+        groupBy: {
+          args: Prisma.BudgetMonthlySpreadGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetMonthlySpreadGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetMonthlySpreadCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetMonthlySpreadCountAggregateOutputType> | number
+        }
+      }
+    }
+    BudgetOverrideLog: {
+      payload: Prisma.$BudgetOverrideLogPayload<ExtArgs>
+      fields: Prisma.BudgetOverrideLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BudgetOverrideLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BudgetOverrideLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        findFirst: {
+          args: Prisma.BudgetOverrideLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BudgetOverrideLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        findMany: {
+          args: Prisma.BudgetOverrideLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>[]
+        }
+        create: {
+          args: Prisma.BudgetOverrideLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        createMany: {
+          args: Prisma.BudgetOverrideLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BudgetOverrideLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>[]
+        }
+        delete: {
+          args: Prisma.BudgetOverrideLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        update: {
+          args: Prisma.BudgetOverrideLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.BudgetOverrideLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BudgetOverrideLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BudgetOverrideLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.BudgetOverrideLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BudgetOverrideLogPayload>
+        }
+        aggregate: {
+          args: Prisma.BudgetOverrideLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBudgetOverrideLog>
+        }
+        groupBy: {
+          args: Prisma.BudgetOverrideLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetOverrideLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BudgetOverrideLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BudgetOverrideLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -13641,6 +14016,84 @@ export const ManagementReportSnapshotScalarFieldEnum = {
 export type ManagementReportSnapshotScalarFieldEnum = (typeof ManagementReportSnapshotScalarFieldEnum)[keyof typeof ManagementReportSnapshotScalarFieldEnum]
 
 
+export const PlannedWorkBudgetScalarFieldEnum = {
+  id: 'id',
+  organisationId: 'organisationId',
+  financialYear: 'financialYear',
+  status: 'status',
+  lockedById: 'lockedById',
+  lockedAccountant: 'lockedAccountant',
+  lockedAccountantId: 'lockedAccountantId',
+  wipSignedOff: 'wipSignedOff',
+  lockedAt: 'lockedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlannedWorkBudgetScalarFieldEnum = (typeof PlannedWorkBudgetScalarFieldEnum)[keyof typeof PlannedWorkBudgetScalarFieldEnum]
+
+
+export const BudgetBacklogLineScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  sourceCatJobNo: 'sourceCatJobNo',
+  projectName: 'projectName',
+  carriedRevenue: 'carriedRevenue',
+  carriedProfit: 'carriedProfit',
+  wipCarryIn: 'wipCarryIn',
+  isManualAdjustment: 'isManualAdjustment',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetBacklogLineScalarFieldEnum = (typeof BudgetBacklogLineScalarFieldEnum)[keyof typeof BudgetBacklogLineScalarFieldEnum]
+
+
+export const BudgetPlannedWorkLineScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  source: 'source',
+  crmOpportunityId: 'crmOpportunityId',
+  opportunityName: 'opportunityName',
+  contractValue: 'contractValue',
+  forecastMarginPct: 'forecastMarginPct',
+  revenueCurveId: 'revenueCurveId',
+  backlogNextRevenue: 'backlogNextRevenue',
+  backlogNextProfit: 'backlogNextProfit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetPlannedWorkLineScalarFieldEnum = (typeof BudgetPlannedWorkLineScalarFieldEnum)[keyof typeof BudgetPlannedWorkLineScalarFieldEnum]
+
+
+export const BudgetMonthlySpreadScalarFieldEnum = {
+  id: 'id',
+  plannedWorkLineId: 'plannedWorkLineId',
+  month: 'month',
+  revenueAmount: 'revenueAmount',
+  isLockedCell: 'isLockedCell'
+} as const
+
+export type BudgetMonthlySpreadScalarFieldEnum = (typeof BudgetMonthlySpreadScalarFieldEnum)[keyof typeof BudgetMonthlySpreadScalarFieldEnum]
+
+
+export const BudgetOverrideLogScalarFieldEnum = {
+  id: 'id',
+  plannedWorkBudgetId: 'plannedWorkBudgetId',
+  overriddenById: 'overriddenById',
+  accountantId: 'accountantId',
+  accountantName: 'accountantName',
+  reason: 'reason',
+  beforeJson: 'beforeJson',
+  afterJson: 'afterJson',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetOverrideLogScalarFieldEnum = (typeof BudgetOverrideLogScalarFieldEnum)[keyof typeof BudgetOverrideLogScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -14809,6 +15262,34 @@ export type ListEnumMgmtSnapshotStatusFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'PlannedWorkBudgetStatus'
+ */
+export type EnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlannedWorkBudgetStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlannedWorkBudgetStatus[]'
+ */
+export type ListEnumPlannedWorkBudgetStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlannedWorkBudgetStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetLineSource'
+ */
+export type EnumBudgetLineSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetLineSource'>
+    
+
+
+/**
+ * Reference to a field of type 'BudgetLineSource[]'
+ */
+export type ListEnumBudgetLineSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BudgetLineSource[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -15056,6 +15537,11 @@ export type GlobalOmitConfig = {
   projectRevenueBudget?: Prisma.ProjectRevenueBudgetOmit
   unsecuredRevenueBudget?: Prisma.UnsecuredRevenueBudgetOmit
   managementReportSnapshot?: Prisma.ManagementReportSnapshotOmit
+  plannedWorkBudget?: Prisma.PlannedWorkBudgetOmit
+  budgetBacklogLine?: Prisma.BudgetBacklogLineOmit
+  budgetPlannedWorkLine?: Prisma.BudgetPlannedWorkLineOmit
+  budgetMonthlySpread?: Prisma.BudgetMonthlySpreadOmit
+  budgetOverrideLog?: Prisma.BudgetOverrideLogOmit
 }
 
 /* Types for Logging */
