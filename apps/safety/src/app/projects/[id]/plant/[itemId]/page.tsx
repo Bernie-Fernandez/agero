@@ -41,7 +41,7 @@ export default async function PlantItemPage({
     where: { plantItemId_weekStarting: { plantItemId: itemId, weekStarting: monday } },
     select: { days: true },
   });
-  const initialDays = (existing?.days as PlantPreStartDay[]) ?? [];
+  const initialDays = (existing?.days as unknown as PlantPreStartDay[]) ?? [];
 
   const faulted = item.status === "FAULTED";
   const reportFaultAction = reportFault.bind(null, id, itemId);

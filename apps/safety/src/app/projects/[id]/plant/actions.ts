@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@/generated/prisma/client";
 import { requireRole, AGERO_ROLES } from "@/lib/auth";
 
 export type PlantState = { error?: string; ok?: boolean };
@@ -131,8 +132,8 @@ export async function savePlantPreStart(
   const week = new Date(weekStarting);
   await prisma.plantPreStart.upsert({
     where: { plantItemId_weekStarting: { plantItemId: itemId, weekStarting: week } },
-    create: { plantItemId: itemId, weekStarting: week, days, createdById: user.id },
-    update: { days },
+    create: { plantItemId: itemId, weekStarting: week, days: days as unknown as Prisma.InputJsonValue, createdById: user.id },
+    update: { days: days as unknown as Prisma.InputJsonValue },
   });
 
   // Any day reporting a fault flags the plant as FAULTED (blocked from use).

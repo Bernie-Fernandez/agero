@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@/generated/prisma/client";
 import { requireRole, AGERO_ROLES } from "@/lib/auth";
 import { createStorageAdminClient } from "@/lib/supabase/server";
 import { validateHierarchy, type ControlMeasure } from "@/lib/hierarchy-of-controls";
@@ -85,8 +86,8 @@ export async function createTrafficReview(
     data: {
       projectId,
       conductedById: user.id,
-      reviewItems: payload.reviewItems,
-      hazards: hazards.map((h) => ({ ...h, controls })),
+      reviewItems: payload.reviewItems as unknown as Prisma.InputJsonValue,
+      hazards: hazards.map((h) => ({ ...h, controls })) as unknown as Prisma.InputJsonValue,
       notes: payload.notes?.trim() || null,
       conductedAt,
       reportUrl,
