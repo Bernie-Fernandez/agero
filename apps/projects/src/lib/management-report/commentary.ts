@@ -100,10 +100,15 @@ export async function generateCommentary(
 
   const dataSummary = buildDataSummary(data, reportMonthLabel);
 
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('[management-report] generateCommentary: ANTHROPIC_API_KEY is not set');
+    return { ok: false, error: 'AI commentary is not configured (missing ANTHROPIC_API_KEY).' };
+  }
+
   try {
     const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: `Generate management report commentary for the following data:\n\n${dataSummary}` }],
@@ -127,7 +132,16 @@ export async function generateCommentary(
     };
   } catch (e) {
     console.error('[management-report] generateCommentary error:', e);
-    return { ok: false, error: 'Failed to generate commentary. Please try again.' };
+    // Surface the real error in non-production so the cause is diagnosable;
+    // keep a generic message in production.
+    const detail = e instanceof Error ? e.message : String(e);
+    const isProd = process.env.NODE_ENV === 'production';
+    return {
+      ok: false,
+      error: isProd
+        ? 'Failed to generate commentary. Please try again.'
+        : `Failed to generate commentary: ${detail}`,
+    };
   }
 }
 

@@ -114,34 +114,49 @@ export async function POST(req: NextRequest) {
   });
   if (!report) return NextResponse.json({ error: 'Report not found' }, { status: 404 });
 
-  const userPrompt = await buildPrompt(sectionKey, report.reportMonth, user.organisationId);
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('[generate-commentary] ANTHROPIC_API_KEY is not set');
+    return NextResponse.json({ error: 'AI commentary is not configured (missing ANTHROPIC_API_KEY).' }, { status: 503 });
+  }
 
-  const message = await client.messages.create({
-    model: 'claude-sonnet-4-20250514',
-    max_tokens: 500,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: userPrompt }],
-  });
+  try {
+    const userPrompt = await buildPrompt(sectionKey, report.reportMonth, user.organisationId);
 
-  const aiDraft = message.content
-    .filter((c) => c.type === 'text')
-    .map((c) => c.text)
-    .join('');
+    const message = await client.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: [{ role: 'user', content: userPrompt }],
+    });
 
-  // Upsert section record
-  const section = await prisma.managementReportSection.upsert({
-    where: { managementReportId_sectionKey: { managementReportId: reportId, sectionKey } },
-    create: {
-      managementReportId: reportId,
-      sectionKey,
-      aiDraft,
-      aiGeneratedAt: new Date(),
-    },
-    update: {
-      aiDraft,
-      aiGeneratedAt: new Date(),
-    },
-  });
+    const aiDraft = message.content
+      .filter((c) => c.type === 'text')
+      .map((c) => c.text)
+      .join('');
 
-  return NextResponse.json({ aiDraft, sectionId: section.id });
+    // Upsert section record
+    const section = await prisma.managementReportSection.upsert({
+      where: { managementReportId_sectionKey: { managementReportId: reportId, sectionKey } },
+      create: {
+        managementReportId: reportId,
+        sectionKey,
+        aiDraft,
+        aiGeneratedAt: new Date(),
+      },
+      update: {
+        aiDraft,
+        aiGeneratedAt: new Date(),
+      },
+    });
+
+    return NextResponse.json({ aiDraft, sectionId: section.id });
+  } catch (e) {
+    console.error('[generate-commentary] error:', e);
+    const detail = e instanceof Error ? e.message : String(e);
+    const isProd = process.env.NODE_ENV === 'production';
+    return NextResponse.json(
+      { error: isProd ? 'Failed to create commentary.' : `Failed to create commentary: ${detail}` },
+      { status: 500 },
+    );
+  }
 }

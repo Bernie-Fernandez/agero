@@ -167,7 +167,16 @@ export async function getCVRSummary(month?: string): Promise<{ ok: boolean; rows
         const bb = p.backlogBudgets[0];
         const wipEntry = wipMap.get(p.id);
 
-        const forecastMarginPct = snap ? num(snap.forecastMarginPct) : 0;
+        // Sprint X.9 — derive Forecast Margin % from dollar fields rather than the
+        // stored forecast_margin_pct column. That column is Decimal(5,4) and CAT
+        // imports populated it with a doubly-divided value (showing ~0.1–0.6%).
+        // (Contract − Forecast Final Costs) / Contract gives the true fraction,
+        // e.g. job 1282 → 27.5%. Falls back to the stored pct only if contract is 0.
+        const snapContract = snap ? num(snap.forecastContract) : 0;
+        const snapFinalCosts = snap ? num(snap.forecastFinalCosts) : 0;
+        const forecastMarginPct = snap
+          ? (snapContract > 0 ? (snapContract - snapFinalCosts) / snapContract : num(snap.forecastMarginPct))
+          : 0;
         const marginToEarn = snap ? num(snap.marginToEarn) : 0;
 
         const row = {

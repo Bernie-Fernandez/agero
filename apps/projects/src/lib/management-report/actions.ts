@@ -217,21 +217,43 @@ export async function getReportData(year?: number, month?: number): Promise<{ ok
     const directCostPct = avgRevenue > 0 ? avgCOS / avgRevenue : 0.65;
     const overheadMonthlyAvg = avgOverheads;
 
-    const selectedKey = MONTH_KEYS_FY27.find((k) => {
-      const ym = MONTH_KEY_TO_YM[k];
-      return ym && ym.year === selYear && ym.month === selMonth;
-    });
+    // Sprint X.9 — FY-aware budget & YTD. The selected month may sit in any
+    // financial year (e.g. Jan 2026 = FY26), not just the FY27 revenue spread.
+    // Build the list of months from FY start (July) up to and including the
+    // selected month, then resolve budget (from the monthly spread, where it
+    // exists for that month) and actual (from Xero) per month.
+    const ymOrd = (y: number, m: number) => y * 12 + (m - 1);
+    const fyStartYear = selMonth >= 7 ? selYear : selYear - 1; // FY runs Jul..Jun
+    const fyStartOrd = ymOrd(fyStartYear, 7);
+    const selOrd = ymOrd(selYear, selMonth);
+
+    // Reverse lookup: (year, month) → budget month column key (FY27/FY28 only)
+    const keyForYM = (y: number, m: number): string | undefined =>
+      MONTH_KEYS_FY27.find((k) => {
+        const ym = MONTH_KEY_TO_YM[k];
+        return ym && ym.year === y && ym.month === m;
+      });
+
+    // Budget revenue for the selected month from its monthly spread (0 if the
+    // selected month's FY has no monthly budget data, e.g. FY26).
+    const selectedKey = keyForYM(selYear, selMonth);
     const budgetMonthRevenue = selectedKey ? budgetRow[selectedKey] : 0;
     const budgetDirectCosts = budgetMonthRevenue * directCostPct;
     const budgetGrossMargin = budgetMonthRevenue - budgetDirectCosts;
     const budgetNetProfit = budgetGrossMargin - overheadMonthlyAvg;
 
-    // YTD: sum from FY start (jul26) up to and including selected month
-    const fy27KeysToDate = selectedKey
-      ? MONTH_KEYS_FY27.slice(0, MONTH_KEYS_FY27.indexOf(selectedKey) + 1)
-      : [];
-    const ytdBudgetRevenue = fy27KeysToDate.reduce((s, k) => s + budgetRow[k], 0);
-    const ytdActualRevenue = fy27KeysToDate.reduce((s, k) => s + actualRow[k], 0);
+    // YTD: accumulate from the selected month's FY start (July) to the selected
+    // month inclusive. Actual = Xero totalIncome; budget = monthly spread.
+    let ytdBudgetRevenue = 0;
+    let ytdActualRevenue = 0;
+    for (let ord = fyStartOrd; ord <= selOrd; ord++) {
+      const y = Math.floor(ord / 12);
+      const m = (ord % 12) + 1;
+      const key = keyForYM(y, m);
+      if (key) ytdBudgetRevenue += budgetRow[key];
+      const pnlRec = allPnl.find((p) => p.year === y && p.month === m);
+      if (pnlRec) ytdActualRevenue += num(pnlRec.totalIncome);
+    }
 
     const pnl: MgmtPnLRow = {
       budgetRevenue: budgetMonthRevenue,

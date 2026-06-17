@@ -221,35 +221,41 @@ function LockedItem({ label, depth = 0 }: { label: string; depth?: number }) {
 // ── FinanceSubItems ───────────────────────────────────────────────────────────
 
 function FinanceSubItems({ onItemClick }: { onItemClick?: () => void }) {
-  const pathname = usePathname();
-  const onSettings = pathname.startsWith('/finance/settings');
-
+  // Sprint X.9 — grouped into logical workflow sections following the monthly
+  // workflow: data in → projects & WIP → budget & forecast → reporting → admin.
+  // Group labels are non-clickable uppercase muted labels (GroupLabel).
   return (
     <div className="ml-1 mt-0.5 space-y-0.5">
       <NavLink href="/finance/dashboard" label="Dashboard" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/backlog-budget" label="Backlog Budget" depth={1} onItemClick={onItemClick} />
+
+      <GroupLabel label="Data In" />
+      <NavLink href="/finance/cat-import" label="CAT Import" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/cat-data" label="CAT Data" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/settings/xero" label="Xero Connection" depth={1} onItemClick={onItemClick} />
+
+      <GroupLabel label="Projects & WIP" />
       <NavLink href="/finance/projects" label="Projects" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/month-end" label="Month-end" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/balance-sheet" label="Balance Sheet" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/cash-flow" label="Cash Flow" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/cvr" label="CVR" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/management-report" label="Management Report" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/month-end" label="Month-end" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/settings/xero-wip" label="WIP Accounts" depth={1} onItemClick={onItemClick} />
+
+      <GroupLabel label="Budget & Forecast" />
+      <NavLink href="/finance/backlog-budget" label="Backlog Budget" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/secured-forecast" label="Secured Forecast" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/planned-work" label="Planned Work" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/budget" label="Budget" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/cash-flow" label="Cash Flow" depth={1} onItemClick={onItemClick} />
+
+      <GroupLabel label="Reporting" />
+      <NavLink href="/finance/management-report" label="Management Report" depth={1} onItemClick={onItemClick} />
+      <NavLink href="/finance/balance-sheet" label="Balance Sheet" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/reports" label="Reports" depth={1} onItemClick={onItemClick} />
+
+      <GroupLabel label="Admin" />
       <NavLink href="/finance/verify" label="Verify Data" depth={1} onItemClick={onItemClick} />
       <NavLink href="/finance/projects-master" label="Project Master" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/cat-data" label="CAT Data" depth={1} onItemClick={onItemClick} />
-      <NavLink href="/finance/cat-import" label="CAT Import" depth={1} onItemClick={onItemClick} />
-      <Section sectionKey="finance-settings" label="Settings" defaultOpen={onSettings} forceOpen={onSettings} onItemClick={onItemClick}>
-        <NavLink href="/finance/settings/xero" label="Xero Connection" depth={2} onItemClick={onItemClick} />
-        <NavLink href="/finance/settings/month-status" label="Month Status" depth={2} onItemClick={onItemClick} />
-        <NavLink href="/finance/settings/xero-wip" label="WIP Accounts" depth={2} onItemClick={onItemClick} />
-        <StubbedItem label="S-Curves" depth={2} />
-        <StubbedItem label="HubSpot Sync" depth={2} />
-        <StubbedItem label="Deal Defaults" depth={2} />
-      </Section>
+      <StubbedItem label="S-Curves" depth={1} />
+      <NavLink href="/finance/settings/month-status" label="Month Status" depth={1} onItemClick={onItemClick} />
     </div>
   );
 }

@@ -104,7 +104,7 @@ function CommentaryArea({
 
 // ─── Revenue Section ──────────────────────────────────────────────────────────
 
-function RevenueSection({ data, monthKeys }: { data: PageData['revenue']; monthKeys: readonly string[] }) {
+function RevenueSection({ data, pnl, monthKeys }: { data: PageData['revenue']; pnl: PageData['pnl']; monthKeys: readonly string[] }) {
   const fy27Keys = monthKeys.filter((k): k is keyof typeof MONTH_LABELS => k in MONTH_LABELS);
   const rows = [
     { label: 'Budget', values: data.budget, cls: 'text-zinc-600' },
@@ -125,11 +125,13 @@ function RevenueSection({ data, monthKeys }: { data: PageData['revenue']; monthK
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="border border-zinc-100 rounded-lg p-3">
           <p className="text-xs text-zinc-500">Actual Revenue (month)</p>
-          <p className="text-lg font-bold text-zinc-900">{fmt(data.actual[fy27Keys[fy27Keys.length - 1]] ?? 0)}</p>
+          {/* Sprint X.9 — use the selected month's Xero P&L revenue (same source
+              as the P&L section), not the last FY27 spread column. */}
+          <p className="text-lg font-bold text-zinc-900">{fmt(pnl.actualRevenue)}</p>
         </div>
         <div className="border border-zinc-100 rounded-lg p-3">
           <p className="text-xs text-zinc-500">Budget (month)</p>
-          <p className="text-lg font-bold text-zinc-600">{fmt(data.budget[fy27Keys[fy27Keys.length - 1]] ?? 0)}</p>
+          <p className="text-lg font-bold text-zinc-600">{fmt(pnl.budgetRevenue)}</p>
         </div>
       </div>
       <div className="overflow-x-auto">
@@ -796,7 +798,7 @@ export default function MgmtReportClient({ initialData }: { initialData: MgmtRep
       {/* Sections */}
       <div className="p-6 space-y-6 max-w-6xl mx-auto">
         <Section id="mgmt-revenue" title="Revenue">
-          <RevenueSection data={data.revenue} monthKeys={data.fy27MonthKeys} />
+          <RevenueSection data={data.revenue} pnl={data.pnl} monthKeys={data.fy27MonthKeys} />
           <CommentaryArea
             value={commentary.revenue}
             onChange={(v) => updateCommentaryField('revenue', v)}
