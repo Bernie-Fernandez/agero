@@ -145,6 +145,10 @@ model Organisation {
   workerInvitations       WorkerInvitation[]      @relation("WorkerInvitationOrg")
   complexityTemplates     ComplexityTemplate[]
   credentialConfig        CredentialConfig?
+  performanceRecords      SubcontractorPerformanceRecord[] @relation("PerformanceOrg")
+  whsDocumentTemplates    WHSDocumentTemplate[]
+  annualReviews           AnnualReview[]
+  legislationRegister     LegislationRegister[]
 
   @@map("organisations")
 }
@@ -204,6 +208,9 @@ model User {
   firstAidChecklists        FirstAidChecklist[]        @relation("FirstAidChecklistConductedBy")
   dilapidationReports       DilapidationReport[]       @relation("DilapidationConductedBy")
   defectsInspections        DefectsInspection[]        @relation("DefectsInspectionConductedBy")
+  manualHandlingAssessments ManualHandlingAssessment[] @relation("ManualHandlingConductedBy")
+  trafficManagementReviews  TrafficManagementReview[]  @relation("TrafficReviewConductedBy")
+  taskRiskAssessments       TaskRiskAssessment[]       @relation("TaskRaConductedBy")
 
   @@index([organisationId])
   @@map("users")
@@ -449,6 +456,7 @@ model WorkerAccount {
   buildingMgmtInductions BuildingMgmtInduction[]
   privacyConsent         WorkerPrivacyConsent?
   retentionFlags         RetentionFlag[]
+  deletionRequests       DataDeletionRequest[]
 
   @@map("worker_accounts")
 }
@@ -559,6 +567,15 @@ model SafetyProject {
   firstAidChecklists        FirstAidChecklist[]
   dilapidationReports       DilapidationReport[]
   defectsInspections        DefectsInspection[]
+  manualHandlingAssessments ManualHandlingAssessment[]
+  trafficManagementReviews  TrafficManagementReview[]
+  msdsEntries               MSDSRegister[]
+  plantRegister             PlantRegister?
+  plantItems                PlantItem[]
+  testTagEntries            TestTagRegister[]
+  ppeLoans                  PPELoanRegister[]
+  taskRiskAssessments       TaskRiskAssessment[]
+  subcontractorPerformance  SubcontractorPerformanceRecord[]
 
   @@index([organisationId])
   @@map("safety_projects")
@@ -1074,4 +1091,348 @@ model DefectItem {
 
   @@index([inspectionId])
   @@map("defect_items")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT S3 — Risk Assessments, Registers and IMS Training Bridge
+//
+// Shared `controls` JSON shape on every risk assessment:
+//   [{ level: "ELIMINATE"|"SUBSTITUTE"|"ISOLATE"|"ENGINEERING"|"ADMINISTRATIVE"|"PPE",
+//      description: string }]
+// The Victorian hierarchy of controls is enforced in the UI/server: PPE cannot be
+// the only control level. See src/lib/hierarchy-of-controls.ts.
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum PlantStatus {
+  OPERATIONAL
+  FAULTED
+  OUT_OF_SERVICE
+}
+
+enum LoanStatus {
+  ON_LOAN
+  RETURNED
+}
+
+// Manual Handling Risk Assessment — hierarchy of controls enforced (PPE not sole control).
+// Auto-triggered when the pre-start identifies a manual handling risk.
+model ManualHandlingAssessment {
+  id               String        @id @default(uuid()) @db.Uuid
+  projectId        String        @map("project_id") @db.Uuid
+  project          SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById    String        @map("conducted_by_id") @db.Uuid
+  conductedBy      User          @relation("ManualHandlingConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  taskDescription  String        @map("task_description") @db.Text
+  location         String?
+  riskFactors      Json          @default("[]") @map("risk_factors") // string[]
+  controls         Json          @default("[]") // [{level, description}]
+  ppeOnly          Boolean       @default(false) @map("ppe_only")
+  ppeJustification String?       @map("ppe_justification") @db.Text
+  residualRisk     String?       @map("residual_risk")
+  conductedAt      DateTime      @map("conducted_at")
+  reportUrl        String?       @map("report_url")
+  createdAt        DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("manual_handling_assessments")
+}
+
+// Traffic Management Review Checklist + Traffic Hazard Risk Assessment (AS 1742.3-2009).
+// Auto-triggered when the pre-start identifies road or traffic adjacent work.
+model TrafficManagementReview {
+  id              String        @id @default(uuid()) @db.Uuid
+  projectId       String        @map("project_id") @db.Uuid
+  project         SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById   String        @map("conducted_by_id") @db.Uuid
+  conductedBy     User          @relation("TrafficReviewConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  reviewItems     Json          @default("[]") @map("review_items") // [{id, question, answer: 'YES'|'NO'|'NA', notes?}]
+  hazards         Json          @default("[]") // [{hazard, riskRating, controls: [{level, description}]}]
+  notes           String?       @db.Text
+  conductedAt     DateTime      @map("conducted_at")
+  reportUrl       String?       @map("report_url")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("traffic_management_reviews")
+}
+
+// MSDS / hazardous substance register — one row per substance, per project.
+// 5-year MSDS currency rule enforced (currency computed from msdsIssueDate).
+// Auto-triggered when the pre-start flags hazardous substances in use.
+model MSDSRegister {
+  id              String        @id @default(uuid()) @db.Uuid
+  projectId       String        @map("project_id") @db.Uuid
+  project         SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  productName     String        @map("product_name")
+  manufacturer    String?
+  location        String?
+  hazardous       Boolean       @default(false)
+  dangerousGoods  Boolean       @default(false) @map("dangerous_goods")
+  dgClass         String?       @map("dg_class")
+  msdsIssueDate   DateTime?     @map("msds_issue_date") @db.Date
+  msdsUrl         String?       @map("msds_url")
+  riskAssessment  String?       @map("risk_assessment") @db.Text
+  controls        Json          @default("[]") // [{level, description}]
+  addedById       String        @map("added_by_id") @db.Uuid
+  addedByName     String        @map("added_by_name")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("msds_register")
+}
+
+// Plant register container — one per project.
+model PlantRegister {
+  id          String        @id @default(uuid()) @db.Uuid
+  projectId   String        @unique @map("project_id") @db.Uuid
+  project     SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdById String        @map("created_by_id") @db.Uuid
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  items PlantItem[]
+
+  @@map("plant_registers")
+}
+
+// Individual plant item. Faulted plant is blocked from use until resolved.
+// Auto-triggered when the pre-start flags powered mobile plant on site.
+model PlantItem {
+  id                 String        @id @default(uuid()) @db.Uuid
+  registerId         String        @map("register_id") @db.Uuid
+  register           PlantRegister @relation(fields: [registerId], references: [id], onDelete: Cascade)
+  projectId          String        @map("project_id") @db.Uuid
+  project            SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  plantType          String        @map("plant_type")
+  make               String?
+  model              String?
+  serialNumber       String?       @map("serial_number")
+  registrationNumber String?       @map("registration_number")
+  owner              String?
+  lastServiceDate    DateTime?     @map("last_service_date") @db.Date
+  nextServiceDate    DateTime?     @map("next_service_date") @db.Date
+  status             PlantStatus   @default(OPERATIONAL)
+  faultNotes         String?       @map("fault_notes") @db.Text
+  faultReportedAt    DateTime?     @map("fault_reported_at")
+  createdAt          DateTime      @default(now()) @map("created_at")
+
+  preStarts PlantPreStart[]
+
+  @@index([registerId])
+  @@index([projectId])
+  @@map("plant_items")
+}
+
+// Daily plant pre-start checklist — one row per plant item per week (Mon–Sun grid).
+model PlantPreStart {
+  id            String    @id @default(uuid()) @db.Uuid
+  plantItemId   String    @map("plant_item_id") @db.Uuid
+  plantItem     PlantItem @relation(fields: [plantItemId], references: [id], onDelete: Cascade)
+  weekStarting  DateTime  @map("week_starting") @db.Date
+  days          Json      @default("[]") // [{date, weekday, completed, operatorName, faultFound, notes}]
+  createdById   String    @map("created_by_id") @db.Uuid
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@unique([plantItemId, weekStarting])
+  @@index([plantItemId])
+  @@map("plant_pre_starts")
+}
+
+// Test and tag register — electrical equipment, 3-month testing cycle enforced with alerts.
+// Auto-triggered when the pre-start flags high-risk electrical or crystalline silica work.
+model TestTagRegister {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  itemName      String        @map("item_name")
+  owner         String?
+  location      String?
+  tagColour     String?       @map("tag_colour")
+  lastTestDate  DateTime      @map("last_test_date") @db.Date
+  nextTestDate  DateTime      @map("next_test_date") @db.Date
+  testedBy      String?       @map("tested_by")
+  addedById     String        @map("added_by_id") @db.Uuid
+  addedByName   String        @map("added_by_name")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("test_tag_register")
+}
+
+// PPE and equipment loan register — one row per loan.
+model PPELoanRegister {
+  id            String        @id @default(uuid()) @db.Uuid
+  projectId     String        @map("project_id") @db.Uuid
+  project       SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  itemName      String        @map("item_name")
+  borrowerName  String        @map("borrower_name")
+  company       String?
+  licenceNumber String?       @map("licence_number")
+  deposit       String?
+  loanedAt      DateTime      @map("loaned_at") @db.Date
+  dueDate       DateTime?     @map("due_date") @db.Date
+  returnedAt    DateTime?     @map("returned_at") @db.Date
+  status        LoanStatus    @default(ON_LOAN)
+  issuedById    String        @map("issued_by_id") @db.Uuid
+  issuedByName  String        @map("issued_by_name")
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("ppe_loan_register")
+}
+
+// General-purpose task risk assessment — hierarchy of controls enforced (PPE not sole control).
+model TaskRiskAssessment {
+  id               String        @id @default(uuid()) @db.Uuid
+  projectId        String        @map("project_id") @db.Uuid
+  project          SafetyProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  conductedById    String        @map("conducted_by_id") @db.Uuid
+  conductedBy      User          @relation("TaskRaConductedBy", fields: [conductedById], references: [id], onDelete: Cascade)
+  taskDescription  String        @map("task_description") @db.Text
+  location         String?
+  hazards          Json          @default("[]") // [{hazard, riskRating}]
+  controls         Json          @default("[]") // [{level, description}]
+  ppeOnly          Boolean       @default(false) @map("ppe_only")
+  ppeJustification String?       @map("ppe_justification") @db.Text
+  residualRisk     String?       @map("residual_risk")
+  conductedAt      DateTime      @map("conducted_at")
+  reportUrl        String?       @map("report_url")
+  createdAt        DateTime      @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@map("task_risk_assessments")
+}
+
+// Subcontractor safety performance record — supplements live-aggregated performance data
+// (ISO 45001 Clause 8.1.4.2). One row per logged performance event for a subcontractor org.
+model SubcontractorPerformanceRecord {
+  id             String         @id @default(uuid()) @db.Uuid
+  organisationId String         @map("organisation_id") @db.Uuid
+  organisation   Organisation   @relation("PerformanceOrg", fields: [organisationId], references: [id], onDelete: Cascade)
+  projectId      String?        @map("project_id") @db.Uuid
+  project        SafetyProject? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  recordType     String         @map("record_type") // INCIDENT | NCR | SWMS_REJECTION | INDUCTION | OBSERVATION | NOTE
+  description    String         @db.Text
+  recordedById   String         @map("recorded_by_id") @db.Uuid
+  recordedByName String         @map("recorded_by_name")
+  occurredAt     DateTime       @map("occurred_at")
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  @@index([organisationId])
+  @@index([projectId])
+  @@map("subcontractor_performance_records")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPRINT S4 — Annual Review Engine, Legislation Register, Management Review Feed
+// ─────────────────────────────────────────────────────────────────────────────
+
+// One row per WHS document/form type. Version control: each annual review
+// sign-off increments currentVersion and creates an AnnualReview snapshot.
+model WHSDocumentTemplate {
+  id                   String       @id @default(uuid()) @db.Uuid
+  organisationId       String       @map("organisation_id") @db.Uuid
+  organisation         Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  templateKey          String       @map("template_key")
+  name                 String
+  isoClauses           String[]     @map("iso_clauses")
+  complianceCodes      String[]     @map("compliance_codes")
+  currentVersion       Int          @default(1) @map("current_version")
+  reviewIntervalMonths Int          @default(12) @map("review_interval_months")
+  nextReviewDate       DateTime     @map("next_review_date") @db.Date
+  lastReviewedAt       DateTime?    @map("last_reviewed_at")
+  lastReviewedBy       String?      @map("last_reviewed_by")
+  flaggedForReview     Boolean      @default(false) @map("flagged_for_review")
+  flaggedReason        String?      @map("flagged_reason") @db.Text
+  createdAt            DateTime     @default(now()) @map("created_at")
+  updatedAt            DateTime     @updatedAt @map("updated_at")
+
+  annualReviews AnnualReview[]
+
+  @@unique([organisationId, templateKey])
+  @@index([organisationId])
+  @@map("whs_document_templates")
+}
+
+// A completed annual review of a WHS document template. Immutable record;
+// retains the version it produced as the audit/version history.
+model AnnualReview {
+  id             String              @id @default(uuid()) @db.Uuid
+  organisationId String              @map("organisation_id") @db.Uuid
+  organisation   Organisation        @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  templateId     String              @map("template_id") @db.Uuid
+  template       WHSDocumentTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateKey    String              @map("template_key")
+  version        Int
+  reviewedById   String              @map("reviewed_by_id") @db.Uuid
+  reviewerName   String              @map("reviewer_name")
+  reviewedAt     DateTime            @map("reviewed_at")
+  checklist      Json                // [{item, clause, confirmed, notes}]
+  outcome        String              @default("CURRENT") // CURRENT | UPDATED
+  notes          String?             @db.Text
+  signatureUrl   String?             @map("signature_url")
+  pdfUrl         String?             @map("pdf_url")
+  createdAt      DateTime            @default(now()) @map("created_at")
+
+  @@index([organisationId])
+  @@index([templateId])
+  @@map("annual_reviews")
+}
+
+// Register of applicable Victorian legislation, standards and compliance codes.
+// Director updates version/date; system flags affected document templates.
+model LegislationRegister {
+  id                  String       @id @default(uuid()) @db.Uuid
+  organisationId      String       @map("organisation_id") @db.Uuid
+  organisation        Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
+  title               String
+  reference           String?
+  category            String       // ACT | REGULATION | STANDARD | COMPLIANCE_CODE | PRACTICE_NOTE
+  version             String
+  effectiveDate       DateTime?    @map("effective_date") @db.Date
+  lastReviewedDate    DateTime?    @map("last_reviewed_date") @db.Date
+  affectsTemplateKeys String[]     @map("affects_template_keys")
+  notes               String?      @db.Text
+  isActive            Boolean      @default(true) @map("is_active")
+  updatedByName       String?      @map("updated_by_name")
+  sortOrder           Int          @default(0) @map("sort_order")
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  @@unique([organisationId, title])
+  @@index([organisationId])
+  @@map("legislation_register")
+}
+
+// Audit trail of privacy/retention anonymisation and deletion actions (S4 §F).
+model DataRetentionLog {
+  id              String   @id @default(uuid()) @db.Uuid
+  workerAccountId String?  @map("worker_account_id") @db.Uuid
+  subjectLabel    String   @map("subject_label") // masked identifier of the data subject
+  action          String   // ANONYMISED | DELETED | DISMISSED
+  source          String   @default("MANUAL") // NIGHTLY_JOB | MANUAL | DELETION_REQUEST
+  fieldsCleared   String[] @map("fields_cleared")
+  performedById   String?  @map("performed_by_id") @db.Uuid
+  performedByName String   @map("performed_by_name")
+  occurredAt      DateTime @default(now()) @map("occurred_at")
+
+  @@index([occurredAt])
+  @@map("data_retention_logs")
+}
+
+// Worker-initiated data deletion request, queued for Director approval (S4 §F).
+model DataDeletionRequest {
+  id              String    @id @default(uuid()) @db.Uuid
+  workerAccountId String    @map("worker_account_id") @db.Uuid
+  workerAccount   WorkerAccount @relation(fields: [workerAccountId], references: [id], onDelete: Cascade)
+  reason          String?   @db.Text
+  status          String    @default("PENDING") // PENDING | APPROVED | REJECTED
+  requestedAt     DateTime  @default(now()) @map("requested_at")
+  resolvedAt      DateTime? @map("resolved_at")
+  resolvedById    String?   @map("resolved_by_id") @db.Uuid
+  resolvedByName  String?   @map("resolved_by_name")
+
+  @@index([workerAccountId])
+  @@index([status])
+  @@map("data_deletion_requests")
 }

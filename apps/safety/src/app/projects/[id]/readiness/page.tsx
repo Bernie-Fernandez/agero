@@ -9,6 +9,7 @@ import {
   currentPassedTemplateIds,
   type ReadinessStatus,
 } from "@/lib/readiness";
+import { S3_FORMS, requiredS3Forms, type S3FormKey } from "@/lib/s3-triggers";
 import { toggleBuildingMgmtRequired } from "./actions";
 
 function StatusDot({ status }: { status: ReadinessStatus }) {
@@ -49,7 +50,7 @@ export default async function ReadinessPage({
         preStartAssessments: {
           orderBy: { createdAt: "desc" },
           take: 1,
-          select: { id: true, signOffName: true, signOffAt: true, pdfUrl: true },
+          select: { id: true, signOffName: true, signOffAt: true, pdfUrl: true, highRiskFlags: true },
         },
         sitePreparationPlan: {
           select: { status: true, signOffName: true, signOffAt: true },
@@ -165,6 +166,49 @@ export default async function ReadinessPage({
     : layer3Warn > 0 && layer3NotReady === 0 && layer1Ready && layer2Ready
       ? "warning"
       : "not_ready";
+
+  // ── S3 — Risk Assessments & Registers ──────────────────────────────────────
+  const requiredForms = requiredS3Forms(preStart?.highRiskFlags ?? null);
+  const [mhCount, trafficCount, msdsCount, plantCount, testTagCount, taskRaCount, ppeCount] =
+    await Promise.all([
+      prisma.manualHandlingAssessment.count({ where: { projectId: id } }),
+      prisma.trafficManagementReview.count({ where: { projectId: id } }),
+      prisma.mSDSRegister.count({ where: { projectId: id } }),
+      prisma.plantItem.count({ where: { projectId: id } }),
+      prisma.testTagRegister.count({ where: { projectId: id } }),
+      prisma.taskRiskAssessment.count({ where: { projectId: id } }),
+      prisma.pPELoanRegister.count({ where: { projectId: id } }),
+    ]);
+  const s3Counts: Record<S3FormKey, number> = {
+    "manual-handling": mhCount,
+    traffic: trafficCount,
+    msds: msdsCount,
+    plant: plantCount,
+    "test-tag": testTagCount,
+  };
+  const s3Rows = [
+    ...S3_FORMS.map((f) => ({
+      label: f.label,
+      desc: f.desc,
+      route: f.route,
+      count: s3Counts[f.key],
+      required: requiredForms.has(f.key),
+    })),
+    {
+      label: "Task Risk Assessment",
+      desc: "General-purpose risk assessment · hierarchy of controls enforced",
+      route: "task-risk",
+      count: taskRaCount,
+      required: false,
+    },
+    {
+      label: "PPE & Equipment Loan Register",
+      desc: "Item, borrower, licence, deposit, return tracking",
+      route: "ppe-loans",
+      count: ppeCount,
+      required: false,
+    },
+  ];
 
   return (
     <div className="min-h-full flex-1 bg-zinc-50 dark:bg-zinc-950">
@@ -774,6 +818,67 @@ export default async function ReadinessPage({
                   </Link>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* ── RISK ASSESSMENTS & REGISTERS (S3) ────────────────────────────── */}
+          <section>
+            <div className="flex items-center gap-3">
+              <span className="inline-block h-2.5 w-2.5 rounded-full bg-purple-400" />
+              <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
+                Risk Assessments & Registers
+              </h2>
+              <span className="text-xs text-zinc-500">auto-triggered from pre-start</span>
+              {user.role === "admin" && (
+                <a
+                  href={`/projects/${id}/ims-credentials.csv`}
+                  className="ml-auto text-xs text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  IMS credentials CSV →
+                </a>
+              )}
+            </div>
+            <div className="mt-3 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+              {s3Rows.map((row, i, arr) => {
+                const outstanding = row.required && row.count === 0;
+                return (
+                  <div
+                    key={row.route}
+                    className={`flex items-center justify-between px-5 py-3 ${i < arr.length - 1 ? "border-b border-zinc-100 dark:border-zinc-800" : ""} ${outstanding ? "bg-red-50/40 dark:bg-red-950/10" : ""}`}
+                  >
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">{row.label}</p>
+                        {row.required && (
+                          <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
+                            Pre-start required
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-xs text-zinc-500">{row.desc}</p>
+                    </div>
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span
+                        className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          row.count > 0
+                            ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                            : outstanding
+                              ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                              : "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
+                        }`}
+                      >
+                        {row.count > 0 ? `${row.count} recorded` : outstanding ? "Required" : "Optional"}
+                      </span>
+                      <Link
+                        href={`/projects/${id}/${row.route}`}
+                        className="text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                      >
+                        Open →
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
         </div>

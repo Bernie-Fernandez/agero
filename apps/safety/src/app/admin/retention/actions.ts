@@ -5,17 +5,25 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/generated/prisma/client";
 import { requireRole } from "@/lib/auth";
 
-export async function anonymiseWorker(flagId: string): Promise<{ error?: string }> {
-  const user = await requireRole(["admin"]);
+// Fields cleared during anonymisation — recorded in the retention audit trail.
+const ANONYMISED_FIELDS = [
+  "mobile", "firstName", "lastName", "dateOfBirth", "address", "nextOfKin",
+  "medicalConditions", "whiteCard", "tradeLicence", "firstAidCert", "trades",
+  "certDocuments", "credentialPhotos",
+];
 
-  const flag = await prisma.retentionFlag.findUnique({
-    where: { id: flagId },
-    include: { workerAccount: { select: { id: true, mobile: true } } },
-  });
-  if (!flag?.workerAccount) return { error: "Flag not found" };
-  if (flag.resolution !== null) return { error: "Already resolved" };
+function maskMobile(mobile: string): string {
+  if (mobile.length <= 7) return "*".repeat(mobile.length);
+  return mobile.slice(0, 4) + "*".repeat(mobile.length - 7) + mobile.slice(-3);
+}
 
-  const { id: workerAccountId, mobile: originalMobile } = flag.workerAccount;
+/** Anonymises a worker account + linked project Worker records, then logs the action. */
+async function performAnonymisation(
+  workerAccountId: string,
+  originalMobile: string,
+  performer: { id: string; name: string | null; email: string },
+  source: string,
+): Promise<void> {
   const anonSuffix = workerAccountId.slice(0, 8);
 
   await prisma.workerAccount.update({
@@ -63,6 +71,33 @@ export async function anonymiseWorker(flagId: string): Promise<{ error?: string 
     },
   });
 
+  await prisma.dataRetentionLog.create({
+    data: {
+      workerAccountId,
+      subjectLabel: maskMobile(originalMobile),
+      action: "ANONYMISED",
+      source,
+      fieldsCleared: ANONYMISED_FIELDS,
+      performedById: performer.id,
+      performedByName: performer.name ?? performer.email,
+    },
+  });
+}
+
+export async function anonymiseWorker(flagId: string): Promise<{ error?: string }> {
+  const user = await requireRole(["admin"]);
+
+  const flag = await prisma.retentionFlag.findUnique({
+    where: { id: flagId },
+    include: { workerAccount: { select: { id: true, mobile: true } } },
+  });
+  if (!flag?.workerAccount) return { error: "Flag not found" };
+  if (flag.resolution !== null) return { error: "Already resolved" };
+
+  const { id: workerAccountId, mobile: originalMobile } = flag.workerAccount;
+
+  await performAnonymisation(workerAccountId, originalMobile, user, "MANUAL");
+
   await prisma.retentionFlag.update({
     where: { id: flagId },
     data: { resolution: "anonymised", resolvedAt: new Date(), resolvedById: user.id },
@@ -72,10 +107,56 @@ export async function anonymiseWorker(flagId: string): Promise<{ error?: string 
   return {};
 }
 
+export async function approveDeletionRequest(requestId: string): Promise<{ error?: string }> {
+  const user = await requireRole(["admin"]);
+
+  const req = await prisma.dataDeletionRequest.findUnique({
+    where: { id: requestId },
+    include: { workerAccount: { select: { id: true, mobile: true } } },
+  });
+  if (!req) return { error: "Request not found" };
+  if (req.status !== "PENDING") return { error: "Already resolved" };
+
+  await performAnonymisation(req.workerAccount.id, req.workerAccount.mobile, user, "DELETION_REQUEST");
+
+  // Resolve any open retention flag too
+  await prisma.retentionFlag.updateMany({
+    where: { workerAccountId: req.workerAccount.id, resolution: null },
+    data: { resolution: "anonymised", resolvedAt: new Date(), resolvedById: user.id },
+  });
+
+  await prisma.dataDeletionRequest.update({
+    where: { id: requestId },
+    data: { status: "APPROVED", resolvedAt: new Date(), resolvedById: user.id, resolvedByName: user.name ?? user.email },
+  });
+
+  revalidatePath("/admin/retention");
+  return {};
+}
+
+export async function rejectDeletionRequest(requestId: string): Promise<{ error?: string }> {
+  const user = await requireRole(["admin"]);
+
+  const req = await prisma.dataDeletionRequest.findUnique({ where: { id: requestId } });
+  if (!req) return { error: "Request not found" };
+  if (req.status !== "PENDING") return { error: "Already resolved" };
+
+  await prisma.dataDeletionRequest.update({
+    where: { id: requestId },
+    data: { status: "REJECTED", resolvedAt: new Date(), resolvedById: user.id, resolvedByName: user.name ?? user.email },
+  });
+
+  revalidatePath("/admin/retention");
+  return {};
+}
+
 export async function dismissRetentionFlag(flagId: string): Promise<{ error?: string }> {
   const user = await requireRole(["admin"]);
 
-  const flag = await prisma.retentionFlag.findUnique({ where: { id: flagId } });
+  const flag = await prisma.retentionFlag.findUnique({
+    where: { id: flagId },
+    include: { workerAccount: { select: { id: true, mobile: true } } },
+  });
   if (!flag) return { error: "Flag not found" };
   if (flag.resolution !== null) return { error: "Already resolved" };
 
@@ -83,6 +164,20 @@ export async function dismissRetentionFlag(flagId: string): Promise<{ error?: st
     where: { id: flagId },
     data: { resolution: "dismissed", resolvedAt: new Date(), resolvedById: user.id },
   });
+
+  if (flag.workerAccount) {
+    await prisma.dataRetentionLog.create({
+      data: {
+        workerAccountId: flag.workerAccount.id,
+        subjectLabel: maskMobile(flag.workerAccount.mobile),
+        action: "DISMISSED",
+        source: "MANUAL",
+        fieldsCleared: [],
+        performedById: user.id,
+        performedByName: user.name ?? user.email,
+      },
+    });
+  }
 
   revalidatePath("/admin/retention");
   return {};

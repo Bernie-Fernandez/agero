@@ -250,6 +250,35 @@ export default async function DashboardPage() {
             Supervisor view
           </Link>
         </div>
+
+        {/* Compliance & Governance (ISO 45001) — Directors / Safety Managers */}
+        {(appUser.role === "admin" || appUser.role === "safety_manager") && (
+          <div className="mt-10">
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-50 mb-3">
+              Compliance & Governance
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { href: "/admin/annual-review", label: "Annual Review Engine", desc: "WHS document review · version control · ISO 10.3" },
+                { href: "/admin/legislation", label: "Legislation Register", desc: "Victorian legislation & compliance codes" },
+                { href: "/admin/audit-evidence", label: "ISO 45001 Audit Evidence", desc: "Auto-generated evidence package by clause" },
+                { href: "/admin/management-review-summary", label: "Management Review Summary", desc: "Safety metrics for the IMS review agenda" },
+                ...(appUser.role === "admin"
+                  ? [{ href: "/admin/retention", label: "Data Retention", desc: "Privacy anonymisation, audit trail, deletion requests" }]
+                  : []),
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700"
+                >
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-50">{item.label}</p>
+                  <p className="mt-0.5 text-xs text-zinc-500">{item.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

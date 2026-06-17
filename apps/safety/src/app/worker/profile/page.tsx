@@ -4,6 +4,7 @@ import { getWorkerSession } from "@/lib/worker-auth";
 import { prisma } from "@/lib/prisma";
 import { ProfileForm } from "./profile-form";
 import { CredentialCapture } from "./credential-capture";
+import { DataDeletion } from "./data-deletion";
 import type { CredDoc } from "./credential-capture";
 import { DEFAULT_CREDENTIAL_CONFIG } from "@/lib/credential-config";
 import type { CredentialConfigData } from "@/lib/credential-config";
@@ -81,6 +82,11 @@ export default async function WorkerProfilePage() {
   });
 
   if (!account) redirect("/worker/login");
+
+  const pendingDeletion = await prisma.dataDeletionRequest.findFirst({
+    where: { workerAccountId: session.workerAccountId, status: "PENDING" },
+    select: { requestedAt: true },
+  });
 
   // Load org credential config (global, first record); fall back to defaults
   const configRow = await prisma.credentialConfig.findFirst();
@@ -177,6 +183,11 @@ export default async function WorkerProfilePage() {
         </div>
         <CredentialCapture docs={credDocs} config={config} />
       </section>
+
+      <DataDeletion
+        pending={!!pendingDeletion}
+        pendingRequestedAt={pendingDeletion ? pendingDeletion.requestedAt.toISOString() : null}
+      />
     </div>
   );
 }

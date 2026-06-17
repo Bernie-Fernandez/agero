@@ -392,3 +392,97 @@ export async function sendRetentionReviewEmail(opts: {
     `),
   });
 }
+
+// ── Sprint S4 ────────────────────────────────────────────────────────────────
+
+export async function sendAnnualReviewDueEmail(opts: {
+  to: string;
+  adminName: string | null;
+  dueTemplates: { name: string; nextReviewDate: string; daysUntil: number }[];
+  reviewUrl: string;
+}) {
+  const count = opts.dueTemplates.length;
+  const subject = `WHS annual review due: ${count} document${count !== 1 ? "s" : ""} within 30 days`;
+  const rows = opts.dueTemplates
+    .map(
+      (t) =>
+        `<tr><td style="padding:6px 8px;font-size:13px">${t.name}</td><td style="padding:6px 8px;font-size:13px;color:#71717a">${t.nextReviewDate}</td><td style="padding:6px 8px;font-size:13px;color:${t.daysUntil <= 7 ? "#dc2626" : "#d97706"}">${t.daysUntil <= 0 ? "Overdue" : `${t.daysUntil}d`}</td></tr>`,
+    )
+    .join("");
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject,
+    html: html(`
+      <h2 style="margin-top:0">Annual WHS documentation review due</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p>The following WHS document templates are due for their scheduled annual review (ISO 45001 Clause 10.3).
+        Review and re-sign each to confirm it remains current against Victorian legislation.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0;border:1px solid #e4e4e7;border-radius:6px">
+        <thead><tr style="background:#f4f4f5">
+          <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Document</th>
+          <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Review due</th>
+          <th style="padding:8px;text-align:left;font-size:12px;color:#71717a;font-weight:600">Status</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p style="margin:32px 0">
+        <a href="${opts.reviewUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Open annual review →</a>
+      </p>
+    `),
+  });
+}
+
+export async function sendLegislationUpdateEmail(opts: {
+  to: string;
+  adminName: string | null;
+  legislationTitle: string;
+  newVersion: string;
+  affectedTemplates: string[];
+  reviewUrl: string;
+}) {
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject: `Legislation updated: ${opts.legislationTitle} — ${opts.affectedTemplates.length} template(s) flagged`,
+    html: html(`
+      <h2 style="margin-top:0;color:#d97706">Legislative change — review required</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p><strong>${opts.legislationTitle}</strong> has been updated to version <strong>${opts.newVersion}</strong>.</p>
+      <p>The following document templates reference this legislation and have been flagged for review:</p>
+      <ul style="font-size:14px">${opts.affectedTemplates.map((t) => `<li style="padding:2px 0">${t}</li>`).join("")}</ul>
+      <p style="margin:32px 0">
+        <a href="${opts.reviewUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Review flagged templates →</a>
+      </p>
+    `),
+  });
+}
+
+export async function sendQuarterlyRetentionReportEmail(opts: {
+  to: string;
+  adminName: string | null;
+  periodLabel: string;
+  anonymised: number;
+  dismissed: number;
+  pendingRequests: number;
+  reviewUrl: string;
+}) {
+  await resend.emails.send({
+    from: FROM,
+    to: opts.to,
+    subject: `Quarterly data retention report — ${opts.periodLabel}`,
+    html: html(`
+      <h2 style="margin-top:0">Quarterly data retention report</h2>
+      <p>Hi${opts.adminName ? ` ${opts.adminName}` : ""},</p>
+      <p>Privacy retention activity for <strong>${opts.periodLabel}</strong> (APP 11, Privacy Act 1988):</p>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin:16px 0">
+        <tr><td style="padding:6px 0;color:#71717a">Records anonymised</td><td style="padding:6px 0;font-weight:600;text-align:right">${opts.anonymised}</td></tr>
+        <tr><td style="padding:6px 0;color:#71717a">Flags dismissed (retained)</td><td style="padding:6px 0;font-weight:600;text-align:right">${opts.dismissed}</td></tr>
+        <tr><td style="padding:6px 0;color:#71717a">Deletion requests pending</td><td style="padding:6px 0;font-weight:600;text-align:right">${opts.pendingRequests}</td></tr>
+      </table>
+      <p style="margin:32px 0">
+        <a href="${opts.reviewUrl}" style="background:#18181b;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Open retention dashboard →</a>
+      </p>
+    `),
+  });
+}
