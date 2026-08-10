@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
 type Status = 'OPEN' | 'READY' | 'SYNCED' | 'LOCKED';
@@ -29,9 +29,21 @@ function fmtDate(d: string | null) {
   if (!d) return '—';
   return new Date(d).toLocaleDateString('en-AU', { day: '2-digit', month: 'short', year: 'numeric' });
 }
+function fyLabel(y: number) {
+  return `FY${String(y).slice(-2)} (Jul ${y - 1} – Jun ${y})`;
+}
 
-export default function MonthStatusClient({ statuses: initial }: { statuses: MonthStatus[] }) {
+export default function MonthStatusClient({
+  statuses: initial,
+  fy,
+  fyOptions,
+}: {
+  statuses: MonthStatus[];
+  fy: number;
+  fyOptions: number[];
+}) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [statuses, setStatuses] = useState(initial);
   const [loading, setLoading] = useState<string | null>(null);
   const [syncResult, setSyncResult] = useState<string | null>(null);
@@ -88,11 +100,31 @@ export default function MonthStatusClient({ statuses: initial }: { statuses: Mon
     setConfirmOpen(null);
   }
 
+  function changeFY(year: number) {
+    startTransition(() => router.push(`/finance/settings/month-status?fy=${year}`));
+  }
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
-      <div className="mb-6">
-        <h1 className="text-xl font-semibold text-zinc-900">Month Status</h1>
-        <p className="text-sm text-zinc-500 mt-1">Control the month-end gate before syncing Xero data.</p>
+      <div className="mb-6 flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-xl font-semibold text-zinc-900">Month Status</h1>
+          <p className="text-sm text-zinc-500 mt-1">Control the month-end gate before syncing Xero data.</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <label htmlFor="fy" className="text-sm text-zinc-500">Financial year</label>
+          <select
+            id="fy"
+            value={fy}
+            onChange={(e) => changeFY(Number(e.target.value))}
+            disabled={isPending}
+            className="border border-zinc-200 rounded-lg px-3 py-2 text-sm bg-white disabled:opacity-50"
+          >
+            {fyOptions.map((y) => (
+              <option key={y} value={y}>{fyLabel(y)}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {syncResult && (
@@ -115,6 +147,13 @@ export default function MonthStatusClient({ statuses: initial }: { statuses: Mon
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100">
+            {statuses.length === 0 && (
+              <tr>
+                <td colSpan={7} className="px-4 py-6 text-center text-sm text-zinc-500">
+                  No month-end records for {fyLabel(fy)}.
+                </td>
+              </tr>
+            )}
             {statuses.map((s) => (
               <tr key={s.id} className="hover:bg-zinc-50">
                 <td className="px-4 py-3 font-medium text-zinc-900">{fmtMonth(s.reportMonth)}</td>
