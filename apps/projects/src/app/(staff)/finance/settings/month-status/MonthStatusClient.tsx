@@ -189,13 +189,22 @@ export default function MonthStatusClient({
                       </button>
                     )}
                     {s.status === 'SYNCED' && (
-                      <button
-                        onClick={() => setConfirmOpen({ type: 'lock', id: s.id, month: s.reportMonth })}
-                        disabled={loading === s.id}
-                        className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-md disabled:opacity-50"
-                      >
-                        Lock Month
-                      </button>
+                      <>
+                        <button
+                          onClick={() => setConfirmOpen({ type: 'sync', id: s.id, month: s.reportMonth })}
+                          disabled={loading === s.id}
+                          className="px-3 py-1 border border-zinc-300 hover:bg-zinc-50 text-zinc-700 text-xs font-medium rounded-md disabled:opacity-50"
+                        >
+                          {loading === s.id ? 'Syncing…' : 'Re-sync Xero'}
+                        </button>
+                        <button
+                          onClick={() => setConfirmOpen({ type: 'lock', id: s.id, month: s.reportMonth })}
+                          disabled={loading === s.id}
+                          className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-md disabled:opacity-50"
+                        >
+                          Lock Month
+                        </button>
+                      </>
                     )}
                   </div>
                 </td>
