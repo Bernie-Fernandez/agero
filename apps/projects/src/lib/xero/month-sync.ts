@@ -200,18 +200,30 @@ export async function syncXeroMonth(
     lines: ['proj wages and salaries', 'proj staff superannuation', 'direct labour'],
     groupTotals: ['total direct labour'],
   });
+  // "Indirect Wages" is a reporting concept, not an account — Agero's P&L has no
+  // such line. It is the overhead payroll: directors' and admin wages plus their
+  // superannuation. Confirmed against the real May 2026 report, where these four
+  // accounts sum to 39,821.36. Deliberately excludes "Staff Recruitment" and
+  // "Staff Amenities/Events", which are not labour.
   const indirectLabourGroup = resolveAccountGroup(pnlRows, {
-    lines: ['indirect wages', 'indirect labour'],
-    // If those are a sub-section rather than leaf accounts, there are no
-    // matching Rows to sum — fall back to the section's own total.
+    lines: [
+      'directors wages',
+      'directors superannuation',
+      'admin wages and salaries',
+      'admin staff superannuation',
+      'indirect wages',
+      'indirect labour',
+    ],
     groupTotals: ['total indirect wages', 'total indirect labour'],
   });
-  // "Educational Associations (Non Marketing)" contains the word marketing but
-  // is explicitly not marketing spend; excluded so it cannot be picked up.
+  // Marketing spend is the "Marketing - *" accounts less the hospitality lines:
+  // entertainment and events are excluded by policy, as is any account named
+  // "(Non Marketing)". May 2026 = Advertising 748.69 + Graphics/Website 3800.00
+  // = 4,548.69.
   const marketingGroup = resolveAccountGroup(pnlRows, {
     lines: ['marketing'],
     groupTotals: ['total marketing'],
-    exclude: ['non marketing'],
+    exclude: ['non marketing', 'marketing entertainment', 'marketing events'],
   });
 
   const directLabour = directLabourGroup.total;
