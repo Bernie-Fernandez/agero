@@ -5,6 +5,7 @@ import { decryptToken } from '@/lib/xero/crypto';
 import {
   findReportValue,
   findReportValueOrZero,
+  listAccountLines,
   parseAmount,
   sumAccountLines,
   type MatchedAccountLine,
@@ -47,6 +48,40 @@ function extractAgedTotal(data: AgedResponse | null): Decimal {
   return walk((data.Reports?.[0]?.Rows ?? []) as AgedRow[]) ?? new Decimal(0);
 }
 
+type AccountGroup = {
+  total: Decimal;
+  matched: MatchedAccountLine[];
+  /** How the figure was arrived at — recorded so a 0.00 is never ambiguous. */
+  source: 'account-lines' | 'group-total' | 'not-found';
+};
+
+/**
+ * Resolve a reporting concept that may be expressed either as a set of account
+ * lines or as a single sub-section total, depending on how the chart of
+ * accounts is arranged.
+ *
+ * Account lines win when present. When none match, the section total is used —
+ * that covers a concept nested as its own sub-section, where the only row
+ * carrying the name is the "Total X" SummaryRow. `not-found` means the labels
+ * matched nothing at all, which is a chart-of-accounts change, not a real zero.
+ */
+function resolveAccountGroup(
+  rows: ReportRow[],
+  spec: { lines: string[]; groupTotals: string[]; exclude?: string[] },
+): AccountGroup {
+  const summed = sumAccountLines(rows, spec.lines, { exclude: spec.exclude });
+  if (summed.matched.length > 0) {
+    return { total: summed.total, matched: summed.matched, source: 'account-lines' };
+  }
+
+  const groupTotal = findReportValue(rows, ...spec.groupTotals, ...spec.lines);
+  if (groupTotal !== null) {
+    return { total: groupTotal, matched: [], source: 'group-total' };
+  }
+
+  return { total: new Decimal(0), matched: [], source: 'not-found' };
+}
+
 export type XeroMonthSyncSummary = {
   revenue: string;
   costOfSales: string;
@@ -56,8 +91,14 @@ export type XeroMonthSyncSummary = {
   netProfitDerived: boolean;
   directLabour: string;
   indirectLabour: string;
+  marketingExpenses: string;
   directLabourAccounts: MatchedAccountLine[];
   indirectLabourAccounts: MatchedAccountLine[];
+  marketingAccounts: MatchedAccountLine[];
+  /** Where each derived figure came from — 'not-found' means no label matched. */
+  resolution: Record<'directLabour' | 'indirectLabour' | 'marketing', AccountGroup['source']>;
+  /** Every account line the P&L contained, so labels can be checked after the fact. */
+  accountLines: MatchedAccountLine[];
   tradeDebtors: string;
   tradeCreditors: string;
   debtorDays: string;
@@ -149,25 +190,33 @@ export async function syncXeroMonth(
   const costOfSales = costOfSalesFound ?? new Decimal(0);
   const indirectExpenses = indirectExpensesFound ?? new Decimal(0);
 
-  // Labour — summed from named accounts, because Agero's chart of accounts has
-  // no "Direct Labour"/"Indirect Labour" account and direct labour spans two
-  // lines. A single first-match lookup could express neither, so both fields
-  // were silently reading 0.
+  // Labour and marketing — summed from named accounts, because Agero's chart of
+  // accounts has no "Direct Labour"/"Indirect Labour" account and these concepts
+  // can span several lines. A first-match lookup could express none of them.
   //   Cost of Sales      → "Proj. Wages and Salaries", "Proj. Staff Superannuation"
-  //   Operating Expenses → "Indirect Wages"
+  //   Operating Expenses → "Indirect Wages", "Marketing"
   // The generic aliases are kept so a renamed/standard account still resolves.
-  const directLabourLines = sumAccountLines(pnlRows, [
-    'proj wages and salaries',
-    'proj staff superannuation',
-    'direct labour',
-  ]);
-  const indirectLabourLines = sumAccountLines(pnlRows, ['indirect wages', 'indirect labour']);
+  const directLabourGroup = resolveAccountGroup(pnlRows, {
+    lines: ['proj wages and salaries', 'proj staff superannuation', 'direct labour'],
+    groupTotals: ['total direct labour'],
+  });
+  const indirectLabourGroup = resolveAccountGroup(pnlRows, {
+    lines: ['indirect wages', 'indirect labour'],
+    // If those are a sub-section rather than leaf accounts, there are no
+    // matching Rows to sum — fall back to the section's own total.
+    groupTotals: ['total indirect wages', 'total indirect labour'],
+  });
+  // "Educational Associations (Non Marketing)" contains the word marketing but
+  // is explicitly not marketing spend; excluded so it cannot be picked up.
+  const marketingGroup = resolveAccountGroup(pnlRows, {
+    lines: ['marketing'],
+    groupTotals: ['total marketing'],
+    exclude: ['non marketing'],
+  });
 
-  const directLabour = directLabourLines.total;
-  const indirectLabour = indirectLabourLines.total;
-
-  // Single account line — genuinely optional, absent is legitimately 0.
-  const marketingExpenses = findReportValueOrZero(pnlRows, 'marketing');
+  const directLabour = directLabourGroup.total;
+  const indirectLabour = indirectLabourGroup.total;
+  const marketingExpenses = marketingGroup.total;
 
   // Agero's chart of accounts does not always emit standalone Gross/Net Profit
   // rows; derive them when Xero omits them.
@@ -291,8 +340,16 @@ export async function syncXeroMonth(
       netProfitDerived: netProfitFound === null,
       directLabour: directLabour.toFixed(2),
       indirectLabour: indirectLabour.toFixed(2),
-      directLabourAccounts: directLabourLines.matched,
-      indirectLabourAccounts: indirectLabourLines.matched,
+      marketingExpenses: marketingExpenses.toFixed(2),
+      directLabourAccounts: directLabourGroup.matched,
+      indirectLabourAccounts: indirectLabourGroup.matched,
+      marketingAccounts: marketingGroup.matched,
+      resolution: {
+        directLabour: directLabourGroup.source,
+        indirectLabour: indirectLabourGroup.source,
+        marketing: marketingGroup.source,
+      },
+      accountLines: listAccountLines(pnlRows),
       tradeDebtors: effectiveDebtors.toFixed(2),
       tradeCreditors: effectiveCreditors.toFixed(2),
       debtorDays: debtorDays.toFixed(1),

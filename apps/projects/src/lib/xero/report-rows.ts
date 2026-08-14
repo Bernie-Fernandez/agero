@@ -54,7 +54,13 @@ export function rowLabel(row: XeroReportRow): string {
  * punctuation used in the chart of accounts.
  */
 function normalise(text: string): string {
-  return text.toLowerCase().replace(/[.,'"]/g, '').replace(/\s+/g, ' ').trim();
+  return text
+    .toLowerCase()
+    // Punctuation becomes a space rather than vanishing, so word boundaries
+    // survive: "(Non Marketing)" → "non marketing", "Non-Marketing" → "non marketing".
+    .replace(/[.,'"()[\]/-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 /**
@@ -119,6 +125,26 @@ export function findReportValueOrZero(
 export type MatchedAccountLine = { name: string; amount: string };
 
 /**
+ * Every account line in the report, in document order. Used to record what the
+ * report actually contained, so a field that resolves to zero can be told apart
+ * from a field whose account has been renamed.
+ */
+export function listAccountLines(rows: XeroReportRow[]): MatchedAccountLine[] {
+  const lines: MatchedAccountLine[] = [];
+  const walk = (current: XeroReportRow[]) => {
+    for (const row of current) {
+      if ((row.rowType ?? '').toLowerCase() === 'row' && (row.cells?.length ?? 0) >= 2) {
+        const name = (row.cells?.[0]?.value ?? '').trim();
+        if (name) lines.push({ name, amount: parseAmount(row.cells?.[1]?.value).toFixed(2) });
+      }
+      if (row.rows?.length) walk(row.rows);
+    }
+  };
+  walk(rows);
+  return lines;
+}
+
+/**
  * Sum every account line whose label matches any of `labels`.
  *
  * Only `Row` entries are considered — SummaryRow totals and Section headers are
@@ -134,8 +160,10 @@ export type MatchedAccountLine = { name: string; amount: string };
 export function sumAccountLines(
   rows: XeroReportRow[],
   labels: string[],
+  options: { exclude?: string[] } = {},
 ): { total: Decimal; matched: MatchedAccountLine[] } {
   const needles = labels.map(normalise).filter(Boolean);
+  const excluded = (options.exclude ?? []).map(normalise).filter(Boolean);
   const matched: MatchedAccountLine[] = [];
   let total = new Decimal(0);
 
@@ -145,7 +173,8 @@ export function sumAccountLines(
         (row.rowType ?? '').toLowerCase() === 'row' && (row.cells?.length ?? 0) >= 2;
       if (isAccountLine) {
         const label = normalise(rowLabel(row));
-        if (needles.some((needle) => labelMatches(label, needle))) {
+        const isExcluded = excluded.some((needle) => label.includes(needle));
+        if (!isExcluded && needles.some((needle) => labelMatches(label, needle))) {
           const amount = parseAmount(row.cells?.[1]?.value);
           total = total.plus(amount);
           matched.push({ name: (row.cells?.[0]?.value ?? '').trim(), amount: amount.toFixed(2) });

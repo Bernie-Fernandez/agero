@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAppUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { createAuditLog } from '@/lib/audit';
 import { firstDay, syncXeroMonth } from '@/lib/xero/month-sync';
 
 export async function POST(req: NextRequest) {
@@ -41,6 +42,29 @@ export async function POST(req: NextRequest) {
   await prisma.monthEndStatus.update({
     where: { organisationId_reportMonth: { organisationId: user.organisationId, reportMonth: monthKey } },
     data: { status: 'SYNCED', xeroSyncedAt: new Date() },
+  });
+
+  // Record what the P&L actually contained. Nothing else persists the Xero
+  // report, so without this a field that syncs as 0.00 cannot be told apart
+  // from an account that has been renamed in Xero.
+  await createAuditLog({
+    userId: user.id,
+    action: 'MONTH_STATUS_XERO_SYNCED',
+    entity: 'MonthEndStatus',
+    entityId: gate.id,
+    detail: {
+      report_month: monthKey.toISOString().split('T')[0],
+      revenue: result.summary.revenue,
+      net_profit: result.summary.netProfit,
+      direct_labour: result.summary.directLabour,
+      indirect_labour: result.summary.indirectLabour,
+      marketing_expenses: result.summary.marketingExpenses,
+      resolution: result.summary.resolution,
+      direct_labour_accounts: result.summary.directLabourAccounts,
+      indirect_labour_accounts: result.summary.indirectLabourAccounts,
+      marketing_accounts: result.summary.marketingAccounts,
+      pnl_account_lines: result.summary.accountLines,
+    },
   });
 
   return NextResponse.json({ ok: true, summary: result.summary });
