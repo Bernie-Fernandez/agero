@@ -48,15 +48,39 @@ export function rowLabel(row: XeroReportRow): string {
 }
 
 /**
+ * Normalise a label for comparison: lowercase, drop punctuation, collapse
+ * whitespace. Lets a needle like "proj wages and salaries" match Xero's
+ * "Proj. Wages and Salaries" without the caller having to guess the exact
+ * punctuation used in the chart of accounts.
+ */
+function normalise(text: string): string {
+  return text.toLowerCase().replace(/[.,'"]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Does `label` contain `needle` starting at a word boundary?
+ *
+ * The boundary matters: a plain substring test makes "Indirect Labour" satisfy
+ * a needle of "direct labour", which would sweep overhead labour into the
+ * direct labour total. Trailing text is still allowed, so "Indirect Wages
+ * Accrual" still matches "indirect wages".
+ */
+function labelMatches(label: string, needle: string): boolean {
+  const index = label.indexOf(needle);
+  if (index === -1) return false;
+  return index === 0 || !/[a-z0-9]/.test(label[index - 1]);
+}
+
+/**
  * Depth-first search for the first row whose label contains `label` AND that
  * actually carries an amount cell. Section headers (cells = []) are skipped as
  * match candidates but are still descended into.
  */
 function findRowByLabel(rows: XeroReportRow[], label: string): XeroReportRow | null {
-  const needle = label.toLowerCase();
+  const needle = normalise(label);
   for (const row of rows) {
     const hasAmount = (row.cells?.length ?? 0) >= 2;
-    if (hasAmount && rowLabel(row).includes(needle)) return row;
+    if (hasAmount && labelMatches(normalise(rowLabel(row)), needle)) return row;
     if (row.rows?.length) {
       const found = findRowByLabel(row.rows, label);
       if (found) return found;
@@ -90,4 +114,47 @@ export function findReportValueOrZero(
   ...labels: string[]
 ): Decimal {
   return findReportValue(rows, ...labels) ?? new Decimal(0);
+}
+
+export type MatchedAccountLine = { name: string; amount: string };
+
+/**
+ * Sum every account line whose label matches any of `labels`.
+ *
+ * Only `Row` entries are considered — SummaryRow totals and Section headers are
+ * skipped, so a "Total Wages" row can never be added on top of the lines it
+ * already aggregates. Each row is visited once, so a line matching two labels
+ * is still only counted once.
+ *
+ * Unlike `findReportValue`, this does not stop at the first hit: a single
+ * reporting concept can span several accounts (Agero's direct labour is
+ * "Proj. Wages and Salaries" + "Proj. Staff Superannuation"). The matched line
+ * names are returned so callers can surface exactly what was picked up.
+ */
+export function sumAccountLines(
+  rows: XeroReportRow[],
+  labels: string[],
+): { total: Decimal; matched: MatchedAccountLine[] } {
+  const needles = labels.map(normalise).filter(Boolean);
+  const matched: MatchedAccountLine[] = [];
+  let total = new Decimal(0);
+
+  const walk = (current: XeroReportRow[]) => {
+    for (const row of current) {
+      const isAccountLine =
+        (row.rowType ?? '').toLowerCase() === 'row' && (row.cells?.length ?? 0) >= 2;
+      if (isAccountLine) {
+        const label = normalise(rowLabel(row));
+        if (needles.some((needle) => labelMatches(label, needle))) {
+          const amount = parseAmount(row.cells?.[1]?.value);
+          total = total.plus(amount);
+          matched.push({ name: (row.cells?.[0]?.value ?? '').trim(), amount: amount.toFixed(2) });
+        }
+      }
+      if (row.rows?.length) walk(row.rows);
+    }
+  };
+  walk(rows);
+
+  return { total, matched };
 }

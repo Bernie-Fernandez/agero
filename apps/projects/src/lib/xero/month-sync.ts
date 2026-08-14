@@ -6,6 +6,8 @@ import {
   findReportValue,
   findReportValueOrZero,
   parseAmount,
+  sumAccountLines,
+  type MatchedAccountLine,
   type XeroReportRow,
 } from '@/lib/xero/report-rows';
 
@@ -52,6 +54,10 @@ export type XeroMonthSyncSummary = {
   netProfit: string;
   grossProfitDerived: boolean;
   netProfitDerived: boolean;
+  directLabour: string;
+  indirectLabour: string;
+  directLabourAccounts: MatchedAccountLine[];
+  indirectLabourAccounts: MatchedAccountLine[];
   tradeDebtors: string;
   tradeCreditors: string;
   debtorDays: string;
@@ -143,9 +149,24 @@ export async function syncXeroMonth(
   const costOfSales = costOfSalesFound ?? new Decimal(0);
   const indirectExpenses = indirectExpensesFound ?? new Decimal(0);
 
-  // Individual account lines — genuinely optional, absent is legitimately 0.
-  const directLabour = findReportValueOrZero(pnlRows, 'direct labour');
-  const indirectLabour = findReportValueOrZero(pnlRows, 'indirect labour');
+  // Labour — summed from named accounts, because Agero's chart of accounts has
+  // no "Direct Labour"/"Indirect Labour" account and direct labour spans two
+  // lines. A single first-match lookup could express neither, so both fields
+  // were silently reading 0.
+  //   Cost of Sales      → "Proj. Wages and Salaries", "Proj. Staff Superannuation"
+  //   Operating Expenses → "Indirect Wages"
+  // The generic aliases are kept so a renamed/standard account still resolves.
+  const directLabourLines = sumAccountLines(pnlRows, [
+    'proj wages and salaries',
+    'proj staff superannuation',
+    'direct labour',
+  ]);
+  const indirectLabourLines = sumAccountLines(pnlRows, ['indirect wages', 'indirect labour']);
+
+  const directLabour = directLabourLines.total;
+  const indirectLabour = indirectLabourLines.total;
+
+  // Single account line — genuinely optional, absent is legitimately 0.
   const marketingExpenses = findReportValueOrZero(pnlRows, 'marketing');
 
   // Agero's chart of accounts does not always emit standalone Gross/Net Profit
@@ -268,6 +289,10 @@ export async function syncXeroMonth(
       netProfit: netProfit.toFixed(2),
       grossProfitDerived: grossProfitFound === null,
       netProfitDerived: netProfitFound === null,
+      directLabour: directLabour.toFixed(2),
+      indirectLabour: indirectLabour.toFixed(2),
+      directLabourAccounts: directLabourLines.matched,
+      indirectLabourAccounts: indirectLabourLines.matched,
       tradeDebtors: effectiveDebtors.toFixed(2),
       tradeCreditors: effectiveCreditors.toFixed(2),
       debtorDays: debtorDays.toFixed(1),
